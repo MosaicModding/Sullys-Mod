@@ -1,0 +1,28 @@
+modLoader="javafml" #mandatory
+loaderVersion="[37,)" #mandatory
+license="All rights reserved"
+
+[[mods]] #mandatory
+modId = "sullysmod" #mandatory
+version = "${file.jarVersion}" #mandatory
+logoFile = "sullysmod_icon.png" #optional
+authors = "Uraneptus" #optional
+credits = "Idea & Assets by Sully" #optional
+displayURL = "https://www.curseforge.com/minecraft/mc-mods/sullys-mobs"
+displayName = "Sully's Mod" #mandatory
+description = '''
+'''
+
+[[dependencies.sullysmod]] #optional
+    modId="forge" #mandatory
+    mandatory=true #mandatory
+    versionRange="[37,)" #mandatory
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.sullysmod]]
+    modId="minecraft"
+    mandatory=true
+    versionRange="[1.17.1,1.18)"
+    ordering="NONE"
+    side="BOTH"
