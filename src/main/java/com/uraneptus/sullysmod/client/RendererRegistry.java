@@ -17,8 +17,8 @@ public class RendererRegistry {
         event.registerEntityRenderer(SMEntityType.COPPER_GOLEM.get(), CopperGolemRenderer::new);
     }
 
-    @SubscribeEvent
+    /*@SubscribeEvent
     public static void registerLayerLocation(EntityRenderersEvent.RegisterLayerDefinitions event) {
         event.registerLayerDefinition(CopperGolemModel.LAYER_LOCATION, CopperGolemModel::createBodyLayer);
-    }
+    }*/
 }

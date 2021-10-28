@@ -11,10 +11,29 @@ import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
+import software.bernie.geckolib3.model.AnimatedGeoModel;
 
 // Made with Blockbench 4.0.2 by Sully
 
-public class CopperGolemModel extends EntityModel<CopperGolemEntity> {
+public class CopperGolemModel extends AnimatedGeoModel<CopperGolemEntity> {
+
+    @Override
+    public ResourceLocation getModelLocation(CopperGolemEntity object) {
+        return new ResourceLocation(SullysMod.MOD_ID, "geo/copper_golem.geo.json");
+    }
+
+    @Override
+    public ResourceLocation getTextureLocation(CopperGolemEntity object) {
+        return new ResourceLocation(SullysMod.MOD_ID, "textures/entity/copper_golem/copper_golem_0.png");
+    }
+
+    @Override
+    public ResourceLocation getAnimationFileLocation(CopperGolemEntity animatable) {
+        return new ResourceLocation(SullysMod.MOD_ID, "animations/copper_golem.animation.json");
+    }
+}
+
+/*public class CopperGolemModel extends EntityModel<CopperGolemEntity> {
 
 	// This layer location should be baked with EntityRendererProvider.Context in the entity renderer and passed into this model's constructor
 	public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(new ResourceLocation(SullysMod.MOD_ID, "copper_golem"), "main");
@@ -63,15 +82,10 @@ public class CopperGolemModel extends EntityModel<CopperGolemEntity> {
 
 	@Override
 	public void setupAnim(CopperGolemEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-		//Head rotation
-		this.HEAD.yRot = netHeadYaw * 0.017453292F;
-		this.HEAD.xRot = headPitch * 0.017453292F;
-
-
 	}
 
 	@Override
 	public void renderToBuffer(PoseStack poseStack, VertexConsumer buffer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
 		ROOT.render(poseStack, buffer, packedLight, packedOverlay);
 	}
-}
+}*/

@@ -7,18 +7,20 @@ import net.java.games.input.Component;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.resources.ResourceLocation;
+import software.bernie.geckolib3.renderers.geo.GeoEntityRenderer;
 
 import java.util.Map;
 
-public class CopperGolemRenderer extends MobRenderer<CopperGolemEntity, CopperGolemModel> {
-    private static final ResourceLocation TEXTURE = new ResourceLocation(SullysMod.MOD_ID, "textures/entity/copper_golem/copper_golem_0.png");
+public class CopperGolemRenderer extends GeoEntityRenderer<CopperGolemEntity> {
+    //private static final ResourceLocation TEXTURE = new ResourceLocation(SullysMod.MOD_ID, "textures/entity/copper_golem/copper_golem_0.png");
 
     public CopperGolemRenderer(EntityRendererProvider.Context context) {
-        super(context, new CopperGolemModel(context.bakeLayer(CopperGolemModel.LAYER_LOCATION)), 0.5F);
+        super(context, new CopperGolemModel());
+        this.shadowRadius = 0.5F;
     }
 
-    @Override
+    /*@Override
     public ResourceLocation getTextureLocation(CopperGolemEntity pEntity) {
         return TEXTURE;
-    }
+    }*/
 }
