@@ -1,5 +1,6 @@
 package com.uraneptus.sullysmod.common.entities;
 
+import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
@@ -22,13 +23,17 @@ import software.bernie.geckolib3.core.manager.AnimationFactory;
 
 public class CopperGolemEntity extends AbstractGolem implements IAnimatable {
     private final AnimationFactory factory = new AnimationFactory(this);
+    public int headSpinTime = this.random.nextInt(7) + 15;
 
     public CopperGolemEntity(EntityType<? extends AbstractGolem> entityType, Level world) {
         super(entityType, world);
     }
 
+    protected int decreaseAirSupply(int pAir) {
+        return pAir;
+    }
+
     protected void registerGoals() {
-        this.goalSelector.addGoal(0, new FloatGoal(this));
         this.goalSelector.addGoal(6, new WaterAvoidingRandomStrollGoal(this, 1.0D));
         this.goalSelector.addGoal(7, new LookAtPlayerGoal(this, Player.class, 6.0F));
         this.goalSelector.addGoal(8, new RandomLookAroundGoal(this));
@@ -37,13 +42,12 @@ public class CopperGolemEntity extends AbstractGolem implements IAnimatable {
     public static AttributeSupplier.Builder createAttributes() {
         return Mob.createMobAttributes()
                 .add(Attributes.MOVEMENT_SPEED, 0.25D)
-                .add(Attributes.MAX_HEALTH, 10.0D)
+                .add(Attributes.MAX_HEALTH, 45.0D)
                 .add(Attributes.KNOCKBACK_RESISTANCE, 0.5D);
     }
 
     private <E extends IAnimatable> PlayState setAnimation(AnimationEvent<E> event) {
         boolean onGround = isOnGround();
-
         if (!((double)animationSpeed < 0.1D) && onGround) {
             event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.copper_golem.walking", true));
         } else {
