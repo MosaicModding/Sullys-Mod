@@ -1,5 +1,6 @@
 package com.uraneptus.sullysmod.client.renderer.entities.model;
 
+import com.google.common.collect.ImmutableMap;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.uraneptus.sullysmod.SullysMod;
@@ -13,22 +14,25 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
 import software.bernie.geckolib3.model.AnimatedGeoModel;
 
+import java.util.Map;
+
 // Made with Blockbench 4.0.2 by Sully
 
 public class CopperGolemModel extends AnimatedGeoModel<CopperGolemEntity> {
 
     @Override
-    public ResourceLocation getModelLocation(CopperGolemEntity object) {
+    public ResourceLocation getModelLocation(CopperGolemEntity entity) {
         return new ResourceLocation(SullysMod.MOD_ID, "geo/copper_golem.geo.json");
     }
 
     @Override
-    public ResourceLocation getTextureLocation(CopperGolemEntity object) {
-        return new ResourceLocation(SullysMod.MOD_ID, "textures/entity/copper_golem/copper_golem_0.png");
+    public ResourceLocation getTextureLocation(CopperGolemEntity entity) {
+        int id = entity.getEntityData().get(CopperGolemEntity.OXIDIZATION);
+        return new ResourceLocation(SullysMod.MOD_ID, "textures/entity/copper_golem/copper_golem_" + id + ".png");
     }
 
     @Override
-    public ResourceLocation getAnimationFileLocation(CopperGolemEntity animatable) {
+    public ResourceLocation getAnimationFileLocation(CopperGolemEntity entity) {
         return new ResourceLocation(SullysMod.MOD_ID, "animations/copper_golem.animation.json");
     }
 }
