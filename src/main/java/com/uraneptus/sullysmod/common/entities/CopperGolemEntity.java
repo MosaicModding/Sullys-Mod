@@ -107,7 +107,7 @@ public class CopperGolemEntity extends AbstractGolem implements IAnimatable {
         //this.setOxidization(cachedState);
         if (cachedGameTime < level.getGameTime() && cachedState < 3) {
             cachedGameTime = (int) level.getGameTime() + Mth.nextInt(random, 200, 400);
-            this.getEntityData().set(OXIDIZATION, cachedState += 1);
+            this.getEntityData().set(OXIDIZATION, ++cachedState);
         }
 
     }
