@@ -42,7 +42,7 @@ public class CopperGolemEntity extends AbstractGolem implements IAnimatable {
     //boolean flag;
     //public OxidizationState state = OxidizationState.UNAFFECTED;
     int cachedState = 0;
-    int cachedGameTime = 0;
+    int cachedGameTime = 400;
 
     public CopperGolemEntity(EntityType<? extends AbstractGolem> entityType, Level world) {
         super(entityType, world);
@@ -100,10 +100,14 @@ public class CopperGolemEntity extends AbstractGolem implements IAnimatable {
             //System.out.println("i equals 0. Flag should be true");
         }*/
 
-        this.setOxidization(cachedState);
-        if (level.getGameTime() >= cachedGameTime && cachedState <= 2) {
+        if (getEntityData().get(OXIDIZATION) == 0) {
+            System.out.println("OXIDIZATION STATE: UNAFFECTED");
+        }
+
+        //this.setOxidization(cachedState);
+        if (cachedGameTime < level.getGameTime() && cachedState < 3) {
             cachedGameTime = (int) level.getGameTime() + Mth.nextInt(random, 200, 400);
-            this.setOxidization(++this.cachedState);
+            this.getEntityData().set(OXIDIZATION, cachedState += 1);
         }
 
     }
