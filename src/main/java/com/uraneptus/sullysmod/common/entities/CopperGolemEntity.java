@@ -41,12 +41,14 @@ public class CopperGolemEntity extends AbstractGolem implements IAnimatable {
     //public int headSpinTime = this.random.nextInt(7) + 15;
     //boolean flag;
     //public OxidizationState state = OxidizationState.UNAFFECTED;
-    int cachedState = 0;
-    int cachedGameTime = 400;
+    int cachedState;
+    int cachedGameTime;
 
     public CopperGolemEntity(EntityType<? extends AbstractGolem> entityType, Level world) {
         super(entityType, world);
         //this.flag = false;
+        this.cachedGameTime = 400;
+        this.cachedState = 0;
 
     }
 
@@ -72,10 +74,23 @@ public class CopperGolemEntity extends AbstractGolem implements IAnimatable {
     }
 
     @Override
+    public void addAdditionalSaveData(CompoundTag nbt) {
+        super.addAdditionalSaveData(nbt);
+        nbt.putInt("OxidizationState", this.getOxidization());
+        nbt.putInt("CachedGameTime", cachedGameTime);
+    }
+
+    @Override
+    public void readAdditionalSaveData(CompoundTag nbt) {
+        super.readAdditionalSaveData(nbt);
+        this.setOxidization(nbt.getInt("OxidizationState"));
+        this.cachedGameTime = nbt.getInt("CachedGameTime");
+    }
+
+    @Override
     public void onSyncedDataUpdated(EntityDataAccessor<?> key) {
         super.onSyncedDataUpdated(key);
         cachedState = getEntityData().get(OXIDIZATION);
-
     }
 
     protected int decreaseAirSupply(int pAir) {
@@ -89,16 +104,16 @@ public class CopperGolemEntity extends AbstractGolem implements IAnimatable {
                 .add(Attributes.KNOCKBACK_RESISTANCE, 0.5D);
     }
 
-    public void aiStep() {
+    /*public void aiStep() {
         super.aiStep();
-        /*int i = this.getHeadSpinDelay();
+        int i = this.getHeadSpinDelay();
         if (i > 0) {
             this.setHeadSpinDelay(i - 1);
         }
         if (i == 0) {
             flag = true;
             //System.out.println("i equals 0. Flag should be true");
-        }*/
+        }
 
         if (getEntityData().get(OXIDIZATION) == 0) {
             System.out.println("OXIDIZATION STATE: UNAFFECTED");
@@ -108,6 +123,17 @@ public class CopperGolemEntity extends AbstractGolem implements IAnimatable {
         if (cachedGameTime < level.getGameTime() && cachedState < 3) {
             cachedGameTime = (int) level.getGameTime() + Mth.nextInt(random, 200, 400);
             this.getEntityData().set(OXIDIZATION, ++cachedState);
+        }
+
+    }*/
+
+    public void tick() {
+        super.tick();
+        if (!level.isClientSide()) {
+            if (cachedGameTime < level.getGameTime() && cachedState < 3) {
+                cachedGameTime = (int) level.getGameTime() + Mth.nextInt(random, 200, 400);
+                this.getEntityData().set(OXIDIZATION, ++cachedState);
+            }
         }
 
     }
@@ -145,8 +171,11 @@ public class CopperGolemEntity extends AbstractGolem implements IAnimatable {
     }*/
 
     private void setOxidization(int state) {
-        cachedState = state;
         this.entityData.set(OXIDIZATION, state);
+    }
+
+    public int getOxidization() {
+        return this.entityData.get(OXIDIZATION);
     }
 
     /*private void setHeadSpinDelay(int delay) {
