@@ -47,7 +47,7 @@ public class CopperGolemEntity extends AbstractGolem implements IAnimatable {
     public CopperGolemEntity(EntityType<? extends AbstractGolem> entityType, Level world) {
         super(entityType, world);
         //this.flag = false;
-        this.cachedGameTime = 400;
+        this.cachedGameTime = (int) level.getGameTime() + 400;
         this.cachedState = 0;
 
     }
@@ -132,7 +132,7 @@ public class CopperGolemEntity extends AbstractGolem implements IAnimatable {
         if (!level.isClientSide()) {
             if (cachedGameTime < level.getGameTime() && cachedState < 3) {
                 cachedGameTime = (int) level.getGameTime() + Mth.nextInt(random, 200, 400);
-                this.getEntityData().set(OXIDIZATION, ++cachedState);
+                this.getEntityData().set(OXIDIZATION, cachedState++);
             }
         }
 
