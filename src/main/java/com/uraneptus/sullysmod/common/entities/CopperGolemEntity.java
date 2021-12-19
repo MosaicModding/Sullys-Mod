@@ -36,41 +36,32 @@ import java.util.stream.Stream;
 
 public class CopperGolemEntity extends AbstractGolem implements IAnimatable {
     public static final EntityDataAccessor<Integer> OXIDIZATION = SynchedEntityData.defineId(CopperGolemEntity.class, EntityDataSerializers.INT);
-    //private static final EntityDataAccessor<Integer> HEAD_SPIN_DELAY = SynchedEntityData.defineId(CopperGolemEntity.class, EntityDataSerializers.INT);
     private final AnimationFactory factory = new AnimationFactory(this);
-    //public int headSpinTime = this.random.nextInt(7) + 15;
-    //boolean flag;
-    //public OxidizationState state = OxidizationState.UNAFFECTED;
     int cachedState;
     int cachedGameTime;
+    boolean isStatue;
 
     public CopperGolemEntity(EntityType<? extends AbstractGolem> entityType, Level world) {
         super(entityType, world);
         //this.flag = false;
-        this.cachedGameTime = (int) level.getGameTime() + 400;
+        this.cachedGameTime = Mth.nextInt(random, 100, 200);
         this.cachedState = 0;
 
     }
 
-    /*private boolean oxidizationStateAllowsGoals() {
-        return this.getEntityData().get(OXIDIZATION) != 3;
-    }*/
-
     @Override
     protected void registerGoals() {
-        /*if (!oxidizationStateAllowsGoals()) {
-            return;
-        }*/
-        this.goalSelector.addGoal(6, new WaterAvoidingRandomStrollGoal(this, 1.0D));
-        this.goalSelector.addGoal(7, new LookAtPlayerGoal(this, Player.class, 6.0F));
-        this.goalSelector.addGoal(8, new RandomLookAroundGoal(this));
+        if (cachedState < 3) {
+            this.goalSelector.addGoal(6, new WaterAvoidingRandomStrollGoal(this, 1.0D));
+            this.goalSelector.addGoal(7, new LookAtPlayerGoal(this, Player.class, 6.0F));
+            this.goalSelector.addGoal(8, new RandomLookAroundGoal(this));
+        }
     }
 
     @Override
     protected void defineSynchedData() {
         super.defineSynchedData();
         this.entityData.define(OXIDIZATION, cachedState);
-        //this.entityData.define(HEAD_SPIN_DELAY, 0);
     }
 
     @Override
@@ -104,44 +95,37 @@ public class CopperGolemEntity extends AbstractGolem implements IAnimatable {
                 .add(Attributes.KNOCKBACK_RESISTANCE, 0.5D);
     }
 
-    /*public void aiStep() {
-        super.aiStep();
-        int i = this.getHeadSpinDelay();
-        if (i > 0) {
-            this.setHeadSpinDelay(i - 1);
-        }
-        if (i == 0) {
-            flag = true;
-            //System.out.println("i equals 0. Flag should be true");
-        }
-
-        if (getEntityData().get(OXIDIZATION) == 0) {
-            System.out.println("OXIDIZATION STATE: UNAFFECTED");
-        }
-
-        //this.setOxidization(cachedState);
-        if (cachedGameTime < level.getGameTime() && cachedState < 3) {
-            cachedGameTime = (int) level.getGameTime() + Mth.nextInt(random, 200, 400);
-            this.getEntityData().set(OXIDIZATION, ++cachedState);
-        }
-
-    }*/
 
     public void tick() {
         super.tick();
+
         if (!level.isClientSide()) {
-            if (cachedGameTime < level.getGameTime() && cachedState < 3) {
-                cachedGameTime = (int) level.getGameTime() + Mth.nextInt(random, 200, 400);
+            if (cachedGameTime > 0) {
+                cachedGameTime--;
+            }
+            if (cachedGameTime == 0 && cachedState <= 3) {
+                cachedGameTime = Mth.nextInt(random, 100, 200);
                 this.getEntityData().set(OXIDIZATION, cachedState++);
             }
         }
+        if (this.getEntityData().get(CopperGolemEntity.OXIDIZATION) == 3) {
+            this.makeStatue();
 
+        }
+
+    }
+
+    public void makeStatue() {
+        this.isStatue = true;
+        this.setNoAi(true);
+        this.goalSelector.removeAllGoals();
+        this.setSpeed(0.0F);
     }
 
 
     public <E extends IAnimatable> PlayState setAnimation(AnimationEvent<E> event) {
         boolean onGround = isOnGround();
-        if (!((double)animationSpeed < 0.1D) && onGround) {
+        if (!((double)animationSpeed < 0.1D) && onGround && !isStatue) {
             event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.copper_golem.walking", true));
             return PlayState.CONTINUE;
         } /*else {
@@ -165,10 +149,6 @@ public class CopperGolemEntity extends AbstractGolem implements IAnimatable {
         return this.factory;
     }
 
-    /*private void setOxidization(OxidizationState state) {
-        this.state = state;
-        this.getEntityData().set(OXIDIZATION, Util.make(() -> state.stateIdentifier));
-    }*/
 
     private void setOxidization(int state) {
         this.entityData.set(OXIDIZATION, state);
@@ -177,32 +157,5 @@ public class CopperGolemEntity extends AbstractGolem implements IAnimatable {
     public int getOxidization() {
         return this.entityData.get(OXIDIZATION);
     }
-
-    /*private void setHeadSpinDelay(int delay) {
-        this.entityData.set(HEAD_SPIN_DELAY, delay);
-    }*/
-
-    /*public enum OxidizationState {
-        UNAFFECTED(0),
-        EXPOSED(1),
-        WEATHERED(2),
-        OXIDIZED(3);
-
-        public final int stateIdentifier;
-
-        OxidizationState(int stateValue) {
-            this.stateIdentifier = stateValue;
-        }
-
-        public static CopperGolemEntity.OxidizationState getStateValue(int stateValue) {
-            for (OxidizationState oxidizationState : values()) {
-                if (oxidizationState.stateIdentifier == stateValue) {
-                    return oxidizationState;
-                }
-            }
-            return UNAFFECTED;
-        }
-    }*/
-
 
 }
