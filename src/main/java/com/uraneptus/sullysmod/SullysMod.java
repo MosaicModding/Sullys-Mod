@@ -1,5 +1,6 @@
 package com.uraneptus.sullysmod;
 
+import com.teamabnormals.blueprint.core.util.registry.RegistryHelper;
 import com.uraneptus.sullysmod.common.entities.CopperGolemEntity;
 import com.uraneptus.sullysmod.core.registry.SMEntityType;
 import net.minecraftforge.common.MinecraftForge;
@@ -12,17 +13,15 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 @Mod(SullysMod.MOD_ID)
 @Mod.EventBusSubscriber(modid = SullysMod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
-public class SullysMod
-{
+public class SullysMod {
     public static final String MOD_ID = "sullysmod";
+    public static final RegistryHelper REGISTRY_HELPER = new RegistryHelper(MOD_ID);
 
     public SullysMod() {
         IEventBus event_bus = FMLJavaModLoadingContext.get().getModEventBus();
         event_bus.addListener(this::setup);
 
-        SMEntityType.ENTITY_TYPE.register(event_bus);
-
-
+        REGISTRY_HELPER.register(event_bus);
 
         MinecraftForge.EVENT_BUS.register(this);
     }
