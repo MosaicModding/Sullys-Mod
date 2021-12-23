@@ -4,6 +4,7 @@ import com.teamabnormals.blueprint.core.util.registry.RegistryHelper;
 import com.uraneptus.sullysmod.common.entities.CopperGolemEntity;
 import com.uraneptus.sullysmod.core.data.BlockStates;
 import com.uraneptus.sullysmod.core.data.ItemModels;
+import com.uraneptus.sullysmod.core.data.LangProvider;
 import com.uraneptus.sullysmod.core.registry.SMEntityType;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
@@ -43,5 +44,6 @@ public class SullysMod {
     public void gatherData(GatherDataEvent event) {
         event.getGenerator().addProvider(new BlockStates(event.getGenerator(), event.getExistingFileHelper()));
         event.getGenerator().addProvider(new ItemModels(event.getGenerator(), event.getExistingFileHelper()));
+        event.getGenerator().addProvider(new LangProvider(event.getGenerator()));
     }
 }

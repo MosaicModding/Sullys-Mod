@@ -46,7 +46,10 @@ public class ItemModels extends ItemModelProvider {
         basicBlockItem(SMBlocks.SMALL_JADE_BRICKS.get());
         basicBlockItem(SMBlocks.JADE_SHINGLES.get());
         basicBlockItem(SMBlocks.JADE_TILES.get());
+        basicBlockItem(SMBlocks.CHISELED_JADE.get());
+        basicBlockItem(SMBlocks.JADE_PILLAR.get());
         basicItem(SMItems.RAW_JADE.get());
+        basicItem(SMItems.JADE.get());
 
         System.out.println("ITEM GENERATION COMPLETE");
     }

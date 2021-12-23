@@ -12,4 +12,5 @@ public class SMItems {
     public static final ItemSubRegistryHelper HELPER = SullysMod.REGISTRY_HELPER.getItemSubHelper();
 
     public static final RegistryObject<Item> RAW_JADE = HELPER.createItem("raw_jade", () -> new Item(new Item.Properties().tab(CreativeModeTab.TAB_MISC)));
+    public static final RegistryObject<Item> JADE = HELPER.createItem("jade", () -> new Item(new Item.Properties().tab(CreativeModeTab.TAB_MISC)));
 }
