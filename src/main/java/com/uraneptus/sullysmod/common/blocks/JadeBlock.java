@@ -7,4 +7,5 @@ public class JadeBlock extends Block {
     public JadeBlock(Properties properties) {
         super(properties);
     }
+
 }
