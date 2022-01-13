@@ -1,4 +1,4 @@
-package com.uraneptus.sullysmod.core.data;
+package com.uraneptus.sullysmod.core.data.client;
 
 import com.uraneptus.sullysmod.SullysMod;
 import com.uraneptus.sullysmod.core.registry.SMBlocks;
@@ -26,6 +26,7 @@ public class LangProvider extends LanguageProvider {
         add(SMBlocks.JADE_TILES.get(), "Jade Tiles");
         add(SMBlocks.CHISELED_JADE.get(), "Chiseled Jade");
         add(SMBlocks.JADE_PILLAR.get(), "Jade Pillar");
+        add(SMBlocks.JADE_TOTEM.get(), "Jade Totem");
         add(SMItems.RAW_JADE.get(), "Raw Jade");
         add(SMItems.JADE.get(), "Jade");
 

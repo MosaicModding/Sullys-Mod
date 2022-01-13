@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "sullysmod:block/jade_totem"
+    },
+    "facing=south": {
+      "model": "sullysmod:block/jade_totem",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "sullysmod:block/jade_totem",
+      "y": 270
+    },
+    "facing=east": {
+      "model": "sullysmod:block/jade_totem",
+      "y": 90
+    }
+  }
+}

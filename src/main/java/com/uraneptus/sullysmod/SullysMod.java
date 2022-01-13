@@ -2,11 +2,13 @@ package com.uraneptus.sullysmod;
 
 import com.teamabnormals.blueprint.core.util.registry.RegistryHelper;
 import com.uraneptus.sullysmod.common.entities.CopperGolemEntity;
-import com.uraneptus.sullysmod.core.data.BlockStates;
-import com.uraneptus.sullysmod.core.data.ItemModels;
-import com.uraneptus.sullysmod.core.data.LangProvider;
+import com.uraneptus.sullysmod.core.data.client.BlockStates;
+import com.uraneptus.sullysmod.core.data.client.ItemModels;
+import com.uraneptus.sullysmod.core.data.client.LangProvider;
 import com.uraneptus.sullysmod.core.registry.SMEntityType;
+import net.minecraft.data.DataGenerator;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -42,8 +44,14 @@ public class SullysMod {
 
     @SubscribeEvent
     public void gatherData(GatherDataEvent event) {
-        event.getGenerator().addProvider(new BlockStates(event.getGenerator(), event.getExistingFileHelper()));
-        event.getGenerator().addProvider(new ItemModels(event.getGenerator(), event.getExistingFileHelper()));
-        event.getGenerator().addProvider(new LangProvider(event.getGenerator()));
+        DataGenerator generator = event.getGenerator();
+        ExistingFileHelper fileHelper = event.getExistingFileHelper();
+
+        if (event.includeClient()) {
+            generator.addProvider(new BlockStates(generator, fileHelper));
+            generator.addProvider(new ItemModels(generator, fileHelper));
+            generator.addProvider(new LangProvider(generator));
+        }
+
     }
 }
