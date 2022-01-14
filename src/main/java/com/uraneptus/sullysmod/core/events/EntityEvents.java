@@ -3,7 +3,11 @@ package com.uraneptus.sullysmod.core.events;
 import com.uraneptus.sullysmod.SullysMod;
 import com.uraneptus.sullysmod.common.blocks.JadeBlock;
 import com.uraneptus.sullysmod.common.blocks.JadePillar;
+import com.uraneptus.sullysmod.core.registry.SMParticleTypes;
 import net.minecraft.core.BlockPos;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.projectile.Fireball;
 import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.entity.projectile.ShulkerBullet;
@@ -21,7 +25,7 @@ public class EntityEvents {
 
     @SubscribeEvent //Here's still some stuff to fix
     public static void onProjectileHitsBlock(ProjectileImpactEvent event) {
-        System.out.println("Event fired");
+        //System.out.println("Event fired");
         Projectile projectile = event.getProjectile();
         Level level = event.getEntity().getLevel();
         HitResult hitResult = event.getRayTraceResult();
@@ -31,12 +35,13 @@ public class EntityEvents {
             if (hitResult instanceof BlockHitResult blockHitResult) {
                 BlockPos pos = blockHitResult.getBlockPos();
                 BlockState block = level.getBlockState(pos);
-                System.out.println("Hitresult check");
+                //System.out.println("Hitresult check");
                 if (block.getBlock() instanceof JadeBlock || block.getBlock() instanceof JadePillar) {
-                    System.out.println("Jade block ckecksss");
-
+                    //System.out.println("Jade block ckecksss");
                     event.setCanceled(true);
                     projectile.shoot(vec3.reverse().x, vec3.reverse().y, vec3.reverse().z , 0.4F, 1.0F);
+                    level.addParticle(SMParticleTypes.RICOCHET.get(), projectile.getX(), projectile.getY(), projectile.getZ(), 0, 0, 0);
+                    level.playLocalSound(projectile.getX(), projectile.getY(), projectile.getZ(), SoundEvents.SHIELD_BLOCK, SoundSource.BLOCKS, 1.0F, 0.0F, false);
 
 
                 }

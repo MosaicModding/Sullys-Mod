@@ -6,6 +6,7 @@ import com.uraneptus.sullysmod.core.data.client.BlockStates;
 import com.uraneptus.sullysmod.core.data.client.ItemModels;
 import com.uraneptus.sullysmod.core.data.client.LangProvider;
 import com.uraneptus.sullysmod.core.registry.SMEntityType;
+import com.uraneptus.sullysmod.core.registry.SMParticleTypes;
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.data.ExistingFileHelper;
@@ -29,6 +30,7 @@ public class SullysMod {
         event_bus.addListener(this::gatherData);
 
         REGISTRY_HELPER.register(event_bus);
+        SMParticleTypes.PARTICLES.register(event_bus);
 
         MinecraftForge.EVENT_BUS.register(this);
     }
