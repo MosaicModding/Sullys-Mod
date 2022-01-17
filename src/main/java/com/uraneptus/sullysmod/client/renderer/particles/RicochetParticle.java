@@ -13,7 +13,7 @@ public class RicochetParticle extends TextureSheetParticle {
     public RicochetParticle(SpriteSet animatedSprite, ClientLevel level, double posX, double posY, double posZ) {
         super(level, posX, posY, posZ);
         //this.setSize(0.5F, 0.5F);
-        this.quadSize = 0.3F;
+        this.quadSize = 0.5F;
         this.animatedSprite = animatedSprite;
         this.lifetime = 5;
         this.hasPhysics = false;
