@@ -2,6 +2,7 @@ package com.uraneptus.sullysmod;
 
 import com.teamabnormals.blueprint.core.util.registry.RegistryHelper;
 import com.uraneptus.sullysmod.common.entities.CopperGolemEntity;
+import com.uraneptus.sullysmod.common.entities.LanternfishEntity;
 import com.uraneptus.sullysmod.core.data.client.BlockStates;
 import com.uraneptus.sullysmod.core.data.client.ItemModels;
 import com.uraneptus.sullysmod.core.data.client.LangProvider;
@@ -42,6 +43,7 @@ public class SullysMod {
     @SubscribeEvent
     public static void addEntityAttributes(final EntityAttributeCreationEvent event) {
         event.put(SMEntityType.COPPER_GOLEM.get(), CopperGolemEntity.createAttributes().build());
+        event.put(SMEntityType.LANTERNFISH.get(), LanternfishEntity.createAttributes().build());
     }
 
     @SubscribeEvent

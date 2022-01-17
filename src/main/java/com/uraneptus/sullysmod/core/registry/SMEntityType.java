@@ -3,6 +3,7 @@ package com.uraneptus.sullysmod.core.registry;
 import com.teamabnormals.blueprint.core.util.registry.EntitySubRegistryHelper;
 import com.uraneptus.sullysmod.SullysMod;
 import com.uraneptus.sullysmod.common.entities.CopperGolemEntity;
+import com.uraneptus.sullysmod.common.entities.LanternfishEntity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraftforge.fml.common.Mod;
@@ -14,4 +15,5 @@ public class SMEntityType {
 
 
     public static final RegistryObject<EntityType<CopperGolemEntity>> COPPER_GOLEM = HELPER.createLivingEntity("copper_golem", CopperGolemEntity::new, MobCategory.MISC, 1.0F, 1.0F);
+    public static final RegistryObject<EntityType<LanternfishEntity>> LANTERNFISH = HELPER.createLivingEntity("lanternfish", LanternfishEntity::new, MobCategory.WATER_AMBIENT, 0.5F, 0.3F);
 }
