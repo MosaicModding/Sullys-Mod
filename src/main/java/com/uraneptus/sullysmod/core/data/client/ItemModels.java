@@ -51,6 +51,10 @@ public class ItemModels extends ItemModelProvider {
         basicBlockItem(SMBlocks.JADE_TOTEM.get());
         basicItem(SMItems.RAW_JADE.get());
         basicItem(SMItems.JADE.get());
+        basicItem(SMItems.LANTERNFISH_BUCKET.get());
+        basicSpawnEggItem(SMItems.LANTERNFISH_SPAWN_EGG.get());
+        basicItem(SMItems.RAW_LANTERNFISH.get());
+        basicItem(SMItems.COOKED_LANTERNFISH.get());
 
         System.out.println("ITEM GENERATION COMPLETE");
     }
@@ -61,6 +65,10 @@ public class ItemModels extends ItemModelProvider {
 
     private void basicItem(Item item) {
         withExistingParent(name(item), GENERATED).texture("layer0", itemLocation(name(item)));
+    }
+
+    private void basicSpawnEggItem(Item item) {
+        withExistingParent(name(item), "item/template_spawn_egg");
     }
 
 }

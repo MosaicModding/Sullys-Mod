@@ -29,6 +29,10 @@ public class LangProvider extends LanguageProvider {
         add(SMBlocks.JADE_TOTEM.get(), "Jade Totem");
         add(SMItems.RAW_JADE.get(), "Raw Jade");
         add(SMItems.JADE.get(), "Jade");
+        add(SMItems.LANTERNFISH_BUCKET.get(), "Bucket of Lanternfish");
+        add(SMItems.LANTERNFISH_SPAWN_EGG.get(), "Lanternfish Spawn Egg");
+        add(SMItems.RAW_LANTERNFISH.get(), "Raw Lanternfish");
+        add(SMItems.COOKED_LANTERNFISH.get(), "Cooked Lanternfish");
 
         System.out.println("LANGUAGE GENERATION COMPLETE");
     }
