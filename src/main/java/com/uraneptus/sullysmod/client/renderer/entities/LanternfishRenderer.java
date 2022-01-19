@@ -6,15 +6,10 @@ import com.uraneptus.sullysmod.SullysMod;
 import com.uraneptus.sullysmod.client.renderer.entities.layer.LanternfishGlowLayer;
 import com.uraneptus.sullysmod.client.renderer.entities.model.LanternfishModel;
 import com.uraneptus.sullysmod.common.entities.LanternfishEntity;
-import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;
-import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.GlowSquid;
-import net.minecraft.world.entity.monster.EnderMan;
 
 public class LanternfishRenderer extends MobRenderer<LanternfishEntity, LanternfishModel<LanternfishEntity>> {
     public static final ResourceLocation TEXTURE = new ResourceLocation(SullysMod.MOD_ID, "textures/entity/lanternfish/lanternfish.png");
