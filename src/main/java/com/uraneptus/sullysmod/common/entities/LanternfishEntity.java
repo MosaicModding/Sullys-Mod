@@ -1,6 +1,8 @@
 package com.uraneptus.sullysmod.common.entities;
 
+import com.uraneptus.sullysmod.common.entities.goals.LightAvoidingRandomSwimmingGoal;
 import com.uraneptus.sullysmod.core.registry.SMItems;
+import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
@@ -8,12 +10,18 @@ import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.animal.AbstractFish;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.ServerLevelAccessor;
+import net.minecraft.world.level.block.Blocks;
+
+import java.util.Random;
 
 public class LanternfishEntity extends AbstractFish {
     private static final EntityDataAccessor<Integer> DATA_DARK_TICKS_REMAINING = SynchedEntityData.defineId(LanternfishEntity.class, EntityDataSerializers.INT);
@@ -26,6 +34,11 @@ public class LanternfishEntity extends AbstractFish {
     public static AttributeSupplier.Builder createAttributes() {
         return Mob.createMobAttributes()
                 .add(Attributes.MAX_HEALTH, 3.0D);
+    }
+
+    protected void registerGoals() {
+        super.registerGoals();
+        this.goalSelector.addGoal(3, new LightAvoidingRandomSwimmingGoal(this, 1.0D, 3));
     }
 
     protected void defineSynchedData() {
@@ -77,5 +90,9 @@ public class LanternfishEntity extends AbstractFish {
     @Override
     public ItemStack getBucketItemStack() {
         return new ItemStack(SMItems.LANTERNFISH_BUCKET.get());
+    }
+
+    public static boolean checkLanternfishSpawnRules(EntityType<? extends LivingEntity> entityType, ServerLevelAccessor levelAccessor, MobSpawnType spawnType, BlockPos pos, Random random) {
+        return levelAccessor.getBlockState(pos).is(Blocks.WATER) && pos.getY() <= levelAccessor.getSeaLevel() - 4;
     }
 }

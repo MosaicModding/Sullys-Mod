@@ -3,6 +3,7 @@ package com.uraneptus.sullysmod.core.events;
 import com.uraneptus.sullysmod.SullysMod;
 import com.uraneptus.sullysmod.common.blocks.JadeBlock;
 import com.uraneptus.sullysmod.common.blocks.JadePillar;
+import com.uraneptus.sullysmod.common.capabilities.EntityCapabilities;
 import com.uraneptus.sullysmod.core.registry.SMParticleTypes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvents;
@@ -29,6 +30,7 @@ public class EntityEvents {
         Level level = event.getEntity().getLevel();
         HitResult hitResult = event.getRayTraceResult();
         Vec3 vec3 = projectile.getDeltaMovement();
+        BlockPos belowEntityPos = projectile.blockPosition().below();
 
         if (!(projectile instanceof ShulkerBullet || projectile instanceof Fireball)) {
             if (hitResult instanceof BlockHitResult blockHitResult) {
@@ -41,6 +43,9 @@ public class EntityEvents {
                     projectile.shoot(vec3.reverse().x, vec3.reverse().y, vec3.reverse().z , 0.4F, 1.0F);
                     level.addParticle(SMParticleTypes.RICOCHET.get(), projectile.getX(), projectile.getY(), projectile.getZ(), 0, 0, 0);
                     level.playLocalSound(projectile.getX(), projectile.getY(), projectile.getZ(), SoundEvents.SHIELD_BLOCK, SoundSource.BLOCKS, 1.0F, 0.0F, false);
+
+
+
 
 
                 }

@@ -65,13 +65,4 @@ public class SmMobBucketItem extends BucketItem {
     public void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
 
     }
-
-    // Forge Start
-    protected EntityType<?> getFishType() {
-        return fishTypeSupplier.get();
-    }
-
-    protected SoundEvent getEmptySound() {
-        return emptySoundSupplier.get();
-    }
 }
