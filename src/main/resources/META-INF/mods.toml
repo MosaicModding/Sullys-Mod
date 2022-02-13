@@ -5,7 +5,7 @@ license="All rights reserved"
 [[mods]] #mandatory
 modId = "sullysmod" #mandatory
 version = "${file.jarVersion}" #mandatory
-logoFile = "sullysmod_icon.png" #optional
+logoFile = "sullysmod_banner.png" #optional
 authors = "Uraneptus" #optional
 credits = "Idea & Assets by Sully" #optional
 displayURL = "https://www.curseforge.com/minecraft/mc-mods/sullys-mobs"
@@ -28,8 +28,8 @@ description = '''
     side="BOTH"
 
 [[dependencies.sullysmod]]
-modId = "blueprint"
-mandatory = true
-versionRange = "[5.0.0,)"
-ordering = "BEFORE"
-side = "BOTH"
+    modId = "blueprint"
+    mandatory = true
+    versionRange = "[5.0.0,)"
+    ordering = "BEFORE"
+    side = "BOTH"
