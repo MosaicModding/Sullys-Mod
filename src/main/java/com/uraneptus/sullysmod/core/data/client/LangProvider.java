@@ -34,6 +34,6 @@ public class LangProvider extends LanguageProvider {
         add(SMItems.RAW_LANTERNFISH.get(), "Raw Lanternfish");
         add(SMItems.COOKED_LANTERNFISH.get(), "Cooked Lanternfish");
 
-        System.out.println("LANGUAGE GENERATION COMPLETE");
+        SullysMod.LOGGER.info("LANGUAGE GENERATION COMPLETE");
     }
 }

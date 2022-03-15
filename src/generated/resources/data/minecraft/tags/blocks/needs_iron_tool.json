@@ -1,0 +1,18 @@
+{
+  "replace": false,
+  "values": [
+    "sullysmod:jade_ore",
+    "sullysmod:deepslate_jade_ore",
+    "sullysmod:raw_jade_block",
+    "sullysmod:raw_jade_bricks",
+    "sullysmod:raw_jade_tile",
+    "sullysmod:raw_jade_tiles",
+    "sullysmod:jade_bricks",
+    "sullysmod:small_jade_bricks",
+    "sullysmod:jade_shingles",
+    "sullysmod:jade_tiles",
+    "sullysmod:chiseled_jade",
+    "sullysmod:jade_totem",
+    "sullysmod:jade_pillar"
+  ]
+}

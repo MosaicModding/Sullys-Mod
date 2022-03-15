@@ -45,3 +45,6 @@ c3899561fe143b1d4f3f5b1eea84fd1ab6414839 assets/sullysmod/models/item/raw_jade_b
 dab4b6dff5261e9e04d110eda7ebaf800b699882 assets/sullysmod/models/item/raw_jade_tiles.json
 3bfc7808895b7bf744b5a3ba65ebfe625dda6739 assets/sullysmod/models/item/raw_lanternfish.json
 90b888a91c3b31a9d0d4944a26207b5a21b01fca assets/sullysmod/models/item/small_jade_bricks.json
+26ce170b51cfea39ab2c55e48fce1328b47c5abc data/forge/tags/entity_types/fishes.json
+7484dab3dec3ee90fe4656d94b98e8cdde3e2fb0 data/minecraft/tags/blocks/mineable/pickaxe.json
+7484dab3dec3ee90fe4656d94b98e8cdde3e2fb0 data/minecraft/tags/blocks/needs_iron_tool.json

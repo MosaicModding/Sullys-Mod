@@ -56,7 +56,7 @@ public class ItemModels extends ItemModelProvider {
         basicItem(SMItems.RAW_LANTERNFISH.get());
         basicItem(SMItems.COOKED_LANTERNFISH.get());
 
-        System.out.println("ITEM GENERATION COMPLETE");
+        SullysMod.LOGGER.info("ITEM MODEL GENERATION COMPLETE");
     }
 
     private void basicBlockItem(Block blockForItem) {

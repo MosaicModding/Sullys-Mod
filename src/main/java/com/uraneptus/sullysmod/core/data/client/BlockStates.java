@@ -43,7 +43,7 @@ public class BlockStates extends BlockStateProvider {
         pillarBlock(SMBlocks.JADE_PILLAR.get(), "chiseled_jade");
         totemBlock(SMBlocks.JADE_TOTEM.get());
 
-        System.out.println("BLOCK GENERATION COMPLETE");
+        SullysMod.LOGGER.info("BLOCKSTATE GENERATION COMPLETE");
     }
 
 
