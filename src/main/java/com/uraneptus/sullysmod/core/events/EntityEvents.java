@@ -1,9 +1,7 @@
 package com.uraneptus.sullysmod.core.events;
 
 import com.uraneptus.sullysmod.SullysMod;
-import com.uraneptus.sullysmod.common.blocks.JadeBlock;
-import com.uraneptus.sullysmod.common.blocks.JadePillar;
-import com.uraneptus.sullysmod.common.capabilities.EntityCapabilities;
+import com.uraneptus.sullysmod.core.other.SMBlockTags;
 import com.uraneptus.sullysmod.core.registry.SMParticleTypes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvents;
@@ -37,7 +35,7 @@ public class EntityEvents {
                 BlockPos pos = blockHitResult.getBlockPos();
                 BlockState block = level.getBlockState(pos);
                 //System.out.println("Hitresult check");
-                if (block.getBlock() instanceof JadeBlock || block.getBlock() instanceof JadePillar) {
+                if (block.is(SMBlockTags.BOUNCES_PROJECTILES)) {
                     //System.out.println("Jade block ckecksss");
                     event.setCanceled(true);
                     projectile.shoot(vec3.reverse().x, vec3.reverse().y, vec3.reverse().z , 0.4F, 1.0F);

@@ -48,3 +48,4 @@ dab4b6dff5261e9e04d110eda7ebaf800b699882 assets/sullysmod/models/item/raw_jade_t
 26ce170b51cfea39ab2c55e48fce1328b47c5abc data/forge/tags/entity_types/fishes.json
 7484dab3dec3ee90fe4656d94b98e8cdde3e2fb0 data/minecraft/tags/blocks/mineable/pickaxe.json
 7484dab3dec3ee90fe4656d94b98e8cdde3e2fb0 data/minecraft/tags/blocks/needs_iron_tool.json
+002ceb1e240a588fed7a460a6683fbd3399fac13 data/sullysmod/tags/blocks/bounces_projectiles.json
