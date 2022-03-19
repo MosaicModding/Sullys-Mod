@@ -1,6 +1,7 @@
 package com.uraneptus.sullysmod.core.data.server.tags;
 
 import com.uraneptus.sullysmod.SullysMod;
+import com.uraneptus.sullysmod.core.other.SMBlockTags;
 import com.uraneptus.sullysmod.core.registry.SMBlocks;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.tags.BlockTagsProvider;
@@ -37,6 +38,15 @@ public class BlockTags extends BlockTagsProvider {
                 SMBlocks.RAW_JADE_BRICKS.get(),
                 SMBlocks.RAW_JADE_TILE.get(),
                 SMBlocks.RAW_JADE_TILES.get(),
+                SMBlocks.JADE_BRICKS.get(),
+                SMBlocks.SMALL_JADE_BRICKS.get(),
+                SMBlocks.JADE_SHINGLES.get(),
+                SMBlocks.JADE_TILES.get(),
+                SMBlocks.CHISELED_JADE.get(),
+                SMBlocks.JADE_TOTEM.get(),
+                SMBlocks.JADE_PILLAR.get()
+        );
+        tag(SMBlockTags.BOUNCES_PROJECTILES).add(
                 SMBlocks.JADE_BRICKS.get(),
                 SMBlocks.SMALL_JADE_BRICKS.get(),
                 SMBlocks.JADE_SHINGLES.get(),
