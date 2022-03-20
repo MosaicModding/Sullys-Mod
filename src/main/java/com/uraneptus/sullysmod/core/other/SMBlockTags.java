@@ -6,5 +6,5 @@ import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.block.Block;
 
 public class SMBlockTags {
-    public static final TagKey<Block> BOUNCES_PROJECTILES = TagUtil.blockTag(SullysMod.MOD_ID, "bounces_projectiles");
+    public static final TagKey<Block> PROJECTILES_BOUNCE_ON = TagUtil.blockTag(SullysMod.MOD_ID, "projectiles_bounce_on");
 }

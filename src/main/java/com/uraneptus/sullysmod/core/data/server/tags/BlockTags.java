@@ -46,7 +46,7 @@ public class BlockTags extends BlockTagsProvider {
                 SMBlocks.JADE_TOTEM.get(),
                 SMBlocks.JADE_PILLAR.get()
         );
-        tag(SMBlockTags.BOUNCES_PROJECTILES).add(
+        tag(SMBlockTags.PROJECTILES_BOUNCE_ON).add(
                 SMBlocks.JADE_BRICKS.get(),
                 SMBlocks.SMALL_JADE_BRICKS.get(),
                 SMBlocks.JADE_SHINGLES.get(),

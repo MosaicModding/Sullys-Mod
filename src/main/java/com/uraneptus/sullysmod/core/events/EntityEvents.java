@@ -35,7 +35,7 @@ public class EntityEvents {
                 BlockPos pos = blockHitResult.getBlockPos();
                 BlockState block = level.getBlockState(pos);
                 //System.out.println("Hitresult check");
-                if (block.is(SMBlockTags.BOUNCES_PROJECTILES)) {
+                if (block.is(SMBlockTags.PROJECTILES_BOUNCE_ON)) {
                     //System.out.println("Jade block ckecksss");
                     event.setCanceled(true);
                     projectile.shoot(vec3.reverse().x, vec3.reverse().y, vec3.reverse().z , 0.4F, 1.0F);
