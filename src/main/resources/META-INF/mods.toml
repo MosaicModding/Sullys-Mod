@@ -1,12 +1,12 @@
 modLoader="javafml" #mandatory
-loaderVersion="[39,)" #mandatory
+loaderVersion="[40,)" #mandatory
 license="All rights reserved"
 
 [[mods]] #mandatory
 modId = "sullysmod" #mandatory
 version = "${file.jarVersion}" #mandatory
 logoFile = "sullysmod_banner.png" #optional
-authors = "Uraneptus" #optional
+authors = "Uraneptus, MiteBeMana" #optional
 credits = "Idea & Assets by Sully" #optional
 displayURL = "https://www.curseforge.com/minecraft/mc-mods/sullys-mobs"
 displayName = "Sully's Mod" #mandatory
@@ -16,20 +16,20 @@ description = '''
 [[dependencies.sullysmod]] #optional
     modId="forge" #mandatory
     mandatory=true #mandatory
-    versionRange="[39,)" #mandatory
+    versionRange="[40,)" #mandatory
     ordering="NONE"
     side="BOTH"
 
 [[dependencies.sullysmod]]
     modId="minecraft"
     mandatory=true
-    versionRange="[1.18.1,)"
+    versionRange="[1.18.2,)"
     ordering="NONE"
     side="BOTH"
 
 [[dependencies.sullysmod]]
     modId = "blueprint"
     mandatory = true
-    versionRange = "[5.0.0,)"
+    versionRange = "[5.2.0,)"
     ordering = "BEFORE"
     side = "BOTH"
