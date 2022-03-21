@@ -3,12 +3,18 @@ package com.uraneptus.sullysmod.common.blocks;
 import com.google.common.base.Suppliers;
 import com.google.common.collect.BiMap;
 import com.google.common.collect.ImmutableBiMap;
+import com.teamabnormals.blueprint.core.util.item.filling.TargetedItemCategoryFiller;
 import com.uraneptus.sullysmod.core.registry.SMBlocks;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.NonNullList;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.WeatheringCopper;
 import net.minecraft.world.level.block.state.BlockState;
 
@@ -65,5 +71,14 @@ public class WeatheringCopperButtonBlock extends CopperButtonBlock implements We
     @Override
     public WeatherState getAge() {
         return weatherState;
+    }
+
+    //Item Filler
+    private static final Supplier<Item> POLISHED_BLACKSTONE_BUTTON = Blocks.POLISHED_BLACKSTONE_BUTTON::asItem;
+    private static final TargetedItemCategoryFiller FILLER = new TargetedItemCategoryFiller(POLISHED_BLACKSTONE_BUTTON);
+
+    @Override
+    public void fillItemCategory(CreativeModeTab tab, NonNullList<ItemStack> item) {
+        FILLER.fillItem(this.asItem(), tab, item);
     }
 }
