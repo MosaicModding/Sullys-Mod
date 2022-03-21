@@ -7,6 +7,14 @@
     "sullysmod:jade_tiles",
     "sullysmod:chiseled_jade",
     "sullysmod:jade_totem",
-    "sullysmod:jade_pillar"
+    "sullysmod:jade_pillar",
+    "sullysmod:jade_bricks_stairs",
+    "sullysmod:small_jade_bricks_stairs",
+    "sullysmod:jade_shingles_stairs",
+    "sullysmod:jade_tiles_stairs",
+    "sullysmod:jade_bricks_slab",
+    "sullysmod:small_jade_bricks_slab",
+    "sullysmod:jade_shingles_slab",
+    "sullysmod:jade_tiles_slab"
   ]
 }

@@ -15,7 +15,7 @@ public class EntityTags extends EntityTypeTagsProvider {
 
     @Override
     protected void addTags() {
-        this.tag(BlueprintEntityTypeTags.FISHES).add(SMEntityType.LANTERNFISH.get());
+        tag(BlueprintEntityTypeTags.FISHES).add(SMEntityType.LANTERNFISH.get());
 
         SullysMod.LOGGER.info("ENTITY TAG GENERATION COMPLETE");
     }

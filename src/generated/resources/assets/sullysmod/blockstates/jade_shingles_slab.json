@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=top": {
+      "model": "sullysmod:block/jade_shingles_slab_top"
+    },
+    "type=bottom": {
+      "model": "sullysmod:block/jade_shingles_slab"
+    },
+    "type=double": {
+      "model": "sullysmod:block/jade_shingles"
+    }
+  }
+}

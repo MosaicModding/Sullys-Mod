@@ -36,6 +36,14 @@ public class LangProvider extends LanguageProvider {
         add(SMBlocks.WAXED_EXPOSED_COPPER_BUTTON.get(), "Waxed Exposed Copper Button");
         add(SMBlocks.WAXED_WEATHERED_COPPER_BUTTON.get(), "Waxed Weathered Copper Button");
         add(SMBlocks.WAXED_OXIDIZED_COPPER_BUTTON.get(), "Waxed Oxidized Copper Button");
+        add(SMBlocks.JADE_BRICKS_STAIRS.get(), "Jade Bricks Stairs");
+        add(SMBlocks.SMALL_JADE_BRICKS_STAIRS.get(), "Small Jade Bricks Stairs");
+        add(SMBlocks.JADE_SHINGLES_STAIRS.get(), "Jade Shingles Stairs");
+        add(SMBlocks.JADE_TILES_STAIRS.get(), "Jade Tiles Stairs");
+        add(SMBlocks.JADE_BRICKS_SLAB.get(), "Jade Bricks Slab");
+        add(SMBlocks.SMALL_JADE_BRICKS_SLAB.get(), "Small Jade Bricks Slab");
+        add(SMBlocks.JADE_SHINGLES_SLAB.get(), "Jade Shingles Slab");
+        add(SMBlocks.JADE_TILES_SLAB.get(), "Jade Tiles Slab");
 
         //Items
         add(SMItems.RAW_JADE.get(), "Raw Jade");

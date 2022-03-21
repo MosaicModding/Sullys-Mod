@@ -30,7 +30,15 @@ public class BlockTags extends BlockTagsProvider {
                 SMBlocks.JADE_TILES.get(),
                 SMBlocks.CHISELED_JADE.get(),
                 SMBlocks.JADE_TOTEM.get(),
-                SMBlocks.JADE_PILLAR.get()
+                SMBlocks.JADE_PILLAR.get(),
+                SMBlocks.JADE_BRICKS_STAIRS.get(),
+                SMBlocks.SMALL_JADE_BRICKS_STAIRS.get(),
+                SMBlocks.JADE_SHINGLES_STAIRS.get(),
+                SMBlocks.JADE_TILES_STAIRS.get(),
+                SMBlocks.JADE_BRICKS_SLAB.get(),
+                SMBlocks.SMALL_JADE_BRICKS_SLAB.get(),
+                SMBlocks.JADE_SHINGLES_SLAB.get(),
+                SMBlocks.JADE_TILES_SLAB.get()
         );
         tag(net.minecraft.tags.BlockTags.NEEDS_IRON_TOOL).add(
                 SMBlocks.JADE_ORE.get(),
@@ -45,7 +53,15 @@ public class BlockTags extends BlockTagsProvider {
                 SMBlocks.JADE_TILES.get(),
                 SMBlocks.CHISELED_JADE.get(),
                 SMBlocks.JADE_TOTEM.get(),
-                SMBlocks.JADE_PILLAR.get()
+                SMBlocks.JADE_PILLAR.get(),
+                SMBlocks.JADE_BRICKS_STAIRS.get(),
+                SMBlocks.SMALL_JADE_BRICKS_STAIRS.get(),
+                SMBlocks.JADE_SHINGLES_STAIRS.get(),
+                SMBlocks.JADE_TILES_STAIRS.get(),
+                SMBlocks.JADE_BRICKS_SLAB.get(),
+                SMBlocks.SMALL_JADE_BRICKS_SLAB.get(),
+                SMBlocks.JADE_SHINGLES_SLAB.get(),
+                SMBlocks.JADE_TILES_SLAB.get()
         );
         tag(net.minecraft.tags.BlockTags.BUTTONS).add(
                 SMBlocks.COPPER_BUTTON.get(),
@@ -66,7 +82,15 @@ public class BlockTags extends BlockTagsProvider {
                 SMBlocks.JADE_TILES.get(),
                 SMBlocks.CHISELED_JADE.get(),
                 SMBlocks.JADE_TOTEM.get(),
-                SMBlocks.JADE_PILLAR.get()
+                SMBlocks.JADE_PILLAR.get(),
+                SMBlocks.JADE_BRICKS_STAIRS.get(),
+                SMBlocks.SMALL_JADE_BRICKS_STAIRS.get(),
+                SMBlocks.JADE_SHINGLES_STAIRS.get(),
+                SMBlocks.JADE_TILES_STAIRS.get(),
+                SMBlocks.JADE_BRICKS_SLAB.get(),
+                SMBlocks.SMALL_JADE_BRICKS_SLAB.get(),
+                SMBlocks.JADE_SHINGLES_SLAB.get(),
+                SMBlocks.JADE_TILES_SLAB.get()
         );
 
         SullysMod.LOGGER.info("BLOCK TAG GENERATION COMPLETE");

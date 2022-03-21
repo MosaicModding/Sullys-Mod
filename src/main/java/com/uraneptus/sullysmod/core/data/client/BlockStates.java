@@ -3,9 +3,7 @@ package com.uraneptus.sullysmod.core.data.client;
 import com.uraneptus.sullysmod.SullysMod;
 import com.uraneptus.sullysmod.core.registry.SMBlocks;
 import net.minecraft.data.DataGenerator;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.ButtonBlock;
-import net.minecraft.world.level.block.RotatedPillarBlock;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraftforge.client.model.generators.BlockStateProvider;
 import net.minecraftforge.client.model.generators.ConfiguredModel;
@@ -41,6 +39,14 @@ public class BlockStates extends BlockStateProvider {
         basicButtonBlock(SMBlocks.WAXED_EXPOSED_COPPER_BUTTON.get(), DataUtil.EXPOSED_COPPER);
         basicButtonBlock(SMBlocks.WAXED_WEATHERED_COPPER_BUTTON.get(), DataUtil.WEATHERED_COPPER);
         basicButtonBlock(SMBlocks.WAXED_OXIDIZED_COPPER_BUTTON.get(), DataUtil.OXIDIZED_COPPER);
+        modStairsBlock(SMBlocks.JADE_BRICKS_STAIRS.get(), DataUtil.JADE_BRICKS);
+        modStairsBlock(SMBlocks.SMALL_JADE_BRICKS_STAIRS.get(), DataUtil.SMALL_JADE_BRICKS);
+        modStairsBlock(SMBlocks.JADE_SHINGLES_STAIRS.get(), DataUtil.JADE_SHINGLES);
+        modStairsBlock(SMBlocks.JADE_TILES_STAIRS.get(), DataUtil.JADE_TILES);
+        modSlabBlock(SMBlocks.JADE_BRICKS_SLAB.get(), DataUtil.JADE_BRICKS);
+        modSlabBlock(SMBlocks.SMALL_JADE_BRICKS_SLAB.get(), DataUtil.SMALL_JADE_BRICKS);
+        modSlabBlock(SMBlocks.JADE_SHINGLES_SLAB.get(), DataUtil.JADE_SHINGLES);
+        modSlabBlock(SMBlocks.JADE_TILES_SLAB.get(), DataUtil.JADE_TILES);
 
         SullysMod.LOGGER.info("BLOCKSTATE GENERATION COMPLETE");
     }
@@ -72,4 +78,13 @@ public class BlockStates extends BlockStateProvider {
     private void basicButtonBlock(Block block, String texture) {
         buttonBlock((ButtonBlock)block, DataUtil.vanillaBlockLocation(texture));
     }
+
+    private void modStairsBlock(Block block, String texture) {
+        stairsBlock((StairBlock) block, DataUtil.modBlockLocation(texture));
+    }
+
+    private void modSlabBlock(Block block, String texture) {
+        slabBlock((SlabBlock) block, DataUtil.modBlockLocation(texture), DataUtil.modBlockLocation(texture));
+    }
+
 }

@@ -44,6 +44,14 @@ public class ItemModels extends ItemModelProvider {
         basicButtonBlockItem(SMBlocks.WAXED_EXPOSED_COPPER_BUTTON.get(), DataUtil.EXPOSED_COPPER);
         basicButtonBlockItem(SMBlocks.WAXED_WEATHERED_COPPER_BUTTON.get(), DataUtil.WEATHERED_COPPER);
         basicButtonBlockItem(SMBlocks.WAXED_OXIDIZED_COPPER_BUTTON.get(), DataUtil.OXIDIZED_COPPER);
+        basicBlockItem(SMBlocks.JADE_BRICKS_STAIRS.get());
+        basicBlockItem(SMBlocks.SMALL_JADE_BRICKS_STAIRS.get());
+        basicBlockItem(SMBlocks.JADE_SHINGLES_STAIRS.get());
+        basicBlockItem(SMBlocks.JADE_TILES_STAIRS.get());
+        basicBlockItem(SMBlocks.JADE_BRICKS_SLAB.get());
+        basicBlockItem(SMBlocks.SMALL_JADE_BRICKS_SLAB.get());
+        basicBlockItem(SMBlocks.JADE_SHINGLES_SLAB.get());
+        basicBlockItem(SMBlocks.JADE_TILES_SLAB.get());
 
         SullysMod.LOGGER.info("ITEM MODEL GENERATION COMPLETE");
     }
