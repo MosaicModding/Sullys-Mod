@@ -55,12 +55,24 @@ public class ItemModels extends ItemModelProvider {
         basicSpawnEggItem(SMItems.LANTERNFISH_SPAWN_EGG.get());
         basicItem(SMItems.RAW_LANTERNFISH.get());
         basicItem(SMItems.COOKED_LANTERNFISH.get());
+        basicButtonItem(SMBlocks.COPPER_BUTTON.get());
+        basicButtonItem(SMBlocks.EXPOSED_COPPER_BUTTON.get());
+        basicButtonItem(SMBlocks.WEATHERED_COPPER_BUTTON.get());
+        basicButtonItem(SMBlocks.OXIDIZED_COPPER_BUTTON.get());
+        basicButtonItem(SMBlocks.WAXED_COPPER_BUTTON.get());
+        basicButtonItem(SMBlocks.WAXED_EXPOSED_COPPER_BUTTON.get());
+        basicButtonItem(SMBlocks.WAXED_WEATHERED_COPPER_BUTTON.get());
+        basicButtonItem(SMBlocks.WAXED_OXIDIZED_COPPER_BUTTON.get());
 
         SullysMod.LOGGER.info("ITEM MODEL GENERATION COMPLETE");
     }
 
     private void basicBlockItem(Block blockForItem) {
         withExistingParent(name(blockForItem), blockLocation(name(blockForItem)));
+    }
+
+    private void basicButtonItem(Block blockForItem) {
+        withExistingParent(name(blockForItem), blockLocation(name(blockForItem) + "_inventory"));
     }
 
     private void basicItem(Item item) {

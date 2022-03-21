@@ -2,13 +2,13 @@ package com.uraneptus.sullysmod.core.registry;
 
 import com.teamabnormals.blueprint.core.util.registry.BlockSubRegistryHelper;
 import com.uraneptus.sullysmod.SullysMod;
+import com.uraneptus.sullysmod.common.blocks.CopperButtonBlock;
 import com.uraneptus.sullysmod.common.blocks.JadeTotemBlock;
+import com.uraneptus.sullysmod.common.blocks.WeatheringCopperButtonBlock;
 import net.minecraft.world.item.CreativeModeTab;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.OreBlock;
-import net.minecraft.world.level.block.RotatedPillarBlock;
-import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.material.MaterialColor;
 import net.minecraftforge.fml.common.Mod;
@@ -18,6 +18,7 @@ import net.minecraftforge.registries.RegistryObject;
 public class SMBlocks {
     public static final BlockSubRegistryHelper HELPER = SullysMod.REGISTRY_HELPER.getBlockSubHelper();
 
+    //Jade
     public static final RegistryObject<Block> JADE_ORE = HELPER.createBlock("jade_ore", () -> new OreBlock(Properties.JADE_ORE), CreativeModeTab.TAB_BUILDING_BLOCKS);
     public static final RegistryObject<Block> DEEPSLATE_JADE_ORE = HELPER.createBlock("deepslate_jade_ore", () -> new OreBlock(Properties.DEEPSLATE_JADE_ORE), CreativeModeTab.TAB_BUILDING_BLOCKS);
     public static final RegistryObject<Block> RAW_JADE_BLOCK = HELPER.createBlock("raw_jade_block", () -> new Block(Properties.RAW_JADE_BLOCKS), CreativeModeTab.TAB_BUILDING_BLOCKS);
@@ -32,6 +33,15 @@ public class SMBlocks {
     public static final RegistryObject<Block> JADE_TOTEM = HELPER.createBlock("jade_totem", () -> new JadeTotemBlock(Properties.JADE_BLOCKS), CreativeModeTab.TAB_BUILDING_BLOCKS);
     public static final RegistryObject<Block> JADE_PILLAR = HELPER.createBlock("jade_pillar", () -> new RotatedPillarBlock(Properties.JADE_BLOCKS), CreativeModeTab.TAB_BUILDING_BLOCKS);
 
+    //Copper Buttons
+    public static final RegistryObject<Block> COPPER_BUTTON = HELPER.createBlock("copper_button", () -> new WeatheringCopperButtonBlock(WeatheringCopper.WeatherState.UNAFFECTED, BlockBehaviour.Properties.of(Material.DECORATION).noCollission().strength(0.5f)), CreativeModeTab.TAB_REDSTONE);
+    public static final RegistryObject<Block> EXPOSED_COPPER_BUTTON = HELPER.createBlock("exposed_copper_button", () -> new WeatheringCopperButtonBlock(WeatheringCopper.WeatherState.EXPOSED, BlockBehaviour.Properties.of(Material.DECORATION).noCollission().strength(0.5f)), CreativeModeTab.TAB_REDSTONE);
+    public static final RegistryObject<Block> WEATHERED_COPPER_BUTTON = HELPER.createBlock("weathered_copper_button", () -> new WeatheringCopperButtonBlock(WeatheringCopper.WeatherState.WEATHERED, BlockBehaviour.Properties.of(Material.DECORATION).noCollission().strength(0.5f)), CreativeModeTab.TAB_REDSTONE);
+    public static final RegistryObject<Block> OXIDIZED_COPPER_BUTTON = HELPER.createBlock("oxidized_copper_button", () -> new WeatheringCopperButtonBlock(WeatheringCopper.WeatherState.OXIDIZED, BlockBehaviour.Properties.of(Material.DECORATION).noCollission().strength(0.5f)), CreativeModeTab.TAB_REDSTONE);
+    public static final RegistryObject<Block> WAXED_COPPER_BUTTON = HELPER.createBlock("waxed_copper_button", () -> new CopperButtonBlock(BlockBehaviour.Properties.of(Material.DECORATION).noCollission().strength(0.5f)), CreativeModeTab.TAB_REDSTONE);
+    public static final RegistryObject<Block> WAXED_EXPOSED_COPPER_BUTTON = HELPER.createBlock("waxed_exposed_copper_button", () -> new CopperButtonBlock(BlockBehaviour.Properties.of(Material.DECORATION).noCollission().strength(0.5f)), CreativeModeTab.TAB_REDSTONE);
+    public static final RegistryObject<Block> WAXED_WEATHERED_COPPER_BUTTON = HELPER.createBlock("waxed_weathered_copper_button", () -> new CopperButtonBlock(BlockBehaviour.Properties.of(Material.DECORATION).noCollission().strength(0.5f)), CreativeModeTab.TAB_REDSTONE);
+    public static final RegistryObject<Block> WAXED_OXIDIZED_COPPER_BUTTON = HELPER.createBlock("waxed_oxidized_copper_button", () -> new CopperButtonBlock(BlockBehaviour.Properties.of(Material.DECORATION).noCollission().strength(0.5f)), CreativeModeTab.TAB_REDSTONE);
 
     public static final class Properties {
         public static final BlockBehaviour.Properties JADE_ORE = BlockBehaviour.Properties.of(Material.STONE).requiresCorrectToolForDrops().strength(3.0F, 3.0F);

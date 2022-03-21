@@ -4,6 +4,7 @@ import com.mojang.logging.LogUtils;
 import com.teamabnormals.blueprint.core.util.registry.RegistryHelper;
 import com.uraneptus.sullysmod.common.entities.CopperGolemEntity;
 import com.uraneptus.sullysmod.common.entities.LanternfishEntity;
+import com.uraneptus.sullysmod.core.data.client.BlockModels;
 import com.uraneptus.sullysmod.core.data.client.BlockStates;
 import com.uraneptus.sullysmod.core.data.client.ItemModels;
 import com.uraneptus.sullysmod.core.data.client.LangProvider;
@@ -63,6 +64,7 @@ public class SullysMod {
 
         if (event.includeClient()) {
             generator.addProvider(new BlockStates(generator, fileHelper));
+            generator.addProvider(new BlockModels(generator, fileHelper));
             generator.addProvider(new ItemModels(generator, fileHelper));
             generator.addProvider(new LangProvider(generator));
         }

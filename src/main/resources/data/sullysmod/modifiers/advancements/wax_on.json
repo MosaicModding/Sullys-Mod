@@ -1,0 +1,28 @@
+{
+  "advancement": "minecraft:husbandry/wax_on",
+  "modifiers": [
+    {
+      "type": "criteria",
+      "config": {
+        "mode": "modify",
+        "criteria": {
+          "wax_on": {
+            "conditions": {
+              "trigger": "item_used_on_block",
+              "location": {
+                "block": {
+                  "blocks": [
+                    "sullysmod:copper_button",
+                    "sullysmod:exposed_copper_button",
+                    "sullysmod:weathered_copper_button",
+                    "sullysmod:oxidized_copper_button"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}
