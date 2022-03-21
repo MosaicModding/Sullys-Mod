@@ -58,7 +58,7 @@ public class BlockTags extends BlockTagsProvider {
                 SMBlocks.WAXED_OXIDIZED_COPPER_BUTTON.get()
         );
 
-        //Our Tags
+        //Mod Tags
         tag(SMBlockTags.PROJECTILES_BOUNCE_ON).add(
                 SMBlocks.JADE_BRICKS.get(),
                 SMBlocks.SMALL_JADE_BRICKS.get(),

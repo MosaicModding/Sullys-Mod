@@ -3,7 +3,6 @@ package com.uraneptus.sullysmod.core.data.client;
 import com.uraneptus.sullysmod.SullysMod;
 import com.uraneptus.sullysmod.core.registry.SMBlocks;
 import net.minecraft.data.DataGenerator;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.ButtonBlock;
 import net.minecraft.world.level.block.RotatedPillarBlock;
@@ -11,25 +10,12 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraftforge.client.model.generators.BlockStateProvider;
 import net.minecraftforge.client.model.generators.ConfiguredModel;
 import net.minecraftforge.client.model.generators.ModelFile;
-import net.minecraftforge.client.model.generators.ModelProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
 
 public class BlockStates extends BlockStateProvider {
 
     public BlockStates(DataGenerator gen, ExistingFileHelper exFileHelper) {
         super(gen, SullysMod.MOD_ID, exFileHelper);
-    }
-
-    private String name(Block block) {
-        return block.getRegistryName().getPath();
-    }
-
-    public ResourceLocation location(String path) {
-        return new ResourceLocation(SullysMod.MOD_ID, ModelProvider.BLOCK_FOLDER + "/" + path);
-    }
-
-    public ResourceLocation vanillaLocation(String path) {
-        return new ResourceLocation("minecraft", ModelProvider.BLOCK_FOLDER + "/" + path);
     }
 
     @Override
@@ -47,15 +33,14 @@ public class BlockStates extends BlockStateProvider {
         basicBlock(SMBlocks.CHISELED_JADE.get());
         pillarBlock(SMBlocks.JADE_PILLAR.get(), "chiseled_jade");
         totemBlock(SMBlocks.JADE_TOTEM.get());
-        basicButtonBlock((ButtonBlock) SMBlocks.COPPER_BUTTON.get(), "copper_block");
-        basicButtonBlock((ButtonBlock) SMBlocks.EXPOSED_COPPER_BUTTON.get(), "exposed_copper");
-        basicButtonBlock((ButtonBlock) SMBlocks.WEATHERED_COPPER_BUTTON.get(), "weathered_copper");
-        basicButtonBlock((ButtonBlock) SMBlocks.OXIDIZED_COPPER_BUTTON.get(), "oxidized_copper");
-        basicButtonBlock((ButtonBlock) SMBlocks.WAXED_COPPER_BUTTON.get(), "copper_block");
-        basicButtonBlock((ButtonBlock) SMBlocks.WAXED_EXPOSED_COPPER_BUTTON.get(), "exposed_copper");
-        basicButtonBlock((ButtonBlock) SMBlocks.WAXED_WEATHERED_COPPER_BUTTON.get(), "weathered_copper");
-        basicButtonBlock((ButtonBlock) SMBlocks.WAXED_OXIDIZED_COPPER_BUTTON.get(), "oxidized_copper");
-
+        basicButtonBlock(SMBlocks.COPPER_BUTTON.get(), DataUtil.COPPER_BLOCK);
+        basicButtonBlock(SMBlocks.EXPOSED_COPPER_BUTTON.get(), DataUtil.EXPOSED_COPPER);
+        basicButtonBlock(SMBlocks.WEATHERED_COPPER_BUTTON.get(), DataUtil.WEATHERED_COPPER);
+        basicButtonBlock(SMBlocks.OXIDIZED_COPPER_BUTTON.get(), DataUtil.OXIDIZED_COPPER);
+        basicButtonBlock(SMBlocks.WAXED_COPPER_BUTTON.get(), DataUtil.COPPER_BLOCK);
+        basicButtonBlock(SMBlocks.WAXED_EXPOSED_COPPER_BUTTON.get(), DataUtil.EXPOSED_COPPER);
+        basicButtonBlock(SMBlocks.WAXED_WEATHERED_COPPER_BUTTON.get(), DataUtil.WEATHERED_COPPER);
+        basicButtonBlock(SMBlocks.WAXED_OXIDIZED_COPPER_BUTTON.get(), DataUtil.OXIDIZED_COPPER);
 
         SullysMod.LOGGER.info("BLOCKSTATE GENERATION COMPLETE");
     }
@@ -65,18 +50,18 @@ public class BlockStates extends BlockStateProvider {
     }
 
     private void pillarBlock(Block block, String topTexture) {
-        axisBlock((RotatedPillarBlock) block, location(name(block)), location(topTexture));
+        axisBlock((RotatedPillarBlock) block, DataUtil.modBlockLocation(DataUtil.name(block)), DataUtil.modBlockLocation(topTexture));
     }
 
     private void totemBlock(Block block) {
-        ModelFile totemModel = models().cube(name(block),
-                location(name(block) + "_top"),
-                location(name(block) + "_top"),
-                location(name(block) + "_front"),
-                location(name(block) + "_back"),
-                location(name(block) + "_right"),
-                location(name(block) + "_left"))
-                .texture("particle", location(name(block) + "_back"));
+        ModelFile totemModel = models().cube(DataUtil.name(block),
+              DataUtil.modBlockLocation(DataUtil.name(block) + "_top"),
+              DataUtil.modBlockLocation(DataUtil.name(block) + "_top"),
+              DataUtil.modBlockLocation(DataUtil.name(block) + "_front"),
+              DataUtil.modBlockLocation(DataUtil.name(block) + "_back"),
+              DataUtil.modBlockLocation(DataUtil.name(block) + "_right"),
+              DataUtil.modBlockLocation(DataUtil.name(block) + "_left"))
+                .texture("particle", DataUtil.modBlockLocation(DataUtil.name(block) + "_back"));
 
         getVariantBuilder(block).forAllStates(blockState -> ConfiguredModel.builder()
                 .modelFile(totemModel)
@@ -84,7 +69,7 @@ public class BlockStates extends BlockStateProvider {
                 .build());
     }
 
-    private void basicButtonBlock(ButtonBlock block, String texture) {
-        buttonBlock(block, vanillaLocation(texture));
+    private void basicButtonBlock(Block block, String texture) {
+        buttonBlock((ButtonBlock)block, DataUtil.vanillaBlockLocation(texture));
     }
 }

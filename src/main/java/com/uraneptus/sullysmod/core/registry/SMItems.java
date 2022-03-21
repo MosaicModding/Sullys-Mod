@@ -32,7 +32,7 @@ public class SMItems {
 
     //Mob Buckets & Spawn Eggs
     public static final RegistryObject<Item> LANTERNFISH_BUCKET = HELPER.createItem("lanternfish_bucket", () -> Properties.createMobBucketItem(SMEntityType.LANTERNFISH::get));
-    public static final RegistryObject<SpawnEggItem> LANTERNFISH_SPAWN_EGG = HELPER.createItem("lanternfish_spawn_egg", () -> new ForgeSpawnEggItem(SMEntityType.LANTERNFISH, 12829605, 8778172, Properties.MISC_TAB));
+    public static final RegistryObject<ForgeSpawnEggItem> LANTERNFISH_SPAWN_EGG = HELPER.createSpawnEggItem("lanternfish", SMEntityType.LANTERNFISH::get, 12829605, 8778172);
 
 
     private static final class Properties {
