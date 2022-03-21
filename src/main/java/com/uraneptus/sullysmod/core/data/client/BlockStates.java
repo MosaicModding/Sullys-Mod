@@ -5,6 +5,7 @@ import com.uraneptus.sullysmod.core.registry.SMBlocks;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.ButtonBlock;
 import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraftforge.client.model.generators.BlockStateProvider;
@@ -27,6 +28,10 @@ public class BlockStates extends BlockStateProvider {
         return new ResourceLocation(SullysMod.MOD_ID, ModelProvider.BLOCK_FOLDER + "/" + path);
     }
 
+    public ResourceLocation vanillaLocation(String path) {
+        return new ResourceLocation("minecraft", ModelProvider.BLOCK_FOLDER + "/" + path);
+    }
+
     @Override
     protected void registerStatesAndModels() {
         basicBlock(SMBlocks.JADE_ORE.get());
@@ -42,10 +47,18 @@ public class BlockStates extends BlockStateProvider {
         basicBlock(SMBlocks.CHISELED_JADE.get());
         pillarBlock(SMBlocks.JADE_PILLAR.get(), "chiseled_jade");
         totemBlock(SMBlocks.JADE_TOTEM.get());
+        basicButtonBlock((ButtonBlock) SMBlocks.COPPER_BUTTON.get(), "copper_block");
+        basicButtonBlock((ButtonBlock) SMBlocks.EXPOSED_COPPER_BUTTON.get(), "exposed_copper");
+        basicButtonBlock((ButtonBlock) SMBlocks.WEATHERED_COPPER_BUTTON.get(), "weathered_copper");
+        basicButtonBlock((ButtonBlock) SMBlocks.OXIDIZED_COPPER_BUTTON.get(), "oxidized_copper");
+        basicButtonBlock((ButtonBlock) SMBlocks.WAXED_COPPER_BUTTON.get(), "copper_block");
+        basicButtonBlock((ButtonBlock) SMBlocks.WAXED_EXPOSED_COPPER_BUTTON.get(), "exposed_copper");
+        basicButtonBlock((ButtonBlock) SMBlocks.WAXED_WEATHERED_COPPER_BUTTON.get(), "weathered_copper");
+        basicButtonBlock((ButtonBlock) SMBlocks.WAXED_OXIDIZED_COPPER_BUTTON.get(), "oxidized_copper");
+
 
         SullysMod.LOGGER.info("BLOCKSTATE GENERATION COMPLETE");
     }
-
 
     private void basicBlock(Block block) {
         simpleBlock(block);
@@ -69,5 +82,9 @@ public class BlockStates extends BlockStateProvider {
                 .modelFile(totemModel)
                 .rotationY(((int) blockState.getValue(BlockStateProperties.HORIZONTAL_FACING).toYRot() + 180) % 360)
                 .build());
+    }
+
+    private void basicButtonBlock(ButtonBlock block, String texture) {
+        buttonBlock(block, vanillaLocation(texture));
     }
 }

@@ -4,11 +4,13 @@ import com.mojang.logging.LogUtils;
 import com.teamabnormals.blueprint.core.util.registry.RegistryHelper;
 import com.uraneptus.sullysmod.common.entities.CopperGolemEntity;
 import com.uraneptus.sullysmod.common.entities.LanternfishEntity;
+import com.uraneptus.sullysmod.core.data.client.BlockModels;
 import com.uraneptus.sullysmod.core.data.client.BlockStates;
 import com.uraneptus.sullysmod.core.data.client.ItemModels;
 import com.uraneptus.sullysmod.core.data.client.LangProvider;
 import com.uraneptus.sullysmod.core.data.server.tags.BlockTags;
 import com.uraneptus.sullysmod.core.data.server.tags.EntityTags;
+import com.uraneptus.sullysmod.core.data.server.tags.ItemTags;
 import com.uraneptus.sullysmod.core.registry.SMEntityType;
 import com.uraneptus.sullysmod.core.registry.SMFeatures;
 import com.uraneptus.sullysmod.core.registry.SMParticleTypes;
@@ -63,12 +65,16 @@ public class SullysMod {
 
         if (event.includeClient()) {
             generator.addProvider(new BlockStates(generator, fileHelper));
+            generator.addProvider(new BlockModels(generator, fileHelper));
             generator.addProvider(new ItemModels(generator, fileHelper));
             generator.addProvider(new LangProvider(generator));
         }
         if (event.includeServer()) {
+            BlockTags blockTagProvider = new BlockTags(generator, fileHelper);
+
             generator.addProvider(new EntityTags(generator, fileHelper));
-            generator.addProvider(new BlockTags(generator, fileHelper));
+            generator.addProvider(blockTagProvider);
+            generator.addProvider(new ItemTags(generator, blockTagProvider, fileHelper));
         }
 
     }

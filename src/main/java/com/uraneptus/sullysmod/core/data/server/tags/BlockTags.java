@@ -16,6 +16,7 @@ public class BlockTags extends BlockTagsProvider {
 
     @Override
     public void addTags() {
+        //Minecraft Tags
         tag(net.minecraft.tags.BlockTags.MINEABLE_WITH_PICKAXE).add(
                 SMBlocks.JADE_ORE.get(),
                 SMBlocks.DEEPSLATE_JADE_ORE.get(),
@@ -46,6 +47,18 @@ public class BlockTags extends BlockTagsProvider {
                 SMBlocks.JADE_TOTEM.get(),
                 SMBlocks.JADE_PILLAR.get()
         );
+        tag(net.minecraft.tags.BlockTags.BUTTONS).add(
+                SMBlocks.COPPER_BUTTON.get(),
+                SMBlocks.EXPOSED_COPPER_BUTTON.get(),
+                SMBlocks.WEATHERED_COPPER_BUTTON.get(),
+                SMBlocks.OXIDIZED_COPPER_BUTTON.get(),
+                SMBlocks.WAXED_COPPER_BUTTON.get(),
+                SMBlocks.WAXED_EXPOSED_COPPER_BUTTON.get(),
+                SMBlocks.WAXED_WEATHERED_COPPER_BUTTON.get(),
+                SMBlocks.WAXED_OXIDIZED_COPPER_BUTTON.get()
+        );
+
+        //Our Tags
         tag(SMBlockTags.PROJECTILES_BOUNCE_ON).add(
                 SMBlocks.JADE_BRICKS.get(),
                 SMBlocks.SMALL_JADE_BRICKS.get(),
