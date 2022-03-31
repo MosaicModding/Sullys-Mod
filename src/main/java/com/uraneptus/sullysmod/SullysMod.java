@@ -14,6 +14,7 @@ import com.uraneptus.sullysmod.core.registry.SMEntityType;
 import com.uraneptus.sullysmod.core.registry.SMFeatures;
 import com.uraneptus.sullysmod.core.registry.SMParticleTypes;
 import net.minecraft.data.DataGenerator;
+import net.minecraft.world.entity.Entity;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;

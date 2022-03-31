@@ -23,7 +23,6 @@ public class EntityEvents {
 
     @SubscribeEvent //Here's still some stuff to fix
     public static void onProjectileHitsBlock(ProjectileImpactEvent event) {
-        //System.out.println("Event fired");
         Projectile projectile = event.getProjectile();
         Level level = event.getEntity().getLevel();
         HitResult hitResult = event.getRayTraceResult();
@@ -34,14 +33,14 @@ public class EntityEvents {
             if (hitResult instanceof BlockHitResult blockHitResult) {
                 BlockPos pos = blockHitResult.getBlockPos();
                 BlockState block = level.getBlockState(pos);
-                //System.out.println("Hitresult check");
                 if (block.is(SMBlockTags.PROJECTILES_BOUNCE_ON)) {
-                    //System.out.println("Jade block ckecksss");
                     event.setCanceled(true);
-                    projectile.shoot(vec3.reverse().x, vec3.reverse().y, vec3.reverse().z , 0.4F, 1.0F);
+                    //projectile.shoot(vec3.reverse().x, vec3.reverse().y, vec3.reverse().z , 0.4F, 1.0F);
+
+                    double d0 = 0.8D;
+                    projectile.setDeltaMovement(vec3.reverse().x, vec3.reverse().y * d0, vec3.reverse().z);
                     level.addParticle(SMParticleTypes.RICOCHET.get(), projectile.getX(), projectile.getY(), projectile.getZ(), 0, 0, 0);
                     level.playLocalSound(projectile.getX(), projectile.getY(), projectile.getZ(), SoundEvents.SHIELD_BLOCK, SoundSource.BLOCKS, 1.0F, 0.0F, false);
-
                 }
             }
         }
