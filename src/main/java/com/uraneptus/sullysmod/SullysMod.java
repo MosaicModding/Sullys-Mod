@@ -4,17 +4,18 @@ import com.mojang.logging.LogUtils;
 import com.teamabnormals.blueprint.core.util.registry.RegistryHelper;
 import com.uraneptus.sullysmod.common.entities.CopperGolemEntity;
 import com.uraneptus.sullysmod.common.entities.LanternfishEntity;
+import com.uraneptus.sullysmod.core.data.SMLootTableProvider;
 import com.uraneptus.sullysmod.core.data.client.BlockStates;
 import com.uraneptus.sullysmod.core.data.client.ItemModels;
 import com.uraneptus.sullysmod.core.data.client.LangProvider;
-import com.uraneptus.sullysmod.core.data.server.tags.BlockTags;
-import com.uraneptus.sullysmod.core.data.server.tags.EntityTags;
-import com.uraneptus.sullysmod.core.data.server.tags.ItemTags;
-import com.uraneptus.sullysmod.core.registry.SMEntityType;
+import com.uraneptus.sullysmod.core.data.server.modifiers.ModAdvancementModifiersProvider;
+import com.uraneptus.sullysmod.core.data.server.tags.SMBlockTagsProvider;
+import com.uraneptus.sullysmod.core.data.server.tags.SMEntityTagsProvider;
+import com.uraneptus.sullysmod.core.data.server.tags.SMItemTagsProvider;
+import com.uraneptus.sullysmod.core.registry.SMEntityTypes;
 import com.uraneptus.sullysmod.core.registry.SMFeatures;
 import com.uraneptus.sullysmod.core.registry.SMParticleTypes;
 import net.minecraft.data.DataGenerator;
-import net.minecraft.world.entity.Entity;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
@@ -52,8 +53,8 @@ public class SullysMod {
 
     @SubscribeEvent
     public static void addEntityAttributes(final EntityAttributeCreationEvent event) {
-        event.put(SMEntityType.COPPER_GOLEM.get(), CopperGolemEntity.createAttributes().build());
-        event.put(SMEntityType.LANTERNFISH.get(), LanternfishEntity.createAttributes().build());
+        event.put(SMEntityTypes.COPPER_GOLEM.get(), CopperGolemEntity.createAttributes().build());
+        event.put(SMEntityTypes.LANTERNFISH.get(), LanternfishEntity.createAttributes().build());
     }
 
     @SubscribeEvent
@@ -67,12 +68,13 @@ public class SullysMod {
             generator.addProvider(new LangProvider(generator));
         }
         if (event.includeServer()) {
-            BlockTags blockTagProvider = new BlockTags(generator, fileHelper);
+            SMBlockTagsProvider blockTagProvider = new SMBlockTagsProvider(generator, fileHelper);
 
-            generator.addProvider(new EntityTags(generator, fileHelper));
+            generator.addProvider(new SMEntityTagsProvider(generator, fileHelper));
             generator.addProvider(blockTagProvider);
-            generator.addProvider(new ItemTags(generator, blockTagProvider, fileHelper));
+            generator.addProvider(new SMItemTagsProvider(generator, blockTagProvider, fileHelper));
+            generator.addProvider(new ModAdvancementModifiersProvider(generator, MOD_ID));
+            generator.addProvider(new SMLootTableProvider(generator));
         }
-
     }
 }

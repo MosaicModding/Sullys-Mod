@@ -1,0 +1,42 @@
+{
+  "selector": "minecraft:husbandry/balanced_diet",
+  "priority": "normal",
+  "modifiers": [
+    {
+      "type": "criteria",
+      "config": {
+        "criteria": {
+          "sullysmod:raw_lanternfish": {
+            "trigger": "minecraft:consume_item",
+            "conditions": {
+              "item": {
+                "items": [
+                  "sullysmod:raw_lanternfish"
+                ]
+              }
+            }
+          },
+          "sullysmod:cooked_lanternfish": {
+            "trigger": "minecraft:consume_item",
+            "conditions": {
+              "item": {
+                "items": [
+                  "sullysmod:cooked_lanternfish"
+                ]
+              }
+            }
+          }
+        },
+        "requirements": [
+          [
+            "sullysmod:raw_lanternfish"
+          ],
+          [
+            "sullysmod:cooked_lanternfish"
+          ]
+        ],
+        "should_replace_requirements": false
+      }
+    }
+  ]
+}

@@ -2,7 +2,7 @@ package com.uraneptus.sullysmod.core.events;
 
 import com.teamabnormals.blueprint.core.util.DataUtil;
 import com.uraneptus.sullysmod.SullysMod;
-import com.uraneptus.sullysmod.core.registry.SMEntityType;
+import com.uraneptus.sullysmod.core.registry.SMEntityTypes;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.level.biome.Biome;
@@ -24,7 +24,7 @@ public class GenerationEvents {
         ResourceLocation biome = event.getName();
 
         if (!DataUtil.matchesKeys(biome, Biomes.LUSH_CAVES)) {
-            spawns.addSpawn(MobCategory.WATER_AMBIENT, new MobSpawnSettings.SpawnerData(SMEntityType.LANTERNFISH.get(), 5, 1, 5));
+            spawns.addSpawn(MobCategory.WATER_AMBIENT, new MobSpawnSettings.SpawnerData(SMEntityTypes.LANTERNFISH.get(), 5, 1, 5));
         }
     }
 }
