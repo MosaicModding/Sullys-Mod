@@ -85,6 +85,24 @@ public class BlockTags extends BlockTagsProvider {
                 SMBlocks.WAXED_WEATHERED_COPPER_BUTTON.get(),
                 SMBlocks.WAXED_OXIDIZED_COPPER_BUTTON.get()
         );
+        tag(net.minecraft.tags.BlockTags.SLABS).add(
+                SMBlocks.JADE_BRICK_SLAB.get(),
+                SMBlocks.SMALL_JADE_BRICK_SLAB.get(),
+                SMBlocks.JADE_TILE_SLAB.get(),
+                SMBlocks.JADE_SHINGLE_SLAB.get(),
+                SMBlocks.RAW_JADE_BRICK_SLAB.get(),
+                SMBlocks.RAW_JADE_TILE_SLAB.get(),
+                SMBlocks.SMOOTH_RAW_JADE_SLAB.get()
+        );
+        tag(net.minecraft.tags.BlockTags.STAIRS).add(
+                SMBlocks.JADE_BRICK_STAIRS.get(),
+                SMBlocks.SMALL_JADE_BRICK_STAIRS.get(),
+                SMBlocks.JADE_TILE_STAIRS.get(),
+                SMBlocks.JADE_SHINGLE_STAIRS.get(),
+                SMBlocks.RAW_JADE_BRICK_STAIRS.get(),
+                SMBlocks.RAW_JADE_TILE_STAIRS.get(),
+                SMBlocks.SMOOTH_RAW_JADE_STAIRS.get()
+        );
 
         //Mod Tags
         tag(SMBlockTags.PROJECTILES_BOUNCE_ON).add(
@@ -105,8 +123,20 @@ public class BlockTags extends BlockTagsProvider {
                 SMBlocks.JADE_TILE_SLAB.get()
         );
 
+        //Forge Tags
+        tag(SMBlockTags.WAXABLE_COPPER_BLOCKS).add(
+                SMBlocks.COPPER_BUTTON.get(),
+                SMBlocks.EXPOSED_COPPER_BUTTON.get(),
+                SMBlocks.WEATHERED_COPPER_BUTTON.get(),
+                SMBlocks.OXIDIZED_COPPER_BUTTON.get()
+        );
+        tag(SMBlockTags.WAXED_COPPER_BLOCKS).add(
+                SMBlocks.WAXED_COPPER_BUTTON.get(),
+                SMBlocks.WAXED_EXPOSED_COPPER_BUTTON.get(),
+                SMBlocks.WAXED_WEATHERED_COPPER_BUTTON.get(),
+                SMBlocks.WAXED_OXIDIZED_COPPER_BUTTON.get()
+        );
+
         SullysMod.LOGGER.info("BLOCK TAG GENERATION COMPLETE");
     }
-
-
 }

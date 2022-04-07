@@ -7,6 +7,7 @@ import com.uraneptus.sullysmod.common.entities.LanternfishEntity;
 import com.uraneptus.sullysmod.core.data.client.BlockStates;
 import com.uraneptus.sullysmod.core.data.client.ItemModels;
 import com.uraneptus.sullysmod.core.data.client.LangProvider;
+import com.uraneptus.sullysmod.core.data.server.modifiers.ModAdvancementModifiersProvider;
 import com.uraneptus.sullysmod.core.data.server.tags.BlockTags;
 import com.uraneptus.sullysmod.core.data.server.tags.EntityTags;
 import com.uraneptus.sullysmod.core.data.server.tags.ItemTags;
@@ -72,7 +73,7 @@ public class SullysMod {
             generator.addProvider(new EntityTags(generator, fileHelper));
             generator.addProvider(blockTagProvider);
             generator.addProvider(new ItemTags(generator, blockTagProvider, fileHelper));
+            generator.addProvider(new ModAdvancementModifiersProvider(generator, MOD_ID));
         }
-
     }
 }
