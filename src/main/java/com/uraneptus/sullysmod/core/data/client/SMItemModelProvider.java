@@ -10,9 +10,9 @@ import net.minecraft.world.level.block.Block;
 import net.minecraftforge.client.model.generators.ItemModelProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
 
-public class ItemModels extends ItemModelProvider {
+public class SMItemModelProvider extends ItemModelProvider {
 
-    public ItemModels(DataGenerator generator, ExistingFileHelper existingFileHelper) {
+    public SMItemModelProvider(DataGenerator generator, ExistingFileHelper existingFileHelper) {
         super(generator, SullysMod.MOD_ID, existingFileHelper);
     }
 

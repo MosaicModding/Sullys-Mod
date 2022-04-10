@@ -15,7 +15,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(modid = SullysMod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
-public class GenerationEvents {
+public class SMGenerationEvents {
 
     @SubscribeEvent(priority = EventPriority.HIGHEST)
     public static void onBiomeLoad(BiomeLoadingEvent event) {

@@ -1,15 +1,14 @@
 package com.uraneptus.sullysmod.core.data.client;
 
 import com.uraneptus.sullysmod.SullysMod;
-import com.uraneptus.sullysmod.core.data.DatagenUtil;
 import com.uraneptus.sullysmod.core.registry.SMBlocks;
 import com.uraneptus.sullysmod.core.registry.SMItems;
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.common.data.LanguageProvider;
 
-public class LangProvider extends LanguageProvider {
+public class SMLangProvider extends LanguageProvider {
 
-    public LangProvider(DataGenerator gen) {
+    public SMLangProvider(DataGenerator gen) {
         super(gen, SullysMod.MOD_ID, "en_us");
     }
 

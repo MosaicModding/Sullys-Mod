@@ -19,7 +19,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(modid = SullysMod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
-public class EntityEvents {
+public class SMEntityEvents {
 
     @SubscribeEvent //Here's still some stuff to fix
     public static void onProjectileHitsBlock(ProjectileImpactEvent event) {
@@ -35,10 +35,10 @@ public class EntityEvents {
                 BlockState block = level.getBlockState(pos);
                 if (block.is(SMBlockTags.PROJECTILES_BOUNCE_ON)) {
                     event.setCanceled(true);
-                    //projectile.shoot(vec3.reverse().x, vec3.reverse().y, vec3.reverse().z , 0.4F, 1.0F);
+                    projectile.shoot(vec3.reverse().x, vec3.reverse().y, vec3.reverse().z , 0.4F, 1.0F);
 
-                    double d0 = 0.8D;
-                    projectile.setDeltaMovement(vec3.reverse().x, vec3.reverse().y * d0, vec3.reverse().z);
+                    /*double d0 = 0.8D;
+                    projectile.setDeltaMovement(vec3.reverse().x, vec3.reverse().y * d0, vec3.reverse().z);*/
                     level.addParticle(SMParticleTypes.RICOCHET.get(), projectile.getX(), projectile.getY(), projectile.getZ(), 0, 0, 0);
                     level.playLocalSound(projectile.getX(), projectile.getY(), projectile.getZ(), SoundEvents.SHIELD_BLOCK, SoundSource.BLOCKS, 1.0F, 0.0F, false);
                 }

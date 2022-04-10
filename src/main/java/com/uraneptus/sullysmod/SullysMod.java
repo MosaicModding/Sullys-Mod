@@ -4,10 +4,10 @@ import com.mojang.logging.LogUtils;
 import com.teamabnormals.blueprint.core.util.registry.RegistryHelper;
 import com.uraneptus.sullysmod.common.entities.CopperGolemEntity;
 import com.uraneptus.sullysmod.common.entities.LanternfishEntity;
-import com.uraneptus.sullysmod.core.data.SMLootTableProvider;
-import com.uraneptus.sullysmod.core.data.client.BlockStates;
-import com.uraneptus.sullysmod.core.data.client.ItemModels;
-import com.uraneptus.sullysmod.core.data.client.LangProvider;
+import com.uraneptus.sullysmod.core.data.server.SMLootTableProvider;
+import com.uraneptus.sullysmod.core.data.client.SMBlockStateProvider;
+import com.uraneptus.sullysmod.core.data.client.SMItemModelProvider;
+import com.uraneptus.sullysmod.core.data.client.SMLangProvider;
 import com.uraneptus.sullysmod.core.data.server.modifiers.ModAdvancementModifiersProvider;
 import com.uraneptus.sullysmod.core.data.server.tags.SMBlockTagsProvider;
 import com.uraneptus.sullysmod.core.data.server.tags.SMEntityTagsProvider;
@@ -63,9 +63,9 @@ public class SullysMod {
         ExistingFileHelper fileHelper = event.getExistingFileHelper();
 
         if (event.includeClient()) {
-            generator.addProvider(new BlockStates(generator, fileHelper));
-            generator.addProvider(new ItemModels(generator, fileHelper));
-            generator.addProvider(new LangProvider(generator));
+            generator.addProvider(new SMBlockStateProvider(generator, fileHelper));
+            generator.addProvider(new SMItemModelProvider(generator, fileHelper));
+            generator.addProvider(new SMLangProvider(generator));
         }
         if (event.includeServer()) {
             SMBlockTagsProvider blockTagProvider = new SMBlockTagsProvider(generator, fileHelper);
@@ -73,7 +73,7 @@ public class SullysMod {
             generator.addProvider(new SMEntityTagsProvider(generator, fileHelper));
             generator.addProvider(blockTagProvider);
             generator.addProvider(new SMItemTagsProvider(generator, blockTagProvider, fileHelper));
-            generator.addProvider(new ModAdvancementModifiersProvider(generator, MOD_ID));
+            generator.addProvider(new ModAdvancementModifiersProvider(generator));
             generator.addProvider(new SMLootTableProvider(generator));
         }
     }

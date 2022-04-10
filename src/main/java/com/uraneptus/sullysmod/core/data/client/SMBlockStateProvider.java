@@ -11,9 +11,9 @@ import net.minecraftforge.client.model.generators.ConfiguredModel;
 import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.common.data.ExistingFileHelper;
 
-public class BlockStates extends BlockStateProvider {
+public class SMBlockStateProvider extends BlockStateProvider {
 
-    public BlockStates(DataGenerator gen, ExistingFileHelper exFileHelper) {
+    public SMBlockStateProvider(DataGenerator gen, ExistingFileHelper exFileHelper) {
         super(gen, SullysMod.MOD_ID, exFileHelper);
     }
 

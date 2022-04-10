@@ -1,4 +1,4 @@
-package com.uraneptus.sullysmod.core.data;
+package com.uraneptus.sullysmod.core.data.server;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableSet;

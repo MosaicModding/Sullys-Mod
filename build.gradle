@@ -77,6 +77,9 @@ sourceSets.main.resources { srcDir 'src/generated/resources' }
 
 repositories {
     maven {
+        url "https://www.cursemaven.com"
+    }
+    maven {
         name = "GeckoLib Maven"
         url = "https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/"
     }
@@ -89,6 +92,8 @@ dependencies {
     minecraft "net.minecraftforge:forge:${mc_version}-${forge_version}"
     implementation fg.deobf("software.bernie.geckolib:geckolib-1.18-forge:${geckolib_version}")
     implementation fg.deobf("com.teamabnormals:blueprint:${mc_version}-${blueprint_version}")
+
+    runtimeOnly fg.deobf("curse.maven:jei-238222:3723913")
 }
 
 jar {
