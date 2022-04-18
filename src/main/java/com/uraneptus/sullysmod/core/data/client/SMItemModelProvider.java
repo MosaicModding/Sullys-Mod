@@ -24,6 +24,7 @@ public class SMItemModelProvider extends ItemModelProvider {
         basicBlockItem(SMBlocks.RAW_JADE_BRICKS.get());
         basicBlockItem(SMBlocks.SMOOTH_RAW_JADE.get());
         basicBlockItem(SMBlocks.RAW_JADE_TILES.get());
+        basicBlockItem(SMBlocks.JADE_BLOCK.get());
         basicBlockItem(SMBlocks.JADE_BRICKS.get());
         basicBlockItem(SMBlocks.SMALL_JADE_BRICKS.get());
         basicBlockItem(SMBlocks.JADE_SHINGLES.get());

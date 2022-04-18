@@ -24,6 +24,7 @@ public class SMBlockTagsProvider extends BlockTagsProvider {
                 SMBlocks.RAW_JADE_BRICKS.get(),
                 SMBlocks.SMOOTH_RAW_JADE.get(),
                 SMBlocks.RAW_JADE_TILES.get(),
+                SMBlocks.JADE_BLOCK.get(),
                 SMBlocks.JADE_BRICKS.get(),
                 SMBlocks.SMALL_JADE_BRICKS.get(),
                 SMBlocks.JADE_SHINGLES.get(),
@@ -53,6 +54,7 @@ public class SMBlockTagsProvider extends BlockTagsProvider {
                 SMBlocks.RAW_JADE_BRICKS.get(),
                 SMBlocks.SMOOTH_RAW_JADE.get(),
                 SMBlocks.RAW_JADE_TILES.get(),
+                SMBlocks.JADE_BLOCK.get(),
                 SMBlocks.JADE_BRICKS.get(),
                 SMBlocks.SMALL_JADE_BRICKS.get(),
                 SMBlocks.JADE_SHINGLES.get(),
@@ -106,6 +108,7 @@ public class SMBlockTagsProvider extends BlockTagsProvider {
 
         //Mod Tags
         tag(SMBlockTags.PROJECTILES_BOUNCE_ON).add(
+                SMBlocks.JADE_BLOCK.get(),
                 SMBlocks.JADE_BRICKS.get(),
                 SMBlocks.SMALL_JADE_BRICKS.get(),
                 SMBlocks.JADE_SHINGLES.get(),

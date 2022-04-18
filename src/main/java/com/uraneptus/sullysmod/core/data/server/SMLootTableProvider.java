@@ -80,6 +80,7 @@ public class SMLootTableProvider extends LootTableProvider {
             this.add(SMBlocks.SMOOTH_RAW_JADE_SLAB.get(), BlockLoot::createSlabItemTable);
 
             //Jade
+            this.dropSelf(SMBlocks.JADE_BLOCK.get());
             this.dropSelf(SMBlocks.JADE_BRICKS.get());
             this.dropSelf(SMBlocks.SMALL_JADE_BRICKS.get());
             this.dropSelf(SMBlocks.JADE_TILES.get());

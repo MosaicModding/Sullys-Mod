@@ -5,6 +5,7 @@ import com.uraneptus.sullysmod.SullysMod;
 import com.uraneptus.sullysmod.common.blocks.CopperButtonBlock;
 import com.uraneptus.sullysmod.common.blocks.JadeTotemBlock;
 import com.uraneptus.sullysmod.common.blocks.WeatheringCopperButtonBlock;
+import net.minecraft.server.commands.HelpCommand;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
@@ -21,9 +22,10 @@ public class SMBlocks {
     public static final RegistryObject<Block> JADE_ORE = HELPER.createBlock("jade_ore", () -> new OreBlock(Properties.JADE_ORE), CreativeModeTab.TAB_BUILDING_BLOCKS);
     public static final RegistryObject<Block> DEEPSLATE_JADE_ORE = HELPER.createBlock("deepslate_jade_ore", () -> new OreBlock(Properties.DEEPSLATE_JADE_ORE), CreativeModeTab.TAB_BUILDING_BLOCKS);
     public static final RegistryObject<Block> RAW_JADE_BLOCK = HELPER.createBlock("raw_jade_block", () -> new Block(Properties.RAW_JADE_BLOCKS), CreativeModeTab.TAB_BUILDING_BLOCKS);
-    public static final RegistryObject<Block> RAW_JADE_BRICKS = HELPER.createBlock("raw_jade_bricks", () -> new Block(Properties.RAW_JADE_BLOCKS), CreativeModeTab.TAB_BUILDING_BLOCKS);//
-    public static final RegistryObject<Block> SMOOTH_RAW_JADE = HELPER.createBlock("smooth_raw_jade", () -> new Block(Properties.RAW_JADE_BLOCKS), CreativeModeTab.TAB_BUILDING_BLOCKS);//
-    public static final RegistryObject<Block> RAW_JADE_TILES = HELPER.createBlock("raw_jade_tiles", () -> new Block(Properties.RAW_JADE_BLOCKS), CreativeModeTab.TAB_BUILDING_BLOCKS);//
+    public static final RegistryObject<Block> RAW_JADE_BRICKS = HELPER.createBlock("raw_jade_bricks", () -> new Block(Properties.RAW_JADE_BLOCKS), CreativeModeTab.TAB_BUILDING_BLOCKS);
+    public static final RegistryObject<Block> SMOOTH_RAW_JADE = HELPER.createBlock("smooth_raw_jade", () -> new Block(Properties.RAW_JADE_BLOCKS), CreativeModeTab.TAB_BUILDING_BLOCKS);
+    public static final RegistryObject<Block> RAW_JADE_TILES = HELPER.createBlock("raw_jade_tiles", () -> new Block(Properties.RAW_JADE_BLOCKS), CreativeModeTab.TAB_BUILDING_BLOCKS);
+    public static final RegistryObject<Block> JADE_BLOCK = HELPER.createBlock("jade_block", () -> new Block(Properties.JADE_BLOCKS), CreativeModeTab.TAB_BUILDING_BLOCKS);
     public static final RegistryObject<Block> JADE_BRICKS = HELPER.createBlock("jade_bricks", () -> new Block(Properties.JADE_BLOCKS), CreativeModeTab.TAB_BUILDING_BLOCKS);
     public static final RegistryObject<Block> SMALL_JADE_BRICKS = HELPER.createBlock("small_jade_bricks", () -> new Block(Properties.JADE_BLOCKS), CreativeModeTab.TAB_BUILDING_BLOCKS);
     public static final RegistryObject<Block> JADE_SHINGLES = HELPER.createBlock("jade_shingles", () -> new Block(Properties.JADE_BLOCKS), CreativeModeTab.TAB_BUILDING_BLOCKS);

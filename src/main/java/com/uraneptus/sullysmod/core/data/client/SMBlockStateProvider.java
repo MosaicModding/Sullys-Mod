@@ -25,6 +25,7 @@ public class SMBlockStateProvider extends BlockStateProvider {
         basicBlock(SMBlocks.RAW_JADE_BRICKS.get());
         basicBlock(SMBlocks.SMOOTH_RAW_JADE.get());
         basicBlock(SMBlocks.RAW_JADE_TILES.get());
+        basicBlock(SMBlocks.JADE_BLOCK.get());
         basicBlock(SMBlocks.JADE_BRICKS.get());
         basicBlock(SMBlocks.SMALL_JADE_BRICKS.get());
         basicBlock(SMBlocks.JADE_SHINGLES.get());

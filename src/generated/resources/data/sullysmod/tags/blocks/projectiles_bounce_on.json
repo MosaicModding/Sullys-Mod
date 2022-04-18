@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
+    "sullysmod:jade_block",
     "sullysmod:jade_bricks",
     "sullysmod:small_jade_bricks",
     "sullysmod:jade_shingles",
