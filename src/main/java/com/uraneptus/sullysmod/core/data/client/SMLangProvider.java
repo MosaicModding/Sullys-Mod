@@ -1,9 +1,15 @@
 package com.uraneptus.sullysmod.core.data.client;
 
+import com.teamabnormals.blueprint.core.util.item.ItemStackBuilder;
 import com.uraneptus.sullysmod.SullysMod;
 import com.uraneptus.sullysmod.core.registry.SMBlocks;
 import com.uraneptus.sullysmod.core.registry.SMItems;
+import com.uraneptus.sullysmod.core.registry.SMPotions;
 import net.minecraft.data.DataGenerator;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.alchemy.Potion;
+import net.minecraft.world.item.alchemy.PotionUtils;
 import net.minecraftforge.common.data.LanguageProvider;
 
 public class SMLangProvider extends LanguageProvider {
@@ -59,6 +65,11 @@ public class SMLangProvider extends LanguageProvider {
         add(SMItems.LANTERNFISH_SPAWN_EGG.get(), "Lanternfish Spawn Egg");
         add(SMItems.RAW_LANTERNFISH.get(), "Raw Lanternfish");
         add(SMItems.COOKED_LANTERNFISH.get(), "Cooked Lanternfish");
+
+        //Potions
+        add(PotionUtils.setPotion(Items.POTION.getDefaultInstance(), SMPotions.UNLUCK.get()), "Potion of Bad Luck");
+        add(PotionUtils.setPotion(Items.SPLASH_POTION.getDefaultInstance(), SMPotions.UNLUCK.get()), "Splash Potion of Bad Luck");
+        add(PotionUtils.setPotion(Items.LINGERING_POTION.getDefaultInstance(), SMPotions.UNLUCK.get()), "Lingering Potion of Bad Luck");
 
         SullysMod.LOGGER.info("LANGUAGE GENERATION COMPLETE");
     }
