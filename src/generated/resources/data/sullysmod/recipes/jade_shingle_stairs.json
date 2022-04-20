@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#  ",
+    "## ",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "sullysmod:jade_shingles"
+    }
+  },
+  "result": {
+    "item": "sullysmod:jade_shingle_stairs",
+    "count": 4
+  }
+}

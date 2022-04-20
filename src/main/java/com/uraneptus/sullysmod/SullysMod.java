@@ -8,13 +8,16 @@ import com.uraneptus.sullysmod.core.data.server.SMLootTableProvider;
 import com.uraneptus.sullysmod.core.data.client.SMBlockStateProvider;
 import com.uraneptus.sullysmod.core.data.client.SMItemModelProvider;
 import com.uraneptus.sullysmod.core.data.client.SMLangProvider;
+import com.uraneptus.sullysmod.core.data.server.SMRecipeProvider;
 import com.uraneptus.sullysmod.core.data.server.modifiers.ModAdvancementModifiersProvider;
 import com.uraneptus.sullysmod.core.data.server.tags.SMBlockTagsProvider;
 import com.uraneptus.sullysmod.core.data.server.tags.SMEntityTagsProvider;
 import com.uraneptus.sullysmod.core.data.server.tags.SMItemTagsProvider;
+import com.uraneptus.sullysmod.core.other.SMBrewingRecipes;
 import com.uraneptus.sullysmod.core.registry.SMEntityTypes;
 import com.uraneptus.sullysmod.core.registry.SMFeatures;
 import com.uraneptus.sullysmod.core.registry.SMParticleTypes;
+import com.uraneptus.sullysmod.core.registry.SMSpawnPlacements;
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.data.ExistingFileHelper;
@@ -48,7 +51,11 @@ public class SullysMod {
     }
 
     private void setup(final FMLCommonSetupEvent event) {
-        SMFeatures.registerFeatures();
+        event.enqueueWork(() -> {
+            SMFeatures.registerFeatures();
+            SMSpawnPlacements.register();
+            SMBrewingRecipes.register();
+        });
     }
 
     @SubscribeEvent
@@ -75,6 +82,7 @@ public class SullysMod {
             generator.addProvider(new SMItemTagsProvider(generator, blockTagProvider, fileHelper));
             generator.addProvider(new ModAdvancementModifiersProvider(generator));
             generator.addProvider(new SMLootTableProvider(generator));
+            generator.addProvider(new SMRecipeProvider(generator));
         }
     }
 }

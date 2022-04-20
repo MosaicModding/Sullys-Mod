@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#  ",
+    "## ",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "sullysmod:raw_jade_tiles"
+    }
+  },
+  "result": {
+    "item": "sullysmod:raw_jade_tile_stairs",
+    "count": 4
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "minecraft:exposed_cut_copper"
+    }
+  ],
+  "result": {
+    "item": "sullysmod:exposed_copper_button"
+  }
+}

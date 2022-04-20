@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "sullysmod:waxed_copper_button_from_honeycomb"
+    ]
+  },
+  "criteria": {
+    "has_copper_button": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "sullysmod:copper_button"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "sullysmod:waxed_copper_button_from_honeycomb"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_copper_button",
+      "has_the_recipe"
+    ]
+  ]
+}

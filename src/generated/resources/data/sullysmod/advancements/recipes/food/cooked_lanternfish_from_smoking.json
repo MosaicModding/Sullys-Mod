@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "sullysmod:cooked_lanternfish_from_smoking"
+    ]
+  },
+  "criteria": {
+    "has_raw_lanternfish": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "sullysmod:raw_lanternfish"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "sullysmod:cooked_lanternfish_from_smoking"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_raw_lanternfish",
+      "has_the_recipe"
+    ]
+  ]
+}

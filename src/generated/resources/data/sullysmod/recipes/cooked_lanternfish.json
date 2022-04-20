@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "sullysmod:raw_lanternfish"
+  },
+  "result": "sullysmod:cooked_lanternfish",
+  "experience": 0.35,
+  "cookingtime": 200
+}

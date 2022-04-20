@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "sullysmod:small_jade_bricks"
+    ]
+  },
+  "criteria": {
+    "has_jade_tiles": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "sullysmod:jade_tiles"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "sullysmod:small_jade_bricks"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_jade_tiles",
+      "has_the_recipe"
+    ]
+  ]
+}
