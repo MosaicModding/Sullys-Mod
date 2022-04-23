@@ -44,13 +44,11 @@ public class SullysMod {
         SMParticleTypes.PARTICLES.register(event_bus);
         SMPotions.POTIONS.register(event_bus);
 
-        MinecraftForge.EVENT_BUS.addListener(SMFeatures::onBiomeLoad);
         MinecraftForge.EVENT_BUS.register(this);
     }
 
     private void setup(final FMLCommonSetupEvent event) {
         event.enqueueWork(() -> {
-            SMFeatures.registerFeatures();
             SMSpawnPlacements.register();
             SMBrewingRecipes.register();
         });
