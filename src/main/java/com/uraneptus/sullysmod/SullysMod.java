@@ -15,10 +15,7 @@ import com.uraneptus.sullysmod.core.data.server.tags.SMBlockTagsProvider;
 import com.uraneptus.sullysmod.core.data.server.tags.SMEntityTagsProvider;
 import com.uraneptus.sullysmod.core.data.server.tags.SMItemTagsProvider;
 import com.uraneptus.sullysmod.core.other.SMBrewingRecipes;
-import com.uraneptus.sullysmod.core.registry.SMEntityTypes;
-import com.uraneptus.sullysmod.core.registry.SMFeatures;
-import com.uraneptus.sullysmod.core.registry.SMParticleTypes;
-import com.uraneptus.sullysmod.core.registry.SMSpawnPlacements;
+import com.uraneptus.sullysmod.core.registry.*;
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.data.ExistingFileHelper;
@@ -46,14 +43,13 @@ public class SullysMod {
 
         REGISTRY_HELPER.register(event_bus);
         SMParticleTypes.PARTICLES.register(event_bus);
+        SMPotions.POTIONS.register(event_bus);
 
-        MinecraftForge.EVENT_BUS.addListener(SMFeatures::onBiomeLoad);
         MinecraftForge.EVENT_BUS.register(this);
     }
 
     private void setup(final FMLCommonSetupEvent event) {
         event.enqueueWork(() -> {
-            SMFeatures.registerFeatures();
             SMSpawnPlacements.register();
             SMBrewingRecipes.register();
         });
