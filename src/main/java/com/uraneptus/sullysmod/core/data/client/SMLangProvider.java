@@ -1,7 +1,9 @@
 package com.uraneptus.sullysmod.core.data.client;
 
 import com.uraneptus.sullysmod.SullysMod;
+import com.uraneptus.sullysmod.core.events.SMEntityEvents;
 import com.uraneptus.sullysmod.core.registry.SMBlocks;
+import com.uraneptus.sullysmod.core.registry.SMEntityTypes;
 import com.uraneptus.sullysmod.core.registry.SMItems;
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.common.data.LanguageProvider;
@@ -59,6 +61,12 @@ public class SMLangProvider extends LanguageProvider {
         add(SMItems.LANTERNFISH_SPAWN_EGG.get(), "Lanternfish Spawn Egg");
         add(SMItems.RAW_LANTERNFISH.get(), "Raw Lanternfish");
         add(SMItems.COOKED_LANTERNFISH.get(), "Cooked Lanternfish");
+        add(SMItems.TORTOISE_SPAWN_EGG.get(), "Tortoise Spawn Egg");
+
+        //Entities
+        add(SMEntityTypes.LANTERNFISH.get(), "Lanternfish");
+        add(SMEntityTypes.TORTOISE.get(), "Tortoise");
+        add(SMEntityTypes.COPPER_GOLEM.get(), "Copper Golem");
 
         SullysMod.LOGGER.info("LANGUAGE GENERATION COMPLETE");
     }
