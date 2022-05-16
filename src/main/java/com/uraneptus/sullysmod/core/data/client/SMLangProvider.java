@@ -35,6 +35,7 @@ public class SMLangProvider extends LanguageProvider {
         add(SMBlocks.CHISELED_JADE.get(), "Chiseled Jade");
         add(SMBlocks.JADE_PILLAR.get(), "Jade Pillar");
         add(SMBlocks.JADE_TOTEM.get(), "Jade Totem");
+        add(SMBlocks.JADE_FLINGER_TOTEM.get(), "Jade Flinger Totem");
         add(SMBlocks.COPPER_BUTTON.get(), "Copper Button");
         add(SMBlocks.EXPOSED_COPPER_BUTTON.get(), "Exposed Copper Button");
         add(SMBlocks.WEATHERED_COPPER_BUTTON.get(), "Weathered Copper Button");

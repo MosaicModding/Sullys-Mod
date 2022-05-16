@@ -88,6 +88,7 @@ public class SMLootTableProvider extends LootTableProvider {
             this.dropSelf(SMBlocks.CHISELED_JADE.get());
             this.dropSelf(SMBlocks.JADE_PILLAR.get());
             this.dropSelf(SMBlocks.JADE_TOTEM.get());
+            this.dropSelf(SMBlocks.JADE_FLINGER_TOTEM.get());
             this.dropSelf(SMBlocks.JADE_BRICK_STAIRS.get());
             this.dropSelf(SMBlocks.SMALL_JADE_BRICK_STAIRS.get());
             this.dropSelf(SMBlocks.JADE_TILE_STAIRS.get());
