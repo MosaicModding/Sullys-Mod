@@ -6,13 +6,13 @@
     ]
   },
   "criteria": {
-    "has_oxidized_copper_button": {
+    "has_weathered_copper_button": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
             "items": [
-              "sullysmod:oxidized_copper_button"
+              "sullysmod:weathered_copper_button"
             ]
           }
         ]
@@ -27,7 +27,7 @@
   },
   "requirements": [
     [
-      "has_oxidized_copper_button",
+      "has_weathered_copper_button",
       "has_the_recipe"
     ]
   ]

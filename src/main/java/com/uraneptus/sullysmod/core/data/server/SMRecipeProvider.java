@@ -1,24 +1,17 @@
 package com.uraneptus.sullysmod.core.data.server;
 
 import com.uraneptus.sullysmod.SullysMod;
-import com.uraneptus.sullysmod.common.blocks.CopperButtonBlock;
-import com.uraneptus.sullysmod.core.data.DatagenUtil;
 import com.uraneptus.sullysmod.core.registry.SMBlocks;
 import com.uraneptus.sullysmod.core.registry.SMItems;
-import net.minecraft.advancements.critereon.InventoryChangeTrigger;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.recipes.*;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.HoneycombItem;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Blocks;
 
 import java.util.function.Consumer;
-
-import javax.annotation.Nullable;
 
 public class SMRecipeProvider extends RecipeProvider {
 
@@ -74,28 +67,51 @@ public class SMRecipeProvider extends RecipeProvider {
         buttonRecipes(Blocks.WAXED_WEATHERED_CUT_COPPER, SMBlocks.WAXED_WEATHERED_COPPER_BUTTON.get(), consumer);
         buttonRecipes(Blocks.WAXED_OXIDIZED_CUT_COPPER, SMBlocks.WAXED_OXIDIZED_COPPER_BUTTON.get(), consumer);
 
-        waxButtonRecipes(SMBlocks.COPPER_BUTTON.get(), SMBlocks.WAXED_COPPER_BUTTON.get(), consumer, "waxed_copper_button_from_honeycomb"); //TODO: Find a way make the path thing automatic
-        waxButtonRecipes(SMBlocks.EXPOSED_COPPER_BUTTON.get(), SMBlocks.WAXED_EXPOSED_COPPER_BUTTON.get(), consumer, "waxed_exposed_copper_button_from_honeycomb");
-        waxButtonRecipes(SMBlocks.WEATHERED_COPPER_BUTTON.get(), SMBlocks.WAXED_WEATHERED_COPPER_BUTTON.get(), consumer, "waxed_oxidized_copper_button_from_honeycomb");
-        waxButtonRecipes(SMBlocks.OXIDIZED_COPPER_BUTTON.get(), SMBlocks.WAXED_OXIDIZED_COPPER_BUTTON.get(), consumer, "waxed_weathered_copper_button_from_honeycomb");
-
+        waxButtonRecipes(SMBlocks.COPPER_BUTTON.get(), SMBlocks.WAXED_COPPER_BUTTON.get(), consumer);
+        waxButtonRecipes(SMBlocks.EXPOSED_COPPER_BUTTON.get(), SMBlocks.WAXED_EXPOSED_COPPER_BUTTON.get(), consumer);
+        waxButtonRecipes(SMBlocks.WEATHERED_COPPER_BUTTON.get(), SMBlocks.WAXED_WEATHERED_COPPER_BUTTON.get(), consumer);
+        waxButtonRecipes(SMBlocks.OXIDIZED_COPPER_BUTTON.get(), SMBlocks.WAXED_OXIDIZED_COPPER_BUTTON.get(), consumer);
 
         ShapedRecipeBuilder.shaped(SMBlocks.JADE_TOTEM.get()).define('#', SMBlocks.JADE_SHINGLES.get()).pattern("###").pattern("# #").pattern("###").unlockedBy(getHasName(SMBlocks.JADE_SHINGLES.get()), has(SMBlocks.JADE_SHINGLES.get())).save(consumer);
+        ShapedRecipeBuilder.shaped(SMBlocks.JADE_FLINGER_TOTEM.get()).define('#', SMBlocks.JADE_SHINGLES.get()).define('-', Items.TRIPWIRE_HOOK).pattern("###").pattern("#-#").pattern("###").unlockedBy(getHasName(Items.TRIPWIRE_HOOK), has(Items.TRIPWIRE_HOOK)).unlockedBy(getHasName(SMBlocks.JADE_SHINGLES.get()), has(SMBlocks.JADE_SHINGLES.get())).save(consumer);
+
+        stonecutterRecipes(SMBlocks.RAW_JADE_BLOCK.get(), SMBlocks.RAW_JADE_BRICKS.get(), 1, consumer);
+        stonecutterRecipes(SMBlocks.RAW_JADE_BRICKS.get(), SMBlocks.RAW_JADE_TILES.get(), 1, consumer);
+        stonecutterRecipes(SMBlocks.RAW_JADE_BRICKS.get(), SMBlocks.RAW_JADE_BRICK_SLAB.get(), 2, consumer);
+        stonecutterRecipes(SMBlocks.RAW_JADE_BRICKS.get(), SMBlocks.RAW_JADE_BRICK_STAIRS.get(), 1, consumer);
+        stonecutterRecipes(SMBlocks.RAW_JADE_TILES.get(), SMBlocks.RAW_JADE_TILE_SLAB.get(), 2, consumer);
+        stonecutterRecipes(SMBlocks.RAW_JADE_TILES.get(), SMBlocks.RAW_JADE_TILE_STAIRS.get(), 1, consumer);
+        stonecutterRecipes(SMBlocks.SMOOTH_RAW_JADE.get(), SMBlocks.SMOOTH_RAW_JADE_SLAB.get(), 2, consumer);
+        stonecutterRecipes(SMBlocks.SMOOTH_RAW_JADE.get(), SMBlocks.SMOOTH_RAW_JADE_STAIRS.get(), 1, consumer);
+        stonecutterRecipes(SMBlocks.JADE_BLOCK.get(), SMBlocks.JADE_BRICKS.get(), 1, consumer);
+        stonecutterRecipes(SMBlocks.JADE_BLOCK.get(), SMBlocks.JADE_PILLAR.get(), 1, consumer);
+        stonecutterRecipes(SMBlocks.JADE_BRICKS.get(), SMBlocks.JADE_TILES.get(), 1, consumer);
+        stonecutterRecipes(SMBlocks.JADE_BRICKS.get(), SMBlocks.JADE_BRICK_SLAB.get(), 2, consumer);
+        stonecutterRecipes(SMBlocks.JADE_BRICKS.get(), SMBlocks.JADE_BRICK_STAIRS.get(), 1, consumer);
+        stonecutterRecipes(SMBlocks.JADE_BRICKS.get(), SMBlocks.CHISELED_JADE.get(), 1, consumer);
+        stonecutterRecipes(SMBlocks.JADE_TILES.get(), SMBlocks.SMALL_JADE_BRICKS.get(), 1, consumer);
+        stonecutterRecipes(SMBlocks.JADE_TILES.get(), SMBlocks.JADE_TILE_SLAB.get(), 2, consumer);
+        stonecutterRecipes(SMBlocks.JADE_TILES.get(), SMBlocks.JADE_TILE_STAIRS.get(), 1, consumer);
+        stonecutterRecipes(SMBlocks.SMALL_JADE_BRICKS.get(), SMBlocks.JADE_SHINGLES.get(), 1, consumer);
+        stonecutterRecipes(SMBlocks.SMALL_JADE_BRICKS.get(), SMBlocks.SMALL_JADE_BRICK_SLAB.get(), 2, consumer);
+        stonecutterRecipes(SMBlocks.SMALL_JADE_BRICKS.get(), SMBlocks.SMALL_JADE_BRICK_STAIRS.get(), 1, consumer);
+        stonecutterRecipes(SMBlocks.JADE_SHINGLES.get(), SMBlocks.JADE_SHINGLE_SLAB.get(), 2, consumer);
+        stonecutterRecipes(SMBlocks.JADE_SHINGLES.get(), SMBlocks.JADE_SHINGLE_STAIRS.get(), 1, consumer);
 
         SullysMod.LOGGER.info("RECIPE GENERATION COMPLETE");
     }
 
     private static void cookingRecipes(ItemLike ingredient, ItemLike result, float experience, Consumer<FinishedRecipe> consumer) {
-        String prefix = new ResourceLocation(SullysMod.MOD_ID, result.toString()).toString();
+        String resultName = new ResourceLocation(SullysMod.MOD_ID, result.toString()).toString();
         SimpleCookingRecipeBuilder.smelting(Ingredient.of(ingredient), result, experience, 200)
                 .unlockedBy(getHasName(ingredient), has(ingredient))
                 .save(consumer);
         SimpleCookingRecipeBuilder.campfireCooking(Ingredient.of(ingredient), result, experience, 600)
                 .unlockedBy(getHasName(ingredient), has(ingredient))
-                .save(consumer, prefix + "_from_campfire_cooking");
+                .save(consumer, resultName + "_from_campfire_cooking");
         SimpleCookingRecipeBuilder.smoking(Ingredient.of(ingredient), result, experience, 100)
                 .unlockedBy(getHasName(ingredient), has(ingredient))
-                .save(consumer, prefix + "_from_smoking");
+                .save(consumer, resultName + "_from_smoking");
     }
 
     private static void packableBlockRecipes(ItemLike unpacked, ItemLike packed, Consumer<FinishedRecipe> consumer) {
@@ -140,13 +156,17 @@ public class SMRecipeProvider extends RecipeProvider {
                 .unlockedBy(getHasName(ingredient), has(ingredient)).save(consumer);
     }
 
+    private static void waxButtonRecipes(ItemLike ingredient, ItemLike result, Consumer<FinishedRecipe> consumer) {
+        String resultName = new ResourceLocation(SullysMod.MOD_ID, result.asItem().toString()).toString();
 
-    private static void waxButtonRecipes(ItemLike ingredient, ItemLike result, Consumer<FinishedRecipe> consumer, String path) {
         ShapelessRecipeBuilder.shapeless(result).requires(ingredient).requires(Items.HONEYCOMB)
-                .unlockedBy(getHasName(ingredient), has(ingredient)).save(consumer, new ResourceLocation(SullysMod.MOD_ID, path));
+                .unlockedBy(getHasName(ingredient), has(ingredient)).save(consumer, resultName + "_from_honeycomb");
     }
 
-
-
-
+    private static void stonecutterRecipes(ItemLike ingredient, ItemLike result, int resultCount, Consumer<FinishedRecipe> consumer) {
+        String resultName = new ResourceLocation(SullysMod.MOD_ID, result.asItem().toString()).toString();
+        String prefix = resultName + "_from_" + ingredient.asItem();
+        SingleItemRecipeBuilder.stonecutting(Ingredient.of(ingredient), result, resultCount)
+                .unlockedBy(getHasName(ingredient), has(ingredient)).save(consumer, prefix + "_stonecutting");
+    }
 }

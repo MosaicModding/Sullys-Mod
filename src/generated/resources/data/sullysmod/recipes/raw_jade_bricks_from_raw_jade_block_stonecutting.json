@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "sullysmod:raw_jade_block"
+  },
+  "result": "sullysmod:raw_jade_bricks",
+  "count": 1
+}

@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "sullysmod:jade_shingles"
+  },
+  "result": "sullysmod:jade_shingle_slab",
+  "count": 2
+}

@@ -8,7 +8,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.client.model.generators.ModelProvider;
 
-public class DatagenUtil {
+public class SMDatagenUtil {
     public static final String GENERATED = "item/generated";
     private static final String HANDHELD = "item/handheld";
 

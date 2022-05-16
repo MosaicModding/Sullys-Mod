@@ -2,13 +2,13 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "item": "sullysmod:oxidized_copper_button"
+      "item": "sullysmod:weathered_copper_button"
     },
     {
       "item": "minecraft:honeycomb"
     }
   ],
   "result": {
-    "item": "sullysmod:waxed_oxidized_copper_button"
+    "item": "sullysmod:waxed_weathered_copper_button"
   }
 }

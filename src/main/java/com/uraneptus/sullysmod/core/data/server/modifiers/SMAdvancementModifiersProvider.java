@@ -15,8 +15,8 @@ import net.minecraftforge.registries.RegistryObject;
 
 import java.util.Collection;
 
-public class ModAdvancementModifiersProvider extends AdvancementModifierProvider {
-    public ModAdvancementModifiersProvider(DataGenerator dataGenerator) {
+public class SMAdvancementModifiersProvider extends AdvancementModifierProvider {
+    public SMAdvancementModifiersProvider(DataGenerator dataGenerator) {
         super(dataGenerator, SullysMod.MOD_ID);
     }
 
