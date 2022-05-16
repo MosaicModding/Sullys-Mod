@@ -36,6 +36,9 @@
   "block.sullysmod.waxed_oxidized_copper_button": "Waxed Oxidized Copper Button",
   "block.sullysmod.waxed_weathered_copper_button": "Waxed Weathered Copper Button",
   "block.sullysmod.weathered_copper_button": "Weathered Copper Button",
+  "entity.sullysmod.copper_golem": "Copper Golem",
+  "entity.sullysmod.lanternfish": "Lanternfish",
+  "entity.sullysmod.tortoise": "Tortoise",
   "item.minecraft.lingering_potion.effect.unluck": "Lingering Potion of Bad Luck",
   "item.minecraft.potion.effect.unluck": "Potion of Bad Luck",
   "item.minecraft.splash_potion.effect.unluck": "Splash Potion of Bad Luck",
@@ -44,5 +47,6 @@
   "item.sullysmod.lanternfish_bucket": "Bucket of Lanternfish",
   "item.sullysmod.lanternfish_spawn_egg": "Lanternfish Spawn Egg",
   "item.sullysmod.raw_jade": "Raw Jade",
-  "item.sullysmod.raw_lanternfish": "Raw Lanternfish"
+  "item.sullysmod.raw_lanternfish": "Raw Lanternfish",
+  "item.sullysmod.tortoise_spawn_egg": "Tortoise Spawn Egg"
 }

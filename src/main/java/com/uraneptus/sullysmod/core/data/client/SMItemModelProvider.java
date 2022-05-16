@@ -37,6 +37,7 @@ public class SMItemModelProvider extends ItemModelProvider {
         basicItem(SMItems.JADE.get());
         basicItem(SMItems.LANTERNFISH_BUCKET.get());
         basicSpawnEggItem(SMItems.LANTERNFISH_SPAWN_EGG.get());
+        basicSpawnEggItem(SMItems.TORTOISE_SPAWN_EGG.get());
         basicItem(SMItems.RAW_LANTERNFISH.get());
         basicItem(SMItems.COOKED_LANTERNFISH.get());
         basicButtonBlockItem(SMBlocks.COPPER_BUTTON.get(), SMDatagenUtil.COPPER_BLOCK);

@@ -9,6 +9,7 @@ import com.uraneptus.sullysmod.core.data.client.SMBlockStateProvider;
 import com.uraneptus.sullysmod.core.data.client.SMItemModelProvider;
 import com.uraneptus.sullysmod.core.data.client.SMLangProvider;
 import com.uraneptus.sullysmod.core.data.server.SMRecipeProvider;
+import com.uraneptus.sullysmod.common.entities.TortoiseEntity;
 import com.uraneptus.sullysmod.core.data.server.modifiers.SMAdvancementModifiersProvider;
 import com.uraneptus.sullysmod.core.data.server.tags.SMBlockTagsProvider;
 import com.uraneptus.sullysmod.core.data.server.tags.SMEntityTagsProvider;
@@ -58,6 +59,7 @@ public class SullysMod {
     public static void addEntityAttributes(final EntityAttributeCreationEvent event) {
         event.put(SMEntityTypes.COPPER_GOLEM.get(), CopperGolemEntity.createAttributes().build());
         event.put(SMEntityTypes.LANTERNFISH.get(), LanternfishEntity.createAttributes().build());
+        event.put(SMEntityTypes.TORTOISE.get(), TortoiseEntity.createAttributes().build());
     }
 
     @SubscribeEvent
