@@ -86,7 +86,6 @@ public class TortoiseEntity extends Animal implements IAnimatable {
             super.knockback(p_147241_, p_147242_, p_147243_);
         }
         else super.knockback(p_147241_ * 0.25D, p_147242_ * 0.25D, p_147243_ * 0.25D);
-
     }
 
     @Override

@@ -177,5 +177,19 @@
         "name": "entity/fish/hurt4"
       }
     ]
+  },
+  "block.jade.ricochet": {
+    "subtitle": "subtitles.block.jade.ricochet",
+    "sounds": [
+      {
+        "name": "block/end_portal/eyeplace1"
+      },
+      {
+        "name": "block/end_portal/eyeplace2"
+      },
+      {
+        "name": "block/end_portal/eyeplace3"
+      }
+    ]
   }
 }

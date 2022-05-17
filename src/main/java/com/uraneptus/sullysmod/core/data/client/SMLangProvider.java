@@ -82,6 +82,7 @@ public class SMLangProvider extends LanguageProvider {
 
         //Subtitles
         add("subtitles.block.grindstone.polish_jade", "Grindstone polishes");
+        add("subtitles.block.jade.ricochet", "Projectile ricochets");
 
         add("subtitles.entity.tortoise.ambient", "Tortoise chirps");
         add("subtitles.entity.tortoise.death", "Tortoise dies");
