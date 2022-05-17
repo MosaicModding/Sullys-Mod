@@ -48,5 +48,15 @@
   "item.sullysmod.lanternfish_spawn_egg": "Lanternfish Spawn Egg",
   "item.sullysmod.raw_jade": "Raw Jade",
   "item.sullysmod.raw_lanternfish": "Raw Lanternfish",
-  "item.sullysmod.tortoise_spawn_egg": "Tortoise Spawn Egg"
+  "item.sullysmod.tortoise_spawn_egg": "Tortoise Spawn Egg",
+  "subtitles.block.grindstone.polish_jade": "Grindstone polishes",
+  "subtitles.entity.lanternfish.death": "Lanternfish dies",
+  "subtitles.entity.lanternfish.flop": "Lanternfish flops",
+  "subtitles.entity.lanternfish.hurt": "Lanternfish hurts",
+  "subtitles.entity.tortoise.ambient": "Tortoise chirps",
+  "subtitles.entity.tortoise.death": "Tortoise dies",
+  "subtitles.entity.tortoise.emerge": "Tortoise emerges",
+  "subtitles.entity.tortoise.hide": "Tortoise hides",
+  "subtitles.entity.tortoise.hurt": "Tortoise hurts",
+  "subtitles.entity.tortoise.hurt.hidden": "Tortoise hurts"
 }

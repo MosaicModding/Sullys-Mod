@@ -37,13 +37,13 @@ public class SullysMod {
     public static final Logger LOGGER = LogUtils.getLogger();
 
     public SullysMod() {
-        IEventBus event_bus = FMLJavaModLoadingContext.get().getModEventBus();
-        event_bus.addListener(this::setup);
-        event_bus.addListener(this::gatherData);
+        IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
+        bus.addListener(this::setup);
+        bus.addListener(this::gatherData);
 
-        REGISTRY_HELPER.register(event_bus);
-        SMParticleTypes.PARTICLES.register(event_bus);
-        SMPotions.POTIONS.register(event_bus);
+        REGISTRY_HELPER.register(bus);
+        SMParticleTypes.PARTICLES.register(bus);
+        SMPotions.POTIONS.register(bus);
 
         MinecraftForge.EVENT_BUS.register(this);
     }

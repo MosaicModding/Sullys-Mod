@@ -12,5 +12,4 @@ public class SMBlockEvents {
     public static void onBlockPlacedEvent(BlockEvent.EntityPlaceEvent event) {
 
     }
-
 }

@@ -31,8 +31,17 @@ public class SMGenerationEvents {
             spawns.addSpawn(MobCategory.WATER_AMBIENT, new MobSpawnSettings.SpawnerData(SMEntityTypes.LANTERNFISH.get(), 5, 1, 5));
         }
 
-        if (event.getCategory() == Biome.BiomeCategory.JUNGLE) {
+        if (biomeCategory == Biome.BiomeCategory.JUNGLE) {
+            spawns.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(SMEntityTypes.TORTOISE.get(), 5, 1, 3));
             generation.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, SMFeatures.Placement.JADE_ORE_PLACEMENT);
+        }
+
+        if (biomeCategory == Biome.BiomeCategory.SAVANNA) {
+            spawns.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(SMEntityTypes.TORTOISE.get(), 5, 1, 3));
+        }
+
+        if (DataUtil.matchesKeys(biome, Biomes.BIRCH_FOREST) || DataUtil.matchesKeys(biome, Biomes.OLD_GROWTH_BIRCH_FOREST)) {
+            spawns.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(SMEntityTypes.TORTOISE.get(), 10, 1, 3));
         }
     }
 }

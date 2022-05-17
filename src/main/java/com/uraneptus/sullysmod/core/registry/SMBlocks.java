@@ -6,7 +6,6 @@ import com.uraneptus.sullysmod.common.blocks.CopperButtonBlock;
 import com.uraneptus.sullysmod.common.blocks.JadeFlingerTotem;
 import com.uraneptus.sullysmod.common.blocks.JadeTotemBlock;
 import com.uraneptus.sullysmod.common.blocks.WeatheringCopperButtonBlock;
-import net.minecraft.server.commands.HelpCommand;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;

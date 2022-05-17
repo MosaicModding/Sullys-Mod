@@ -80,6 +80,20 @@ public class SMLangProvider extends LanguageProvider {
         add(PotionUtils.setPotion(Items.SPLASH_POTION.getDefaultInstance(), SMPotions.UNLUCK.get()), "Splash Potion of Bad Luck");
         add(PotionUtils.setPotion(Items.LINGERING_POTION.getDefaultInstance(), SMPotions.UNLUCK.get()), "Lingering Potion of Bad Luck");
 
+        //Subtitles
+        add("subtitles.block.grindstone.polish_jade", "Grindstone polishes");
+
+        add("subtitles.entity.tortoise.ambient", "Tortoise chirps");
+        add("subtitles.entity.tortoise.death", "Tortoise dies");
+        add("subtitles.entity.tortoise.hurt", "Tortoise hurts");
+        add("subtitles.entity.tortoise.hide", "Tortoise hides");
+        add("subtitles.entity.tortoise.emerge", "Tortoise emerges");
+        add("subtitles.entity.tortoise.hurt.hidden", "Tortoise hurts");
+
+        add("subtitles.entity.lanternfish.flop", "Lanternfish flops");
+        add("subtitles.entity.lanternfish.hurt", "Lanternfish hurts");
+        add("subtitles.entity.lanternfish.death", "Lanternfish dies");
+
         SullysMod.LOGGER.info("LANGUAGE GENERATION COMPLETE");
     }
 }

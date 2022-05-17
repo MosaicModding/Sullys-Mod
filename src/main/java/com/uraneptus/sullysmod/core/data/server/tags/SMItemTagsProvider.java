@@ -1,10 +1,12 @@
 package com.uraneptus.sullysmod.core.data.server.tags;
 
 import com.uraneptus.sullysmod.SullysMod;
+import com.uraneptus.sullysmod.core.other.SMItemTags;
 import com.uraneptus.sullysmod.core.registry.SMBlocks;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.tags.BlockTagsProvider;
 import net.minecraft.data.tags.ItemTagsProvider;
+import net.minecraft.world.item.Items;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import org.jetbrains.annotations.Nullable;
 
@@ -16,6 +18,14 @@ public class SMItemTagsProvider extends ItemTagsProvider {
 
     @Override
     protected void addTags() {
+        //Our Tags
+        tag(SMItemTags.TORTOISE_FOOD).add(
+                Items.MELON_SLICE,
+                Items.GLOW_BERRIES,
+                Items.SWEET_BERRIES,
+                Items.APPLE
+        );
+
         //Minecraft Tags
         tag(net.minecraft.tags.ItemTags.BUTTONS).add(
                 SMBlocks.COPPER_BUTTON.get().asItem(),

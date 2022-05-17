@@ -1,24 +1,34 @@
 package com.uraneptus.sullysmod.common.entities;
 
 import com.uraneptus.sullysmod.SullysMod;
+import com.uraneptus.sullysmod.core.other.SMEntityTags;
+import com.uraneptus.sullysmod.core.other.SMItemTags;
+import com.uraneptus.sullysmod.core.registry.SMSounds;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.entity.ai.control.MoveControl;
 import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.vehicle.Boat;
+import net.minecraft.world.item.ArmorMaterials;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.enchantment.KnockbackEnchantment;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.gameevent.GameEvent;
+import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib3.core.IAnimatable;
@@ -29,11 +39,13 @@ import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 
-import java.util.Objects;
+import java.util.List;
 
 public class TortoiseEntity extends Animal implements IAnimatable {
+
     public static final EntityDataAccessor<Integer> HIDE_TIMER = SynchedEntityData.defineId(TortoiseEntity.class, EntityDataSerializers.INT);
     private final AnimationFactory factory = new AnimationFactory(this);
+    public static final Ingredient FOOD_ITEMS = Ingredient.of(SMItemTags.TORTOISE_FOOD);
 
     public TortoiseEntity(EntityType<? extends Animal> entityType, Level level) {
         super(entityType, level);
@@ -48,9 +60,10 @@ public class TortoiseEntity extends Animal implements IAnimatable {
     @Override
     protected void registerGoals() {
         this.goalSelector.addGoal(1, new FloatGoal(this));
-        this.goalSelector.addGoal(2, new WaterAvoidingRandomStrollGoal(this, 0.7D));
-        this.goalSelector.addGoal(3, new LookAtPlayerGoal(this, Player.class, 6.0F));
-        this.goalSelector.addGoal(4, new RandomLookAroundGoal(this));
+        this.goalSelector.addGoal(2, new TemptGoal(this, 0.45D, FOOD_ITEMS, false));
+        this.goalSelector.addGoal(3, new RiderAllowingRandomStrollGoal(this, 0.4D));
+        this.goalSelector.addGoal(4, new LookAtPlayerGoal(this, Player.class, 6.0F));
+        this.goalSelector.addGoal(5, new RandomLookAroundGoal(this));
     }
 
     @Override
@@ -68,29 +81,55 @@ public class TortoiseEntity extends Animal implements IAnimatable {
     }
 
     @Override
+    public void knockback(double p_147241_, double p_147242_, double p_147243_) {
+        if (this.getHideTimerDuration() > 200) {
+            super.knockback(p_147241_, p_147242_, p_147243_);
+        }
+        else super.knockback(p_147241_ * 0.25D, p_147242_ * 0.25D, p_147243_ * 0.25D);
+
+    }
+
+    @Override
     public void tick() {
         super.tick();
+        Level level = this.getLevel();
+
+        //Hiding core stuff
         if (this.getHideTimerDuration() > 0) {
             setHideTimerDuration(getHideTimerDuration() - 1);
         }
         if (this.getHideTimerDuration() == 200) {
-            for (Goal g : this.goalSelector.getAvailableGoals().stream().toList()) {
-                if (!Objects.equals(g, new FloatGoal(this))) {
-                    this.goalSelector.removeGoal(g);
-                }
-            }
+            this.goalSelector.removeAllGoals();
+            this.goalSelector.addGoal(1, new FloatGoal(this));
         } else if (this.getHideTimerDuration() == 100) {
-            for (Goal g : this.goalSelector.getAvailableGoals().stream().toList()) {
-                if (!Objects.equals(g, new FloatGoal(this))) {
-                    this.goalSelector.removeGoal(g);
-                }
-            }
+            this.goalSelector.removeAllGoals();
+            this.goalSelector.addGoal(1, new FloatGoal(this));
         } else if (this.getHideTimerDuration() == 1) {
-            this.goalSelector.addGoal(2, new RiderAllowingRandomStrollGoal(this, 0.4D));
-            this.goalSelector.addGoal(3, new LookAtPlayerGoal(this, Player.class, 6.0F));
-            this.goalSelector.addGoal(4, new RandomLookAroundGoal(this));
+            this.goalSelector.addGoal(2, new TemptGoal(this, 0.45D, FOOD_ITEMS, false));
+            this.goalSelector.addGoal(3, new RiderAllowingRandomStrollGoal(this, 0.4D));
+            this.goalSelector.addGoal(4, new LookAtPlayerGoal(this, Player.class, 6.0F));
+            this.goalSelector.addGoal(5, new RandomLookAroundGoal(this));
+            level.playSound(null, this.blockPosition(), SMSounds.TORTOISE_EMERGE.get(), SoundSource.AMBIENT, 1.0F, 1.0F);
 
             SullysMod.LOGGER.info("Gave Tortoise its AI back.");
+        }
+
+        //Hiding from mobs
+        AABB hidingRange = this.getBoundingBox().inflate(8.0D);
+
+        List<Entity> withinRange = level.getEntities(null, hidingRange);
+
+        for (Entity e : withinRange) {
+            if (e.getType().is(SMEntityTags.SCARES_TORTOISES)) {
+                this.setHideTimerDuration(200);
+            }
+        }
+
+        //Hiding During Raids
+        if (level instanceof ServerLevel serverLevel) {
+            if (serverLevel.isRaided(this.blockPosition())) {
+                this.setHideTimerDuration(200);
+            }
         }
     }
 
@@ -106,6 +145,10 @@ public class TortoiseEntity extends Animal implements IAnimatable {
         } else return InteractionResult.PASS;
     }
 
+    @Override
+    public boolean isFood(ItemStack stack) {
+        return FOOD_ITEMS.test(stack);
+    }
 
     @Override
     public boolean canBeControlledByRider() {
@@ -123,9 +166,13 @@ public class TortoiseEntity extends Animal implements IAnimatable {
         return size.height * 0.45f;
     }
 
+
     @Override
-    public void travel(Vec3 pTravelVector) {
-        super.travel(pTravelVector);
+    public double getPassengersRidingOffset() {
+        if (this.getHideTimerDuration() > 1) {
+            return super.getPassengersRidingOffset() * 0.75D;
+        }
+        else return super.getPassengersRidingOffset();
     }
 
     public <E extends IAnimatable> PlayState setAnimation(AnimationEvent<E> event) {
@@ -147,12 +194,44 @@ public class TortoiseEntity extends Animal implements IAnimatable {
 
     @Override
     public boolean hurt(DamageSource source, float amount) {
-        if (this.isInvulnerableTo(source)) {
-            return false;
+        Level level = this.getLevel();
+        if (this.getHideTimerDuration() > 1) {
+            if (source.isProjectile()) {
+                level.playSound(null, this.blockPosition(), SMSounds.TORTOISE_HURT_HIDDEN.get(), SoundSource.AMBIENT, 1.0F, 1.0F);
+                this.setHideTimerDuration(200);
+                return false;
+            } else {
+                this.setHideTimerDuration(200);
+                return super.hurt(source, amount * 0.5f);
+            }
         } else {
-            this.setHideTimerDuration(200);
-            return super.hurt(source, amount);
+            if (this.isInvulnerableTo(source)) {
+                return false;
+            } else {
+                this.setHideTimerDuration(205);
+                return super.hurt(source, amount);
+            }
         }
+    }
+
+    @Nullable
+    @Override
+    protected SoundEvent getHurtSound(DamageSource source) {
+        if (this.getHideTimerDuration() > 200) {
+            return SMSounds.TORTOISE_HURT.get();
+        } else return SMSounds.TORTOISE_HURT_HIDDEN.get();
+    }
+
+    @Nullable
+    @Override
+    protected SoundEvent getAmbientSound() {
+        return SMSounds.TORTOISE_AMBIENT.get();
+    }
+
+    @Nullable
+    @Override
+    protected SoundEvent getDeathSound() {
+        return SMSounds.TORTOISE_DEATH.get();
     }
 
     @Override
@@ -170,7 +249,12 @@ public class TortoiseEntity extends Animal implements IAnimatable {
     }
 
     public void setHideTimerDuration(int durationInTicks) {
+        Level level = this.getLevel();
+
         if (this.getHideTimerDuration() < durationInTicks || durationInTicks == this.getHideTimerDuration() - 1) {
+            if (this.getHideTimerDuration() == 0) {
+                level.playSound(null, this.blockPosition(), SMSounds.TORTOISE_HIDE.get(), SoundSource.AMBIENT, 1.0F, 1.0F);
+            }
             this.entityData.set(HIDE_TIMER, durationInTicks);
         }
     }

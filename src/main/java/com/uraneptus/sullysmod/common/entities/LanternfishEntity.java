@@ -2,6 +2,7 @@ package com.uraneptus.sullysmod.common.entities;
 
 import com.uraneptus.sullysmod.common.entities.goals.LightAvoidingRandomSwimmingGoal;
 import com.uraneptus.sullysmod.core.registry.SMItems;
+import com.uraneptus.sullysmod.core.registry.SMSounds;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
@@ -20,6 +21,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.Blocks;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.Random;
 
@@ -82,9 +84,22 @@ public class LanternfishEntity extends AbstractFish {
         return this.entityData.get(DATA_DARK_TICKS_REMAINING);
     }
 
+    @Nullable
     @Override
     protected SoundEvent getFlopSound() {
-        return null;
+        return SMSounds.LANTERNFISH_FLOP.get();
+    }
+
+    @Nullable
+    @Override
+    protected SoundEvent getHurtSound(DamageSource pDamageSource) {
+        return SMSounds.LANTERNFISH_HURT.get();
+    }
+
+    @Nullable
+    @Override
+    protected SoundEvent getDeathSound() {
+        return SMSounds.LANTERNFISH_DEATH.get();
     }
 
     @Override
