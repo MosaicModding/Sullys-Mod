@@ -18,7 +18,7 @@ public class SMItemTagsProvider extends ItemTagsProvider {
 
     @Override
     protected void addTags() {
-        //Our Tags
+        //Mod Tags
         tag(SMItemTags.TORTOISE_FOOD).add(
                 Items.MELON_SLICE,
                 Items.GLOW_BERRIES,

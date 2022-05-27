@@ -1,16 +1,12 @@
 package com.uraneptus.sullysmod.core.data.client;
 
-import com.teamabnormals.blueprint.core.util.item.ItemStackBuilder;
 import com.uraneptus.sullysmod.SullysMod;
-import com.uraneptus.sullysmod.core.events.SMEntityEvents;
 import com.uraneptus.sullysmod.core.registry.SMBlocks;
 import com.uraneptus.sullysmod.core.registry.SMEntityTypes;
 import com.uraneptus.sullysmod.core.registry.SMItems;
 import com.uraneptus.sullysmod.core.registry.SMPotions;
 import net.minecraft.data.DataGenerator;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.item.alchemy.Potion;
 import net.minecraft.world.item.alchemy.PotionUtils;
 import net.minecraftforge.common.data.LanguageProvider;
 

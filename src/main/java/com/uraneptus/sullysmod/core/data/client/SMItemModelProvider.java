@@ -74,7 +74,7 @@ public class SMItemModelProvider extends ItemModelProvider {
         buttonInventory(SMDatagenUtil.name(blockForItem), SMDatagenUtil.vanillaBlockLocation(texture));
     }
 
-    private void basicItem(Item item) {
+    private void basicGeneratedItem(Item item) {
         withExistingParent(SMDatagenUtil.name(item), SMDatagenUtil.GENERATED).texture("layer0", SMDatagenUtil.modItemLocation(SMDatagenUtil.name(item)));
     }
 

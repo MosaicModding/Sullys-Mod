@@ -4,7 +4,7 @@ import com.teamabnormals.blueprint.core.util.registry.BlockSubRegistryHelper;
 import com.uraneptus.sullysmod.SullysMod;
 import com.uraneptus.sullysmod.common.blocks.CopperButtonBlock;
 import com.uraneptus.sullysmod.common.blocks.JadeFlingerTotem;
-import com.uraneptus.sullysmod.common.blocks.JadeTotemBlock;
+import com.uraneptus.sullysmod.common.blocks.SMDirectableBlock;
 import com.uraneptus.sullysmod.common.blocks.WeatheringCopperButtonBlock;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.level.block.*;
@@ -31,7 +31,7 @@ public class SMBlocks {
     public static final RegistryObject<Block> JADE_SHINGLES = HELPER.createBlock("jade_shingles", () -> new Block(Properties.JADE_BLOCKS), CreativeModeTab.TAB_BUILDING_BLOCKS);
     public static final RegistryObject<Block> JADE_TILES = HELPER.createBlock("jade_tiles", () -> new Block(Properties.JADE_BLOCKS), CreativeModeTab.TAB_BUILDING_BLOCKS);
     public static final RegistryObject<Block> CHISELED_JADE = HELPER.createBlock("chiseled_jade", () -> new Block(Properties.JADE_BLOCKS), CreativeModeTab.TAB_BUILDING_BLOCKS);
-    public static final RegistryObject<Block> JADE_TOTEM = HELPER.createBlock("jade_totem", () -> new JadeTotemBlock(Properties.JADE_BLOCKS), CreativeModeTab.TAB_BUILDING_BLOCKS);
+    public static final RegistryObject<Block> JADE_TOTEM = HELPER.createBlock("jade_totem", () -> new SMDirectableBlock(Properties.JADE_BLOCKS), CreativeModeTab.TAB_BUILDING_BLOCKS);
     public static final RegistryObject<Block> JADE_FLINGER_TOTEM = HELPER.createBlock("jade_flinger_totem", () -> new JadeFlingerTotem(Properties.JADE_BLOCKS), CreativeModeTab.TAB_REDSTONE);
     public static final RegistryObject<Block> JADE_PILLAR = HELPER.createBlock("jade_pillar", () -> new RotatedPillarBlock(Properties.JADE_BLOCKS), CreativeModeTab.TAB_BUILDING_BLOCKS);
     //Jade Stairs
