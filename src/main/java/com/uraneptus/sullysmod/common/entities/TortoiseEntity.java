@@ -1,6 +1,5 @@
 package com.uraneptus.sullysmod.common.entities;
 
-import com.uraneptus.sullysmod.SullysMod;
 import com.uraneptus.sullysmod.core.other.SMEntityTags;
 import com.uraneptus.sullysmod.core.other.SMItemTags;
 import com.uraneptus.sullysmod.core.registry.SMSounds;
@@ -10,7 +9,6 @@ import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -22,14 +20,13 @@ import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.vehicle.Boat;
-import net.minecraft.world.item.ArmorMaterials;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.world.item.enchantment.KnockbackEnchantment;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.PlayState;
@@ -53,26 +50,25 @@ public class TortoiseEntity extends Animal implements IAnimatable {
 
     @Nullable
     @Override
-    public AgeableMob getBreedOffspring(ServerLevel level, AgeableMob mob) {
+    public AgeableMob getBreedOffspring(@NotNull ServerLevel level, @NotNull AgeableMob mob) {
         return null;
     }
 
     @Override
     protected void registerGoals() {
         this.goalSelector.addGoal(1, new FloatGoal(this));
-        this.goalSelector.addGoal(2, new TemptGoal(this, 0.45D, FOOD_ITEMS, false));
+        this.goalSelector.addGoal(2, new RiderIgnoringTemptGoal(this, 0.45D, FOOD_ITEMS, false));
         this.goalSelector.addGoal(3, new RiderAllowingRandomStrollGoal(this, 0.4D));
-        this.goalSelector.addGoal(4, new LookAtPlayerGoal(this, Player.class, 6.0F));
-        this.goalSelector.addGoal(5, new RandomLookAroundGoal(this));
+        this.goalSelector.addGoal(4, new TortoiseLookAtPlayerGoal(this, Player.class, 6.0F));
+        this.goalSelector.addGoal(5, new TortoiseLookAroundGoal(this));
     }
 
     @Override
     protected void updateControlFlags() {
-        boolean flag = this.getHideTimerDuration() == 0;
-        boolean flag1 = !(this.getVehicle() instanceof Boat);
-        this.goalSelector.setControlFlag(Goal.Flag.MOVE, flag);
-        this.goalSelector.setControlFlag(Goal.Flag.JUMP, flag && flag1);
-        this.goalSelector.setControlFlag(Goal.Flag.LOOK, flag);
+        boolean flag = !(this.getVehicle() instanceof Boat);
+        this.goalSelector.setControlFlag(Goal.Flag.MOVE, true);
+        this.goalSelector.setControlFlag(Goal.Flag.JUMP,   flag);
+        this.goalSelector.setControlFlag(Goal.Flag.LOOK, true);
     }
 
     @Override
@@ -97,20 +93,8 @@ public class TortoiseEntity extends Animal implements IAnimatable {
         if (this.getHideTimerDuration() > 0) {
             setHideTimerDuration(getHideTimerDuration() - 1);
         }
-        if (this.getHideTimerDuration() == 200) {
-            this.goalSelector.removeAllGoals();
-            this.goalSelector.addGoal(1, new FloatGoal(this));
-        } else if (this.getHideTimerDuration() == 100) {
-            this.goalSelector.removeAllGoals();
-            this.goalSelector.addGoal(1, new FloatGoal(this));
-        } else if (this.getHideTimerDuration() == 1) {
-            this.goalSelector.addGoal(2, new TemptGoal(this, 0.45D, FOOD_ITEMS, false));
-            this.goalSelector.addGoal(3, new RiderAllowingRandomStrollGoal(this, 0.4D));
-            this.goalSelector.addGoal(4, new LookAtPlayerGoal(this, Player.class, 6.0F));
-            this.goalSelector.addGoal(5, new RandomLookAroundGoal(this));
+        else if (this.getHideTimerDuration() == 1) {
             level.playSound(null, this.blockPosition(), SMSounds.TORTOISE_EMERGE.get(), SoundSource.AMBIENT, 1.0F, 1.0F);
-
-            SullysMod.LOGGER.info("Gave Tortoise its AI back.");
         }
 
         //Hiding from mobs
@@ -132,7 +116,7 @@ public class TortoiseEntity extends Animal implements IAnimatable {
         }
     }
 
-    public InteractionResult mobInteract(Player pPlayer, InteractionHand pHand) {
+    public @NotNull InteractionResult mobInteract(Player pPlayer, @NotNull InteractionHand pHand) {
         boolean flag = this.isFood(pPlayer.getItemInHand(pHand));
         if (!flag && !this.isVehicle() && !pPlayer.isSecondaryUseActive()) {
             if (!this.level.isClientSide) {
@@ -145,7 +129,7 @@ public class TortoiseEntity extends Animal implements IAnimatable {
     }
 
     @Override
-    public boolean isFood(ItemStack stack) {
+    public boolean isFood(@NotNull ItemStack stack) {
         return FOOD_ITEMS.test(stack);
     }
 
@@ -161,7 +145,7 @@ public class TortoiseEntity extends Animal implements IAnimatable {
     }
 
     @Override
-    protected float getStandingEyeHeight(Pose pose, EntityDimensions size) {
+    protected float getStandingEyeHeight(@NotNull Pose pose, EntityDimensions size) {
         return size.height * 0.45f;
     }
 
@@ -192,7 +176,7 @@ public class TortoiseEntity extends Animal implements IAnimatable {
     }
 
     @Override
-    public boolean hurt(DamageSource source, float amount) {
+    public boolean hurt(@NotNull DamageSource source, float amount) {
         Level level = this.getLevel();
         if (this.getHideTimerDuration() > 1) {
             if (source.isProjectile()) {
@@ -215,7 +199,7 @@ public class TortoiseEntity extends Animal implements IAnimatable {
 
     @Nullable
     @Override
-    protected SoundEvent getHurtSound(DamageSource source) {
+    protected SoundEvent getHurtSound(@NotNull DamageSource source) {
         if (this.getHideTimerDuration() > 200) {
             return SMSounds.TORTOISE_HURT.get();
         } else return SMSounds.TORTOISE_HURT_HIDDEN.get();
@@ -265,13 +249,13 @@ public class TortoiseEntity extends Animal implements IAnimatable {
     }
 
     @Override
-    public void addAdditionalSaveData(CompoundTag nbt) {
+    public void addAdditionalSaveData(@NotNull CompoundTag nbt) {
         super.addAdditionalSaveData(nbt);
         nbt.putInt("HideTimer", getHideTimerDuration());
     }
 
     @Override
-    public void readAdditionalSaveData(CompoundTag nbt) {
+    public void readAdditionalSaveData(@NotNull CompoundTag nbt) {
         super.readAdditionalSaveData(nbt);
         this.setHideTimerDuration(nbt.getInt("HideTimer"));
     }
@@ -283,6 +267,12 @@ public class TortoiseEntity extends Animal implements IAnimatable {
 
         @Override
         public boolean canUse() {
+            if (this.mob instanceof TortoiseEntity tortoise) {
+                if (tortoise.getHideTimerDuration() > 1) {
+                    return false;
+                }
+            }
+
             if (!this.forceTrigger) {
                 if (this.mob.getNoActionTime() >= 100) {
                     return false;
@@ -307,7 +297,113 @@ public class TortoiseEntity extends Animal implements IAnimatable {
 
         @Override
         public boolean canContinueToUse() {
+            if (this.mob instanceof TortoiseEntity tortoise) {
+                if (tortoise.getHideTimerDuration() > 1) {
+                    return false;
+                }
+            }
+
             return !this.mob.getNavigation().isDone();
+        }
+    }
+
+    public static class RiderIgnoringTemptGoal extends TemptGoal {
+        public RiderIgnoringTemptGoal(PathfinderMob pMob, double pSpeedModifier, Ingredient pItems, boolean pCanScare) {
+            super(pMob, pSpeedModifier, pItems, pCanScare);
+        }
+
+        @Override
+        public boolean canUse() {
+            if (this.mob instanceof TortoiseEntity tortoise) {
+                if (tortoise.getHideTimerDuration() > 1) {
+                    return false;
+                }
+            }
+
+            if (this.player != null && this.player.isPassenger()) {
+                return false;
+            }
+
+            return super.canUse();
+        }
+
+        @Override
+        public boolean canContinueToUse() {
+            if (this.mob instanceof TortoiseEntity tortoise) {
+                if (tortoise.getHideTimerDuration() > 1) {
+                    return false;
+                }
+            }
+
+            if (this.player != null && this.player.isPassenger()) {
+                return false;
+            }
+
+            return super.canContinueToUse();
+        }
+    }
+
+    public static class TortoiseLookAtPlayerGoal extends LookAtPlayerGoal {
+        public TortoiseLookAtPlayerGoal(Mob pMob, Class<? extends LivingEntity> pLookAtType, float pLookDistance) {
+            super(pMob, pLookAtType, pLookDistance);
+        }
+
+        @Override
+        public boolean canUse() {
+            if (this.mob instanceof TortoiseEntity tortoise) {
+                if (tortoise.getHideTimerDuration() > 1) {
+                    return false;
+                }
+            }
+
+            if (this.lookAt != null && this.lookAt.isPassenger()) {
+                    return false;
+            }
+
+            return super.canUse();
+        }
+
+        @Override
+        public boolean canContinueToUse() {
+            if (this.mob instanceof TortoiseEntity tortoise) {
+                if (tortoise.getHideTimerDuration() > 1) {
+                    return false;
+                }
+            }
+
+            if (this.lookAt != null && this.lookAt.isPassenger()) {
+                return false;
+            }
+
+            return super.canContinueToUse();
+        }
+    }
+
+    public static class TortoiseLookAroundGoal extends RandomLookAroundGoal {
+        private final TortoiseEntity tortoise;
+
+        public TortoiseLookAroundGoal(TortoiseEntity tortoise) {
+            super(tortoise);
+
+            this.tortoise = tortoise;
+        }
+
+        @Override
+        public boolean canUse() {
+            if (this.tortoise.getHideTimerDuration() > 1) {
+                return false;
+            }
+
+            return super.canUse();
+        }
+
+        @Override
+        public boolean canContinueToUse() {
+            if (this.tortoise.getHideTimerDuration() > 1) {
+                return false;
+            }
+
+            return super.canContinueToUse();
         }
     }
 }

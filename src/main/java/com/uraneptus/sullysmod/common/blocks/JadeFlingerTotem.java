@@ -19,7 +19,7 @@ import org.lwjgl.system.CallbackI;
 import java.util.Random;
 import java.util.function.Supplier;
 
-public class JadeFlingerTotem extends JadeTotemBlock {
+public class JadeFlingerTotem extends SMDirectableBlock {
     public JadeFlingerTotem(Properties properties) {
         super(properties);
     }

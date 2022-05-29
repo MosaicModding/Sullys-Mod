@@ -3,7 +3,6 @@ package com.uraneptus.sullysmod.core.registry;
 import com.teamabnormals.blueprint.common.item.BlueprintMobBucketItem;
 import com.teamabnormals.blueprint.core.util.registry.ItemSubRegistryHelper;
 import com.uraneptus.sullysmod.SullysMod;
-import net.minecraft.data.worldgen.placement.PlacementUtils;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
@@ -33,7 +32,7 @@ public class SMItems {
     //Mob Buckets & Spawn Eggs
     public static final RegistryObject<Item> LANTERNFISH_BUCKET = HELPER.createItem("lanternfish_bucket", () -> Properties.createMobBucketItem(SMEntityTypes.LANTERNFISH::get));
     public static final RegistryObject<ForgeSpawnEggItem> LANTERNFISH_SPAWN_EGG = HELPER.createSpawnEggItem("lanternfish", SMEntityTypes.LANTERNFISH::get, 12829605, 8778172);
-    public static final RegistryObject<ForgeSpawnEggItem> TORTOISE_SPAWN_EGG = HELPER.createSpawnEggItem("tortoise", SMEntityTypes.TORTOISE::get, 8778172, 12829605);
+    public static final RegistryObject<ForgeSpawnEggItem> TORTOISE_SPAWN_EGG = HELPER.createSpawnEggItem("tortoise", SMEntityTypes.TORTOISE::get, 15198183, 10844478);
 
 
     private static final class Properties {
