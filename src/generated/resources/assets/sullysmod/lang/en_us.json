@@ -31,6 +31,7 @@
   "block.sullysmod.smooth_raw_jade": "Smooth Raw Jade",
   "block.sullysmod.smooth_raw_jade_slab": "Smooth Raw Jade Slab",
   "block.sullysmod.smooth_raw_jade_stairs": "Smooth Raw Jade Stairs",
+  "block.sullysmod.tortoise_egg": "Tortoise Egg",
   "block.sullysmod.waxed_copper_button": "Waxed Copper Button",
   "block.sullysmod.waxed_exposed_copper_button": "Waxed Exposed Copper Button",
   "block.sullysmod.waxed_oxidized_copper_button": "Waxed Oxidized Copper Button",
@@ -56,8 +57,13 @@
   "subtitles.entity.lanternfish.hurt": "Lanternfish hurts",
   "subtitles.entity.tortoise.ambient": "Tortoise chirps",
   "subtitles.entity.tortoise.death": "Tortoise dies",
+  "subtitles.entity.tortoise.death_baby": "Tortoise baby dies",
+  "subtitles.entity.tortoise.egg_break": "Tortoise Egg breaks",
+  "subtitles.entity.tortoise.egg_crack": "Tortoise Egg cracks",
+  "subtitles.entity.tortoise.egg_hatch": "Tortoise Egg hatches",
   "subtitles.entity.tortoise.emerge": "Tortoise emerges",
   "subtitles.entity.tortoise.hide": "Tortoise hides",
   "subtitles.entity.tortoise.hurt": "Tortoise hurts",
-  "subtitles.entity.tortoise.hurt.hidden": "Tortoise hurts"
+  "subtitles.entity.tortoise.hurt.hidden": "Tortoise hurts",
+  "subtitles.entity.tortoise.hurt_baby": "Tortoise baby hurts"
 }

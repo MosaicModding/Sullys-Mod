@@ -123,6 +123,84 @@
       }
     ]
   },
+  "entity.tortoise.hurt_baby": {
+    "subtitle": "subtitles.entity.tortoise.hurt_baby",
+    "sounds": [
+      {
+        "name": "mob/turtle/baby/hurt1"
+      },
+      {
+        "name": "mob/turtle/baby/hurt2"
+      }
+    ]
+  },
+  "entity.tortoise.death_baby": {
+    "subtitle": "subtitles.entity.tortoise.death_baby",
+    "sounds": [
+      {
+        "name": "mob/turtle/baby/death1"
+      },
+      {
+        "name": "mob/turtle/baby/death2"
+      }
+    ]
+  },
+  "entity.tortoise.lay_egg": {
+    "subtitle": "subtitles.entity.tortoise.lay_egg",
+    "sounds": [
+      {
+        "name": "mob/turtle/drop_egg1"
+      },
+      {
+        "name": "mob/turtle/drop_egg2"
+      }
+    ]
+  },
+  "entity.tortoise.egg_break": {
+    "subtitle": "subtitles.entity.tortoise.egg_break",
+    "sounds": [
+      {
+        "name": "mob/turtle/egg/egg_break1"
+      },
+      {
+        "name": "mob/turtle/egg/egg_break2"
+      }
+    ]
+  },
+  "entity.tortoise.egg_crack": {
+    "subtitle": "subtitles.entity.tortoise.egg_crack",
+    "sounds": [
+      {
+        "name": "mob/turtle/egg/egg_crack1"
+      },
+      {
+        "name": "mob/turtle/egg/egg_crack2"
+      },
+      {
+        "name": "mob/turtle/egg/egg_crack3"
+      },
+      {
+        "name": "mob/turtle/egg/egg_crack4"
+      },
+      {
+        "name": "mob/turtle/egg/egg_crack5"
+      }
+    ]
+  },
+  "entity.tortoise.egg_hatch": {
+    "subtitle": "subtitles.entity.tortoise.egg_hatch",
+    "sounds": [
+      {
+        "name": "mob/turtle/baby/egg_hatched1"
+      },
+      {
+        "name": "mob/turtle/baby/egg_hatched2"
+      },
+      {
+        "name": "mob/turtle/baby/egg_hatched3"
+      }
+    ]
+  },
   "entity.lanternfish.flop": {
     "subtitle": "subtitles.entity.lanternfish.flop",
     "sounds": [

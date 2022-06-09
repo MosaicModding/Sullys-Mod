@@ -95,5 +95,4 @@ public class SMBlockStateProvider extends BlockStateProvider {
     private void modSlabBlock(Block block, String texture) {
         slabBlock((SlabBlock) block, SMDatagenUtil.modBlockLocation(texture), SMDatagenUtil.modBlockLocation(texture));
     }
-
 }

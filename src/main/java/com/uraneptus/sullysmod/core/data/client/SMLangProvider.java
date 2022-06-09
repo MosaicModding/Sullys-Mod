@@ -56,6 +56,7 @@ public class SMLangProvider extends LanguageProvider {
         add(SMBlocks.RAW_JADE_BRICK_SLAB.get(), "Raw Jade Brick Slab");
         add(SMBlocks.SMOOTH_RAW_JADE_SLAB.get(), "Smooth Raw Jade Slab");
         add(SMBlocks.RAW_JADE_TILE_SLAB.get(), "Raw Jade Tile Slab");
+        add(SMBlocks.TORTOISE_EGG.get(), "Tortoise Egg");
 
         //Items
         add(SMItems.RAW_JADE.get(), "Raw Jade");
@@ -86,6 +87,11 @@ public class SMLangProvider extends LanguageProvider {
         add("subtitles.entity.tortoise.hide", "Tortoise hides");
         add("subtitles.entity.tortoise.emerge", "Tortoise emerges");
         add("subtitles.entity.tortoise.hurt.hidden", "Tortoise hurts");
+        add("subtitles.entity.tortoise.death_baby", "Tortoise baby dies");
+        add("subtitles.entity.tortoise.hurt_baby", "Tortoise baby hurts");
+        add("subtitles.entity.tortoise.egg_crack", "Tortoise Egg cracks");
+        add("subtitles.entity.tortoise.egg_break", "Tortoise Egg breaks");
+        add("subtitles.entity.tortoise.egg_hatch", "Tortoise Egg hatches");
 
         add("subtitles.entity.lanternfish.flop", "Lanternfish flops");
         add("subtitles.entity.lanternfish.hurt", "Lanternfish hurts");

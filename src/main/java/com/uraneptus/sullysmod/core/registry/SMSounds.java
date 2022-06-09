@@ -18,11 +18,17 @@ public class SMSounds {
 
     //Entity Sounds
     public static final RegistryObject<SoundEvent> TORTOISE_HURT = HELPER.createSoundEvent("entity.tortoise.hurt");
+    public static final RegistryObject<SoundEvent> BABY_TORTOISE_HURT = HELPER.createSoundEvent("entity.tortoise.hurt_baby");
     public static final RegistryObject<SoundEvent> TORTOISE_DEATH = HELPER.createSoundEvent("entity.tortoise.death");
+    public static final RegistryObject<SoundEvent> BABY_TORTOISE_DEATH = HELPER.createSoundEvent("entity.tortoise.death_baby");
     public static final RegistryObject<SoundEvent> TORTOISE_AMBIENT = HELPER.createSoundEvent("entity.tortoise.ambient");
     public static final RegistryObject<SoundEvent> TORTOISE_HIDE = HELPER.createSoundEvent("entity.tortoise.hide");
     public static final RegistryObject<SoundEvent> TORTOISE_EMERGE = HELPER.createSoundEvent("entity.tortoise.emerge");
     public static final RegistryObject<SoundEvent> TORTOISE_HURT_HIDDEN = HELPER.createSoundEvent("entity.tortoise.hurt.hidden");
+    public static final RegistryObject<SoundEvent> TORTOISE_LAY_EGG = HELPER.createSoundEvent("entity.tortoise.lay_egg");
+    public static final RegistryObject<SoundEvent> TORTOISE_EGG_BREAK = HELPER.createSoundEvent("entity.tortoise.egg_break");
+    public static final RegistryObject<SoundEvent> TORTOISE_EGG_CRACK = HELPER.createSoundEvent("entity.tortoise.egg_crack");
+    public static final RegistryObject<SoundEvent> TORTOISE_EGG_HATCH = HELPER.createSoundEvent("entity.tortoise.egg_hatch");
 
     public static final RegistryObject<SoundEvent> LANTERNFISH_FLOP = HELPER.createSoundEvent("entity.lanternfish.flop");
     public static final RegistryObject<SoundEvent> LANTERNFISH_HURT = HELPER.createSoundEvent("entity.lanternfish.hurt");

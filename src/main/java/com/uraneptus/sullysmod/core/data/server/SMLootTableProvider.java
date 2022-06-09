@@ -109,6 +109,9 @@ public class SMLootTableProvider extends LootTableProvider {
             this.dropSelf(SMBlocks.WAXED_WEATHERED_COPPER_BUTTON.get());
             this.dropSelf(SMBlocks.WAXED_OXIDIZED_COPPER_BUTTON.get());
 
+            //Tortoise Egg
+            this.dropWhenSilkTouch(SMBlocks.TORTOISE_EGG.get());
+
             SullysMod.LOGGER.info("BLOCK LOOT TABLE GENERATION COMPLETE");
         }
 
