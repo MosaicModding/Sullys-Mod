@@ -149,10 +149,10 @@
     "subtitle": "subtitles.entity.tortoise.lay_egg",
     "sounds": [
       {
-        "name": "mob/turtle/drop_egg1"
+        "name": "mob/turtle/egg/drop_egg1"
       },
       {
-        "name": "mob/turtle/drop_egg2"
+        "name": "mob/turtle/egg/drop_egg2"
       }
     ]
   },
