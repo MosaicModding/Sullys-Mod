@@ -10,4 +10,6 @@ import javax.swing.text.html.parser.Entity;
 public class SMEntityTags {
     //Mod Tags
     public static final TagKey<EntityType<?>> SCARES_TORTOISES = TagUtil.entityTypeTag(SullysMod.MOD_ID, "scares_tortoises");
+
+    public static final TagKey<EntityType<?>> ATTACKS_BABY_TORTOISES = TagUtil.entityTypeTag(SullysMod.MOD_ID, "attacks_baby_tortoises");
 }

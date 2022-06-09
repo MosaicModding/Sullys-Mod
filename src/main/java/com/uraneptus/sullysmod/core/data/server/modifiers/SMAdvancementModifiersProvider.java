@@ -5,6 +5,7 @@ import com.teamabnormals.blueprint.common.advancement.modification.modifiers.Cri
 import com.uraneptus.sullysmod.SullysMod;
 import com.uraneptus.sullysmod.core.other.SMBlockTags;
 import com.uraneptus.sullysmod.core.other.SMItemTags;
+import com.uraneptus.sullysmod.core.registry.SMEntityTypes;
 import com.uraneptus.sullysmod.core.registry.SMItems;
 import net.minecraft.advancements.RequirementsStrategy;
 import net.minecraft.advancements.critereon.*;
@@ -37,6 +38,7 @@ public class SMAdvancementModifiersProvider extends AdvancementModifierProvider 
         this.entry("husbandry/wax_off").selects("husbandry/wax_off").addModifier(CriteriaModifier.builder(this.modId).addCriterion("wax_off", ItemUsedOnBlockTrigger.TriggerInstance.itemUsedOnBlock(LocationPredicate.Builder.location().setBlock(BlockPredicate.Builder.block().of(SMBlockTags.WAXED_COPPER_BLOCKS).build()), ItemPredicate.Builder.item().of(SMItemTags.AXE_ITEMS))).addIndexedRequirements(0, false, "wax_off").build());
         this.entry("husbandry/balanced_diet").selects("husbandry/balanced_diet").addModifier(constructBalancedDiet.requirements(RequirementsStrategy.AND).build());
         this.entry("husbandry/tactical_fishing").selects("husbandry/tactical_fishing").addModifier(CriteriaModifier.builder(this.modId).addCriterion("lanternfish_bucket", FilledBucketTrigger.TriggerInstance.filledBucket(ItemPredicate.Builder.item().of(SMItems.LANTERNFISH_BUCKET.get()).build())).addIndexedRequirements(0, false, "lanternfish_bucket").build());
+        this.entry("husbandry/bred_all_animals").selects("husbandry/bred_all_animals").addModifier(CriteriaModifier.builder(this.modId).addCriterion("tortoise", BredAnimalsTrigger.TriggerInstance.bredAnimals(EntityPredicate.Builder.entity().of(SMEntityTypes.TORTOISE.get()))).requirements(RequirementsStrategy.AND).build());
 
         SullysMod.LOGGER.info("ADVANCEMENT MODIFIER GENERATION COMPLETE");
     }
