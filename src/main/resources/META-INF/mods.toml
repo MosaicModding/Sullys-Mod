@@ -9,7 +9,7 @@ version = "${file.jarVersion}" #mandatory
 logoFile = "sullysmod_banner.png" #optional
 authors = "Uraneptus, MiteBeMana" #optional
 credits = "Idea & Assets by Sully" #optional
-displayURL = "https://www.curseforge.com/minecraft/mc-mods/sullys-mobs"
+displayURL = "https://www.curseforge.com/minecraft/mc-mods/sullys-mod"
 displayName = "Sully's Mod" #mandatory
 description = '''
 '''
