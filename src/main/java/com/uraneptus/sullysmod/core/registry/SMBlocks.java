@@ -21,7 +21,7 @@ public class SMBlocks {
 
     //Jade
     public static final RegistryObject<Block> JADE_ORE = HELPER.createBlockWithItem("jade_ore", () -> new OreBlock(Properties.JADE_ORE), () -> new InjectedBlockItem(Items.DEEPSLATE_COPPER_ORE, SMBlocks.JADE_ORE.get(), new Item.Properties().tab(CreativeModeTab.TAB_BUILDING_BLOCKS)));
-    public static final RegistryObject<Block> DEEPSLATE_JADE_ORE = HELPER.createBlockWithItem("deepslate_jade_ore", () -> new OreBlock(Properties.DEEPSLATE_JADE_ORE), () -> new InjectedBlockItem(SMBlocks.JADE_ORE.get().asItem(), SMBlocks.JADE_ORE.get(), new Item.Properties().tab(CreativeModeTab.TAB_BUILDING_BLOCKS)));
+    public static final RegistryObject<Block> DEEPSLATE_JADE_ORE = HELPER.createBlockWithItem("deepslate_jade_ore", () -> new OreBlock(Properties.DEEPSLATE_JADE_ORE), () -> new InjectedBlockItem(SMBlocks.JADE_ORE.get().asItem(), SMBlocks.DEEPSLATE_JADE_ORE.get(), new Item.Properties().tab(CreativeModeTab.TAB_BUILDING_BLOCKS)));
     public static final RegistryObject<Block> RAW_JADE_BLOCK = HELPER.createBlock("raw_jade_block", () -> new Block(Properties.RAW_JADE_BLOCKS), CreativeModeTab.TAB_BUILDING_BLOCKS);
     public static final RegistryObject<Block> RAW_JADE_BRICKS = HELPER.createBlock("raw_jade_bricks", () -> new Block(Properties.RAW_JADE_BLOCKS), CreativeModeTab.TAB_BUILDING_BLOCKS);
     public static final RegistryObject<Block> SMOOTH_RAW_JADE = HELPER.createBlock("smooth_raw_jade", () -> new Block(Properties.RAW_JADE_BLOCKS), CreativeModeTab.TAB_BUILDING_BLOCKS);
