@@ -1,0 +1,208 @@
+{
+  "variants": {
+    "eggs=1,hatch=0": [
+      {
+        "model": "sullysmod:block/tortoise_egg"
+      },
+      {
+        "model": "sullysmod:block/tortoise_egg",
+        "y": 90
+      },
+      {
+        "model": "sullysmod:block/tortoise_egg",
+        "y": 180
+      },
+      {
+        "model": "sullysmod:block/tortoise_egg",
+        "y": 270
+      }
+    ],
+    "eggs=2,hatch=0": [
+      {
+        "model": "sullysmod:block/two_tortoise_eggs"
+      },
+      {
+        "model": "sullysmod:block/two_tortoise_eggs",
+        "y": 90
+      },
+      {
+        "model": "sullysmod:block/two_tortoise_eggs",
+        "y": 180
+      },
+      {
+        "model": "sullysmod:block/two_tortoise_eggs",
+        "y": 270
+      }
+    ],
+    "eggs=3,hatch=0": [
+      {
+        "model": "sullysmod:block/three_tortoise_eggs"
+      },
+      {
+        "model": "sullysmod:block/three_tortoise_eggs",
+        "y": 90
+      },
+      {
+        "model": "sullysmod:block/three_tortoise_eggs",
+        "y": 180
+      },
+      {
+        "model": "sullysmod:block/three_tortoise_eggs",
+        "y": 270
+      }
+    ],
+    "eggs=4,hatch=0": [
+      {
+        "model": "sullysmod:block/four_tortoise_eggs"
+      },
+      {
+        "model": "sullysmod:block/four_tortoise_eggs",
+        "y": 90
+      },
+      {
+        "model": "sullysmod:block/four_tortoise_eggs",
+        "y": 180
+      },
+      {
+        "model": "sullysmod:block/four_tortoise_eggs",
+        "y": 270
+      }
+    ],
+    "eggs=1,hatch=1": [
+      {
+        "model": "sullysmod:block/slightly_cracked_tortoise_egg"
+      },
+      {
+        "model": "sullysmod:block/slightly_cracked_tortoise_egg",
+        "y": 90
+      },
+      {
+        "model": "sullysmod:block/slightly_cracked_tortoise_egg",
+        "y": 180
+      },
+      {
+        "model": "sullysmod:block/slightly_cracked_tortoise_egg",
+        "y": 270
+      }
+    ],
+    "eggs=2,hatch=1": [
+      {
+        "model": "sullysmod:block/two_slightly_cracked_tortoise_eggs"
+      },
+      {
+        "model": "sullysmod:block/two_slightly_cracked_tortoise_eggs",
+        "y": 90
+      },
+      {
+        "model": "sullysmod:block/two_slightly_cracked_tortoise_eggs",
+        "y": 180
+      },
+      {
+        "model": "sullysmod:block/two_slightly_cracked_tortoise_eggs",
+        "y": 270
+      }
+    ],
+    "eggs=3,hatch=1": [
+      {
+        "model": "sullysmod:block/three_slightly_cracked_tortoise_eggs"
+      },
+      {
+        "model": "sullysmod:block/three_slightly_cracked_tortoise_eggs",
+        "y": 90
+      },
+      {
+        "model": "sullysmod:block/three_slightly_cracked_tortoise_eggs",
+        "y": 180
+      },
+      {
+        "model": "sullysmod:block/three_slightly_cracked_tortoise_eggs",
+        "y": 270
+      }
+    ],
+    "eggs=4,hatch=1": [
+      {
+        "model": "sullysmod:block/four_slightly_cracked_tortoise_eggs"
+      },
+      {
+        "model": "sullysmod:block/four_slightly_cracked_tortoise_eggs",
+        "y": 90
+      },
+      {
+        "model": "sullysmod:block/four_slightly_cracked_tortoise_eggs",
+        "y": 180
+      },
+      {
+        "model": "sullysmod:block/four_slightly_cracked_tortoise_eggs",
+        "y": 270
+      }
+    ],
+    "eggs=1,hatch=2": [
+      {
+        "model": "sullysmod:block/very_cracked_tortoise_egg"
+      },
+      {
+        "model": "sullysmod:block/very_cracked_tortoise_egg",
+        "y": 90
+      },
+      {
+        "model": "sullysmod:block/very_cracked_tortoise_egg",
+        "y": 180
+      },
+      {
+        "model": "sullysmod:block/very_cracked_tortoise_egg",
+        "y": 270
+      }
+    ],
+    "eggs=2,hatch=2": [
+      {
+        "model": "sullysmod:block/two_very_cracked_tortoise_eggs"
+      },
+      {
+        "model": "sullysmod:block/two_very_cracked_tortoise_eggs",
+        "y": 90
+      },
+      {
+        "model": "sullysmod:block/two_very_cracked_tortoise_eggs",
+        "y": 180
+      },
+      {
+        "model": "sullysmod:block/two_very_cracked_tortoise_eggs",
+        "y": 270
+      }
+    ],
+    "eggs=3,hatch=2": [
+      {
+        "model": "sullysmod:block/three_very_cracked_tortoise_eggs"
+      },
+      {
+        "model": "sullysmod:block/three_very_cracked_tortoise_eggs",
+        "y": 90
+      },
+      {
+        "model": "sullysmod:block/three_very_cracked_tortoise_eggs",
+        "y": 180
+      },
+      {
+        "model": "sullysmod:block/three_very_cracked_tortoise_eggs",
+        "y": 270
+      }
+    ],
+    "eggs=4,hatch=2": [
+      {
+        "model": "sullysmod:block/four_very_cracked_tortoise_eggs"
+      },
+      {
+        "model": "sullysmod:block/four_very_cracked_tortoise_eggs",
+        "y": 90
+      },
+      {
+        "model": "sullysmod:block/four_very_cracked_tortoise_eggs",
+        "y": 180
+      },
+      {
+        "model": "sullysmod:block/four_very_cracked_tortoise_eggs",
+        "y": 270
+      }
+    ]
+  }
+}

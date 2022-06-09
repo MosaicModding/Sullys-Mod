@@ -4,6 +4,14 @@ import com.uraneptus.sullysmod.SullysMod;
 import com.uraneptus.sullysmod.core.data.SMDatagenUtil;
 import com.uraneptus.sullysmod.core.registry.SMBlocks;
 import net.minecraft.data.DataGenerator;
+import net.minecraft.data.models.BlockModelGenerators;
+import net.minecraft.data.models.blockstates.MultiVariantGenerator;
+import net.minecraft.data.models.blockstates.PropertyDispatch;
+import net.minecraft.data.models.model.ModelLocationUtils;
+import net.minecraft.data.models.model.ModelTemplates;
+import net.minecraft.data.models.model.TextureMapping;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraftforge.client.model.generators.BlockStateProvider;
@@ -56,6 +64,7 @@ public class SMBlockStateProvider extends BlockStateProvider {
         modSlabBlock(SMBlocks.RAW_JADE_BRICK_SLAB.get(), SMDatagenUtil.RAW_JADE_BRICKS);
         modSlabBlock(SMBlocks.SMOOTH_RAW_JADE_SLAB.get(), SMDatagenUtil.SMOOTH_RAW_JADE);
         modSlabBlock(SMBlocks.RAW_JADE_TILE_SLAB.get(), SMDatagenUtil.RAW_JADE_TILES);
+        modEggBlock(SMBlocks.TORTOISE_EGG.get());
 
         SullysMod.LOGGER.info("BLOCKSTATE GENERATION COMPLETE");
     }
@@ -94,5 +103,34 @@ public class SMBlockStateProvider extends BlockStateProvider {
 
     private void modSlabBlock(Block block, String texture) {
         slabBlock((SlabBlock) block, SMDatagenUtil.modBlockLocation(texture), SMDatagenUtil.modBlockLocation(texture));
+    }
+
+    private void modEggBlock(Block block) {
+        getVariantBuilder(block).forAllStates(blockState -> {
+            int hatch = blockState.getValue(BlockStateProperties.HATCH);
+            int eggs = blockState.getValue(BlockStateProperties.EGGS);
+
+            String variants = switch (eggs) {
+                case 2 -> "two_";
+                case 3 -> "three_";
+                case 4 -> "four_";
+                default -> "";
+            };
+
+            String templatePath = eggs > 1 ? "block/template_" + variants + "turtle_eggs" : "block/template_turtle_egg";
+            String prefix = hatch == 1 ? "slightly_cracked_" : hatch == 2 ? "very_cracked_" : "";
+            String suffix = eggs > 1 ? "s" : "";
+
+            ModelFile modelFile = models()
+                    .withExistingParent(variants + prefix + SMDatagenUtil.name(block) + suffix, new ResourceLocation(templatePath))
+                    .texture("all", SMDatagenUtil.modBlockLocation(prefix + SMDatagenUtil.name(block)));
+
+            return ConfiguredModel.builder()
+                    .modelFile(modelFile)
+                    .nextModel().modelFile(modelFile).rotationY(90)
+                    .nextModel().modelFile(modelFile).rotationY(180)
+                    .nextModel().modelFile(modelFile).rotationY(270)
+                    .build();
+        });
     }
 }
