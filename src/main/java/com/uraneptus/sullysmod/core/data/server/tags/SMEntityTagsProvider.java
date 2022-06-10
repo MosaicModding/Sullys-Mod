@@ -44,6 +44,18 @@ public class SMEntityTagsProvider extends EntityTypeTagsProvider {
                 EntityType.EVOKER_FANGS,
                 EntityType.VEX
         );
+        tag(SMEntityTags.ATTACKS_BABY_TORTOISES).add(
+                EntityType.ZOMBIE,
+                EntityType.ZOMBIE_VILLAGER,
+                EntityType.HUSK,
+                EntityType.DROWNED,
+                EntityType.SKELETON,
+                EntityType.STRAY,
+                EntityType.WITHER_SKELETON,
+                EntityType.OCELOT,
+                EntityType.WOLF,
+                EntityType.CAT
+                );
 
         tag(SMEntityTags.CANNOT_BOUNCE).add(
                 EntityType.SMALL_FIREBALL,

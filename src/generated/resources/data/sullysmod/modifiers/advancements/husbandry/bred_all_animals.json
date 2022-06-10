@@ -1,0 +1,33 @@
+{
+  "selector": "minecraft:husbandry/bred_all_animals",
+  "priority": "normal",
+  "modifiers": [
+    {
+      "type": "criteria",
+      "config": {
+        "criteria": {
+          "sullysmod:tortoise": {
+            "trigger": "minecraft:bred_animals",
+            "conditions": {
+              "child": [
+                {
+                  "condition": "minecraft:entity_properties",
+                  "predicate": {
+                    "type": "sullysmod:tortoise"
+                  },
+                  "entity": "this"
+                }
+              ]
+            }
+          }
+        },
+        "requirements": [
+          [
+            "sullysmod:tortoise"
+          ]
+        ],
+        "should_replace_requirements": false
+      }
+    }
+  ]
+}
