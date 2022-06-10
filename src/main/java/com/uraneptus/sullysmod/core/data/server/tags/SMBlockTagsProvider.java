@@ -1,7 +1,7 @@
 package com.uraneptus.sullysmod.core.data.server.tags;
 
 import com.uraneptus.sullysmod.SullysMod;
-import com.uraneptus.sullysmod.core.other.SMBlockTags;
+import com.uraneptus.sullysmod.core.other.tags.SMBlockTags;
 import com.uraneptus.sullysmod.core.registry.SMBlocks;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.tags.BlockTagsProvider;

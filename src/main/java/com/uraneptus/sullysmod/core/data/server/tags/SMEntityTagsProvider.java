@@ -2,11 +2,10 @@ package com.uraneptus.sullysmod.core.data.server.tags;
 
 import com.teamabnormals.blueprint.core.other.tags.BlueprintEntityTypeTags;
 import com.uraneptus.sullysmod.SullysMod;
-import com.uraneptus.sullysmod.core.other.SMEntityTags;
+import com.uraneptus.sullysmod.core.other.tags.SMEntityTags;
 import com.uraneptus.sullysmod.core.registry.SMEntityTypes;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.tags.EntityTypeTagsProvider;
-import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import org.jetbrains.annotations.Nullable;
@@ -44,6 +43,24 @@ public class SMEntityTagsProvider extends EntityTypeTagsProvider {
                 EntityType.RAVAGER,
                 EntityType.EVOKER_FANGS,
                 EntityType.VEX
+        );
+
+        tag(SMEntityTags.CANNOT_BOUNCE).add(
+                EntityType.SMALL_FIREBALL,
+                EntityType.FIREBALL,
+                EntityType.DRAGON_FIREBALL,
+                EntityType.SHULKER_BULLET,
+                EntityType.WITHER_SKULL,
+                EntityType.FISHING_BOBBER
+        );
+
+        tag(SMEntityTags.CANNOT_BE_FLUNG).add(
+                EntityType.SMALL_FIREBALL,
+                EntityType.FIREBALL,
+                EntityType.DRAGON_FIREBALL,
+                EntityType.SHULKER_BULLET,
+                EntityType.WITHER_SKULL,
+                EntityType.FISHING_BOBBER
         );
 
         SullysMod.LOGGER.info("ENTITY TAG GENERATION COMPLETE");

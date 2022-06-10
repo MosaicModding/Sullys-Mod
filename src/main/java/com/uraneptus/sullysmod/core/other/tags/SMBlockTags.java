@@ -1,8 +1,7 @@
-package com.uraneptus.sullysmod.core.other;
+package com.uraneptus.sullysmod.core.other.tags;
 
 import com.teamabnormals.blueprint.core.util.TagUtil;
 import com.uraneptus.sullysmod.SullysMod;
-import net.minecraft.tags.Tag;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.block.Block;
 
