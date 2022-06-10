@@ -93,6 +93,8 @@ public class SMLangProvider extends LanguageProvider {
         add("subtitles.entity.tortoise.egg_break", "Tortoise Egg breaks");
         add("subtitles.entity.tortoise.egg_hatch", "Tortoise Egg hatches");
 
+        add("subtitles.entity.zombie.destroy_egg", "Egg stomped");
+
         add("subtitles.entity.lanternfish.flop", "Lanternfish flops");
         add("subtitles.entity.lanternfish.hurt", "Lanternfish hurts");
         add("subtitles.entity.lanternfish.death", "Lanternfish dies");
