@@ -2,7 +2,6 @@ package com.uraneptus.sullysmod.client.renderer.entities.model;
 
 import com.uraneptus.sullysmod.SullysMod;
 import com.uraneptus.sullysmod.common.entities.CopperGolemEntity;
-import com.uraneptus.sullysmod.common.entities.TortoiseEntity;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.LivingEntity;
 import software.bernie.geckolib3.core.event.predicate.AnimationEvent;

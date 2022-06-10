@@ -27,7 +27,7 @@ public class SMItems {
 
     //Food
     public static final RegistryObject<Item> RAW_LANTERNFISH = HELPER.createItem("raw_lanternfish", () -> new Item(Properties.FOOD_TAB.food(Properties.FoodProperties.LANTERNFISH_FOOD)));
-    public static final RegistryObject<Item> COOKED_LANTERNFISH = HELPER.createItem("cooked_lanternfish", () -> new Item(Properties.FOOD_TAB.food(Properties.FoodProperties.LANTERNFISH_FOOD)));
+    public static final RegistryObject<Item> COOKED_LANTERNFISH = HELPER.createItem("cooked_lanternfish", () -> new Item(Properties.FOOD_TAB.food(Properties.FoodProperties.COOKED_LANTERNFISH_FOOD)));
 
     //Mob Buckets & Spawn Eggs
     public static final RegistryObject<Item> LANTERNFISH_BUCKET = HELPER.createItem("lanternfish_bucket", () -> Properties.createMobBucketItem(SMEntityTypes.LANTERNFISH::get));
@@ -45,6 +45,7 @@ public class SMItems {
 
         protected static final class FoodProperties {
             public static final net.minecraft.world.food.FoodProperties LANTERNFISH_FOOD = new net.minecraft.world.food.FoodProperties.Builder().nutrition(2).saturationMod(0.1F).effect(() -> new MobEffectInstance(MobEffects.GLOWING, 200), 0.1F).build();
+            public static final net.minecraft.world.food.FoodProperties COOKED_LANTERNFISH_FOOD = new net.minecraft.world.food.FoodProperties.Builder().nutrition(5).saturationMod(0.6F).effect(() -> new MobEffectInstance(MobEffects.GLOWING, 200), 0.1F).build();
         }
     }
 }

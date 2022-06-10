@@ -20,7 +20,6 @@ public class LanternfishGlowLayer extends RenderLayer<LanternfishEntity, Lantern
         super(entityRenderer);
     }
 
-
     @Override
     public void render(PoseStack pMatrixStack, MultiBufferSource pBuffer, int pPackedLight, LanternfishEntity pLivingEntity, float pLimbSwing, float pLimbSwingAmount, float pPartialTicks, float pAgeInTicks, float pNetHeadYaw, float pHeadPitch) {
         int i = (int)Mth.clampedLerp(0.0F, 15.0F, 1.0F - (float) pLivingEntity.getDarkTicksRemaining() / 10.0F);

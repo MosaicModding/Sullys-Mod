@@ -7,9 +7,6 @@ import com.uraneptus.sullysmod.common.entities.LanternfishEntity;
 import com.uraneptus.sullysmod.common.entities.TortoiseEntity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
-import net.minecraft.world.entity.SpawnPlacements;
-import net.minecraft.world.entity.animal.Animal;
-import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.RegistryObject;
 

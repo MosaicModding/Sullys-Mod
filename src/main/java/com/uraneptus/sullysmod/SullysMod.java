@@ -4,18 +4,21 @@ import com.mojang.logging.LogUtils;
 import com.teamabnormals.blueprint.core.util.registry.RegistryHelper;
 import com.uraneptus.sullysmod.common.entities.CopperGolemEntity;
 import com.uraneptus.sullysmod.common.entities.LanternfishEntity;
-import com.uraneptus.sullysmod.core.data.server.SMLootTableProvider;
+import com.uraneptus.sullysmod.common.entities.TortoiseEntity;
 import com.uraneptus.sullysmod.core.data.client.SMBlockStateProvider;
 import com.uraneptus.sullysmod.core.data.client.SMItemModelProvider;
 import com.uraneptus.sullysmod.core.data.client.SMLangProvider;
+import com.uraneptus.sullysmod.core.data.server.SMLootTableProvider;
 import com.uraneptus.sullysmod.core.data.server.SMRecipeProvider;
-import com.uraneptus.sullysmod.common.entities.TortoiseEntity;
 import com.uraneptus.sullysmod.core.data.server.modifiers.SMAdvancementModifiersProvider;
 import com.uraneptus.sullysmod.core.data.server.tags.SMBlockTagsProvider;
 import com.uraneptus.sullysmod.core.data.server.tags.SMEntityTagsProvider;
 import com.uraneptus.sullysmod.core.data.server.tags.SMItemTagsProvider;
 import com.uraneptus.sullysmod.core.other.SMBrewingRecipes;
-import com.uraneptus.sullysmod.core.registry.*;
+import com.uraneptus.sullysmod.core.registry.SMEntityTypes;
+import com.uraneptus.sullysmod.core.registry.SMParticleTypes;
+import com.uraneptus.sullysmod.core.registry.SMPotions;
+import com.uraneptus.sullysmod.core.registry.SMSpawnPlacements;
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.data.ExistingFileHelper;
@@ -26,7 +29,6 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.forge.event.lifecycle.GatherDataEvent;
-
 import org.slf4j.Logger;
 
 @Mod(SullysMod.MOD_ID)
