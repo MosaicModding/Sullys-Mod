@@ -9,8 +9,9 @@ version = "${file.jarVersion}" #mandatory
 logoFile = "sullysmod_banner.png" #optional
 authors = "Uraneptus, MiteBeMana" #optional
 credits = "Idea & Assets by Sully" #optional
-displayURL = "https://www.curseforge.com/minecraft/mc-mods/sullys-mod"
+displayURL = "https://github.com/Uraneptus/Sullys-Mod"
 displayName = "Sully's Mod" #mandatory
+updateJSONURL = "https://api.modrinth.com/updates/sullysmod/forge_updates.json"
 description = '''
 '''
 
