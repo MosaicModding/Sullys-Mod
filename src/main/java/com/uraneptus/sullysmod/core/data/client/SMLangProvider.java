@@ -66,6 +66,7 @@ public class SMLangProvider extends LanguageProvider {
         add(SMItems.RAW_LANTERNFISH.get(), "Raw Lanternfish");
         add(SMItems.COOKED_LANTERNFISH.get(), "Cooked Lanternfish");
         add(SMItems.TORTOISE_SPAWN_EGG.get(), "Tortoise Spawn Egg");
+        add("item.minecraft.tipped_arrow.effect.unluck", "Arrow of Bad Luck");
 
         //Entities
         add(SMEntityTypes.LANTERNFISH.get(), "Lanternfish");
