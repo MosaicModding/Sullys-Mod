@@ -66,7 +66,6 @@ public class SMLangProvider extends LanguageProvider {
         add(SMItems.RAW_LANTERNFISH.get(), "Raw Lanternfish");
         add(SMItems.COOKED_LANTERNFISH.get(), "Cooked Lanternfish");
         add(SMItems.TORTOISE_SPAWN_EGG.get(), "Tortoise Spawn Egg");
-        add("item.minecraft.tipped_arrow.effect.unluck", "Arrow of Bad Luck");
 
         //Entities
         add(SMEntityTypes.LANTERNFISH.get(), "Lanternfish");
@@ -77,6 +76,7 @@ public class SMLangProvider extends LanguageProvider {
         add(PotionUtils.setPotion(Items.POTION.getDefaultInstance(), SMPotions.UNLUCK.get()), "Potion of Bad Luck");
         add(PotionUtils.setPotion(Items.SPLASH_POTION.getDefaultInstance(), SMPotions.UNLUCK.get()), "Splash Potion of Bad Luck");
         add(PotionUtils.setPotion(Items.LINGERING_POTION.getDefaultInstance(), SMPotions.UNLUCK.get()), "Lingering Potion of Bad Luck");
+        add(PotionUtils.setPotion(Items.TIPPED_ARROW.getDefaultInstance(), SMPotions.UNLUCK.get()), "Arrow of Bad Luck");
 
         //Subtitles
         add("subtitles.block.grindstone.polish_jade", "Grindstone polishes");
