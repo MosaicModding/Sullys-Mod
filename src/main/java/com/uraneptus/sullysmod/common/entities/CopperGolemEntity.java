@@ -84,6 +84,10 @@ public class CopperGolemEntity extends AbstractGolem implements IAnimatable {
                 .add(Attributes.KNOCKBACK_RESISTANCE, 0.5D);
     }
 
+    @Override
+    public boolean canBeLeashed(Player pPlayer) {
+        return false;
+    }
 
     public void tick() {
         super.tick();

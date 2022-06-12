@@ -283,6 +283,11 @@ public class TortoiseEntity extends Animal implements IAnimatable {
         return this.getHideTimerDuration() == 0 && !this.hasEgg() && super.canFallInLove();
     }
 
+    @Override
+    public boolean canBeLeashed(Player pPlayer) {
+        return false;
+    }
+
     void setLayingEgg(boolean pIsDigging) {
         this.layEggCounter = pIsDigging ? 1 : 0;
         this.entityData.set(LAYING_EGG, pIsDigging);
