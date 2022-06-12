@@ -1,5 +1,6 @@
 package com.uraneptus.sullysmod.common.entities;
 
+import com.uraneptus.sullysmod.SullysMod;
 import com.uraneptus.sullysmod.common.entities.goals.LightAvoidingRandomSwimmingGoal;
 import com.uraneptus.sullysmod.core.registry.SMItems;
 import com.uraneptus.sullysmod.core.registry.SMSounds;
@@ -108,6 +109,7 @@ public class LanternfishEntity extends AbstractFish {
     }
 
     public static boolean checkLanternfishSpawnRules(EntityType<? extends LivingEntity> entityType, ServerLevelAccessor levelAccessor, MobSpawnType spawnType, BlockPos pos, Random random) {
-        return levelAccessor.getBlockState(pos).is(Blocks.WATER) && pos.getY() <= levelAccessor.getSeaLevel() - 4;
+        System.out.println(levelAccessor.getSeaLevel());
+        return levelAccessor.getBlockState(pos).is(Blocks.WATER) && pos.getY() <= levelAccessor.getSeaLevel() - 47 && !levelAccessor.canSeeSkyFromBelowWater(pos);
     }
 }
