@@ -41,10 +41,10 @@ public class SMDatagenUtil {
     public static final String EXPOSED_COPPER = name(Blocks.EXPOSED_COPPER);
     public static final String WEATHERED_COPPER = name(Blocks.WEATHERED_COPPER);
     public static final String OXIDIZED_COPPER = name(Blocks.OXIDIZED_COPPER);
-    public static final String JADE_BRICKS = name(SMBlocks.JADE_BRICKS.get());
-    public static final String SMALL_JADE_BRICKS = name(SMBlocks.SMALL_JADE_BRICKS.get());
-    public static final String JADE_SHINGLES = name(SMBlocks.JADE_SHINGLES.get());
-    public static final String JADE_TILES = name(SMBlocks.JADE_TILES.get());
+    public static final String JADE_BRICKS = name(SMBlocks.POLISHED_JADE_BRICKS.get());
+    public static final String SMALL_JADE_BRICKS = name(SMBlocks.SMALL_POLISHED_JADE_BRICKS.get());
+    public static final String JADE_SHINGLES = name(SMBlocks.POLISHED_JADE_SHINGLES.get());
+    public static final String JADE_TILES = name(SMBlocks.POLISHED_JADE_TILES.get());
     public static final String RAW_JADE_BRICKS = name(SMBlocks.RAW_JADE_BRICKS.get());
     public static final String SMOOTH_RAW_JADE = name(SMBlocks.SMOOTH_RAW_JADE.get());
     public static final String RAW_JADE_TILES = name(SMBlocks.RAW_JADE_TILES.get());

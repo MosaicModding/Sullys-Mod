@@ -44,9 +44,9 @@ public class SMPlayerEvents {
                 }
 
                 if (item.isEmpty()) {
-                    player.setItemInHand(hand, new ItemStack(SMItems.JADE.get(), 1));
+                    player.setItemInHand(hand, new ItemStack(SMItems.POLISHED_JADE.get(), 1));
                 } else {
-                    ItemStack itemStack = new ItemStack(SMItems.JADE.get(), 1);
+                    ItemStack itemStack = new ItemStack(SMItems.POLISHED_JADE.get(), 1);
                     if (!player.getInventory().add(itemStack)) {
                         player.drop(itemStack, false);
                     }

@@ -29,34 +29,34 @@ public class SMRecipeProvider extends RecipeProvider {
 
         //Crafting
         packableBlockRecipes(SMItems.RAW_JADE.get(), SMBlocks.RAW_JADE_BLOCK.get(), consumer);
-        packableBlockRecipes(SMItems.JADE.get(), SMBlocks.JADE_BLOCK.get(), consumer);
+        packableBlockRecipes(SMItems.POLISHED_JADE.get(), SMBlocks.POLISHED_JADE_BLOCK.get(), consumer);
 
         tilingBlockRecipes(SMBlocks.RAW_JADE_BLOCK.get(), SMBlocks.RAW_JADE_BRICKS.get(), consumer);
         tilingBlockRecipes(SMBlocks.RAW_JADE_BRICKS.get(), SMBlocks.RAW_JADE_TILES.get(), consumer);
-        tilingBlockRecipes(SMBlocks.JADE_BLOCK.get(), SMBlocks.JADE_BRICKS.get(), consumer);
-        tilingBlockRecipes(SMBlocks.JADE_BRICKS.get(), SMBlocks.JADE_TILES.get(), consumer);
-        tilingBlockRecipes(SMBlocks.JADE_TILES.get(), SMBlocks.SMALL_JADE_BRICKS.get(), consumer);
-        tilingBlockRecipes(SMBlocks.SMALL_JADE_BRICKS.get(), SMBlocks.JADE_SHINGLES.get(), consumer);
+        tilingBlockRecipes(SMBlocks.POLISHED_JADE_BLOCK.get(), SMBlocks.POLISHED_JADE_BRICKS.get(), consumer);
+        tilingBlockRecipes(SMBlocks.POLISHED_JADE_BRICKS.get(), SMBlocks.POLISHED_JADE_TILES.get(), consumer);
+        tilingBlockRecipes(SMBlocks.POLISHED_JADE_TILES.get(), SMBlocks.SMALL_POLISHED_JADE_BRICKS.get(), consumer);
+        tilingBlockRecipes(SMBlocks.SMALL_POLISHED_JADE_BRICKS.get(), SMBlocks.POLISHED_JADE_SHINGLES.get(), consumer);
 
         stairRecipes(SMBlocks.RAW_JADE_BRICKS.get(), SMBlocks.RAW_JADE_BRICK_STAIRS.get(), consumer);
         stairRecipes(SMBlocks.RAW_JADE_TILES.get(), SMBlocks.RAW_JADE_TILE_STAIRS.get(), consumer);
         stairRecipes(SMBlocks.SMOOTH_RAW_JADE.get(), SMBlocks.SMOOTH_RAW_JADE_STAIRS.get(), consumer);
-        stairRecipes(SMBlocks.JADE_BRICKS.get(), SMBlocks.JADE_BRICK_STAIRS.get(), consumer);
-        stairRecipes(SMBlocks.JADE_TILES.get(), SMBlocks.JADE_TILE_STAIRS.get(), consumer);
-        stairRecipes(SMBlocks.SMALL_JADE_BRICKS.get(), SMBlocks.SMALL_JADE_BRICK_STAIRS.get(), consumer);
-        stairRecipes(SMBlocks.JADE_SHINGLES.get(), SMBlocks.JADE_SHINGLE_STAIRS.get(), consumer);
+        stairRecipes(SMBlocks.POLISHED_JADE_BRICKS.get(), SMBlocks.POLISHED_JADE_BRICK_STAIRS.get(), consumer);
+        stairRecipes(SMBlocks.POLISHED_JADE_TILES.get(), SMBlocks.POLISHED_JADE_TILE_STAIRS.get(), consumer);
+        stairRecipes(SMBlocks.SMALL_POLISHED_JADE_BRICKS.get(), SMBlocks.SMALL_POLISHED_JADE_BRICK_STAIRS.get(), consumer);
+        stairRecipes(SMBlocks.POLISHED_JADE_SHINGLES.get(), SMBlocks.POLISHED_JADE_SHINGLE_STAIRS.get(), consumer);
 
         slabRecipes(SMBlocks.RAW_JADE_BRICKS.get(), SMBlocks.RAW_JADE_BRICK_SLAB.get(), consumer);
         slabRecipes(SMBlocks.RAW_JADE_TILES.get(), SMBlocks.RAW_JADE_TILE_SLAB.get(), consumer);
         slabRecipes(SMBlocks.SMOOTH_RAW_JADE.get(), SMBlocks.SMOOTH_RAW_JADE_SLAB.get(), consumer);
-        slabRecipes(SMBlocks.JADE_BRICKS.get(), SMBlocks.JADE_BRICK_SLAB.get(), consumer);
-        slabRecipes(SMBlocks.JADE_TILES.get(), SMBlocks.JADE_TILE_SLAB.get(), consumer);
-        slabRecipes(SMBlocks.SMALL_JADE_BRICKS.get(), SMBlocks.SMALL_JADE_BRICK_SLAB.get(), consumer);
-        slabRecipes(SMBlocks.JADE_SHINGLES.get(), SMBlocks.JADE_SHINGLE_SLAB.get(), consumer);
+        slabRecipes(SMBlocks.POLISHED_JADE_BRICKS.get(), SMBlocks.POLISHED_JADE_BRICK_SLAB.get(), consumer);
+        slabRecipes(SMBlocks.POLISHED_JADE_TILES.get(), SMBlocks.POLISHED_JADE_TILE_SLAB.get(), consumer);
+        slabRecipes(SMBlocks.SMALL_POLISHED_JADE_BRICKS.get(), SMBlocks.SMALL_POLISHED_JADE_BRICK_SLAB.get(), consumer);
+        slabRecipes(SMBlocks.POLISHED_JADE_SHINGLES.get(), SMBlocks.POLISHED_JADE_SHINGLE_SLAB.get(), consumer);
 
-        pillarRecipes(SMBlocks.JADE_BLOCK.get(), SMBlocks.JADE_PILLAR.get(), consumer);
+        pillarRecipes(SMBlocks.POLISHED_JADE_BLOCK.get(), SMBlocks.POLISHED_JADE_PILLAR.get(), consumer);
 
-        chiseledRecipes(SMBlocks.JADE_BRICK_SLAB.get(), SMBlocks.CHISELED_JADE.get(), consumer);
+        chiseledRecipes(SMBlocks.POLISHED_JADE_BRICK_SLAB.get(), SMBlocks.POLISHED_CHISELED_JADE.get(), consumer);
 
         buttonRecipes(Blocks.CUT_COPPER, SMBlocks.COPPER_BUTTON.get(), consumer);
         buttonRecipes(Blocks.EXPOSED_CUT_COPPER, SMBlocks.EXPOSED_COPPER_BUTTON.get(), consumer);
@@ -72,8 +72,8 @@ public class SMRecipeProvider extends RecipeProvider {
         waxButtonRecipes(SMBlocks.WEATHERED_COPPER_BUTTON.get(), SMBlocks.WAXED_WEATHERED_COPPER_BUTTON.get(), consumer);
         waxButtonRecipes(SMBlocks.OXIDIZED_COPPER_BUTTON.get(), SMBlocks.WAXED_OXIDIZED_COPPER_BUTTON.get(), consumer);
 
-        ShapedRecipeBuilder.shaped(SMBlocks.JADE_TOTEM.get()).define('#', SMBlocks.JADE_SHINGLES.get()).pattern("###").pattern("# #").pattern("###").unlockedBy(getHasName(SMBlocks.JADE_SHINGLES.get()), has(SMBlocks.JADE_SHINGLES.get())).save(consumer);
-        ShapedRecipeBuilder.shaped(SMBlocks.JADE_FLINGER_TOTEM.get()).define('#', SMBlocks.JADE_SHINGLES.get()).define('-', Items.TRIPWIRE_HOOK).pattern("###").pattern("#-#").pattern("###").unlockedBy(getHasName(Items.TRIPWIRE_HOOK), has(Items.TRIPWIRE_HOOK)).unlockedBy(getHasName(SMBlocks.JADE_SHINGLES.get()), has(SMBlocks.JADE_SHINGLES.get())).save(consumer);
+        ShapedRecipeBuilder.shaped(SMBlocks.JADE_TOTEM.get()).define('#', SMBlocks.POLISHED_JADE_SHINGLES.get()).pattern("###").pattern("# #").pattern("###").unlockedBy(getHasName(SMBlocks.POLISHED_JADE_SHINGLES.get()), has(SMBlocks.POLISHED_JADE_SHINGLES.get())).save(consumer);
+        ShapedRecipeBuilder.shaped(SMBlocks.JADE_FLINGER_TOTEM.get()).define('#', SMBlocks.POLISHED_JADE_SHINGLES.get()).define('-', Items.TRIPWIRE_HOOK).pattern("###").pattern("#-#").pattern("###").unlockedBy(getHasName(Items.TRIPWIRE_HOOK), has(Items.TRIPWIRE_HOOK)).unlockedBy(getHasName(SMBlocks.POLISHED_JADE_SHINGLES.get()), has(SMBlocks.POLISHED_JADE_SHINGLES.get())).save(consumer);
 
         stonecutterRecipes(SMBlocks.RAW_JADE_BLOCK.get(), SMBlocks.RAW_JADE_BRICKS.get(), 1, consumer);
         stonecutterRecipes(SMBlocks.RAW_JADE_BRICKS.get(), SMBlocks.RAW_JADE_TILES.get(), 1, consumer);
@@ -83,20 +83,20 @@ public class SMRecipeProvider extends RecipeProvider {
         stonecutterRecipes(SMBlocks.RAW_JADE_TILES.get(), SMBlocks.RAW_JADE_TILE_STAIRS.get(), 1, consumer);
         stonecutterRecipes(SMBlocks.SMOOTH_RAW_JADE.get(), SMBlocks.SMOOTH_RAW_JADE_SLAB.get(), 2, consumer);
         stonecutterRecipes(SMBlocks.SMOOTH_RAW_JADE.get(), SMBlocks.SMOOTH_RAW_JADE_STAIRS.get(), 1, consumer);
-        stonecutterRecipes(SMBlocks.JADE_BLOCK.get(), SMBlocks.JADE_BRICKS.get(), 1, consumer);
-        stonecutterRecipes(SMBlocks.JADE_BLOCK.get(), SMBlocks.JADE_PILLAR.get(), 1, consumer);
-        stonecutterRecipes(SMBlocks.JADE_BRICKS.get(), SMBlocks.JADE_TILES.get(), 1, consumer);
-        stonecutterRecipes(SMBlocks.JADE_BRICKS.get(), SMBlocks.JADE_BRICK_SLAB.get(), 2, consumer);
-        stonecutterRecipes(SMBlocks.JADE_BRICKS.get(), SMBlocks.JADE_BRICK_STAIRS.get(), 1, consumer);
-        stonecutterRecipes(SMBlocks.JADE_BRICKS.get(), SMBlocks.CHISELED_JADE.get(), 1, consumer);
-        stonecutterRecipes(SMBlocks.JADE_TILES.get(), SMBlocks.SMALL_JADE_BRICKS.get(), 1, consumer);
-        stonecutterRecipes(SMBlocks.JADE_TILES.get(), SMBlocks.JADE_TILE_SLAB.get(), 2, consumer);
-        stonecutterRecipes(SMBlocks.JADE_TILES.get(), SMBlocks.JADE_TILE_STAIRS.get(), 1, consumer);
-        stonecutterRecipes(SMBlocks.SMALL_JADE_BRICKS.get(), SMBlocks.JADE_SHINGLES.get(), 1, consumer);
-        stonecutterRecipes(SMBlocks.SMALL_JADE_BRICKS.get(), SMBlocks.SMALL_JADE_BRICK_SLAB.get(), 2, consumer);
-        stonecutterRecipes(SMBlocks.SMALL_JADE_BRICKS.get(), SMBlocks.SMALL_JADE_BRICK_STAIRS.get(), 1, consumer);
-        stonecutterRecipes(SMBlocks.JADE_SHINGLES.get(), SMBlocks.JADE_SHINGLE_SLAB.get(), 2, consumer);
-        stonecutterRecipes(SMBlocks.JADE_SHINGLES.get(), SMBlocks.JADE_SHINGLE_STAIRS.get(), 1, consumer);
+        stonecutterRecipes(SMBlocks.POLISHED_JADE_BLOCK.get(), SMBlocks.POLISHED_JADE_BRICKS.get(), 1, consumer);
+        stonecutterRecipes(SMBlocks.POLISHED_JADE_BLOCK.get(), SMBlocks.POLISHED_JADE_PILLAR.get(), 1, consumer);
+        stonecutterRecipes(SMBlocks.POLISHED_JADE_BRICKS.get(), SMBlocks.POLISHED_JADE_TILES.get(), 1, consumer);
+        stonecutterRecipes(SMBlocks.POLISHED_JADE_BRICKS.get(), SMBlocks.POLISHED_JADE_BRICK_SLAB.get(), 2, consumer);
+        stonecutterRecipes(SMBlocks.POLISHED_JADE_BRICKS.get(), SMBlocks.POLISHED_JADE_BRICK_STAIRS.get(), 1, consumer);
+        stonecutterRecipes(SMBlocks.POLISHED_JADE_BRICKS.get(), SMBlocks.POLISHED_CHISELED_JADE.get(), 1, consumer);
+        stonecutterRecipes(SMBlocks.POLISHED_JADE_TILES.get(), SMBlocks.SMALL_POLISHED_JADE_BRICKS.get(), 1, consumer);
+        stonecutterRecipes(SMBlocks.POLISHED_JADE_TILES.get(), SMBlocks.POLISHED_JADE_TILE_SLAB.get(), 2, consumer);
+        stonecutterRecipes(SMBlocks.POLISHED_JADE_TILES.get(), SMBlocks.POLISHED_JADE_TILE_STAIRS.get(), 1, consumer);
+        stonecutterRecipes(SMBlocks.SMALL_POLISHED_JADE_BRICKS.get(), SMBlocks.POLISHED_JADE_SHINGLES.get(), 1, consumer);
+        stonecutterRecipes(SMBlocks.SMALL_POLISHED_JADE_BRICKS.get(), SMBlocks.SMALL_POLISHED_JADE_BRICK_SLAB.get(), 2, consumer);
+        stonecutterRecipes(SMBlocks.SMALL_POLISHED_JADE_BRICKS.get(), SMBlocks.SMALL_POLISHED_JADE_BRICK_STAIRS.get(), 1, consumer);
+        stonecutterRecipes(SMBlocks.POLISHED_JADE_SHINGLES.get(), SMBlocks.POLISHED_JADE_SHINGLE_SLAB.get(), 2, consumer);
+        stonecutterRecipes(SMBlocks.POLISHED_JADE_SHINGLES.get(), SMBlocks.POLISHED_JADE_SHINGLE_STAIRS.get(), 1, consumer);
 
         SullysMod.LOGGER.info("RECIPE GENERATION COMPLETE");
     }

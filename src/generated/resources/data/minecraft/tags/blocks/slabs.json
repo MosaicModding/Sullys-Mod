@@ -1,10 +1,10 @@
 {
   "replace": false,
   "values": [
-    "sullysmod:jade_brick_slab",
-    "sullysmod:small_jade_brick_slab",
-    "sullysmod:jade_tile_slab",
-    "sullysmod:jade_shingle_slab",
+    "sullysmod:polished_jade_brick_slab",
+    "sullysmod:small_polished_jade_brick_slab",
+    "sullysmod:polished_jade_tile_slab",
+    "sullysmod:polished_jade_shingle_slab",
     "sullysmod:raw_jade_brick_slab",
     "sullysmod:raw_jade_tile_slab",
     "sullysmod:smooth_raw_jade_slab"

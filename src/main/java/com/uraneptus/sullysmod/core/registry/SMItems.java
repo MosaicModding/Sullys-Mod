@@ -23,7 +23,7 @@ public class SMItems {
 
     //Basic Items
     public static final RegistryObject<Item> RAW_JADE = HELPER.createItem("raw_jade", () -> new Item(Properties.MISC_TAB));
-    public static final RegistryObject<Item> JADE = HELPER.createItem("jade", () -> new Item(Properties.MISC_TAB));
+    public static final RegistryObject<Item> POLISHED_JADE = HELPER.createItem("polished_jade", () -> new Item(Properties.MISC_TAB));
 
     //Food
     public static final RegistryObject<Item> RAW_LANTERNFISH = HELPER.createItem("raw_lanternfish", () -> new Item(Properties.FOOD_TAB.food(Properties.FoodProperties.LANTERNFISH_FOOD)));

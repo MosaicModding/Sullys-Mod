@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "sullysmod:block/small_polished_jade_bricks"
+  }
+}

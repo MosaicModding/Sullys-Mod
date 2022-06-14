@@ -21,6 +21,7 @@ import com.uraneptus.sullysmod.core.registry.SMParticleTypes;
 import com.uraneptus.sullysmod.core.registry.SMPotions;
 import com.uraneptus.sullysmod.core.registry.SMSpawnPlacements;
 import net.minecraft.data.DataGenerator;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
@@ -38,6 +39,10 @@ public class SullysMod {
     public static final String MOD_ID = "sullysmod";
     public static final RegistryHelper REGISTRY_HELPER = new RegistryHelper(MOD_ID);
     public static final Logger LOGGER = LogUtils.getLogger();
+
+    public static ResourceLocation modPrefix(String path) {
+        return new ResourceLocation(SullysMod.MOD_ID, path);
+    }
 
     public SullysMod() {
         IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();

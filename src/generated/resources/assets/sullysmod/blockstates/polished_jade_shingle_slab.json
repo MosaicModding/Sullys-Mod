@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=top": {
+      "model": "sullysmod:block/polished_jade_shingle_slab_top"
+    },
+    "type=bottom": {
+      "model": "sullysmod:block/polished_jade_shingle_slab"
+    },
+    "type=double": {
+      "model": "sullysmod:block/polished_jade_shingles"
+    }
+  }
+}

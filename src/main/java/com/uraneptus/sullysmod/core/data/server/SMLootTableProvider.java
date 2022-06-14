@@ -78,23 +78,23 @@ public class SMLootTableProvider extends LootTableProvider {
             this.add(SMBlocks.SMOOTH_RAW_JADE_SLAB.get(), BlockLoot::createSlabItemTable);
 
             //Jade
-            this.dropSelf(SMBlocks.JADE_BLOCK.get());
-            this.dropSelf(SMBlocks.JADE_BRICKS.get());
-            this.dropSelf(SMBlocks.SMALL_JADE_BRICKS.get());
-            this.dropSelf(SMBlocks.JADE_TILES.get());
-            this.dropSelf(SMBlocks.JADE_SHINGLES.get());
-            this.dropSelf(SMBlocks.CHISELED_JADE.get());
-            this.dropSelf(SMBlocks.JADE_PILLAR.get());
+            this.dropSelf(SMBlocks.POLISHED_JADE_BLOCK.get());
+            this.dropSelf(SMBlocks.POLISHED_JADE_BRICKS.get());
+            this.dropSelf(SMBlocks.SMALL_POLISHED_JADE_BRICKS.get());
+            this.dropSelf(SMBlocks.POLISHED_JADE_TILES.get());
+            this.dropSelf(SMBlocks.POLISHED_JADE_SHINGLES.get());
+            this.dropSelf(SMBlocks.POLISHED_CHISELED_JADE.get());
+            this.dropSelf(SMBlocks.POLISHED_JADE_PILLAR.get());
             this.dropSelf(SMBlocks.JADE_TOTEM.get());
             this.dropSelf(SMBlocks.JADE_FLINGER_TOTEM.get());
-            this.dropSelf(SMBlocks.JADE_BRICK_STAIRS.get());
-            this.dropSelf(SMBlocks.SMALL_JADE_BRICK_STAIRS.get());
-            this.dropSelf(SMBlocks.JADE_TILE_STAIRS.get());
-            this.dropSelf(SMBlocks.JADE_SHINGLE_STAIRS.get());
-            this.add(SMBlocks.JADE_BRICK_SLAB.get(), BlockLoot::createSlabItemTable);
-            this.add(SMBlocks.SMALL_JADE_BRICK_SLAB.get(), BlockLoot::createSlabItemTable);
-            this.add(SMBlocks.JADE_TILE_SLAB.get(), BlockLoot::createSlabItemTable);
-            this.add(SMBlocks.JADE_SHINGLE_SLAB.get(), BlockLoot::createSlabItemTable);
+            this.dropSelf(SMBlocks.POLISHED_JADE_BRICK_STAIRS.get());
+            this.dropSelf(SMBlocks.SMALL_POLISHED_JADE_BRICK_STAIRS.get());
+            this.dropSelf(SMBlocks.POLISHED_JADE_TILE_STAIRS.get());
+            this.dropSelf(SMBlocks.POLISHED_JADE_SHINGLE_STAIRS.get());
+            this.add(SMBlocks.POLISHED_JADE_BRICK_SLAB.get(), BlockLoot::createSlabItemTable);
+            this.add(SMBlocks.SMALL_POLISHED_JADE_BRICK_SLAB.get(), BlockLoot::createSlabItemTable);
+            this.add(SMBlocks.POLISHED_JADE_TILE_SLAB.get(), BlockLoot::createSlabItemTable);
+            this.add(SMBlocks.POLISHED_JADE_SHINGLE_SLAB.get(), BlockLoot::createSlabItemTable);
 
             //Copper Buttons
             this.dropSelf(SMBlocks.COPPER_BUTTON.get());

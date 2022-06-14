@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "sullysmod:polished_jade_block"
+    }
+  ],
+  "result": {
+    "item": "sullysmod:polished_jade",
+    "count": 9
+  }
+}

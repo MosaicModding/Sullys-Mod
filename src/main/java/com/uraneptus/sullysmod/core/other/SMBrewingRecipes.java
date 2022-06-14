@@ -9,7 +9,7 @@ import net.minecraft.world.item.alchemy.Potions;
 public class SMBrewingRecipes {
 
     public static void register() {
-        PotionBrewing.addMix(Potions.AWKWARD, SMItems.JADE.get(), Potions.LUCK);
+        PotionBrewing.addMix(Potions.AWKWARD, SMItems.POLISHED_JADE.get(), Potions.LUCK);
         PotionBrewing.addMix(Potions.LUCK, Items.FERMENTED_SPIDER_EYE, SMPotions.UNLUCK.get());
     }
 }

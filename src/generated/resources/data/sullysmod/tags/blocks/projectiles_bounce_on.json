@@ -1,21 +1,21 @@
 {
   "replace": false,
   "values": [
-    "sullysmod:jade_block",
-    "sullysmod:jade_bricks",
-    "sullysmod:small_jade_bricks",
-    "sullysmod:jade_shingles",
-    "sullysmod:jade_tiles",
-    "sullysmod:chiseled_jade",
+    "sullysmod:polished_jade_block",
+    "sullysmod:polished_jade_bricks",
+    "sullysmod:small_polished_jade_bricks",
+    "sullysmod:polished_jade_shingles",
+    "sullysmod:polished_jade_tiles",
+    "sullysmod:polished_chiseled_jade",
     "sullysmod:jade_totem",
-    "sullysmod:jade_pillar",
-    "sullysmod:jade_brick_stairs",
-    "sullysmod:small_jade_brick_stairs",
-    "sullysmod:jade_shingle_stairs",
-    "sullysmod:jade_tile_stairs",
-    "sullysmod:jade_brick_slab",
-    "sullysmod:small_jade_brick_slab",
-    "sullysmod:jade_shingle_slab",
-    "sullysmod:jade_tile_slab"
+    "sullysmod:polished_jade_pillar",
+    "sullysmod:polished_jade_brick_stairs",
+    "sullysmod:small_polished_jade_brick_stairs",
+    "sullysmod:polished_jade_shingle_stairs",
+    "sullysmod:polished_jade_tile_stairs",
+    "sullysmod:polished_jade_brick_slab",
+    "sullysmod:small_polished_jade_brick_slab",
+    "sullysmod:polished_jade_shingle_slab",
+    "sullysmod:polished_jade_tile_slab"
   ]
 }

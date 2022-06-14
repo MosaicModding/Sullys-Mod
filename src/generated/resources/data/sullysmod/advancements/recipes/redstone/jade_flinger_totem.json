@@ -18,13 +18,13 @@
         ]
       }
     },
-    "has_jade_shingles": {
+    "has_polished_jade_shingles": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
             "items": [
-              "sullysmod:jade_shingles"
+              "sullysmod:polished_jade_shingles"
             ]
           }
         ]
@@ -40,7 +40,7 @@
   "requirements": [
     [
       "has_tripwire_hook",
-      "has_jade_shingles",
+      "has_polished_jade_shingles",
       "has_the_recipe"
     ]
   ]

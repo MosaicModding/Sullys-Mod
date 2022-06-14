@@ -38,19 +38,19 @@ public class SMItemTagsProvider extends ItemTagsProvider {
                 SMBlocks.WAXED_OXIDIZED_COPPER_BUTTON.get().asItem()
         );
         tag(net.minecraft.tags.ItemTags.SLABS).add(
-                SMBlocks.JADE_BRICK_SLAB.get().asItem(),
-                SMBlocks.SMALL_JADE_BRICK_SLAB.get().asItem(),
-                SMBlocks.JADE_TILE_SLAB.get().asItem(),
-                SMBlocks.JADE_SHINGLE_SLAB.get().asItem(),
+                SMBlocks.POLISHED_JADE_BRICK_SLAB.get().asItem(),
+                SMBlocks.SMALL_POLISHED_JADE_BRICK_SLAB.get().asItem(),
+                SMBlocks.POLISHED_JADE_TILE_SLAB.get().asItem(),
+                SMBlocks.POLISHED_JADE_SHINGLE_SLAB.get().asItem(),
                 SMBlocks.RAW_JADE_BRICK_SLAB.get().asItem(),
                 SMBlocks.RAW_JADE_TILE_SLAB.get().asItem(),
                 SMBlocks.SMOOTH_RAW_JADE_SLAB.get().asItem()
         );
         tag(net.minecraft.tags.ItemTags.STAIRS).add(
-                SMBlocks.JADE_BRICK_STAIRS.get().asItem(),
-                SMBlocks.SMALL_JADE_BRICK_STAIRS.get().asItem(),
-                SMBlocks.JADE_TILE_STAIRS.get().asItem(),
-                SMBlocks.JADE_SHINGLE_STAIRS.get().asItem(),
+                SMBlocks.POLISHED_JADE_BRICK_STAIRS.get().asItem(),
+                SMBlocks.SMALL_POLISHED_JADE_BRICK_STAIRS.get().asItem(),
+                SMBlocks.POLISHED_JADE_TILE_STAIRS.get().asItem(),
+                SMBlocks.POLISHED_JADE_SHINGLE_STAIRS.get().asItem(),
                 SMBlocks.RAW_JADE_BRICK_STAIRS.get().asItem(),
                 SMBlocks.RAW_JADE_TILE_STAIRS.get().asItem(),
                 SMBlocks.SMOOTH_RAW_JADE_STAIRS.get().asItem()

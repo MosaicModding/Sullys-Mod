@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "sullysmod:polished_jade_tile_slab"
+    ]
+  },
+  "criteria": {
+    "has_polished_jade_tiles": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "sullysmod:polished_jade_tiles"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "sullysmod:polished_jade_tile_slab"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_polished_jade_tiles",
+      "has_the_recipe"
+    ]
+  ]
+}
