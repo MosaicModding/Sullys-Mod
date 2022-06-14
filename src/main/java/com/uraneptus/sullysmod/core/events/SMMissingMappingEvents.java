@@ -1,8 +1,6 @@
 package com.uraneptus.sullysmod.core.events;
 
-import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
-import com.mojang.datafixers.util.Pair;
 import com.uraneptus.sullysmod.SullysMod;
 import com.uraneptus.sullysmod.core.registry.SMBlocks;
 import com.uraneptus.sullysmod.core.registry.SMItems;

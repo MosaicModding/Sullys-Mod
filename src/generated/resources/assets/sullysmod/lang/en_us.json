@@ -67,5 +67,7 @@
   "subtitles.entity.tortoise.hurt": "Tortoise hurts",
   "subtitles.entity.tortoise.hurt.hidden": "Tortoise hurts",
   "subtitles.entity.tortoise.hurt_baby": "Tortoise baby hurts",
-  "subtitles.entity.zombie.destroy_egg": "Egg stomped"
+  "subtitles.entity.zombie.destroy_egg": "Egg stomped",
+  "sullysmod.jei.polishing": "Polishing",
+  "sullysmod.jei.polishing.info": "Right-click to polish"
 }

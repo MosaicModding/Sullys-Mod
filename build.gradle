@@ -80,6 +80,10 @@ repositories {
         url "https://www.cursemaven.com"
     }
     maven {
+        name 'JEI maven'
+        url = "https://dvs1.progwml6.com/files/maven"
+    }
+    maven {
         name = "GeckoLib Maven"
         url = "https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/"
     }
@@ -93,7 +97,8 @@ dependencies {
     implementation fg.deobf("software.bernie.geckolib:geckolib-1.18-forge:${geckolib_version}")
     implementation fg.deobf("com.teamabnormals:blueprint:${mc_version}-${blueprint_version}")
 
-    runtimeOnly fg.deobf("curse.maven:jei-238222:3723913")
+    compileOnly fg.deobf("mezz.jei:jei-${mc_version}:${jei_version}:api")
+    runtimeOnly fg.deobf("mezz.jei:jei-${mc_version}:${jei_version}")
 }
 
 jar {
