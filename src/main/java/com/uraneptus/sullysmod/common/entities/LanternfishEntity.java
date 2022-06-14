@@ -109,7 +109,6 @@ public class LanternfishEntity extends AbstractFish {
     }
 
     public static boolean checkLanternfishSpawnRules(EntityType<? extends LivingEntity> entityType, ServerLevelAccessor levelAccessor, MobSpawnType spawnType, BlockPos pos, Random random) {
-        System.out.println(levelAccessor.getSeaLevel());
         return levelAccessor.getBlockState(pos).is(Blocks.WATER) && pos.getY() <= levelAccessor.getSeaLevel() - 47 && !levelAccessor.canSeeSkyFromBelowWater(pos);
     }
 }
