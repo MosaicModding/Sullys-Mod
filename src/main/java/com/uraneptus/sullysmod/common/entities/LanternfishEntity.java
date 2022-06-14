@@ -1,6 +1,5 @@
 package com.uraneptus.sullysmod.common.entities;
 
-import com.uraneptus.sullysmod.SullysMod;
 import com.uraneptus.sullysmod.common.entities.goals.LightAvoidingRandomSwimmingGoal;
 import com.uraneptus.sullysmod.core.registry.SMItems;
 import com.uraneptus.sullysmod.core.registry.SMSounds;
