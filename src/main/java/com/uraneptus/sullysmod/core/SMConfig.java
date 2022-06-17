@@ -29,6 +29,7 @@ public class SMConfig {
         ENABLE_LANTERNFISH = COMMON_BUILDER.comment("If Lanternfish will spawn naturally in the world. (default = true)").define("Lanternfish spawn naturally", true);
         LANTERNFISH_SPAWN_WEIGHT = COMMON_BUILDER.comment("The weight of which Lanternfish will spawn. (default = 5)").defineInRange("Lanternfish spawn weight", 5, 1, 100);
         COMMON_BUILDER.pop();
+        COMMON_BUILDER.pop();
 
         COMMON_BUILDER.comment("Worldgen").push("worldgen");
         COMMON_BUILDER.comment("Jade").push("jade");
