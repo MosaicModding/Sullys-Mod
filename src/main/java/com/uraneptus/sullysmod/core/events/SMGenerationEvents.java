@@ -2,6 +2,7 @@ package com.uraneptus.sullysmod.core.events;
 
 import com.teamabnormals.blueprint.core.util.DataUtil;
 import com.uraneptus.sullysmod.SullysMod;
+import com.uraneptus.sullysmod.core.SMConfig;
 import com.uraneptus.sullysmod.core.registry.SMEntityTypes;
 import com.uraneptus.sullysmod.core.registry.SMFeatures;
 import net.minecraft.resources.ResourceLocation;
@@ -27,21 +28,28 @@ public class SMGenerationEvents {
         Biome.BiomeCategory biomeCategory = event.getCategory();
         ResourceLocation biome = event.getName();
 
-        if (!DataUtil.matchesKeys(biome, Biomes.LUSH_CAVES)) {
-            spawns.addSpawn(MobCategory.WATER_AMBIENT, new MobSpawnSettings.SpawnerData(SMEntityTypes.LANTERNFISH.get(), 5, 1, 5));
+        if (SMConfig.ENABLE_TORTOISES.get()) {
+            if (biomeCategory == Biome.BiomeCategory.JUNGLE) {
+                spawns.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(SMEntityTypes.TORTOISE.get(), SMConfig.TORTOISE_SPAWN_WEIGHT.get(), 1, 3));
+            }
+            if (biomeCategory == Biome.BiomeCategory.SAVANNA) {
+                spawns.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(SMEntityTypes.TORTOISE.get(), SMConfig.TORTOISE_SPAWN_WEIGHT.get(), 1, 3));
+            }
+            if (DataUtil.matchesKeys(biome, Biomes.BIRCH_FOREST) || DataUtil.matchesKeys(biome, Biomes.OLD_GROWTH_BIRCH_FOREST)) {
+                spawns.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(SMEntityTypes.TORTOISE.get(), SMConfig.TORTOISE_SPAWN_WEIGHT.get() * 2, 1, 3));
+            }
         }
 
-        if (biomeCategory == Biome.BiomeCategory.JUNGLE) {
-            spawns.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(SMEntityTypes.TORTOISE.get(), 5, 1, 3));
-            generation.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, SMFeatures.Placement.JADE_ORE_PLACEMENT);
+        if (SMConfig.ENABLE_LANTERNFISH.get()) {
+            if (!DataUtil.matchesKeys(biome, Biomes.LUSH_CAVES)) {
+                spawns.addSpawn(MobCategory.WATER_AMBIENT, new MobSpawnSettings.SpawnerData(SMEntityTypes.LANTERNFISH.get(), SMConfig.LANTERNFISH_SPAWN_WEIGHT.get(), 1, 5));
+            }
         }
 
-        if (biomeCategory == Biome.BiomeCategory.SAVANNA) {
-            spawns.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(SMEntityTypes.TORTOISE.get(), 5, 1, 3));
-        }
-
-        if (DataUtil.matchesKeys(biome, Biomes.BIRCH_FOREST) || DataUtil.matchesKeys(biome, Biomes.OLD_GROWTH_BIRCH_FOREST)) {
-            spawns.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(SMEntityTypes.TORTOISE.get(), 10, 1, 3));
+        if (SMConfig.ENABLE_JADE.get()) {
+            if (biomeCategory == Biome.BiomeCategory.JUNGLE) {
+                generation.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, SMFeatures.Placement.JADE_ORE_PLACEMENT);
+            }
         }
     }
 }
