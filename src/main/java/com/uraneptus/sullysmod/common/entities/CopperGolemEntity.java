@@ -118,7 +118,7 @@ public class CopperGolemEntity extends AbstractGolem implements IAnimatable {
 
     public <E extends IAnimatable> PlayState setAnimation(AnimationEvent<E> event) {
         boolean onGround = isOnGround();
-        if (!((double)animationSpeed < 0.1D) && onGround && !isStatue) {
+        if (!((double)animationSpeed < 0.08D) && onGround && !isStatue) {
             event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.copper_golem.walking", true));
             return PlayState.CONTINUE;
         } /*else {
@@ -132,9 +132,11 @@ public class CopperGolemEntity extends AbstractGolem implements IAnimatable {
     }
 
 
+    @SuppressWarnings({ "rawtypes", "unchecked" })
     @Override
     public void registerControllers(AnimationData data) {
-        data.addAnimationController(new AnimationController(this, "controller", 0, this::setAnimation));
+        data.setResetSpeedInTicks(4);
+        data.addAnimationController(new AnimationController(this, "controller", 3, this::setAnimation));
     }
 
     @Override

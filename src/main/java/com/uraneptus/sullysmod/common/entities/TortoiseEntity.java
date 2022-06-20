@@ -186,7 +186,7 @@ public class TortoiseEntity extends Animal implements IAnimatable {
     public <E extends IAnimatable> PlayState setAnimation(AnimationEvent<E> event) {
         boolean onGround = isOnGround();
 
-        if (!((double) animationSpeed < 0.1D) && getHideTimerDuration() == 0 && onGround) {
+        if (!((double) animationSpeed < 0.08D) && getHideTimerDuration() == 0 && onGround) {
             event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.tortoise.walking", true));
             return PlayState.CONTINUE;
         } else if (getHideTimerDuration() > 1) {
@@ -242,9 +242,11 @@ public class TortoiseEntity extends Animal implements IAnimatable {
         return this.isBaby() ? SMSounds.BABY_TORTOISE_DEATH.get() : SMSounds.TORTOISE_DEATH.get();
     }
 
+    @SuppressWarnings({ "rawtypes", "unchecked" })
     @Override
     public void registerControllers(AnimationData data) {
-        data.addAnimationController(new AnimationController(this, "controller", 0, this::setAnimation));
+        data.setResetSpeedInTicks(4);
+        data.addAnimationController(new AnimationController(this, "controller", 3, this::setAnimation));
     }
 
     @Override
