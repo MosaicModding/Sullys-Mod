@@ -35,7 +35,7 @@ public class SMPlayerEvents {
         Block block = level.getBlockState(pos).getBlock();
 
         if (block instanceof GrindstoneBlock) {
-            if (player.getItemInHand(hand).is(SMItems.RAW_JADE.get())) {
+            if (player.getItemInHand(hand).is(SMItems.ROUGH_JADE.get())) {
                 event.setCanceled(true);
                 event.setCancellationResult(InteractionResult.FAIL);
 
@@ -65,7 +65,7 @@ public class SMPlayerEvents {
         BlockPos pos = player.blockPosition();
         Vec3 vec3 = player.position();
 
-        if (player.getItemInHand(hand).is(SMItems.RAW_JADE.get())) {
+        if (player.getItemInHand(hand).is(SMItems.ROUGH_JADE.get())) {
             for(BlockPos blockpos : BlockPos.betweenClosed(pos.offset(-5, -5, -5), pos.offset(5, 5, 5))) {
                 Block block = level.getBlockState(blockpos).getBlock();
                 if (block instanceof GrindstoneBlock) {

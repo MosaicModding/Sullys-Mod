@@ -66,7 +66,7 @@ public class SMPolishingCategory implements IRecipeCategory<SMPseudoPolishingRec
 
     @Override
     public void setRecipe(IRecipeLayoutBuilder layout, SMPseudoPolishingRecipe polishingRecipes, IFocusGroup ingredients) {
-        layout.addSlot(RecipeIngredientRole.INPUT, 4, 9).addItemStack(new ItemStack(SMItems.RAW_JADE.get()));
+        layout.addSlot(RecipeIngredientRole.INPUT, 4, 9).addItemStack(new ItemStack(SMItems.ROUGH_JADE.get()));
         layout.addSlot(RecipeIngredientRole.OUTPUT, 76, 9).addItemStack(new ItemStack(SMItems.POLISHED_JADE.get()));
     }
 

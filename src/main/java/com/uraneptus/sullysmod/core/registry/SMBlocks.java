@@ -1,5 +1,6 @@
 package com.uraneptus.sullysmod.core.registry;
 
+import com.teamabnormals.blueprint.common.block.VerticalSlabBlock;
 import com.teamabnormals.blueprint.common.item.InjectedBlockItem;
 import com.teamabnormals.blueprint.core.util.registry.BlockSubRegistryHelper;
 import com.uraneptus.sullysmod.SullysMod;
@@ -34,6 +35,7 @@ public class SMBlocks {
     public static final RegistryObject<Block> JADE_TOTEM = HELPER.createBlock("jade_totem", () -> new SMDirectionalBlock(Properties.POLISHED_JADE_BLOCKS), CreativeModeTab.TAB_BUILDING_BLOCKS);
     public static final RegistryObject<Block> JADE_FLINGER_TOTEM = HELPER.createBlock("jade_flinger_totem", () -> new JadeFlingerTotem(Properties.POLISHED_JADE_BLOCKS), CreativeModeTab.TAB_REDSTONE);
     public static final RegistryObject<Block> POLISHED_JADE_PILLAR = HELPER.createBlock("polished_jade_pillar", () -> new RotatedPillarBlock(Properties.POLISHED_JADE_BLOCKS), CreativeModeTab.TAB_BUILDING_BLOCKS);
+
     //Jade Stairs
     public static final RegistryObject<Block> ROUGH_JADE_BRICK_STAIRS = HELPER.createBlock("rough_jade_brick_stairs", () -> new StairBlock(ROUGH_JADE_BRICKS.get().defaultBlockState(), Properties.ROUGH_JADE_BLOCKS), CreativeModeTab.TAB_BUILDING_BLOCKS);
     public static final RegistryObject<Block> SMOOTH_ROUGH_JADE_STAIRS = HELPER.createBlock("smooth_rough_jade_stairs", () -> new StairBlock(SMOOTH_ROUGH_JADE.get().defaultBlockState(), Properties.ROUGH_JADE_BLOCKS), CreativeModeTab.TAB_BUILDING_BLOCKS);
@@ -42,6 +44,7 @@ public class SMBlocks {
     public static final RegistryObject<Block> SMALL_POLISHED_JADE_BRICK_STAIRS = HELPER.createBlock("small_polished_jade_brick_stairs", () -> new StairBlock(SMALL_POLISHED_JADE_BRICKS.get().defaultBlockState(), Properties.POLISHED_JADE_BLOCKS), CreativeModeTab.TAB_BUILDING_BLOCKS);
     public static final RegistryObject<Block> POLISHED_JADE_SHINGLE_STAIRS = HELPER.createBlock("polished_jade_shingle_stairs", () -> new StairBlock(POLISHED_JADE_SHINGLES.get().defaultBlockState(), Properties.POLISHED_JADE_BLOCKS), CreativeModeTab.TAB_BUILDING_BLOCKS);
     public static final RegistryObject<Block> POLISHED_JADE_TILE_STAIRS = HELPER.createBlock("polished_jade_tile_stairs", () -> new StairBlock(POLISHED_JADE_TILES.get().defaultBlockState(), Properties.POLISHED_JADE_BLOCKS), CreativeModeTab.TAB_BUILDING_BLOCKS);
+
     //Jade Slabs
     public static final RegistryObject<Block> ROUGH_JADE_BRICK_SLAB = HELPER.createBlock("rough_jade_brick_slab", () -> new SlabBlock(Properties.ROUGH_JADE_BLOCKS), CreativeModeTab.TAB_BUILDING_BLOCKS);
     public static final RegistryObject<Block> SMOOTH_ROUGH_JADE_SLAB = HELPER.createBlock("smooth_rough_jade_slab", () -> new SlabBlock(Properties.ROUGH_JADE_BLOCKS), CreativeModeTab.TAB_BUILDING_BLOCKS);
@@ -50,6 +53,15 @@ public class SMBlocks {
     public static final RegistryObject<Block> SMALL_POLISHED_JADE_BRICK_SLAB = HELPER.createBlock("small_polished_jade_brick_slab", () -> new SlabBlock(Properties.POLISHED_JADE_BLOCKS), CreativeModeTab.TAB_BUILDING_BLOCKS);
     public static final RegistryObject<Block> POLISHED_JADE_SHINGLE_SLAB = HELPER.createBlock("polished_jade_shingle_slab", () -> new SlabBlock(Properties.POLISHED_JADE_BLOCKS), CreativeModeTab.TAB_BUILDING_BLOCKS);
     public static final RegistryObject<Block> POLISHED_JADE_TILE_SLAB = HELPER.createBlock("polished_jade_tile_slab", () -> new SlabBlock(Properties.POLISHED_JADE_BLOCKS), CreativeModeTab.TAB_BUILDING_BLOCKS);
+
+    //Jade Vertical Slabs
+    public static final RegistryObject<Block> RAW_JADE_BRICK_VERTICAL_SLAB = HELPER.createCompatBlock("quark", "raw_jade_brick_vertical_slab", () -> new VerticalSlabBlock(Properties.ROUGH_JADE_BLOCKS), CreativeModeTab.TAB_BUILDING_BLOCKS);
+    public static final RegistryObject<Block> SMOOTH_RAW_JADE_VERTICAL_SLAB = HELPER.createCompatBlock("quark", "smooth_raw_jade_vertical_slab", () -> new VerticalSlabBlock(Properties.ROUGH_JADE_BLOCKS), CreativeModeTab.TAB_BUILDING_BLOCKS);
+    public static final RegistryObject<Block> RAW_JADE_TILE_VERTICAL_SLAB = HELPER.createCompatBlock("quark", "raw_jade_tile_vertical_slab", () -> new VerticalSlabBlock(Properties.ROUGH_JADE_BLOCKS), CreativeModeTab.TAB_BUILDING_BLOCKS);
+    public static final RegistryObject<Block> POLISHED_JADE_BRICK_VERTICAL_SLAB = HELPER.createCompatBlock("quark", "polished_jade_brick_vertical_slab", () -> new VerticalSlabBlock(Properties.POLISHED_JADE_BLOCKS), CreativeModeTab.TAB_BUILDING_BLOCKS);
+    public static final RegistryObject<Block> SMALL_POLISHED_JADE_BRICK_VERTICAL_SLAB = HELPER.createCompatBlock("quark", "small_polished_jade_brick_vertical_slab", () -> new VerticalSlabBlock(Properties.POLISHED_JADE_BLOCKS), CreativeModeTab.TAB_BUILDING_BLOCKS);
+    public static final RegistryObject<Block> POLISHED_JADE_SHINGLE_VERTICAL_SLAB = HELPER.createCompatBlock("quark", "polished_jade_shingle_vertical_slab", () -> new VerticalSlabBlock(Properties.POLISHED_JADE_BLOCKS), CreativeModeTab.TAB_BUILDING_BLOCKS);
+    public static final RegistryObject<Block> POLISHED_JADE_TILE_VERTICAL_SLAB = HELPER.createCompatBlock("quark", "polished_jade_tile_vertical_slab", () -> new VerticalSlabBlock(Properties.POLISHED_JADE_BLOCKS), CreativeModeTab.TAB_BUILDING_BLOCKS);
 
     //Copper Buttons
     public static final RegistryObject<Block> COPPER_BUTTON = HELPER.createBlock("copper_button", () -> new WeatheringCopperButtonBlock(WeatheringCopper.WeatherState.UNAFFECTED, Properties.COPPER_BUTTONS), CreativeModeTab.TAB_REDSTONE);
@@ -61,6 +73,7 @@ public class SMBlocks {
     public static final RegistryObject<Block> WAXED_WEATHERED_COPPER_BUTTON = HELPER.createBlock("waxed_weathered_copper_button", () -> new CopperButtonBlock(Properties.COPPER_BUTTONS), CreativeModeTab.TAB_REDSTONE);
     public static final RegistryObject<Block> WAXED_OXIDIZED_COPPER_BUTTON = HELPER.createBlock("waxed_oxidized_copper_button", () -> new CopperButtonBlock(Properties.COPPER_BUTTONS), CreativeModeTab.TAB_REDSTONE);
 
+    //Misc
     public static final RegistryObject<Block> TORTOISE_EGG = HELPER.createBlock("tortoise_egg", () -> new TortoiseEggBlock(BlockBehaviour.Properties.copy(Blocks.TURTLE_EGG)), CreativeModeTab.TAB_MISC);
 
     public static final class Properties {

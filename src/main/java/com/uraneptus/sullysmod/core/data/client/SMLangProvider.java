@@ -52,10 +52,17 @@ public class SMLangProvider extends LanguageProvider {
         add(SMBlocks.POLISHED_JADE_TILE_SLAB.get(), "Polished Jade Tile Slab");
         add(SMBlocks.ROUGH_JADE_BRICK_STAIRS.get(), "Rough Jade Brick Stairs");
         add(SMBlocks.SMOOTH_ROUGH_JADE_STAIRS.get(), "Smooth Rough Jade Stairs");
-        add(SMBlocks.ROUGH_JADE_TILE_STAIRS.get(), "Rough Jade Tile Slabs");
+        add(SMBlocks.ROUGH_JADE_TILE_STAIRS.get(), "Rough Jade Tile Stairs");
         add(SMBlocks.ROUGH_JADE_BRICK_SLAB.get(), "Rough Jade Brick Slab");
         add(SMBlocks.SMOOTH_ROUGH_JADE_SLAB.get(), "Smooth Rough Jade Slab");
         add(SMBlocks.ROUGH_JADE_TILE_SLAB.get(), "Rough Jade Tile Slab");
+        add(SMBlocks.POLISHED_JADE_BRICK_VERTICAL_SLAB.get(), "Polished Jade Brick Vertical Slab");
+        add(SMBlocks.SMALL_POLISHED_JADE_BRICK_VERTICAL_SLAB.get(), "Small Polished Jade Brick Vertical Slab");
+        add(SMBlocks.POLISHED_JADE_SHINGLE_VERTICAL_SLAB.get(), "Polished Jade Shingle Vertical Slab");
+        add(SMBlocks.POLISHED_JADE_TILE_VERTICAL_SLAB.get(), "Polished Jade Tile Vertical Slab");
+        add(SMBlocks.RAW_JADE_BRICK_VERTICAL_SLAB.get(), "Rough Jade Brick Vertical Slab");
+        add(SMBlocks.SMOOTH_RAW_JADE_VERTICAL_SLAB.get(), "Smooth Rough Jade Vertical Slab");
+        add(SMBlocks.RAW_JADE_TILE_VERTICAL_SLAB.get(),  "Rough Jade Tile Vertical Slab");
         add(SMBlocks.TORTOISE_EGG.get(), "Tortoise Egg");
 
         //Items

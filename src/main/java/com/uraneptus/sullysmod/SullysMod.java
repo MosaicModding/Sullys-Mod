@@ -16,11 +16,7 @@ import com.uraneptus.sullysmod.core.data.server.modifiers.SMAdvancementModifiers
 import com.uraneptus.sullysmod.core.data.server.tags.SMBlockTagsProvider;
 import com.uraneptus.sullysmod.core.data.server.tags.SMEntityTagsProvider;
 import com.uraneptus.sullysmod.core.data.server.tags.SMItemTagsProvider;
-import com.uraneptus.sullysmod.core.other.SMBrewingRecipes;
-import com.uraneptus.sullysmod.core.registry.SMEntityTypes;
-import com.uraneptus.sullysmod.core.registry.SMParticleTypes;
-import com.uraneptus.sullysmod.core.registry.SMPotions;
-import com.uraneptus.sullysmod.core.registry.SMSpawnPlacements;
+import com.uraneptus.sullysmod.core.registry.*;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
