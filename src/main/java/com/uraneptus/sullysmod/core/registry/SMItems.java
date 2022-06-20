@@ -22,7 +22,7 @@ public class SMItems {
     public static final ItemSubRegistryHelper HELPER = SullysMod.REGISTRY_HELPER.getItemSubHelper();
 
     //Basic Items
-    public static final RegistryObject<Item> RAW_JADE = HELPER.createItem("raw_jade", () -> new Item(Properties.MISC_TAB));
+    public static final RegistryObject<Item> ROUGH_JADE = HELPER.createItem("rough_jade", () -> new Item(Properties.MISC_TAB));
     public static final RegistryObject<Item> POLISHED_JADE = HELPER.createItem("polished_jade", () -> new Item(Properties.MISC_TAB));
 
     //Food

@@ -45,8 +45,8 @@ public class SMDatagenUtil {
     public static final String SMALL_JADE_BRICKS = name(SMBlocks.SMALL_POLISHED_JADE_BRICKS.get());
     public static final String JADE_SHINGLES = name(SMBlocks.POLISHED_JADE_SHINGLES.get());
     public static final String JADE_TILES = name(SMBlocks.POLISHED_JADE_TILES.get());
-    public static final String RAW_JADE_BRICKS = name(SMBlocks.RAW_JADE_BRICKS.get());
-    public static final String SMOOTH_RAW_JADE = name(SMBlocks.SMOOTH_RAW_JADE.get());
-    public static final String RAW_JADE_TILES = name(SMBlocks.RAW_JADE_TILES.get());
+    public static final String RAW_JADE_BRICKS = name(SMBlocks.ROUGH_JADE_BRICKS.get());
+    public static final String SMOOTH_RAW_JADE = name(SMBlocks.SMOOTH_ROUGH_JADE.get());
+    public static final String RAW_JADE_TILES = name(SMBlocks.ROUGH_JADE_TILES.get());
 
 }

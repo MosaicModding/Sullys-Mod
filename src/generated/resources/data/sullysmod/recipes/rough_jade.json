@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "sullysmod:rough_jade_block"
+    }
+  ],
+  "result": {
+    "item": "sullysmod:rough_jade",
+    "count": 9
+  }
+}

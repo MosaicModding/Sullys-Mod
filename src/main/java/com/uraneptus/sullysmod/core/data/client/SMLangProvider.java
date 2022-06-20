@@ -21,10 +21,10 @@ public class SMLangProvider extends LanguageProvider {
         //Blocks
         add(SMBlocks.JADE_ORE.get(), "Jade Ore");
         add(SMBlocks.DEEPSLATE_JADE_ORE.get(), "Deepslate Jade Ore");
-        add(SMBlocks.RAW_JADE_BLOCK.get(), "Block of Raw Jade");
-        add(SMBlocks.RAW_JADE_BRICKS.get(), "Raw Jade Bricks");
-        add(SMBlocks.SMOOTH_RAW_JADE.get(), "Smooth Raw Jade");
-        add(SMBlocks.RAW_JADE_TILES.get(), "Raw Jade Tiles");
+        add(SMBlocks.ROUGH_JADE_BLOCK.get(), "Block of Rough Jade");
+        add(SMBlocks.ROUGH_JADE_BRICKS.get(), "Rough Jade Bricks");
+        add(SMBlocks.SMOOTH_ROUGH_JADE.get(), "Smooth Rough Jade");
+        add(SMBlocks.ROUGH_JADE_TILES.get(), "Rough Jade Tiles");
         add(SMBlocks.POLISHED_JADE_BLOCK.get(), "Block of Polished Jade");
         add(SMBlocks.POLISHED_JADE_BRICKS.get(), "Polished Jade Bricks");
         add(SMBlocks.SMALL_POLISHED_JADE_BRICKS.get(), "Small Polished Jade Bricks");
@@ -50,16 +50,16 @@ public class SMLangProvider extends LanguageProvider {
         add(SMBlocks.SMALL_POLISHED_JADE_BRICK_SLAB.get(), "Small Polished Jade Brick Slab");
         add(SMBlocks.POLISHED_JADE_SHINGLE_SLAB.get(), "Polished Jade Shingle Slab");
         add(SMBlocks.POLISHED_JADE_TILE_SLAB.get(), "Polished Jade Tile Slab");
-        add(SMBlocks.RAW_JADE_BRICK_STAIRS.get(), "Raw Jade Brick Stairs");
-        add(SMBlocks.SMOOTH_RAW_JADE_STAIRS.get(), "Smooth Raw Jade Stairs");
-        add(SMBlocks.RAW_JADE_TILE_STAIRS.get(), "Raw Jade Tile Slabs");
-        add(SMBlocks.RAW_JADE_BRICK_SLAB.get(), "Raw Jade Brick Slab");
-        add(SMBlocks.SMOOTH_RAW_JADE_SLAB.get(), "Smooth Raw Jade Slab");
-        add(SMBlocks.RAW_JADE_TILE_SLAB.get(), "Raw Jade Tile Slab");
+        add(SMBlocks.ROUGH_JADE_BRICK_STAIRS.get(), "Rough Jade Brick Stairs");
+        add(SMBlocks.SMOOTH_ROUGH_JADE_STAIRS.get(), "Smooth Rough Jade Stairs");
+        add(SMBlocks.ROUGH_JADE_TILE_STAIRS.get(), "Rough Jade Tile Slabs");
+        add(SMBlocks.ROUGH_JADE_BRICK_SLAB.get(), "Rough Jade Brick Slab");
+        add(SMBlocks.SMOOTH_ROUGH_JADE_SLAB.get(), "Smooth Rough Jade Slab");
+        add(SMBlocks.ROUGH_JADE_TILE_SLAB.get(), "Rough Jade Tile Slab");
         add(SMBlocks.TORTOISE_EGG.get(), "Tortoise Egg");
 
         //Items
-        add(SMItems.RAW_JADE.get(), "Raw Jade");
+        add(SMItems.ROUGH_JADE.get(), "Rough Jade");
         add(SMItems.POLISHED_JADE.get(), "Polished Jade");
         add(SMItems.LANTERNFISH_BUCKET.get(), "Bucket of Lanternfish");
         add(SMItems.LANTERNFISH_SPAWN_EGG.get(), "Lanternfish Spawn Egg");

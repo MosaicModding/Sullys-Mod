@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "sullysmod:raw_jade_tiles"
-  },
-  "result": "sullysmod:raw_jade_tile_slab",
-  "count": 2
-}

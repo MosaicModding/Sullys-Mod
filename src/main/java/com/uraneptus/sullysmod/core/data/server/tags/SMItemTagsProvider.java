@@ -42,18 +42,18 @@ public class SMItemTagsProvider extends ItemTagsProvider {
                 SMBlocks.SMALL_POLISHED_JADE_BRICK_SLAB.get().asItem(),
                 SMBlocks.POLISHED_JADE_TILE_SLAB.get().asItem(),
                 SMBlocks.POLISHED_JADE_SHINGLE_SLAB.get().asItem(),
-                SMBlocks.RAW_JADE_BRICK_SLAB.get().asItem(),
-                SMBlocks.RAW_JADE_TILE_SLAB.get().asItem(),
-                SMBlocks.SMOOTH_RAW_JADE_SLAB.get().asItem()
+                SMBlocks.ROUGH_JADE_BRICK_SLAB.get().asItem(),
+                SMBlocks.ROUGH_JADE_TILE_SLAB.get().asItem(),
+                SMBlocks.SMOOTH_ROUGH_JADE_SLAB.get().asItem()
         );
         tag(net.minecraft.tags.ItemTags.STAIRS).add(
                 SMBlocks.POLISHED_JADE_BRICK_STAIRS.get().asItem(),
                 SMBlocks.SMALL_POLISHED_JADE_BRICK_STAIRS.get().asItem(),
                 SMBlocks.POLISHED_JADE_TILE_STAIRS.get().asItem(),
                 SMBlocks.POLISHED_JADE_SHINGLE_STAIRS.get().asItem(),
-                SMBlocks.RAW_JADE_BRICK_STAIRS.get().asItem(),
-                SMBlocks.RAW_JADE_TILE_STAIRS.get().asItem(),
-                SMBlocks.SMOOTH_RAW_JADE_STAIRS.get().asItem()
+                SMBlocks.ROUGH_JADE_BRICK_STAIRS.get().asItem(),
+                SMBlocks.ROUGH_JADE_TILE_STAIRS.get().asItem(),
+                SMBlocks.SMOOTH_ROUGH_JADE_STAIRS.get().asItem()
         );
 
         SullysMod.LOGGER.info("ITEM TAG GENERATION COMPLETE");

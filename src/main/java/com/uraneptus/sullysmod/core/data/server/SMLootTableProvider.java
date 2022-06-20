@@ -66,16 +66,16 @@ public class SMLootTableProvider extends LootTableProvider {
             this.add(SMBlocks.DEEPSLATE_JADE_ORE.get(), SMBlockLoot::createJadeOreDrops);
 
             //Raw Jade
-            this.dropSelf(SMBlocks.RAW_JADE_BLOCK.get());
-            this.dropSelf(SMBlocks.RAW_JADE_BRICKS.get());
-            this.dropSelf(SMBlocks.RAW_JADE_TILES.get());
-            this.dropSelf(SMBlocks.SMOOTH_RAW_JADE.get());
-            this.dropSelf(SMBlocks.RAW_JADE_BRICK_STAIRS.get());
-            this.dropSelf(SMBlocks.RAW_JADE_TILE_STAIRS.get());
-            this.dropSelf(SMBlocks.SMOOTH_RAW_JADE_STAIRS.get());
-            this.add(SMBlocks.RAW_JADE_BRICK_SLAB.get(), BlockLoot::createSlabItemTable);
-            this.add(SMBlocks.RAW_JADE_TILE_SLAB.get(), BlockLoot::createSlabItemTable);
-            this.add(SMBlocks.SMOOTH_RAW_JADE_SLAB.get(), BlockLoot::createSlabItemTable);
+            this.dropSelf(SMBlocks.ROUGH_JADE_BLOCK.get());
+            this.dropSelf(SMBlocks.ROUGH_JADE_BRICKS.get());
+            this.dropSelf(SMBlocks.ROUGH_JADE_TILES.get());
+            this.dropSelf(SMBlocks.SMOOTH_ROUGH_JADE.get());
+            this.dropSelf(SMBlocks.ROUGH_JADE_BRICK_STAIRS.get());
+            this.dropSelf(SMBlocks.ROUGH_JADE_TILE_STAIRS.get());
+            this.dropSelf(SMBlocks.SMOOTH_ROUGH_JADE_STAIRS.get());
+            this.add(SMBlocks.ROUGH_JADE_BRICK_SLAB.get(), BlockLoot::createSlabItemTable);
+            this.add(SMBlocks.ROUGH_JADE_TILE_SLAB.get(), BlockLoot::createSlabItemTable);
+            this.add(SMBlocks.SMOOTH_ROUGH_JADE_SLAB.get(), BlockLoot::createSlabItemTable);
 
             //Jade
             this.dropSelf(SMBlocks.POLISHED_JADE_BLOCK.get());
@@ -118,7 +118,7 @@ public class SMLootTableProvider extends LootTableProvider {
         }
 
         protected static LootTable.Builder createJadeOreDrops(Block block) {
-            return createSilkTouchDispatchTable(block, applyExplosionDecay(block, LootItem.lootTableItem(SMItems.RAW_JADE.get()).apply(SetItemCountFunction.setCount(UniformGenerator.between(2.0F, 5.0F))).apply(ApplyBonusCount.addOreBonusCount(Enchantments.BLOCK_FORTUNE))));
+            return createSilkTouchDispatchTable(block, applyExplosionDecay(block, LootItem.lootTableItem(SMItems.ROUGH_JADE.get()).apply(SetItemCountFunction.setCount(UniformGenerator.between(2.0F, 5.0F))).apply(ApplyBonusCount.addOreBonusCount(Enchantments.BLOCK_FORTUNE))));
         }
     }
 

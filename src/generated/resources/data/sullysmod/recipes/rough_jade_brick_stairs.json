@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#  ",
+    "## ",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "sullysmod:rough_jade_bricks"
+    }
+  },
+  "result": {
+    "item": "sullysmod:rough_jade_brick_stairs",
+    "count": 4
+  }
+}

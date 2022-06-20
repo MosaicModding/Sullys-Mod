@@ -20,6 +20,16 @@ public class SMMissingMappingEvents {
     @SubscribeEvent
     public static void fixMissingBlockMappings(RegistryEvent.MissingMappings<Block> event) {
         Map<ResourceLocation, Supplier<Block>> blocksMap = (new ImmutableMap.Builder<ResourceLocation, Supplier<Block>>())
+                .put(SullysMod.modPrefix("raw_jade_block"), SMBlocks.ROUGH_JADE_BLOCK)
+                .put(SullysMod.modPrefix("raw_jade_bricks"), SMBlocks.ROUGH_JADE_BRICKS)
+                .put(SullysMod.modPrefix("smooth_raw_jade"), SMBlocks.SMOOTH_ROUGH_JADE)
+                .put(SullysMod.modPrefix("raw_jade_tiles"), SMBlocks.ROUGH_JADE_TILES)
+                .put(SullysMod.modPrefix("raw_jade_brick_stairs"), SMBlocks.ROUGH_JADE_BRICK_STAIRS)
+                .put(SullysMod.modPrefix("smooth_raw_jade_stairs"), SMBlocks.SMOOTH_ROUGH_JADE_STAIRS)
+                .put(SullysMod.modPrefix("raw_jade_tile_stairs"), SMBlocks.ROUGH_JADE_TILE_STAIRS)
+                .put(SullysMod.modPrefix("raw_jade_brick_slab"), SMBlocks.ROUGH_JADE_BRICK_SLAB)
+                .put(SullysMod.modPrefix("smooth_raw_jade_slab"), SMBlocks.SMOOTH_ROUGH_JADE_SLAB)
+                .put(SullysMod.modPrefix("raw_jade_tile_slab"), SMBlocks.ROUGH_JADE_TILE_SLAB)
                 .put(SullysMod.modPrefix("jade_block"), SMBlocks.POLISHED_JADE_BLOCK)
                 .put(SullysMod.modPrefix("jade_bricks"), SMBlocks.POLISHED_JADE_BRICKS)
                 .put(SullysMod.modPrefix("small_jade_bricks"), SMBlocks.SMALL_POLISHED_JADE_BRICKS)
@@ -51,6 +61,7 @@ public class SMMissingMappingEvents {
     @SubscribeEvent
     public static void fixMissingItemMappings(RegistryEvent.MissingMappings<Item> event) {
         Map<ResourceLocation, Supplier<Item>> itemsMap = (new ImmutableMap.Builder<ResourceLocation, Supplier<Item>>())
+                .put(SullysMod.modPrefix("raw_jade"), SMItems.ROUGH_JADE)
                 .put(SullysMod.modPrefix("jade"), SMItems.POLISHED_JADE)
                 .build();
 

@@ -22,10 +22,10 @@ public class SMBlockStateProvider extends BlockStateProvider {
     protected void registerStatesAndModels() {
         basicBlock(SMBlocks.JADE_ORE.get());
         basicBlock(SMBlocks.DEEPSLATE_JADE_ORE.get());
-        basicBlock(SMBlocks.RAW_JADE_BLOCK.get());
-        basicBlock(SMBlocks.RAW_JADE_BRICKS.get());
-        basicBlock(SMBlocks.SMOOTH_RAW_JADE.get());
-        basicBlock(SMBlocks.RAW_JADE_TILES.get());
+        basicBlock(SMBlocks.ROUGH_JADE_BLOCK.get());
+        basicBlock(SMBlocks.ROUGH_JADE_BRICKS.get());
+        basicBlock(SMBlocks.SMOOTH_ROUGH_JADE.get());
+        basicBlock(SMBlocks.ROUGH_JADE_TILES.get());
         basicBlock(SMBlocks.POLISHED_JADE_BLOCK.get());
         basicBlock(SMBlocks.POLISHED_JADE_BRICKS.get());
         basicBlock(SMBlocks.SMALL_POLISHED_JADE_BRICKS.get());
@@ -47,16 +47,16 @@ public class SMBlockStateProvider extends BlockStateProvider {
         modStairsBlock(SMBlocks.SMALL_POLISHED_JADE_BRICK_STAIRS.get(), SMDatagenUtil.SMALL_JADE_BRICKS);
         modStairsBlock(SMBlocks.POLISHED_JADE_SHINGLE_STAIRS.get(), SMDatagenUtil.JADE_SHINGLES);
         modStairsBlock(SMBlocks.POLISHED_JADE_TILE_STAIRS.get(), SMDatagenUtil.JADE_TILES);
-        modStairsBlock(SMBlocks.RAW_JADE_BRICK_STAIRS.get(), SMDatagenUtil.RAW_JADE_BRICKS);
-        modStairsBlock(SMBlocks.SMOOTH_RAW_JADE_STAIRS.get(), SMDatagenUtil.SMOOTH_RAW_JADE);
-        modStairsBlock(SMBlocks.RAW_JADE_TILE_STAIRS.get(), SMDatagenUtil.RAW_JADE_TILES);
+        modStairsBlock(SMBlocks.ROUGH_JADE_BRICK_STAIRS.get(), SMDatagenUtil.RAW_JADE_BRICKS);
+        modStairsBlock(SMBlocks.SMOOTH_ROUGH_JADE_STAIRS.get(), SMDatagenUtil.SMOOTH_RAW_JADE);
+        modStairsBlock(SMBlocks.ROUGH_JADE_TILE_STAIRS.get(), SMDatagenUtil.RAW_JADE_TILES);
         modSlabBlock(SMBlocks.POLISHED_JADE_BRICK_SLAB.get(), SMDatagenUtil.JADE_BRICKS);
         modSlabBlock(SMBlocks.SMALL_POLISHED_JADE_BRICK_SLAB.get(), SMDatagenUtil.SMALL_JADE_BRICKS);
         modSlabBlock(SMBlocks.POLISHED_JADE_SHINGLE_SLAB.get(), SMDatagenUtil.JADE_SHINGLES);
         modSlabBlock(SMBlocks.POLISHED_JADE_TILE_SLAB.get(), SMDatagenUtil.JADE_TILES);
-        modSlabBlock(SMBlocks.RAW_JADE_BRICK_SLAB.get(), SMDatagenUtil.RAW_JADE_BRICKS);
-        modSlabBlock(SMBlocks.SMOOTH_RAW_JADE_SLAB.get(), SMDatagenUtil.SMOOTH_RAW_JADE);
-        modSlabBlock(SMBlocks.RAW_JADE_TILE_SLAB.get(), SMDatagenUtil.RAW_JADE_TILES);
+        modSlabBlock(SMBlocks.ROUGH_JADE_BRICK_SLAB.get(), SMDatagenUtil.RAW_JADE_BRICKS);
+        modSlabBlock(SMBlocks.SMOOTH_ROUGH_JADE_SLAB.get(), SMDatagenUtil.SMOOTH_RAW_JADE);
+        modSlabBlock(SMBlocks.ROUGH_JADE_TILE_SLAB.get(), SMDatagenUtil.RAW_JADE_TILES);
         modEggBlock(SMBlocks.TORTOISE_EGG.get());
 
         SullysMod.LOGGER.info("BLOCKSTATE GENERATION COMPLETE");

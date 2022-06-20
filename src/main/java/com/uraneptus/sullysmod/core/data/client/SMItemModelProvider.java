@@ -20,10 +20,10 @@ public class SMItemModelProvider extends ItemModelProvider {
     protected void registerModels() {
         basicBlockItem(SMBlocks.JADE_ORE.get());
         basicBlockItem(SMBlocks.DEEPSLATE_JADE_ORE.get());
-        basicBlockItem(SMBlocks.RAW_JADE_BLOCK.get());
-        basicBlockItem(SMBlocks.RAW_JADE_BRICKS.get());
-        basicBlockItem(SMBlocks.SMOOTH_RAW_JADE.get());
-        basicBlockItem(SMBlocks.RAW_JADE_TILES.get());
+        basicBlockItem(SMBlocks.ROUGH_JADE_BLOCK.get());
+        basicBlockItem(SMBlocks.ROUGH_JADE_BRICKS.get());
+        basicBlockItem(SMBlocks.SMOOTH_ROUGH_JADE.get());
+        basicBlockItem(SMBlocks.ROUGH_JADE_TILES.get());
         basicBlockItem(SMBlocks.POLISHED_JADE_BLOCK.get());
         basicBlockItem(SMBlocks.POLISHED_JADE_BRICKS.get());
         basicBlockItem(SMBlocks.SMALL_POLISHED_JADE_BRICKS.get());
@@ -33,7 +33,7 @@ public class SMItemModelProvider extends ItemModelProvider {
         basicBlockItem(SMBlocks.POLISHED_JADE_PILLAR.get());
         basicBlockItem(SMBlocks.JADE_TOTEM.get());
         basicBlockItem(SMBlocks.JADE_FLINGER_TOTEM.get());
-        basicItem(SMItems.RAW_JADE.get());
+        basicItem(SMItems.ROUGH_JADE.get());
         basicItem(SMItems.POLISHED_JADE.get());
         basicItem(SMItems.LANTERNFISH_BUCKET.get());
         basicSpawnEggItem(SMItems.LANTERNFISH_SPAWN_EGG.get());
@@ -57,12 +57,12 @@ public class SMItemModelProvider extends ItemModelProvider {
         basicBlockItem(SMBlocks.SMALL_POLISHED_JADE_BRICK_SLAB.get());
         basicBlockItem(SMBlocks.POLISHED_JADE_SHINGLE_SLAB.get());
         basicBlockItem(SMBlocks.POLISHED_JADE_TILE_SLAB.get());
-        basicBlockItem(SMBlocks.RAW_JADE_BRICK_STAIRS.get());
-        basicBlockItem(SMBlocks.SMOOTH_RAW_JADE_STAIRS.get());
-        basicBlockItem(SMBlocks.RAW_JADE_TILE_STAIRS.get());
-        basicBlockItem(SMBlocks.RAW_JADE_BRICK_SLAB.get());
-        basicBlockItem(SMBlocks.SMOOTH_RAW_JADE_SLAB.get());
-        basicBlockItem(SMBlocks.RAW_JADE_TILE_SLAB.get());
+        basicBlockItem(SMBlocks.ROUGH_JADE_BRICK_STAIRS.get());
+        basicBlockItem(SMBlocks.SMOOTH_ROUGH_JADE_STAIRS.get());
+        basicBlockItem(SMBlocks.ROUGH_JADE_TILE_STAIRS.get());
+        basicBlockItem(SMBlocks.ROUGH_JADE_BRICK_SLAB.get());
+        basicBlockItem(SMBlocks.SMOOTH_ROUGH_JADE_SLAB.get());
+        basicBlockItem(SMBlocks.ROUGH_JADE_TILE_SLAB.get());
 
         SullysMod.LOGGER.info("ITEM MODEL GENERATION COMPLETE");
     }

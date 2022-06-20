@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/inner_stairs",
+  "textures": {
+    "side": "sullysmod:block/smooth_rough_jade",
+    "bottom": "sullysmod:block/smooth_rough_jade",
+    "top": "sullysmod:block/smooth_rough_jade"
+  }
+}
