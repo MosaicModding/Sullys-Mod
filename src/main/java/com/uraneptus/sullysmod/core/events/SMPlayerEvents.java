@@ -3,6 +3,7 @@ package com.uraneptus.sullysmod.core.events;
 import com.mojang.math.Vector3f;
 import com.uraneptus.sullysmod.SullysMod;
 import com.uraneptus.sullysmod.common.recipes.GrindstonePolishingRecipe;
+import com.uraneptus.sullysmod.core.SMConfig;
 import com.uraneptus.sullysmod.core.registry.SMSounds;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.DustParticleOptions;
@@ -97,16 +98,17 @@ public class SMPlayerEvents {
         InteractionHand hand = player.getUsedItemHand();
         BlockPos pos = player.blockPosition();
         ArrayList<GrindstonePolishingRecipe> recipes = new ArrayList<>(GrindstonePolishingRecipe.getRecipes(level));
+        if (SMConfig.PARTICLES_AROUND_GRINDSTONE.get()) {
+            for (GrindstonePolishingRecipe polishingRecipe : recipes) {
+                if (!recipes.isEmpty()) {
+                    ItemStack ingredient = polishingRecipe.ingredient;
 
-        for (GrindstonePolishingRecipe polishingRecipe : recipes) {
-            if (!recipes.isEmpty()) {
-                ItemStack ingredient = polishingRecipe.ingredient;
-
-                if (player.getItemInHand(hand).is(ingredient.getItem())) {
-                    for(BlockPos blockpos : BlockPos.betweenClosed(pos.offset(-7, -7, -7), pos.offset(7, 7, 7))) {
-                        Block block = level.getBlockState(blockpos).getBlock();
-                        if (block instanceof GrindstoneBlock) {
-                            ParticleUtils.spawnParticlesOnBlockFaces(level, blockpos, new DustParticleOptions(new Vector3f(Vec3.fromRGB24(16777215)), 0.4F), UniformInt.of(0, 1));
+                    if (player.getItemInHand(hand).is(ingredient.getItem())) {
+                        for(BlockPos blockpos : BlockPos.betweenClosed(pos.offset(-7, -7, -7), pos.offset(7, 7, 7))) {
+                            Block block = level.getBlockState(blockpos).getBlock();
+                            if (block instanceof GrindstoneBlock) {
+                                ParticleUtils.spawnParticlesOnBlockFaces(level, blockpos, new DustParticleOptions(new Vector3f(Vec3.fromRGB24(16777215)), 0.4F), UniformInt.of(0, 1));
+                            }
                         }
                     }
                 }

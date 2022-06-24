@@ -13,11 +13,14 @@ public class SMConfig {
     public static ForgeConfigSpec.ConfigValue<Integer> LANTERNFISH_SPAWN_WEIGHT;
 
     public static ForgeConfigSpec.ConfigValue<Boolean> ENABLE_JADE;
+    public static ForgeConfigSpec.ConfigValue<Boolean> PARTICLES_AROUND_GRINDSTONE;
 
     public static ForgeConfigSpec COMMON;
+    public static ForgeConfigSpec CLIENT;
 
     static {
         ForgeConfigSpec.Builder COMMON_BUILDER = new ForgeConfigSpec.Builder();
+        ForgeConfigSpec.Builder CLIENT_BUILDER = new ForgeConfigSpec.Builder();
 
         //Common
         COMMON_BUILDER.comment("Mobs").push("mobs");
@@ -37,6 +40,12 @@ public class SMConfig {
         COMMON_BUILDER.pop();
         COMMON_BUILDER.pop();
 
+        //CLIENT
+        CLIENT_BUILDER.comment("Particles").push("particles");
+        PARTICLES_AROUND_GRINDSTONE = CLIENT_BUILDER.comment("If Particles spawn around the grindstone, while the Player is holding an Item that can be polished. (default = true)").define("Particles around Grindstone", true);
+        CLIENT_BUILDER.pop();
+
         COMMON = COMMON_BUILDER.build();
+        CLIENT = CLIENT_BUILDER.build();
     }
 }
