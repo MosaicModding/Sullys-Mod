@@ -60,9 +60,9 @@ public class SMLangProvider extends LanguageProvider {
         add(SMBlocks.SMALL_POLISHED_JADE_BRICK_VERTICAL_SLAB.get(), "Small Polished Jade Brick Vertical Slab");
         add(SMBlocks.POLISHED_JADE_SHINGLE_VERTICAL_SLAB.get(), "Polished Jade Shingle Vertical Slab");
         add(SMBlocks.POLISHED_JADE_TILE_VERTICAL_SLAB.get(), "Polished Jade Tile Vertical Slab");
-        add(SMBlocks.RAW_JADE_BRICK_VERTICAL_SLAB.get(), "Rough Jade Brick Vertical Slab");
-        add(SMBlocks.SMOOTH_RAW_JADE_VERTICAL_SLAB.get(), "Smooth Rough Jade Vertical Slab");
-        add(SMBlocks.RAW_JADE_TILE_VERTICAL_SLAB.get(),  "Rough Jade Tile Vertical Slab");
+        add(SMBlocks.ROUGH_JADE_BRICK_VERTICAL_SLAB.get(), "Rough Jade Brick Vertical Slab");
+        add(SMBlocks.SMOOTH_ROUGH_JADE_VERTICAL_SLAB.get(), "Smooth Rough Jade Vertical Slab");
+        add(SMBlocks.ROUGH_JADE_TILE_VERTICAL_SLAB.get(),  "Rough Jade Tile Vertical Slab");
         add(SMBlocks.TORTOISE_EGG.get(), "Tortoise Egg");
 
         //Items
@@ -84,6 +84,13 @@ public class SMLangProvider extends LanguageProvider {
         add(PotionUtils.setPotion(Items.SPLASH_POTION.getDefaultInstance(), SMPotions.UNLUCK.get()), "Splash Potion of Bad Luck");
         add(PotionUtils.setPotion(Items.LINGERING_POTION.getDefaultInstance(), SMPotions.UNLUCK.get()), "Lingering Potion of Bad Luck");
         add(PotionUtils.setPotion(Items.TIPPED_ARROW.getDefaultInstance(), SMPotions.UNLUCK.get()), "Arrow of Bad Luck");
+
+        //Advancements
+        add("advancements.adventure.jade_grindset.title", "Jade Grindset");
+        add("advancements.adventure.jade_grindset.description", "Acquire Rough Jade");
+
+        add("advancements.adventure.polish_jade.title", "Insert Name Here");
+        add("advancements.adventure.polish_jade.description", "Acquire Polished Jade");
 
         //Subtitles
         add("subtitles.block.grindstone.polish_jade", "Grindstone polishes");

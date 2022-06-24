@@ -36,6 +36,9 @@ public class SMDatagenUtil {
         return new ResourceLocation("minecraft", ModelProvider.ITEM_FOLDER + "/" + path);
     }
 
+    //Quark Flag (We're gonna need this a fair amount once that wood gets added)
+    public static ResourceLocation QUARK_FLAG = new ResourceLocation("blueprint", "quark_flag");
+
     //Textures
     public static final String COPPER_BLOCK = name(Blocks.COPPER_BLOCK);
     public static final String EXPOSED_COPPER = name(Blocks.EXPOSED_COPPER);
@@ -45,8 +48,8 @@ public class SMDatagenUtil {
     public static final String SMALL_JADE_BRICKS = name(SMBlocks.SMALL_POLISHED_JADE_BRICKS.get());
     public static final String JADE_SHINGLES = name(SMBlocks.POLISHED_JADE_SHINGLES.get());
     public static final String JADE_TILES = name(SMBlocks.POLISHED_JADE_TILES.get());
-    public static final String RAW_JADE_BRICKS = name(SMBlocks.ROUGH_JADE_BRICKS.get());
-    public static final String SMOOTH_RAW_JADE = name(SMBlocks.SMOOTH_ROUGH_JADE.get());
-    public static final String RAW_JADE_TILES = name(SMBlocks.ROUGH_JADE_TILES.get());
+    public static final String ROUGH_JADE_BRICKS = name(SMBlocks.ROUGH_JADE_BRICKS.get());
+    public static final String SMOOTH_ROUGH_JADE = name(SMBlocks.SMOOTH_ROUGH_JADE.get());
+    public static final String ROUGH_JADE_TILES = name(SMBlocks.ROUGH_JADE_TILES.get());
 
 }

@@ -1,0 +1,37 @@
+{
+  "parent": "minecraft:adventure/root",
+  "display": {
+    "icon": {
+      "item": "sullysmod:rough_jade"
+    },
+    "title": {
+      "translate": "advancements.adventure.jade_grindset.title"
+    },
+    "description": {
+      "translate": "advancements.adventure.jade_grindset.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "rough_jade": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "sullysmod:rough_jade"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "rough_jade"
+    ]
+  ]
+}

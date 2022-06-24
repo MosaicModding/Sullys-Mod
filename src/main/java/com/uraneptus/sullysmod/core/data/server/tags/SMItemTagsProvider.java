@@ -3,6 +3,7 @@ package com.uraneptus.sullysmod.core.data.server.tags;
 import com.uraneptus.sullysmod.SullysMod;
 import com.uraneptus.sullysmod.core.other.tags.SMItemTags;
 import com.uraneptus.sullysmod.core.registry.SMBlocks;
+import com.uraneptus.sullysmod.core.registry.SMItems;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.tags.BlockTagsProvider;
 import net.minecraft.data.tags.ItemTagsProvider;
@@ -54,6 +55,25 @@ public class SMItemTagsProvider extends ItemTagsProvider {
                 SMBlocks.ROUGH_JADE_BRICK_STAIRS.get().asItem(),
                 SMBlocks.ROUGH_JADE_TILE_STAIRS.get().asItem(),
                 SMBlocks.SMOOTH_ROUGH_JADE_STAIRS.get().asItem()
+        );
+
+        //Forge Tags
+        tag(SMItemTags.RAW_FISH).add(
+                SMItems.RAW_LANTERNFISH.get()
+        );
+        tag(SMItemTags.COOKED_LANTERNFISH).add(
+                SMItems.COOKED_LANTERNFISH.get()
+        );
+
+        //Quark Tags
+        tag(SMItemTags.VERTICAL_SLABS).add(
+                SMBlocks.SMALL_POLISHED_JADE_BRICK_VERTICAL_SLAB.get().asItem(),
+                SMBlocks.POLISHED_JADE_BRICK_VERTICAL_SLAB.get().asItem(),
+                SMBlocks.POLISHED_JADE_SHINGLE_VERTICAL_SLAB.get().asItem(),
+                SMBlocks.POLISHED_JADE_TILE_VERTICAL_SLAB.get().asItem(),
+                SMBlocks.ROUGH_JADE_BRICK_VERTICAL_SLAB.get().asItem(),
+                SMBlocks.SMOOTH_ROUGH_JADE_VERTICAL_SLAB.get().asItem(),
+                SMBlocks.ROUGH_JADE_TILE_VERTICAL_SLAB.get().asItem()
         );
 
         SullysMod.LOGGER.info("ITEM TAG GENERATION COMPLETE");

@@ -29,6 +29,13 @@
     "sullysmod:rough_jade_tile_stairs",
     "sullysmod:rough_jade_brick_slab",
     "sullysmod:smooth_rough_jade_slab",
-    "sullysmod:rough_jade_tile_slab"
+    "sullysmod:rough_jade_tile_slab",
+    "sullysmod:small_polished_jade_brick_vertical_slab",
+    "sullysmod:polished_jade_brick_vertical_slab",
+    "sullysmod:polished_jade_shingle_vertical_slab",
+    "sullysmod:polished_jade_tile_vertical_slab",
+    "sullysmod:rough_jade_brick_vertical_slab",
+    "sullysmod:smooth_rough_jade_vertical_slab",
+    "sullysmod:rough_jade_tile_vertical_slab"
   ]
 }

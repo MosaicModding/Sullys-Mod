@@ -46,7 +46,14 @@ public class SMBlockTagsProvider extends BlockTagsProvider {
                 SMBlocks.ROUGH_JADE_TILE_STAIRS.get(),
                 SMBlocks.ROUGH_JADE_BRICK_SLAB.get(),
                 SMBlocks.SMOOTH_ROUGH_JADE_SLAB.get(),
-                SMBlocks.ROUGH_JADE_TILE_SLAB.get()
+                SMBlocks.ROUGH_JADE_TILE_SLAB.get(),
+                SMBlocks.SMALL_POLISHED_JADE_BRICK_VERTICAL_SLAB.get(),
+                SMBlocks.POLISHED_JADE_BRICK_VERTICAL_SLAB.get(),
+                SMBlocks.POLISHED_JADE_SHINGLE_VERTICAL_SLAB.get(),
+                SMBlocks.POLISHED_JADE_TILE_VERTICAL_SLAB.get(),
+                SMBlocks.ROUGH_JADE_BRICK_VERTICAL_SLAB.get(),
+                SMBlocks.SMOOTH_ROUGH_JADE_VERTICAL_SLAB.get(),
+                SMBlocks.ROUGH_JADE_TILE_VERTICAL_SLAB.get()
         );
         tag(net.minecraft.tags.BlockTags.NEEDS_IRON_TOOL).add(
                 SMBlocks.JADE_ORE.get(),
@@ -77,7 +84,14 @@ public class SMBlockTagsProvider extends BlockTagsProvider {
                 SMBlocks.ROUGH_JADE_TILE_STAIRS.get(),
                 SMBlocks.ROUGH_JADE_BRICK_SLAB.get(),
                 SMBlocks.SMOOTH_ROUGH_JADE_SLAB.get(),
-                SMBlocks.ROUGH_JADE_TILE_SLAB.get()
+                SMBlocks.ROUGH_JADE_TILE_SLAB.get(),
+                SMBlocks.SMALL_POLISHED_JADE_BRICK_VERTICAL_SLAB.get(),
+                SMBlocks.POLISHED_JADE_BRICK_VERTICAL_SLAB.get(),
+                SMBlocks.POLISHED_JADE_SHINGLE_VERTICAL_SLAB.get(),
+                SMBlocks.POLISHED_JADE_TILE_VERTICAL_SLAB.get(),
+                SMBlocks.ROUGH_JADE_BRICK_VERTICAL_SLAB.get(),
+                SMBlocks.SMOOTH_ROUGH_JADE_VERTICAL_SLAB.get(),
+                SMBlocks.ROUGH_JADE_TILE_VERTICAL_SLAB.get()
         );
         tag(net.minecraft.tags.BlockTags.BUTTONS).add(
                 SMBlocks.COPPER_BUTTON.get(),
@@ -108,7 +122,7 @@ public class SMBlockTagsProvider extends BlockTagsProvider {
                 SMBlocks.SMOOTH_ROUGH_JADE_STAIRS.get()
         );
 
-        //Mod Tags
+        //Our Tags
         tag(SMBlockTags.PROJECTILES_BOUNCE_ON).add(
                 SMBlocks.POLISHED_JADE_BLOCK.get(),
                 SMBlocks.POLISHED_JADE_BRICKS.get(),
@@ -125,7 +139,12 @@ public class SMBlockTagsProvider extends BlockTagsProvider {
                 SMBlocks.POLISHED_JADE_BRICK_SLAB.get(),
                 SMBlocks.SMALL_POLISHED_JADE_BRICK_SLAB.get(),
                 SMBlocks.POLISHED_JADE_SHINGLE_SLAB.get(),
-                SMBlocks.POLISHED_JADE_TILE_SLAB.get()
+                SMBlocks.POLISHED_JADE_TILE_SLAB.get(),
+                SMBlocks.JADE_FLINGER_TOTEM.get(),
+                SMBlocks.SMALL_POLISHED_JADE_BRICK_VERTICAL_SLAB.get(),
+                SMBlocks.POLISHED_JADE_BRICK_VERTICAL_SLAB.get(),
+                SMBlocks.POLISHED_JADE_SHINGLE_VERTICAL_SLAB.get(),
+                SMBlocks.POLISHED_JADE_TILE_VERTICAL_SLAB.get()
         );
 
         //Forge Tags
@@ -140,6 +159,17 @@ public class SMBlockTagsProvider extends BlockTagsProvider {
                 SMBlocks.WAXED_EXPOSED_COPPER_BUTTON.get(),
                 SMBlocks.WAXED_WEATHERED_COPPER_BUTTON.get(),
                 SMBlocks.WAXED_OXIDIZED_COPPER_BUTTON.get()
+        );
+
+        //Quark Tags
+        tag(SMBlockTags.VERTICAL_SLABS).add(
+                SMBlocks.SMALL_POLISHED_JADE_BRICK_VERTICAL_SLAB.get(),
+                SMBlocks.POLISHED_JADE_BRICK_VERTICAL_SLAB.get(),
+                SMBlocks.POLISHED_JADE_SHINGLE_VERTICAL_SLAB.get(),
+                SMBlocks.POLISHED_JADE_TILE_VERTICAL_SLAB.get(),
+                SMBlocks.ROUGH_JADE_BRICK_VERTICAL_SLAB.get(),
+                SMBlocks.SMOOTH_ROUGH_JADE_VERTICAL_SLAB.get(),
+                SMBlocks.ROUGH_JADE_TILE_VERTICAL_SLAB.get()
         );
 
         SullysMod.LOGGER.info("BLOCK TAG GENERATION COMPLETE");

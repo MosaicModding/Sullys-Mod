@@ -9,7 +9,8 @@ import com.uraneptus.sullysmod.core.SMConfig;
 import com.uraneptus.sullysmod.core.data.client.SMBlockStateProvider;
 import com.uraneptus.sullysmod.core.data.client.SMItemModelProvider;
 import com.uraneptus.sullysmod.core.data.client.SMLangProvider;
-import com.uraneptus.sullysmod.core.data.server.SMLootModifierProvider;
+import com.uraneptus.sullysmod.core.data.server.SMAdvancementProvider;
+import com.uraneptus.sullysmod.core.data.server.modifiers.SMLootModifierProvider;
 import com.uraneptus.sullysmod.core.data.server.SMLootTableProvider;
 import com.uraneptus.sullysmod.core.data.server.SMRecipeProvider;
 import com.uraneptus.sullysmod.core.data.server.modifiers.SMAdvancementModifiersProvider;
@@ -89,6 +90,7 @@ public class SullysMod {
             generator.addProvider(new SMItemTagsProvider(generator, blockTagProvider, fileHelper));
             generator.addProvider(new SMAdvancementModifiersProvider(generator));
             generator.addProvider(new SMLootTableProvider(generator));
+            generator.addProvider(new SMAdvancementProvider(generator, fileHelper));
             generator.addProvider(new SMRecipeProvider(generator));
             generator.addProvider(new SMLootModifierProvider(generator));
         }

@@ -55,9 +55,9 @@ public class SMBlocks {
     public static final RegistryObject<Block> POLISHED_JADE_TILE_SLAB = HELPER.createBlock("polished_jade_tile_slab", () -> new SlabBlock(Properties.POLISHED_JADE_BLOCKS), CreativeModeTab.TAB_BUILDING_BLOCKS);
 
     //Jade Vertical Slabs
-    public static final RegistryObject<Block> RAW_JADE_BRICK_VERTICAL_SLAB = HELPER.createCompatBlock("quark", "raw_jade_brick_vertical_slab", () -> new VerticalSlabBlock(Properties.ROUGH_JADE_BLOCKS), CreativeModeTab.TAB_BUILDING_BLOCKS);
-    public static final RegistryObject<Block> SMOOTH_RAW_JADE_VERTICAL_SLAB = HELPER.createCompatBlock("quark", "smooth_raw_jade_vertical_slab", () -> new VerticalSlabBlock(Properties.ROUGH_JADE_BLOCKS), CreativeModeTab.TAB_BUILDING_BLOCKS);
-    public static final RegistryObject<Block> RAW_JADE_TILE_VERTICAL_SLAB = HELPER.createCompatBlock("quark", "raw_jade_tile_vertical_slab", () -> new VerticalSlabBlock(Properties.ROUGH_JADE_BLOCKS), CreativeModeTab.TAB_BUILDING_BLOCKS);
+    public static final RegistryObject<Block> ROUGH_JADE_BRICK_VERTICAL_SLAB = HELPER.createCompatBlock("quark", "rough_jade_brick_vertical_slab", () -> new VerticalSlabBlock(Properties.ROUGH_JADE_BLOCKS), CreativeModeTab.TAB_BUILDING_BLOCKS);
+    public static final RegistryObject<Block> SMOOTH_ROUGH_JADE_VERTICAL_SLAB = HELPER.createCompatBlock("quark", "smooth_rough_jade_vertical_slab", () -> new VerticalSlabBlock(Properties.ROUGH_JADE_BLOCKS), CreativeModeTab.TAB_BUILDING_BLOCKS);
+    public static final RegistryObject<Block> ROUGH_JADE_TILE_VERTICAL_SLAB = HELPER.createCompatBlock("quark", "rough_jade_tile_vertical_slab", () -> new VerticalSlabBlock(Properties.ROUGH_JADE_BLOCKS), CreativeModeTab.TAB_BUILDING_BLOCKS);
     public static final RegistryObject<Block> POLISHED_JADE_BRICK_VERTICAL_SLAB = HELPER.createCompatBlock("quark", "polished_jade_brick_vertical_slab", () -> new VerticalSlabBlock(Properties.POLISHED_JADE_BLOCKS), CreativeModeTab.TAB_BUILDING_BLOCKS);
     public static final RegistryObject<Block> SMALL_POLISHED_JADE_BRICK_VERTICAL_SLAB = HELPER.createCompatBlock("quark", "small_polished_jade_brick_vertical_slab", () -> new VerticalSlabBlock(Properties.POLISHED_JADE_BLOCKS), CreativeModeTab.TAB_BUILDING_BLOCKS);
     public static final RegistryObject<Block> POLISHED_JADE_SHINGLE_VERTICAL_SLAB = HELPER.createCompatBlock("quark", "polished_jade_shingle_vertical_slab", () -> new VerticalSlabBlock(Properties.POLISHED_JADE_BLOCKS), CreativeModeTab.TAB_BUILDING_BLOCKS);

@@ -41,48 +41,56 @@ public class SMEntityEvents {
         HitResult hitResult = event.getRayTraceResult();
         Vec3 vec3 = projectile.getDeltaMovement();
         float velocity = (float) vec3.length();
+        boolean flingerFlag = false;
+
 
         if (hitResult instanceof BlockHitResult blockHitResult) {
             BlockPos pos = blockHitResult.getBlockPos();
             BlockState blockState = level.getBlockState(pos);
             Direction direction = blockHitResult.getDirection();
 
-            if (!(projectile.getType().is(SMEntityTags.CANNOT_BOUNCE))) {
-                if (blockState.is(SMBlockTags.PROJECTILES_BOUNCE_ON)) {
+            if (blockState.is(SMBlockTags.PROJECTILES_BOUNCE_ON)) {
+                if (!(projectile.getType().is(SMEntityTags.CANNOT_BE_FLUNG))) {
+                    if (blockState.getBlock() instanceof JadeFlingerTotem) {
+                        Direction front = blockState.getValue(JadeFlingerTotem.FACING);
+                        if (!direction.equals(front)) {
+                            flingerFlag = true;
+                        }
+                    }
+                }
+                if (flingerFlag) {
+                    event.setCanceled(true);
+                    Direction front = blockState.getValue(JadeFlingerTotem.FACING);
+
+                    Projectile newProjectile = projectile;
+                    projectile = (Projectile) projectile.getType().create(level);
+                    if (projectile == null) {
+                        return;
+                    }
+                    newProjectile.setRemoved(Entity.RemovalReason.DISCARDED);
+
+                    CompoundTag compoundtag = newProjectile.saveWithoutId(new CompoundTag());
+                    compoundtag.remove("Motion");
+                    projectile.load(compoundtag);
+
+                    projectile.moveTo(pos.getX() + 0.5 + front.getStepX(), pos.getY() + 0.5F + front.getStepY(), pos.getZ() + 0.5 + front.getStepZ());
+                    projectile.shoot(front.getStepX(), front.getStepY(), front.getStepZ(), velocity, 0.0F);
+                    level.addFreshEntity(projectile);
+                }
+                else if (!(projectile.getType().is(SMEntityTags.CANNOT_BOUNCE))) {
                     event.setCanceled(true);
 
-                    if (direction.getAxis().isHorizontal()) {
-                        projectile.shoot(vec3.reverse().x, vec3.reverse().y, vec3.reverse().z, 0.5F, 0.0F);
+                    if (direction.getAxis() == Direction.Axis.X) {
+                        projectile.shoot(vec3.reverse().x, vec3.y, vec3.z, 0.5F, 0.0F);
 
-                    } else {
-                        projectile.shoot(vec3.scale(1.0D).x + vec3.scale(1.5D).x, vec3.scale(-2.5D).y, vec3.scale(1.0D).z + vec3.scale(1.5D).z, 0.5F, 0.0F);
+                    } else if (direction.getAxis() == Direction.Axis.Y) {
+                        projectile.shoot(vec3.x, vec3.reverse().y, vec3.z, 0.5F, 0.0F);
+
+                    } else if (direction.getAxis() == Direction.Axis.Z) {
+                        projectile.shoot(vec3.x, vec3.y, vec3.reverse().z, 0.5F, 0.0F);
                     }
                     level.addParticle(SMParticleTypes.RICOCHET.get(), projectile.getX(), projectile.getY(), projectile.getZ(), 0, 0, 0);
                     level.playLocalSound(projectile.getX(), projectile.getY(), projectile.getZ(), SMSounds.JADE_RICOCHET.get(), SoundSource.BLOCKS, 1.0F, 0.0F, false);
-                }
-            }
-            if (!(projectile.getType().is(SMEntityTags.CANNOT_BE_FLUNG))) {
-                if (blockState.getBlock() instanceof JadeFlingerTotem) {
-                    Direction front = blockState.getValue(JadeFlingerTotem.FACING);
-
-                    if (!direction.equals(front)) {
-                        event.setCanceled(true);
-
-                        Projectile newProjectile = projectile;
-                        projectile = (Projectile) projectile.getType().create(level);
-                        if (projectile == null) {
-                            return;
-                        }
-                        newProjectile.setRemoved(Entity.RemovalReason.DISCARDED);
-
-                        CompoundTag compoundtag = newProjectile.saveWithoutId(new CompoundTag());
-                        compoundtag.remove("Motion");
-                        projectile.load(compoundtag);
-
-                        projectile.moveTo(pos.getX() + 0.5 + front.getStepX(), pos.getY() + 0.5F + front.getStepY(), pos.getZ() + 0.5 + front.getStepZ());
-                        projectile.shoot(front.getStepX(), front.getStepY(), front.getStepZ(), velocity, 0.0F);
-                        level.addFreshEntity(projectile);
-                    }
                 }
             }
         }

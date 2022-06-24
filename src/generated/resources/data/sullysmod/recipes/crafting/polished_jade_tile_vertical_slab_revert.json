@@ -1,0 +1,24 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "flag": "vertical_slabs",
+          "type": "blueprint:quark_flag"
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:crafting_shapeless",
+        "ingredients": [
+          {
+            "item": "sullysmod:polished_jade_tile_vertical_slab"
+          }
+        ],
+        "result": {
+          "item": "sullysmod:polished_jade_tile_slab"
+        }
+      }
+    }
+  ]
+}

@@ -1,6 +1,8 @@
 package com.uraneptus.sullysmod.core.data.server;
 
+import com.teamabnormals.blueprint.core.api.conditions.QuarkFlagRecipeCondition;
 import com.uraneptus.sullysmod.SullysMod;
+import com.uraneptus.sullysmod.core.data.SMDatagenUtil;
 import com.uraneptus.sullysmod.core.registry.SMBlocks;
 import com.uraneptus.sullysmod.core.registry.SMItems;
 import net.minecraft.data.DataGenerator;
@@ -10,6 +12,7 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraftforge.common.crafting.ConditionalRecipe;
 
 import java.util.function.Consumer;
 
@@ -53,6 +56,14 @@ public class SMRecipeProvider extends RecipeProvider {
         slabRecipes(SMBlocks.POLISHED_JADE_TILES.get(), SMBlocks.POLISHED_JADE_TILE_SLAB.get(), consumer);
         slabRecipes(SMBlocks.SMALL_POLISHED_JADE_BRICKS.get(), SMBlocks.SMALL_POLISHED_JADE_BRICK_SLAB.get(), consumer);
         slabRecipes(SMBlocks.POLISHED_JADE_SHINGLES.get(), SMBlocks.POLISHED_JADE_SHINGLE_SLAB.get(), consumer);
+
+        verticalSlabRecipes(SMBlocks.ROUGH_JADE_BRICK_SLAB.get(), SMBlocks.ROUGH_JADE_BRICK_VERTICAL_SLAB.get(), consumer);
+        verticalSlabRecipes(SMBlocks.ROUGH_JADE_TILE_SLAB.get(), SMBlocks.ROUGH_JADE_TILE_VERTICAL_SLAB.get(), consumer);
+        verticalSlabRecipes(SMBlocks.SMOOTH_ROUGH_JADE_SLAB.get(), SMBlocks.SMOOTH_ROUGH_JADE_VERTICAL_SLAB.get(), consumer);
+        verticalSlabRecipes(SMBlocks.POLISHED_JADE_BRICK_SLAB.get(), SMBlocks.POLISHED_JADE_BRICK_VERTICAL_SLAB.get(), consumer);
+        verticalSlabRecipes(SMBlocks.POLISHED_JADE_TILE_SLAB.get(), SMBlocks.POLISHED_JADE_TILE_VERTICAL_SLAB.get(), consumer);
+        verticalSlabRecipes(SMBlocks.SMALL_POLISHED_JADE_BRICK_SLAB.get(), SMBlocks.SMALL_POLISHED_JADE_BRICK_VERTICAL_SLAB.get(), consumer);
+        verticalSlabRecipes(SMBlocks.POLISHED_JADE_SHINGLE_SLAB.get(), SMBlocks.POLISHED_JADE_SHINGLE_VERTICAL_SLAB.get(), consumer);
 
         pillarRecipes(SMBlocks.POLISHED_JADE_BLOCK.get(), SMBlocks.POLISHED_JADE_PILLAR.get(), consumer);
 
@@ -168,5 +179,17 @@ public class SMRecipeProvider extends RecipeProvider {
         String prefix = resultName + "_from_" + ingredient.asItem();
         SingleItemRecipeBuilder.stonecutting(Ingredient.of(ingredient), result, resultCount)
                 .unlockedBy(getHasName(ingredient), has(ingredient)).save(consumer, prefix + "_stonecutting");
+    }
+
+    private static void verticalSlabRecipes(ItemLike slab, ItemLike verticalSlab, Consumer<FinishedRecipe> consumer) {
+        ConditionalRecipe.builder()
+                .addCondition(new QuarkFlagRecipeCondition(SMDatagenUtil.QUARK_FLAG, "vertical_slabs"))
+                .addRecipe(consumer1 -> ShapedRecipeBuilder.shaped(verticalSlab, 3).define('#', slab).pattern("#").pattern("#").pattern("#").unlockedBy(getHasName(slab), has(slab)).save(consumer1, new ResourceLocation(SullysMod.MOD_ID, getItemName(verticalSlab))))
+                .build(consumer, new ResourceLocation(SullysMod.MOD_ID, "crafting/" + getItemName(verticalSlab)));
+
+        ConditionalRecipe.builder()
+                .addCondition(new QuarkFlagRecipeCondition(SMDatagenUtil.QUARK_FLAG, "vertical_slabs"))
+                .addRecipe(consumer1 -> ShapelessRecipeBuilder.shapeless(slab).requires(verticalSlab).unlockedBy(getHasName(verticalSlab), has(verticalSlab)).save(consumer1, new ResourceLocation(SullysMod.MOD_ID, getItemName(verticalSlab) + "_revert")))
+                .build(consumer, new ResourceLocation(SullysMod.MOD_ID, "crafting/" + getItemName(verticalSlab) + "_revert"));
     }
 }

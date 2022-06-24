@@ -63,6 +63,14 @@ public class SMItemModelProvider extends ItemModelProvider {
         basicBlockItem(SMBlocks.ROUGH_JADE_BRICK_SLAB.get());
         basicBlockItem(SMBlocks.SMOOTH_ROUGH_JADE_SLAB.get());
         basicBlockItem(SMBlocks.ROUGH_JADE_TILE_SLAB.get());
+        basicBlockItem(SMBlocks.POLISHED_JADE_BRICK_VERTICAL_SLAB.get());
+        basicBlockItem(SMBlocks.SMALL_POLISHED_JADE_BRICK_VERTICAL_SLAB.get());
+        basicBlockItem(SMBlocks.POLISHED_JADE_SHINGLE_VERTICAL_SLAB.get());
+        basicBlockItem(SMBlocks.POLISHED_JADE_TILE_VERTICAL_SLAB.get());
+        basicBlockItem(SMBlocks.ROUGH_JADE_BRICK_VERTICAL_SLAB.get());
+        basicBlockItem(SMBlocks.SMOOTH_ROUGH_JADE_VERTICAL_SLAB.get());
+        basicBlockItem(SMBlocks.ROUGH_JADE_TILE_VERTICAL_SLAB.get());
+
 
         SullysMod.LOGGER.info("ITEM MODEL GENERATION COMPLETE");
     }

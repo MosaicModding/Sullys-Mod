@@ -12,16 +12,15 @@ import net.minecraftforge.client.model.generators.BlockStateProvider;
 import net.minecraftforge.client.model.generators.ConfiguredModel;
 import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.common.data.ExistingFileHelper;
-import net.minecraftforge.registries.RegistryObject;
 
 public class SMBlockStateProvider extends BlockStateProvider {
-
     public SMBlockStateProvider(DataGenerator gen, ExistingFileHelper exFileHelper) {
         super(gen, SullysMod.MOD_ID, exFileHelper);
     }
 
     @Override
     protected void registerStatesAndModels() {
+
         basicBlock(SMBlocks.JADE_ORE.get());
         basicBlock(SMBlocks.DEEPSLATE_JADE_ORE.get());
         basicBlock(SMBlocks.ROUGH_JADE_BLOCK.get());
@@ -49,17 +48,23 @@ public class SMBlockStateProvider extends BlockStateProvider {
         modStairsBlock(SMBlocks.SMALL_POLISHED_JADE_BRICK_STAIRS.get(), SMDatagenUtil.SMALL_JADE_BRICKS);
         modStairsBlock(SMBlocks.POLISHED_JADE_SHINGLE_STAIRS.get(), SMDatagenUtil.JADE_SHINGLES);
         modStairsBlock(SMBlocks.POLISHED_JADE_TILE_STAIRS.get(), SMDatagenUtil.JADE_TILES);
-        modStairsBlock(SMBlocks.ROUGH_JADE_BRICK_STAIRS.get(), SMDatagenUtil.RAW_JADE_BRICKS);
-        modStairsBlock(SMBlocks.SMOOTH_ROUGH_JADE_STAIRS.get(), SMDatagenUtil.SMOOTH_RAW_JADE);
-        modStairsBlock(SMBlocks.ROUGH_JADE_TILE_STAIRS.get(), SMDatagenUtil.RAW_JADE_TILES);
+        modStairsBlock(SMBlocks.ROUGH_JADE_BRICK_STAIRS.get(), SMDatagenUtil.ROUGH_JADE_BRICKS);
+        modStairsBlock(SMBlocks.SMOOTH_ROUGH_JADE_STAIRS.get(), SMDatagenUtil.SMOOTH_ROUGH_JADE);
+        modStairsBlock(SMBlocks.ROUGH_JADE_TILE_STAIRS.get(), SMDatagenUtil.ROUGH_JADE_TILES);
         modSlabBlock(SMBlocks.POLISHED_JADE_BRICK_SLAB.get(), SMDatagenUtil.JADE_BRICKS);
         modSlabBlock(SMBlocks.SMALL_POLISHED_JADE_BRICK_SLAB.get(), SMDatagenUtil.SMALL_JADE_BRICKS);
         modSlabBlock(SMBlocks.POLISHED_JADE_SHINGLE_SLAB.get(), SMDatagenUtil.JADE_SHINGLES);
         modSlabBlock(SMBlocks.POLISHED_JADE_TILE_SLAB.get(), SMDatagenUtil.JADE_TILES);
-        modSlabBlock(SMBlocks.ROUGH_JADE_BRICK_SLAB.get(), SMDatagenUtil.RAW_JADE_BRICKS);
-        modSlabBlock(SMBlocks.SMOOTH_ROUGH_JADE_SLAB.get(), SMDatagenUtil.SMOOTH_RAW_JADE);
-        modSlabBlock(SMBlocks.ROUGH_JADE_TILE_SLAB.get(), SMDatagenUtil.RAW_JADE_TILES);
+        modSlabBlock(SMBlocks.ROUGH_JADE_BRICK_SLAB.get(), SMDatagenUtil.ROUGH_JADE_BRICKS);
+        modSlabBlock(SMBlocks.SMOOTH_ROUGH_JADE_SLAB.get(), SMDatagenUtil.SMOOTH_ROUGH_JADE);
+        modSlabBlock(SMBlocks.ROUGH_JADE_TILE_SLAB.get(), SMDatagenUtil.ROUGH_JADE_TILES);
         modVerticalSlabBlock(SMBlocks.POLISHED_JADE_BRICK_VERTICAL_SLAB.get(), SMDatagenUtil.JADE_BRICKS);
+        modVerticalSlabBlock(SMBlocks.SMALL_POLISHED_JADE_BRICK_VERTICAL_SLAB.get(), SMDatagenUtil.SMALL_JADE_BRICKS);
+        modVerticalSlabBlock(SMBlocks.POLISHED_JADE_SHINGLE_VERTICAL_SLAB.get(), SMDatagenUtil.JADE_SHINGLES);
+        modVerticalSlabBlock(SMBlocks.POLISHED_JADE_TILE_VERTICAL_SLAB.get(), SMDatagenUtil.JADE_TILES);
+        modVerticalSlabBlock(SMBlocks.ROUGH_JADE_BRICK_VERTICAL_SLAB.get(), SMDatagenUtil.ROUGH_JADE_BRICKS);
+        modVerticalSlabBlock(SMBlocks.SMOOTH_ROUGH_JADE_VERTICAL_SLAB.get(), SMDatagenUtil.SMOOTH_ROUGH_JADE);
+        modVerticalSlabBlock(SMBlocks.ROUGH_JADE_TILE_VERTICAL_SLAB.get(), SMDatagenUtil.ROUGH_JADE_TILES);
         modEggBlock(SMBlocks.TORTOISE_EGG.get());
 
         SullysMod.LOGGER.info("BLOCKSTATE GENERATION COMPLETE");
@@ -131,13 +136,13 @@ public class SMBlockStateProvider extends BlockStateProvider {
     }
 
     private void modVerticalSlabBlock(Block slab, String path) {
-        ModelFile model = this.models().withExistingParent(SMDatagenUtil.name(slab), "blueprint:block/vertical_slab").texture("top", path).texture("bottom", path).texture("side", path);
+        ModelFile model = this.models().withExistingParent(SMDatagenUtil.name(slab), new ResourceLocation("blueprint", "block/vertical_slab")).texture("top", SMDatagenUtil.modBlockLocation(path)).texture("bottom", SMDatagenUtil.modBlockLocation(path)).texture("side", SMDatagenUtil.modBlockLocation(path));
 
         getVariantBuilder(slab)
                 .partialState().with(VerticalSlabBlock.TYPE, VerticalSlabBlock.VerticalSlabType.NORTH).addModels(new ConfiguredModel(model, 0, 0, true))
                 .partialState().with(VerticalSlabBlock.TYPE, VerticalSlabBlock.VerticalSlabType.SOUTH).addModels(new ConfiguredModel(model, 0, 180, true))
                 .partialState().with(VerticalSlabBlock.TYPE, VerticalSlabBlock.VerticalSlabType.EAST).addModels(new ConfiguredModel(model, 0, 90, true))
                 .partialState().with(VerticalSlabBlock.TYPE, VerticalSlabBlock.VerticalSlabType.WEST).addModels(new ConfiguredModel(model, 0, 270, true))
-                .partialState().with(VerticalSlabBlock.TYPE, VerticalSlabBlock.VerticalSlabType.DOUBLE).addModels(new ConfiguredModel(this.models().getExistingFile(new ResourceLocation(path))));
+                .partialState().with(VerticalSlabBlock.TYPE, VerticalSlabBlock.VerticalSlabType.DOUBLE).addModels(new ConfiguredModel(this.models().getExistingFile(SMDatagenUtil.modBlockLocation(path))));
     }
 }

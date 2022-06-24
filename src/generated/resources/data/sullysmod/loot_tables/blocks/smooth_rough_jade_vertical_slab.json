@@ -13,7 +13,7 @@
               "conditions": [
                 {
                   "condition": "minecraft:block_state_property",
-                  "block": "sullysmod:raw_jade_tile_vertical_slab",
+                  "block": "sullysmod:smooth_rough_jade_vertical_slab",
                   "properties": {
                     "type": "double"
                   }
@@ -26,7 +26,7 @@
               "function": "minecraft:explosion_decay"
             }
           ],
-          "name": "sullysmod:raw_jade_tile_vertical_slab"
+          "name": "sullysmod:smooth_rough_jade_vertical_slab"
         }
       ]
     }

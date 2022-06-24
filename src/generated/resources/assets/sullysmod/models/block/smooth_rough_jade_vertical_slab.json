@@ -1,0 +1,8 @@
+{
+  "parent": "blueprint:block/vertical_slab",
+  "textures": {
+    "top": "sullysmod:block/smooth_rough_jade",
+    "bottom": "sullysmod:block/smooth_rough_jade",
+    "side": "sullysmod:block/smooth_rough_jade"
+  }
+}

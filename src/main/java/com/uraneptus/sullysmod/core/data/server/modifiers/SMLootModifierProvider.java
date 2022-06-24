@@ -1,4 +1,4 @@
-package com.uraneptus.sullysmod.core.data.server;
+package com.uraneptus.sullysmod.core.data.server.modifiers;
 
 import com.teamabnormals.blueprint.common.loot.modification.LootModifierProvider;
 import com.teamabnormals.blueprint.common.loot.modification.modifiers.LootPoolEntriesModifier;

@@ -1,0 +1,37 @@
+{
+  "parent": "sullysmod:adventure/jade_grindset",
+  "display": {
+    "icon": {
+      "item": "sullysmod:polished_jade"
+    },
+    "title": {
+      "translate": "advancements.adventure.polish_jade.title"
+    },
+    "description": {
+      "translate": "advancements.adventure.polish_jade.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "polished_jade": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "sullysmod:polished_jade"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "polished_jade"
+    ]
+  ]
+}
