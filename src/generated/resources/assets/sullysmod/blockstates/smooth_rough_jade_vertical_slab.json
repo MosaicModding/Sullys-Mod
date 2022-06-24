@@ -20,7 +20,7 @@
       "uvlock": true
     },
     "type=double": {
-      "model": "sullysmod:block/smooth_rough_jade"
+      "model": "sullysmod:block/smoothed_rough_jade"
     }
   }
 }

@@ -20,7 +20,7 @@
       "uvlock": true
     },
     "type=double": {
-      "model": "sullysmod:block/small_polished_jade_bricks"
+      "model": "sullysmod:block/polished_small_jade_bricks"
     }
   }
 }

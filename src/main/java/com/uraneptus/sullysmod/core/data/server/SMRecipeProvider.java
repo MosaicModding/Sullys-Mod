@@ -60,10 +60,10 @@ public class SMRecipeProvider extends RecipeProvider {
 
         verticalSlabRecipes(SMBlocks.ROUGH_JADE_BRICK_SLAB.get(), SMBlocks.ROUGH_JADE_BRICK_VERTICAL_SLAB.get(), consumer);
         verticalSlabRecipes(SMBlocks.ROUGH_JADE_TILE_SLAB.get(), SMBlocks.ROUGH_JADE_TILE_VERTICAL_SLAB.get(), consumer);
-        verticalSlabRecipes(SMBlocks.SMOOTH_ROUGH_JADE_SLAB.get(), SMBlocks.SMOOTH_ROUGH_JADE_VERTICAL_SLAB.get(), consumer);
+        verticalSlabRecipes(SMBlocks.SMOOTHED_ROUGH_JADE_SLAB.get(), SMBlocks.SMOOTH_ROUGH_JADE_VERTICAL_SLAB.get(), consumer);
         verticalSlabRecipes(SMBlocks.POLISHED_JADE_BRICK_SLAB.get(), SMBlocks.POLISHED_JADE_BRICK_VERTICAL_SLAB.get(), consumer);
         verticalSlabRecipes(SMBlocks.POLISHED_JADE_TILE_SLAB.get(), SMBlocks.POLISHED_JADE_TILE_VERTICAL_SLAB.get(), consumer);
-        verticalSlabRecipes(SMBlocks.SMALL_POLISHED_JADE_BRICK_SLAB.get(), SMBlocks.SMALL_POLISHED_JADE_BRICK_VERTICAL_SLAB.get(), consumer);
+        verticalSlabRecipes(SMBlocks.POLISHED_SMALL_JADE_BRICK_SLAB.get(), SMBlocks.SMALL_POLISHED_JADE_BRICK_VERTICAL_SLAB.get(), consumer);
         verticalSlabRecipes(SMBlocks.POLISHED_JADE_SHINGLE_SLAB.get(), SMBlocks.POLISHED_JADE_SHINGLE_VERTICAL_SLAB.get(), consumer);
 
         pillarRecipes(SMBlocks.POLISHED_JADE_BLOCK.get(), SMBlocks.POLISHED_JADE_PILLAR.get(), consumer);
