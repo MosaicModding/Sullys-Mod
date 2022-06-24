@@ -42,3 +42,7 @@ description = '''
     versionRange = "[3.0.18,)"
     ordering = "BEFORE"
     side = "BOTH"
+
+[modproperties.sullysmod]
+    catalogueImageIcon = "sullysmod_icon.png"
+    configuredBackground = "sullysmod:textures/block/polished_jade_bricks.png"
