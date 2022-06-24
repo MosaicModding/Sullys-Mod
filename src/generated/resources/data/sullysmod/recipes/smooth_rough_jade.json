@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:smelting",
-  "ingredient": {
-    "item": "sullysmod:rough_jade_block"
-  },
-  "result": "sullysmod:smooth_rough_jade",
-  "experience": 1.0,
-  "cookingtime": 200
-}

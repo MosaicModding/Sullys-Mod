@@ -2,13 +2,16 @@ package com.uraneptus.sullysmod.core.integration.jei.category;
 
 import com.google.common.collect.ImmutableList;
 import com.uraneptus.sullysmod.SullysMod;
+import com.uraneptus.sullysmod.common.recipes.GrindstonePolishingRecipe;
 import com.uraneptus.sullysmod.core.integration.jei.SMRecipeTypes;
-import com.uraneptus.sullysmod.core.integration.jei.other.SMPseudoPolishingRecipe;
 import com.uraneptus.sullysmod.core.registry.SMItems;
+import mezz.jei.api.constants.VanillaTypes;
+import mezz.jei.api.gui.IRecipeLayout;
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
 import mezz.jei.api.gui.drawable.IDrawable;
 import mezz.jei.api.gui.ingredient.IRecipeSlotsView;
 import mezz.jei.api.helpers.IGuiHelper;
+import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.IFocusGroup;
 import mezz.jei.api.recipe.RecipeIngredientRole;
 import mezz.jei.api.recipe.RecipeType;
@@ -19,10 +22,11 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-public class SMPolishingCategory implements IRecipeCategory<SMPseudoPolishingRecipe> {
+public class SMPolishingCategory implements IRecipeCategory<GrindstonePolishingRecipe> {
 
     private final Component title;
     private final IDrawable background;
@@ -55,23 +59,23 @@ public class SMPolishingCategory implements IRecipeCategory<SMPseudoPolishingRec
     }
 
     @Override
-    public Class<? extends SMPseudoPolishingRecipe> getRecipeClass() {
+    public Class<? extends GrindstonePolishingRecipe> getRecipeClass() {
         return this.getRecipeType().getRecipeClass();
     }
 
     @Override
-    public RecipeType<SMPseudoPolishingRecipe> getRecipeType() {
+    public RecipeType<GrindstonePolishingRecipe> getRecipeType() {
         return SMRecipeTypes.POLISHING;
     }
 
     @Override
-    public void setRecipe(IRecipeLayoutBuilder layout, SMPseudoPolishingRecipe polishingRecipes, IFocusGroup ingredients) {
-        layout.addSlot(RecipeIngredientRole.INPUT, 4, 9).addItemStack(new ItemStack(SMItems.ROUGH_JADE.get()));
-        layout.addSlot(RecipeIngredientRole.OUTPUT, 76, 9).addItemStack(new ItemStack(SMItems.POLISHED_JADE.get()));
+    public void setRecipe(IRecipeLayoutBuilder layout, GrindstonePolishingRecipe polishingRecipes, IFocusGroup ingredients) {
+        layout.addSlot(RecipeIngredientRole.INPUT, 4, 9).addItemStack(polishingRecipes.ingredient);
+        layout.addSlot(RecipeIngredientRole.OUTPUT, 76, 9).addItemStack(new ItemStack(polishingRecipes.result.getItem(), polishingRecipes.getResultCount()));
     }
 
     @Override
-    public List<Component> getTooltipStrings(SMPseudoPolishingRecipe recipe, IRecipeSlotsView recipeSlotsView, double mouseX, double mouseY) {
+    public List<Component> getTooltipStrings(GrindstonePolishingRecipe recipe, IRecipeSlotsView recipeSlotsView, double mouseX, double mouseY) {
         if (iconPosition(31, 3, mouseX, mouseY)) {
             return ImmutableList.of(new TranslatableComponent(SullysMod.MOD_ID + ".jei." + getUid().getPath() + ".info"));
         }

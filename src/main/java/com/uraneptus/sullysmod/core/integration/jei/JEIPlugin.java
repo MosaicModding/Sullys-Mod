@@ -2,13 +2,15 @@ package com.uraneptus.sullysmod.core.integration.jei;
 
 import com.google.common.collect.ImmutableList;
 import com.uraneptus.sullysmod.SullysMod;
+import com.uraneptus.sullysmod.common.recipes.GrindstonePolishingRecipe;
 import com.uraneptus.sullysmod.core.integration.jei.category.SMPolishingCategory;
-import com.uraneptus.sullysmod.core.integration.jei.other.SMPseudoPolishingRecipe;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
 import mezz.jei.api.registration.IRecipeCatalystRegistration;
 import mezz.jei.api.registration.IRecipeCategoryRegistration;
 import mezz.jei.api.registration.IRecipeRegistration;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -26,7 +28,8 @@ public class JEIPlugin implements IModPlugin {
 
     @Override
     public void registerRecipes(IRecipeRegistration registration) {
-        registration.addRecipes(SMRecipeTypes.POLISHING, ImmutableList.of(new SMPseudoPolishingRecipe()));
+        ClientLevel level = Minecraft.getInstance().level;
+        registration.addRecipes(GrindstonePolishingRecipe.getRecipes(level), SMRecipeTypes.POLISHING.getUid());
     }
 
     @Override

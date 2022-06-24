@@ -69,13 +69,13 @@ public class SMLootTableProvider extends LootTableProvider {
             this.dropSelf(SMBlocks.ROUGH_JADE_BLOCK.get());
             this.dropSelf(SMBlocks.ROUGH_JADE_BRICKS.get());
             this.dropSelf(SMBlocks.ROUGH_JADE_TILES.get());
-            this.dropSelf(SMBlocks.SMOOTH_ROUGH_JADE.get());
+            this.dropSelf(SMBlocks.SMOOTHED_ROUGH_JADE.get());
             this.dropSelf(SMBlocks.ROUGH_JADE_BRICK_STAIRS.get());
             this.dropSelf(SMBlocks.ROUGH_JADE_TILE_STAIRS.get());
-            this.dropSelf(SMBlocks.SMOOTH_ROUGH_JADE_STAIRS.get());
+            this.dropSelf(SMBlocks.SMOOTHED_ROUGH_JADE_STAIRS.get());
             this.add(SMBlocks.ROUGH_JADE_BRICK_SLAB.get(), BlockLoot::createSlabItemTable);
             this.add(SMBlocks.ROUGH_JADE_TILE_SLAB.get(), BlockLoot::createSlabItemTable);
-            this.add(SMBlocks.SMOOTH_ROUGH_JADE_SLAB.get(), BlockLoot::createSlabItemTable);
+            this.add(SMBlocks.SMOOTHED_ROUGH_JADE_SLAB.get(), BlockLoot::createSlabItemTable);
             this.add(SMBlocks.ROUGH_JADE_BRICK_VERTICAL_SLAB.get(), BlockLoot::createSlabItemTable);
             this.add(SMBlocks.ROUGH_JADE_TILE_VERTICAL_SLAB.get(), BlockLoot::createSlabItemTable);
             this.add(SMBlocks.SMOOTH_ROUGH_JADE_VERTICAL_SLAB.get(), BlockLoot::createSlabItemTable);
@@ -83,7 +83,7 @@ public class SMLootTableProvider extends LootTableProvider {
             //Jade
             this.dropSelf(SMBlocks.POLISHED_JADE_BLOCK.get());
             this.dropSelf(SMBlocks.POLISHED_JADE_BRICKS.get());
-            this.dropSelf(SMBlocks.SMALL_POLISHED_JADE_BRICKS.get());
+            this.dropSelf(SMBlocks.POLISHED_SMALL_JADE_BRICKS.get());
             this.dropSelf(SMBlocks.POLISHED_JADE_TILES.get());
             this.dropSelf(SMBlocks.POLISHED_JADE_SHINGLES.get());
             this.dropSelf(SMBlocks.POLISHED_CHISELED_JADE.get());
@@ -91,11 +91,11 @@ public class SMLootTableProvider extends LootTableProvider {
             this.dropSelf(SMBlocks.JADE_TOTEM.get());
             this.dropSelf(SMBlocks.JADE_FLINGER_TOTEM.get());
             this.dropSelf(SMBlocks.POLISHED_JADE_BRICK_STAIRS.get());
-            this.dropSelf(SMBlocks.SMALL_POLISHED_JADE_BRICK_STAIRS.get());
+            this.dropSelf(SMBlocks.POLISHED_SMALL_JADE_BRICK_STAIRS.get());
             this.dropSelf(SMBlocks.POLISHED_JADE_TILE_STAIRS.get());
             this.dropSelf(SMBlocks.POLISHED_JADE_SHINGLE_STAIRS.get());
             this.add(SMBlocks.POLISHED_JADE_BRICK_SLAB.get(), BlockLoot::createSlabItemTable);
-            this.add(SMBlocks.SMALL_POLISHED_JADE_BRICK_SLAB.get(), BlockLoot::createSlabItemTable);
+            this.add(SMBlocks.POLISHED_SMALL_JADE_BRICK_SLAB.get(), BlockLoot::createSlabItemTable);
             this.add(SMBlocks.POLISHED_JADE_TILE_SLAB.get(), BlockLoot::createSlabItemTable);
             this.add(SMBlocks.POLISHED_JADE_SHINGLE_SLAB.get(), BlockLoot::createSlabItemTable);
             this.add(SMBlocks.POLISHED_JADE_BRICK_VERTICAL_SLAB.get(), BlockLoot::createSlabItemTable);

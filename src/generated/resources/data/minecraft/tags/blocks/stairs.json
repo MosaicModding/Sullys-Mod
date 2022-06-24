@@ -2,11 +2,11 @@
   "replace": false,
   "values": [
     "sullysmod:polished_jade_brick_stairs",
-    "sullysmod:small_polished_jade_brick_stairs",
+    "sullysmod:polished_small_jade_brick_stairs",
     "sullysmod:polished_jade_tile_stairs",
     "sullysmod:polished_jade_shingle_stairs",
     "sullysmod:rough_jade_brick_stairs",
     "sullysmod:rough_jade_tile_stairs",
-    "sullysmod:smooth_rough_jade_stairs"
+    "sullysmod:smoothed_rough_jade_stairs"
   ]
 }

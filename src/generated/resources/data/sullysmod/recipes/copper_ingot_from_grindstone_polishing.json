@@ -1,0 +1,7 @@
+{
+  "type": "sullysmod:polishing",
+  "ingredient": "minecraft:raw_copper",
+  "result": "minecraft:copper_ingot",
+  "resultCount": 2,
+  "experience": 3
+}

@@ -40,21 +40,21 @@ public class SMItemTagsProvider extends ItemTagsProvider {
         );
         tag(net.minecraft.tags.ItemTags.SLABS).add(
                 SMBlocks.POLISHED_JADE_BRICK_SLAB.get().asItem(),
-                SMBlocks.SMALL_POLISHED_JADE_BRICK_SLAB.get().asItem(),
+                SMBlocks.POLISHED_SMALL_JADE_BRICK_SLAB.get().asItem(),
                 SMBlocks.POLISHED_JADE_TILE_SLAB.get().asItem(),
                 SMBlocks.POLISHED_JADE_SHINGLE_SLAB.get().asItem(),
                 SMBlocks.ROUGH_JADE_BRICK_SLAB.get().asItem(),
                 SMBlocks.ROUGH_JADE_TILE_SLAB.get().asItem(),
-                SMBlocks.SMOOTH_ROUGH_JADE_SLAB.get().asItem()
+                SMBlocks.SMOOTHED_ROUGH_JADE_SLAB.get().asItem()
         );
         tag(net.minecraft.tags.ItemTags.STAIRS).add(
                 SMBlocks.POLISHED_JADE_BRICK_STAIRS.get().asItem(),
-                SMBlocks.SMALL_POLISHED_JADE_BRICK_STAIRS.get().asItem(),
+                SMBlocks.POLISHED_SMALL_JADE_BRICK_STAIRS.get().asItem(),
                 SMBlocks.POLISHED_JADE_TILE_STAIRS.get().asItem(),
                 SMBlocks.POLISHED_JADE_SHINGLE_STAIRS.get().asItem(),
                 SMBlocks.ROUGH_JADE_BRICK_STAIRS.get().asItem(),
                 SMBlocks.ROUGH_JADE_TILE_STAIRS.get().asItem(),
-                SMBlocks.SMOOTH_ROUGH_JADE_STAIRS.get().asItem()
+                SMBlocks.SMOOTHED_ROUGH_JADE_STAIRS.get().asItem()
         );
 
         //Forge Tags

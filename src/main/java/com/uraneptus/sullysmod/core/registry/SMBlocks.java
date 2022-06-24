@@ -19,16 +19,17 @@ import net.minecraftforge.registries.RegistryObject;
 public class SMBlocks {
     public static final BlockSubRegistryHelper HELPER = SullysMod.REGISTRY_HELPER.getBlockSubHelper();
 
+    //TODO: Some more renamings
     //Jade
     public static final RegistryObject<Block> JADE_ORE = HELPER.createBlockWithItem("jade_ore", () -> new OreBlock(Properties.JADE_ORE), () -> new InjectedBlockItem(Items.DEEPSLATE_COPPER_ORE, SMBlocks.JADE_ORE.get(), new Item.Properties().tab(CreativeModeTab.TAB_BUILDING_BLOCKS)));
     public static final RegistryObject<Block> DEEPSLATE_JADE_ORE = HELPER.createBlockWithItem("deepslate_jade_ore", () -> new OreBlock(Properties.DEEPSLATE_JADE_ORE), () -> new InjectedBlockItem(SMBlocks.JADE_ORE.get().asItem(), SMBlocks.DEEPSLATE_JADE_ORE.get(), new Item.Properties().tab(CreativeModeTab.TAB_BUILDING_BLOCKS)));
     public static final RegistryObject<Block> ROUGH_JADE_BLOCK = HELPER.createBlock("rough_jade_block", () -> new Block(Properties.ROUGH_JADE_BLOCKS), CreativeModeTab.TAB_BUILDING_BLOCKS);
     public static final RegistryObject<Block> ROUGH_JADE_BRICKS = HELPER.createBlock("rough_jade_bricks", () -> new Block(Properties.ROUGH_JADE_BLOCKS), CreativeModeTab.TAB_BUILDING_BLOCKS);
-    public static final RegistryObject<Block> SMOOTH_ROUGH_JADE = HELPER.createBlock("smooth_rough_jade", () -> new Block(Properties.ROUGH_JADE_BLOCKS), CreativeModeTab.TAB_BUILDING_BLOCKS);
+    public static final RegistryObject<Block> SMOOTHED_ROUGH_JADE = HELPER.createBlock("smoothed_rough_jade", () -> new Block(Properties.ROUGH_JADE_BLOCKS), CreativeModeTab.TAB_BUILDING_BLOCKS);
     public static final RegistryObject<Block> ROUGH_JADE_TILES = HELPER.createBlock("rough_jade_tiles", () -> new Block(Properties.ROUGH_JADE_BLOCKS), CreativeModeTab.TAB_BUILDING_BLOCKS);
     public static final RegistryObject<Block> POLISHED_JADE_BLOCK = HELPER.createBlock("polished_jade_block", () -> new Block(Properties.POLISHED_JADE_BLOCKS), CreativeModeTab.TAB_BUILDING_BLOCKS);
     public static final RegistryObject<Block> POLISHED_JADE_BRICKS = HELPER.createBlock("polished_jade_bricks", () -> new Block(Properties.POLISHED_JADE_BLOCKS), CreativeModeTab.TAB_BUILDING_BLOCKS);
-    public static final RegistryObject<Block> SMALL_POLISHED_JADE_BRICKS = HELPER.createBlock("small_polished_jade_bricks", () -> new Block(Properties.POLISHED_JADE_BLOCKS), CreativeModeTab.TAB_BUILDING_BLOCKS);
+    public static final RegistryObject<Block> POLISHED_SMALL_JADE_BRICKS = HELPER.createBlock("polished_small_jade_bricks", () -> new Block(Properties.POLISHED_JADE_BLOCKS), CreativeModeTab.TAB_BUILDING_BLOCKS);
     public static final RegistryObject<Block> POLISHED_JADE_SHINGLES = HELPER.createBlock("polished_jade_shingles", () -> new Block(Properties.POLISHED_JADE_BLOCKS), CreativeModeTab.TAB_BUILDING_BLOCKS);
     public static final RegistryObject<Block> POLISHED_JADE_TILES = HELPER.createBlock("polished_jade_tiles", () -> new Block(Properties.POLISHED_JADE_BLOCKS), CreativeModeTab.TAB_BUILDING_BLOCKS);
     public static final RegistryObject<Block> POLISHED_CHISELED_JADE = HELPER.createBlock("polished_chiseled_jade", () -> new Block(Properties.POLISHED_JADE_BLOCKS), CreativeModeTab.TAB_BUILDING_BLOCKS);
@@ -38,19 +39,19 @@ public class SMBlocks {
 
     //Jade Stairs
     public static final RegistryObject<Block> ROUGH_JADE_BRICK_STAIRS = HELPER.createBlock("rough_jade_brick_stairs", () -> new StairBlock(ROUGH_JADE_BRICKS.get().defaultBlockState(), Properties.ROUGH_JADE_BLOCKS), CreativeModeTab.TAB_BUILDING_BLOCKS);
-    public static final RegistryObject<Block> SMOOTH_ROUGH_JADE_STAIRS = HELPER.createBlock("smooth_rough_jade_stairs", () -> new StairBlock(SMOOTH_ROUGH_JADE.get().defaultBlockState(), Properties.ROUGH_JADE_BLOCKS), CreativeModeTab.TAB_BUILDING_BLOCKS);
+    public static final RegistryObject<Block> SMOOTHED_ROUGH_JADE_STAIRS = HELPER.createBlock("smoothed_rough_jade_stairs", () -> new StairBlock(SMOOTHED_ROUGH_JADE.get().defaultBlockState(), Properties.ROUGH_JADE_BLOCKS), CreativeModeTab.TAB_BUILDING_BLOCKS);
     public static final RegistryObject<Block> ROUGH_JADE_TILE_STAIRS = HELPER.createBlock("rough_jade_tile_stairs", () -> new StairBlock(ROUGH_JADE_TILES.get().defaultBlockState(), Properties.ROUGH_JADE_BLOCKS), CreativeModeTab.TAB_BUILDING_BLOCKS);
     public static final RegistryObject<Block> POLISHED_JADE_BRICK_STAIRS = HELPER.createBlock("polished_jade_brick_stairs", () -> new StairBlock(POLISHED_JADE_BRICKS.get().defaultBlockState(), Properties.POLISHED_JADE_BLOCKS), CreativeModeTab.TAB_BUILDING_BLOCKS);
-    public static final RegistryObject<Block> SMALL_POLISHED_JADE_BRICK_STAIRS = HELPER.createBlock("small_polished_jade_brick_stairs", () -> new StairBlock(SMALL_POLISHED_JADE_BRICKS.get().defaultBlockState(), Properties.POLISHED_JADE_BLOCKS), CreativeModeTab.TAB_BUILDING_BLOCKS);
+    public static final RegistryObject<Block> POLISHED_SMALL_JADE_BRICK_STAIRS = HELPER.createBlock("polished_small_jade_brick_stairs", () -> new StairBlock(POLISHED_SMALL_JADE_BRICKS.get().defaultBlockState(), Properties.POLISHED_JADE_BLOCKS), CreativeModeTab.TAB_BUILDING_BLOCKS);
     public static final RegistryObject<Block> POLISHED_JADE_SHINGLE_STAIRS = HELPER.createBlock("polished_jade_shingle_stairs", () -> new StairBlock(POLISHED_JADE_SHINGLES.get().defaultBlockState(), Properties.POLISHED_JADE_BLOCKS), CreativeModeTab.TAB_BUILDING_BLOCKS);
     public static final RegistryObject<Block> POLISHED_JADE_TILE_STAIRS = HELPER.createBlock("polished_jade_tile_stairs", () -> new StairBlock(POLISHED_JADE_TILES.get().defaultBlockState(), Properties.POLISHED_JADE_BLOCKS), CreativeModeTab.TAB_BUILDING_BLOCKS);
 
     //Jade Slabs
     public static final RegistryObject<Block> ROUGH_JADE_BRICK_SLAB = HELPER.createBlock("rough_jade_brick_slab", () -> new SlabBlock(Properties.ROUGH_JADE_BLOCKS), CreativeModeTab.TAB_BUILDING_BLOCKS);
-    public static final RegistryObject<Block> SMOOTH_ROUGH_JADE_SLAB = HELPER.createBlock("smooth_rough_jade_slab", () -> new SlabBlock(Properties.ROUGH_JADE_BLOCKS), CreativeModeTab.TAB_BUILDING_BLOCKS);
+    public static final RegistryObject<Block> SMOOTHED_ROUGH_JADE_SLAB = HELPER.createBlock("smoothed_rough_jade_slab", () -> new SlabBlock(Properties.ROUGH_JADE_BLOCKS), CreativeModeTab.TAB_BUILDING_BLOCKS);
     public static final RegistryObject<Block> ROUGH_JADE_TILE_SLAB = HELPER.createBlock("rough_jade_tile_slab", () -> new SlabBlock(Properties.ROUGH_JADE_BLOCKS), CreativeModeTab.TAB_BUILDING_BLOCKS);
     public static final RegistryObject<Block> POLISHED_JADE_BRICK_SLAB = HELPER.createBlock("polished_jade_brick_slab", () -> new SlabBlock(Properties.POLISHED_JADE_BLOCKS), CreativeModeTab.TAB_BUILDING_BLOCKS);
-    public static final RegistryObject<Block> SMALL_POLISHED_JADE_BRICK_SLAB = HELPER.createBlock("small_polished_jade_brick_slab", () -> new SlabBlock(Properties.POLISHED_JADE_BLOCKS), CreativeModeTab.TAB_BUILDING_BLOCKS);
+    public static final RegistryObject<Block> POLISHED_SMALL_JADE_BRICK_SLAB = HELPER.createBlock("polished_small_jade_brick_slab", () -> new SlabBlock(Properties.POLISHED_JADE_BLOCKS), CreativeModeTab.TAB_BUILDING_BLOCKS);
     public static final RegistryObject<Block> POLISHED_JADE_SHINGLE_SLAB = HELPER.createBlock("polished_jade_shingle_slab", () -> new SlabBlock(Properties.POLISHED_JADE_BLOCKS), CreativeModeTab.TAB_BUILDING_BLOCKS);
     public static final RegistryObject<Block> POLISHED_JADE_TILE_SLAB = HELPER.createBlock("polished_jade_tile_slab", () -> new SlabBlock(Properties.POLISHED_JADE_BLOCKS), CreativeModeTab.TAB_BUILDING_BLOCKS);
 

@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "sullysmod:polished_small_jade_bricks"
+  },
+  "result": "sullysmod:polished_small_jade_brick_stairs",
+  "count": 1
+}

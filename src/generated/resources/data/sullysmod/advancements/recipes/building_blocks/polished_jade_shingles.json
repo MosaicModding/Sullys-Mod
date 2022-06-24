@@ -6,13 +6,13 @@
     ]
   },
   "criteria": {
-    "has_small_polished_jade_bricks": {
+    "has_polished_small_jade_bricks": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
             "items": [
-              "sullysmod:small_polished_jade_bricks"
+              "sullysmod:polished_small_jade_bricks"
             ]
           }
         ]
@@ -27,7 +27,7 @@
   },
   "requirements": [
     [
-      "has_small_polished_jade_bricks",
+      "has_polished_small_jade_bricks",
       "has_the_recipe"
     ]
   ]
