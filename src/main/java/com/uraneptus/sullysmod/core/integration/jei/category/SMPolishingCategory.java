@@ -3,15 +3,11 @@ package com.uraneptus.sullysmod.core.integration.jei.category;
 import com.google.common.collect.ImmutableList;
 import com.uraneptus.sullysmod.SullysMod;
 import com.uraneptus.sullysmod.common.recipes.GrindstonePolishingRecipe;
-import com.uraneptus.sullysmod.core.integration.jei.SMRecipeTypes;
-import com.uraneptus.sullysmod.core.registry.SMItems;
-import mezz.jei.api.constants.VanillaTypes;
-import mezz.jei.api.gui.IRecipeLayout;
+import com.uraneptus.sullysmod.core.integration.jei.JEIRecipeTypes;
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
 import mezz.jei.api.gui.drawable.IDrawable;
 import mezz.jei.api.gui.ingredient.IRecipeSlotsView;
 import mezz.jei.api.helpers.IGuiHelper;
-import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.IFocusGroup;
 import mezz.jei.api.recipe.RecipeIngredientRole;
 import mezz.jei.api.recipe.RecipeType;
@@ -22,7 +18,6 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -65,7 +60,7 @@ public class SMPolishingCategory implements IRecipeCategory<GrindstonePolishingR
 
     @Override
     public RecipeType<GrindstonePolishingRecipe> getRecipeType() {
-        return SMRecipeTypes.POLISHING;
+        return JEIRecipeTypes.POLISHING;
     }
 
     @Override

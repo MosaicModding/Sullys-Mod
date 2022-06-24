@@ -1,10 +1,8 @@
 package com.uraneptus.sullysmod.common.recipes;
 
-import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.uraneptus.sullysmod.SullysMod;
 import com.uraneptus.sullysmod.core.registry.SMRecipeSerializer;
-import net.minecraft.core.NonNullList;
+import com.uraneptus.sullysmod.core.registry.SMRecipeTypes;
 import net.minecraft.core.Registry;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
@@ -13,25 +11,13 @@ import net.minecraft.world.Container;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.registries.ForgeRegistryEntry;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 public class GrindstonePolishingRecipe implements Recipe<Container> {
-    public static final String NAME = "polishing";
-
-    public static class Type implements RecipeType<GrindstonePolishingRecipe> {
-        @Override
-        public String toString() {
-            return SullysMod.MOD_ID + ":" + NAME;
-        }
-
-        public static final GrindstonePolishingRecipe.Type INSTANCE = new GrindstonePolishingRecipe.Type();
-    }
+    public static final String NAME = "grindstone_polishing";
 
     private final ResourceLocation id;
     private final String recipeGroup;
@@ -94,21 +80,16 @@ public class GrindstonePolishingRecipe implements Recipe<Container> {
 
     @Override
     public RecipeType<?> getType() {
-        return Type.INSTANCE;
+        return SMRecipeTypes.GRINDSTONE_POLISHING.get();
     }
-
-    /*@Override
-    public ItemStack getToastSymbol() {
-        return new ItemStack(Blocks.GRINDSTONE);
-    }*/
 
     @Override
     public RecipeSerializer<?> getSerializer() {
-        return SMRecipeSerializer.POLISHING_SERIALIZER.get();
+        return SMRecipeSerializer.GRINDSTONE_POLISHING_SERIALIZER.get();
     }
 
     public static List<GrindstonePolishingRecipe> getRecipes(Level level) {
-        return level.getRecipeManager().getAllRecipesFor(Type.INSTANCE);
+        return level.getRecipeManager().getAllRecipesFor(SMRecipeTypes.GRINDSTONE_POLISHING.get());
     }
 
     public static class Serializer extends ForgeRegistryEntry<RecipeSerializer<?>> implements RecipeSerializer<GrindstonePolishingRecipe> {

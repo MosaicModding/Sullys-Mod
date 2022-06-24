@@ -11,5 +11,5 @@ public class SMRecipeSerializer {
 
     public static final DeferredRegister<RecipeSerializer<?>> SERIALIZER = DeferredRegister.create(ForgeRegistries.RECIPE_SERIALIZERS, SullysMod.MOD_ID);
 
-    public static final RegistryObject<RecipeSerializer<GrindstonePolishingRecipe>> POLISHING_SERIALIZER = SERIALIZER.register(GrindstonePolishingRecipe.NAME, GrindstonePolishingRecipe.Serializer::new);
+    public static final RegistryObject<RecipeSerializer<GrindstonePolishingRecipe>> GRINDSTONE_POLISHING_SERIALIZER = SERIALIZER.register(GrindstonePolishingRecipe.NAME, GrindstonePolishingRecipe.Serializer::new);
 }

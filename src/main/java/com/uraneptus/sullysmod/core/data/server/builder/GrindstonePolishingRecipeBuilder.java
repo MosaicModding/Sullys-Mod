@@ -1,28 +1,20 @@
 package com.uraneptus.sullysmod.core.data.server.builder;
 
 import com.google.gson.JsonObject;
-import com.uraneptus.sullysmod.common.recipes.GrindstonePolishingRecipe;
+import com.uraneptus.sullysmod.SullysMod;
 import com.uraneptus.sullysmod.core.registry.SMRecipeSerializer;
-import net.minecraft.advancements.Advancement;
-import net.minecraft.advancements.AdvancementRewards;
-import net.minecraft.advancements.CriterionTriggerInstance;
-import net.minecraft.advancements.RequirementsStrategy;
-import net.minecraft.advancements.critereon.RecipeUnlockedTrigger;
 import net.minecraft.core.Registry;
 import net.minecraft.data.recipes.FinishedRecipe;
-import net.minecraft.data.recipes.RecipeBuilder;
-import net.minecraft.data.recipes.SingleItemRecipeBuilder;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.level.ItemLike;
+import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.function.Consumer;
 
-public class GrindstonePolishingRecipeBuilder implements RecipeBuilder {
+public class GrindstonePolishingRecipeBuilder {
 
     private final Item ingredient;
     private final Item result;
@@ -30,7 +22,6 @@ public class GrindstonePolishingRecipeBuilder implements RecipeBuilder {
     private final int resultCount;
     private final RecipeSerializer<?> serializer;
     private String recipeGroup;
-    private final Advancement.Builder advancement = Advancement.Builder.advancement();
 
     private GrindstonePolishingRecipeBuilder(ItemLike ingredient, ItemLike result, int resultCount, int experience, RecipeSerializer<?> serializer) {
         this.ingredient = ingredient.asItem();
@@ -53,39 +44,26 @@ public class GrindstonePolishingRecipeBuilder implements RecipeBuilder {
     }
 
     public static GrindstonePolishingRecipeBuilder grindstonePolishing(ItemLike ingredient, ItemLike result, int resultCount, int experience) {
-        return new GrindstonePolishingRecipeBuilder(ingredient, result, resultCount, experience, SMRecipeSerializer.POLISHING_SERIALIZER.get());
+        return new GrindstonePolishingRecipeBuilder(ingredient, result, resultCount, experience, SMRecipeSerializer.GRINDSTONE_POLISHING_SERIALIZER.get());
     }
 
-    //Recipe popup doesn't really work rn
-    @Override
-    public RecipeBuilder unlockedBy(String pCriterionName, CriterionTriggerInstance pCriterionTrigger) {
-       this.advancement.addCriterion(pCriterionName, pCriterionTrigger);
-       return this;
+    public void save(Consumer<FinishedRecipe> consumer) {
+        ResourceLocation resourcelocation = ForgeRegistries.ITEMS.getKey(this.result);
+        this.save(consumer, SullysMod.MOD_ID + ":grindstone_polishing/" + resourcelocation.getPath() + "_from_grindstone_polishing");
     }
 
-    @Override
-    public RecipeBuilder group(@Nullable String pGroupName) {
-        this.recipeGroup = pGroupName;
-        return this;
-    }
-
-    @Override
-    public Item getResult() {
-        return this.result;
-    }
-
-    @Override
-    public void save(Consumer<FinishedRecipe> pFinishedRecipeConsumer, ResourceLocation pRecipeId) {
-        this.ensureValid(pRecipeId);
-        this.advancement.parent(new ResourceLocation("recipes/root")).addCriterion("has_the_recipe", RecipeUnlockedTrigger.unlocked(pRecipeId)).rewards(AdvancementRewards.Builder.recipe(pRecipeId)).requirements(RequirementsStrategy.OR);
-        pFinishedRecipeConsumer.accept(new GrindstonePolishingRecipeBuilder.Result(pRecipeId, this.serializer, this.recipeGroup == null ? "" : this.recipeGroup, this.ingredient, this.result, this.resultCount, this.experience, this.advancement, new ResourceLocation(pRecipeId.getNamespace(), "recipes/" + this.result.getItemCategory().getRecipeFolderName() + "/" + pRecipeId.getPath())));
-
-    }
-
-    private void ensureValid(ResourceLocation pId) {
-        if (this.advancement.getCriteria().isEmpty()) {
-            throw new IllegalStateException("No way of obtaining recipe " + pId);
+    public void save(Consumer<FinishedRecipe> pFinishedRecipeConsumer, String save) {
+        ResourceLocation defaultResourcelocation = ForgeRegistries.ITEMS.getKey(this.result);
+        ResourceLocation resourcelocation = new ResourceLocation(save);
+        if (resourcelocation.equals(defaultResourcelocation)) {
+            throw new IllegalStateException("Polishing Recipe " + save + " should remove its 'save' argument as it is equal to default one");
+        } else {
+            this.save(pFinishedRecipeConsumer, resourcelocation);
         }
+    }
+
+    public void save(Consumer<FinishedRecipe> consumer, ResourceLocation id) {
+        consumer.accept(new GrindstonePolishingRecipeBuilder.Result(id, this.serializer, this.recipeGroup == null ? "" : this.recipeGroup, this.ingredient, this.result, this.resultCount, this.experience));
     }
 
     public static class Result implements FinishedRecipe {
@@ -97,10 +75,8 @@ public class GrindstonePolishingRecipeBuilder implements RecipeBuilder {
         private final Item result;
         private final int resultCount;
         private final int experience;
-        private final Advancement.Builder advancement;
-        private final ResourceLocation advancementId;
 
-        public Result(ResourceLocation pId, RecipeSerializer<?> serializer, String pGroup, Item pIngredient, Item pResult, int resultCount, int experience, Advancement.Builder pAdvancement, ResourceLocation pAdvancementId) {
+        public Result(ResourceLocation pId, RecipeSerializer<?> serializer, String pGroup, Item pIngredient, Item pResult, int resultCount, int experience) {
             this.id = pId;
             this.serializer = serializer;
             this.group = pGroup;
@@ -108,8 +84,6 @@ public class GrindstonePolishingRecipeBuilder implements RecipeBuilder {
             this.result = pResult;
             this.resultCount = resultCount;
             this.experience = experience;
-            this.advancement = pAdvancement;
-            this.advancementId = pAdvancementId;
         }
 
         @Override
@@ -137,13 +111,13 @@ public class GrindstonePolishingRecipeBuilder implements RecipeBuilder {
         @Nullable
         @Override
         public JsonObject serializeAdvancement() {
-            return this.advancement.serializeToJson();
+            return null;
         }
 
         @Nullable
         @Override
         public ResourceLocation getAdvancementId() {
-            return this.advancementId;
+            return null;
         }
     }
 }

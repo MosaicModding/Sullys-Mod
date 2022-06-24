@@ -54,6 +54,7 @@ public class SullysMod {
         REGISTRY_HELPER.register(bus);
         SMParticleTypes.PARTICLES.register(bus);
         SMPotions.POTIONS.register(bus);
+        SMRecipeTypes.RECIPE_TYPES.register(bus);
         SMRecipeSerializer.SERIALIZER.register(bus);
 
         MinecraftForge.EVENT_BUS.register(this);

@@ -185,8 +185,7 @@ public class SMRecipeProvider extends RecipeProvider {
     }
 
     private static void grindstonePolishingRecipes(ItemLike ingredient, ItemLike result, int resultCount, int experience, Consumer<FinishedRecipe> consumer) {
-        String resultName = SullysMod.modPrefix(result.toString()).toString();
-        GrindstonePolishingRecipeBuilder.grindstonePolishing(ingredient, result, resultCount, experience).unlockedBy(getHasName(ingredient), has(ingredient)).save(consumer, resultName + "_from_grindstone_polishing");
+        GrindstonePolishingRecipeBuilder.grindstonePolishing(ingredient, result, resultCount, experience).save(consumer);
     }
 
     private static void verticalSlabRecipes(ItemLike slab, ItemLike verticalSlab, Consumer<FinishedRecipe> consumer) {
