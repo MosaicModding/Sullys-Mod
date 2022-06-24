@@ -29,7 +29,7 @@ public class SMPolishingCategory implements IRecipeCategory<GrindstonePolishingR
 
     public SMPolishingCategory(IGuiHelper helper) {
         title = new TranslatableComponent(SullysMod.MOD_ID + ".jei." + getUid().getPath());
-        background = helper.createDrawable(SullysMod.modPrefix("textures/gui/jei/polishing.png"), 0, 0, 96, 31);
+        background = helper.createDrawable(SullysMod.modPrefix("textures/gui/jei/grindstone_polishing.png"), 0, 0, 96, 31);
         icon = helper.createDrawableIngredient(new ItemStack(Items.GRINDSTONE));
     }
 
@@ -60,7 +60,7 @@ public class SMPolishingCategory implements IRecipeCategory<GrindstonePolishingR
 
     @Override
     public RecipeType<GrindstonePolishingRecipe> getRecipeType() {
-        return JEIRecipeTypes.POLISHING;
+        return JEIRecipeTypes.GRINDSTONE_POLISHING;
     }
 
     @Override

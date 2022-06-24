@@ -12,7 +12,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 
 public class LanternfishRenderer extends MobRenderer<LanternfishEntity, LanternfishModel<LanternfishEntity>> {
-    public static final ResourceLocation TEXTURE = new ResourceLocation(SullysMod.MOD_ID, "textures/entity/lanternfish/lanternfish.png");
+    public static final ResourceLocation TEXTURE = SullysMod.modPrefix("textures/entity/lanternfish/lanternfish.png");
 
     public LanternfishRenderer(EntityRendererProvider.Context context) {
         super(context, new LanternfishModel<>(context.bakeLayer(LanternfishModel.LAYER_LOCATION)), 0.3F);

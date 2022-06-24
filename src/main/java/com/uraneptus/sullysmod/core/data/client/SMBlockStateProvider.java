@@ -33,7 +33,7 @@ public class SMBlockStateProvider extends BlockStateProvider {
         basicBlock(SMBlocks.POLISHED_JADE_SHINGLES.get());
         basicBlock(SMBlocks.POLISHED_JADE_TILES.get());
         basicBlock(SMBlocks.POLISHED_CHISELED_JADE.get());
-        pillarBlock(SMBlocks.POLISHED_JADE_PILLAR.get(), "polished_chiseled_jade");
+        pillarBlock(SMBlocks.POLISHED_JADE_PILLAR.get(), SMDatagenUtil.POLISHED_CHISELED_JADE);
         totemBlock(SMBlocks.JADE_TOTEM.get());
         totemBlock(SMBlocks.JADE_FLINGER_TOTEM.get());
         basicButtonBlock(SMBlocks.COPPER_BUTTON.get(), SMDatagenUtil.COPPER_BLOCK);
@@ -136,7 +136,11 @@ public class SMBlockStateProvider extends BlockStateProvider {
     }
 
     private void modVerticalSlabBlock(Block slab, String path) {
-        ModelFile model = this.models().withExistingParent(SMDatagenUtil.name(slab), new ResourceLocation("blueprint", "block/vertical_slab")).texture("top", SMDatagenUtil.modBlockLocation(path)).texture("bottom", SMDatagenUtil.modBlockLocation(path)).texture("side", SMDatagenUtil.modBlockLocation(path));
+        ModelFile model = this.models()
+                .withExistingParent(SMDatagenUtil.name(slab), SMDatagenUtil.blueprintBlockLocation("vertical_slab"))
+                .texture("top", SMDatagenUtil.modBlockLocation(path))
+                .texture("bottom", SMDatagenUtil.modBlockLocation(path))
+                .texture("side", SMDatagenUtil.modBlockLocation(path));
 
         getVariantBuilder(slab)
                 .partialState().with(VerticalSlabBlock.TYPE, VerticalSlabBlock.VerticalSlabType.NORTH).addModels(new ConfiguredModel(model, 0, 0, true))

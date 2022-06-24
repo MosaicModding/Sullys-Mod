@@ -21,23 +21,31 @@ public class SMDatagenUtil {
     }
 
     public static ResourceLocation modBlockLocation(String path) {
-        return new ResourceLocation(SullysMod.MOD_ID, ModelProvider.BLOCK_FOLDER + "/" + path);
+        return SullysMod.modPrefix(ModelProvider.BLOCK_FOLDER + "/" + path);
     }
 
     public static ResourceLocation modItemLocation(String path) {
-        return new ResourceLocation(SullysMod.MOD_ID, ModelProvider.ITEM_FOLDER + "/" + path);
+        return SullysMod.modPrefix(ModelProvider.ITEM_FOLDER + "/" + path);
     }
 
     public static ResourceLocation vanillaBlockLocation(String path) {
-        return new ResourceLocation("minecraft", ModelProvider.BLOCK_FOLDER + "/" + path);
+        return new ResourceLocation(ModelProvider.BLOCK_FOLDER + "/" + path);
     }
 
     public static ResourceLocation vanillaItemLocation(String path) {
-        return new ResourceLocation("minecraft", ModelProvider.ITEM_FOLDER + "/" + path);
+        return new ResourceLocation(ModelProvider.ITEM_FOLDER + "/" + path);
+    }
+
+    public static ResourceLocation blueprintBlockLocation(String path) {
+        return SullysMod.blueprintPrefix(ModelProvider.BLOCK_FOLDER + "/" + path);
+    }
+
+    public static ResourceLocation blueprintItemLocation(String path) {
+        return SullysMod.blueprintPrefix(ModelProvider.ITEM_FOLDER + "/" + path);
     }
 
     //Quark Flag (We're gonna need this a fair amount once that wood gets added)
-    public static ResourceLocation QUARK_FLAG = new ResourceLocation("blueprint", "quark_flag");
+    public static ResourceLocation QUARK_FLAG = SullysMod.blueprintPrefix("quark_flag");
 
     //Textures
     public static final String COPPER_BLOCK = name(Blocks.COPPER_BLOCK);
@@ -51,5 +59,5 @@ public class SMDatagenUtil {
     public static final String ROUGH_JADE_BRICKS = name(SMBlocks.ROUGH_JADE_BRICKS.get());
     public static final String SMOOTHED_ROUGH_JADE = name(SMBlocks.SMOOTHED_ROUGH_JADE.get());
     public static final String ROUGH_JADE_TILES = name(SMBlocks.ROUGH_JADE_TILES.get());
-
+    public static final String POLISHED_CHISELED_JADE = name(SMBlocks.POLISHED_CHISELED_JADE.get());
 }

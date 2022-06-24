@@ -28,12 +28,12 @@ public class JEIPlugin implements IModPlugin {
     @Override
     public void registerRecipes(IRecipeRegistration registration) {
         ClientLevel level = Minecraft.getInstance().level;
-        registration.addRecipes(GrindstonePolishingRecipe.getRecipes(level), JEIRecipeTypes.POLISHING.getUid());
+        registration.addRecipes(GrindstonePolishingRecipe.getRecipes(level), JEIRecipeTypes.GRINDSTONE_POLISHING.getUid());
     }
 
     @Override
     public void registerRecipeCatalysts(IRecipeCatalystRegistration registration) {
-        registration.addRecipeCatalyst(new ItemStack(Items.GRINDSTONE), JEIRecipeTypes.POLISHING);
+        registration.addRecipeCatalyst(new ItemStack(Items.GRINDSTONE), JEIRecipeTypes.GRINDSTONE_POLISHING);
     }
 
     @Nonnull

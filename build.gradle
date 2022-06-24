@@ -62,7 +62,7 @@ minecraft {
             property 'forge.logging.markers', 'REGISTRIES'
             property 'forge.logging.console.level', 'debug'
 
-            args '--mod', "${mod_id}", '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/'), '--existing-mod', 'blueprint'
+            args '--mod', "${mod_id}", '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/'), '--existing-mod', "${blueprint_id}"
 
             mods {
                 sullysmod {
@@ -95,7 +95,7 @@ repositories {
 dependencies {
     minecraft "net.minecraftforge:forge:${mc_version}-${forge_version}"
     implementation fg.deobf("software.bernie.geckolib:geckolib-forge-1.18:${geckolib_version}")
-    implementation fg.deobf("com.teamabnormals:blueprint:${mc_version}-${blueprint_version}")
+    implementation fg.deobf("com.teamabnormals:${blueprint_id}:${mc_version}-${blueprint_version}")
 
     compileOnly fg.deobf("mezz.jei:jei-${mc_version}:${jei_version}:api")
     runtimeOnly fg.deobf("mezz.jei:jei-${mc_version}:${jei_version}")

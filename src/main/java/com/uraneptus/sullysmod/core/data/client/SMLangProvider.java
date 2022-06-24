@@ -115,8 +115,8 @@ public class SMLangProvider extends LanguageProvider {
         add("subtitles.entity.lanternfish.death", "Lanternfish dies");
 
         //JEI
-        add("sullysmod.jei.polishing", "Polishing");
-        add("sullysmod.jei.polishing.info", "Right-click to polish");
+        add("sullysmod.jei.grindstone_polishing", "Polishing");
+        add("sullysmod.jei.grindstone_polishing.info", "Right-click to polish");
 
         SullysMod.LOGGER.info("LANGUAGE GENERATION COMPLETE");
     }

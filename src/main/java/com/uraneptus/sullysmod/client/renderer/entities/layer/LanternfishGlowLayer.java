@@ -15,7 +15,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 
 public class LanternfishGlowLayer extends RenderLayer<LanternfishEntity, LanternfishModel<LanternfishEntity>> {
-    public static final ResourceLocation GLOW_LAYER = new ResourceLocation(SullysMod.MOD_ID, "textures/entity/lanternfish/glow.png");
+    public static final ResourceLocation GLOW_LAYER = SullysMod.modPrefix("textures/entity/lanternfish/glow.png");
 
     public LanternfishGlowLayer(RenderLayerParent<LanternfishEntity, LanternfishModel<LanternfishEntity>> entityRenderer) {
         super(entityRenderer);

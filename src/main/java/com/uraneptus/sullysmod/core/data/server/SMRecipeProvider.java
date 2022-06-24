@@ -2,13 +2,12 @@ package com.uraneptus.sullysmod.core.data.server;
 
 import com.teamabnormals.blueprint.core.api.conditions.QuarkFlagRecipeCondition;
 import com.uraneptus.sullysmod.SullysMod;
-import com.uraneptus.sullysmod.core.data.server.builder.GrindstonePolishingRecipeBuilder;
 import com.uraneptus.sullysmod.core.data.SMDatagenUtil;
+import com.uraneptus.sullysmod.core.data.server.builder.GrindstonePolishingRecipeBuilder;
 import com.uraneptus.sullysmod.core.registry.SMBlocks;
 import com.uraneptus.sullysmod.core.registry.SMItems;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.recipes.*;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
@@ -171,14 +170,14 @@ public class SMRecipeProvider extends RecipeProvider {
     }
 
     private static void waxButtonRecipes(ItemLike ingredient, ItemLike result, Consumer<FinishedRecipe> consumer) {
-        String resultName = new ResourceLocation(SullysMod.MOD_ID, result.asItem().toString()).toString();
+        String resultName = SullysMod.modPrefix(result.asItem().toString()).toString();
 
         ShapelessRecipeBuilder.shapeless(result).requires(ingredient).requires(Items.HONEYCOMB)
                 .unlockedBy(getHasName(ingredient), has(ingredient)).save(consumer, resultName + "_from_honeycomb");
     }
 
     private static void stonecutterRecipes(ItemLike ingredient, ItemLike result, int resultCount, Consumer<FinishedRecipe> consumer) {
-        String resultName = new ResourceLocation(SullysMod.MOD_ID, result.asItem().toString()).toString();
+        String resultName = SullysMod.modPrefix(result.asItem().toString()).toString();
         String prefix = resultName + "_from_" + ingredient.asItem();
         SingleItemRecipeBuilder.stonecutting(Ingredient.of(ingredient), result, resultCount)
                 .unlockedBy(getHasName(ingredient), has(ingredient)).save(consumer, prefix + "_stonecutting");
@@ -191,12 +190,12 @@ public class SMRecipeProvider extends RecipeProvider {
     private static void verticalSlabRecipes(ItemLike slab, ItemLike verticalSlab, Consumer<FinishedRecipe> consumer) {
         ConditionalRecipe.builder()
                 .addCondition(new QuarkFlagRecipeCondition(SMDatagenUtil.QUARK_FLAG, "vertical_slabs"))
-                .addRecipe(consumer1 -> ShapedRecipeBuilder.shaped(verticalSlab, 3).define('#', slab).pattern("#").pattern("#").pattern("#").unlockedBy(getHasName(slab), has(slab)).save(consumer1, new ResourceLocation(SullysMod.MOD_ID, getItemName(verticalSlab))))
-                .build(consumer, new ResourceLocation(SullysMod.MOD_ID, "crafting/" + getItemName(verticalSlab)));
+                .addRecipe(consumer1 -> ShapedRecipeBuilder.shaped(verticalSlab, 3).define('#', slab).pattern("#").pattern("#").pattern("#").unlockedBy(getHasName(slab), has(slab)).save(consumer1, SullysMod.modPrefix(getItemName(verticalSlab))))
+                .build(consumer, SullysMod.modPrefix("crafting/" + getItemName(verticalSlab)));
 
         ConditionalRecipe.builder()
                 .addCondition(new QuarkFlagRecipeCondition(SMDatagenUtil.QUARK_FLAG, "vertical_slabs"))
-                .addRecipe(consumer1 -> ShapelessRecipeBuilder.shapeless(slab).requires(verticalSlab).unlockedBy(getHasName(verticalSlab), has(verticalSlab)).save(consumer1, new ResourceLocation(SullysMod.MOD_ID, getItemName(verticalSlab) + "_revert")))
-                .build(consumer, new ResourceLocation(SullysMod.MOD_ID, "crafting/" + getItemName(verticalSlab) + "_revert"));
+                .addRecipe(consumer1 -> ShapelessRecipeBuilder.shapeless(slab).requires(verticalSlab).unlockedBy(getHasName(verticalSlab), has(verticalSlab)).save(consumer1, SullysMod.modPrefix(getItemName(verticalSlab) + "_revert")))
+                .build(consumer, SullysMod.modPrefix("crafting/" + getItemName(verticalSlab) + "_revert"));
     }
 }

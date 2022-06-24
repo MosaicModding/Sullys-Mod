@@ -12,17 +12,17 @@ import software.bernie.geckolib3.model.provider.data.EntityModelData;
 public class TortoiseModel extends AnimatedGeoModel<TortoiseEntity> {
     @Override
     public ResourceLocation getModelLocation(TortoiseEntity object) {
-        return new ResourceLocation(SullysMod.MOD_ID, "geo/tortoise.geo.json");
+        return SullysMod.modPrefix("geo/tortoise.geo.json");
     }
 
     @Override
     public ResourceLocation getTextureLocation(TortoiseEntity object) {
-        return new ResourceLocation(SullysMod.MOD_ID, "textures/entity/tortoise/tortoise.png");
+        return SullysMod.modPrefix("textures/entity/tortoise/tortoise.png");
     }
 
     @Override
     public ResourceLocation getAnimationFileLocation(TortoiseEntity animatable) {
-        return new ResourceLocation(SullysMod.MOD_ID, "animations/tortoise.animation.json");
+        return SullysMod.modPrefix("animations/tortoise.animation.json");
     }
 
 

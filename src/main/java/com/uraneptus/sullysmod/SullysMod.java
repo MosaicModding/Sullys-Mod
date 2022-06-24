@@ -10,10 +10,10 @@ import com.uraneptus.sullysmod.core.data.client.SMBlockStateProvider;
 import com.uraneptus.sullysmod.core.data.client.SMItemModelProvider;
 import com.uraneptus.sullysmod.core.data.client.SMLangProvider;
 import com.uraneptus.sullysmod.core.data.server.SMAdvancementProvider;
-import com.uraneptus.sullysmod.core.data.server.modifiers.SMLootModifierProvider;
 import com.uraneptus.sullysmod.core.data.server.SMLootTableProvider;
 import com.uraneptus.sullysmod.core.data.server.SMRecipeProvider;
 import com.uraneptus.sullysmod.core.data.server.modifiers.SMAdvancementModifiersProvider;
+import com.uraneptus.sullysmod.core.data.server.modifiers.SMLootModifierProvider;
 import com.uraneptus.sullysmod.core.data.server.tags.SMBlockTagsProvider;
 import com.uraneptus.sullysmod.core.data.server.tags.SMEntityTagsProvider;
 import com.uraneptus.sullysmod.core.data.server.tags.SMItemTagsProvider;
@@ -37,11 +37,16 @@ import org.slf4j.Logger;
 @Mod.EventBusSubscriber(modid = SullysMod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class SullysMod {
     public static final String MOD_ID = "sullysmod";
+    public static final String BLUEPRINT_MOD_ID = "blueprint";
     public static final RegistryHelper REGISTRY_HELPER = new RegistryHelper(MOD_ID);
     public static final Logger LOGGER = LogUtils.getLogger();
 
     public static ResourceLocation modPrefix(String path) {
         return new ResourceLocation(SullysMod.MOD_ID, path);
+    }
+
+    public static ResourceLocation blueprintPrefix(String path) {
+        return new ResourceLocation(SullysMod.BLUEPRINT_MOD_ID, path);
     }
 
     public SullysMod() {
