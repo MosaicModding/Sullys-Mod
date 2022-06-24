@@ -1,0 +1,13 @@
+{
+  "type": "create:sandpaper_polishing",
+  "ingredients": [
+    {
+      "item": "sullysmod:rough_jade"
+    }
+  ],
+  "results": [
+    {
+      "item": "sullysmod:polished_jade"
+    }
+  ]
+}
