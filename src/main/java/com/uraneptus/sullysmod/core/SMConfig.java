@@ -40,7 +40,7 @@ public class SMConfig {
         COMMON_BUILDER.pop();
         COMMON_BUILDER.pop();
 
-        //CLIENT
+        //Client
         CLIENT_BUILDER.comment("Particles").push("particles");
         PARTICLES_AROUND_GRINDSTONE = CLIENT_BUILDER.comment("If Particles spawn around the grindstone, while the Player is holding an Item that can be polished. (default = true)").define("Particles around Grindstone", true);
         CLIENT_BUILDER.pop();

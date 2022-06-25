@@ -89,8 +89,8 @@ public class SMLangProvider extends LanguageProvider {
         add("advancements.adventure.jade_grindset.title", "Jade Grindset");
         add("advancements.adventure.jade_grindset.description", "Acquire Rough Jade");
 
-        add("advancements.adventure.polish_jade.title", "Insert Name Here");
-        add("advancements.adventure.polish_jade.description", "Acquire Polished Jade");
+        add("advancements.adventure.polish_jade.title", "Sparkles Like New!");
+        add("advancements.adventure.polish_jade.description", "Polish Rough Jade using a Grindstone");
 
         //Subtitles
         add("subtitles.block.grindstone.polish_jade", "Grindstone polishes");
