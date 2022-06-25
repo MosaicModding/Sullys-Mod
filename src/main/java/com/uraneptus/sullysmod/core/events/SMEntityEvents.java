@@ -4,6 +4,7 @@ import com.uraneptus.sullysmod.SullysMod;
 import com.uraneptus.sullysmod.common.blocks.JadeFlingerTotem;
 import com.uraneptus.sullysmod.common.entities.TortoiseEntity;
 import com.uraneptus.sullysmod.common.entities.goals.GenericMobAttackTortoiseEggGoal;
+import com.uraneptus.sullysmod.core.SMConfig;
 import com.uraneptus.sullysmod.core.other.tags.SMBlockTags;
 import com.uraneptus.sullysmod.core.other.tags.SMEntityTags;
 import com.uraneptus.sullysmod.core.registry.SMParticleTypes;
@@ -81,13 +82,13 @@ public class SMEntityEvents {
                     event.setCanceled(true);
 
                     if (direction.getAxis() == Direction.Axis.X) {
-                        projectile.shoot(vec3.reverse().x, vec3.y, vec3.z, 0.5F, 0.0F);
+                        projectile.shoot(vec3.reverse().x, vec3.y, vec3.z, calculateBounceVelocity(velocity), 0.0F);
 
                     } else if (direction.getAxis() == Direction.Axis.Y) {
-                        projectile.shoot(vec3.x, vec3.reverse().y, vec3.z, 0.5F, 0.0F);
+                        projectile.shoot(vec3.x, vec3.reverse().y, vec3.z, calculateBounceVelocity(velocity), 0.0F);
 
                     } else if (direction.getAxis() == Direction.Axis.Z) {
-                        projectile.shoot(vec3.x, vec3.y, vec3.reverse().z, 0.5F, 0.0F);
+                        projectile.shoot(vec3.x, vec3.y, vec3.reverse().z, calculateBounceVelocity(velocity), 0.0F);
                     }
                     level.addParticle(SMParticleTypes.RICOCHET.get(), projectile.getX(), projectile.getY(), projectile.getZ(), 0, 0, 0);
                     level.playLocalSound(projectile.getX(), projectile.getY(), projectile.getZ(), SMSounds.JADE_RICOCHET.get(), SoundSource.BLOCKS, 1.0F, 0.0F, false);
@@ -115,5 +116,12 @@ public class SMEntityEvents {
         if (entity instanceof Zombie zombie) {
             zombie.goalSelector.addGoal(4, new GenericMobAttackTortoiseEggGoal(zombie, 1.0D, 3));
         }
+    }
+
+    private static float calculateBounceVelocity(float velocity) {
+        if (SMConfig.ENABLE_DYNAMIC_VELOCITY.get() && velocity * 0.8F >= 0.5F) {
+            return velocity * 0.8F;
+        }
+        else return 0.5F;
     }
 }

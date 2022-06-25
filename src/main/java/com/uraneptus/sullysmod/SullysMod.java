@@ -19,6 +19,7 @@ import com.uraneptus.sullysmod.core.data.server.tags.SMEntityTagsProvider;
 import com.uraneptus.sullysmod.core.data.server.tags.SMItemTagsProvider;
 import com.uraneptus.sullysmod.core.registry.*;
 import net.minecraft.data.DataGenerator;
+import net.minecraft.data.worldgen.features.OreFeatures;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.data.ExistingFileHelper;
@@ -54,6 +55,7 @@ public class SullysMod {
         bus.addListener(this::setup);
         bus.addListener(this::gatherData);
 
+        ModLoadingContext.get().registerConfig(ModConfig.Type.SERVER, SMConfig.SERVER);
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, SMConfig.COMMON);
         ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, SMConfig.CLIENT);
 

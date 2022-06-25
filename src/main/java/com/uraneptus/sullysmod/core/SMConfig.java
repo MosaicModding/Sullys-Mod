@@ -14,11 +14,14 @@ public class SMConfig {
 
     public static ForgeConfigSpec.ConfigValue<Boolean> ENABLE_JADE;
     public static ForgeConfigSpec.ConfigValue<Boolean> PARTICLES_AROUND_GRINDSTONE;
+    public static ForgeConfigSpec.ConfigValue<Boolean> ENABLE_DYNAMIC_VELOCITY;
 
+    public static ForgeConfigSpec SERVER;
     public static ForgeConfigSpec COMMON;
     public static ForgeConfigSpec CLIENT;
 
     static {
+        ForgeConfigSpec.Builder SERVER_BULDER = new ForgeConfigSpec.Builder();
         ForgeConfigSpec.Builder COMMON_BUILDER = new ForgeConfigSpec.Builder();
         ForgeConfigSpec.Builder CLIENT_BUILDER = new ForgeConfigSpec.Builder();
 
@@ -45,6 +48,14 @@ public class SMConfig {
         PARTICLES_AROUND_GRINDSTONE = CLIENT_BUILDER.comment("If Particles spawn around the grindstone, while the Player is holding an Item that can be polished. (default = true)").define("Particles around Grindstone", true);
         CLIENT_BUILDER.pop();
 
+        //Server
+        SERVER_BULDER.comment("Blocks").push("blocks");
+        SERVER_BULDER.comment("Jade").push("jade");
+        ENABLE_DYNAMIC_VELOCITY = SERVER_BULDER.comment("If the velocity of projectiles bounced off of a Jade block should be based on its previous velocity instead of a static value. [Warning: Experimental] (default = false)").define("Dynamic ricochet velocity", false);
+        SERVER_BULDER.pop();
+        SERVER_BULDER.pop();
+
+        SERVER = SERVER_BULDER.build();
         COMMON = COMMON_BUILDER.build();
         CLIENT = CLIENT_BUILDER.build();
     }
