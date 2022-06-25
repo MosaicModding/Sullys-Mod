@@ -560,7 +560,7 @@ public class TortoiseEntity extends Animal implements IAnimatable {
                     this.tortoise.setLayingEgg(true);
                 }
                 else if (this.tortoise.layEggCounter > this.adjustedTickDelay(200)) {
-                    SullysMod.LOGGER.info("Placing Egg");
+                    //SullysMod.LOGGER.info("Placing Egg");
                     Level level = this.tortoise.level;
                     level.playSound((Player)null, blockPos, SMSounds.TORTOISE_LAY_EGG.get(), SoundSource.BLOCKS, 0.3F, 0.9F + level.random.nextFloat() * 0.2F);
                     level.setBlock(this.blockPos.above(), SMBlocks.TORTOISE_EGG.get().defaultBlockState().setValue(TurtleEggBlock.EGGS, this.tortoise.random.nextInt(4) + 1), 3);
