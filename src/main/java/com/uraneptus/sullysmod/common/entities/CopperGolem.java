@@ -23,14 +23,14 @@ import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 
-public class CopperGolemEntity extends AbstractGolem implements IAnimatable {
-    public static final EntityDataAccessor<Integer> OXIDIZATION = SynchedEntityData.defineId(CopperGolemEntity.class, EntityDataSerializers.INT);
+public class CopperGolem extends AbstractGolem implements IAnimatable {
+    public static final EntityDataAccessor<Integer> OXIDIZATION = SynchedEntityData.defineId(CopperGolem.class, EntityDataSerializers.INT);
     private final AnimationFactory factory = new AnimationFactory(this);
     int cachedState;
     int cachedGameTime;
     boolean isStatue;
 
-    public CopperGolemEntity(EntityType<? extends AbstractGolem> entityType, Level world) {
+    public CopperGolem(EntityType<? extends AbstractGolem> entityType, Level world) {
         super(entityType, world);
         //this.flag = false;
         this.cachedGameTime = Mth.nextInt(random, 100, 200);
@@ -101,7 +101,7 @@ public class CopperGolemEntity extends AbstractGolem implements IAnimatable {
                 this.getEntityData().set(OXIDIZATION, cachedState++);
             }
         }
-        if (this.getEntityData().get(CopperGolemEntity.OXIDIZATION) == 3) {
+        if (this.getEntityData().get(CopperGolem.OXIDIZATION) == 3) {
             this.makeStatue();
 
         }

@@ -5,13 +5,13 @@ import com.mojang.math.Vector3f;
 import com.uraneptus.sullysmod.SullysMod;
 import com.uraneptus.sullysmod.client.renderer.entities.layer.LanternfishGlowLayer;
 import com.uraneptus.sullysmod.client.renderer.entities.model.LanternfishModel;
-import com.uraneptus.sullysmod.common.entities.LanternfishEntity;
+import com.uraneptus.sullysmod.common.entities.Lanternfish;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 
-public class LanternfishRenderer extends MobRenderer<LanternfishEntity, LanternfishModel<LanternfishEntity>> {
+public class LanternfishRenderer extends MobRenderer<Lanternfish, LanternfishModel<Lanternfish>> {
     public static final ResourceLocation TEXTURE = SullysMod.modPrefix("textures/entity/lanternfish/lanternfish.png");
 
     public LanternfishRenderer(EntityRendererProvider.Context context) {
@@ -20,11 +20,11 @@ public class LanternfishRenderer extends MobRenderer<LanternfishEntity, Lanternf
     }
 
     @Override
-    public ResourceLocation getTextureLocation(LanternfishEntity pEntity) {
+    public ResourceLocation getTextureLocation(Lanternfish pEntity) {
         return TEXTURE;
     }
 
-    protected void setupRotations(LanternfishEntity pEntityLiving, PoseStack pMatrixStack, float pAgeInTicks, float pRotationYaw, float pPartialTicks) {
+    protected void setupRotations(Lanternfish pEntityLiving, PoseStack pMatrixStack, float pAgeInTicks, float pRotationYaw, float pPartialTicks) {
         super.setupRotations(pEntityLiving, pMatrixStack, pAgeInTicks, pRotationYaw, pPartialTicks);
         float f = 4.3F * Mth.sin(0.6F * pAgeInTicks);
         pMatrixStack.mulPose(Vector3f.YP.rotationDegrees(f));

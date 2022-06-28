@@ -134,7 +134,7 @@ public class SMLootTableProvider extends LootTableProvider {
 
         @Override
         protected Iterable<EntityType<?>> getKnownEntities() {
-            return ForgeRegistries.ENTITIES.getValues().stream().filter(entityType -> entityType.getRegistryName() != null && SullysMod.MOD_ID.equals(entityType.getRegistryName().getNamespace())).collect(Collectors.toSet());
+            return ForgeRegistries.ENTITIES.getValues().stream().filter(entityType -> ForgeRegistries.ENTITIES.getKey(entityType) != null && SullysMod.MOD_ID.equals(ForgeRegistries.ENTITIES.getKey(entityType).getNamespace())).collect(Collectors.toSet());
         }
 
         @Override

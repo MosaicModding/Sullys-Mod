@@ -2,9 +2,9 @@ package com.uraneptus.sullysmod;
 
 import com.mojang.logging.LogUtils;
 import com.teamabnormals.blueprint.core.util.registry.RegistryHelper;
-import com.uraneptus.sullysmod.common.entities.CopperGolemEntity;
-import com.uraneptus.sullysmod.common.entities.LanternfishEntity;
-import com.uraneptus.sullysmod.common.entities.TortoiseEntity;
+import com.uraneptus.sullysmod.common.entities.CopperGolem;
+import com.uraneptus.sullysmod.common.entities.Lanternfish;
+import com.uraneptus.sullysmod.common.entities.Tortoise;
 import com.uraneptus.sullysmod.core.SMConfig;
 import com.uraneptus.sullysmod.core.data.client.SMBlockStateProvider;
 import com.uraneptus.sullysmod.core.data.client.SMItemModelProvider;
@@ -19,7 +19,6 @@ import com.uraneptus.sullysmod.core.data.server.tags.SMEntityTagsProvider;
 import com.uraneptus.sullysmod.core.data.server.tags.SMItemTagsProvider;
 import com.uraneptus.sullysmod.core.registry.*;
 import net.minecraft.data.DataGenerator;
-import net.minecraft.data.worldgen.features.OreFeatures;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.data.ExistingFileHelper;
@@ -63,7 +62,7 @@ public class SullysMod {
         SMParticleTypes.PARTICLES.register(bus);
         SMPotions.POTIONS.register(bus);
         SMRecipeTypes.RECIPE_TYPES.register(bus);
-        SMRecipeSerializer.SERIALIZER.register(bus);
+        SMRecipeSerializer.SERIALIZERS.register(bus);
 
         MinecraftForge.EVENT_BUS.register(this);
     }
@@ -77,9 +76,9 @@ public class SullysMod {
 
     @SubscribeEvent
     public static void addEntityAttributes(final EntityAttributeCreationEvent event) {
-        event.put(SMEntityTypes.COPPER_GOLEM.get(), CopperGolemEntity.createAttributes().build());
-        event.put(SMEntityTypes.LANTERNFISH.get(), LanternfishEntity.createAttributes().build());
-        event.put(SMEntityTypes.TORTOISE.get(), TortoiseEntity.createAttributes().build());
+        event.put(SMEntityTypes.COPPER_GOLEM.get(), CopperGolem.createAttributes().build());
+        event.put(SMEntityTypes.LANTERNFISH.get(), Lanternfish.createAttributes().build());
+        event.put(SMEntityTypes.TORTOISE.get(), Tortoise.createAttributes().build());
     }
 
     @SubscribeEvent
@@ -88,21 +87,21 @@ public class SullysMod {
         ExistingFileHelper fileHelper = event.getExistingFileHelper();
 
         if (event.includeClient()) {
-            generator.addProvider(new SMBlockStateProvider(generator, fileHelper));
-            generator.addProvider(new SMItemModelProvider(generator, fileHelper));
-            generator.addProvider(new SMLangProvider(generator));
+            generator.addProvider(true, new SMBlockStateProvider(generator, fileHelper));
+            generator.addProvider(true, new SMItemModelProvider(generator, fileHelper));
+            generator.addProvider(true, new SMLangProvider(generator));
         }
         if (event.includeServer()) {
             SMBlockTagsProvider blockTagProvider = new SMBlockTagsProvider(generator, fileHelper);
 
-            generator.addProvider(new SMEntityTagsProvider(generator, fileHelper));
-            generator.addProvider(blockTagProvider);
-            generator.addProvider(new SMItemTagsProvider(generator, blockTagProvider, fileHelper));
-            generator.addProvider(new SMAdvancementModifiersProvider(generator));
-            generator.addProvider(new SMLootTableProvider(generator));
-            generator.addProvider(new SMAdvancementProvider(generator, fileHelper));
-            generator.addProvider(new SMRecipeProvider(generator));
-            generator.addProvider(new SMLootModifierProvider(generator));
+            generator.addProvider(true, new SMEntityTagsProvider(generator, fileHelper));
+            generator.addProvider(true, blockTagProvider);
+            generator.addProvider(true, new SMItemTagsProvider(generator, blockTagProvider, fileHelper));
+            generator.addProvider(true, new SMAdvancementModifiersProvider(generator));
+            generator.addProvider(true, new SMLootTableProvider(generator));
+            generator.addProvider(true, new SMAdvancementProvider(generator, fileHelper));
+            generator.addProvider(true, new SMRecipeProvider(generator));
+            generator.addProvider(true, new SMLootModifierProvider(generator));
         }
     }
 }

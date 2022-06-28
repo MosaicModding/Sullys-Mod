@@ -1,7 +1,7 @@
 package com.uraneptus.sullysmod.client.renderer.entities.model;
 
 import com.uraneptus.sullysmod.SullysMod;
-import com.uraneptus.sullysmod.common.entities.CopperGolemEntity;
+import com.uraneptus.sullysmod.common.entities.CopperGolem;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.LivingEntity;
 import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
@@ -9,27 +9,27 @@ import software.bernie.geckolib3.core.processor.IBone;
 import software.bernie.geckolib3.model.AnimatedGeoModel;
 import software.bernie.geckolib3.model.provider.data.EntityModelData;
 
-public class CopperGolemModel extends AnimatedGeoModel<CopperGolemEntity> {
+public class CopperGolemModel extends AnimatedGeoModel<CopperGolem> {
 
     @Override
-    public ResourceLocation getModelLocation(CopperGolemEntity entity) {
+    public ResourceLocation getModelResource(CopperGolem entity) {
         return SullysMod.modPrefix("geo/copper_golem.geo.json");
     }
 
     @Override
-    public ResourceLocation getTextureLocation(CopperGolemEntity entity) {
-        int id = entity.getEntityData().get(CopperGolemEntity.OXIDIZATION);
+    public ResourceLocation getTextureResource(CopperGolem entity) {
+        int id = entity.getEntityData().get(CopperGolem.OXIDIZATION);
         return SullysMod.modPrefix("textures/entity/copper_golem/copper_golem_" + id + ".png");
     }
 
     @Override
-    public ResourceLocation getAnimationFileLocation(CopperGolemEntity entity) {
+    public ResourceLocation getAnimationResource(CopperGolem entity) {
         return SullysMod.modPrefix("animations/copper_golem.animation.json");
     }
 
     @SuppressWarnings({ "unchecked", "unused"})
     @Override
-    public void setLivingAnimations(CopperGolemEntity entity, Integer uniqueID, AnimationEvent customPredicate) {
+    public void setLivingAnimations(CopperGolem entity, Integer uniqueID, AnimationEvent customPredicate) {
         super.setLivingAnimations(entity, uniqueID, customPredicate);
         IBone head = this.getAnimationProcessor().getBone("head");
 

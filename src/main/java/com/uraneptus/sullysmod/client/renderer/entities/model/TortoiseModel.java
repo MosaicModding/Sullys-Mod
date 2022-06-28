@@ -1,7 +1,7 @@
 package com.uraneptus.sullysmod.client.renderer.entities.model;
 
 import com.uraneptus.sullysmod.SullysMod;
-import com.uraneptus.sullysmod.common.entities.TortoiseEntity;
+import com.uraneptus.sullysmod.common.entities.Tortoise;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.LivingEntity;
 import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
@@ -9,26 +9,26 @@ import software.bernie.geckolib3.core.processor.IBone;
 import software.bernie.geckolib3.model.AnimatedGeoModel;
 import software.bernie.geckolib3.model.provider.data.EntityModelData;
 
-public class TortoiseModel extends AnimatedGeoModel<TortoiseEntity> {
+public class TortoiseModel extends AnimatedGeoModel<Tortoise> {
     @Override
-    public ResourceLocation getModelLocation(TortoiseEntity object) {
+    public ResourceLocation getModelResource(Tortoise object) {
         return SullysMod.modPrefix("geo/tortoise.geo.json");
     }
 
     @Override
-    public ResourceLocation getTextureLocation(TortoiseEntity object) {
+    public ResourceLocation getTextureResource(Tortoise object) {
         return SullysMod.modPrefix("textures/entity/tortoise/tortoise.png");
     }
 
     @Override
-    public ResourceLocation getAnimationFileLocation(TortoiseEntity animatable) {
+    public ResourceLocation getAnimationResource(Tortoise animatable) {
         return SullysMod.modPrefix("animations/tortoise.animation.json");
     }
 
 
     @SuppressWarnings({ "unchecked", "unused", "rawtypes" })
     @Override
-    public void setLivingAnimations(TortoiseEntity entity, Integer uniqueID, AnimationEvent customPredicate) {
+    public void setLivingAnimations(Tortoise entity, Integer uniqueID, AnimationEvent customPredicate) {
         super.setLivingAnimations(entity, uniqueID, customPredicate);
         IBone head = this.getAnimationProcessor().getBone("head");
 

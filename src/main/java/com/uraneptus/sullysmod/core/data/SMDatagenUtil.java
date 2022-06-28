@@ -7,17 +7,18 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.client.model.generators.ModelProvider;
+import net.minecraftforge.registries.ForgeRegistries;
 
 public class SMDatagenUtil {
     public static final String GENERATED = "item/generated";
     private static final String HANDHELD = "item/handheld";
 
     public static String name(Block block) {
-        return block.getRegistryName().getPath();
+        return ForgeRegistries.BLOCKS.getKey(block).getPath();
     }
 
     public static String name(Item item) {
-        return item.getRegistryName().getPath();
+        return ForgeRegistries.ITEMS.getKey(item).getPath();
     }
 
     public static ResourceLocation modBlockLocation(String path) {

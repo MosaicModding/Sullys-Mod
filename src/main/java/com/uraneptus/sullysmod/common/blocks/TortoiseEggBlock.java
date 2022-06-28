@@ -1,7 +1,7 @@
 package com.uraneptus.sullysmod.common.blocks;
 
 import com.teamabnormals.blueprint.common.block.InjectedBlock;
-import com.uraneptus.sullysmod.common.entities.TortoiseEntity;
+import com.uraneptus.sullysmod.common.entities.Tortoise;
 import com.uraneptus.sullysmod.core.registry.SMBlocks;
 import com.uraneptus.sullysmod.core.registry.SMEntityTypes;
 import com.uraneptus.sullysmod.core.registry.SMSounds;
@@ -92,7 +92,7 @@ public class TortoiseEggBlock extends InjectedBlock {
 
                 for(int j = 0; j < pState.getValue(EGGS); ++j) {
                     pLevel.levelEvent(2001, pPos, Block.getId(pState));
-                    TortoiseEntity tortoise = SMEntityTypes.TORTOISE.get().create(pLevel);
+                    Tortoise tortoise = SMEntityTypes.TORTOISE.get().create(pLevel);
                     tortoise.setAge(-24000);
                     tortoise.moveTo((double)pPos.getX() + 0.3D + (double)j * 0.2D, (double)pPos.getY(), (double)pPos.getZ() + 0.3D, 0.0F, 0.0F);
                     pLevel.addFreshEntity(tortoise);
@@ -150,7 +150,7 @@ public class TortoiseEggBlock extends InjectedBlock {
     }
 
     private boolean canDestroyEgg(Level pLevel, Entity pEntity) {
-        if (!(pEntity instanceof TortoiseEntity) && !(pEntity instanceof Bat)) {
+        if (!(pEntity instanceof Tortoise) && !(pEntity instanceof Bat)) {
             if (!(pEntity instanceof LivingEntity)) {
                 return false;
             } else {

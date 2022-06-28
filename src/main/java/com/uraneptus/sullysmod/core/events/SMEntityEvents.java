@@ -2,7 +2,7 @@ package com.uraneptus.sullysmod.core.events;
 
 import com.uraneptus.sullysmod.SullysMod;
 import com.uraneptus.sullysmod.common.blocks.JadeFlingerTotem;
-import com.uraneptus.sullysmod.common.entities.TortoiseEntity;
+import com.uraneptus.sullysmod.common.entities.Tortoise;
 import com.uraneptus.sullysmod.common.entities.goals.GenericMobAttackTortoiseEggGoal;
 import com.uraneptus.sullysmod.core.SMConfig;
 import com.uraneptus.sullysmod.core.other.tags.SMBlockTags;
@@ -103,14 +103,14 @@ public class SMEntityEvents {
 
         if (entity.getType().is(SMEntityTags.ATTACKS_BABY_TORTOISES) && entity instanceof Mob mob) {
             if (mob instanceof Ocelot ocelot) {
-                ocelot.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(ocelot, TortoiseEntity.class, 10, false, false, Turtle.BABY_ON_LAND_SELECTOR));
+                ocelot.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(ocelot, Tortoise.class, 10, false, false, Turtle.BABY_ON_LAND_SELECTOR));
             }
             else if (mob instanceof TamableAnimal tamable) {
                 if (!tamable.isTame()) {
-                    tamable.targetSelector.addGoal(6, new NonTameRandomTargetGoal<>(tamable, TortoiseEntity.class, false, Turtle.BABY_ON_LAND_SELECTOR));
+                    tamable.targetSelector.addGoal(6, new NonTameRandomTargetGoal<>(tamable, Tortoise.class, false, Turtle.BABY_ON_LAND_SELECTOR));
                 }
             }
-            else mob.targetSelector.addGoal(5, new NearestAttackableTargetGoal<>(mob, TortoiseEntity.class, 10, true, false, Turtle.BABY_ON_LAND_SELECTOR));
+            else mob.targetSelector.addGoal(5, new NearestAttackableTargetGoal<>(mob, Tortoise.class, 10, true, false, Turtle.BABY_ON_LAND_SELECTOR));
         }
 
         if (entity instanceof Zombie zombie) {

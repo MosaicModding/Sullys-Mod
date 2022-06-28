@@ -16,7 +16,7 @@ import net.minecraft.world.item.Items;
 
 import javax.annotation.Nonnull;
 
-@JeiPlugin
+@JEI
 public class JEIPlugin implements IModPlugin {
     private static final ResourceLocation PLUGIN_ID = SullysMod.modPrefix("jei_plugin");
 

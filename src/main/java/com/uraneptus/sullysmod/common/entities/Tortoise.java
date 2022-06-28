@@ -1,6 +1,5 @@
 package com.uraneptus.sullysmod.common.entities;
 
-import com.uraneptus.sullysmod.SullysMod;
 import com.uraneptus.sullysmod.common.blocks.TortoiseEggBlock;
 import com.uraneptus.sullysmod.core.other.tags.SMEntityTags;
 import com.uraneptus.sullysmod.core.other.tags.SMItemTags;
@@ -19,6 +18,7 @@ import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
@@ -27,6 +27,7 @@ import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.animal.Animal;
+import net.minecraft.world.entity.animal.Pig;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.vehicle.Boat;
 import net.minecraft.world.item.ItemStack;
@@ -52,17 +53,17 @@ import software.bernie.geckolib3.core.manager.AnimationFactory;
 import java.util.List;
 import java.util.Random;
 
-public class TortoiseEntity extends Animal implements IAnimatable {
-    public static final EntityDataAccessor<Integer> HIDE_TIMER = SynchedEntityData.defineId(TortoiseEntity.class, EntityDataSerializers.INT);
-    private static final EntityDataAccessor<Boolean> HAS_EGG = SynchedEntityData.defineId(TortoiseEntity.class, EntityDataSerializers.BOOLEAN);
-    private static final EntityDataAccessor<Boolean> LAYING_EGG = SynchedEntityData.defineId(TortoiseEntity.class, EntityDataSerializers.BOOLEAN);
+public class Tortoise extends Animal implements IAnimatable {
+    public static final EntityDataAccessor<Integer> HIDE_TIMER = SynchedEntityData.defineId(Tortoise.class, EntityDataSerializers.INT);
+    private static final EntityDataAccessor<Boolean> HAS_EGG = SynchedEntityData.defineId(Tortoise.class, EntityDataSerializers.BOOLEAN);
+    private static final EntityDataAccessor<Boolean> LAYING_EGG = SynchedEntityData.defineId(Tortoise.class, EntityDataSerializers.BOOLEAN);
 
     int layEggCounter;
 
     private final AnimationFactory factory = new AnimationFactory(this);
     public static final Ingredient FOOD_ITEMS = Ingredient.of(SMItemTags.TORTOISE_FOOD);
 
-    public TortoiseEntity(EntityType<? extends Animal> entityType, Level level) {
+    public Tortoise(EntityType<? extends Animal> entityType, Level level) {
         super(entityType, level);
     }
 
@@ -148,7 +149,7 @@ public class TortoiseEntity extends Animal implements IAnimatable {
                 pPlayer.startRiding(this);
                 this.setHideTimerDuration(100);
             }
-            this.gameEvent(GameEvent.MOB_INTERACT, this.eyeBlockPosition());
+            this.gameEvent(GameEvent.ENTITY_INTERACT, this);
             return InteractionResult.sidedSuccess(this.level.isClientSide);
         } else return super.mobInteract(pPlayer, pHand);
     }
@@ -156,11 +157,6 @@ public class TortoiseEntity extends Animal implements IAnimatable {
     @Override
     public boolean isFood(@NotNull ItemStack stack) {
         return FOOD_ITEMS.test(stack);
-    }
-
-    @Override
-    public boolean canBeControlledByRider() {
-        return false;
     }
 
     public static AttributeSupplier.Builder createAttributes() {
@@ -181,6 +177,12 @@ public class TortoiseEntity extends Animal implements IAnimatable {
             return super.getPassengersRidingOffset() * 0.75D;
         }
         else return super.getPassengersRidingOffset();
+    }
+
+    @Nullable
+    @Override
+    public Entity getControllingPassenger() {
+        return null;
     }
 
     public <E extends IAnimatable> PlayState setAnimation(AnimationEvent<E> event) {
@@ -335,7 +337,7 @@ public class TortoiseEntity extends Animal implements IAnimatable {
 
         @Override
         public boolean canUse() {
-            if (this.mob instanceof TortoiseEntity tortoise) {
+            if (this.mob instanceof Tortoise tortoise) {
                 if (tortoise.getHideTimerDuration() > 1 || tortoise.hasEgg()) {
                     return false;
                 }
@@ -365,7 +367,7 @@ public class TortoiseEntity extends Animal implements IAnimatable {
 
         @Override
         public boolean canContinueToUse() {
-            if (this.mob instanceof TortoiseEntity tortoise) {
+            if (this.mob instanceof Tortoise tortoise) {
                 if (tortoise.getHideTimerDuration() > 1 || tortoise.hasEgg()) {
                     return false;
                 }
@@ -382,7 +384,7 @@ public class TortoiseEntity extends Animal implements IAnimatable {
 
         @Override
         public boolean canUse() {
-            if (this.mob instanceof TortoiseEntity tortoise) {
+            if (this.mob instanceof Tortoise tortoise) {
                 if (tortoise.getHideTimerDuration() > 1) {
                     return false;
                 }
@@ -397,7 +399,7 @@ public class TortoiseEntity extends Animal implements IAnimatable {
 
         @Override
         public boolean canContinueToUse() {
-            if (this.mob instanceof TortoiseEntity tortoise) {
+            if (this.mob instanceof Tortoise tortoise) {
                 if (tortoise.getHideTimerDuration() > 1) {
                     return false;
                 }
@@ -418,7 +420,7 @@ public class TortoiseEntity extends Animal implements IAnimatable {
 
         @Override
         public boolean canUse() {
-            if (this.mob instanceof TortoiseEntity tortoise) {
+            if (this.mob instanceof Tortoise tortoise) {
                 if (tortoise.getHideTimerDuration() > 1) {
                     return false;
                 }
@@ -433,7 +435,7 @@ public class TortoiseEntity extends Animal implements IAnimatable {
 
         @Override
         public boolean canContinueToUse() {
-            if (this.mob instanceof TortoiseEntity tortoise) {
+            if (this.mob instanceof Tortoise tortoise) {
                 if (tortoise.getHideTimerDuration() > 1) {
                     return false;
                 }
@@ -448,9 +450,9 @@ public class TortoiseEntity extends Animal implements IAnimatable {
     }
 
     public static class TortoiseLookAroundGoal extends RandomLookAroundGoal {
-        private final TortoiseEntity tortoise;
+        private final Tortoise tortoise;
 
-        public TortoiseLookAroundGoal(TortoiseEntity tortoise) {
+        public TortoiseLookAroundGoal(Tortoise tortoise) {
             super(tortoise);
 
             this.tortoise = tortoise;
@@ -476,9 +478,9 @@ public class TortoiseEntity extends Animal implements IAnimatable {
     }
 
     public static class TortoiseBreedGoal extends BreedGoal {
-        private final TortoiseEntity tortoise;
+        private final Tortoise tortoise;
 
-        public TortoiseBreedGoal(TortoiseEntity tortoise, double pSpeedModifier) {
+        public TortoiseBreedGoal(Tortoise tortoise, double pSpeedModifier) {
             super(tortoise, pSpeedModifier);
             this.tortoise = tortoise;
         }
@@ -505,7 +507,7 @@ public class TortoiseEntity extends Animal implements IAnimatable {
             this.tortoise.resetLove();
             this.partner.resetLove();
 
-            Random random = this.animal.getRandom();
+            RandomSource random = this.animal.getRandom();
             if (this.level.getGameRules().getBoolean(GameRules.RULE_DOMOBLOOT)) {
                 this.level.addFreshEntity(new ExperienceOrb(this.level, this.animal.getX(), this.animal.getY(), this.animal.getZ(), random.nextInt(7) + 1));
             }
@@ -514,9 +516,9 @@ public class TortoiseEntity extends Animal implements IAnimatable {
     }
 
     public static class TortoiseLayEggGoal extends MoveToBlockGoal {
-        private final TortoiseEntity tortoise;
+        private final Tortoise tortoise;
 
-        public TortoiseLayEggGoal(TortoiseEntity tortoise, double pSpeedModifier) {
+        public TortoiseLayEggGoal(Tortoise tortoise, double pSpeedModifier) {
             super(tortoise, pSpeedModifier, 32);
             this.tortoise = tortoise;
         }

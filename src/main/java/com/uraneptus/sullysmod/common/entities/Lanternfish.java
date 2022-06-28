@@ -9,6 +9,7 @@ import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.sounds.SoundEvent;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
@@ -25,11 +26,11 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.Random;
 
-public class LanternfishEntity extends AbstractFish {
-    private static final EntityDataAccessor<Integer> DATA_DARK_TICKS_REMAINING = SynchedEntityData.defineId(LanternfishEntity.class, EntityDataSerializers.INT);
+public class Lanternfish extends AbstractFish {
+    private static final EntityDataAccessor<Integer> DATA_DARK_TICKS_REMAINING = SynchedEntityData.defineId(Lanternfish.class, EntityDataSerializers.INT);
 
 
-    public LanternfishEntity(EntityType<? extends LanternfishEntity> entityType, Level world) {
+    public Lanternfish(EntityType<? extends Lanternfish> entityType, Level world) {
         super(entityType, world);
     }
 
@@ -107,7 +108,7 @@ public class LanternfishEntity extends AbstractFish {
         return new ItemStack(SMItems.LANTERNFISH_BUCKET.get());
     }
 
-    public static boolean checkLanternfishSpawnRules(EntityType<? extends LivingEntity> entityType, ServerLevelAccessor levelAccessor, MobSpawnType spawnType, BlockPos pos, Random random) {
+    public static boolean checkLanternfishSpawnRules(EntityType<? extends LivingEntity> entityType, ServerLevelAccessor levelAccessor, MobSpawnType spawnType, BlockPos pos, RandomSource random) {
         return levelAccessor.getBlockState(pos).is(Blocks.WATER) && pos.getY() <= levelAccessor.getSeaLevel() - 47 && !levelAccessor.canSeeSkyFromBelowWater(pos);
     }
 }
