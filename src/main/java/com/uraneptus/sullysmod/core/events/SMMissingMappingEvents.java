@@ -9,15 +9,17 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.MissingMappingsEvent;
 
 import java.util.Map;
 import java.util.function.Supplier;
 
 @Mod.EventBusSubscriber(modid = SullysMod.MOD_ID)
 public class SMMissingMappingEvents {
-/*
+
     @SubscribeEvent
-    public static void fixMissingBlockMappings(RegistryEvent.MissingMappings<Block> event) {
+    public static void fixMissingBlockMappings(MissingMappingsEvent event) {
         Map<ResourceLocation, Supplier<Block>> blocksMap = (new ImmutableMap.Builder<ResourceLocation, Supplier<Block>>())
                 .put(SullysMod.modPrefix("raw_jade_block"), SMBlocks.ROUGH_JADE_BLOCK)
                 .put(SullysMod.modPrefix("raw_jade_bricks"), SMBlocks.ROUGH_JADE_BRICKS)
@@ -51,34 +53,27 @@ public class SMMissingMappingEvents {
                 .put(SullysMod.modPrefix("jade_tile_slab"), SMBlocks.POLISHED_JADE_TILE_SLAB)
                 .build();
 
-        for (RegistryEvent.MissingMappings.Mapping<Block> mapping : event.getAllMappings()) {
-            Supplier<Block> blockSupplier = blocksMap.get(mapping.key);
-            if (blockSupplier != null) {
-                Block block = blockSupplier.get();
-                if (block.getRegistryName() != null) {
-                    mapping.remap(block);
-                }
-            }
-        }
-    }
-
-    @SubscribeEvent
-    public static void fixMissingItemMappings(RegistryEvent.MissingMappings<Item> event) {
         Map<ResourceLocation, Supplier<Item>> itemsMap = (new ImmutableMap.Builder<ResourceLocation, Supplier<Item>>())
                 .put(SullysMod.modPrefix("raw_jade"), SMItems.ROUGH_JADE)
                 .put(SullysMod.modPrefix("jade"), SMItems.POLISHED_JADE)
                 .build();
 
-        for (RegistryEvent.MissingMappings.Mapping<Item> mapping : event.getAllMappings()) {
-            Supplier<Item> itemSupplier = itemsMap.get(mapping.key);
+        for (MissingMappingsEvent.Mapping<Block> mapping : event.getMappings(ForgeRegistries.Keys.BLOCKS, SullysMod.MOD_ID)) {
+            Supplier<Block> blockSupplier = blocksMap.get(mapping.getKey());
+            if (blockSupplier != null) {
+                Block block = blockSupplier.get();
+                mapping.remap(block);
+
+            }
+        }
+
+        for (MissingMappingsEvent.Mapping<Item> mapping : event.getMappings(ForgeRegistries.Keys.ITEMS, SullysMod.MOD_ID)) {
+            Supplier<Item> itemSupplier = itemsMap.get(mapping.getKey());
             if (itemSupplier != null) {
                 Item item = itemSupplier.get();
-                if (item.getRegistryName() != null) {
-                    mapping.remap(item);
-                }
+                mapping.remap(item);
+
             }
         }
     }
-
- */
 }

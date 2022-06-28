@@ -1,5 +1,5 @@
 modLoader="javafml" #mandatory
-loaderVersion="[40,)" #mandatory
+loaderVersion="[41,)" #mandatory
 license="GNU Lesser General Public License v3.0"
 issueTrackerURL="https://github.com/Uraneptus/Sullys-Mod/issues"
 
@@ -8,38 +8,45 @@ modId = "sullysmod" #mandatory
 version = "${file.jarVersion}" #mandatory
 logoFile = "sullysmod_banner.png" #optional
 authors = "Uraneptus, MiteBeMana" #optional
-credits = "Idea & Assets by Sully" #optional
+credits = "Idea & Assets by GoesBySully" #optional
 displayURL = "https://github.com/Uraneptus/Sullys-Mod"
 displayName = "Sully's Mod" #mandatory
 updateJSONURL = "https://api.modrinth.com/updates/sullysmod/forge_updates.json"
 description = '''
+Sully’s Mod started out a few years ago when I decided to try and make a mod.
+I couldn’t think of a name and called it the first name that came to my head as a placeholder “Sully”, the name stuck and now people think my name is actually Sully.
+Back then it was made with MCreator and combined with the fact that I back then didn’t have a good understanding of vanilla feel, it became more limited each version.
+I decided to completely revamp the mod, completely dumping the MCreator version and getting a coding team (Uraneptus and MiteBeMana).
+With each feature I try to think it out as well as I can, making sure the feature is well-balanced, feels fun to play with and overall just feels like something new.
+It tries it’s best to feel like a Minecraft update full of random features. The mod is planned to have features for every player, explorers, builders and redstone engineers.
 '''
+displayTest = "MATCH_VERSION"
 
 [[dependencies.sullysmod]] #optional
     modId="forge" #mandatory
     mandatory=true #mandatory
-    versionRange="[40,)" #mandatory
+    versionRange="[41,)" #mandatory
     ordering="NONE"
     side="BOTH"
 
 [[dependencies.sullysmod]]
     modId="minecraft"
     mandatory=true
-    versionRange="[1.18.2,)"
+    versionRange="[1.19,)"
     ordering="NONE"
     side="BOTH"
 
 [[dependencies.sullysmod]]
     modId = "blueprint"
     mandatory = true
-    versionRange = "[5.3.1,)"
+    versionRange = "[6.0.1,)"
     ordering = "BEFORE"
     side = "BOTH"
 
 [[dependencies.sullysmod]]
     modId = "geckolib3"
     mandatory = true
-    versionRange = "[3.0.18,)"
+    versionRange = "[3.1.6,)"
     ordering = "BEFORE"
     side = "BOTH"
 
