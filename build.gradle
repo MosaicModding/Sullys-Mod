@@ -1,18 +1,15 @@
 buildscript {
     repositories {
         maven { url = 'https://maven.minecraftforge.net' }
-        maven { url = 'https://maven.parchmentmc.org' }
         mavenCentral()
     }
     dependencies {
         classpath(group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '5.1.+', changing: true)
-        classpath 'org.parchmentmc:librarian:1.+'
     }
 }
 apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
-apply plugin: 'org.parchmentmc.librarian.forgegradle'
 
 version = "${mod_version}"
 group = "com.uraneptus.${mod_id}"
@@ -22,7 +19,7 @@ java.toolchain.languageVersion = JavaLanguageVersion.of(17)
 
 println('Java: ' + System.getProperty('java.version') + ' JVM: ' + System.getProperty('java.vm.version') + '(' + System.getProperty('java.vendor') + ') Arch: ' + System.getProperty('os.arch'))
 minecraft {
-    mappings channel: 'parchment', version: "${parchment_version}-${mc_version}"
+    mappings channel: 'official', version: project.mc_version
 
     accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
 
@@ -80,7 +77,7 @@ repositories {
         url "https://www.cursemaven.com"
     }
     maven {
-        name 'JEI maven'
+        name "JEI maven"
         url = "https://dvs1.progwml6.com/files/maven"
     }
     maven {
@@ -94,16 +91,14 @@ repositories {
 
 dependencies {
     minecraft "net.minecraftforge:forge:${mc_version}-${forge_version}"
-    implementation fg.deobf("software.bernie.geckolib:geckolib-forge-1.18:${geckolib_version}")
+    implementation fg.deobf("software.bernie.geckolib:geckolib-forge-${mc_version}:${geckolib_version}")
     implementation fg.deobf("com.teamabnormals:${blueprint_id}:${mc_version}-${blueprint_version}")
 
     compileOnly fg.deobf("mezz.jei:jei-${mc_version}:${jei_version}:api")
     runtimeOnly fg.deobf("mezz.jei:jei-${mc_version}:${jei_version}")
 
-    runtimeOnly fg.deobf("curse.maven:quark-243121:3840125")
-    runtimeOnly fg.deobf("curse.maven:autoreglib-250363:3642382")
-    runtimeOnly fg.deobf("curse.maven:catalogue-459701:3803098")
-    runtimeOnly fg.deobf("curse.maven:configured-457570:3721946")
+    runtimeOnly fg.deobf("curse.maven:catalogue-459701:3822882")
+    runtimeOnly fg.deobf("curse.maven:configured-457570:3822820")
 }
 
 jar {
