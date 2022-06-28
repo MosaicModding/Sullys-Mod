@@ -94,8 +94,8 @@ dependencies {
     implementation fg.deobf("software.bernie.geckolib:geckolib-forge-${mc_version}:${geckolib_version}")
     implementation fg.deobf("com.teamabnormals:${blueprint_id}:${mc_version}-${blueprint_version}")
 
-    compileOnly fg.deobf("mezz.jei:jei-${mc_version}:${jei_version}:api")
-    runtimeOnly fg.deobf("mezz.jei:jei-${mc_version}:${jei_version}")
+    compileOnly fg.deobf("mezz.jei:jei-${mc_version}-forge-api:${jei_version}")
+    runtimeOnly fg.deobf("mezz.jei:jei-${mc_version}-forge:${jei_version}")
 
     runtimeOnly fg.deobf("curse.maven:catalogue-459701:3822882")
     runtimeOnly fg.deobf("curse.maven:configured-457570:3822820")
