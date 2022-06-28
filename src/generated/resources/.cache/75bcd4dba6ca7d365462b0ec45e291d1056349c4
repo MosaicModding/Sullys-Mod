@@ -1,0 +1,10 @@
+// 1.19	2022-06-27T22:28:22.3377325	Tags for minecraft:block
+cbb4ff3aa1e06cb16cd45f320c8ffba35249cf75 data/forge/tags/blocks/waxable_copper_blocks.json
+f7898eb6bd986531bd29182df2a792ac995ef5e8 data/forge/tags/blocks/waxed_copper_blocks.json
+d7af1e3096f3e973d75c43f8285933df3ceff5d5 data/minecraft/tags/blocks/buttons.json
+63ec8a54263bbfea6c2bbef042f3bc1971823ecf data/minecraft/tags/blocks/mineable/pickaxe.json
+63ec8a54263bbfea6c2bbef042f3bc1971823ecf data/minecraft/tags/blocks/needs_iron_tool.json
+b8185970b3612b092ee86fc392c0e03999bf4832 data/minecraft/tags/blocks/slabs.json
+f22a7e0968d14d48715ce3897d295abd42c80fc4 data/minecraft/tags/blocks/stairs.json
+f9095c45528b1cbf213c2dac783148d1d176b829 data/quark/tags/blocks/vertical_slabs.json
+f638a7fd9e9f7f50579223d5bb18de49519593bd data/sullysmod/tags/blocks/projectiles_bounce_on.json

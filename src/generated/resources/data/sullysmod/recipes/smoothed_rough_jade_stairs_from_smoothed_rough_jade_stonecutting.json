@@ -1,8 +1,8 @@
 {
   "type": "minecraft:stonecutting",
+  "count": 1,
   "ingredient": {
     "item": "sullysmod:smoothed_rough_jade"
   },
-  "result": "sullysmod:smoothed_rough_jade_stairs",
-  "count": 1
+  "result": "sullysmod:smoothed_rough_jade_stairs"
 }

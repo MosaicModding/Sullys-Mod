@@ -1,9 +1,9 @@
 {
   "type": "minecraft:campfire_cooking",
+  "cookingtime": 600,
+  "experience": 0.35,
   "ingredient": {
     "item": "sullysmod:raw_lanternfish"
   },
-  "result": "sullysmod:cooked_lanternfish",
-  "experience": 0.35,
-  "cookingtime": 600
+  "result": "sullysmod:cooked_lanternfish"
 }

@@ -1,23 +1,21 @@
 {
-  "selector": "minecraft:husbandry/wax_off",
-  "priority": "normal",
   "modifiers": [
     {
       "type": "criteria",
       "config": {
         "criteria": {
           "sullysmod:wax_off": {
-            "trigger": "minecraft:item_used_on_block",
             "conditions": {
+              "item": {
+                "tag": "forge:tools/axes"
+              },
               "location": {
                 "block": {
                   "tag": "forge:waxed_copper_blocks"
                 }
-              },
-              "item": {
-                "tag": "forge:tools/axes"
               }
-            }
+            },
+            "trigger": "minecraft:item_used_on_block"
           }
         },
         "indexed_requirements": [
@@ -31,5 +29,7 @@
         ]
       }
     }
-  ]
+  ],
+  "priority": "normal",
+  "selector": "minecraft:husbandry/wax_off"
 }

@@ -1,25 +1,23 @@
 {
-  "selector": "minecraft:husbandry/wax_on",
-  "priority": "normal",
   "modifiers": [
     {
       "type": "criteria",
       "config": {
         "criteria": {
           "sullysmod:wax_on": {
-            "trigger": "minecraft:item_used_on_block",
             "conditions": {
-              "location": {
-                "block": {
-                  "tag": "forge:waxable_copper_blocks"
-                }
-              },
               "item": {
                 "items": [
                   "minecraft:honeycomb"
                 ]
+              },
+              "location": {
+                "block": {
+                  "tag": "forge:waxable_copper_blocks"
+                }
               }
-            }
+            },
+            "trigger": "minecraft:item_used_on_block"
           }
         },
         "indexed_requirements": [
@@ -33,5 +31,7 @@
         ]
       }
     }
-  ]
+  ],
+  "priority": "normal",
+  "selector": "minecraft:husbandry/wax_on"
 }

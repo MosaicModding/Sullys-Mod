@@ -1,10 +1,5 @@
 {
   "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "###",
-    "#-#",
-    "###"
-  ],
   "key": {
     "#": {
       "item": "sullysmod:polished_jade_shingles"
@@ -13,6 +8,11 @@
       "item": "minecraft:tripwire_hook"
     }
   },
+  "pattern": [
+    "###",
+    "#-#",
+    "###"
+  ],
   "result": {
     "item": "sullysmod:jade_flinger_totem"
   }

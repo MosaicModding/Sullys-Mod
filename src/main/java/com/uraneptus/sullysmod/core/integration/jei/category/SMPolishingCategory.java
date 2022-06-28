@@ -4,6 +4,7 @@ import com.google.common.collect.ImmutableList;
 import com.uraneptus.sullysmod.SullysMod;
 import com.uraneptus.sullysmod.common.recipes.GrindstonePolishingRecipe;
 import com.uraneptus.sullysmod.core.integration.jei.JEIRecipeTypes;
+import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
 import mezz.jei.api.gui.drawable.IDrawable;
 import mezz.jei.api.gui.ingredient.IRecipeSlotsView;
@@ -13,10 +14,10 @@ import mezz.jei.api.recipe.RecipeIngredientRole;
 import mezz.jei.api.recipe.RecipeType;
 import mezz.jei.api.recipe.category.IRecipeCategory;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Collections;
 import java.util.List;
@@ -28,9 +29,9 @@ public class SMPolishingCategory implements IRecipeCategory<GrindstonePolishingR
     private final IDrawable icon;
 
     public SMPolishingCategory(IGuiHelper helper) {
-        title = new TranslatableComponent(SullysMod.MOD_ID + ".jei." + getUid().getPath());
+        title = Component.translatable(SullysMod.MOD_ID + ".jei." + getUid().getPath());
         background = helper.createDrawable(SullysMod.modPrefix("textures/gui/jei/grindstone_polishing.png"), 0, 0, 96, 31);
-        icon = helper.createDrawableIngredient(new ItemStack(Items.GRINDSTONE));
+    icon = helper.createDrawableIngredient(VanillaTypes.ITEM_STACK, new ItemStack(Items.GRINDSTONE));
     }
 
     @Override
@@ -48,18 +49,13 @@ public class SMPolishingCategory implements IRecipeCategory<GrindstonePolishingR
         return this.icon;
     }
 
-    @Override
     public ResourceLocation getUid() {
         return this.getRecipeType().getUid();
     }
 
-    @Override
-    public Class<? extends GrindstonePolishingRecipe> getRecipeClass() {
-        return this.getRecipeType().getRecipeClass();
-    }
 
     @Override
-    public RecipeType<GrindstonePolishingRecipe> getRecipeType() {
+    public @NotNull RecipeType<GrindstonePolishingRecipe> getRecipeType() {
         return JEIRecipeTypes.GRINDSTONE_POLISHING;
     }
 
@@ -72,7 +68,7 @@ public class SMPolishingCategory implements IRecipeCategory<GrindstonePolishingR
     @Override
     public List<Component> getTooltipStrings(GrindstonePolishingRecipe recipe, IRecipeSlotsView recipeSlotsView, double mouseX, double mouseY) {
         if (iconPosition(31, 3, mouseX, mouseY)) {
-            return ImmutableList.of(new TranslatableComponent(SullysMod.MOD_ID + ".jei." + getUid().getPath() + ".info"));
+            return ImmutableList.of(Component.translatable(SullysMod.MOD_ID + ".jei." + getUid().getPath() + ".info"));
         }
         return Collections.emptyList();
     }

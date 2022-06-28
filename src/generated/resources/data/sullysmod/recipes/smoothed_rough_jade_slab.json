@@ -1,15 +1,15 @@
 {
   "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "###"
-  ],
   "key": {
     "#": {
       "item": "sullysmod:smoothed_rough_jade"
     }
   },
+  "pattern": [
+    "###"
+  ],
   "result": {
-    "item": "sullysmod:smoothed_rough_jade_slab",
-    "count": 6
+    "count": 6,
+    "item": "sullysmod:smoothed_rough_jade_slab"
   }
 }

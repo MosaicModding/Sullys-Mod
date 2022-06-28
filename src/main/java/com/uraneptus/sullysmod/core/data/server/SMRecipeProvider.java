@@ -57,6 +57,7 @@ public class SMRecipeProvider extends RecipeProvider {
         slabRecipes(SMBlocks.POLISHED_SMALL_JADE_BRICKS.get(), SMBlocks.POLISHED_SMALL_JADE_BRICK_SLAB.get(), consumer);
         slabRecipes(SMBlocks.POLISHED_JADE_SHINGLES.get(), SMBlocks.POLISHED_JADE_SHINGLE_SLAB.get(), consumer);
 
+        /*
         verticalSlabRecipes(SMBlocks.ROUGH_JADE_BRICK_SLAB.get(), SMBlocks.ROUGH_JADE_BRICK_VERTICAL_SLAB.get(), consumer);
         verticalSlabRecipes(SMBlocks.ROUGH_JADE_TILE_SLAB.get(), SMBlocks.ROUGH_JADE_TILE_VERTICAL_SLAB.get(), consumer);
         verticalSlabRecipes(SMBlocks.SMOOTHED_ROUGH_JADE_SLAB.get(), SMBlocks.SMOOTH_ROUGH_JADE_VERTICAL_SLAB.get(), consumer);
@@ -64,6 +65,7 @@ public class SMRecipeProvider extends RecipeProvider {
         verticalSlabRecipes(SMBlocks.POLISHED_JADE_TILE_SLAB.get(), SMBlocks.POLISHED_JADE_TILE_VERTICAL_SLAB.get(), consumer);
         verticalSlabRecipes(SMBlocks.POLISHED_SMALL_JADE_BRICK_SLAB.get(), SMBlocks.SMALL_POLISHED_JADE_BRICK_VERTICAL_SLAB.get(), consumer);
         verticalSlabRecipes(SMBlocks.POLISHED_JADE_SHINGLE_SLAB.get(), SMBlocks.POLISHED_JADE_SHINGLE_VERTICAL_SLAB.get(), consumer);
+         */
 
         pillarRecipes(SMBlocks.POLISHED_JADE_BLOCK.get(), SMBlocks.POLISHED_JADE_PILLAR.get(), consumer);
 
@@ -187,6 +189,7 @@ public class SMRecipeProvider extends RecipeProvider {
         GrindstonePolishingRecipeBuilder.grindstonePolishing(ingredient, result, resultCount, experience).save(consumer);
     }
 
+    /*
     private static void verticalSlabRecipes(ItemLike slab, ItemLike verticalSlab, Consumer<FinishedRecipe> consumer) {
         ConditionalRecipe.builder()
                 .addCondition(new QuarkFlagRecipeCondition(SMDatagenUtil.QUARK_FLAG, "vertical_slabs"))
@@ -198,4 +201,6 @@ public class SMRecipeProvider extends RecipeProvider {
                 .addRecipe(consumer1 -> ShapelessRecipeBuilder.shapeless(slab).requires(verticalSlab).unlockedBy(getHasName(verticalSlab), has(verticalSlab)).save(consumer1, SullysMod.modPrefix(getItemName(verticalSlab) + "_revert")))
                 .build(consumer, SullysMod.modPrefix("crafting/" + getItemName(verticalSlab) + "_revert"));
     }
+     */
+
 }

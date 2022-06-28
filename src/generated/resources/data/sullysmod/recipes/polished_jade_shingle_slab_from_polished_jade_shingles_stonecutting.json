@@ -1,8 +1,8 @@
 {
   "type": "minecraft:stonecutting",
+  "count": 2,
   "ingredient": {
     "item": "sullysmod:polished_jade_shingles"
   },
-  "result": "sullysmod:polished_jade_shingle_slab",
-  "count": 2
+  "result": "sullysmod:polished_jade_shingle_slab"
 }

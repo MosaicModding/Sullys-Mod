@@ -16,7 +16,7 @@ import net.minecraft.world.item.Items;
 
 import javax.annotation.Nonnull;
 
-@JEI
+@JeiPlugin
 public class JEIPlugin implements IModPlugin {
     private static final ResourceLocation PLUGIN_ID = SullysMod.modPrefix("jei_plugin");
 
@@ -28,7 +28,7 @@ public class JEIPlugin implements IModPlugin {
     @Override
     public void registerRecipes(IRecipeRegistration registration) {
         ClientLevel level = Minecraft.getInstance().level;
-        registration.addRecipes(GrindstonePolishingRecipe.getRecipes(level), JEIRecipeTypes.GRINDSTONE_POLISHING.getUid());
+        registration.addRecipes(JEIRecipeTypes.GRINDSTONE_POLISHING, GrindstonePolishingRecipe.getRecipes(level));
     }
 
     @Override

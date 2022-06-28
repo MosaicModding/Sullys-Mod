@@ -1,13 +1,13 @@
 {
   "variants": {
-    "type=top": {
-      "model": "sullysmod:block/polished_jade_tile_slab_top"
-    },
     "type=bottom": {
       "model": "sullysmod:block/polished_jade_tile_slab"
     },
     "type=double": {
       "model": "sullysmod:block/polished_jade_tiles"
+    },
+    "type=top": {
+      "model": "sullysmod:block/polished_jade_tile_slab_top"
     }
   }
 }

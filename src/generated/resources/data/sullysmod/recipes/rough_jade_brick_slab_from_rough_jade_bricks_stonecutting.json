@@ -1,8 +1,8 @@
 {
   "type": "minecraft:stonecutting",
+  "count": 2,
   "ingredient": {
     "item": "sullysmod:rough_jade_bricks"
   },
-  "result": "sullysmod:rough_jade_brick_slab",
-  "count": 2
+  "result": "sullysmod:rough_jade_brick_slab"
 }

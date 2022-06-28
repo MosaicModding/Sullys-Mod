@@ -7,7 +7,6 @@ import com.uraneptus.sullysmod.core.registry.SMItems;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
-import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
@@ -16,7 +15,7 @@ import java.util.function.Supplier;
 
 @Mod.EventBusSubscriber(modid = SullysMod.MOD_ID)
 public class SMMissingMappingEvents {
-
+/*
     @SubscribeEvent
     public static void fixMissingBlockMappings(RegistryEvent.MissingMappings<Block> event) {
         Map<ResourceLocation, Supplier<Block>> blocksMap = (new ImmutableMap.Builder<ResourceLocation, Supplier<Block>>())
@@ -80,4 +79,6 @@ public class SMMissingMappingEvents {
             }
         }
     }
+
+ */
 }

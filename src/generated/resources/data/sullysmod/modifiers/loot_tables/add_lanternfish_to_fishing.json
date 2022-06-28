@@ -1,12 +1,8 @@
 {
-  "selector": "minecraft:gameplay/fishing/fish",
-  "priority": "normal",
   "modifiers": [
     {
       "type": "entries",
       "config": {
-        "replace": false,
-        "index": 0,
         "entries": [
           {
             "type": "minecraft:item",
@@ -16,29 +12,33 @@
                 "predicate": {
                   "position": {
                     "y": {
-                      "min": -57.0,
-                      "max": 16.0
+                      "max": 16.0,
+                      "min": -57.0
                     }
                   }
                 }
               }
             ],
-            "weight": 55,
             "functions": [
               {
-                "function": "minecraft:set_count",
+                "add": false,
                 "count": {
                   "type": "minecraft:uniform",
-                  "min": 1.0,
-                  "max": 1.0
+                  "max": 1.0,
+                  "min": 1.0
                 },
-                "add": false
+                "function": "minecraft:set_count"
               }
             ],
-            "name": "sullysmod:raw_lanternfish"
+            "name": "sullysmod:raw_lanternfish",
+            "weight": 55
           }
-        ]
+        ],
+        "index": 0,
+        "replace": false
       }
     }
-  ]
+  ],
+  "priority": "normal",
+  "selector": "minecraft:gameplay/fishing/fish"
 }

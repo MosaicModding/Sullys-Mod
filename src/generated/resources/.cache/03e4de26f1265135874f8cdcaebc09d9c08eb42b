@@ -1,0 +1,8 @@
+// 1.19	2022-06-27T22:28:22.3677129	Tags for minecraft:item
+3a444c6b6906eb9873f86dfbfeffdb15d02dafe1 data/forge/tags/items/cooked_fishes/lanternfish.json
+eb858fbe33c79033875e4f5f86087cd23967de7f data/forge/tags/items/raw_fishes.json
+d7af1e3096f3e973d75c43f8285933df3ceff5d5 data/minecraft/tags/items/buttons.json
+b8185970b3612b092ee86fc392c0e03999bf4832 data/minecraft/tags/items/slabs.json
+f22a7e0968d14d48715ce3897d295abd42c80fc4 data/minecraft/tags/items/stairs.json
+f9095c45528b1cbf213c2dac783148d1d176b829 data/quark/tags/items/vertical_slabs.json
+5a36bef3280a6bd6eed5ff271890ba382e716542 data/sullysmod/tags/items/tortoise_food.json

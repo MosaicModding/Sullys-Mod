@@ -1,13 +1,13 @@
 {
   "variants": {
-    "type=top": {
-      "model": "sullysmod:block/smoothed_rough_jade_slab_top"
-    },
     "type=bottom": {
       "model": "sullysmod:block/smoothed_rough_jade_slab"
     },
     "type=double": {
       "model": "sullysmod:block/smoothed_rough_jade"
+    },
+    "type=top": {
+      "model": "sullysmod:block/smoothed_rough_jade_slab_top"
     }
   }
 }

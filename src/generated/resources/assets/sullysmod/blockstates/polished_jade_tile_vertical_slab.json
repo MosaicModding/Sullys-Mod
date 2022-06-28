@@ -1,26 +1,26 @@
 {
   "variants": {
+    "type=double": {
+      "model": "sullysmod:block/polished_jade_tiles"
+    },
+    "type=east": {
+      "model": "sullysmod:block/polished_jade_tile_vertical_slab",
+      "uvlock": true,
+      "y": 90
+    },
     "type=north": {
       "model": "sullysmod:block/polished_jade_tile_vertical_slab",
       "uvlock": true
     },
     "type=south": {
       "model": "sullysmod:block/polished_jade_tile_vertical_slab",
-      "y": 180,
-      "uvlock": true
+      "uvlock": true,
+      "y": 180
     },
     "type=west": {
       "model": "sullysmod:block/polished_jade_tile_vertical_slab",
-      "y": 270,
-      "uvlock": true
-    },
-    "type=east": {
-      "model": "sullysmod:block/polished_jade_tile_vertical_slab",
-      "y": 90,
-      "uvlock": true
-    },
-    "type=double": {
-      "model": "sullysmod:block/polished_jade_tiles"
+      "uvlock": true,
+      "y": 270
     }
   }
 }

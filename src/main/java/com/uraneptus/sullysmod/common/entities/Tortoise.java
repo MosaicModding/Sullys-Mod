@@ -28,6 +28,7 @@ import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.animal.Pig;
+import net.minecraft.world.entity.monster.Shulker;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.vehicle.Boat;
 import net.minecraft.world.item.ItemStack;
@@ -38,6 +39,7 @@ import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.TurtleEggBlock;
 import net.minecraft.world.level.gameevent.GameEvent;
+import net.minecraft.world.level.gameevent.vibrations.VibrationListener;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.NotNull;
@@ -55,6 +57,8 @@ import java.util.Random;
 
 public class Tortoise extends Animal implements IAnimatable {
     public static final EntityDataAccessor<Integer> HIDE_TIMER = SynchedEntityData.defineId(Tortoise.class, EntityDataSerializers.INT);
+
+    public static final EntityDataAccessor<Boolean> IS_HIDING = SynchedEntityData.defineId(Tortoise.class, EntityDataSerializers.BOOLEAN);
     private static final EntityDataAccessor<Boolean> HAS_EGG = SynchedEntityData.defineId(Tortoise.class, EntityDataSerializers.BOOLEAN);
     private static final EntityDataAccessor<Boolean> LAYING_EGG = SynchedEntityData.defineId(Tortoise.class, EntityDataSerializers.BOOLEAN);
 
@@ -103,6 +107,11 @@ public class Tortoise extends Animal implements IAnimatable {
     }
 
     @Override
+    public boolean isSteppingCarefully() {
+        return true;
+    }
+
+    @Override
     public void knockback(double p_147241_, double p_147242_, double p_147243_) {
         if (this.getHideTimerDuration() > 200) {
             super.knockback(p_147241_, p_147242_, p_147243_);
@@ -120,6 +129,8 @@ public class Tortoise extends Animal implements IAnimatable {
             setHideTimerDuration(getHideTimerDuration() - 1);
         }
         else if (this.getHideTimerDuration() == 1) {
+            this.gameEvent(GameEvent.CONTAINER_OPEN, null);
+
             level.playSound(null, this.blockPosition(), SMSounds.TORTOISE_EMERGE.get(), SoundSource.AMBIENT, 1.0F, 1.0F);
         }
 
@@ -130,14 +141,22 @@ public class Tortoise extends Animal implements IAnimatable {
 
         for (Entity e : withinRange) {
             if (e.getType().is(SMEntityTags.SCARES_TORTOISES)) {
-                this.setHideTimerDuration(200);
+                if (this.getHideTimerDuration() == 0) {
+                    this.setHideTimerDuration(205);
+                    this.gameEvent(GameEvent.CONTAINER_CLOSE, null);
+                }
+                else this.setHideTimerDuration(200);
             }
         }
 
         //Hiding During Raids
         if (level instanceof ServerLevel serverLevel) {
             if (serverLevel.isRaided(this.blockPosition())) {
-                this.setHideTimerDuration(200);
+                if (this.getHideTimerDuration() == 0) {
+                    this.setHideTimerDuration(205);
+                    this.gameEvent(GameEvent.CONTAINER_CLOSE, null);
+                }
+                else this.setHideTimerDuration(200);
             }
         }
     }
@@ -149,7 +168,7 @@ public class Tortoise extends Animal implements IAnimatable {
                 pPlayer.startRiding(this);
                 this.setHideTimerDuration(100);
             }
-            this.gameEvent(GameEvent.ENTITY_INTERACT, this);
+            this.gameEvent(GameEvent.ENTITY_INTERACT, null);
             return InteractionResult.sidedSuccess(this.level.isClientSide);
         } else return super.mobInteract(pPlayer, pHand);
     }
@@ -312,6 +331,7 @@ public class Tortoise extends Animal implements IAnimatable {
     protected void defineSynchedData() {
         super.defineSynchedData();
         this.entityData.define(HIDE_TIMER, 0);
+        this.entityData.define(IS_HIDING, false);
         this.entityData.define(HAS_EGG, false);
         this.entityData.define(LAYING_EGG, false);
     }
