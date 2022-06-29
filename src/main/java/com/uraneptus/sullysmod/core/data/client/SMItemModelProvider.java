@@ -1,7 +1,6 @@
 package com.uraneptus.sullysmod.core.data.client;
 
 import com.uraneptus.sullysmod.SullysMod;
-import com.uraneptus.sullysmod.core.data.SMDatagenUtil;
 import com.uraneptus.sullysmod.core.registry.SMBlocks;
 import com.uraneptus.sullysmod.core.registry.SMItems;
 import net.minecraft.data.DataGenerator;
@@ -10,6 +9,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraftforge.client.model.generators.ItemModelProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
 
+import static com.uraneptus.sullysmod.core.data.SMDatagenUtil.*;
 public class SMItemModelProvider extends ItemModelProvider {
 
     public SMItemModelProvider(DataGenerator generator, ExistingFileHelper existingFileHelper) {
@@ -41,14 +41,14 @@ public class SMItemModelProvider extends ItemModelProvider {
         basicItem(SMItems.RAW_LANTERNFISH.get());
         basicItem(SMItems.COOKED_LANTERNFISH.get());
         basicItem(SMBlocks.TORTOISE_EGG.get().asItem());
-        basicButtonBlockItem(SMBlocks.COPPER_BUTTON.get(), SMDatagenUtil.COPPER_BLOCK);
-        basicButtonBlockItem(SMBlocks.EXPOSED_COPPER_BUTTON.get(), SMDatagenUtil.EXPOSED_COPPER);
-        basicButtonBlockItem(SMBlocks.WEATHERED_COPPER_BUTTON.get(), SMDatagenUtil.WEATHERED_COPPER);
-        basicButtonBlockItem(SMBlocks.OXIDIZED_COPPER_BUTTON.get(), SMDatagenUtil.OXIDIZED_COPPER);
-        basicButtonBlockItem(SMBlocks.WAXED_COPPER_BUTTON.get(), SMDatagenUtil.COPPER_BLOCK);
-        basicButtonBlockItem(SMBlocks.WAXED_EXPOSED_COPPER_BUTTON.get(), SMDatagenUtil.EXPOSED_COPPER);
-        basicButtonBlockItem(SMBlocks.WAXED_WEATHERED_COPPER_BUTTON.get(), SMDatagenUtil.WEATHERED_COPPER);
-        basicButtonBlockItem(SMBlocks.WAXED_OXIDIZED_COPPER_BUTTON.get(), SMDatagenUtil.OXIDIZED_COPPER);
+        basicButtonBlockItem(SMBlocks.COPPER_BUTTON.get(), COPPER_BLOCK);
+        basicButtonBlockItem(SMBlocks.EXPOSED_COPPER_BUTTON.get(), EXPOSED_COPPER);
+        basicButtonBlockItem(SMBlocks.WEATHERED_COPPER_BUTTON.get(), WEATHERED_COPPER);
+        basicButtonBlockItem(SMBlocks.OXIDIZED_COPPER_BUTTON.get(), OXIDIZED_COPPER);
+        basicButtonBlockItem(SMBlocks.WAXED_COPPER_BUTTON.get(), COPPER_BLOCK);
+        basicButtonBlockItem(SMBlocks.WAXED_EXPOSED_COPPER_BUTTON.get(), EXPOSED_COPPER);
+        basicButtonBlockItem(SMBlocks.WAXED_WEATHERED_COPPER_BUTTON.get(), WEATHERED_COPPER);
+        basicButtonBlockItem(SMBlocks.WAXED_OXIDIZED_COPPER_BUTTON.get(), OXIDIZED_COPPER);
         basicBlockItem(SMBlocks.POLISHED_JADE_BRICK_STAIRS.get());
         basicBlockItem(SMBlocks.POLISHED_SMALL_JADE_BRICK_STAIRS.get());
         basicBlockItem(SMBlocks.POLISHED_JADE_SHINGLE_STAIRS.get());
@@ -76,19 +76,19 @@ public class SMItemModelProvider extends ItemModelProvider {
     }
 
     private void basicBlockItem(Block blockForItem) {
-        withExistingParent(SMDatagenUtil.name(blockForItem), SMDatagenUtil.modBlockLocation(SMDatagenUtil.name(blockForItem)));
+        withExistingParent(name(blockForItem), modBlockLocation(name(blockForItem)));
     }
 
     private void basicButtonBlockItem(Block blockForItem, String texture) {
-        buttonInventory(SMDatagenUtil.name(blockForItem), SMDatagenUtil.vanillaBlockLocation(texture));
+        buttonInventory(name(blockForItem), vanillaBlockLocation(texture));
     }
 
     private void basicGeneratedItem(Item item) {
-        withExistingParent(SMDatagenUtil.name(item), SMDatagenUtil.GENERATED).texture("layer0", SMDatagenUtil.modItemLocation(SMDatagenUtil.name(item)));
+        withExistingParent(name(item), GENERATED).texture("layer0", modItemLocation(name(item)));
     }
 
     private void basicSpawnEggItem(Item item) {
-        withExistingParent(SMDatagenUtil.name(item), "item/template_spawn_egg");
+        withExistingParent(name(item), "item/template_spawn_egg");
     }
 
 }
