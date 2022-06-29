@@ -118,7 +118,7 @@ public class TortoiseEntity extends Animal implements IAnimatable {
         if (this.getHideTimerDuration() > 0) {
             setHideTimerDuration(getHideTimerDuration() - 1);
         }
-        else if (this.getHideTimerDuration() == 1) {
+        if (this.getHideTimerDuration() == 1) {
             level.playSound(null, this.blockPosition(), SMSounds.TORTOISE_EMERGE.get(), SoundSource.AMBIENT, 1.0F, 1.0F);
         }
 

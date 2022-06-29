@@ -8,9 +8,7 @@ import net.minecraft.world.level.levelgen.VerticalAnchor;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.configurations.OreConfiguration;
-import net.minecraft.world.level.levelgen.placement.CountPlacement;
-import net.minecraft.world.level.levelgen.placement.HeightRangePlacement;
-import net.minecraft.world.level.levelgen.placement.PlacedFeature;
+import net.minecraft.world.level.levelgen.placement.*;
 
 import java.util.List;
 
@@ -22,6 +20,6 @@ public class SMFeatures {
     }
 
     public static final class Placement {
-        public static final Holder<PlacedFeature> JADE_ORE_PLACEMENT = PlacementUtils.register("jade_ore", Configured.JADE_ORE, HeightRangePlacement.triangle(VerticalAnchor.absolute(-16), VerticalAnchor.absolute(112)), CountPlacement.of(16));
+        public static final Holder<PlacedFeature> JADE_ORE_PLACEMENT = PlacementUtils.register("jade_ore", Configured.JADE_ORE, HeightRangePlacement.triangle(VerticalAnchor.absolute(-16), VerticalAnchor.absolute(112)), CountPlacement.of(16), InSquarePlacement.spread(), BiomeFilter.biome());
     }
 }
