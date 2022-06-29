@@ -57,8 +57,6 @@ import java.util.Random;
 
 public class Tortoise extends Animal implements IAnimatable {
     public static final EntityDataAccessor<Integer> HIDE_TIMER = SynchedEntityData.defineId(Tortoise.class, EntityDataSerializers.INT);
-
-    public static final EntityDataAccessor<Boolean> IS_HIDING = SynchedEntityData.defineId(Tortoise.class, EntityDataSerializers.BOOLEAN);
     private static final EntityDataAccessor<Boolean> HAS_EGG = SynchedEntityData.defineId(Tortoise.class, EntityDataSerializers.BOOLEAN);
     private static final EntityDataAccessor<Boolean> LAYING_EGG = SynchedEntityData.defineId(Tortoise.class, EntityDataSerializers.BOOLEAN);
 
@@ -128,7 +126,7 @@ public class Tortoise extends Animal implements IAnimatable {
         if (this.getHideTimerDuration() > 0) {
             setHideTimerDuration(getHideTimerDuration() - 1);
         }
-        else if (this.getHideTimerDuration() == 1) {
+        if (this.getHideTimerDuration() == 1) {
             this.gameEvent(GameEvent.CONTAINER_OPEN, null);
 
             level.playSound(null, this.blockPosition(), SMSounds.TORTOISE_EMERGE.get(), SoundSource.AMBIENT, 1.0F, 1.0F);
@@ -331,7 +329,6 @@ public class Tortoise extends Animal implements IAnimatable {
     protected void defineSynchedData() {
         super.defineSynchedData();
         this.entityData.define(HIDE_TIMER, 0);
-        this.entityData.define(IS_HIDING, false);
         this.entityData.define(HAS_EGG, false);
         this.entityData.define(LAYING_EGG, false);
     }

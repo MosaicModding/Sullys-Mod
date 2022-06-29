@@ -1,6 +1,8 @@
 package com.uraneptus.sullysmod;
 
+import com.google.gson.JsonElement;
 import com.mojang.logging.LogUtils;
+import com.mojang.serialization.JsonOps;
 import com.teamabnormals.blueprint.core.util.registry.RegistryHelper;
 import com.uraneptus.sullysmod.common.entities.CopperGolem;
 import com.uraneptus.sullysmod.common.entities.Lanternfish;
@@ -10,15 +12,19 @@ import com.uraneptus.sullysmod.core.data.client.SMBlockStateProvider;
 import com.uraneptus.sullysmod.core.data.client.SMItemModelProvider;
 import com.uraneptus.sullysmod.core.data.client.SMLangProvider;
 import com.uraneptus.sullysmod.core.data.server.SMAdvancementProvider;
+import com.uraneptus.sullysmod.core.data.server.SMDatapackRegistryProviders;
 import com.uraneptus.sullysmod.core.data.server.SMLootTableProvider;
 import com.uraneptus.sullysmod.core.data.server.SMRecipeProvider;
 import com.uraneptus.sullysmod.core.data.server.modifiers.SMAdvancementModifiersProvider;
 import com.uraneptus.sullysmod.core.data.server.modifiers.SMLootModifierProvider;
+import com.uraneptus.sullysmod.core.data.server.tags.SMBiomeTagsProvider;
 import com.uraneptus.sullysmod.core.data.server.tags.SMBlockTagsProvider;
 import com.uraneptus.sullysmod.core.data.server.tags.SMEntityTagsProvider;
 import com.uraneptus.sullysmod.core.data.server.tags.SMItemTagsProvider;
 import com.uraneptus.sullysmod.core.registry.*;
+import net.minecraft.core.RegistryAccess;
 import net.minecraft.data.DataGenerator;
+import net.minecraft.resources.RegistryOps;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.data.ExistingFileHelper;
@@ -85,11 +91,13 @@ public class SullysMod {
     public void gatherData(GatherDataEvent event) {
         DataGenerator generator = event.getGenerator();
         ExistingFileHelper fileHelper = event.getExistingFileHelper();
+        RegistryAccess registryAccess = RegistryAccess.builtinCopy();
+        RegistryOps<JsonElement> registryOps = RegistryOps.create(JsonOps.INSTANCE, registryAccess);
 
         if (event.includeClient()) {
-            generator.addProvider(true, new SMBlockStateProvider(generator, fileHelper));
-            generator.addProvider(true, new SMItemModelProvider(generator, fileHelper));
-            generator.addProvider(true, new SMLangProvider(generator));
+            generator.addProvider(false, new SMBlockStateProvider(generator, fileHelper));
+            generator.addProvider(false, new SMItemModelProvider(generator, fileHelper));
+            generator.addProvider(false, new SMLangProvider(generator));
         }
         if (event.includeServer()) {
             SMBlockTagsProvider blockTagProvider = new SMBlockTagsProvider(generator, fileHelper);
@@ -97,11 +105,13 @@ public class SullysMod {
             generator.addProvider(true, new SMEntityTagsProvider(generator, fileHelper));
             generator.addProvider(true, blockTagProvider);
             generator.addProvider(true, new SMItemTagsProvider(generator, blockTagProvider, fileHelper));
+            generator.addProvider(true, new SMBiomeTagsProvider(generator, fileHelper));
             generator.addProvider(true, new SMAdvancementModifiersProvider(generator));
             generator.addProvider(true, new SMLootTableProvider(generator));
             generator.addProvider(true, new SMAdvancementProvider(generator, fileHelper));
             generator.addProvider(true, new SMRecipeProvider(generator));
             generator.addProvider(true, new SMLootModifierProvider(generator));
+            SMDatapackRegistryProviders.registerDatapackProviders(fileHelper, generator, registryOps);
         }
     }
 }
