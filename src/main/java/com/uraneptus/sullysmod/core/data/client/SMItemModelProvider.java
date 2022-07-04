@@ -88,7 +88,7 @@ public class SMItemModelProvider extends ItemModelProvider {
     }
 
     private void basicSpawnEggItem(Item item) {
-        withExistingParent(name(item), "item/template_spawn_egg");
+        withExistingParent(name(item), SPAWN_EGG);
     }
 
 }

@@ -11,7 +11,8 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 public class SMDatagenUtil {
     public static final String GENERATED = "item/generated";
-    private static final String HANDHELD = "item/handheld";
+    public static final String HANDHELD = "item/handheld";
+    public static final String SPAWN_EGG = "item/template_spawn_egg";
 
     public static String name(Block block) {
         return ForgeRegistries.BLOCKS.getKey(block).getPath();
