@@ -1,4 +1,4 @@
-package com.uraneptus.sullysmod.client.renderer.particles;
+package com.uraneptus.sullysmod.client.particles;
 
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.*;

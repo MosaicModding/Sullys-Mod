@@ -4,7 +4,7 @@ import com.uraneptus.sullysmod.SullysMod;
 import com.uraneptus.sullysmod.client.renderer.entities.CopperGolemRenderer;
 import com.uraneptus.sullysmod.client.renderer.entities.LanternfishRenderer;
 import com.uraneptus.sullysmod.client.renderer.entities.TortoiseRenderer;
-import com.uraneptus.sullysmod.client.renderer.entities.model.LanternfishModel;
+import com.uraneptus.sullysmod.client.model.LanternfishModel;
 import com.uraneptus.sullysmod.core.registry.SMEntityTypes;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityRenderersEvent;

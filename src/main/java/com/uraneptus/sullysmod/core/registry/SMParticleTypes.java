@@ -1,12 +1,12 @@
 package com.uraneptus.sullysmod.core.registry;
 
 import com.uraneptus.sullysmod.SullysMod;
-import com.uraneptus.sullysmod.client.renderer.particles.RicochetParticle;
+import com.uraneptus.sullysmod.client.particles.RicochetParticle;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.ParticleEngine;
 import net.minecraft.core.particles.ParticleType;
 import net.minecraft.core.particles.SimpleParticleType;
-import net.minecraftforge.client.event.ParticleFactoryRegisterEvent;
+import net.minecraftforge.client.event.RegisterParticleProvidersEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.DeferredRegister;
@@ -20,7 +20,7 @@ public class SMParticleTypes {
     public static final RegistryObject<SimpleParticleType> RICOCHET = PARTICLES.register("ricochet", () -> new SimpleParticleType(false));
 
     @SubscribeEvent
-    public static void registerParticleProvider(ParticleFactoryRegisterEvent event) {
+    public static void registerParticleProvider(RegisterParticleProvidersEvent event) {
         ParticleEngine particleManager = Minecraft.getInstance().particleEngine;
 
         particleManager.register(SMParticleTypes.RICOCHET.get(), RicochetParticle.RicochetParticleProvider::new);

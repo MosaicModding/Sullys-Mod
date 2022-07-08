@@ -23,6 +23,9 @@ import java.util.Optional;
 import java.util.Random;
 import java.util.function.Supplier;
 
+import net.minecraft.world.level.block.WeatheringCopper.WeatherState;
+import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
+
 public class WeatheringCopperButtonBlock extends CopperButtonBlock implements WeatheringCopper {
     private final WeatheringCopper.WeatherState weatherState;
 

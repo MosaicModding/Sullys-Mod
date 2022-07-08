@@ -4,7 +4,7 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.teamabnormals.blueprint.client.BlueprintRenderTypes;
 import com.uraneptus.sullysmod.SullysMod;
-import com.uraneptus.sullysmod.client.renderer.entities.model.LanternfishModel;
+import com.uraneptus.sullysmod.client.model.LanternfishModel;
 import com.uraneptus.sullysmod.common.entities.Lanternfish;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;

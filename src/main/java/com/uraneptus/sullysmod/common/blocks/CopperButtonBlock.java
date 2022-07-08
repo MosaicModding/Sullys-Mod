@@ -23,6 +23,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Supplier;
 
+import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
+
 public class CopperButtonBlock extends ButtonBlock {
     public CopperButtonBlock(Properties pProperties) {
         super(false, pProperties);

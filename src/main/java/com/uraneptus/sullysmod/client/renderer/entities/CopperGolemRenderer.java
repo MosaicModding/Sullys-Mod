@@ -1,6 +1,6 @@
 package com.uraneptus.sullysmod.client.renderer.entities;
 
-import com.uraneptus.sullysmod.client.renderer.entities.model.CopperGolemModel;
+import com.uraneptus.sullysmod.client.model.CopperGolemModel;
 import com.uraneptus.sullysmod.common.entities.CopperGolem;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import software.bernie.geckolib3.renderers.geo.GeoEntityRenderer;

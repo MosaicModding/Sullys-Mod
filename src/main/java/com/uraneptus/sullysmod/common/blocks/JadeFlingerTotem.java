@@ -9,6 +9,8 @@ import net.minecraft.world.level.block.Blocks;
 
 import java.util.function.Supplier;
 
+import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
+
 public class JadeFlingerTotem extends SMDirectionalBlock {
     public JadeFlingerTotem(Properties properties) {
         super(properties);
