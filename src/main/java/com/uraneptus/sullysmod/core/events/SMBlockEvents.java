@@ -1,7 +1,7 @@
 package com.uraneptus.sullysmod.core.events;
 
 import com.uraneptus.sullysmod.SullysMod;
-import net.minecraftforge.event.world.BlockEvent;
+import net.minecraftforge.event.level.BlockEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 

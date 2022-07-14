@@ -33,8 +33,8 @@ public class SMPlayerEvents {
 
     @SubscribeEvent
     public static void onRightClick(PlayerInteractEvent.RightClickBlock event) {
-        Player player = event.getPlayer();
-        Level level = event.getWorld();
+        Player player = event.getEntity();
+        Level level = event.getLevel();
         BlockPos pos = event.getPos();
         InteractionHand hand = event.getHand();
         Block block = level.getBlockState(pos).getBlock();
