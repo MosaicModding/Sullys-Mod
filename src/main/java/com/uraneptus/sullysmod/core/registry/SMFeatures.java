@@ -16,7 +16,7 @@ public class SMFeatures {
     public static final List<OreConfiguration.TargetBlockState> JADE_ORE_TARGET_LIST = List.of(OreConfiguration.target(OreFeatures.STONE_ORE_REPLACEABLES, SMBlocks.JADE_ORE.get().defaultBlockState()), OreConfiguration.target(OreFeatures.DEEPSLATE_ORE_REPLACEABLES, SMBlocks.DEEPSLATE_JADE_ORE.get().defaultBlockState()));
 
     public static final class Configured {
-        public static final Holder<ConfiguredFeature<OreConfiguration, ?>> JADE_ORE = FeatureUtils.register("jade_ore", Feature.ORE, new OreConfiguration(JADE_ORE_TARGET_LIST, 10, 1.0F));
+        public static final Holder<ConfiguredFeature<OreConfiguration, ?>> JADE_ORE = FeatureUtils.register("jade_ore", Feature.ORE, new OreConfiguration(JADE_ORE_TARGET_LIST, 10));
     }
 
     public static final class Placement {
