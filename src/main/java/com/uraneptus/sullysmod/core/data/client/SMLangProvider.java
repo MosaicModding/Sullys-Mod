@@ -23,7 +23,7 @@ public class SMLangProvider extends LanguageProvider {
         add(SMBlocks.DEEPSLATE_JADE_ORE.get(), "Deepslate Jade Ore");
         add(SMBlocks.ROUGH_JADE_BLOCK.get(), "Block of Rough Jade");
         add(SMBlocks.ROUGH_JADE_BRICKS.get(), "Rough Jade Bricks");
-        add(SMBlocks.SMOOTHED_ROUGH_JADE.get(), "Smooth Rough Jade");
+        add(SMBlocks.SMOOTHED_ROUGH_JADE.get(), "Smoothed Rough Jade");
         add(SMBlocks.ROUGH_JADE_TILES.get(), "Rough Jade Tiles");
         add(SMBlocks.POLISHED_JADE_BLOCK.get(), "Block of Polished Jade");
         add(SMBlocks.POLISHED_JADE_BRICKS.get(), "Polished Jade Bricks");

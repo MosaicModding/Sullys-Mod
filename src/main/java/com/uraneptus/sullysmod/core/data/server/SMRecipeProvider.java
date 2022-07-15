@@ -10,10 +10,13 @@ import net.minecraft.data.DataGenerator;
 import net.minecraft.data.recipes.*;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.RecipeSerializer;
+import net.minecraft.world.item.crafting.SimpleCookingSerializer;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.common.crafting.ConditionalRecipe;
 
+import java.util.List;
 import java.util.function.Consumer;
 
 public class SMRecipeProvider extends RecipeProvider {
@@ -29,6 +32,9 @@ public class SMRecipeProvider extends RecipeProvider {
 
         //Smelting
         basicSmeltingRecipes(SMBlocks.ROUGH_JADE_BLOCK.get(), SMBlocks.SMOOTHED_ROUGH_JADE.get(), 1.0F, consumer);
+
+        oreCookingRecipes(SMBlocks.JADE_ORE.get(), SMItems.ROUGH_JADE.get(), 0.7F, consumer);
+        oreCookingRecipes(SMBlocks.DEEPSLATE_JADE_ORE.get(), SMItems.ROUGH_JADE.get(), 0.7F, consumer);
 
         //Crafting
         packableBlockRecipes(SMItems.ROUGH_JADE.get(), SMBlocks.ROUGH_JADE_BLOCK.get(), consumer);
@@ -115,16 +121,16 @@ public class SMRecipeProvider extends RecipeProvider {
     }
 
     private static void cookingRecipes(ItemLike ingredient, ItemLike result, float experience, Consumer<FinishedRecipe> consumer) {
-        String resultName = SullysMod.modPrefix(result.toString()).toString();
+        String resultName = getItemName(result);
         SimpleCookingRecipeBuilder.smelting(Ingredient.of(ingredient), result, experience, 200)
                 .unlockedBy(getHasName(ingredient), has(ingredient))
                 .save(consumer);
         SimpleCookingRecipeBuilder.campfireCooking(Ingredient.of(ingredient), result, experience, 600)
                 .unlockedBy(getHasName(ingredient), has(ingredient))
-                .save(consumer, resultName + "_from_campfire_cooking");
+                .save(consumer, SullysMod.modPrefix(resultName + "_from_campfire_cooking"));
         SimpleCookingRecipeBuilder.smoking(Ingredient.of(ingredient), result, experience, 100)
                 .unlockedBy(getHasName(ingredient), has(ingredient))
-                .save(consumer, resultName + "_from_smoking");
+                .save(consumer, SullysMod.modPrefix(resultName + "_from_smoking"));
     }
 
     private static void packableBlockRecipes(ItemLike unpacked, ItemLike packed, Consumer<FinishedRecipe> consumer) {
@@ -140,8 +146,21 @@ public class SMRecipeProvider extends RecipeProvider {
     }
 
     private static void basicSmeltingRecipes(ItemLike ingredient, ItemLike result, float experience, Consumer<FinishedRecipe> consumer) {
+        String resultName = getItemName(result);
+        String ingredientName = getItemName(ingredient);
         SimpleCookingRecipeBuilder.smelting(Ingredient.of(ingredient), result, experience, 200)
-                .unlockedBy(getHasName(ingredient), has(ingredient)).save(consumer);
+                .unlockedBy(getHasName(ingredient), has(ingredient)).save(consumer, SullysMod.modPrefix(resultName + "_from_smelting" + "_" + ingredientName));
+    }
+
+    private static void oreCookingRecipes(ItemLike ingredient, ItemLike result, float experience, Consumer<FinishedRecipe> consumer) {
+        String resultName = getItemName(result);
+        String ingredientName = getItemName(ingredient);
+
+        SimpleCookingRecipeBuilder.smelting(Ingredient.of(ingredient), result, experience, 200)
+                .unlockedBy(getHasName(ingredient), has(ingredient)).save(consumer, SullysMod.modPrefix(resultName + "_from_smelting" + "_" + ingredientName));
+
+        SimpleCookingRecipeBuilder.blasting(Ingredient.of(ingredient), result, experience, 100)
+                .unlockedBy(getHasName(ingredient), has(ingredient)).save(consumer, SullysMod.modPrefix(resultName + "_from_blasting" + "_" + ingredientName));
     }
 
     private static void stairRecipes(ItemLike ingredient, ItemLike result, Consumer<FinishedRecipe> consumer) {
@@ -170,17 +189,16 @@ public class SMRecipeProvider extends RecipeProvider {
     }
 
     private static void waxButtonRecipes(ItemLike ingredient, ItemLike result, Consumer<FinishedRecipe> consumer) {
-        String resultName = SullysMod.modPrefix(result.asItem().toString()).toString();
+        String resultName = getItemName(result);
 
         ShapelessRecipeBuilder.shapeless(result).requires(ingredient).requires(Items.HONEYCOMB)
-                .unlockedBy(getHasName(ingredient), has(ingredient)).save(consumer, resultName + "_from_honeycomb");
+                .unlockedBy(getHasName(ingredient), has(ingredient)).save(consumer, SullysMod.modPrefix(resultName + "_from_honeycomb"));
     }
 
     private static void stonecutterRecipes(ItemLike ingredient, ItemLike result, int resultCount, Consumer<FinishedRecipe> consumer) {
-        String resultName = SullysMod.modPrefix(result.asItem().toString()).toString();
-        String prefix = resultName + "_from_" + ingredient.asItem();
+        String prefix = getItemName(result) + "_from_" + getItemName(ingredient);
         SingleItemRecipeBuilder.stonecutting(Ingredient.of(ingredient), result, resultCount)
-                .unlockedBy(getHasName(ingredient), has(ingredient)).save(consumer, prefix + "_stonecutting");
+                .unlockedBy(getHasName(ingredient), has(ingredient)).save(consumer, SullysMod.modPrefix(prefix + "_stonecutting"));
     }
 
     private static void grindstonePolishingRecipes(ItemLike ingredient, ItemLike result, int resultCount, int experience, Consumer<FinishedRecipe> consumer) {

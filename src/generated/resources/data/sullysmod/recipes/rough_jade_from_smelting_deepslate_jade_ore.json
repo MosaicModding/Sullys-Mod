@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "sullysmod:deepslate_jade_ore"
+  },
+  "result": "sullysmod:rough_jade",
+  "experience": 0.7,
+  "cookingtime": 200
+}

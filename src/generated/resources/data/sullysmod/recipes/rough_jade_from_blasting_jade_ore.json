@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:blasting",
+  "ingredient": {
+    "item": "sullysmod:jade_ore"
+  },
+  "result": "sullysmod:rough_jade",
+  "experience": 0.7,
+  "cookingtime": 100
+}

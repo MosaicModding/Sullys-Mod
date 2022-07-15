@@ -2,7 +2,7 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "sullysmod:smoothed_rough_jade"
+      "sullysmod:smoothed_rough_jade_from_smelting_rough_jade_block"
     ]
   },
   "criteria": {
@@ -21,7 +21,7 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "sullysmod:smoothed_rough_jade"
+        "recipe": "sullysmod:smoothed_rough_jade_from_smelting_rough_jade_block"
       }
     }
   },

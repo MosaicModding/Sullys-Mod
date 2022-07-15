@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "sullysmod:rough_jade_from_blasting_jade_ore"
+    ]
+  },
+  "criteria": {
+    "has_jade_ore": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "sullysmod:jade_ore"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "sullysmod:rough_jade_from_blasting_jade_ore"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_jade_ore",
+      "has_the_recipe"
+    ]
+  ]
+}
