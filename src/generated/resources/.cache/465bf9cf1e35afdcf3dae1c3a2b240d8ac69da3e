@@ -1,4 +1,4 @@
-// 1.19	2022-06-28T10:37:43.9553661	Item Models: sullysmod
+// 1.19	2022-07-18T02:44:02.4755557	Item Models: sullysmod
 8478b4358641d01e6e41f9a278d35494bb134aaf assets/sullysmod/models/item/cooked_lanternfish.json
 b363653641fe0de9512720d08bb58a42c2c5e80a assets/sullysmod/models/item/copper_button.json
 816bd5611f3c42717c52be026f8e2dae3bb908dd assets/sullysmod/models/item/deepslate_jade_ore.json
@@ -43,7 +43,7 @@ e1e6c9896a44f1db0301409bc122b38b64da9ae9 assets/sullysmod/models/item/rough_jade
 569e52b1136f46d7eaf082819fb90ae8ce49cf50 assets/sullysmod/models/item/smoothed_rough_jade.json
 cbb9af3472bb80dc762b1aab8fcf933d859bfe5a assets/sullysmod/models/item/smoothed_rough_jade_slab.json
 fdc2c30519141c92fde1e56e47113dc526bef349 assets/sullysmod/models/item/smoothed_rough_jade_stairs.json
-5cbcc2088861ca3b39b20f75df46e8d1ed752d9d assets/sullysmod/models/item/smooth_rough_jade_vertical_slab.json
+41c5c3702cba043f65b57d1198cf3a7eee1c6eda assets/sullysmod/models/item/smoothed_rough_jade_vertical_slab.json
 33fb8be70d4c30862221dd2dbc040beacd48b995 assets/sullysmod/models/item/tortoise_egg.json
 63ec6c618a3a23eab4cab9c52d7d3250de9b516e assets/sullysmod/models/item/tortoise_spawn_egg.json
 b363653641fe0de9512720d08bb58a42c2c5e80a assets/sullysmod/models/item/waxed_copper_button.json

@@ -1,4 +1,4 @@
-// 1.19	2022-06-28T10:37:43.9563657	LootTables
+// 1.19	2022-07-18T02:42:17.0867292	LootTables
 f25a612ff731706742095d2381aaf3bc56bbae09 data/sullysmod/loot_tables/blocks/copper_button.json
 1510f1a0cd7062c7cdde99729b5db9084f572973 data/sullysmod/loot_tables/blocks/deepslate_jade_ore.json
 37b92af389fa07219ef5717164de21e788ec4f89 data/sullysmod/loot_tables/blocks/exposed_copper_button.json
@@ -37,7 +37,7 @@ c8c5b35f9e17b6f827448d8ad94d3f7f6074f7b0 data/sullysmod/loot_tables/blocks/rough
 b9da8d62167b0b8a35b1d4be1a15da5d4786a7df data/sullysmod/loot_tables/blocks/smoothed_rough_jade.json
 68d183eb7882de84e58b169c44bbb1612675584d data/sullysmod/loot_tables/blocks/smoothed_rough_jade_slab.json
 12c71d01841ece1388847489f264d6ecf9bdd524 data/sullysmod/loot_tables/blocks/smoothed_rough_jade_stairs.json
-39ede5b53cec306c838a9fbbfd5080d9c3d88e75 data/sullysmod/loot_tables/blocks/smooth_rough_jade_vertical_slab.json
+05f5173c40981c01aa76468a8c7ec25bd68ed8f0 data/sullysmod/loot_tables/blocks/smoothed_rough_jade_vertical_slab.json
 ee34ae6577cb6bd4f0c533046d6541e521b5f63c data/sullysmod/loot_tables/blocks/tortoise_egg.json
 ae310e13eb7a865b381041d061a4fd0eb053abb9 data/sullysmod/loot_tables/blocks/waxed_copper_button.json
 52ff3d26964574de5453d36ee28f15ae67aa8403 data/sullysmod/loot_tables/blocks/waxed_exposed_copper_button.json

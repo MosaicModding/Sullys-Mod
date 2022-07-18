@@ -20,8 +20,6 @@ public class SMAdvancementProvider extends AdvancementProvider {
         super(generatorIn, fileHelperIn);
     }
 
-
-
     @Override
     protected void registerAdvancements(Consumer<Advancement> consumer, ExistingFileHelper fileHelper) {
         Advancement JADE_GRINDSET = Advancement.Builder.advancement().display(SMItems.ROUGH_JADE.get(), Component.translatable("advancements.adventure.jade_grindset.title"), Component.translatable("advancements.adventure.jade_grindset.description"),null, FrameType.TASK, true, true, false).parent(new ResourceLocation("adventure/root")).addCriterion("rough_jade", new Criterion(InventoryChangeTrigger.TriggerInstance.hasItems(SMItems.ROUGH_JADE.get()))).requirements(RequirementsStrategy.OR).save(consumer, SullysMod.modPrefix("adventure/jade_grindset"), fileHelper);

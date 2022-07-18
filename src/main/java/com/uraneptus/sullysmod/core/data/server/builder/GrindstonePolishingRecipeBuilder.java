@@ -47,6 +47,7 @@ public class GrindstonePolishingRecipeBuilder {
         return new GrindstonePolishingRecipeBuilder(ingredient, result, resultCount, experience, SMRecipeSerializer.GRINDSTONE_POLISHING_SERIALIZER.get());
     }
 
+    //The save methods here could be improved!
     public void save(Consumer<FinishedRecipe> consumer) {
         ResourceLocation resourcelocation = ForgeRegistries.ITEMS.getKey(this.result);
         this.save(consumer, SullysMod.MOD_ID + ":grindstone_polishing/" + resourcelocation.getPath() + "_from_grindstone_polishing");

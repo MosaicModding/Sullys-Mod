@@ -1,0 +1,26 @@
+{
+  "variants": {
+    "type=double": {
+      "model": "sullysmod:block/smoothed_rough_jade"
+    },
+    "type=east": {
+      "model": "sullysmod:block/smoothed_rough_jade_vertical_slab",
+      "uvlock": true,
+      "y": 90
+    },
+    "type=north": {
+      "model": "sullysmod:block/smoothed_rough_jade_vertical_slab",
+      "uvlock": true
+    },
+    "type=south": {
+      "model": "sullysmod:block/smoothed_rough_jade_vertical_slab",
+      "uvlock": true,
+      "y": 180
+    },
+    "type=west": {
+      "model": "sullysmod:block/smoothed_rough_jade_vertical_slab",
+      "uvlock": true,
+      "y": 270
+    }
+  }
+}

@@ -78,7 +78,7 @@ public class SMLootTableProvider extends LootTableProvider {
             this.add(SMBlocks.SMOOTHED_ROUGH_JADE_SLAB.get(), BlockLoot::createSlabItemTable);
             this.add(SMBlocks.ROUGH_JADE_BRICK_VERTICAL_SLAB.get(), BlockLoot::createSlabItemTable);
             this.add(SMBlocks.ROUGH_JADE_TILE_VERTICAL_SLAB.get(), BlockLoot::createSlabItemTable);
-            this.add(SMBlocks.SMOOTH_ROUGH_JADE_VERTICAL_SLAB.get(), BlockLoot::createSlabItemTable);
+            this.add(SMBlocks.SMOOTHED_ROUGH_JADE_VERTICAL_SLAB.get(), BlockLoot::createSlabItemTable);
 
             //Jade
             this.dropSelf(SMBlocks.POLISHED_JADE_BLOCK.get());

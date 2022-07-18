@@ -20,7 +20,7 @@ public class SMBlocks {
     //Jade
     public static final RegistryObject<Block> JADE_ORE = HELPER.createBlockWithItem("jade_ore", () -> new DropExperienceBlock(SMProperties.Blocks.JADE_ORE), () -> new InjectedBlockItem(Items.DEEPSLATE_COPPER_ORE, SMBlocks.JADE_ORE.get(), SMProperties.Items.BUILDING_TAB));
     public static final RegistryObject<Block> DEEPSLATE_JADE_ORE = HELPER.createBlockWithItem("deepslate_jade_ore", () -> new DropExperienceBlock(SMProperties.Blocks.DEEPSLATE_JADE_ORE), () -> new InjectedBlockItem(SMBlocks.JADE_ORE.get().asItem(), SMBlocks.DEEPSLATE_JADE_ORE.get(), SMProperties.Items.BUILDING_TAB));
-    public static final RegistryObject<Block> ROUGH_JADE_BLOCK = HELPER.createBlock("rough_jade_block", () -> new Block(SMProperties.Blocks.ROUGH_JADE_BLOCKS), CreativeModeTab.TAB_BUILDING_BLOCKS);
+    public static final RegistryObject<Block> ROUGH_JADE_BLOCK = HELPER.createBlockWithItem("rough_jade_block", () -> new Block(SMProperties.Blocks.ROUGH_JADE_BLOCKS), () -> new InjectedBlockItem(Items.RAW_COPPER_BLOCK, SMBlocks.ROUGH_JADE_BLOCK.get(), SMProperties.Items.BUILDING_TAB));
     public static final RegistryObject<Block> ROUGH_JADE_BRICKS = HELPER.createBlock("rough_jade_bricks", () -> new Block(SMProperties.Blocks.ROUGH_JADE_BLOCKS), CreativeModeTab.TAB_BUILDING_BLOCKS);
     public static final RegistryObject<Block> SMOOTHED_ROUGH_JADE = HELPER.createBlock("smoothed_rough_jade", () -> new Block(SMProperties.Blocks.ROUGH_JADE_BLOCKS), CreativeModeTab.TAB_BUILDING_BLOCKS);
     public static final RegistryObject<Block> ROUGH_JADE_TILES = HELPER.createBlock("rough_jade_tiles", () -> new Block(SMProperties.Blocks.ROUGH_JADE_BLOCKS), CreativeModeTab.TAB_BUILDING_BLOCKS);
@@ -54,7 +54,7 @@ public class SMBlocks {
 
     //Jade Vertical Slabs
     public static final RegistryObject<Block> ROUGH_JADE_BRICK_VERTICAL_SLAB = HELPER.createCompatBlock("quark", "rough_jade_brick_vertical_slab", () -> new VerticalSlabBlock(SMProperties.Blocks.ROUGH_JADE_BLOCKS), CreativeModeTab.TAB_BUILDING_BLOCKS);
-    public static final RegistryObject<Block> SMOOTH_ROUGH_JADE_VERTICAL_SLAB = HELPER.createCompatBlock("quark", "smooth_rough_jade_vertical_slab", () -> new VerticalSlabBlock(SMProperties.Blocks.ROUGH_JADE_BLOCKS), CreativeModeTab.TAB_BUILDING_BLOCKS);
+    public static final RegistryObject<Block> SMOOTHED_ROUGH_JADE_VERTICAL_SLAB = HELPER.createCompatBlock("quark", "smoothed_rough_jade_vertical_slab", () -> new VerticalSlabBlock(SMProperties.Blocks.ROUGH_JADE_BLOCKS), CreativeModeTab.TAB_BUILDING_BLOCKS);
     public static final RegistryObject<Block> ROUGH_JADE_TILE_VERTICAL_SLAB = HELPER.createCompatBlock("quark", "rough_jade_tile_vertical_slab", () -> new VerticalSlabBlock(SMProperties.Blocks.ROUGH_JADE_BLOCKS), CreativeModeTab.TAB_BUILDING_BLOCKS);
     public static final RegistryObject<Block> POLISHED_JADE_BRICK_VERTICAL_SLAB = HELPER.createCompatBlock("quark", "polished_jade_brick_vertical_slab", () -> new VerticalSlabBlock(SMProperties.Blocks.POLISHED_JADE_BLOCKS), CreativeModeTab.TAB_BUILDING_BLOCKS);
     public static final RegistryObject<Block> SMALL_POLISHED_JADE_BRICK_VERTICAL_SLAB = HELPER.createCompatBlock("quark", "small_polished_jade_brick_vertical_slab", () -> new VerticalSlabBlock(SMProperties.Blocks.POLISHED_JADE_BLOCKS), CreativeModeTab.TAB_BUILDING_BLOCKS);

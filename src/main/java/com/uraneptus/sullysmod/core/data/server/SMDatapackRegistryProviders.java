@@ -43,7 +43,7 @@ public class SMDatapackRegistryProviders {
 
         //Configured Feature Stuff
         List<OreConfiguration.TargetBlockState> JADE_ORE_TARGET_LIST = List.of(OreConfiguration.target(OreFeatures.STONE_ORE_REPLACEABLES, SMBlocks.JADE_ORE.get().defaultBlockState()), OreConfiguration.target(OreFeatures.DEEPSLATE_ORE_REPLACEABLES, SMBlocks.DEEPSLATE_JADE_ORE.get().defaultBlockState()));
-        final ConfiguredFeature<OreConfiguration, ?> JADE_ORE_CONFIGURED = new ConfiguredFeature<>(Feature.ORE, new OreConfiguration(JADE_ORE_TARGET_LIST, 10, 0.4F));
+        final ConfiguredFeature<OreConfiguration, ?> JADE_ORE_CONFIGURED = new ConfiguredFeature<>(Feature.ORE, new OreConfiguration(JADE_ORE_TARGET_LIST, 10));
         final Holder<ConfiguredFeature<?, ?>> JADE_ORE_CONFIG_HOLDER = registryOps.registry(Registry.CONFIGURED_FEATURE_REGISTRY).get().getOrCreateHolderOrThrow(JADE_ORE_CONFIGURED_KEY);
 
         //Placed Feature Stuff

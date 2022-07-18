@@ -72,7 +72,7 @@ public class SMItemTagsProvider extends ItemTagsProvider {
                 SMBlocks.POLISHED_JADE_SHINGLE_VERTICAL_SLAB.get().asItem(),
                 SMBlocks.POLISHED_JADE_TILE_VERTICAL_SLAB.get().asItem(),
                 SMBlocks.ROUGH_JADE_BRICK_VERTICAL_SLAB.get().asItem(),
-                SMBlocks.SMOOTH_ROUGH_JADE_VERTICAL_SLAB.get().asItem(),
+                SMBlocks.SMOOTHED_ROUGH_JADE_VERTICAL_SLAB.get().asItem(),
                 SMBlocks.ROUGH_JADE_TILE_VERTICAL_SLAB.get().asItem()
         );
 

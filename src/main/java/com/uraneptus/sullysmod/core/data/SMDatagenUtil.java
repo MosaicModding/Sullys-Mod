@@ -46,6 +46,34 @@ public class SMDatagenUtil {
         return SullysMod.blueprintPrefix(ModelProvider.ITEM_FOLDER + "/" + path);
     }
 
+    public static ResourceLocation craftingPath(String name) {
+        return SullysMod.modPrefix("crafting/" + name);
+    }
+
+    public static ResourceLocation smeltingPath(String name) {
+        return SullysMod.modPrefix("smelting/" + name);
+    }
+
+    public static ResourceLocation blastingPath(String name) {
+        return SullysMod.modPrefix("blasting/" + name);
+    }
+
+    public static ResourceLocation smokingPath(String name) {
+        return SullysMod.modPrefix("smoking/" + name);
+    }
+
+    public static ResourceLocation campfire_cookingPath(String name) {
+        return SullysMod.modPrefix("campfire_cooking/" + name);
+    }
+
+    public static ResourceLocation stonecuttingPath(String name) {
+        return SullysMod.modPrefix("stonecutting/" + name);
+    }
+
+    public static ResourceLocation smithingPath(String name) {
+        return SullysMod.modPrefix("smithing/" + name);
+    }
+
     //Quark Flag (We're gonna need this a fair amount once that wood gets added)
     public static ResourceLocation QUARK_FLAG = SullysMod.blueprintPrefix("quark_flag");
 

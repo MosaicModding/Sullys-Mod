@@ -11,6 +11,7 @@ import com.uraneptus.sullysmod.core.SMConfig;
 import com.uraneptus.sullysmod.core.data.client.SMBlockStateProvider;
 import com.uraneptus.sullysmod.core.data.client.SMItemModelProvider;
 import com.uraneptus.sullysmod.core.data.client.SMLangProvider;
+import com.uraneptus.sullysmod.core.data.client.SMSoundDefinitionsProvider;
 import com.uraneptus.sullysmod.core.data.server.SMAdvancementProvider;
 import com.uraneptus.sullysmod.core.data.server.SMDatapackRegistryProviders;
 import com.uraneptus.sullysmod.core.data.server.SMLootTableProvider;
@@ -88,29 +89,29 @@ public class SullysMod {
 
     @SubscribeEvent
     public void gatherData(GatherDataEvent event) {
+        boolean includeClient = event.includeClient();
+        boolean includeServer = event.includeServer();
         DataGenerator generator = event.getGenerator();
         ExistingFileHelper fileHelper = event.getExistingFileHelper();
         RegistryAccess registryAccess = RegistryAccess.builtinCopy();
         RegistryOps<JsonElement> registryOps = RegistryOps.create(JsonOps.INSTANCE, registryAccess);
 
-        if (event.includeClient()) {
-            generator.addProvider(false, new SMBlockStateProvider(generator, fileHelper));
-            generator.addProvider(false, new SMItemModelProvider(generator, fileHelper));
-            generator.addProvider(false, new SMLangProvider(generator));
-        }
-        if (event.includeServer()) {
-            SMBlockTagsProvider blockTagProvider = new SMBlockTagsProvider(generator, fileHelper);
+        generator.addProvider(includeClient, new SMBlockStateProvider(generator, fileHelper));
+        generator.addProvider(includeClient, new SMItemModelProvider(generator, fileHelper));
+        generator.addProvider(includeClient, new SMSoundDefinitionsProvider(generator, fileHelper));
+        generator.addProvider(includeClient, new SMLangProvider(generator));
 
-            generator.addProvider(true, new SMEntityTagsProvider(generator, fileHelper));
-            generator.addProvider(true, blockTagProvider);
-            generator.addProvider(true, new SMItemTagsProvider(generator, blockTagProvider, fileHelper));
-            generator.addProvider(true, new SMBiomeTagsProvider(generator, fileHelper));
-            generator.addProvider(true, new SMAdvancementModifiersProvider(generator));
-            generator.addProvider(true, new SMLootTableProvider(generator));
-            generator.addProvider(true, new SMAdvancementProvider(generator, fileHelper));
-            generator.addProvider(true, new SMRecipeProvider(generator));
-            generator.addProvider(true, new SMLootModifierProvider(generator));
-            SMDatapackRegistryProviders.registerDatapackProviders(fileHelper, generator, registryOps);
-        }
+        SMBlockTagsProvider blockTagProvider = new SMBlockTagsProvider(generator, fileHelper);
+
+        generator.addProvider(includeServer, new SMEntityTagsProvider(generator, fileHelper));
+        generator.addProvider(includeServer, blockTagProvider);
+        generator.addProvider(includeServer, new SMItemTagsProvider(generator, blockTagProvider, fileHelper));
+        generator.addProvider(includeServer, new SMBiomeTagsProvider(generator, fileHelper));
+        generator.addProvider(includeServer, new SMAdvancementModifiersProvider(generator));
+        generator.addProvider(includeServer, new SMLootTableProvider(generator));
+        generator.addProvider(includeServer, new SMAdvancementProvider(generator, fileHelper));
+        generator.addProvider(includeServer, new SMRecipeProvider(generator));
+        generator.addProvider(includeServer, new SMLootModifierProvider(generator));
+        SMDatapackRegistryProviders.registerDatapackProviders(fileHelper, generator, registryOps);
     }
 }

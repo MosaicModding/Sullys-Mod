@@ -68,7 +68,7 @@ public class SMItemModelProvider extends ItemModelProvider {
         basicBlockItem(SMBlocks.POLISHED_JADE_SHINGLE_VERTICAL_SLAB.get());
         basicBlockItem(SMBlocks.POLISHED_JADE_TILE_VERTICAL_SLAB.get());
         basicBlockItem(SMBlocks.ROUGH_JADE_BRICK_VERTICAL_SLAB.get());
-        basicBlockItem(SMBlocks.SMOOTH_ROUGH_JADE_VERTICAL_SLAB.get());
+        basicBlockItem(SMBlocks.SMOOTHED_ROUGH_JADE_VERTICAL_SLAB.get());
         basicBlockItem(SMBlocks.ROUGH_JADE_TILE_VERTICAL_SLAB.get());
 
 

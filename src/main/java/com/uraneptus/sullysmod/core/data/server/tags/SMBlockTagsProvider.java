@@ -52,7 +52,7 @@ public class SMBlockTagsProvider extends BlockTagsProvider {
                 SMBlocks.POLISHED_JADE_SHINGLE_VERTICAL_SLAB.get(),
                 SMBlocks.POLISHED_JADE_TILE_VERTICAL_SLAB.get(),
                 SMBlocks.ROUGH_JADE_BRICK_VERTICAL_SLAB.get(),
-                SMBlocks.SMOOTH_ROUGH_JADE_VERTICAL_SLAB.get(),
+                SMBlocks.SMOOTHED_ROUGH_JADE_VERTICAL_SLAB.get(),
                 SMBlocks.ROUGH_JADE_TILE_VERTICAL_SLAB.get()
         );
         tag(net.minecraft.tags.BlockTags.NEEDS_IRON_TOOL).add(
@@ -90,7 +90,7 @@ public class SMBlockTagsProvider extends BlockTagsProvider {
                 SMBlocks.POLISHED_JADE_SHINGLE_VERTICAL_SLAB.get(),
                 SMBlocks.POLISHED_JADE_TILE_VERTICAL_SLAB.get(),
                 SMBlocks.ROUGH_JADE_BRICK_VERTICAL_SLAB.get(),
-                SMBlocks.SMOOTH_ROUGH_JADE_VERTICAL_SLAB.get(),
+                SMBlocks.SMOOTHED_ROUGH_JADE_VERTICAL_SLAB.get(),
                 SMBlocks.ROUGH_JADE_TILE_VERTICAL_SLAB.get()
         );
         tag(net.minecraft.tags.BlockTags.BUTTONS).add(
@@ -168,7 +168,7 @@ public class SMBlockTagsProvider extends BlockTagsProvider {
                 SMBlocks.POLISHED_JADE_SHINGLE_VERTICAL_SLAB.get(),
                 SMBlocks.POLISHED_JADE_TILE_VERTICAL_SLAB.get(),
                 SMBlocks.ROUGH_JADE_BRICK_VERTICAL_SLAB.get(),
-                SMBlocks.SMOOTH_ROUGH_JADE_VERTICAL_SLAB.get(),
+                SMBlocks.SMOOTHED_ROUGH_JADE_VERTICAL_SLAB.get(),
                 SMBlocks.ROUGH_JADE_TILE_VERTICAL_SLAB.get()
         );
 

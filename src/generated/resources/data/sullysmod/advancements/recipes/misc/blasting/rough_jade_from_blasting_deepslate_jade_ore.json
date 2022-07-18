@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_deepslate_jade_ore": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "sullysmod:deepslate_jade_ore"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "sullysmod:blasting/rough_jade_from_blasting_deepslate_jade_ore"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_deepslate_jade_ore",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "sullysmod:blasting/rough_jade_from_blasting_deepslate_jade_ore"
+    ]
+  }
+}

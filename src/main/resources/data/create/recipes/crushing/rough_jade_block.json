@@ -1,0 +1,26 @@
+{
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "create"
+    }
+  ],
+  "type": "create:crushing",
+  "ingredients": [
+    {
+      "item": "sullysmod:rough_jade_block"
+    }
+  ],
+  "results": [
+    {
+      "item": "sullysmod:rough_jade",
+      "count": 9
+    },
+    {
+      "item": "create:experience_nugget",
+      "count": 9,
+      "chance": 0.75
+    }
+  ],
+  "processingTime": 400
+}
