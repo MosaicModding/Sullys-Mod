@@ -41,7 +41,7 @@ public class SMGenerationEvents {
         }
 
         if (SMConfig.ENABLE_LANTERNFISH.get()) {
-            if (!DataUtil.matchesKeys(biome, Biomes.LUSH_CAVES)) {
+            if (!DataUtil.matchesKeys(biome, Biomes.LUSH_CAVES) || !(biomeCategory == Biome.BiomeCategory.THEEND)) {
                 spawns.addSpawn(MobCategory.WATER_AMBIENT, new MobSpawnSettings.SpawnerData(SMEntityTypes.LANTERNFISH.get(), SMConfig.LANTERNFISH_SPAWN_WEIGHT.get(), 1, 5));
             }
         }
