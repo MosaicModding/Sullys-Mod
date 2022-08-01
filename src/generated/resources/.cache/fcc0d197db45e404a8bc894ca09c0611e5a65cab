@@ -1,6 +1,0 @@
-// 1.19	2022-06-27T22:28:22.3667145	Tags for minecraft:entity_type
-e7ecc9013ce8cc767767bd0bf8528d3d49bb7d70 data/forge/tags/entity_types/fishes.json
-9a49b26c9987ac65685b5734eaed973e5c19ebd4 data/sullysmod/tags/entity_types/attacks_baby_tortoises.json
-6237475df0c1b9fd7d188d25b708830f0064a732 data/sullysmod/tags/entity_types/cannot_be_flung.json
-6237475df0c1b9fd7d188d25b708830f0064a732 data/sullysmod/tags/entity_types/cannot_bounce.json
-75da3029995880d45585a010d275466549514490 data/sullysmod/tags/entity_types/scares_tortoises.json
