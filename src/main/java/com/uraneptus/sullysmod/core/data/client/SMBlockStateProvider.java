@@ -11,6 +11,8 @@ import net.minecraftforge.client.model.generators.ConfiguredModel;
 import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.common.data.ExistingFileHelper;
 
+import java.util.function.Supplier;
+
 import static com.uraneptus.sullysmod.core.data.SMDatagenUtil.*;
 
 public class SMBlockStateProvider extends BlockStateProvider {
@@ -21,93 +23,93 @@ public class SMBlockStateProvider extends BlockStateProvider {
     @Override
     protected void registerStatesAndModels() {
 
-        basicBlock(SMBlocks.JADE_ORE.get());
-        basicBlock(SMBlocks.DEEPSLATE_JADE_ORE.get());
-        basicBlock(SMBlocks.ROUGH_JADE_BLOCK.get());
-        basicBlock(SMBlocks.ROUGH_JADE_BRICKS.get());
-        basicBlock(SMBlocks.SMOOTHED_ROUGH_JADE.get());
-        basicBlock(SMBlocks.ROUGH_JADE_TILES.get());
-        basicBlock(SMBlocks.POLISHED_JADE_BLOCK.get());
-        basicBlock(SMBlocks.POLISHED_JADE_BRICKS.get());
-        basicBlock(SMBlocks.POLISHED_SMALL_JADE_BRICKS.get());
-        basicBlock(SMBlocks.POLISHED_JADE_SHINGLES.get());
-        basicBlock(SMBlocks.POLISHED_JADE_TILES.get());
-        basicBlock(SMBlocks.POLISHED_CHISELED_JADE.get());
-        pillarBlock(SMBlocks.POLISHED_JADE_PILLAR.get(), POLISHED_CHISELED_JADE);
-        totemBlock(SMBlocks.JADE_TOTEM.get());
-        totemBlock(SMBlocks.JADE_FLINGER_TOTEM.get());
-        basicButtonBlock(SMBlocks.COPPER_BUTTON.get(), COPPER_BLOCK);
-        basicButtonBlock(SMBlocks.EXPOSED_COPPER_BUTTON.get(), EXPOSED_COPPER);
-        basicButtonBlock(SMBlocks.WEATHERED_COPPER_BUTTON.get(), WEATHERED_COPPER);
-        basicButtonBlock(SMBlocks.OXIDIZED_COPPER_BUTTON.get(), OXIDIZED_COPPER);
-        basicButtonBlock(SMBlocks.WAXED_COPPER_BUTTON.get(), COPPER_BLOCK);
-        basicButtonBlock(SMBlocks.WAXED_EXPOSED_COPPER_BUTTON.get(), EXPOSED_COPPER);
-        basicButtonBlock(SMBlocks.WAXED_WEATHERED_COPPER_BUTTON.get(), WEATHERED_COPPER);
-        basicButtonBlock(SMBlocks.WAXED_OXIDIZED_COPPER_BUTTON.get(), OXIDIZED_COPPER);
-        modStairsBlock(SMBlocks.POLISHED_JADE_BRICK_STAIRS.get(), JADE_BRICKS);
-        modStairsBlock(SMBlocks.POLISHED_SMALL_JADE_BRICK_STAIRS.get(), SMALL_JADE_BRICKS);
-        modStairsBlock(SMBlocks.POLISHED_JADE_SHINGLE_STAIRS.get(), JADE_SHINGLES);
-        modStairsBlock(SMBlocks.POLISHED_JADE_TILE_STAIRS.get(), JADE_TILES);
-        modStairsBlock(SMBlocks.ROUGH_JADE_BRICK_STAIRS.get(), ROUGH_JADE_BRICKS);
-        modStairsBlock(SMBlocks.SMOOTHED_ROUGH_JADE_STAIRS.get(), SMOOTHED_ROUGH_JADE);
-        modStairsBlock(SMBlocks.ROUGH_JADE_TILE_STAIRS.get(), ROUGH_JADE_TILES);
-        modSlabBlock(SMBlocks.POLISHED_JADE_BRICK_SLAB.get(), JADE_BRICKS);
-        modSlabBlock(SMBlocks.POLISHED_SMALL_JADE_BRICK_SLAB.get(), SMALL_JADE_BRICKS);
-        modSlabBlock(SMBlocks.POLISHED_JADE_SHINGLE_SLAB.get(), JADE_SHINGLES);
-        modSlabBlock(SMBlocks.POLISHED_JADE_TILE_SLAB.get(), JADE_TILES);
-        modSlabBlock(SMBlocks.ROUGH_JADE_BRICK_SLAB.get(), ROUGH_JADE_BRICKS);
-        modSlabBlock(SMBlocks.SMOOTHED_ROUGH_JADE_SLAB.get(), SMOOTHED_ROUGH_JADE);
-        modSlabBlock(SMBlocks.ROUGH_JADE_TILE_SLAB.get(), ROUGH_JADE_TILES);
-        modVerticalSlabBlock(SMBlocks.POLISHED_JADE_BRICK_VERTICAL_SLAB.get(), JADE_BRICKS);
-        modVerticalSlabBlock(SMBlocks.SMALL_POLISHED_JADE_BRICK_VERTICAL_SLAB.get(), SMALL_JADE_BRICKS);
-        modVerticalSlabBlock(SMBlocks.POLISHED_JADE_SHINGLE_VERTICAL_SLAB.get(), JADE_SHINGLES);
-        modVerticalSlabBlock(SMBlocks.POLISHED_JADE_TILE_VERTICAL_SLAB.get(), JADE_TILES);
-        modVerticalSlabBlock(SMBlocks.ROUGH_JADE_BRICK_VERTICAL_SLAB.get(), ROUGH_JADE_BRICKS);
-        modVerticalSlabBlock(SMBlocks.SMOOTHED_ROUGH_JADE_VERTICAL_SLAB.get(), SMOOTHED_ROUGH_JADE);
-        modVerticalSlabBlock(SMBlocks.ROUGH_JADE_TILE_VERTICAL_SLAB.get(), ROUGH_JADE_TILES);
-        modEggBlock(SMBlocks.TORTOISE_EGG.get());
+        basicBlock(SMBlocks.JADE_ORE);
+        basicBlock(SMBlocks.DEEPSLATE_JADE_ORE);
+        basicBlock(SMBlocks.ROUGH_JADE_BLOCK);
+        basicBlock(SMBlocks.ROUGH_JADE_BRICKS);
+        basicBlock(SMBlocks.SMOOTHED_ROUGH_JADE);
+        basicBlock(SMBlocks.ROUGH_JADE_TILES);
+        basicBlock(SMBlocks.POLISHED_JADE_BLOCK);
+        basicBlock(SMBlocks.POLISHED_JADE_BRICKS);
+        basicBlock(SMBlocks.POLISHED_SMALL_JADE_BRICKS);
+        basicBlock(SMBlocks.POLISHED_JADE_SHINGLES);
+        basicBlock(SMBlocks.POLISHED_JADE_TILES);
+        basicBlock(SMBlocks.POLISHED_CHISELED_JADE);
+        pillarBlock(SMBlocks.POLISHED_JADE_PILLAR, POLISHED_CHISELED_JADE);
+        totemBlock(SMBlocks.JADE_TOTEM);
+        totemBlock(SMBlocks.JADE_FLINGER_TOTEM);
+        basicButtonBlock(SMBlocks.COPPER_BUTTON, COPPER_BLOCK);
+        basicButtonBlock(SMBlocks.EXPOSED_COPPER_BUTTON, EXPOSED_COPPER);
+        basicButtonBlock(SMBlocks.WEATHERED_COPPER_BUTTON, WEATHERED_COPPER);
+        basicButtonBlock(SMBlocks.OXIDIZED_COPPER_BUTTON, OXIDIZED_COPPER);
+        basicButtonBlock(SMBlocks.WAXED_COPPER_BUTTON, COPPER_BLOCK);
+        basicButtonBlock(SMBlocks.WAXED_EXPOSED_COPPER_BUTTON, EXPOSED_COPPER);
+        basicButtonBlock(SMBlocks.WAXED_WEATHERED_COPPER_BUTTON, WEATHERED_COPPER);
+        basicButtonBlock(SMBlocks.WAXED_OXIDIZED_COPPER_BUTTON, OXIDIZED_COPPER);
+        modStairsBlock(SMBlocks.POLISHED_JADE_BRICK_STAIRS, JADE_BRICKS);
+        modStairsBlock(SMBlocks.POLISHED_SMALL_JADE_BRICK_STAIRS, SMALL_JADE_BRICKS);
+        modStairsBlock(SMBlocks.POLISHED_JADE_SHINGLE_STAIRS, JADE_SHINGLES);
+        modStairsBlock(SMBlocks.POLISHED_JADE_TILE_STAIRS, JADE_TILES);
+        modStairsBlock(SMBlocks.ROUGH_JADE_BRICK_STAIRS, ROUGH_JADE_BRICKS);
+        modStairsBlock(SMBlocks.SMOOTHED_ROUGH_JADE_STAIRS, SMOOTHED_ROUGH_JADE);
+        modStairsBlock(SMBlocks.ROUGH_JADE_TILE_STAIRS, ROUGH_JADE_TILES);
+        modSlabBlock(SMBlocks.POLISHED_JADE_BRICK_SLAB, JADE_BRICKS);
+        modSlabBlock(SMBlocks.POLISHED_SMALL_JADE_BRICK_SLAB, SMALL_JADE_BRICKS);
+        modSlabBlock(SMBlocks.POLISHED_JADE_SHINGLE_SLAB, JADE_SHINGLES);
+        modSlabBlock(SMBlocks.POLISHED_JADE_TILE_SLAB, JADE_TILES);
+        modSlabBlock(SMBlocks.ROUGH_JADE_BRICK_SLAB, ROUGH_JADE_BRICKS);
+        modSlabBlock(SMBlocks.SMOOTHED_ROUGH_JADE_SLAB, SMOOTHED_ROUGH_JADE);
+        modSlabBlock(SMBlocks.ROUGH_JADE_TILE_SLAB, ROUGH_JADE_TILES);
+        modVerticalSlabBlock(SMBlocks.POLISHED_JADE_BRICK_VERTICAL_SLAB, JADE_BRICKS);
+        modVerticalSlabBlock(SMBlocks.SMALL_POLISHED_JADE_BRICK_VERTICAL_SLAB, SMALL_JADE_BRICKS);
+        modVerticalSlabBlock(SMBlocks.POLISHED_JADE_SHINGLE_VERTICAL_SLAB, JADE_SHINGLES);
+        modVerticalSlabBlock(SMBlocks.POLISHED_JADE_TILE_VERTICAL_SLAB, JADE_TILES);
+        modVerticalSlabBlock(SMBlocks.ROUGH_JADE_BRICK_VERTICAL_SLAB, ROUGH_JADE_BRICKS);
+        modVerticalSlabBlock(SMBlocks.SMOOTHED_ROUGH_JADE_VERTICAL_SLAB, SMOOTHED_ROUGH_JADE);
+        modVerticalSlabBlock(SMBlocks.ROUGH_JADE_TILE_VERTICAL_SLAB, ROUGH_JADE_TILES);
+        modEggBlock(SMBlocks.TORTOISE_EGG);
 
         SullysMod.LOGGER.info("BLOCKSTATE GENERATION COMPLETE");
     }
 
-    private void basicBlock(Block block) {
-        simpleBlock(block);
+    private void basicBlock(Supplier<? extends Block> block) {
+        simpleBlock(block.get());
     }
 
-    private void pillarBlock(Block block, String topTexture) {
-        axisBlock((RotatedPillarBlock) block, modBlockLocation(name(block)), modBlockLocation(topTexture));
+    private void pillarBlock(Supplier<? extends Block> block, String topTexture) {
+        axisBlock((RotatedPillarBlock) block.get(), modBlockLocation(name(block.get())), modBlockLocation(topTexture));
     }
 
-    private void totemBlock(Block block) {
-        ModelFile totemModel = models().cube(name(block),
-              modBlockLocation(name(block) + "_top"),
-              modBlockLocation(name(block) + "_top"),
-              modBlockLocation(name(block) + "_front"),
-              modBlockLocation(name(block) + "_back"),
-              modBlockLocation(name(block) + "_right"),
-              modBlockLocation(name(block) + "_left"))
-                .texture("particle", modBlockLocation(name(block) + "_back"));
+    private void totemBlock(Supplier<? extends Block> block) {
+        ModelFile totemModel = models().cube(name(block.get()),
+              modBlockLocation(name(block.get()) + "_top"),
+              modBlockLocation(name(block.get()) + "_top"),
+              modBlockLocation(name(block.get()) + "_front"),
+              modBlockLocation(name(block.get()) + "_back"),
+              modBlockLocation(name(block.get()) + "_right"),
+              modBlockLocation(name(block.get()) + "_left"))
+                .texture("particle", modBlockLocation(name(block.get()) + "_back"));
 
-        getVariantBuilder(block).forAllStates(blockState -> ConfiguredModel.builder()
+        getVariantBuilder(block.get()).forAllStates(blockState -> ConfiguredModel.builder()
                 .modelFile(totemModel)
                 .rotationY(((int) blockState.getValue(BlockStateProperties.HORIZONTAL_FACING).toYRot() + 180) % 360)
                 .build());
     }
 
-    private void basicButtonBlock(Block block, String texture) {
-        buttonBlock((ButtonBlock)block, vanillaBlockLocation(texture));
+    private void basicButtonBlock(Supplier<? extends Block> block, String texture) {
+        buttonBlock((ButtonBlock)block.get(), vanillaBlockLocation(texture));
     }
 
-    private void modStairsBlock(Block block, String texture) {
-        stairsBlock((StairBlock) block, modBlockLocation(texture));
+    private void modStairsBlock(Supplier<? extends Block> block, String texture) {
+        stairsBlock((StairBlock) block.get(), modBlockLocation(texture));
     }
 
-    private void modSlabBlock(Block block, String texture) {
-        slabBlock((SlabBlock) block, modBlockLocation(texture), modBlockLocation(texture));
+    private void modSlabBlock(Supplier<? extends Block> block, String texture) {
+        slabBlock((SlabBlock) block.get(), modBlockLocation(texture), modBlockLocation(texture));
     }
 
-    private void modEggBlock(Block block) {
-        getVariantBuilder(block).forAllStates(blockState -> {
+    private void modEggBlock(Supplier<? extends Block> block) {
+        getVariantBuilder(block.get()).forAllStates(blockState -> {
             int hatch = blockState.getValue(BlockStateProperties.HATCH);
             int eggs = blockState.getValue(BlockStateProperties.EGGS);
 
@@ -123,8 +125,8 @@ public class SMBlockStateProvider extends BlockStateProvider {
             String suffix = eggs > 1 ? "s" : "";
 
             ModelFile modelFile = models()
-                    .withExistingParent(variants + prefix + name(block) + suffix, vanillaBlockLocation(templatePath))
-                    .texture("all", modBlockLocation(prefix + name(block)));
+                    .withExistingParent(variants + prefix + name(block.get()) + suffix, vanillaBlockLocation(templatePath))
+                    .texture("all", modBlockLocation(prefix + name(block.get())));
 
             return ConfiguredModel.builder()
                     .modelFile(modelFile)
@@ -135,14 +137,14 @@ public class SMBlockStateProvider extends BlockStateProvider {
         });
     }
 
-    private void modVerticalSlabBlock(Block slab, String path) {
+    private void modVerticalSlabBlock(Supplier<? extends Block> slab, String path) {
         ModelFile model = this.models()
-                .withExistingParent(name(slab), blueprintBlockLocation("vertical_slab"))
+                .withExistingParent(name(slab.get()), blueprintBlockLocation("vertical_slab"))
                 .texture("top", modBlockLocation(path))
                 .texture("bottom", modBlockLocation(path))
                 .texture("side", modBlockLocation(path));
 
-        getVariantBuilder(slab)
+        getVariantBuilder(slab.get())
                 .partialState().with(VerticalSlabBlock.TYPE, VerticalSlabBlock.VerticalSlabType.NORTH).addModels(new ConfiguredModel(model, 0, 0, true))
                 .partialState().with(VerticalSlabBlock.TYPE, VerticalSlabBlock.VerticalSlabType.SOUTH).addModels(new ConfiguredModel(model, 0, 180, true))
                 .partialState().with(VerticalSlabBlock.TYPE, VerticalSlabBlock.VerticalSlabType.EAST).addModels(new ConfiguredModel(model, 0, 90, true))

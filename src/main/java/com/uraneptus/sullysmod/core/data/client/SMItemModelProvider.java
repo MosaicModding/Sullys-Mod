@@ -9,6 +9,8 @@ import net.minecraft.world.level.block.Block;
 import net.minecraftforge.client.model.generators.ItemModelProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
 
+import java.util.function.Supplier;
+
 import static com.uraneptus.sullysmod.core.data.SMDatagenUtil.*;
 public class SMItemModelProvider extends ItemModelProvider {
 
@@ -18,77 +20,105 @@ public class SMItemModelProvider extends ItemModelProvider {
 
     @Override
     protected void registerModels() {
-        basicBlockItem(SMBlocks.JADE_ORE.get());
-        basicBlockItem(SMBlocks.DEEPSLATE_JADE_ORE.get());
-        basicBlockItem(SMBlocks.ROUGH_JADE_BLOCK.get());
-        basicBlockItem(SMBlocks.ROUGH_JADE_BRICKS.get());
-        basicBlockItem(SMBlocks.SMOOTHED_ROUGH_JADE.get());
-        basicBlockItem(SMBlocks.ROUGH_JADE_TILES.get());
-        basicBlockItem(SMBlocks.POLISHED_JADE_BLOCK.get());
-        basicBlockItem(SMBlocks.POLISHED_JADE_BRICKS.get());
-        basicBlockItem(SMBlocks.POLISHED_SMALL_JADE_BRICKS.get());
-        basicBlockItem(SMBlocks.POLISHED_JADE_SHINGLES.get());
-        basicBlockItem(SMBlocks.POLISHED_JADE_TILES.get());
-        basicBlockItem(SMBlocks.POLISHED_CHISELED_JADE.get());
-        basicBlockItem(SMBlocks.POLISHED_JADE_PILLAR.get());
-        basicBlockItem(SMBlocks.JADE_TOTEM.get());
-        basicBlockItem(SMBlocks.JADE_FLINGER_TOTEM.get());
-        basicItem(SMItems.ROUGH_JADE.get());
-        basicItem(SMItems.POLISHED_JADE.get());
-        basicItem(SMItems.LANTERNFISH_BUCKET.get());
-        basicSpawnEggItem(SMItems.LANTERNFISH_SPAWN_EGG.get());
-        basicSpawnEggItem(SMItems.TORTOISE_SPAWN_EGG.get());
-        basicItem(SMItems.RAW_LANTERNFISH.get());
-        basicItem(SMItems.COOKED_LANTERNFISH.get());
-        basicItem(SMBlocks.TORTOISE_EGG.get().asItem());
-        basicButtonBlockItem(SMBlocks.COPPER_BUTTON.get(), COPPER_BLOCK);
-        basicButtonBlockItem(SMBlocks.EXPOSED_COPPER_BUTTON.get(), EXPOSED_COPPER);
-        basicButtonBlockItem(SMBlocks.WEATHERED_COPPER_BUTTON.get(), WEATHERED_COPPER);
-        basicButtonBlockItem(SMBlocks.OXIDIZED_COPPER_BUTTON.get(), OXIDIZED_COPPER);
-        basicButtonBlockItem(SMBlocks.WAXED_COPPER_BUTTON.get(), COPPER_BLOCK);
-        basicButtonBlockItem(SMBlocks.WAXED_EXPOSED_COPPER_BUTTON.get(), EXPOSED_COPPER);
-        basicButtonBlockItem(SMBlocks.WAXED_WEATHERED_COPPER_BUTTON.get(), WEATHERED_COPPER);
-        basicButtonBlockItem(SMBlocks.WAXED_OXIDIZED_COPPER_BUTTON.get(), OXIDIZED_COPPER);
-        basicBlockItem(SMBlocks.POLISHED_JADE_BRICK_STAIRS.get());
-        basicBlockItem(SMBlocks.POLISHED_SMALL_JADE_BRICK_STAIRS.get());
-        basicBlockItem(SMBlocks.POLISHED_JADE_SHINGLE_STAIRS.get());
-        basicBlockItem(SMBlocks.POLISHED_JADE_TILE_STAIRS.get());
-        basicBlockItem(SMBlocks.POLISHED_JADE_BRICK_SLAB.get());
-        basicBlockItem(SMBlocks.POLISHED_SMALL_JADE_BRICK_SLAB.get());
-        basicBlockItem(SMBlocks.POLISHED_JADE_SHINGLE_SLAB.get());
-        basicBlockItem(SMBlocks.POLISHED_JADE_TILE_SLAB.get());
-        basicBlockItem(SMBlocks.ROUGH_JADE_BRICK_STAIRS.get());
-        basicBlockItem(SMBlocks.SMOOTHED_ROUGH_JADE_STAIRS.get());
-        basicBlockItem(SMBlocks.ROUGH_JADE_TILE_STAIRS.get());
-        basicBlockItem(SMBlocks.ROUGH_JADE_BRICK_SLAB.get());
-        basicBlockItem(SMBlocks.SMOOTHED_ROUGH_JADE_SLAB.get());
-        basicBlockItem(SMBlocks.ROUGH_JADE_TILE_SLAB.get());
-        basicBlockItem(SMBlocks.POLISHED_JADE_BRICK_VERTICAL_SLAB.get());
-        basicBlockItem(SMBlocks.SMALL_POLISHED_JADE_BRICK_VERTICAL_SLAB.get());
-        basicBlockItem(SMBlocks.POLISHED_JADE_SHINGLE_VERTICAL_SLAB.get());
-        basicBlockItem(SMBlocks.POLISHED_JADE_TILE_VERTICAL_SLAB.get());
-        basicBlockItem(SMBlocks.ROUGH_JADE_BRICK_VERTICAL_SLAB.get());
-        basicBlockItem(SMBlocks.SMOOTHED_ROUGH_JADE_VERTICAL_SLAB.get());
-        basicBlockItem(SMBlocks.ROUGH_JADE_TILE_VERTICAL_SLAB.get());
+        basicBlockItem(SMBlocks.JADE_ORE);
+        basicBlockItem(SMBlocks.DEEPSLATE_JADE_ORE);
+        basicBlockItem(SMBlocks.ROUGH_JADE_BLOCK);
+        basicBlockItem(SMBlocks.ROUGH_JADE_BRICKS);
+        basicBlockItem(SMBlocks.SMOOTHED_ROUGH_JADE);
+        basicBlockItem(SMBlocks.ROUGH_JADE_TILES);
+        basicBlockItem(SMBlocks.POLISHED_JADE_BLOCK);
+        basicBlockItem(SMBlocks.POLISHED_JADE_BRICKS);
+        basicBlockItem(SMBlocks.POLISHED_SMALL_JADE_BRICKS);
+        basicBlockItem(SMBlocks.POLISHED_JADE_SHINGLES);
+        basicBlockItem(SMBlocks.POLISHED_JADE_TILES);
+        basicBlockItem(SMBlocks.POLISHED_CHISELED_JADE);
+        basicBlockItem(SMBlocks.POLISHED_JADE_PILLAR);
+        basicBlockItem(SMBlocks.JADE_TOTEM);
+        basicBlockItem(SMBlocks.JADE_FLINGER_TOTEM);
+        basicItem(SMItems.ROUGH_JADE);
+        basicItem(SMItems.POLISHED_JADE);
+        basicItem(SMItems.LANTERNFISH_BUCKET);
+        basicSpawnEggItem(SMItems.LANTERNFISH_SPAWN_EGG);
+        basicSpawnEggItem(SMItems.TORTOISE_SPAWN_EGG);
+        basicItem(SMItems.RAW_LANTERNFISH);
+        basicItem(SMItems.COOKED_LANTERNFISH);
+        blockItemWithItemTexture(SMBlocks.TORTOISE_EGG);
+        copperButtonBlockItem(SMBlocks.COPPER_BUTTON, COPPER_BLOCK);
+        copperButtonBlockItem(SMBlocks.EXPOSED_COPPER_BUTTON, EXPOSED_COPPER);
+        copperButtonBlockItem(SMBlocks.WEATHERED_COPPER_BUTTON, WEATHERED_COPPER);
+        copperButtonBlockItem(SMBlocks.OXIDIZED_COPPER_BUTTON, OXIDIZED_COPPER);
+        copperButtonBlockItem(SMBlocks.WAXED_COPPER_BUTTON, COPPER_BLOCK);
+        copperButtonBlockItem(SMBlocks.WAXED_EXPOSED_COPPER_BUTTON, EXPOSED_COPPER);
+        copperButtonBlockItem(SMBlocks.WAXED_WEATHERED_COPPER_BUTTON, WEATHERED_COPPER);
+        copperButtonBlockItem(SMBlocks.WAXED_OXIDIZED_COPPER_BUTTON, OXIDIZED_COPPER);
+        basicBlockItem(SMBlocks.POLISHED_JADE_BRICK_STAIRS);
+        basicBlockItem(SMBlocks.POLISHED_SMALL_JADE_BRICK_STAIRS);
+        basicBlockItem(SMBlocks.POLISHED_JADE_SHINGLE_STAIRS);
+        basicBlockItem(SMBlocks.POLISHED_JADE_TILE_STAIRS);
+        basicBlockItem(SMBlocks.POLISHED_JADE_BRICK_SLAB);
+        basicBlockItem(SMBlocks.POLISHED_SMALL_JADE_BRICK_SLAB);
+        basicBlockItem(SMBlocks.POLISHED_JADE_SHINGLE_SLAB);
+        basicBlockItem(SMBlocks.POLISHED_JADE_TILE_SLAB);
+        basicBlockItem(SMBlocks.ROUGH_JADE_BRICK_STAIRS);
+        basicBlockItem(SMBlocks.SMOOTHED_ROUGH_JADE_STAIRS);
+        basicBlockItem(SMBlocks.ROUGH_JADE_TILE_STAIRS);
+        basicBlockItem(SMBlocks.ROUGH_JADE_BRICK_SLAB);
+        basicBlockItem(SMBlocks.SMOOTHED_ROUGH_JADE_SLAB);
+        basicBlockItem(SMBlocks.ROUGH_JADE_TILE_SLAB);
+        basicBlockItem(SMBlocks.POLISHED_JADE_BRICK_VERTICAL_SLAB);
+        basicBlockItem(SMBlocks.SMALL_POLISHED_JADE_BRICK_VERTICAL_SLAB);
+        basicBlockItem(SMBlocks.POLISHED_JADE_SHINGLE_VERTICAL_SLAB);
+        basicBlockItem(SMBlocks.POLISHED_JADE_TILE_VERTICAL_SLAB);
+        basicBlockItem(SMBlocks.ROUGH_JADE_BRICK_VERTICAL_SLAB);
+        basicBlockItem(SMBlocks.SMOOTHED_ROUGH_JADE_VERTICAL_SLAB);
+        basicBlockItem(SMBlocks.ROUGH_JADE_TILE_VERTICAL_SLAB);
 
 
         SullysMod.LOGGER.info("ITEM MODEL GENERATION COMPLETE");
     }
 
-    private void basicBlockItem(Block blockForItem) {
-        withExistingParent(name(blockForItem), modBlockLocation(name(blockForItem)));
+    /**
+     * Creates a BlockItem Model based on the provided {@link Block}'s BlockModel.
+     * @param blockForItem The supplied {@link Block} from which a BlockItem Model is being created.
+     */
+    private void basicBlockItem(Supplier<? extends Block> blockForItem) {
+        withExistingParent(name(blockForItem.get()), modBlockLocation(name(blockForItem.get())));
     }
 
-    private void basicButtonBlockItem(Block blockForItem, String texture) {
-        buttonInventory(name(blockForItem), vanillaBlockLocation(texture));
+    /**
+     * Creates the standard Generated Item Model for the provided {@link Item}.
+     * @param item The supplied {@link Item} from which the Item Model will be created.
+     */
+    private void basicItem(Supplier<? extends Item> item) {
+        basicItem(item.get());
     }
 
-    private void basicGeneratedItem(Item item) {
-        withExistingParent(name(item), GENERATED).texture("layer0", modItemLocation(name(item)));
+    /**
+     * Creates a Generated Item Model for the provided {@link Block}, with a texture file <br/>
+     * that is using the provided {@link Block}'s RegistryName and is located in <code>assets/modid/textures/block</code>. <br/>
+     * E.g.: The {@link net.minecraft.world.level.block.SaplingBlock}'s Block Item.
+     * @param blockForItem The supplied {@link Block} from which a BlockItem Model is being created.
+     */
+    private void blockItemWithBlockTexture(Supplier<? extends Block> blockForItem) {
+        withExistingParent(name(blockForItem.get()), GENERATED).texture(LAYER0, modBlockLocation(name(blockForItem.get())));
     }
 
-    private void basicSpawnEggItem(Item item) {
-        withExistingParent(name(item), SPAWN_EGG);
+    /**
+     * Creates a Generated Item Model for the provided {@link Block}, with a texture file <br/>
+     * that is using the provided {@link Block}'s RegistryName and is located in <code>assets/modid/textures/item</code>. <br/>
+     * E.g.: The {@link net.minecraft.world.level.block.DoorBlock}'s Block Item.
+     * @param blockForItem The supplied {@link Block} from which a BlockItem Model is being created.
+     */
+    private void blockItemWithItemTexture(Supplier<? extends Block> blockForItem) {
+        basicItem(blockForItem.get().asItem());
+    }
+
+    private void copperButtonBlockItem(Supplier<? extends Block> blockForItem, String texture) {
+        buttonInventory(name(blockForItem.get()), vanillaBlockLocation(texture));
+    }
+
+    private void basicSpawnEggItem(Supplier<? extends Item> item) {
+        withExistingParent(name(item.get()), SPAWN_EGG);
     }
 
 }

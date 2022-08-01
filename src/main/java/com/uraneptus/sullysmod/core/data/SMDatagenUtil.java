@@ -10,6 +10,7 @@ import net.minecraftforge.client.model.generators.ModelProvider;
 import net.minecraftforge.registries.ForgeRegistries;
 
 public class SMDatagenUtil {
+    public static final String LAYER0 = "layer0";
     public static final String GENERATED = "item/generated";
     public static final String HANDHELD = "item/handheld";
     public static final String SPAWN_EGG = "item/template_spawn_egg";
