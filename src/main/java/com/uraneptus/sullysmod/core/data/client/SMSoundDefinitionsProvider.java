@@ -32,6 +32,10 @@ public class SMSoundDefinitionsProvider extends SoundDefinitionsProvider {
                 sound(new ResourceLocation("block/end_portal/eyeplace3"))
         );
 
+        addBlockSound(SMSounds.FLINGER_FLINGS,
+                sound(new ResourceLocation("random/bow"))
+        );
+
         //Entity Sounds
         addEntitySound(SMSounds.TORTOISE_AMBIENT,
                 sound(new ResourceLocation("mob/turtle/idle1")).volume(0.8F),

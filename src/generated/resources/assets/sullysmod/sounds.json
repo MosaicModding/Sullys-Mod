@@ -1,4 +1,10 @@
 {
+  "block.flinger_totem.shoot": {
+    "sounds": [
+      "random/bow"
+    ],
+    "subtitle": "subtitles.block.flinger_totem.shoot"
+  },
   "block.grindstone.polish_jade": {
     "sounds": [
       "sullysmod:block/grindstone/jade_polish0",

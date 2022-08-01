@@ -12,6 +12,7 @@ import com.uraneptus.sullysmod.core.registry.SMSounds;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.Mob;
@@ -24,6 +25,7 @@ import net.minecraft.world.entity.monster.Zombie;
 import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
@@ -77,6 +79,8 @@ public class SMEntityEvents {
                     projectile.moveTo(pos.getX() + 0.5 + front.getStepX(), pos.getY() + 0.5F + front.getStepY(), pos.getZ() + 0.5 + front.getStepZ());
                     projectile.shoot(front.getStepX(), front.getStepY(), front.getStepZ(), velocity, 0.0F);
                     level.addFreshEntity(projectile);
+                    level.playSound(null, pos, SMSounds.FLINGER_FLINGS.get(), SoundSource.BLOCKS, 1.0F, 1.0F);
+                    projectile.gameEvent(GameEvent.PROJECTILE_SHOOT);
                 }
                 else if (!(projectile.getType().is(SMEntityTags.CANNOT_BOUNCE))) {
                     event.setCanceled(true);
@@ -90,6 +94,7 @@ public class SMEntityEvents {
                     } else if (direction.getAxis() == Direction.Axis.Z) {
                         projectile.shoot(vec3.x, vec3.y, vec3.reverse().z, calculateBounceVelocity(velocity), 0.0F);
                     }
+                    projectile.gameEvent(GameEvent.PROJECTILE_SHOOT);
                     level.addParticle(SMParticleTypes.RICOCHET.get(), projectile.getX(), projectile.getY(), projectile.getZ(), 0, 0, 0);
                     level.playLocalSound(projectile.getX(), projectile.getY(), projectile.getZ(), SMSounds.JADE_RICOCHET.get(), SoundSource.BLOCKS, 1.0F, 0.0F, false);
                 }

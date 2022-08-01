@@ -64,6 +64,10 @@ public class SMItemTagsProvider extends ItemTagsProvider {
         tag(SMItemTags.COOKED_LANTERNFISH).add(
                 SMItems.COOKED_LANTERNFISH.get()
         );
+        tag(SMItemTags.STORAGE_BLOCKS).add(
+                SMBlocks.ROUGH_JADE_BLOCK.get().asItem(),
+                SMBlocks.POLISHED_JADE_BLOCK.get().asItem()
+        );
 
         //Quark Tags
         tag(SMItemTags.VERTICAL_SLABS).add(

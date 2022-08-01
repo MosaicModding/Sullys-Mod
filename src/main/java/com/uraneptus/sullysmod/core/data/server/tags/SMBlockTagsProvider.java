@@ -160,6 +160,10 @@ public class SMBlockTagsProvider extends BlockTagsProvider {
                 SMBlocks.WAXED_WEATHERED_COPPER_BUTTON.get(),
                 SMBlocks.WAXED_OXIDIZED_COPPER_BUTTON.get()
         );
+        tag(SMBlockTags.STORAGE_BLOCKS).add(
+                SMBlocks.ROUGH_JADE_BLOCK.get(),
+                SMBlocks.POLISHED_JADE_BLOCK.get()
+        );
 
         //Quark Tags
         tag(SMBlockTags.VERTICAL_SLABS).add(
