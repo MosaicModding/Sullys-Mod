@@ -66,7 +66,7 @@ public class SMItemModelProvider extends ItemModelProvider {
         basicBlockItem(SMBlocks.SMOOTHED_ROUGH_JADE_SLAB);
         basicBlockItem(SMBlocks.ROUGH_JADE_TILE_SLAB);
         basicBlockItem(SMBlocks.POLISHED_JADE_BRICK_VERTICAL_SLAB);
-        basicBlockItem(SMBlocks.SMALL_POLISHED_JADE_BRICK_VERTICAL_SLAB);
+        basicBlockItem(SMBlocks.POLISHED_SMALL_JADE_BRICK_VERTICAL_SLAB);
         basicBlockItem(SMBlocks.POLISHED_JADE_SHINGLE_VERTICAL_SLAB);
         basicBlockItem(SMBlocks.POLISHED_JADE_TILE_VERTICAL_SLAB);
         basicBlockItem(SMBlocks.ROUGH_JADE_BRICK_VERTICAL_SLAB);

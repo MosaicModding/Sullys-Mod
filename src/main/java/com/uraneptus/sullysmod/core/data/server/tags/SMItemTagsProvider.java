@@ -71,7 +71,7 @@ public class SMItemTagsProvider extends ItemTagsProvider {
 
         //Quark Tags
         tag(SMItemTags.VERTICAL_SLABS).add(
-                SMBlocks.SMALL_POLISHED_JADE_BRICK_VERTICAL_SLAB.get().asItem(),
+                SMBlocks.POLISHED_SMALL_JADE_BRICK_VERTICAL_SLAB.get().asItem(),
                 SMBlocks.POLISHED_JADE_BRICK_VERTICAL_SLAB.get().asItem(),
                 SMBlocks.POLISHED_JADE_SHINGLE_VERTICAL_SLAB.get().asItem(),
                 SMBlocks.POLISHED_JADE_TILE_VERTICAL_SLAB.get().asItem(),

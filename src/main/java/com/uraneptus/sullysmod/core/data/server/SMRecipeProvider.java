@@ -11,7 +11,6 @@ import net.minecraft.data.recipes.*;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
-import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.common.crafting.ConditionalRecipe;
 
@@ -69,7 +68,7 @@ public class SMRecipeProvider extends RecipeProvider {
         verticalSlabRecipes(SMBlocks.SMOOTHED_ROUGH_JADE_SLAB, SMBlocks.SMOOTHED_ROUGH_JADE_VERTICAL_SLAB, consumer);
         verticalSlabRecipes(SMBlocks.POLISHED_JADE_BRICK_SLAB, SMBlocks.POLISHED_JADE_BRICK_VERTICAL_SLAB, consumer);
         verticalSlabRecipes(SMBlocks.POLISHED_JADE_TILE_SLAB, SMBlocks.POLISHED_JADE_TILE_VERTICAL_SLAB, consumer);
-        verticalSlabRecipes(SMBlocks.POLISHED_SMALL_JADE_BRICK_SLAB, SMBlocks.SMALL_POLISHED_JADE_BRICK_VERTICAL_SLAB, consumer);
+        verticalSlabRecipes(SMBlocks.POLISHED_SMALL_JADE_BRICK_SLAB, SMBlocks.POLISHED_SMALL_JADE_BRICK_VERTICAL_SLAB, consumer);
         verticalSlabRecipes(SMBlocks.POLISHED_JADE_SHINGLE_SLAB, SMBlocks.POLISHED_JADE_SHINGLE_VERTICAL_SLAB, consumer);
 
         pillarRecipes(SMBlocks.POLISHED_JADE_BLOCK, SMBlocks.POLISHED_JADE_PILLAR, consumer);

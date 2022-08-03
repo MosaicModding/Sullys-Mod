@@ -27,7 +27,7 @@ public class SMLangProvider extends LanguageProvider {
         add(SMBlocks.ROUGH_JADE_TILES.get(), "Rough Jade Tiles");
         add(SMBlocks.POLISHED_JADE_BLOCK.get(), "Block of Polished Jade");
         add(SMBlocks.POLISHED_JADE_BRICKS.get(), "Polished Jade Bricks");
-        add(SMBlocks.POLISHED_SMALL_JADE_BRICKS.get(), "Small Polished Jade Bricks");
+        add(SMBlocks.POLISHED_SMALL_JADE_BRICKS.get(), "Polished Small Jade Bricks");
         add(SMBlocks.POLISHED_JADE_SHINGLES.get(), "Polished Jade Shingles");
         add(SMBlocks.POLISHED_JADE_TILES.get(), "Polished Jade Tiles");
         add(SMBlocks.POLISHED_CHISELED_JADE.get(), "Polished Chiseled Jade");
@@ -43,11 +43,11 @@ public class SMLangProvider extends LanguageProvider {
         add(SMBlocks.WAXED_WEATHERED_COPPER_BUTTON.get(), "Waxed Weathered Copper Button");
         add(SMBlocks.WAXED_OXIDIZED_COPPER_BUTTON.get(), "Waxed Oxidized Copper Button");
         add(SMBlocks.POLISHED_JADE_BRICK_STAIRS.get(), "Polished Jade Brick Stairs");
-        add(SMBlocks.POLISHED_SMALL_JADE_BRICK_STAIRS.get(), "Small Polished Jade Brick Stairs");
+        add(SMBlocks.POLISHED_SMALL_JADE_BRICK_STAIRS.get(), "Polished Small Jade Brick Stairs");
         add(SMBlocks.POLISHED_JADE_SHINGLE_STAIRS.get(), "Polished Jade Shingle Stairs");
         add(SMBlocks.POLISHED_JADE_TILE_STAIRS.get(), "Polished Jade Tile Stairs");
         add(SMBlocks.POLISHED_JADE_BRICK_SLAB.get(), "Polished Jade Brick Slab");
-        add(SMBlocks.POLISHED_SMALL_JADE_BRICK_SLAB.get(), "Small Polished Jade Brick Slab");
+        add(SMBlocks.POLISHED_SMALL_JADE_BRICK_SLAB.get(), "Polished Small Jade Brick Slab");
         add(SMBlocks.POLISHED_JADE_SHINGLE_SLAB.get(), "Polished Jade Shingle Slab");
         add(SMBlocks.POLISHED_JADE_TILE_SLAB.get(), "Polished Jade Tile Slab");
         add(SMBlocks.ROUGH_JADE_BRICK_STAIRS.get(), "Rough Jade Brick Stairs");
@@ -57,7 +57,7 @@ public class SMLangProvider extends LanguageProvider {
         add(SMBlocks.SMOOTHED_ROUGH_JADE_SLAB.get(), "Smoothed Rough Jade Slab");
         add(SMBlocks.ROUGH_JADE_TILE_SLAB.get(), "Rough Jade Tile Slab");
         add(SMBlocks.POLISHED_JADE_BRICK_VERTICAL_SLAB.get(), "Polished Jade Brick Vertical Slab");
-        add(SMBlocks.SMALL_POLISHED_JADE_BRICK_VERTICAL_SLAB.get(), "Small Polished Jade Brick Vertical Slab");
+        add(SMBlocks.POLISHED_SMALL_JADE_BRICK_VERTICAL_SLAB.get(), "Polished Small Jade Brick Vertical Slab");
         add(SMBlocks.POLISHED_JADE_SHINGLE_VERTICAL_SLAB.get(), "Polished Jade Shingle Vertical Slab");
         add(SMBlocks.POLISHED_JADE_TILE_VERTICAL_SLAB.get(), "Polished Jade Tile Vertical Slab");
         add(SMBlocks.ROUGH_JADE_BRICK_VERTICAL_SLAB.get(), "Rough Jade Brick Vertical Slab");
