@@ -19,11 +19,5 @@ public class SMParticleTypes {
 
     public static final RegistryObject<SimpleParticleType> RICOCHET = PARTICLES.register("ricochet", () -> new SimpleParticleType(false));
 
-    @SubscribeEvent
-    public static void registerParticleProvider(RegisterParticleProvidersEvent event) {
-        ParticleEngine particleManager = Minecraft.getInstance().particleEngine;
 
-        particleManager.register(SMParticleTypes.RICOCHET.get(), RicochetParticle.RicochetParticleProvider::new);
-
-    }
 }
