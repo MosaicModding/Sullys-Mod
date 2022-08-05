@@ -169,5 +169,13 @@
       "mob/turtle/egg/drop_egg2"
     ],
     "subtitle": "subtitles.entity.tortoise.lay_egg"
+  },
+  "music_disc.scour": {
+    "sounds": [
+      {
+        "name": "sullysmod:records/scour",
+        "stream": true
+      }
+    ]
   }
 }

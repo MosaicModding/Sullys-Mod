@@ -20,6 +20,10 @@ public class SMSoundDefinitionsProvider extends SoundDefinitionsProvider {
     //TODO make the amount of sounds generated
     @Override
     public void registerSounds() {
+
+        //Music Discs
+        addMusicDiscSound(SMSounds.MUSIC_DISC_SCOUR, "scour");
+
         //Block Sounds
         addBlockSound(SMSounds.POLISH_JADE,
                 sound(SullysMod.modPrefix("block/grindstone/jade_polish0")),
@@ -143,5 +147,9 @@ public class SMSoundDefinitionsProvider extends SoundDefinitionsProvider {
 
     private void addEntitySound(Supplier<SoundEvent> soundEvent, SoundDefinition.Sound... sounds) {
         this.add(soundEvent.get(), SoundDefinition.definition().subtitle("subtitles." + soundEvent.get().getLocation().getPath()).with(sounds));
+    }
+
+    private void addMusicDiscSound(Supplier<SoundEvent> soundEvent, String name) {
+        this.add(soundEvent.get(), SoundDefinition.definition().with(sound(SullysMod.modPrefix("records/" + name)).stream()));
     }
 }

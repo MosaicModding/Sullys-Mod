@@ -25,6 +25,7 @@ public class SMLootModifierProvider extends LootModifierProvider {
     @Override
     protected void registerEntries() {
         this.entry("add_lanternfish_to_fishing").selects(BuiltInLootTables.FISHING_FISH).addModifier(new LootPoolEntriesModifier(false, 0, Collections.singletonList(createLootEntryWithCondition(SMItems.RAW_LANTERNFISH.get(), 55, 1, 1, SMLootConditions.ON_LANTERNFISH_HEIGHT))));
+        this.entry("add_music_disc_scour_to_jungle_temple").selects(BuiltInLootTables.JUNGLE_TEMPLE).addModifier(new LootPoolEntriesModifier(false, 0, Collections.singletonList(createMusicDiscLootEntry(SMItems.MUSIC_DISC_SCOUR.get(), 4))));
 
         SullysMod.LOGGER.info("GLM GENERATION COMPLETE");
     }
@@ -35,5 +36,9 @@ public class SMLootModifierProvider extends LootModifierProvider {
 
     private static LootPoolEntryContainer createLootEntry(ItemLike item, int weight, int min, int max) {
         return LootItem.lootTableItem(item).setWeight(weight).apply(SetItemCountFunction.setCount(UniformGenerator.between(min, max))).build();
+    }
+
+    private static LootPoolEntryContainer createMusicDiscLootEntry(ItemLike item, int weight) {
+        return LootItem.lootTableItem(item).setWeight(weight).build();
     }
 }
