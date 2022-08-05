@@ -19,5 +19,4 @@ public class SMParticleTypes {
 
     public static final RegistryObject<SimpleParticleType> RICOCHET = PARTICLES.register("ricochet", () -> new SimpleParticleType(false));
 
-
 }
