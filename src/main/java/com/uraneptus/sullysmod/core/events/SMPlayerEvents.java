@@ -76,7 +76,6 @@ public class SMPlayerEvents {
                             if (!player.getAbilities().instabuild) {
                                 itemInHand.shrink(1);
                             }
-                            System.out.println(resultCount);
                             if (!player.getInventory().add(new ItemStack(resultItem.getItem(), resultCount))) {
                                 player.drop(new ItemStack(resultItem.getItem(), resultCount), false);
                             }
