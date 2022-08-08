@@ -63,15 +63,16 @@ public class SMPlayerEvents {
                             if (!player.getInventory().add(new ItemStack(resultItem.getItem(), resultCount * ingredientCount))) {
                                 player.drop(new ItemStack(resultItem.getItem(), resultCount * ingredientCount), false);
                             }
-                            for (int i = 0; i <= ingredientCount; i++) {
-                                int dropXp = random.nextInt(2);
-                                if (dropXp < 1) {
-                                    xpAmount = xpAmount + polishingRecipe.getExperience();
+                            if (!(xpAmount == 0)) {
+                                for (int i = 0; i <= ingredientCount; i++) {
+                                    int dropXp = random.nextInt(2);
+                                    if (dropXp < 1) {
+                                        xpAmount = xpAmount + polishingRecipe.getExperience();
+                                    }
                                 }
+                                level.addFreshEntity(new ExperienceOrb(level, pos.getX(), pos.getY() + 1 , pos.getZ(), xpAmount));
                             }
-                            level.addFreshEntity(new ExperienceOrb(level, pos.getX(), pos.getY() + 1 , pos.getZ(), xpAmount));
                         } else {
-                            int canDropXp = random.nextInt(2);
                             resultItem.setCount(resultCount);
                             if (!player.getAbilities().instabuild) {
                                 itemInHand.shrink(1);
@@ -79,8 +80,12 @@ public class SMPlayerEvents {
                             if (!player.getInventory().add(new ItemStack(resultItem.getItem(), resultCount))) {
                                 player.drop(new ItemStack(resultItem.getItem(), resultCount), false);
                             }
-                            if (canDropXp < 1) {
-                                level.addFreshEntity(new ExperienceOrb(level, pos.getX(), pos.getY() + 1 , pos.getZ(), xpAmount));
+                            if (!(xpAmount == 0)) {
+                                int canDropXp = random.nextInt(2);
+
+                                if (canDropXp < 1) {
+                                    level.addFreshEntity(new ExperienceOrb(level, pos.getX(), pos.getY() + 1 , pos.getZ(), xpAmount));
+                                }
                             }
                         }
                         player.swing(hand);

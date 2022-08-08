@@ -1,0 +1,7 @@
+{
+  "type": "sullysmod:grindstone_polishing",
+  "experience": 0,
+  "ingredient": "sullysmod:rough_jade_brick_stairs",
+  "result": "sullysmod:polished_jade_brick_stairs",
+  "resultCount": 1
+}

@@ -1,0 +1,7 @@
+{
+  "type": "sullysmod:grindstone_polishing",
+  "experience": 0,
+  "ingredient": "minecraft:granite",
+  "result": "minecraft:polished_granite",
+  "resultCount": 1
+}

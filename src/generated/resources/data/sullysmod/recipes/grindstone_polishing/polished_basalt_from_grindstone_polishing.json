@@ -1,0 +1,7 @@
+{
+  "type": "sullysmod:grindstone_polishing",
+  "experience": 0,
+  "ingredient": "minecraft:basalt",
+  "result": "minecraft:polished_basalt",
+  "resultCount": 1
+}

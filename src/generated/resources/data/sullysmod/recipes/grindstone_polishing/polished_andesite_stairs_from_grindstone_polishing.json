@@ -1,0 +1,7 @@
+{
+  "type": "sullysmod:grindstone_polishing",
+  "experience": 0,
+  "ingredient": "minecraft:andesite_stairs",
+  "result": "minecraft:polished_andesite_stairs",
+  "resultCount": 1
+}
