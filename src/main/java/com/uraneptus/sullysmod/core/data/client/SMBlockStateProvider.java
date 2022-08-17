@@ -59,7 +59,7 @@ public class SMBlockStateProvider extends BlockStateProvider {
         modSlabBlock(SMBlocks.SMOOTHED_ROUGH_JADE_SLAB.get(), SMDatagenUtil.SMOOTHED_ROUGH_JADE);
         modSlabBlock(SMBlocks.ROUGH_JADE_TILE_SLAB.get(), SMDatagenUtil.ROUGH_JADE_TILES);
         modVerticalSlabBlock(SMBlocks.POLISHED_JADE_BRICK_VERTICAL_SLAB.get(), SMDatagenUtil.JADE_BRICKS);
-        modVerticalSlabBlock(SMBlocks.SMALL_POLISHED_JADE_BRICK_VERTICAL_SLAB.get(), SMDatagenUtil.SMALL_JADE_BRICKS);
+        modVerticalSlabBlock(SMBlocks.POLISHED_SMALL_JADE_BRICK_VERTICAL_SLAB.get(), SMDatagenUtil.SMALL_JADE_BRICKS);
         modVerticalSlabBlock(SMBlocks.POLISHED_JADE_SHINGLE_VERTICAL_SLAB.get(), SMDatagenUtil.JADE_SHINGLES);
         modVerticalSlabBlock(SMBlocks.POLISHED_JADE_TILE_VERTICAL_SLAB.get(), SMDatagenUtil.JADE_TILES);
         modVerticalSlabBlock(SMBlocks.ROUGH_JADE_BRICK_VERTICAL_SLAB.get(), SMDatagenUtil.ROUGH_JADE_BRICKS);

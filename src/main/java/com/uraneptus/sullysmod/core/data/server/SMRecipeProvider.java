@@ -10,13 +10,10 @@ import net.minecraft.data.DataGenerator;
 import net.minecraft.data.recipes.*;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.world.item.crafting.RecipeSerializer;
-import net.minecraft.world.item.crafting.SimpleCookingSerializer;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.common.crafting.ConditionalRecipe;
 
-import java.util.List;
 import java.util.function.Consumer;
 
 public class SMRecipeProvider extends RecipeProvider {
@@ -68,7 +65,7 @@ public class SMRecipeProvider extends RecipeProvider {
         verticalSlabRecipes(SMBlocks.SMOOTHED_ROUGH_JADE_SLAB.get(), SMBlocks.SMOOTH_ROUGH_JADE_VERTICAL_SLAB.get(), consumer);
         verticalSlabRecipes(SMBlocks.POLISHED_JADE_BRICK_SLAB.get(), SMBlocks.POLISHED_JADE_BRICK_VERTICAL_SLAB.get(), consumer);
         verticalSlabRecipes(SMBlocks.POLISHED_JADE_TILE_SLAB.get(), SMBlocks.POLISHED_JADE_TILE_VERTICAL_SLAB.get(), consumer);
-        verticalSlabRecipes(SMBlocks.POLISHED_SMALL_JADE_BRICK_SLAB.get(), SMBlocks.SMALL_POLISHED_JADE_BRICK_VERTICAL_SLAB.get(), consumer);
+        verticalSlabRecipes(SMBlocks.POLISHED_SMALL_JADE_BRICK_SLAB.get(), SMBlocks.POLISHED_SMALL_JADE_BRICK_VERTICAL_SLAB.get(), consumer);
         verticalSlabRecipes(SMBlocks.POLISHED_JADE_SHINGLE_SLAB.get(), SMBlocks.POLISHED_JADE_SHINGLE_VERTICAL_SLAB.get(), consumer);
 
         pillarRecipes(SMBlocks.POLISHED_JADE_BLOCK.get(), SMBlocks.POLISHED_JADE_PILLAR.get(), consumer);

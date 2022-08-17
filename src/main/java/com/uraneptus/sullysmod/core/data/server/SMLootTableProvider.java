@@ -99,7 +99,7 @@ public class SMLootTableProvider extends LootTableProvider {
             this.add(SMBlocks.POLISHED_JADE_TILE_SLAB.get(), BlockLoot::createSlabItemTable);
             this.add(SMBlocks.POLISHED_JADE_SHINGLE_SLAB.get(), BlockLoot::createSlabItemTable);
             this.add(SMBlocks.POLISHED_JADE_BRICK_VERTICAL_SLAB.get(), BlockLoot::createSlabItemTable);
-            this.add(SMBlocks.SMALL_POLISHED_JADE_BRICK_VERTICAL_SLAB.get(), BlockLoot::createSlabItemTable);
+            this.add(SMBlocks.POLISHED_SMALL_JADE_BRICK_VERTICAL_SLAB.get(), BlockLoot::createSlabItemTable);
             this.add(SMBlocks.POLISHED_JADE_TILE_VERTICAL_SLAB.get(), BlockLoot::createSlabItemTable);
             this.add(SMBlocks.POLISHED_JADE_SHINGLE_VERTICAL_SLAB.get(), BlockLoot::createSlabItemTable);
 
