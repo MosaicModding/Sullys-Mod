@@ -1,6 +1,7 @@
 package com.uraneptus.sullysmod.core.data.server.tags;
 
 import com.uraneptus.sullysmod.SullysMod;
+import com.uraneptus.sullysmod.core.other.tags.SMBlockTags;
 import com.uraneptus.sullysmod.core.other.tags.SMItemTags;
 import com.uraneptus.sullysmod.core.registry.SMBlocks;
 import com.uraneptus.sullysmod.core.registry.SMItems;
@@ -71,6 +72,20 @@ public class SMItemTagsProvider extends ItemTagsProvider {
         tag(SMItemTags.STORAGE_BLOCKS).add(
                 SMBlocks.ROUGH_JADE_BLOCK.get().asItem(),
                 SMBlocks.POLISHED_JADE_BLOCK.get().asItem()
+        );
+        tag(SMItemTags.ORES).add(
+                SMBlocks.JADE_ORE.get().asItem(),
+                SMBlocks.DEEPSLATE_JADE_ORE.get().asItem()
+        );
+        tag(SMItemTags.JADE_ORES).add(
+                SMBlocks.JADE_ORE.get().asItem(),
+                SMBlocks.DEEPSLATE_JADE_ORE.get().asItem()
+        );
+        tag(SMItemTags.ORES_IN_STONE).add(
+                SMBlocks.JADE_ORE.get().asItem()
+        );
+        tag(SMItemTags.ORES_IN_DEEPSLATE).add(
+                SMBlocks.DEEPSLATE_JADE_ORE.get().asItem()
         );
 
         //Quark Tags

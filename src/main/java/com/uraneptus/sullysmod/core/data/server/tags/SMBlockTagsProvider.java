@@ -165,6 +165,20 @@ public class SMBlockTagsProvider extends BlockTagsProvider {
                 SMBlocks.ROUGH_JADE_BLOCK.get(),
                 SMBlocks.POLISHED_JADE_BLOCK.get()
         );
+        tag(SMBlockTags.ORES).add(
+                SMBlocks.JADE_ORE.get(),
+                SMBlocks.DEEPSLATE_JADE_ORE.get()
+        );
+        tag(SMBlockTags.JADE_ORES).add(
+                SMBlocks.JADE_ORE.get(),
+                SMBlocks.DEEPSLATE_JADE_ORE.get()
+        );
+        tag(SMBlockTags.ORES_IN_STONE).add(
+                SMBlocks.JADE_ORE.get()
+        );
+        tag(SMBlockTags.ORES_IN_DEEPSLATE).add(
+                SMBlocks.DEEPSLATE_JADE_ORE.get()
+        );
 
         //Quark Tags
         tag(SMBlockTags.VERTICAL_SLABS).add(
