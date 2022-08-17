@@ -1,0 +1,7 @@
+{
+  "type": "sullysmod:grindstone_polishing",
+  "ingredient": "minecraft:blackstone_slab",
+  "result": "minecraft:polished_blackstone_slab",
+  "resultCount": 1,
+  "experience": 0
+}

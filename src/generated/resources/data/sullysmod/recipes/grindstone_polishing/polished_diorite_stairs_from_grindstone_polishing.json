@@ -1,0 +1,7 @@
+{
+  "type": "sullysmod:grindstone_polishing",
+  "ingredient": "minecraft:diorite_stairs",
+  "result": "minecraft:polished_diorite_stairs",
+  "resultCount": 1,
+  "experience": 0
+}

@@ -1,0 +1,7 @@
+{
+  "type": "sullysmod:grindstone_polishing",
+  "ingredient": "minecraft:cobbled_deepslate_stairs",
+  "result": "minecraft:polished_deepslate_stairs",
+  "resultCount": 1,
+  "experience": 0
+}

@@ -115,7 +115,33 @@ public class SMRecipeProvider extends RecipeProvider {
         stonecutterRecipes(SMBlocks.POLISHED_JADE_SHINGLES.get(), SMBlocks.POLISHED_JADE_SHINGLE_SLAB.get(), 2, consumer);
         stonecutterRecipes(SMBlocks.POLISHED_JADE_SHINGLES.get(), SMBlocks.POLISHED_JADE_SHINGLE_STAIRS.get(), 1, consumer);
 
+        //Grindstone Polishing
         grindstonePolishingRecipes(SMItems.ROUGH_JADE.get(), SMItems.POLISHED_JADE.get(), 1, 1, consumer);
+        grindstonePolishingRecipes(SMBlocks.ROUGH_JADE_BLOCK.get(), SMBlocks.POLISHED_JADE_BLOCK.get(), 1, 0, consumer);
+        grindstonePolishingRecipes(SMBlocks.ROUGH_JADE_BRICKS.get(), SMBlocks.POLISHED_JADE_BRICKS.get(), 1, 0, consumer);
+        grindstonePolishingRecipes(SMBlocks.ROUGH_JADE_BRICK_SLAB.get(), SMBlocks.POLISHED_JADE_BRICK_SLAB.get(), 1, 0, consumer);
+        grindstonePolishingRecipes(SMBlocks.ROUGH_JADE_BRICK_STAIRS.get(), SMBlocks.POLISHED_JADE_BRICK_STAIRS.get(), 1, 0, consumer);
+        grindstonePolishingRecipes(SMBlocks.ROUGH_JADE_TILES.get(), SMBlocks.POLISHED_JADE_TILES.get(), 1, 0, consumer);
+        grindstonePolishingRecipes(SMBlocks.ROUGH_JADE_TILE_SLAB.get(), SMBlocks.POLISHED_JADE_TILE_SLAB.get(), 1, 0, consumer);
+        grindstonePolishingRecipes(SMBlocks.ROUGH_JADE_TILE_STAIRS.get(), SMBlocks.POLISHED_JADE_TILE_STAIRS.get(), 1, 0, consumer);
+        grindstonePolishingRecipes(Blocks.GRANITE, Blocks.POLISHED_GRANITE, 1, 0, consumer);
+        grindstonePolishingRecipes(Blocks.GRANITE_SLAB, Blocks.POLISHED_GRANITE_SLAB, 1, 0, consumer);
+        grindstonePolishingRecipes(Blocks.GRANITE_STAIRS, Blocks.POLISHED_GRANITE_STAIRS, 1, 0, consumer);
+        grindstonePolishingRecipes(Blocks.DIORITE, Blocks.POLISHED_DIORITE, 1, 0, consumer);
+        grindstonePolishingRecipes(Blocks.DIORITE_SLAB, Blocks.POLISHED_DIORITE_SLAB, 1, 0, consumer);
+        grindstonePolishingRecipes(Blocks.DIORITE_STAIRS, Blocks.POLISHED_DIORITE_STAIRS, 1, 0, consumer);
+        grindstonePolishingRecipes(Blocks.ANDESITE, Blocks.POLISHED_ANDESITE, 1, 0, consumer);
+        grindstonePolishingRecipes(Blocks.ANDESITE_SLAB, Blocks.POLISHED_ANDESITE_SLAB, 1, 0, consumer);
+        grindstonePolishingRecipes(Blocks.ANDESITE_STAIRS, Blocks.POLISHED_ANDESITE_STAIRS, 1, 0, consumer);
+        grindstonePolishingRecipes(Blocks.COBBLED_DEEPSLATE, Blocks.POLISHED_DEEPSLATE, 1, 0, consumer);
+        grindstonePolishingRecipes(Blocks.COBBLED_DEEPSLATE_SLAB, Blocks.POLISHED_DEEPSLATE_SLAB, 1, 0, consumer);
+        grindstonePolishingRecipes(Blocks.COBBLED_DEEPSLATE_STAIRS, Blocks.POLISHED_DEEPSLATE_STAIRS, 1, 0, consumer);
+        grindstonePolishingRecipes(Blocks.COBBLED_DEEPSLATE_WALL, Blocks.POLISHED_DEEPSLATE_WALL, 1, 0, consumer);
+        grindstonePolishingRecipes(Blocks.BASALT, Blocks.POLISHED_BASALT, 1, 0, consumer);
+        grindstonePolishingRecipes(Blocks.BLACKSTONE, Blocks.POLISHED_BLACKSTONE, 1, 0, consumer);
+        grindstonePolishingRecipes(Blocks.BLACKSTONE_SLAB, Blocks.POLISHED_BLACKSTONE_SLAB, 1, 0, consumer);
+        grindstonePolishingRecipes(Blocks.BLACKSTONE_STAIRS, Blocks.POLISHED_BLACKSTONE_STAIRS, 1, 0, consumer);
+        grindstonePolishingRecipes(Blocks.BLACKSTONE_WALL, Blocks.POLISHED_BLACKSTONE_WALL, 1, 0, consumer);
 
         SullysMod.LOGGER.info("RECIPE GENERATION COMPLETE");
     }
