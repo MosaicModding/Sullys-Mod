@@ -73,6 +73,8 @@ public class SMLangProvider extends LanguageProvider {
         add(SMItems.RAW_LANTERNFISH.get(), "Raw Lanternfish");
         add(SMItems.COOKED_LANTERNFISH.get(), "Cooked Lanternfish");
         add(SMItems.TORTOISE_SPAWN_EGG.get(), "Tortoise Spawn Egg");
+        add(SMItems.MUSIC_DISC_SCOUR.get(), "Music Disc");
+        add("item.sullysmod.music_disc_scour.desc", "LudoCrypt - scour");
 
         //Entities
         add(SMEntityTypes.LANTERNFISH.get(), "Lanternfish");

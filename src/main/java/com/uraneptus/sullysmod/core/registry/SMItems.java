@@ -4,6 +4,7 @@ import com.teamabnormals.blueprint.common.item.BlueprintMobBucketItem;
 import com.teamabnormals.blueprint.common.item.InjectedItem;
 import com.teamabnormals.blueprint.core.util.registry.ItemSubRegistryHelper;
 import com.uraneptus.sullysmod.SullysMod;
+import com.uraneptus.sullysmod.common.item.SMRecordItem;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
@@ -12,6 +13,7 @@ import net.minecraft.world.entity.animal.WaterAnimal;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.Rarity;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraftforge.common.ForgeSpawnEggItem;
 import net.minecraftforge.fml.common.Mod;
@@ -26,6 +28,8 @@ public class SMItems {
     //Basic Items
     public static final RegistryObject<Item> ROUGH_JADE = HELPER.createItem("rough_jade", () -> new InjectedItem(Items.COPPER_INGOT, Properties.MISC_TAB));
     public static final RegistryObject<Item> POLISHED_JADE = HELPER.createItem("polished_jade", () -> new InjectedItem(SMItems.ROUGH_JADE.get(), Properties.MISC_TAB));
+    public static final RegistryObject<Item> MUSIC_DISC_SCOUR = HELPER.createItem("music_disc_scour", () -> new SMRecordItem(12, SMSounds.MUSIC_DISC_SCOUR, Properties.MUSIC_DISCS));
+
 
     //Food
     public static final RegistryObject<Item> RAW_LANTERNFISH = HELPER.createItem("raw_lanternfish", () -> new Item(Properties.FOOD_TAB.food(Properties.FoodProperties.LANTERNFISH_FOOD)));
@@ -40,6 +44,8 @@ public class SMItems {
     private static final class Properties {
         public static final Item.Properties MISC_TAB = new Item.Properties().tab(CreativeModeTab.TAB_MISC);
         public static final Item.Properties FOOD_TAB = new Item.Properties().tab(CreativeModeTab.TAB_FOOD);
+
+        public static final Item.Properties MUSIC_DISCS = new Item.Properties().stacksTo(1).tab(CreativeModeTab.TAB_MISC).rarity(Rarity.RARE);
 
         public static Item createMobBucketItem(Supplier<EntityType<? extends WaterAnimal>> entityType) {
             return new BlueprintMobBucketItem(entityType, () -> Fluids.WATER, () -> SoundEvents.BUCKET_EMPTY_FISH, new Item.Properties().stacksTo(1).tab(CreativeModeTab.TAB_MISC));

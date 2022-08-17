@@ -70,6 +70,7 @@ public class SMItemModelProvider extends ItemModelProvider {
         basicBlockItem(SMBlocks.ROUGH_JADE_BRICK_VERTICAL_SLAB.get());
         basicBlockItem(SMBlocks.SMOOTH_ROUGH_JADE_VERTICAL_SLAB.get());
         basicBlockItem(SMBlocks.ROUGH_JADE_TILE_VERTICAL_SLAB.get());
+        basicItem(SMItems.MUSIC_DISC_SCOUR.get());
 
 
         SullysMod.LOGGER.info("ITEM MODEL GENERATION COMPLETE");

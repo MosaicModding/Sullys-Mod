@@ -10,6 +10,9 @@ import net.minecraftforge.registries.RegistryObject;
 public class SMSounds {
     public static final SoundSubRegistryHelper HELPER = SullysMod.REGISTRY_HELPER.getSoundSubHelper();
 
+    //Music Discs
+    public static final RegistryObject<SoundEvent> MUSIC_DISC_SCOUR = HELPER.createSoundEvent("music_disc.scour");
+
     //Item Sounds
     public static final RegistryObject<SoundEvent> POLISH_JADE = HELPER.createSoundEvent("block.grindstone.polish_jade");
 

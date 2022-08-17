@@ -269,5 +269,13 @@
         "name": "block/end_portal/eyeplace3"
       }
     ]
+  },
+  "music_disc.scour": {
+    "sounds": [
+      {
+        "name": "sullysmod:records/scour",
+        "stream": true
+      }
+    ]
   }
 }

@@ -6,6 +6,7 @@ import com.uraneptus.sullysmod.core.registry.SMBlocks;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.tags.BlockTagsProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
+import org.apache.http.cookie.SM;
 import org.jetbrains.annotations.Nullable;
 
 public class SMBlockTagsProvider extends BlockTagsProvider {
@@ -159,6 +160,10 @@ public class SMBlockTagsProvider extends BlockTagsProvider {
                 SMBlocks.WAXED_EXPOSED_COPPER_BUTTON.get(),
                 SMBlocks.WAXED_WEATHERED_COPPER_BUTTON.get(),
                 SMBlocks.WAXED_OXIDIZED_COPPER_BUTTON.get()
+        );
+        tag(SMBlockTags.STORAGE_BLOCKS).add(
+                SMBlocks.ROUGH_JADE_BLOCK.get(),
+                SMBlocks.POLISHED_JADE_BLOCK.get()
         );
 
         //Quark Tags

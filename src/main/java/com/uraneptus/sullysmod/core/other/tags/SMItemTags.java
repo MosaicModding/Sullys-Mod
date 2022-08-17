@@ -14,6 +14,8 @@ public class SMItemTags {
     public static final TagKey<Item> RAW_FISH = TagUtil.itemTag("forge", "raw_fishes");
     public static final TagKey<Item> COOKED_LANTERNFISH = TagUtil.itemTag("forge", "cooked_fishes/lanternfish");
 
+    public static final TagKey<Item> STORAGE_BLOCKS = TagUtil.itemTag("forge", "storage_blocks");
+
     //Quark Tags
     public static final TagKey<Item> VERTICAL_SLABS = TagUtil.itemTag("quark", "vertical_slabs");
 }

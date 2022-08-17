@@ -7,6 +7,7 @@ import com.uraneptus.sullysmod.core.registry.SMItems;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.tags.BlockTagsProvider;
 import net.minecraft.data.tags.ItemTagsProvider;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Items;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import org.jetbrains.annotations.Nullable;
@@ -47,7 +48,7 @@ public class SMItemTagsProvider extends ItemTagsProvider {
                 SMBlocks.ROUGH_JADE_TILE_SLAB.get().asItem(),
                 SMBlocks.SMOOTHED_ROUGH_JADE_SLAB.get().asItem()
         );
-        tag(net.minecraft.tags.ItemTags.STAIRS).add(
+        tag(ItemTags.STAIRS).add(
                 SMBlocks.POLISHED_JADE_BRICK_STAIRS.get().asItem(),
                 SMBlocks.POLISHED_SMALL_JADE_BRICK_STAIRS.get().asItem(),
                 SMBlocks.POLISHED_JADE_TILE_STAIRS.get().asItem(),
@@ -56,6 +57,9 @@ public class SMItemTagsProvider extends ItemTagsProvider {
                 SMBlocks.ROUGH_JADE_TILE_STAIRS.get().asItem(),
                 SMBlocks.SMOOTHED_ROUGH_JADE_STAIRS.get().asItem()
         );
+        tag(ItemTags.MUSIC_DISCS).add(
+                SMItems.MUSIC_DISC_SCOUR.get()
+        );
 
         //Forge Tags
         tag(SMItemTags.RAW_FISH).add(
@@ -63,6 +67,10 @@ public class SMItemTagsProvider extends ItemTagsProvider {
         );
         tag(SMItemTags.COOKED_LANTERNFISH).add(
                 SMItems.COOKED_LANTERNFISH.get()
+        );
+        tag(SMItemTags.STORAGE_BLOCKS).add(
+                SMBlocks.ROUGH_JADE_BLOCK.get().asItem(),
+                SMBlocks.POLISHED_JADE_BLOCK.get().asItem()
         );
 
         //Quark Tags
