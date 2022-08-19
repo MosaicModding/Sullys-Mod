@@ -1,6 +1,6 @@
 {
   "type": "sullysmod:grindstone_polishing",
-  "experience": 0,
+  "experience": 9,
   "ingredient": "sullysmod:rough_jade_block",
   "result": "sullysmod:polished_jade_block",
   "resultCount": 1

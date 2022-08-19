@@ -5,6 +5,8 @@ import com.uraneptus.sullysmod.core.other.tags.SMBlockTags;
 import com.uraneptus.sullysmod.core.registry.SMBlocks;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.tags.BlockTagsProvider;
+import net.minecraft.tags.BlockTags;
+import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import org.jetbrains.annotations.Nullable;
 
@@ -17,7 +19,7 @@ public class SMBlockTagsProvider extends BlockTagsProvider {
     @Override
     public void addTags() {
         //Minecraft Tags
-        tag(net.minecraft.tags.BlockTags.MINEABLE_WITH_PICKAXE).add(
+        tag(BlockTags.MINEABLE_WITH_PICKAXE).add(
                 SMBlocks.JADE_ORE.get(),
                 SMBlocks.DEEPSLATE_JADE_ORE.get(),
                 SMBlocks.ROUGH_JADE_BLOCK.get(),
@@ -55,7 +57,7 @@ public class SMBlockTagsProvider extends BlockTagsProvider {
                 SMBlocks.SMOOTHED_ROUGH_JADE_VERTICAL_SLAB.get(),
                 SMBlocks.ROUGH_JADE_TILE_VERTICAL_SLAB.get()
         );
-        tag(net.minecraft.tags.BlockTags.NEEDS_IRON_TOOL).add(
+        tag(BlockTags.NEEDS_IRON_TOOL).add(
                 SMBlocks.JADE_ORE.get(),
                 SMBlocks.DEEPSLATE_JADE_ORE.get(),
                 SMBlocks.ROUGH_JADE_BLOCK.get(),
@@ -93,7 +95,7 @@ public class SMBlockTagsProvider extends BlockTagsProvider {
                 SMBlocks.SMOOTHED_ROUGH_JADE_VERTICAL_SLAB.get(),
                 SMBlocks.ROUGH_JADE_TILE_VERTICAL_SLAB.get()
         );
-        tag(net.minecraft.tags.BlockTags.BUTTONS).add(
+        tag(BlockTags.BUTTONS).add(
                 SMBlocks.COPPER_BUTTON.get(),
                 SMBlocks.EXPOSED_COPPER_BUTTON.get(),
                 SMBlocks.WEATHERED_COPPER_BUTTON.get(),
@@ -103,7 +105,7 @@ public class SMBlockTagsProvider extends BlockTagsProvider {
                 SMBlocks.WAXED_WEATHERED_COPPER_BUTTON.get(),
                 SMBlocks.WAXED_OXIDIZED_COPPER_BUTTON.get()
         );
-        tag(net.minecraft.tags.BlockTags.SLABS).add(
+        tag(BlockTags.SLABS).add(
                 SMBlocks.POLISHED_JADE_BRICK_SLAB.get(),
                 SMBlocks.POLISHED_SMALL_JADE_BRICK_SLAB.get(),
                 SMBlocks.POLISHED_JADE_TILE_SLAB.get(),
@@ -112,7 +114,7 @@ public class SMBlockTagsProvider extends BlockTagsProvider {
                 SMBlocks.ROUGH_JADE_TILE_SLAB.get(),
                 SMBlocks.SMOOTHED_ROUGH_JADE_SLAB.get()
         );
-        tag(net.minecraft.tags.BlockTags.STAIRS).add(
+        tag(BlockTags.STAIRS).add(
                 SMBlocks.POLISHED_JADE_BRICK_STAIRS.get(),
                 SMBlocks.POLISHED_SMALL_JADE_BRICK_STAIRS.get(),
                 SMBlocks.POLISHED_JADE_TILE_STAIRS.get(),
@@ -160,9 +162,22 @@ public class SMBlockTagsProvider extends BlockTagsProvider {
                 SMBlocks.WAXED_WEATHERED_COPPER_BUTTON.get(),
                 SMBlocks.WAXED_OXIDIZED_COPPER_BUTTON.get()
         );
-        tag(SMBlockTags.STORAGE_BLOCKS).add(
+        tag(Tags.Blocks.STORAGE_BLOCKS).add(
                 SMBlocks.ROUGH_JADE_BLOCK.get(),
                 SMBlocks.POLISHED_JADE_BLOCK.get()
+        );
+        tag(Tags.Blocks.ORES).addTag(
+                SMBlockTags.JADE_ORES
+        );
+        tag(SMBlockTags.JADE_ORES).add(
+                SMBlocks.JADE_ORE.get(),
+                SMBlocks.DEEPSLATE_JADE_ORE.get()
+        );
+        tag(Tags.Blocks.ORES_IN_GROUND_STONE).add(
+                SMBlocks.JADE_ORE.get()
+        );
+        tag(Tags.Blocks.ORES_IN_GROUND_DEEPSLATE).add(
+                SMBlocks.DEEPSLATE_JADE_ORE.get()
         );
 
         //Quark Tags

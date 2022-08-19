@@ -7,7 +7,9 @@ import com.uraneptus.sullysmod.core.registry.SMItems;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.tags.BlockTagsProvider;
 import net.minecraft.data.tags.ItemTagsProvider;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Items;
+import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import org.jetbrains.annotations.Nullable;
 
@@ -28,7 +30,7 @@ public class SMItemTagsProvider extends ItemTagsProvider {
         );
 
         //Minecraft Tags
-        tag(net.minecraft.tags.ItemTags.BUTTONS).add(
+        tag(ItemTags.BUTTONS).add(
                 SMBlocks.COPPER_BUTTON.get().asItem(),
                 SMBlocks.EXPOSED_COPPER_BUTTON.get().asItem(),
                 SMBlocks.WEATHERED_COPPER_BUTTON.get().asItem(),
@@ -38,7 +40,7 @@ public class SMItemTagsProvider extends ItemTagsProvider {
                 SMBlocks.WAXED_WEATHERED_COPPER_BUTTON.get().asItem(),
                 SMBlocks.WAXED_OXIDIZED_COPPER_BUTTON.get().asItem()
         );
-        tag(net.minecraft.tags.ItemTags.SLABS).add(
+        tag(ItemTags.SLABS).add(
                 SMBlocks.POLISHED_JADE_BRICK_SLAB.get().asItem(),
                 SMBlocks.POLISHED_SMALL_JADE_BRICK_SLAB.get().asItem(),
                 SMBlocks.POLISHED_JADE_TILE_SLAB.get().asItem(),
@@ -47,7 +49,7 @@ public class SMItemTagsProvider extends ItemTagsProvider {
                 SMBlocks.ROUGH_JADE_TILE_SLAB.get().asItem(),
                 SMBlocks.SMOOTHED_ROUGH_JADE_SLAB.get().asItem()
         );
-        tag(net.minecraft.tags.ItemTags.STAIRS).add(
+        tag(ItemTags.STAIRS).add(
                 SMBlocks.POLISHED_JADE_BRICK_STAIRS.get().asItem(),
                 SMBlocks.POLISHED_SMALL_JADE_BRICK_STAIRS.get().asItem(),
                 SMBlocks.POLISHED_JADE_TILE_STAIRS.get().asItem(),
@@ -64,9 +66,22 @@ public class SMItemTagsProvider extends ItemTagsProvider {
         tag(SMItemTags.COOKED_LANTERNFISH).add(
                 SMItems.COOKED_LANTERNFISH.get()
         );
-        tag(SMItemTags.STORAGE_BLOCKS).add(
+        tag(Tags.Items.STORAGE_BLOCKS).add(
                 SMBlocks.ROUGH_JADE_BLOCK.get().asItem(),
                 SMBlocks.POLISHED_JADE_BLOCK.get().asItem()
+        );
+        tag(Tags.Items.ORES).addTag(
+                SMItemTags.JADE_ORES
+        );
+        tag(SMItemTags.JADE_ORES).add(
+                SMBlocks.JADE_ORE.get().asItem(),
+                SMBlocks.DEEPSLATE_JADE_ORE.get().asItem()
+        );
+        tag(Tags.Items.ORES_IN_GROUND_STONE).add(
+                SMBlocks.JADE_ORE.get().asItem()
+        );
+        tag(Tags.Items.ORES_IN_GROUND_DEEPSLATE).add(
+                SMBlocks.DEEPSLATE_JADE_ORE.get().asItem()
         );
 
         //Quark Tags

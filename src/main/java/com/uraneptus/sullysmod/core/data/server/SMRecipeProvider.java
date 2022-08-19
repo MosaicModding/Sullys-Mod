@@ -115,7 +115,7 @@ public class SMRecipeProvider extends RecipeProvider {
 
         //Grindstone Polishing
         grindstonePolishingRecipes(SMItems.ROUGH_JADE.get(), SMItems.POLISHED_JADE.get(), 1, 1, consumer);
-        grindstonePolishingRecipes(SMBlocks.ROUGH_JADE_BLOCK.get(), SMBlocks.POLISHED_JADE_BLOCK.get(), 1, 0, consumer);
+        grindstonePolishingRecipes(SMBlocks.ROUGH_JADE_BLOCK.get(), SMBlocks.POLISHED_JADE_BLOCK.get(), 1, 9, consumer);
         grindstonePolishingRecipes(SMBlocks.ROUGH_JADE_BRICKS.get(), SMBlocks.POLISHED_JADE_BRICKS.get(), 1, 0, consumer);
         grindstonePolishingRecipes(SMBlocks.ROUGH_JADE_BRICK_SLAB.get(), SMBlocks.POLISHED_JADE_BRICK_SLAB.get(), 1, 0, consumer);
         grindstonePolishingRecipes(SMBlocks.ROUGH_JADE_BRICK_STAIRS.get(), SMBlocks.POLISHED_JADE_BRICK_STAIRS.get(), 1, 0, consumer);
