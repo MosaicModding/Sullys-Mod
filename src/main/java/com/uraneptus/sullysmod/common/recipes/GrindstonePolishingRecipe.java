@@ -17,7 +17,7 @@ import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
-
+//TODO Test if Tags work for the ingredients and results, if not then make it work
 public class GrindstonePolishingRecipe implements Recipe<Container> {
     public static final String NAME = "grindstone_polishing";
 
