@@ -86,6 +86,10 @@ public class SMLangProvider extends LanguageProvider {
         add(PotionUtils.setPotion(Items.SPLASH_POTION.getDefaultInstance(), SMPotions.UNLUCK.get()), "Splash Potion of Bad Luck");
         add(PotionUtils.setPotion(Items.LINGERING_POTION.getDefaultInstance(), SMPotions.UNLUCK.get()), "Lingering Potion of Bad Luck");
         add(PotionUtils.setPotion(Items.TIPPED_ARROW.getDefaultInstance(), SMPotions.UNLUCK.get()), "Arrow of Bad Luck");
+        add(PotionUtils.setPotion(Items.POTION.getDefaultInstance(), SMPotions.BLINDNESS.get()), "Potion of Blindness");
+        add(PotionUtils.setPotion(Items.SPLASH_POTION.getDefaultInstance(), SMPotions.BLINDNESS.get()), "Splash Potion of Blindness");
+        add(PotionUtils.setPotion(Items.LINGERING_POTION.getDefaultInstance(), SMPotions.BLINDNESS.get()), "Lingering Potion of Blindness");
+        add(PotionUtils.setPotion(Items.TIPPED_ARROW.getDefaultInstance(), SMPotions.BLINDNESS.get()), "Arrow of Blindness");
 
         //Advancements
         add("advancements.adventure.jade_grindset.title", "Jade Grindset");
