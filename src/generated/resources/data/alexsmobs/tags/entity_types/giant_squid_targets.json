@@ -1,0 +1,7 @@
+{
+  "__comment": "all non-player, non-guardian targets of the giant squid mob.",
+  "replace": false,
+  "values": [
+    "sullysmod:lanternfish"
+  ]
+}
