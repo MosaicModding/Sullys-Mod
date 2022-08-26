@@ -19,6 +19,12 @@
     "minecraft:illusioner",
     "minecraft:ravager",
     "minecraft:evoker_fangs",
-    "minecraft:vex"
+    "minecraft:vex",
+    "alexsmobs:froststalker"
+    "alexsmobs:crimson_mosquito"
+    "alexsmobs:komodo_dragon"
+    "alexsmobs:crocodile"
+    "alexsmobs:tiger"
+    "alexsmobs:anaconda"
   ]
 }
