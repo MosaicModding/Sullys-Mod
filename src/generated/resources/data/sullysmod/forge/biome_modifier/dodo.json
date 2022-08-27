@@ -1,0 +1,10 @@
+{
+  "type": "forge:add_spawns",
+  "biomes": "#sullysmod:dodo_spawn_in",
+  "spawners": {
+    "type": "sullysmod:dodo",
+    "maxCount": 3,
+    "minCount": 1,
+    "weight": 4
+  }
+}
