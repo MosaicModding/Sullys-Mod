@@ -17,4 +17,5 @@ public class SMEntityTypes {
     public static final RegistryObject<EntityType<CopperGolem>> COPPER_GOLEM = HELPER.createLivingEntity("copper_golem", CopperGolem::new, MobCategory.MISC, 1.0F, 1.0F);
     public static final RegistryObject<EntityType<Lanternfish>> LANTERNFISH = HELPER.createLivingEntity("lanternfish", Lanternfish::new, MobCategory.WATER_AMBIENT, 0.5F, 0.3F);
     public static final RegistryObject<EntityType<Tortoise>> TORTOISE = HELPER.createLivingEntity("tortoise", Tortoise::new, MobCategory.CREATURE, 0.9F, 1.0F);
+    public static final RegistryObject<EntityType<Dodo>> DODO = HELPER.createLivingEntity("dodo", Dodo::new, MobCategory.CREATURE, 0.4F, 0.5F);
 }
