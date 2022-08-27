@@ -12,4 +12,5 @@ public class SMPotions {
     public static final DeferredRegister<Potion> POTIONS = DeferredRegister.create(ForgeRegistries.POTIONS, SullysMod.MOD_ID);
 
     public static final RegistryObject<Potion> UNLUCK = POTIONS.register("unluck", () -> new Potion("unluck", new MobEffectInstance(MobEffects.UNLUCK, 6000)));
+    public static final RegistryObject<Potion> BLINDNESS = POTIONS.register("blindness", () -> new Potion("blindness", new MobEffectInstance(MobEffects.BLINDNESS, 6000)));
 }
