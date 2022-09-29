@@ -141,6 +141,8 @@ public class SMRecipeProvider extends RecipeProvider {
         grindstonePolishingRecipes(Blocks.BLACKSTONE_STAIRS, Blocks.POLISHED_BLACKSTONE_STAIRS, 1, 0, consumer);
         grindstonePolishingRecipes(Blocks.BLACKSTONE_WALL, Blocks.POLISHED_BLACKSTONE_WALL, 1, 0, consumer);
 
+        smithingRecipes(Items.SHIELD, SMItems.POLISHED_JADE.get(), SMItems.JADE_SHIELD.get(), consumer);
+
         //Custom
         ShapedRecipeBuilder.shaped(SMBlocks.JADE_TOTEM.get()).define('#', SMBlocks.POLISHED_JADE_SHINGLES.get()).pattern("###").pattern("# #").pattern("###").unlockedBy(getHasName(SMBlocks.POLISHED_JADE_SHINGLES.get()), has(SMBlocks.POLISHED_JADE_SHINGLES.get())).save(consumer, craftingPath(getItemName(SMBlocks.JADE_TOTEM.get())));
         ShapedRecipeBuilder.shaped(SMBlocks.JADE_FLINGER_TOTEM.get()).define('#', SMBlocks.POLISHED_JADE_SHINGLES.get()).define('-', Items.TRIPWIRE_HOOK).pattern("###").pattern("#-#").pattern("###").unlockedBy(getHasName(Items.TRIPWIRE_HOOK), has(Items.TRIPWIRE_HOOK)).unlockedBy(getHasName(SMBlocks.POLISHED_JADE_SHINGLES.get()), has(SMBlocks.POLISHED_JADE_SHINGLES.get())).save(consumer, craftingPath(getItemName(SMBlocks.JADE_FLINGER_TOTEM.get())));
@@ -232,6 +234,11 @@ public class SMRecipeProvider extends RecipeProvider {
 
     private static void grindstonePolishingRecipes(ItemLike ingredient, ItemLike result, int resultCount, int experience, Consumer<FinishedRecipe> consumer) {
         GrindstonePolishingRecipeBuilder.grindstonePolishing(ingredient, result, resultCount, experience).save(consumer);
+    }
+
+    private static void smithingRecipes(ItemLike baseItem, ItemLike ingredient, ItemLike result, Consumer<FinishedRecipe> consumer) {
+        String resultName = getItemName(result);
+        UpgradeRecipeBuilder.smithing(Ingredient.of(baseItem), Ingredient.of(ingredient), result.asItem()).unlocks("has_polished_jade", has(SMItems.POLISHED_JADE.get())).save(consumer, smithingPath(resultName) + "_smithing");
     }
 
     /*private static void verticalSlabRecipes(Supplier<? extends ItemLike> slab, Supplier<? extends ItemLike> verticalSlab, Consumer<FinishedRecipe> consumer) {

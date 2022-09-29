@@ -75,6 +75,7 @@ public class SMLangProvider extends LanguageProvider {
         add(SMItems.TORTOISE_SPAWN_EGG.get(), "Tortoise Spawn Egg");
         add(SMItems.MUSIC_DISC_SCOUR.get(), "Music Disc");
         add("item.sullysmod.music_disc_scour.desc", "LudoCrypt - scour");
+        add(SMItems.JADE_SHIELD.get(), "Jade Shield");
 
         //Entities
         add(SMEntityTypes.LANTERNFISH.get(), "Lanternfish");

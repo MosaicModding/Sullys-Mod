@@ -1,18 +1,26 @@
 package com.uraneptus.sullysmod.core.events;
 
 import com.uraneptus.sullysmod.SullysMod;
+import com.uraneptus.sullysmod.client.model.JadeShieldModel;
 import com.uraneptus.sullysmod.client.particles.RicochetParticle;
+import com.uraneptus.sullysmod.client.renderer.bewlr.JadeShieldRenderer;
 import com.uraneptus.sullysmod.client.renderer.entities.CopperGolemRenderer;
 import com.uraneptus.sullysmod.client.renderer.entities.LanternfishRenderer;
 import com.uraneptus.sullysmod.client.renderer.entities.TortoiseRenderer;
 import com.uraneptus.sullysmod.client.model.LanternfishModel;
 import com.uraneptus.sullysmod.core.registry.SMEntityTypes;
+import com.uraneptus.sullysmod.core.registry.SMItems;
 import com.uraneptus.sullysmod.core.registry.SMParticleTypes;
+import net.minecraft.client.renderer.item.ItemProperties;
+import net.minecraft.client.renderer.texture.TextureAtlas;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.client.event.RegisterParticleProvidersEvent;
+import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 
 @Mod.EventBusSubscriber(modid = SullysMod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public class SMClientEvents {
@@ -27,10 +35,23 @@ public class SMClientEvents {
     @SubscribeEvent
     public static void registerLayerLocation(EntityRenderersEvent.RegisterLayerDefinitions event) {
         event.registerLayerDefinition(LanternfishModel.LAYER_LOCATION, LanternfishModel::createBodyLayer);
+        event.registerLayerDefinition(JadeShieldModel.LAYER_LOCATION, JadeShieldModel::createLayer);
     }
 
     @SubscribeEvent
     public static void registerParticleProvider(RegisterParticleProvidersEvent event) {
         event.register(SMParticleTypes.RICOCHET.get(), RicochetParticle.RicochetParticleProvider::new);
+    }
+
+    @SubscribeEvent
+    public static void onTextureStitch(TextureStitchEvent.Pre event) {
+        if (event.getAtlas().location().equals(TextureAtlas.LOCATION_BLOCKS)) {
+            event.addSprite(JadeShieldRenderer.JADE_SHIELD_TEXTURE.texture());
+        }
+    }
+
+    @SubscribeEvent
+    public static void onClientSetup(FMLClientSetupEvent event) {
+        ItemProperties.register(SMItems.JADE_SHIELD.get(), new ResourceLocation("blocking"), (itemStack, clientWorld, livingEntity, useTime) -> livingEntity != null && livingEntity.isUsingItem() && livingEntity.getUseItem() == itemStack ? 1.0F : 0.0F);
     }
 }

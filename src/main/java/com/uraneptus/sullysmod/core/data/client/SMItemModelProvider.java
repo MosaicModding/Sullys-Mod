@@ -120,5 +120,4 @@ public class SMItemModelProvider extends ItemModelProvider {
     private void basicSpawnEggItem(Supplier<? extends Item> item) {
         withExistingParent(name(item.get()), SPAWN_EGG);
     }
-
 }
