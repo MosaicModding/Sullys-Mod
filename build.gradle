@@ -90,7 +90,7 @@ dependencies {
 
     compileOnly fg.deobf("mezz.jei:jei-${mc_version}-forge-api:${jei_version}")
     implementation fg.deobf("mezz.jei:jei-${mc_version}-forge:${jei_version}")
-
+//TODO reactivate quark
     //runtimeOnly fg.deobf("curse.maven:quark-243121:3873471") waiting for 1.19.1
     //runtimeOnly fg.deobf("curse.maven:autoreglib-250363:3857246") waiting for 1.19.1
     runtimeOnly fg.deobf("curse.maven:catalogue-459701:3873264")
