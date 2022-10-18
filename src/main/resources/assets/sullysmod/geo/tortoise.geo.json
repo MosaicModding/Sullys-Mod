@@ -3,7 +3,7 @@
 	"minecraft:geometry": [
 		{
 			"description": {
-				"identifier": "geometry.tortoise",
+				"identifier": "geometry.Tortoise",
 				"texture_width": 96,
 				"texture_height": 96,
 				"visible_bounds_width": 3,
@@ -61,7 +61,7 @@
 					"parent": "shell",
 					"pivot": [0, 6, -9],
 					"cubes": [
-						{"origin": [-3.5, 4, -15], "size": [7, 5, 8], "uv": [51, 0]}
+						{"origin": [-3.5, 4, -15], "size": [7, 6, 8], "uv": [51, 0]}
 					]
 				}
 			]
