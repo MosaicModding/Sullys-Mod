@@ -1,6 +1,5 @@
 package com.uraneptus.sullysmod.common.entities;
 
-import com.uraneptus.sullysmod.common.entities.goals.LightAvoidingRandomSwimmingGoal;
 import com.uraneptus.sullysmod.core.registry.SMItems;
 import com.uraneptus.sullysmod.core.registry.SMSounds;
 import net.minecraft.core.BlockPos;
@@ -17,11 +16,15 @@ import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.ai.goal.RandomSwimmingGoal;
+import net.minecraft.world.entity.ai.util.AirAndWaterRandomPos;
 import net.minecraft.world.entity.animal.AbstractFish;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LightLayer;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
 
 @SuppressWarnings({"deprecation", "unused"})
@@ -40,7 +43,7 @@ public class Lanternfish extends AbstractFish {
 
     protected void registerGoals() {
         super.registerGoals();
-        this.goalSelector.addGoal(3, new LightAvoidingRandomSwimmingGoal(this, 1.0D, 3));
+        this.goalSelector.addGoal(3, new Lanternfish.LightAvoidingRandomSwimmingGoal(this, 1.0D, 3));
     }
 
     protected void defineSynchedData() {
@@ -108,5 +111,30 @@ public class Lanternfish extends AbstractFish {
 
     public static boolean checkLanternfishSpawnRules(EntityType<? extends LivingEntity> entityType, ServerLevelAccessor levelAccessor, MobSpawnType spawnType, BlockPos pos, RandomSource random) {
         return levelAccessor.getBlockState(pos).is(Blocks.WATER) && pos.getY() <= levelAccessor.getSeaLevel() - 47 && !levelAccessor.canSeeSkyFromBelowWater(pos);
+    }
+
+    static class LightAvoidingRandomSwimmingGoal extends RandomSwimmingGoal {
+        private final Lanternfish lanternfish;
+        protected final float probability;
+
+        public LightAvoidingRandomSwimmingGoal(Lanternfish lanternfish, double speedModifier, int probability) {
+            super(lanternfish, speedModifier, probability);
+            this.lanternfish = lanternfish;
+            this.probability = probability;
+        }
+
+        /**
+         *  I think this works, couldn't test it 100% tho!
+         **/
+        @javax.annotation.Nullable
+        protected Vec3 getPosition() {
+            Vec3 vec3 = this.lanternfish.getViewVector(0.0F);
+            if (this.lanternfish.getLevel().getBrightness(LightLayer.BLOCK, lanternfish.blockPosition()) > 0) {
+                Vec3 vec31 = AirAndWaterRandomPos.getPos(this.lanternfish, 16, 16, (int) vec3.reverse().y, vec3.reverse().x, vec3.reverse().z, (float)Math.PI / 2F);
+                return vec31 == null ? super.getPosition() : vec31;
+            } else {
+                return this.lanternfish.getRandom().nextFloat() >= this.probability ? AirAndWaterRandomPos.getPos(this.lanternfish, 16, 16, (int) vec3.reverse().y, vec3.x, vec3.z, (float)Math.PI / 2F) : super.getPosition();
+            }
+        }
     }
 }
