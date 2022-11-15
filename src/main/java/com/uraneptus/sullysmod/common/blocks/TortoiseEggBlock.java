@@ -31,7 +31,6 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 import javax.annotation.Nullable;
-import java.util.Random;
 
 @SuppressWarnings({"deprecation", "unused"})
 public class TortoiseEggBlock extends InjectedBlock {
@@ -53,12 +52,12 @@ public class TortoiseEggBlock extends InjectedBlock {
         super.stepOn(pLevel, pPos, pState, pEntity);
     }
 
-    public void fallOn(Level p_154845_, BlockState p_154846_, BlockPos p_154847_, Entity p_154848_, float p_154849_) {
-        if (!(p_154848_ instanceof Zombie)) {
-            this.destroyEgg(p_154845_, p_154846_, p_154847_, p_154848_, 3);
+    public void fallOn(Level pLevel, BlockState pState, BlockPos pPos, Entity pEntity, float pFallDistance) {
+        if (!(pEntity instanceof Zombie)) {
+            this.destroyEgg(pLevel, pState, pPos, pEntity, 3);
         }
 
-        super.fallOn(p_154845_, p_154846_, p_154847_, p_154848_, p_154849_);
+        super.fallOn(pLevel, pState, pPos, pEntity, pFallDistance);
     }
 
     public void destroyEgg(Level pLevel, BlockState pState, BlockPos pPos, Entity pEntity, int pChance) {

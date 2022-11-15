@@ -108,11 +108,11 @@ public class Tortoise extends Animal implements IAnimatable {
     }
 
     @Override
-    public void knockback(double p_147241_, double p_147242_, double p_147243_) {
+    public void knockback(double pStrength, double pX, double pZ) {
         if (this.getHideTimerDuration() > 200) {
-            super.knockback(p_147241_, p_147242_, p_147243_);
+            super.knockback(pStrength, pX, pZ);
         }
-        else super.knockback(p_147241_ * 0.25D, p_147242_ * 0.25D, p_147243_ * 0.25D);
+        else super.knockback(pStrength * 0.25D, pX * 0.25D, pZ * 0.25D);
     }
 
     @Override
@@ -580,7 +580,6 @@ public class Tortoise extends Animal implements IAnimatable {
                     this.tortoise.setLayingEgg(true);
                 }
                 else if (this.tortoise.layEggCounter > this.adjustedTickDelay(200)) {
-                    //SullysMod.LOGGER.info("Placing Egg");
                     Level level = this.tortoise.level;
                     level.playSound(null, blockPos, SMSounds.TORTOISE_LAY_EGG.get(), SoundSource.BLOCKS, 0.3F, 0.9F + level.random.nextFloat() * 0.2F);
                     level.setBlock(this.blockPos.above(), SMBlocks.TORTOISE_EGG.get().defaultBlockState().setValue(TurtleEggBlock.EGGS, this.tortoise.random.nextInt(4) + 1), 3);

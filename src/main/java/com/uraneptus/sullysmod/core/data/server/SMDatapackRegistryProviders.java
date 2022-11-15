@@ -38,7 +38,7 @@ public class SMDatapackRegistryProviders {
     public static final ResourceKey<ConfiguredFeature<?, ?>> JADE_ORE_CONFIGURED_KEY = ResourceKey.create(Registry.CONFIGURED_FEATURE_REGISTRY, JADE_ORE_RL);
     public static void registerDatapackProviders(ExistingFileHelper fileHelper, DataGenerator generator, RegistryOps<JsonElement> registryOps){
 
-        //TODO This should probably be cleaned up at some point, but it does the job for now.
+        //TODO: This should probably be cleaned up at some point, but it does the job for now.
 
         //Configured Feature Stuff
         List<OreConfiguration.TargetBlockState> JADE_ORE_TARGET_LIST = List.of(OreConfiguration.target(OreFeatures.STONE_ORE_REPLACEABLES, SMBlocks.JADE_ORE.get().defaultBlockState()), OreConfiguration.target(OreFeatures.DEEPSLATE_ORE_REPLACEABLES, SMBlocks.DEEPSLATE_JADE_ORE.get().defaultBlockState()));

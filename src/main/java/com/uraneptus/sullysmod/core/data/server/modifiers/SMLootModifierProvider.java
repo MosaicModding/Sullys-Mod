@@ -16,7 +16,7 @@ import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
 
 import java.util.Collections;
 
-@SuppressWarnings("unused")
+@SuppressWarnings({"unused", "SameParameterValue"})
 public class SMLootModifierProvider extends LootModifierProvider {
 
     public SMLootModifierProvider(DataGenerator gen) {

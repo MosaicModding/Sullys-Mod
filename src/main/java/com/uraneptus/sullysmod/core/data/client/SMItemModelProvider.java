@@ -13,7 +13,7 @@ import java.util.function.Supplier;
 
 import static com.uraneptus.sullysmod.core.data.SMDatagenUtil.*;
 
-@SuppressWarnings("unused")
+@SuppressWarnings({"unused", "SameParameterValue"})
 public class SMItemModelProvider extends ItemModelProvider {
 
     public SMItemModelProvider(DataGenerator generator, ExistingFileHelper existingFileHelper) {

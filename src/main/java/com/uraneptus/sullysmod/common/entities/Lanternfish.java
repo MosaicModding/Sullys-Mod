@@ -51,14 +51,14 @@ public class Lanternfish extends AbstractFish {
         this.entityData.define(DATA_DARK_TICKS_REMAINING, 0);
     }
 
-    public void addAdditionalSaveData(CompoundTag p_147122_) {
-        super.addAdditionalSaveData(p_147122_);
-        p_147122_.putInt("DarkTicksRemaining", this.getDarkTicksRemaining());
+    public void addAdditionalSaveData(CompoundTag nbt) {
+        super.addAdditionalSaveData(nbt);
+        nbt.putInt("DarkTicksRemaining", this.getDarkTicksRemaining());
     }
 
-    public void readAdditionalSaveData(CompoundTag p_147117_) {
-        super.readAdditionalSaveData(p_147117_);
-        this.setDarkTicks(p_147117_.getInt("DarkTicksRemaining"));
+    public void readAdditionalSaveData(CompoundTag nbt) {
+        super.readAdditionalSaveData(nbt);
+        this.setDarkTicks(nbt.getInt("DarkTicksRemaining"));
     }
 
     public void aiStep() {
@@ -70,8 +70,8 @@ public class Lanternfish extends AbstractFish {
 
     }
 
-    public boolean hurt(DamageSource p_147114_, float p_147115_) {
-        boolean flag = super.hurt(p_147114_, p_147115_);
+    public boolean hurt(DamageSource pSource, float pAmount) {
+        boolean flag = super.hurt(pSource, pAmount);
         if (flag) {
             this.setDarkTicks(100);
         }
@@ -79,8 +79,8 @@ public class Lanternfish extends AbstractFish {
         return flag;
     }
 
-    private void setDarkTicks(int p_147120_) {
-        this.entityData.set(DATA_DARK_TICKS_REMAINING, p_147120_);
+    private void setDarkTicks(int ticksRemaining) {
+        this.entityData.set(DATA_DARK_TICKS_REMAINING, ticksRemaining);
     }
 
     public int getDarkTicksRemaining() {

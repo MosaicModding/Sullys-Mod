@@ -18,7 +18,7 @@ public class SMSoundDefinitionsProvider extends SoundDefinitionsProvider {
         super(generator, SullysMod.MOD_ID, helper);
     }
 
-    //TODO make the amount of sounds generated
+    //TODO: make the amount of sounds generated
     @Override
     public void registerSounds() {
 

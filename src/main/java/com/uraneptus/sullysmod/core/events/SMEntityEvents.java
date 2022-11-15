@@ -106,7 +106,7 @@ public class SMEntityEvents {
         }
     }
 
-    //TODO This could be improved
+    //TODO: This could be improved
     @SubscribeEvent
     public static void onShieldBlockEvent(ShieldBlockEvent event) {
         Entity entity = event.getEntity();

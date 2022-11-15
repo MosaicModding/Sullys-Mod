@@ -14,8 +14,8 @@ import javax.annotation.ParametersAreNonnullByDefault;
 
 @ParametersAreNonnullByDefault
 public class GenericMobAttackTortoiseEggGoal extends RemoveBlockGoal {
-    public GenericMobAttackTortoiseEggGoal(PathfinderMob p_34344_, double p_34345_, int p_34346_) {
-        super(SMBlocks.TORTOISE_EGG.get(), p_34344_, p_34345_, p_34346_);
+    public GenericMobAttackTortoiseEggGoal(PathfinderMob mob, double pSpeedModifier, int pSearchRange) {
+        super(SMBlocks.TORTOISE_EGG.get(), mob, pSpeedModifier, pSearchRange);
     }
 
     public void playDestroyProgressSound(LevelAccessor pLevel, BlockPos pPos) {
