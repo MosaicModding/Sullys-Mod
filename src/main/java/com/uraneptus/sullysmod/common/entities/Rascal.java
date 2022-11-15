@@ -21,7 +21,7 @@ import software.bernie.geckolib3.core.manager.AnimationFactory;
 
 
 public class Rascal extends PathfinderMob implements IAnimatable {
-    private final AnimationFactory factory = new AnimationFactory(this);
+    private final AnimationFactory factory = GeckoLibUtil.createFactory(this);
 
     public Rascal(EntityType<? extends PathfinderMob> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
@@ -66,7 +66,8 @@ public class Rascal extends PathfinderMob implements IAnimatable {
     public <E extends IAnimatable> PlayState setAnimation(AnimationEvent<E> event) {
 
         if (/*!((double) animationSpeed < 0.08D) && isOnGround() &&*/ event.isMoving()) {
-            event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.rascal.running", true));
+            event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.rascal.running", ILoopType.EDefaultLoopTypes.LOOP));
+            return PlayState.CONTINUE;
             return PlayState.CONTINUE;
         }
 
