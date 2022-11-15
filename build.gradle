@@ -86,7 +86,7 @@ repositories {
 dependencies {
     minecraft "net.minecraftforge:forge:${mc_version}-${forge_version}"
     implementation fg.deobf("software.bernie.geckolib:geckolib-forge-1.19:${geckolib_version}")
-    implementation fg.deobf("com.teamabnormals:${blueprint_id}:1.19-${blueprint_version}")
+    implementation fg.deobf("com.teamabnormals:${blueprint_id}:1.19.2-${blueprint_version}")
 
     compileOnly fg.deobf("mezz.jei:jei-${mc_version}-forge-api:${jei_version}")
     implementation fg.deobf("mezz.jei:jei-${mc_version}-forge:${jei_version}")
