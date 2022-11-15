@@ -1,6 +1,5 @@
 package com.uraneptus.sullysmod.core.data.server.tags;
 
-import com.teamabnormals.blueprint.core.other.tags.BlueprintBiomeTags;
 import com.uraneptus.sullysmod.SullysMod;
 import com.uraneptus.sullysmod.core.other.tags.SMBiomeTags;
 import net.minecraft.data.DataGenerator;
@@ -9,7 +8,6 @@ import net.minecraft.tags.BiomeTags;
 import net.minecraft.world.level.biome.Biomes;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.data.ExistingFileHelper;
-import net.minecraftforge.common.data.ForgeBiomeTagsProvider;
 import org.jetbrains.annotations.Nullable;
 
 public class SMBiomeTagsProvider extends BiomeTagsProvider {

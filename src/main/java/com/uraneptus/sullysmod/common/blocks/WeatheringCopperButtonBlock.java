@@ -20,12 +20,9 @@ import net.minecraft.world.level.block.WeatheringCopper;
 import net.minecraft.world.level.block.state.BlockState;
 
 import java.util.Optional;
-import java.util.Random;
 import java.util.function.Supplier;
 
-import net.minecraft.world.level.block.WeatheringCopper.WeatherState;
-import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
-
+@SuppressWarnings({"deprecation", "unused"})
 public class WeatheringCopperButtonBlock extends CopperButtonBlock implements WeatheringCopper {
     private final WeatheringCopper.WeatherState weatherState;
 
@@ -34,17 +31,13 @@ public class WeatheringCopperButtonBlock extends CopperButtonBlock implements We
         this.weatherState = weatherState;
     }
 
-    public static Supplier<BiMap<Block, Block>> NEXT_BY_BLOCK = Suppliers.memoize(() -> {
-        return ImmutableBiMap.<Block, Block>builder()
-                .put(SMBlocks.COPPER_BUTTON.get(), SMBlocks.EXPOSED_COPPER_BUTTON.get())
-                .put(SMBlocks.EXPOSED_COPPER_BUTTON.get(), SMBlocks.WEATHERED_COPPER_BUTTON.get())
-                .put(SMBlocks.WEATHERED_COPPER_BUTTON.get(), SMBlocks.OXIDIZED_COPPER_BUTTON.get())
-                .build();
-    });
+    public static Supplier<BiMap<Block, Block>> NEXT_BY_BLOCK = Suppliers.memoize(() -> ImmutableBiMap.<Block, Block>builder()
+            .put(SMBlocks.COPPER_BUTTON.get(), SMBlocks.EXPOSED_COPPER_BUTTON.get())
+            .put(SMBlocks.EXPOSED_COPPER_BUTTON.get(), SMBlocks.WEATHERED_COPPER_BUTTON.get())
+            .put(SMBlocks.WEATHERED_COPPER_BUTTON.get(), SMBlocks.OXIDIZED_COPPER_BUTTON.get())
+            .build());
 
-    public static final Supplier<BiMap<Block, Block>> PREVIOUS_BY_BLOCK = Suppliers.memoize(() -> {
-        return NEXT_BY_BLOCK.get().inverse();
-    });
+    public static final Supplier<BiMap<Block, Block>> PREVIOUS_BY_BLOCK = Suppliers.memoize(() -> NEXT_BY_BLOCK.get().inverse());
 
     @Override
     public void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
@@ -53,9 +46,7 @@ public class WeatheringCopperButtonBlock extends CopperButtonBlock implements We
 
     @Override
     public Optional<BlockState> getNext(BlockState state) {
-        return Optional.ofNullable(NEXT_BY_BLOCK.get().get(state.getBlock())).map((block) -> {
-            return block.withPropertiesOf(state);
-        });
+        return Optional.ofNullable(NEXT_BY_BLOCK.get().get(state.getBlock())).map((block) -> block.withPropertiesOf(state));
     }
 
     public static Optional<BlockState> getPrevious(BlockState state) {

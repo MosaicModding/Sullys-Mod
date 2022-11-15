@@ -24,8 +24,7 @@ import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.Blocks;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.Random;
-
+@SuppressWarnings({"deprecation", "unused"})
 public class Lanternfish extends AbstractFish {
     private static final EntityDataAccessor<Integer> DATA_DARK_TICKS_REMAINING = SynchedEntityData.defineId(Lanternfish.class, EntityDataSerializers.INT);
 
@@ -85,7 +84,6 @@ public class Lanternfish extends AbstractFish {
         return this.entityData.get(DATA_DARK_TICKS_REMAINING);
     }
 
-    @Nullable
     @Override
     protected SoundEvent getFlopSound() {
         return SMSounds.LANTERNFISH_FLOP.get();

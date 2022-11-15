@@ -9,6 +9,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ambient.Bat;
@@ -32,6 +33,7 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import javax.annotation.Nullable;
 import java.util.Random;
 
+@SuppressWarnings({"deprecation", "unused"})
 public class TortoiseEggBlock extends InjectedBlock {
     public static final int MAX_HATCH_LEVEL = 2;
     public static final int MIN_EGGS = 1;
@@ -43,7 +45,7 @@ public class TortoiseEggBlock extends InjectedBlock {
 
     public TortoiseEggBlock(BlockBehaviour.Properties properties) {
         super(Items.TURTLE_EGG, properties);
-        this.registerDefaultState(this.stateDefinition.any().setValue(HATCH, Integer.valueOf(0)).setValue(EGGS, Integer.valueOf(1)));
+        this.registerDefaultState(this.stateDefinition.any().setValue(HATCH, 0).setValue(EGGS, 1));
     }
 
     public void stepOn(Level pLevel, BlockPos pPos, BlockState pState, Entity pEntity) {
@@ -69,33 +71,35 @@ public class TortoiseEggBlock extends InjectedBlock {
     }
 
     private void decreaseEggs(Level pLevel, BlockPos pPos, BlockState pState) {
-        pLevel.playSound((Player)null, pPos, SMSounds.TORTOISE_EGG_BREAK.get(), SoundSource.BLOCKS, 0.7F, 0.9F + pLevel.random.nextFloat() * 0.2F);
+        pLevel.playSound(null, pPos, SMSounds.TORTOISE_EGG_BREAK.get(), SoundSource.BLOCKS, 0.7F, 0.9F + pLevel.random.nextFloat() * 0.2F);
         int i = pState.getValue(EGGS);
         if (i <= 1) {
             pLevel.destroyBlock(pPos, false);
         } else {
-            pLevel.setBlock(pPos, pState.setValue(EGGS, Integer.valueOf(i - 1)), 2);
+            pLevel.setBlock(pPos, pState.setValue(EGGS, i - 1), 2);
             pLevel.levelEvent(2001, pPos, Block.getId(pState));
         }
 
     }
 
-    public void randomTick(BlockState pState, ServerLevel pLevel, BlockPos pPos, Random pRandom) {
+    public void randomTick(BlockState pState, ServerLevel pLevel, BlockPos pPos, RandomSource pRandom) {
         if (this.shouldUpdateHatchLevel(pLevel) && onDirt(pLevel, pPos)) {
             int i = pState.getValue(HATCH);
             if (i < 2) {
-                pLevel.playSound((Player)null, pPos, SMSounds.TORTOISE_EGG_CRACK.get(), SoundSource.BLOCKS, 0.7F, 0.9F + pRandom.nextFloat() * 0.2F);
-                pLevel.setBlock(pPos, pState.setValue(HATCH, Integer.valueOf(i + 1)), 2);
+                pLevel.playSound(null, pPos, SMSounds.TORTOISE_EGG_CRACK.get(), SoundSource.BLOCKS, 0.7F, 0.9F + pRandom.nextFloat() * 0.2F);
+                pLevel.setBlock(pPos, pState.setValue(HATCH, i + 1), 2);
             } else {
-                pLevel.playSound((Player)null, pPos, SMSounds.TORTOISE_EGG_HATCH.get(), SoundSource.BLOCKS, 0.7F, 0.9F + pRandom.nextFloat() * 0.2F);
+                pLevel.playSound(null, pPos, SMSounds.TORTOISE_EGG_HATCH.get(), SoundSource.BLOCKS, 0.7F, 0.9F + pRandom.nextFloat() * 0.2F);
                 pLevel.removeBlock(pPos, false);
 
                 for(int j = 0; j < pState.getValue(EGGS); ++j) {
                     pLevel.levelEvent(2001, pPos, Block.getId(pState));
                     Tortoise tortoise = SMEntityTypes.TORTOISE.get().create(pLevel);
-                    tortoise.setAge(-24000);
-                    tortoise.moveTo((double)pPos.getX() + 0.3D + (double)j * 0.2D, (double)pPos.getY(), (double)pPos.getZ() + 0.3D, 0.0F, 0.0F);
-                    pLevel.addFreshEntity(tortoise);
+                    if (tortoise != null) {
+                        tortoise.setAge(-24000);
+                        tortoise.moveTo((double)pPos.getX() + 0.3D + (double)j * 0.2D, pPos.getY(), (double)pPos.getZ() + 0.3D, 0.0F, 0.0F);
+                        pLevel.addFreshEntity(tortoise);
+                    }
                 }
             }
         }
@@ -132,13 +136,13 @@ public class TortoiseEggBlock extends InjectedBlock {
     }
 
     public boolean canBeReplaced(BlockState pState, BlockPlaceContext pUseContext) {
-        return !pUseContext.isSecondaryUseActive() && pUseContext.getItemInHand().is(this.asItem()) && pState.getValue(EGGS) < 4 ? true : super.canBeReplaced(pState, pUseContext);
+        return !pUseContext.isSecondaryUseActive() && pUseContext.getItemInHand().is(this.asItem()) && pState.getValue(EGGS) < 4 || super.canBeReplaced(pState, pUseContext);
     }
 
     @Nullable
     public BlockState getStateForPlacement(BlockPlaceContext pContext) {
         BlockState blockstate = pContext.getLevel().getBlockState(pContext.getClickedPos());
-        return blockstate.is(this) ? blockstate.setValue(EGGS, Integer.valueOf(Math.min(4, blockstate.getValue(EGGS) + 1))) : super.getStateForPlacement(pContext);
+        return blockstate.is(this) ? blockstate.setValue(EGGS, Math.min(4, blockstate.getValue(EGGS) + 1)) : super.getStateForPlacement(pContext);
     }
 
     public VoxelShape getShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {

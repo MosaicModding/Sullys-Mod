@@ -9,6 +9,7 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.client.model.generators.ModelProvider;
 import net.minecraftforge.registries.ForgeRegistries;
 
+@SuppressWarnings("unused")
 public class SMDatagenUtil {
     public static final String LAYER0 = "layer0";
     public static final String GENERATED = "item/generated";
@@ -75,7 +76,7 @@ public class SMDatagenUtil {
         return SullysMod.modPrefix("smithing/" + name);
     }
 
-    //Quark Flag (We're gonna need this a fair amount once that wood gets added)
+    //Quark Flag (We're going to need this a fair amount once that wood gets added)
     public static ResourceLocation QUARK_FLAG = SullysMod.blueprintPrefix("quark_flag");
 
     //Textures

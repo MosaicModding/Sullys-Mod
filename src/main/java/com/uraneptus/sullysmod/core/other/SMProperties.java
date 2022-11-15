@@ -1,6 +1,5 @@
 package com.uraneptus.sullysmod.core.other;
 
-import com.teamabnormals.blueprint.core.util.PropertyUtil;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.item.CreativeModeTab;
@@ -11,6 +10,7 @@ import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.material.MaterialColor;
 
+@SuppressWarnings("unused")
 public class SMProperties {
 
     public static final class Blocks {

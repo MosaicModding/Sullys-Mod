@@ -18,14 +18,16 @@ import net.minecraft.world.level.Level;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.PlayState;
 import software.bernie.geckolib3.core.builder.AnimationBuilder;
+import software.bernie.geckolib3.core.builder.ILoopType;
 import software.bernie.geckolib3.core.controller.AnimationController;
 import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
+import software.bernie.geckolib3.util.GeckoLibUtil;
 
 public class CopperGolem extends AbstractGolem implements IAnimatable {
     public static final EntityDataAccessor<Integer> OXIDIZATION = SynchedEntityData.defineId(CopperGolem.class, EntityDataSerializers.INT);
-    private final AnimationFactory factory = new AnimationFactory(this);
+    private final AnimationFactory factory = GeckoLibUtil.createFactory(this);
     int cachedState;
     int cachedGameTime;
     boolean isStatue;
@@ -119,7 +121,7 @@ public class CopperGolem extends AbstractGolem implements IAnimatable {
     public <E extends IAnimatable> PlayState setAnimation(AnimationEvent<E> event) {
         boolean onGround = isOnGround();
         if (!((double)animationSpeed < 0.08D) && onGround && !isStatue) {
-            event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.copper_golem.walking", true));
+            event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.copper_golem.walking", ILoopType.EDefaultLoopTypes.LOOP));
             return PlayState.CONTINUE;
         } /*else {
             //System.out.println("Flag is true. Animation should be called");

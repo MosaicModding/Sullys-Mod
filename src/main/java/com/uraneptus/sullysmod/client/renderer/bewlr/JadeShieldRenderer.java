@@ -16,6 +16,10 @@ import net.minecraft.client.resources.model.Material;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 
+import javax.annotation.ParametersAreNonnullByDefault;
+
+@SuppressWarnings("deprecation")
+@ParametersAreNonnullByDefault
 public class JadeShieldRenderer extends BlockEntityWithoutLevelRenderer {
     public static final Material JADE_SHIELD_TEXTURE = new Material(TextureAtlas.LOCATION_BLOCKS, SullysMod.modPrefix("entity/jade_shield/jade_shield"));
     public final JadeShieldModel model;

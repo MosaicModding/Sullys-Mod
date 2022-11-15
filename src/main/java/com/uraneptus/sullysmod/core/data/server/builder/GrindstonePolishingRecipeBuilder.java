@@ -3,6 +3,7 @@ package com.uraneptus.sullysmod.core.data.server.builder;
 import com.google.gson.JsonObject;
 import com.uraneptus.sullysmod.SullysMod;
 import com.uraneptus.sullysmod.core.registry.SMRecipeSerializer;
+import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.core.Registry;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.resources.ResourceLocation;
@@ -12,8 +13,12 @@ import net.minecraft.world.level.ItemLike;
 import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.Nullable;
 
+import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.function.Consumer;
 
+@SuppressWarnings({"unused", "deprecation"})
+@ParametersAreNonnullByDefault
+@MethodsReturnNonnullByDefault
 public class GrindstonePolishingRecipeBuilder {
 
     private final Item ingredient;
@@ -50,7 +55,9 @@ public class GrindstonePolishingRecipeBuilder {
     //The save methods here could be improved!
     public void save(Consumer<FinishedRecipe> consumer) {
         ResourceLocation resourcelocation = ForgeRegistries.ITEMS.getKey(this.result);
-        this.save(consumer, SullysMod.MOD_ID + ":grindstone_polishing/" + resourcelocation.getPath() + "_from_grindstone_polishing");
+        if (resourcelocation != null) {
+            this.save(consumer, SullysMod.MOD_ID + ":grindstone_polishing/" + resourcelocation.getPath() + "_from_grindstone_polishing");
+        }
     }
 
     public void save(Consumer<FinishedRecipe> pFinishedRecipeConsumer, String save) {

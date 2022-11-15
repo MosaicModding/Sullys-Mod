@@ -14,15 +14,18 @@ import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 
-public class LanternfishGlowLayer extends RenderLayer<Lanternfish, LanternfishModel<Lanternfish>> {
+import javax.annotation.ParametersAreNonnullByDefault;
+
+@ParametersAreNonnullByDefault
+public class LanternfishGlowLayer <E extends Lanternfish> extends RenderLayer<E, LanternfishModel<E>> {
     public static final ResourceLocation GLOW_LAYER = SullysMod.modPrefix("textures/entity/lanternfish/glow.png");
 
-    public LanternfishGlowLayer(RenderLayerParent<Lanternfish, LanternfishModel<Lanternfish>> entityRenderer) {
+    public LanternfishGlowLayer(RenderLayerParent<E, LanternfishModel<E>> entityRenderer) {
         super(entityRenderer);
     }
 
     @Override
-    public void render(PoseStack pMatrixStack, MultiBufferSource pBuffer, int pPackedLight, Lanternfish pLivingEntity, float pLimbSwing, float pLimbSwingAmount, float pPartialTicks, float pAgeInTicks, float pNetHeadYaw, float pHeadPitch) {
+    public void render(PoseStack pMatrixStack, MultiBufferSource pBuffer, int pPackedLight, E pLivingEntity, float pLimbSwing, float pLimbSwingAmount, float pPartialTicks, float pAgeInTicks, float pNetHeadYaw, float pHeadPitch) {
         int i = (int) Mth.clampedLerp(0.0F, 15.0F, 1.0F - (float) pLivingEntity.getDarkTicksRemaining() / 10.0F);
         int packedLight = i == 15 ? 240 : pPackedLight;
         RenderType renderType = i == 15 ? BlueprintRenderTypes.getUnshadedCutoutEntity(GLOW_LAYER, true) : RenderType.entityCutoutNoCull(GLOW_LAYER);

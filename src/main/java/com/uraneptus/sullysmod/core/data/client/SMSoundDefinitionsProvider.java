@@ -2,19 +2,16 @@ package com.uraneptus.sullysmod.core.data.client;
 
 import com.uraneptus.sullysmod.SullysMod;
 import com.uraneptus.sullysmod.core.registry.SMSounds;
-import net.minecraft.client.resources.sounds.Sound;
 import net.minecraft.data.DataGenerator;
-import net.minecraft.data.recipes.ShapelessRecipeBuilder;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
-import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.world.level.ItemLike;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.common.data.SoundDefinition;
 import net.minecraftforge.common.data.SoundDefinitionsProvider;
 
 import java.util.function.Supplier;
 
+@SuppressWarnings("SameParameterValue")
 public class SMSoundDefinitionsProvider extends SoundDefinitionsProvider {
 
     public SMSoundDefinitionsProvider(DataGenerator generator, ExistingFileHelper helper) {

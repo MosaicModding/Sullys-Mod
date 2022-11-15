@@ -8,6 +8,7 @@ import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
 
+@SuppressWarnings("deprecation")
 public class SMRecipeTypes {
 
     public static final DeferredRegister<RecipeType<?>> RECIPE_TYPES = DeferredRegister.create(Registry.RECIPE_TYPE.key(), SullysMod.MOD_ID);
@@ -18,7 +19,7 @@ public class SMRecipeTypes {
      * Modified version of {@link RecipeType#register(String)}
      */
     public static <T extends Recipe<?>> RecipeType<T> registerType(final String identifier) {
-        return new RecipeType<T>() {
+        return new RecipeType<>() {
             public String toString() {
                 return SullysMod.MOD_ID + ":" + identifier;
             }

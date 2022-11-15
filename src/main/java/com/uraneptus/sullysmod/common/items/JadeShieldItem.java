@@ -5,6 +5,7 @@ import com.google.common.collect.Multimap;
 import com.teamabnormals.blueprint.core.util.item.filling.TargetedItemCategoryFiller;
 import com.uraneptus.sullysmod.client.renderer.bewlr.JadeShieldRenderer;
 import com.uraneptus.sullysmod.core.registry.SMItems;
+import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
 import net.minecraft.core.NonNullList;
@@ -21,8 +22,12 @@ import net.minecraft.world.level.block.DispenserBlock;
 import net.minecraftforge.client.extensions.common.IClientItemExtensions;
 import org.jetbrains.annotations.NotNull;
 
+import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.function.Consumer;
 
+@SuppressWarnings("deprecation")
+@ParametersAreNonnullByDefault
+@MethodsReturnNonnullByDefault
 public class JadeShieldItem extends Item {
     private static final TargetedItemCategoryFiller FILLER = new TargetedItemCategoryFiller(() -> Items.SHIELD);
     private final Multimap<Attribute, AttributeModifier> defaultModifiers;

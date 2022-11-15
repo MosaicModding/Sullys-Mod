@@ -23,8 +23,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Supplier;
 
-import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
-
 public class CopperButtonBlock extends ButtonBlock {
     public CopperButtonBlock(Properties pProperties) {
         super(false, pProperties);
@@ -82,9 +80,7 @@ public class CopperButtonBlock extends ButtonBlock {
                 level.levelEvent(player, 3005, pos, 0);
 
                 if (!player.isCreative()) {
-                    stack.hurtAndBreak(1, player, (player1) -> {
-                        player1.broadcastBreakEvent(hand);
-                    });
+                    stack.hurtAndBreak(1, player, (player1) -> player1.broadcastBreakEvent(hand));
                 }
                 returnResult = InteractionResult.sidedSuccess(true);
             }
@@ -98,9 +94,7 @@ public class CopperButtonBlock extends ButtonBlock {
                 level.levelEvent(player, 3004, pos, 0);
 
                 if (!player.isCreative()) {
-                    stack.hurtAndBreak(1, player, (player1) -> {
-                        player1.broadcastBreakEvent(hand);
-                    });
+                    stack.hurtAndBreak(1, player, (player1) -> player1.broadcastBreakEvent(hand));
                 }
                 returnResult = InteractionResult.sidedSuccess(true);
             }

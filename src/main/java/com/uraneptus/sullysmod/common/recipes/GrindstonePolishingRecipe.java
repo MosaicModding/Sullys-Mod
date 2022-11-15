@@ -3,6 +3,7 @@ package com.uraneptus.sullysmod.common.recipes;
 import com.google.gson.JsonObject;
 import com.uraneptus.sullysmod.core.registry.SMRecipeSerializer;
 import com.uraneptus.sullysmod.core.registry.SMRecipeTypes;
+import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.core.Registry;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
@@ -16,8 +17,13 @@ import net.minecraft.world.item.crafting.ShapedRecipe;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.Nullable;
 
+import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.List;
 //TODO Test if Tags work for the ingredients and results, if not then make it work
+
+@SuppressWarnings("deprecation")
+@ParametersAreNonnullByDefault
+@MethodsReturnNonnullByDefault
 public class GrindstonePolishingRecipe implements Recipe<Container> {
     public static final String NAME = "grindstone_polishing";
 
@@ -44,7 +50,7 @@ public class GrindstonePolishingRecipe implements Recipe<Container> {
 
     @Override
     public ItemStack assemble(Container pContainer) {
-        return this.result.copy();
+        return this.result;
     }
 
     @Override
@@ -62,7 +68,7 @@ public class GrindstonePolishingRecipe implements Recipe<Container> {
 
     @Override
     public ItemStack getResultItem() {
-        return this.result;
+        return this.result.copy();
     }
 
     @Override

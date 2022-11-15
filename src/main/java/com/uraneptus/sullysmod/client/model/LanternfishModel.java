@@ -12,6 +12,7 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
 
 //Made by Sully using Blockbench
+@SuppressWarnings("unused")
 public class LanternfishModel <T extends Entity> extends HierarchicalModel<T> {
     public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(SullysMod.modPrefix("lanternfish"), "main");
     private final ModelPart root;

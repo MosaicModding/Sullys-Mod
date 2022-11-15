@@ -15,6 +15,7 @@ import java.util.function.Supplier;
 
 import static com.uraneptus.sullysmod.core.data.SMDatagenUtil.*;
 
+@SuppressWarnings("SameParameterValue")
 public class SMBlockStateProvider extends BlockStateProvider {
     public SMBlockStateProvider(DataGenerator gen, ExistingFileHelper exFileHelper) {
         super(gen, SullysMod.MOD_ID, exFileHelper);

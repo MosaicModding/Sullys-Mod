@@ -2,13 +2,13 @@ package com.uraneptus.sullysmod.core.events;
 
 import com.uraneptus.sullysmod.SullysMod;
 import com.uraneptus.sullysmod.client.model.JadeShieldModel;
+import com.uraneptus.sullysmod.client.model.LanternfishModel;
 import com.uraneptus.sullysmod.client.particles.RicochetParticle;
 import com.uraneptus.sullysmod.client.renderer.bewlr.JadeShieldRenderer;
 import com.uraneptus.sullysmod.client.renderer.entities.CopperGolemRenderer;
 import com.uraneptus.sullysmod.client.renderer.entities.LanternfishRenderer;
 import com.uraneptus.sullysmod.client.renderer.entities.RascalRenderer;
 import com.uraneptus.sullysmod.client.renderer.entities.TortoiseRenderer;
-import com.uraneptus.sullysmod.client.model.LanternfishModel;
 import com.uraneptus.sullysmod.core.registry.SMEntityTypes;
 import com.uraneptus.sullysmod.core.registry.SMItems;
 import com.uraneptus.sullysmod.core.registry.SMParticleTypes;
@@ -23,6 +23,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 
+@SuppressWarnings("deprecation")
 @Mod.EventBusSubscriber(modid = SullysMod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public class SMClientEvents {
 

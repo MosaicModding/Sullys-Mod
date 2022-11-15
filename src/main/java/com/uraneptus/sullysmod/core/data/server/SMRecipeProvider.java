@@ -14,11 +14,12 @@ import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.common.crafting.ConditionalRecipe;
 
-import static com.uraneptus.sullysmod.core.data.SMDatagenUtil.*;
-
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
+import static com.uraneptus.sullysmod.core.data.SMDatagenUtil.*;
+
+@SuppressWarnings("SameParameterValue")
 public class SMRecipeProvider extends RecipeProvider {
 
     public SMRecipeProvider(DataGenerator pGenerator) {

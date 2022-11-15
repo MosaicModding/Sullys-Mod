@@ -1,17 +1,21 @@
 package com.uraneptus.sullysmod.client.particles;
 
+import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.*;
 import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
+import javax.annotation.ParametersAreNonnullByDefault;
+
+@ParametersAreNonnullByDefault
+@MethodsReturnNonnullByDefault
 public class RicochetParticle extends TextureSheetParticle {
     private final SpriteSet animatedSprite;
 
     public RicochetParticle(SpriteSet animatedSprite, ClientLevel level, double posX, double posY, double posZ) {
         super(level, posX, posY, posZ);
-        //this.setSize(0.5F, 0.5F);
         this.quadSize = 0.45F;
         this.animatedSprite = animatedSprite;
         this.lifetime = 5;

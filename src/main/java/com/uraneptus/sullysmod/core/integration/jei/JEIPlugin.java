@@ -15,8 +15,11 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 
 import javax.annotation.Nonnull;
+import javax.annotation.ParametersAreNonnullByDefault;
 
 @JeiPlugin
+@SuppressWarnings("unused")
+@ParametersAreNonnullByDefault
 public class JEIPlugin implements IModPlugin {
     private static final ResourceLocation PLUGIN_ID = SullysMod.modPrefix("jei_plugin");
 
@@ -28,7 +31,9 @@ public class JEIPlugin implements IModPlugin {
     @Override
     public void registerRecipes(IRecipeRegistration registration) {
         ClientLevel level = Minecraft.getInstance().level;
-        registration.addRecipes(JEIRecipeTypes.GRINDSTONE_POLISHING, GrindstonePolishingRecipe.getRecipes(level));
+        if (level != null) {
+            registration.addRecipes(JEIRecipeTypes.GRINDSTONE_POLISHING, GrindstonePolishingRecipe.getRecipes(level));
+        }
     }
 
     @Override

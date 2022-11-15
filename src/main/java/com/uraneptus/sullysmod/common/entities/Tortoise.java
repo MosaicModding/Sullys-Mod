@@ -27,8 +27,6 @@ import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.animal.Animal;
-import net.minecraft.world.entity.animal.Pig;
-import net.minecraft.world.entity.monster.Shulker;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.vehicle.Boat;
 import net.minecraft.world.item.ItemStack;
@@ -39,7 +37,6 @@ import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.TurtleEggBlock;
 import net.minecraft.world.level.gameevent.GameEvent;
-import net.minecraft.world.level.gameevent.vibrations.VibrationListener;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.NotNull;
@@ -47,13 +44,14 @@ import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.PlayState;
 import software.bernie.geckolib3.core.builder.AnimationBuilder;
+import software.bernie.geckolib3.core.builder.ILoopType;
 import software.bernie.geckolib3.core.controller.AnimationController;
 import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
+import software.bernie.geckolib3.util.GeckoLibUtil;
 
 import java.util.List;
-import java.util.Random;
 
 public class Tortoise extends Animal implements IAnimatable {
     public static final EntityDataAccessor<Integer> HIDE_TIMER = SynchedEntityData.defineId(Tortoise.class, EntityDataSerializers.INT);
@@ -62,7 +60,7 @@ public class Tortoise extends Animal implements IAnimatable {
 
     int layEggCounter;
 
-    private final AnimationFactory factory = new AnimationFactory(this);
+    private final AnimationFactory factory = GeckoLibUtil.createFactory(this);
     public static final Ingredient FOOD_ITEMS = Ingredient.of(SMItemTags.TORTOISE_FOOD);
 
     public Tortoise(EntityType<? extends Animal> entityType, Level level) {
@@ -206,13 +204,13 @@ public class Tortoise extends Animal implements IAnimatable {
         boolean onGround = isOnGround();
 
         if (!((double) animationSpeed < 0.08D) && getHideTimerDuration() == 0 && onGround) {
-            event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.tortoise.walking", true));
+            event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.tortoise.walking", ILoopType.EDefaultLoopTypes.LOOP));
             return PlayState.CONTINUE;
         } else if (getHideTimerDuration() > 1) {
-            event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.tortoise.hide", false).addAnimation("animation.tortoise.hiding", true));
+            event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.tortoise.hide", ILoopType.EDefaultLoopTypes.HOLD_ON_LAST_FRAME).addAnimation("animation.tortoise.hiding", ILoopType.EDefaultLoopTypes.LOOP));
             return PlayState.CONTINUE;
         } else if (getHideTimerDuration() == 1) {
-            event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.tortoise.reveal", false));
+            event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.tortoise.reveal", ILoopType.EDefaultLoopTypes.HOLD_ON_LAST_FRAME));
             return PlayState.CONTINUE;
         }
 
@@ -511,14 +509,17 @@ public class Tortoise extends Animal implements IAnimatable {
         protected void breed() {
             ServerPlayer player = this.animal.getLoveCause();
 
-            if (player == null && this.partner.getLoveCause() != null) {
-                player = this.partner.getLoveCause();
-            }
+            if (this.partner != null) { {
+                if (player == null && this.partner.getLoveCause() != null) {
+                    player = this.partner.getLoveCause();
+                }
 
-            if (player != null) {
-                player.awardStat(Stats.ANIMALS_BRED);
-                CriteriaTriggers.BRED_ANIMALS.trigger(player, this.animal, this.partner, null);
-            }
+                if (player != null) {
+                    player.awardStat(Stats.ANIMALS_BRED);
+                    CriteriaTriggers.BRED_ANIMALS.trigger(player, this.animal, this.partner, null);
+
+                }
+            }}
 
             this.tortoise.setHasEgg(true);
             this.tortoise.resetLove();
@@ -581,7 +582,7 @@ public class Tortoise extends Animal implements IAnimatable {
                 else if (this.tortoise.layEggCounter > this.adjustedTickDelay(200)) {
                     //SullysMod.LOGGER.info("Placing Egg");
                     Level level = this.tortoise.level;
-                    level.playSound((Player)null, blockPos, SMSounds.TORTOISE_LAY_EGG.get(), SoundSource.BLOCKS, 0.3F, 0.9F + level.random.nextFloat() * 0.2F);
+                    level.playSound(null, blockPos, SMSounds.TORTOISE_LAY_EGG.get(), SoundSource.BLOCKS, 0.3F, 0.9F + level.random.nextFloat() * 0.2F);
                     level.setBlock(this.blockPos.above(), SMBlocks.TORTOISE_EGG.get().defaultBlockState().setValue(TurtleEggBlock.EGGS, this.tortoise.random.nextInt(4) + 1), 3);
                     this.tortoise.setHasEgg(false);
                     this.tortoise.setLayingEgg(false);

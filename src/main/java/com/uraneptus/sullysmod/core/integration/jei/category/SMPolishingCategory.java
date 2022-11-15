@@ -13,15 +13,20 @@ import mezz.jei.api.recipe.IFocusGroup;
 import mezz.jei.api.recipe.RecipeIngredientRole;
 import mezz.jei.api.recipe.RecipeType;
 import mezz.jei.api.recipe.category.IRecipeCategory;
+import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import org.jetbrains.annotations.NotNull;
 
+import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.Collections;
 import java.util.List;
 
+@SuppressWarnings("SameParameterValue")
+@ParametersAreNonnullByDefault
+@MethodsReturnNonnullByDefault
 public class SMPolishingCategory implements IRecipeCategory<GrindstonePolishingRecipe> {
 
     private final Component title;
@@ -31,7 +36,7 @@ public class SMPolishingCategory implements IRecipeCategory<GrindstonePolishingR
     public SMPolishingCategory(IGuiHelper helper) {
         title = Component.translatable(SullysMod.MOD_ID + ".jei." + getUid().getPath());
         background = helper.createDrawable(SullysMod.modPrefix("textures/gui/jei/grindstone_polishing.png"), 0, 0, 96, 31);
-    icon = helper.createDrawableIngredient(VanillaTypes.ITEM_STACK, new ItemStack(Items.GRINDSTONE));
+        icon = helper.createDrawableIngredient(VanillaTypes.ITEM_STACK, new ItemStack(Items.GRINDSTONE));
     }
 
     @Override
