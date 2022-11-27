@@ -14,10 +14,12 @@ import net.minecraft.world.level.pathfinder.BlockPathTypes;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.PlayState;
 import software.bernie.geckolib3.core.builder.AnimationBuilder;
+import software.bernie.geckolib3.core.builder.ILoopType;
 import software.bernie.geckolib3.core.controller.AnimationController;
 import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
+import software.bernie.geckolib3.util.GeckoLibUtil;
 
 
 public class Rascal extends PathfinderMob implements IAnimatable {
@@ -67,7 +69,6 @@ public class Rascal extends PathfinderMob implements IAnimatable {
 
         if (/*!((double) animationSpeed < 0.08D) && isOnGround() &&*/ event.isMoving()) {
             event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.rascal.running", ILoopType.EDefaultLoopTypes.LOOP));
-            return PlayState.CONTINUE;
             return PlayState.CONTINUE;
         }
 
