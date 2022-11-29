@@ -3,10 +3,15 @@ package com.uraneptus.sullysmod.core.data.client;
 import com.uraneptus.sullysmod.SullysMod;
 import com.uraneptus.sullysmod.core.registry.SMBlocks;
 import com.uraneptus.sullysmod.core.registry.SMItems;
+import net.minecraft.client.renderer.block.model.BlockModel;
+import net.minecraft.client.renderer.block.model.ItemTransforms;
 import net.minecraft.data.DataGenerator;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.client.model.generators.ItemModelProvider;
+import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.common.data.ExistingFileHelper;
 
 import java.util.function.Supplier;
@@ -76,6 +81,7 @@ public class SMItemModelProvider extends ItemModelProvider {
         basicBlockItem(SMBlocks.SMOOTHED_ROUGH_JADE_VERTICAL_SLAB);
         basicBlockItem(SMBlocks.ROUGH_JADE_TILE_VERTICAL_SLAB);
         basicItem(SMItems.MUSIC_DISC_SCOUR);
+        jadeShieldItem(SMItems.JADE_SHIELD);
 
         SullysMod.LOGGER.info("ITEM MODEL GENERATION COMPLETE");
     }
@@ -122,5 +128,34 @@ public class SMItemModelProvider extends ItemModelProvider {
 
     private void basicSpawnEggItem(Supplier<? extends Item> item) {
         withExistingParent(name(item.get()), SPAWN_EGG);
+    }
+
+    private void jadeShieldItem(Supplier<? extends Item> item) {
+        getBuilder(name(item.get()) + "_blocking")
+                .parent(new ModelFile.UncheckedModelFile("builtin/entity"))
+                .guiLight(BlockModel.GuiLight.FRONT)
+                .texture("particle", vanillaBlockLocation(DARK_OAK_PLANKS))
+                .transforms()
+                .transform(ItemTransforms.TransformType.THIRD_PERSON_RIGHT_HAND).rotation(45, 135, 0).translation(3.51F, 11, -2).end()
+                .transform(ItemTransforms.TransformType.THIRD_PERSON_LEFT_HAND).rotation(45, 135, 0).translation(13.51F, 3, 5).end()
+                .transform(ItemTransforms.TransformType.FIRST_PERSON_RIGHT_HAND).rotation(0, 180, -5).translation(-15, 5, -11).scale(1.25F, 1.25F, 1.25F).end()
+                .transform(ItemTransforms.TransformType.FIRST_PERSON_LEFT_HAND).rotation(0, 180, -5).translation(5, 5, -11).scale(1.25F, 1.25F, 1.25F).end()
+                .transform(ItemTransforms.TransformType.GUI).rotation(15, -25, -5).translation(2, 2.5F, 0).scale(0.65F, 0.65F, 0.65F).end()
+                .end();
+
+        getBuilder(name(item.get()))
+                .parent(new ModelFile.UncheckedModelFile("builtin/entity"))
+                .guiLight(BlockModel.GuiLight.FRONT)
+                .texture("particle", vanillaBlockLocation(DARK_OAK_PLANKS))
+                .transforms()
+                .transform(ItemTransforms.TransformType.THIRD_PERSON_RIGHT_HAND).rotation(0, 90, 0).translation(10, 6, -4).end()
+                .transform(ItemTransforms.TransformType.THIRD_PERSON_LEFT_HAND).rotation(0, 90, 0).translation(10, 6, 12).end()
+                .transform(ItemTransforms.TransformType.FIRST_PERSON_RIGHT_HAND).rotation(0, 180, 5).translation(-10, 2, -10).scale(1.25F, 1.25F, 1.25F).end()
+                .transform(ItemTransforms.TransformType.FIRST_PERSON_LEFT_HAND).rotation(0, 180, 5).translation(10, 0, -10).scale(1.25F, 1.25F, 1.25F).end()
+                .transform(ItemTransforms.TransformType.GUI).rotation(15, -25, -5).translation(2, 2.5F, 0).scale(0.65F, 0.65F, 0.65F).end()
+                .transform(ItemTransforms.TransformType.FIXED).rotation(0, 180, 0).translation(-4.5F, 4.5F, -5).scale(0.55F, 0.55F, 0.55F).end()
+                .transform(ItemTransforms.TransformType.GROUND).rotation(0, 0, 0).translation(2, 4, 2).scale(0.25F, 0.25F, 0.25F).end()
+                .end()
+                .override().predicate(new ResourceLocation("blocking"), 1).model(new ModelFile.UncheckedModelFile(modItemLocation(name(item.get()) + "_blocking")));
     }
 }

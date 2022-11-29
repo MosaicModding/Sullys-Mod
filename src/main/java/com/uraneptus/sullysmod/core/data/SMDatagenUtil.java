@@ -84,6 +84,7 @@ public class SMDatagenUtil {
     public static final String EXPOSED_COPPER = name(Blocks.EXPOSED_COPPER);
     public static final String WEATHERED_COPPER = name(Blocks.WEATHERED_COPPER);
     public static final String OXIDIZED_COPPER = name(Blocks.OXIDIZED_COPPER);
+    public static final String DARK_OAK_PLANKS = name(Blocks.DARK_OAK_PLANKS);
     public static final String JADE_BRICKS = name(SMBlocks.POLISHED_JADE_BRICKS.get());
     public static final String SMALL_JADE_BRICKS = name(SMBlocks.POLISHED_SMALL_JADE_BRICKS.get());
     public static final String JADE_SHINGLES = name(SMBlocks.POLISHED_JADE_SHINGLES.get());
