@@ -147,7 +147,6 @@ public class SMLootTableProvider extends LootTableProvider {
             this.add(SMEntityTypes.LANTERNFISH.get(), LootTable.lootTable().withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F)).add(LootItem.lootTableItem(SMItems.RAW_LANTERNFISH.get()).apply(SmeltItemFunction.smelted().when(LootItemEntityPropertyCondition.hasProperties(LootContext.EntityTarget.THIS, ENTITY_ON_FIRE))))).withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F)).add(LootItem.lootTableItem(Items.BONE_MEAL)).when(LootItemRandomChanceCondition.randomChance(0.05F))));
             this.add(SMEntityTypes.COPPER_GOLEM.get(), LootTable.lootTable());
             this.add(SMEntityTypes.TORTOISE.get(), LootTable.lootTable());
-            this.add(SMEntityTypes.RASCAL.get(), LootTable.lootTable());
 
             SullysMod.LOGGER.info("ENTITY LOOT TABLE GENERATION COMPLETE");
         }

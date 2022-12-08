@@ -9,7 +9,6 @@ import net.minecraft.data.DataGenerator;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.client.model.generators.ItemModelProvider;
 import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.common.data.ExistingFileHelper;
@@ -47,7 +46,6 @@ public class SMItemModelProvider extends ItemModelProvider {
         basicItem(SMItems.LANTERNFISH_BUCKET);
         basicSpawnEggItem(SMItems.LANTERNFISH_SPAWN_EGG);
         basicSpawnEggItem(SMItems.TORTOISE_SPAWN_EGG);
-        basicSpawnEggItem(SMItems.RASCAL_SPAWN_EGG);
         basicItem(SMItems.RAW_LANTERNFISH);
         basicItem(SMItems.COOKED_LANTERNFISH);
         blockItemWithItemTexture(SMBlocks.TORTOISE_EGG);

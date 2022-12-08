@@ -6,7 +6,6 @@ import com.mojang.serialization.JsonOps;
 import com.teamabnormals.blueprint.core.util.registry.RegistryHelper;
 import com.uraneptus.sullysmod.common.entities.CopperGolem;
 import com.uraneptus.sullysmod.common.entities.Lanternfish;
-import com.uraneptus.sullysmod.common.entities.Rascal;
 import com.uraneptus.sullysmod.common.entities.Tortoise;
 import com.uraneptus.sullysmod.core.SMConfig;
 import com.uraneptus.sullysmod.core.data.client.SMBlockStateProvider;
@@ -83,7 +82,6 @@ public class SullysMod {
         event.put(SMEntityTypes.COPPER_GOLEM.get(), CopperGolem.createAttributes().build());
         event.put(SMEntityTypes.LANTERNFISH.get(), Lanternfish.createAttributes().build());
         event.put(SMEntityTypes.TORTOISE.get(), Tortoise.createAttributes().build());
-        event.put(SMEntityTypes.RASCAL.get(), Rascal.createAttributes().build());
     }
 
     @SubscribeEvent
