@@ -6,10 +6,7 @@ import com.uraneptus.sullysmod.client.model.LanternfishModel;
 import com.uraneptus.sullysmod.client.model.TortoiseShellModel;
 import com.uraneptus.sullysmod.client.particles.RicochetParticle;
 import com.uraneptus.sullysmod.client.renderer.bewlr.JadeShieldRenderer;
-import com.uraneptus.sullysmod.client.renderer.entities.CopperGolemRenderer;
-import com.uraneptus.sullysmod.client.renderer.entities.LanternfishRenderer;
-import com.uraneptus.sullysmod.client.renderer.entities.TortoiseRenderer;
-import com.uraneptus.sullysmod.client.renderer.entities.TortoiseShellRenderer;
+import com.uraneptus.sullysmod.client.renderer.entities.*;
 import com.uraneptus.sullysmod.core.registry.SMEntityTypes;
 import com.uraneptus.sullysmod.core.registry.SMItems;
 import com.uraneptus.sullysmod.core.registry.SMParticleTypes;
@@ -35,6 +32,7 @@ public class SMClientEvents {
         event.registerEntityRenderer(SMEntityTypes.COPPER_GOLEM.get(), CopperGolemRenderer::new);
         event.registerEntityRenderer(SMEntityTypes.LANTERNFISH.get(), LanternfishRenderer::new);
         event.registerEntityRenderer(SMEntityTypes.TORTOISE.get(), TortoiseRenderer::new);
+        event.registerEntityRenderer(SMEntityTypes.RASCAL.get(), RascalRenderer::new);
         event.registerEntityRenderer(SMEntityTypes.TORTOISE_SHELL.get(), TortoiseShellRenderer::new);
     }
 

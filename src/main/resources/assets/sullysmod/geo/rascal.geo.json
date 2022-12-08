@@ -1,0 +1,81 @@
+{
+  "format_version": "1.12.0",
+  "minecraft:geometry": [
+    {
+      "description": {
+        "identifier": "geometry.unknown",
+        "texture_width": 96,
+        "texture_height": 96,
+        "visible_bounds_width": 3,
+        "visible_bounds_height": 2.5,
+        "visible_bounds_offset": [0, 0.75, 0]
+      },
+      "bones": [
+        {
+          "name": "root",
+          "pivot": [0, 0, 0]
+        },
+        {
+          "name": "rightLeg",
+          "parent": "root",
+          "pivot": [-2.9, 8, 0],
+          "cubes": [
+            {"origin": [-5.9, 0, -2], "size": [5, 8, 5], "uv": [0, 44], "mirror": true}
+          ]
+        },
+        {
+          "name": "leftLeg",
+          "parent": "root",
+          "pivot": [2.9, 8, 0],
+          "cubes": [
+            {"origin": [0.9, 0, -2], "size": [5, 8, 5], "uv": [0, 44]}
+          ]
+        },
+        {
+          "name": "backpack",
+          "parent": "root",
+          "pivot": [0, 0, 0],
+          "cubes": [
+            {"origin": [0, 8, 4], "size": [8, 7, 6], "uv": [40, 0]}
+          ]
+        },
+        {
+          "name": "body",
+          "parent": "root",
+          "pivot": [0, 24, 0],
+          "cubes": [
+            {"origin": [-6, 2, -4], "size": [12, 5, 8], "uv": [0, 10]},
+            {"origin": [-6, 5, -4], "size": [12, 13, 8], "inflate": 1, "uv": [2, 64]},
+            {"origin": [-6, 5, -4], "size": [12, 13, 8], "inflate": 0.5, "uv": [0, 23]}
+          ]
+        },
+        {
+          "name": "head",
+          "parent": "root",
+          "pivot": [0, 14, -5],
+          "cubes": [
+            {"origin": [-5, 6.5, -12], "size": [10, 10, 9], "inflate": 0.5, "uv": [36, 35]},
+            {"origin": [-5, 9.5, -12], "size": [10, 7, 9], "uv": [32, 14]}
+          ]
+        },
+        {
+          "name": "rightArm",
+          "parent": "root",
+          "pivot": [-6.5, 13, 0],
+          "cubes": [
+            {"origin": [-11.5, 5, -2], "size": [6, 10, 4], "uv": [20, 50], "mirror": true}
+          ]
+        },
+        {
+          "name": "leftArm",
+          "parent": "root",
+          "pivot": [6.5, 13, 0],
+          "rotation": [-32.5, 0, 0],
+          "cubes": [
+            {"origin": [5.5, 5, -2], "size": [6, 10, 4], "uv": [20, 50]}
+          ]
+        }
+      ]
+    }
+  ]
+}
