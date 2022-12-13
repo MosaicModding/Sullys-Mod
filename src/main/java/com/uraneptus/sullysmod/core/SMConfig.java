@@ -6,11 +6,11 @@ import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(modid = SullysMod.MOD_ID)
 public class SMConfig {
-    public static ForgeConfigSpec.ConfigValue<Boolean> PARTICLES_AROUND_GRINDSTONE;
-    public static ForgeConfigSpec.ConfigValue<Boolean> ENABLE_DYNAMIC_VELOCITY;
+    public static final ForgeConfigSpec.ConfigValue<Boolean> PARTICLES_AROUND_GRINDSTONE;
+    public static final ForgeConfigSpec.ConfigValue<Boolean> ENABLE_DYNAMIC_VELOCITY;
 
-    public static ForgeConfigSpec SERVER;
-    public static ForgeConfigSpec CLIENT;
+    public static final ForgeConfigSpec SERVER;
+    public static final ForgeConfigSpec CLIENT;
 
     static {
         ForgeConfigSpec.Builder SERVER_BULDER = new ForgeConfigSpec.Builder();
