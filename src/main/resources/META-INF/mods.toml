@@ -13,8 +13,7 @@ displayURL = "https://github.com/Uraneptus/Sullys-Mod"
 displayName = "Sully's Mod" #mandatory
 updateJSONURL = "https://api.modrinth.com/updates/sullysmod/forge_updates.json"
 description = '''
-Sully's Mod aims to add interesting features while still keeping a vanilla feeling
-'''
+Sully's Mod aims to add interesting features while still keeping a vanilla feeling. While the mod's main focus is on entities it tries to add features for every type of minecraft player, explorers, builders, redstone engineers and more.'''
 displayTest = "MATCH_VERSION"
 
 [[dependencies.sullysmod]] #optional

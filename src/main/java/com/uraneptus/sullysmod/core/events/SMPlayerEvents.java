@@ -95,6 +95,7 @@ public class SMPlayerEvents {
         }
     }
 
+    //TODO Perhaps make this a one time thing? When used grindstone this won't appear
     @SubscribeEvent
     public static void onPlayerTick(TickEvent.PlayerTickEvent event) {
         Player player = event.player;
