@@ -20,7 +20,7 @@ public class LanternfishModel <T extends Entity> extends HierarchicalModel<T> {
     private final ModelPart head;
     private final ModelPart leftFin;
     private final ModelPart rightFin;
-    private final ModelPart tailfin;
+    private final ModelPart tailFin;
 
     public LanternfishModel(ModelPart root) {
         this.root = root;
@@ -28,7 +28,7 @@ public class LanternfishModel <T extends Entity> extends HierarchicalModel<T> {
         this.head = root.getChild("head");
         this.leftFin = root.getChild("leftFin");
         this.rightFin = root.getChild("rightFin");
-        this.tailfin = root.getChild("tailfin");
+        this.tailFin = root.getChild("tailFin");
     }
 
     public static LayerDefinition createBodyLayer() {
@@ -37,14 +37,13 @@ public class LanternfishModel <T extends Entity> extends HierarchicalModel<T> {
 
         PartDefinition body = partdefinition.addOrReplaceChild("body", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -4.0F, 1.0F, 2.0F, 3.0F, 6.0F, new CubeDeformation(0.0F))
                 .texOffs(17, 4).addBox(0.0F, -6.0F, 3.0F, 0.0F, 2.0F, 3.0F, new CubeDeformation(0.0F))
-                .texOffs(0, 2).addBox(0.0F, -1.0F, 3.0F, 0.0F, 1.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 24.0F, 0.0F));
+                .texOffs(0, 2).addBox(0.0F, -1.0F, 4.0F, 0.0F, 1.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 24.0F, 0.0F));
 
-        PartDefinition head = partdefinition.addOrReplaceChild("head", CubeListBuilder.create().texOffs(0, 0).addBox(-0.9992F, -2.0008F, -3.0F, 2.0F, 3.0F, 1.0F, new CubeDeformation(0.0F))
-                .texOffs(7, 10).addBox(-1.0F, -2.0F, -2.0F, 2.0F, 4.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 22.0F, 0.0F));
-
+        PartDefinition head = partdefinition.addOrReplaceChild("head", CubeListBuilder.create().texOffs(6, 9).addBox(-1.0F, -2.0F, -3.0F, 2.0F, 3.0F, 4.0F, new CubeDeformation(0.0F))
+                .texOffs(18, 11).addBox(-1.0F, 1.0F, -2.0F, 2.0F, 2.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 22.0F, 0.0F));
         PartDefinition leftFin = partdefinition.addOrReplaceChild("leftFin", CubeListBuilder.create().texOffs(10, 3).addBox(0.0F, 0.0F, 0.0F, 2.0F, 1.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(1.0F, 23.0F, 1.0F, 0.0F, 0.0F, 0.6109F));
         PartDefinition rightFin = partdefinition.addOrReplaceChild("rightFin", CubeListBuilder.create().texOffs(10, 0).addBox(-2.0F, 0.0F, 0.0F, 2.0F, 1.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-1.0F, 23.0F, 1.0F, 0.0F, 0.0F, -0.6109F));
-        PartDefinition tailfin = partdefinition.addOrReplaceChild("tailfin", CubeListBuilder.create().texOffs(0, 4).addBox(0.0F, -5.0F, 0.0F, 0.0F, 4.0F, 5.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 24.0F, 7.0F));
+        PartDefinition tailFin = partdefinition.addOrReplaceChild("tailFin", CubeListBuilder.create().texOffs(0, 4).addBox(0.0F, -5.0F, 0.0F, 0.0F, 4.0F, 5.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 24.0F, 7.0F));
 
         return LayerDefinition.create(meshdefinition, 32, 32);
     }
@@ -60,7 +59,7 @@ public class LanternfishModel <T extends Entity> extends HierarchicalModel<T> {
             f = 1.5F;
         }
 
-        this.tailfin.yRot = -f * 0.45F * Mth.sin(0.6F * pAgeInTicks);
+        this.tailFin.yRot = -f * 0.45F * Mth.sin(0.6F * pAgeInTicks);
     }
 
     @Override
@@ -69,6 +68,6 @@ public class LanternfishModel <T extends Entity> extends HierarchicalModel<T> {
         head.render(poseStack, buffer, packedLight, packedOverlay);
         leftFin.render(poseStack, buffer, packedLight, packedOverlay);
         rightFin.render(poseStack, buffer, packedLight, packedOverlay);
-        tailfin.render(poseStack, buffer, packedLight, packedOverlay);
+        tailFin.render(poseStack, buffer, packedLight, packedOverlay);
     }
 }
