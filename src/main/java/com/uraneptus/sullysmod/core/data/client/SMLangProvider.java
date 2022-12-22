@@ -70,7 +70,7 @@ public class SMLangProvider extends LanguageProvider {
         add(SMItems.POLISHED_JADE.get(), "Polished Jade");
         add(SMItems.LANTERNFISH_BUCKET.get(), "Bucket of Lanternfish");
         add(SMItems.LANTERNFISH_SPAWN_EGG.get(), "Lanternfish Spawn Egg");
-        add(SMItems.RAW_LANTERNFISH.get(), "Raw Lanternfish");
+        add(SMItems.LANTERNFISH.get(), "Raw Lanternfish");
         add(SMItems.COOKED_LANTERNFISH.get(), "Cooked Lanternfish");
         add(SMItems.TORTOISE_SPAWN_EGG.get(), "Tortoise Spawn Egg");
         add(SMItems.MUSIC_DISC_SCOUR.get(), "Music Disc");

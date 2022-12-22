@@ -61,7 +61,7 @@ public class SMItemTagsProvider extends ItemTagsProvider {
 
         //Forge Tags
         tag(SMItemTags.RAW_FISH).add(
-                SMItems.RAW_LANTERNFISH.get()
+                SMItems.LANTERNFISH.get()
         );
         tag(SMItemTags.COOKED_LANTERNFISH).add(
                 SMItems.COOKED_LANTERNFISH.get()

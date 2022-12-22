@@ -30,7 +30,7 @@ public class SMRecipeProvider extends RecipeProvider {
     protected void buildCraftingRecipes(Consumer<FinishedRecipe> consumer) {
 
         //Cooking, Smelting etc.
-        cookingRecipes(SMItems.RAW_LANTERNFISH, SMItems.COOKED_LANTERNFISH, 0.35F, consumer);
+        cookingRecipes(SMItems.LANTERNFISH, SMItems.COOKED_LANTERNFISH, 0.35F, consumer);
 
         basicSmeltingRecipes(SMBlocks.ROUGH_JADE_BLOCK, SMBlocks.SMOOTHED_ROUGH_JADE, 1.0F, consumer);
 

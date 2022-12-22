@@ -58,6 +58,7 @@ public class SMMissingMappingEvents {
         Map<ResourceLocation, Supplier<Item>> itemsMap = (new ImmutableMap.Builder<ResourceLocation, Supplier<Item>>())
                 .put(SullysMod.modPrefix("raw_jade"), SMItems.ROUGH_JADE)
                 .put(SullysMod.modPrefix("jade"), SMItems.POLISHED_JADE)
+                .put(SullysMod.modPrefix("raw_lanternfish"), SMItems.LANTERNFISH)
                 .build();
 
         for (MissingMappingsEvent.Mapping<Block> mapping : event.getMappings(ForgeRegistries.Keys.BLOCKS, SullysMod.MOD_ID)) {

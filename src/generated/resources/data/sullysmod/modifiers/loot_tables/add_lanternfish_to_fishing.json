@@ -30,7 +30,7 @@
                 "function": "minecraft:set_count"
               }
             ],
-            "name": "sullysmod:raw_lanternfish",
+            "name": "sullysmod:lanternfish",
             "weight": 55
           }
         ],

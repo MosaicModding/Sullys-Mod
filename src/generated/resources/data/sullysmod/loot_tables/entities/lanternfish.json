@@ -22,7 +22,7 @@
               "function": "minecraft:furnace_smelt"
             }
           ],
-          "name": "sullysmod:raw_lanternfish"
+          "name": "sullysmod:lanternfish"
         }
       ],
       "rolls": 1.0

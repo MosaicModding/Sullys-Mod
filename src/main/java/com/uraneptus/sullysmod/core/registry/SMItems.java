@@ -33,8 +33,8 @@ public class SMItems {
     public static final RegistryObject<Item> JADE_SHIELD = HELPER.createItem("jade_shield", () -> new JadeShieldItem(-2.0F, SMProperties.Items.JADE_SHIELD));
 
     //Food
-    public static final RegistryObject<Item> RAW_LANTERNFISH = HELPER.createItem("raw_lanternfish", () -> new Item(SMProperties.Items.FOOD_TAB.food(SMProperties.Foods.LANTERNFISH_FOOD)));
-    public static final RegistryObject<Item> COOKED_LANTERNFISH = HELPER.createItem("cooked_lanternfish", () -> new Item(SMProperties.Items.FOOD_TAB.food(SMProperties.Foods.COOKED_LANTERNFISH_FOOD)));
+    public static final RegistryObject<Item> LANTERNFISH = HELPER.createItem("lanternfish", () -> new InjectedItem(Items.COD, SMProperties.Items.FOOD_TAB.food(SMProperties.Foods.LANTERNFISH_FOOD)));
+    public static final RegistryObject<Item> COOKED_LANTERNFISH = HELPER.createItem("cooked_lanternfish", () -> new InjectedItem(Items.COOKED_COD, SMProperties.Items.FOOD_TAB.food(SMProperties.Foods.COOKED_LANTERNFISH_FOOD)));
 
     //Mob Buckets & Spawn Eggs
     public static final RegistryObject<Item> LANTERNFISH_BUCKET = HELPER.createItem("lanternfish_bucket", () -> SMItems.createMobBucketItem(SMEntityTypes.LANTERNFISH::get));

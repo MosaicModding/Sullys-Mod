@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "sullysmod:item/raw_lanternfish"
+    "layer0": "sullysmod:item/lanternfish"
   }
 }

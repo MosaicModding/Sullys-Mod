@@ -1,12 +1,12 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_raw_lanternfish": {
+    "has_lanternfish": {
       "conditions": {
         "items": [
           {
             "items": [
-              "sullysmod:raw_lanternfish"
+              "sullysmod:lanternfish"
             ]
           }
         ]
@@ -22,7 +22,7 @@
   },
   "requirements": [
     [
-      "has_raw_lanternfish",
+      "has_lanternfish",
       "has_the_recipe"
     ]
   ],

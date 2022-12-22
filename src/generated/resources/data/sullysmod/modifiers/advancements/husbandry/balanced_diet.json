@@ -14,11 +14,11 @@
             },
             "trigger": "minecraft:consume_item"
           },
-          "sullysmod:raw_lanternfish": {
+          "sullysmod:lanternfish": {
             "conditions": {
               "item": {
                 "items": [
-                  "sullysmod:raw_lanternfish"
+                  "sullysmod:lanternfish"
                 ]
               }
             },
@@ -27,7 +27,7 @@
         },
         "requirements": [
           [
-            "sullysmod:raw_lanternfish"
+            "sullysmod:lanternfish"
           ],
           [
             "sullysmod:cooked_lanternfish"
