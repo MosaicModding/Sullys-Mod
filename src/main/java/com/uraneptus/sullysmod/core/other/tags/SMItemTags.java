@@ -8,6 +8,7 @@ import net.minecraft.world.item.Item;
 public class SMItemTags {
     //Our Tags
     public static final TagKey<Item> TORTOISE_FOOD = TagUtil.itemTag(SullysMod.MOD_ID, "tortoise_food");
+    public static final TagKey<Item> CHAMELEON_FOOD = TagUtil.itemTag(SullysMod.MOD_ID,  "chameleon_food");
 
     //Forge Tags
     public static final TagKey<Item> AXE_ITEMS = TagUtil.itemTag("forge", "tools/axes");

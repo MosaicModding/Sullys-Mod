@@ -28,6 +28,9 @@ public class SMItemTagsProvider extends ItemTagsProvider {
                 Items.SWEET_BERRIES,
                 Items.APPLE
         );
+        tag(SMItemTags.CHAMELEON_FOOD).add(
+                Items.SLIME_BALL
+        );
 
         //Minecraft Tags
         tag(ItemTags.BUTTONS).add(

@@ -146,6 +146,9 @@ public class SMLootTableProvider extends LootTableProvider {
             this.add(SMEntityTypes.COPPER_GOLEM.get(), LootTable.lootTable());
             this.add(SMEntityTypes.TORTOISE.get(), LootTable.lootTable());
             this.add(SMEntityTypes.RASCAL.get(), LootTable.lootTable());
+            this.add(SMEntityTypes.CHAMELEON.get(), LootTable.lootTable());
+
+            SullysMod.LOGGER.info("ENTITY LOOT TABLE GENERATION COMPLETE");
         }
     }
 }

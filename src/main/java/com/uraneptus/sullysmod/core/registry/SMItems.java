@@ -51,6 +51,7 @@ public class SMItems {
     public static final RegistryObject<ForgeSpawnEggItem> LANTERNFISH_SPAWN_EGG = HELPER.createSpawnEggItem("lanternfish", SMEntityTypes.LANTERNFISH::get, 16316617, 9306085);
     public static final RegistryObject<ForgeSpawnEggItem> TORTOISE_SPAWN_EGG = HELPER.createSpawnEggItem("tortoise", SMEntityTypes.TORTOISE::get, 15198183, 10844478);
     public static final RegistryObject<ForgeSpawnEggItem> RASCAL_SPAWN_EGG = HELPER.createSpawnEggItem("rascal", SMEntityTypes.RASCAL::get, 10999507, 3042907);
+    public static final RegistryObject<ForgeSpawnEggItem> CHAMELEON_SPAWN_EGG = HELPER.createSpawnEggItem("chameleon", SMEntityTypes.CHAMELEON::get,9804590 ,6645808);
 
     public static Item createMobBucketItem(Supplier<EntityType<? extends WaterAnimal>> entityType) {
         return new BlueprintMobBucketItem(entityType, () -> Fluids.WATER, () -> SoundEvents.BUCKET_EMPTY_FISH, SMProperties.Items.cannotStack().tab(CreativeModeTab.TAB_MISC));

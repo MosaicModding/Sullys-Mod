@@ -48,6 +48,7 @@ public class SMItemModelProvider extends ItemModelProvider {
         basicSpawnEggItem(SMItems.TORTOISE_SPAWN_EGG);
         basicSpawnEggItem(SMItems.RASCAL_SPAWN_EGG);
         basicItem(SMItems.LANTERNFISH);
+        basicSpawnEggItem(SMItems.CHAMELEON_SPAWN_EGG);
         basicItem(SMItems.COOKED_LANTERNFISH);
         blockItemWithItemTexture(SMBlocks.TORTOISE_EGG);
         copperButtonBlockItem(SMBlocks.COPPER_BUTTON, COPPER_BLOCK);

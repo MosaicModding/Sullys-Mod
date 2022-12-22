@@ -78,6 +78,7 @@ public class SMLangProvider extends LanguageProvider {
         add(SMItems.COOKED_LANTERNFISH.get(), "Cooked Lanternfish");
         add(SMItems.TORTOISE_SPAWN_EGG.get(), "Tortoise Spawn Egg");
         add(SMItems.RASCAL_SPAWN_EGG.get(), "Rascal Spawn Egg");
+        add(SMItems.CHAMELEON_SPAWN_EGG.get(), "Chameleon Spawn Egg");
         add(SMItems.JADE_SHIELD.get(), "Jade Shield");
         add(SMItems.LANTERNFISH_SLICE.get(), "Raw Lanternfish Slice");
         add(SMItems.COOKED_LANTERNFISH_SLICE.get(), "Cooked Lanternfish Slice");
@@ -94,6 +95,7 @@ public class SMLangProvider extends LanguageProvider {
         add(SMEntityTypes.COPPER_GOLEM.get(), "Copper Golem");
         add(SMEntityTypes.RASCAL.get(), "Rascal");
         add(SMEntityTypes.TORTOISE_SHELL.get(), "Tortoise Shell");
+        add(SMEntityTypes.CHAMELEON.get(), "Chameleon");
 
         //Potions
         addPotionsForEffect(SMPotions.UNLUCK, "Bad Luck");

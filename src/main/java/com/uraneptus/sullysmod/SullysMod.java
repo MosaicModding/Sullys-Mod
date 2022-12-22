@@ -4,6 +4,7 @@ import com.google.gson.JsonElement;
 import com.mojang.logging.LogUtils;
 import com.mojang.serialization.JsonOps;
 import com.teamabnormals.blueprint.core.util.registry.RegistryHelper;
+import com.uraneptus.sullysmod.common.entities.Chameleon;
 import com.uraneptus.sullysmod.common.entities.CopperGolem;
 import com.uraneptus.sullysmod.common.entities.Lanternfish;
 import com.uraneptus.sullysmod.common.entities.Rascal;
@@ -87,6 +88,7 @@ public class SullysMod {
         event.put(SMEntityTypes.LANTERNFISH.get(), Lanternfish.createAttributes().build());
         event.put(SMEntityTypes.TORTOISE.get(), Tortoise.createAttributes().build());
         event.put(SMEntityTypes.RASCAL.get(), Rascal.createAttributes().build());
+        event.put(SMEntityTypes.CHAMELEON.get(), Chameleon.createAttributes().build());
     }
 
     @SubscribeEvent
