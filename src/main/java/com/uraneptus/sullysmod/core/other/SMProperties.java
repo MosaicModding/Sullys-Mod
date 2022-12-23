@@ -1,7 +1,9 @@
 package com.uraneptus.sullysmod.core.other;
 
+import com.uraneptus.sullysmod.core.integration.fd.FDCompat;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Rarity;
@@ -9,6 +11,7 @@ import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.material.MaterialColor;
+import net.minecraftforge.fml.ModList;
 
 @SuppressWarnings("unused")
 public class SMProperties {
@@ -31,6 +34,8 @@ public class SMProperties {
         public static final Item.Properties REDSTONE_TAB = new Item.Properties().tab(CreativeModeTab.TAB_REDSTONE);
         public static final Item.Properties BUILDING_TAB = new Item.Properties().tab(CreativeModeTab.TAB_BUILDING_BLOCKS);
 
+        public static final Item.Properties FD_COMPAT_TAB = new Item.Properties().tab(!FDCompat.IS_LOADED ? null : !ModList.get().isLoaded("abnormals_delight") ? FDCompat.FDLoaded.fdTab() : CreativeModeTab.TAB_FOOD);
+
         public static Item.Properties cannotStack() {
             return new Item.Properties().stacksTo(1);
         }
@@ -40,7 +45,12 @@ public class SMProperties {
     }
 
     public static final class Foods {
-        public static final net.minecraft.world.food.FoodProperties LANTERNFISH_FOOD = new net.minecraft.world.food.FoodProperties.Builder().nutrition(2).saturationMod(0.1F).effect(() -> new MobEffectInstance(MobEffects.GLOWING, 200), 0.1F).build();
-        public static final net.minecraft.world.food.FoodProperties COOKED_LANTERNFISH_FOOD = new net.minecraft.world.food.FoodProperties.Builder().nutrition(5).saturationMod(0.6F).effect(() -> new MobEffectInstance(MobEffects.GLOWING, 200), 0.1F).build();
+        public static final FoodProperties LANTERNFISH_FOOD = new FoodProperties.Builder().nutrition(2).saturationMod(0.1F).effect(() -> new MobEffectInstance(MobEffects.GLOWING, 200), 0.1F).build();
+        public static final FoodProperties COOKED_LANTERNFISH_FOOD = new FoodProperties.Builder().nutrition(5).saturationMod(0.6F).effect(() -> new MobEffectInstance(MobEffects.GLOWING, 200), 0.1F).build();
+
+        public static final FoodProperties LANTERNFISH_SLICE_FOOD = new FoodProperties.Builder().nutrition(1).saturationMod(0.1F).effect(() -> new MobEffectInstance(MobEffects.GLOWING, 200), 0.1F).fast().build();
+        public static final FoodProperties COOKED_LANTERNFISH_SLICE_FOOD = new FoodProperties.Builder().nutrition(3).saturationMod(0.5F).effect(() -> new MobEffectInstance(MobEffects.GLOWING, 200), 0.1F).fast().build();
+        public static final FoodProperties LANTERNFISH_ROLL_FOOD = new FoodProperties.Builder().nutrition(7).saturationMod(0.6F).effect(() -> new MobEffectInstance(MobEffects.GLOWING, 200), 0.1F).build();
+        public static final FoodProperties CAVE_CHUM_BUCKET_FOOD = new FoodProperties.Builder().nutrition(13).saturationMod(1.0F).effect(() -> new MobEffectInstance(MobEffects.GLOWING, 200), 0.1F).effect(() -> new MobEffectInstance(MobEffects.DIG_SPEED, 800), 1.0F).effect(() -> new MobEffectInstance(MobEffects.NIGHT_VISION, 800), 1.0F).build();
     }
 }

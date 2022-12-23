@@ -80,6 +80,10 @@ public class SMItemModelProvider extends ItemModelProvider {
         basicBlockItem(SMBlocks.ROUGH_JADE_TILE_VERTICAL_SLAB);
         basicItem(SMItems.MUSIC_DISC_SCOUR);
         jadeShieldItem(SMItems.JADE_SHIELD);
+        basicItem(SMItems.LANTERNFISH_SLICE);
+        basicItem(SMItems.COOKED_LANTERNFISH_SLICE);
+        basicItem(SMItems.LANTERNFISH_ROLL);
+        basicItem(SMItems.CAVE_CHUM_BUCKET);
 
         SullysMod.LOGGER.info("ITEM MODEL GENERATION COMPLETE");
     }

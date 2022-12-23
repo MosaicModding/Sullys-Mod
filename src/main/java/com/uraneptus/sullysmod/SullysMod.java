@@ -22,6 +22,7 @@ import com.uraneptus.sullysmod.core.data.server.tags.SMBiomeTagsProvider;
 import com.uraneptus.sullysmod.core.data.server.tags.SMBlockTagsProvider;
 import com.uraneptus.sullysmod.core.data.server.tags.SMEntityTagsProvider;
 import com.uraneptus.sullysmod.core.data.server.tags.SMItemTagsProvider;
+import com.uraneptus.sullysmod.core.integration.fd.FDCompat;
 import com.uraneptus.sullysmod.core.registry.*;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.data.DataGenerator;
@@ -69,6 +70,8 @@ public class SullysMod {
         SMPotions.POTIONS.register(bus);
         SMRecipeTypes.RECIPE_TYPES.register(bus);
         SMRecipeSerializer.SERIALIZERS.register(bus);
+
+        FDCompat.register();
 
         MinecraftForge.EVENT_BUS.register(this);
     }

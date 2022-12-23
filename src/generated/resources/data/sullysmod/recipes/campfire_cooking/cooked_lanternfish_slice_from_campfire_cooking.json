@@ -1,0 +1,22 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "forge:mod_loaded",
+          "modid": "farmersdelight"
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:campfire_cooking",
+        "cookingtime": 600,
+        "experience": 0.35,
+        "ingredient": {
+          "item": "sullysmod:lanternfish_slice"
+        },
+        "result": "sullysmod:cooked_lanternfish_slice"
+      }
+    }
+  ]
+}

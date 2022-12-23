@@ -76,6 +76,10 @@ public class SMLangProvider extends LanguageProvider {
         add(SMItems.MUSIC_DISC_SCOUR.get(), "Music Disc");
         add("item.sullysmod.music_disc_scour.desc", "LudoCrypt - scour");
         add(SMItems.JADE_SHIELD.get(), "Jade Shield");
+        add(SMItems.LANTERNFISH_SLICE.get(), "Raw Lanternfish Slice");
+        add(SMItems.COOKED_LANTERNFISH_SLICE.get(), "Cooked Lanternfish Slice");
+        add(SMItems.LANTERNFISH_ROLL.get(), "Lanternfish Roll");
+        add(SMItems.CAVE_CHUM_BUCKET.get(), "Cave Chum Bucket");
 
         //Entities
         add(SMEntityTypes.LANTERNFISH.get(), "Lanternfish");

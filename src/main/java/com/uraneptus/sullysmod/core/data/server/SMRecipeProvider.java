@@ -4,6 +4,7 @@ import com.teamabnormals.blueprint.core.api.conditions.QuarkFlagRecipeCondition;
 import com.uraneptus.sullysmod.SullysMod;
 import com.uraneptus.sullysmod.core.data.SMDatagenUtil;
 import com.uraneptus.sullysmod.core.data.server.builder.GrindstonePolishingRecipeBuilder;
+import com.uraneptus.sullysmod.core.integration.fd.FDCompat;
 import com.uraneptus.sullysmod.core.registry.SMBlocks;
 import com.uraneptus.sullysmod.core.registry.SMItems;
 import net.minecraft.data.DataGenerator;
@@ -13,6 +14,7 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.common.crafting.ConditionalRecipe;
+import net.minecraftforge.common.crafting.conditions.ModLoadedCondition;
 
 import java.util.function.Consumer;
 import java.util.function.Supplier;
@@ -31,6 +33,8 @@ public class SMRecipeProvider extends RecipeProvider {
 
         //Cooking, Smelting etc.
         cookingRecipes(SMItems.LANTERNFISH, SMItems.COOKED_LANTERNFISH, 0.35F, consumer);
+
+        modLoadedCookingRecipes(FDCompat.MOD_ID, SMItems.LANTERNFISH_SLICE, SMItems.COOKED_LANTERNFISH_SLICE, 0.35F, consumer);
 
         basicSmeltingRecipes(SMBlocks.ROUGH_JADE_BLOCK, SMBlocks.SMOOTHED_ROUGH_JADE, 1.0F, consumer);
 
@@ -89,6 +93,8 @@ public class SMRecipeProvider extends RecipeProvider {
         waxButtonRecipes(SMBlocks.EXPOSED_COPPER_BUTTON, SMBlocks.WAXED_EXPOSED_COPPER_BUTTON, consumer);
         waxButtonRecipes(SMBlocks.WEATHERED_COPPER_BUTTON, SMBlocks.WAXED_WEATHERED_COPPER_BUTTON, consumer);
         waxButtonRecipes(SMBlocks.OXIDIZED_COPPER_BUTTON, SMBlocks.WAXED_OXIDIZED_COPPER_BUTTON, consumer);
+
+        fishRollRecipes(SMItems.LANTERNFISH_SLICE, SMItems.LANTERNFISH_ROLL, consumer);
 
         //Stonecutting
         stonecutterRecipes(SMBlocks.ROUGH_JADE_BLOCK, SMBlocks.ROUGH_JADE_BRICKS, 1, consumer);
@@ -195,6 +201,29 @@ public class SMRecipeProvider extends RecipeProvider {
                 .save(consumer, smokingPath(resultName + "_from_smoking"));
     }
 
+    private static void modLoadedCookingRecipes(String modId, Supplier<? extends ItemLike> ingredient, Supplier<? extends ItemLike> result, float experience, Consumer<FinishedRecipe> consumer) {
+        String resultName = getItemName(result.get());
+
+        ConditionalRecipe.builder()
+                .addCondition(new ModLoadedCondition(modId))
+                .addRecipe(consumer1 -> SimpleCookingRecipeBuilder.smelting(Ingredient.of(ingredient.get()), result.get(), experience, 200)
+                        .unlockedBy(getHasName(ingredient.get()), has(ingredient.get()))
+                        .save(consumer1, SullysMod.modPrefix(getItemName(result.get()))))
+                .build(consumer, smeltingPath(resultName));
+        ConditionalRecipe.builder()
+                .addCondition(new ModLoadedCondition(modId))
+                .addRecipe(consumer1 -> SimpleCookingRecipeBuilder.campfireCooking(Ingredient.of(ingredient.get()), result.get(), experience, 600)
+                        .unlockedBy(getHasName(ingredient.get()), has(ingredient.get()))
+                        .save(consumer1, SullysMod.modPrefix(getItemName(result.get()))))
+                .build(consumer, campfire_cookingPath(resultName + "_from_campfire_cooking"));
+        ConditionalRecipe.builder()
+                .addCondition(new ModLoadedCondition(modId))
+                .addRecipe(consumer1 -> SimpleCookingRecipeBuilder.smoking(Ingredient.of(ingredient.get()), result.get(), experience, 100)
+                        .unlockedBy(getHasName(ingredient.get()), has(ingredient.get()))
+                        .save(consumer1, SullysMod.modPrefix(getItemName(result.get()))))
+                .build(consumer, smokingPath(resultName + "_from_smoking"));
+    }
+
     private static void stairRecipes(Supplier<? extends ItemLike> ingredient, Supplier<? extends ItemLike> result, Consumer<FinishedRecipe> consumer) {
         ShapedRecipeBuilder.shaped(result.get(), 4).define('#', ingredient.get()).pattern("#  ").pattern("## ").pattern("###")
                 .unlockedBy(getHasName(ingredient.get()), has(ingredient.get())).save(consumer, craftingPath(getItemName(result.get())));
@@ -225,6 +254,16 @@ public class SMRecipeProvider extends RecipeProvider {
 
         ShapelessRecipeBuilder.shapeless(result.get()).requires(ingredient.get()).requires(Items.HONEYCOMB)
                 .unlockedBy(getHasName(ingredient.get()), has(ingredient.get())).save(consumer, craftingPath(resultName + "_from_honeycomb"));
+    }
+
+    private static void fishRollRecipes(Supplier<? extends ItemLike> ingredient, Supplier<? extends ItemLike> result, Consumer<FinishedRecipe> consumer) {
+        ConditionalRecipe.builder()
+                .addCondition(new ModLoadedCondition(FDCompat.MOD_ID))
+                .addRecipe(consumer1 -> ShapelessRecipeBuilder.shapeless(result.get(), 2).requires(ingredient.get(), 2).requires(FDCompat.FDLoaded.COOKED_RICE)
+                        .unlockedBy(getHasName(ingredient.get()), has(ingredient.get()))
+                        .save(consumer1, SullysMod.modPrefix(getItemName(result.get()))))
+                .build(consumer, craftingPath(getItemName(result.get())));
+
     }
 
     private static void stonecutterRecipes(Supplier<? extends ItemLike> ingredient, Supplier<? extends ItemLike> result, int resultCount, Consumer<FinishedRecipe> consumer) {
