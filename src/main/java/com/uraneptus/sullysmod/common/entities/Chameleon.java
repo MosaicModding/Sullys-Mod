@@ -23,15 +23,17 @@ import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.PlayState;
 import software.bernie.geckolib3.core.builder.AnimationBuilder;
+import software.bernie.geckolib3.core.builder.ILoopType;
 import software.bernie.geckolib3.core.controller.AnimationController;
 import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
+import software.bernie.geckolib3.util.GeckoLibUtil;
 
 public class Chameleon extends Animal implements IAnimatable {
     public static final EntityDataAccessor<Integer> CURRENT_COLOR = SynchedEntityData.defineId(Chameleon.class, EntityDataSerializers.INT);
 
-    private final AnimationFactory factory = new AnimationFactory(this);
+    private final AnimationFactory factory = GeckoLibUtil.createFactory(this);
     public static final Ingredient FOOD_ITEMS = Ingredient.of(SMItemTags.CHAMELEON_FOOD);
 
     public Chameleon(EntityType<? extends Animal> entityType, Level level) {
@@ -48,7 +50,7 @@ public class Chameleon extends Animal implements IAnimatable {
         boolean onGround = isOnGround();
 
         if (!((double) animationSpeed < 0.02D) && onGround) {
-            event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.chameleon.walk", true));
+            event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.chameleon.walk", ILoopType.EDefaultLoopTypes.LOOP));
             return PlayState.CONTINUE;
         }
 
