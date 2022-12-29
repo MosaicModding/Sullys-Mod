@@ -124,7 +124,7 @@ public class SMLangProvider extends LanguageProvider {
 
         //JEI
         add("sullysmod.jei.grindstone_polishing", "Polishing");
-        add("sullysmod.jei.grindstone_polishing.info", "Right-click to polish");
+        add("sullysmod.jei.grindstone_polishing.info", "Right click to polish");
 
         SullysMod.LOGGER.info("LANGUAGE GENERATION COMPLETE");
     }
