@@ -25,6 +25,6 @@ public class RascalRenderer <E extends Rascal> extends GeoEntityRenderer<E> {
     @Override
     public Color getRenderColor(E animatable, float partialTick, PoseStack poseStack, @Nullable MultiBufferSource bufferSource, @Nullable VertexConsumer buffer, int packedLight) {
         Color color = super.getRenderColor(animatable, partialTick, poseStack, bufferSource, buffer, packedLight);
-        return Color.ofRGBA(color.getRed() / 255f, color.getGreen() / 255f, color.getBlue() / 255f, Mth.lerp(partialTick, animatable.getOldAlphaTick(), animatable.getAlphaTick() / 80f) / 255f);
+        return Color.ofRGBA(color.getRed() / 255f, color.getGreen() / 255f, color.getBlue() / 255f, Mth.lerp(partialTick, animatable.getOldAlphaTick(), animatable.getAlphaTick()) / 80f);
     }
 }
