@@ -8,6 +8,7 @@ import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.sounds.SoundEvent;
+import net.minecraft.tags.FluidTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.EntityType;
@@ -109,8 +110,10 @@ public class Lanternfish extends AbstractFish {
         return new ItemStack(SMItems.LANTERNFISH_BUCKET.get());
     }
 
-    public static boolean checkLanternfishSpawnRules(EntityType<? extends LivingEntity> entityType, ServerLevelAccessor levelAccessor, MobSpawnType spawnType, BlockPos pos, RandomSource random) {
-        return levelAccessor.getBlockState(pos).is(Blocks.WATER) && pos.getY() <= levelAccessor.getSeaLevel() - 47 && !levelAccessor.canSeeSkyFromBelowWater(pos);
+    public static boolean checkLanternfishSpawnRules(EntityType<? extends LivingEntity> entityType, ServerLevelAccessor level, MobSpawnType spawnType, BlockPos pos, RandomSource random) {
+        int seaLevel = level.getSeaLevel();
+        int maxLanternfishSeaLevel = seaLevel - 47;
+        return pos.getY() <= maxLanternfishSeaLevel && level.getFluidState(pos.below()).is(FluidTags.WATER) && level.getFluidState(pos.above()).is(FluidTags.WATER) && level.getRawBrightness(pos, 0) == 0;
     }
 
     static class LightAvoidingRandomSwimmingGoal extends RandomSwimmingGoal {

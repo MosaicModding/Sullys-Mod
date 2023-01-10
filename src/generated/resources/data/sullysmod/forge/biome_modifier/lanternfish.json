@@ -3,8 +3,8 @@
   "biomes": "#sullysmod:lanternfish_spawn_in",
   "spawners": {
     "type": "sullysmod:lanternfish",
-    "maxCount": 5,
+    "maxCount": 2,
     "minCount": 1,
-    "weight": 5
+    "weight": 10
   }
 }

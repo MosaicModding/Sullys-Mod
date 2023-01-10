@@ -58,7 +58,7 @@ public class SMDatapackRegistryProviders {
                 HolderSet.direct(registryOps.registry(Registry.PLACED_FEATURE_REGISTRY).orElseThrow().getOrCreateHolderOrThrow(ResourceKey.create(Registry.PLACED_FEATURE_REGISTRY, JADE_ORE_RL))),
                 GenerationStep.Decoration.UNDERGROUND_ORES);
         final BiomeModifier TORTOISE_MODIFIER = ForgeBiomeModifiers.AddSpawnsBiomeModifier.singleSpawn(TORTOISE_BIOMES, new MobSpawnSettings.SpawnerData(SMEntityTypes.TORTOISE.get(), 5, 1, 3));
-        final BiomeModifier LANTERNFISH_MODIFIER = ForgeBiomeModifiers.AddSpawnsBiomeModifier.singleSpawn(LANTERNFISH_BIOMES, new MobSpawnSettings.SpawnerData(SMEntityTypes.LANTERNFISH.get(), 5, 1, 5));
+        final BiomeModifier LANTERNFISH_MODIFIER = ForgeBiomeModifiers.AddSpawnsBiomeModifier.singleSpawn(LANTERNFISH_BIOMES, new MobSpawnSettings.SpawnerData(SMEntityTypes.LANTERNFISH.get(), 10, 1, 2));
 
         //Configured Feature Provider
         generator.addProvider(true, JsonCodecProvider.forDatapackRegistry(
