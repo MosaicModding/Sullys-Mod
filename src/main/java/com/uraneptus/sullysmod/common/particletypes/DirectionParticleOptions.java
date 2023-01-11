@@ -14,7 +14,15 @@ public class DirectionParticleOptions implements ParticleOptions {
     public static final ParticleOptions.Deserializer<DirectionParticleOptions> DESERIALIZER = new ParticleOptions.Deserializer<DirectionParticleOptions>() {
         public DirectionParticleOptions fromCommand(ParticleType<DirectionParticleOptions> particleType, StringReader stringReader) throws CommandSyntaxException {
             stringReader.expect(' ');
-            return new DirectionParticleOptions(particleType, Direction.byName(stringReader.getRead()));
+
+            int cursor = stringReader.getCursor();
+
+            try {
+                return new DirectionParticleOptions(particleType, Direction.byName(stringReader.readString()));
+            } catch (CommandSyntaxException commandsyntaxexception) {
+                stringReader.setCursor(cursor);
+                throw commandsyntaxexception;
+            }
         }
 
         public DirectionParticleOptions fromNetwork(ParticleType<DirectionParticleOptions> particleType, FriendlyByteBuf buf) {
