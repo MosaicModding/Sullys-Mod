@@ -1,7 +1,9 @@
 package com.uraneptus.sullysmod.common.particletypes;
 
+import com.mojang.brigadier.LiteralMessage;
 import com.mojang.brigadier.StringReader;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
+import com.mojang.brigadier.exceptions.SimpleCommandExceptionType;
 import com.mojang.serialization.Codec;
 
 import net.minecraft.core.Direction;
@@ -18,7 +20,11 @@ public class DirectionParticleOptions implements ParticleOptions {
             int cursor = stringReader.getCursor();
 
             try {
-                return new DirectionParticleOptions(particleType, Direction.byName(stringReader.readString()));
+                Direction dir = Direction.byName(stringReader.readString());
+                if (dir != null) {
+                    return new DirectionParticleOptions(particleType, dir);
+                }
+                throw new SimpleCommandExceptionType(new LiteralMessage("Expected Direction")).create();
             } catch (CommandSyntaxException commandsyntaxexception) {
                 stringReader.setCursor(cursor);
                 throw commandsyntaxexception;
