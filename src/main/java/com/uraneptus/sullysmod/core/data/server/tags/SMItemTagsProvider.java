@@ -91,6 +91,9 @@ public class SMItemTagsProvider extends ItemTagsProvider {
         tag(Tags.Items.ORES_IN_GROUND_DEEPSLATE).add(
                 SMBlocks.DEEPSLATE_JADE_ORE.get().asItem()
         );
+        tag(Tags.Items.TOOLS_SHIELDS).add(
+                SMItems.JADE_SHIELD.get()
+        );
 
         //Quark Tags
         tag(SMItemTags.VERTICAL_SLABS).add(
