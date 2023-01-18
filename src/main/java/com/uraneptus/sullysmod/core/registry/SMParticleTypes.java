@@ -2,7 +2,6 @@ package com.uraneptus.sullysmod.core.registry;
 
 import com.uraneptus.sullysmod.SullysMod;
 import com.uraneptus.sullysmod.common.particletypes.ParticleWithDirectionType;
-
 import net.minecraft.core.particles.ParticleType;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.DeferredRegister;

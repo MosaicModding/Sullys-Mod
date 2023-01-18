@@ -6,7 +6,6 @@ import com.teamabnormals.blueprint.common.item.InjectedItem;
 import com.teamabnormals.blueprint.core.util.registry.ItemSubRegistryHelper;
 import com.uraneptus.sullysmod.SullysMod;
 import com.uraneptus.sullysmod.common.items.JadeShieldItem;
-import com.uraneptus.sullysmod.core.integration.fd.FDCompat;
 import com.uraneptus.sullysmod.core.other.SMProperties;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.EntityType;
