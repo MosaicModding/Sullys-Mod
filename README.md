@@ -1,4 +1,4 @@
-<p><img src="https://i.imgur.com/XcbaxZL.png"></p>
+<p><img src="https://i.imgur.com/UCT5RVj.png"></p>
 <p align="center">
     <a href="https://www.curseforge.com/minecraft/mc-mods/blueprint"><img src="https://tinyurl.com/mtuys7pu" alt="Requires Blueprint" /></a>
     <a href="https://www.curseforge.com/minecraft/mc-mods/geckolib"><img src="https://tinyurl.com/dmsfwu5m" alt="Requires GeckoLib" /></a>
