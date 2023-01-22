@@ -16,7 +16,6 @@ import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundSource;
-import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.TamableAnimal;
@@ -31,11 +30,11 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.event.entity.EntityJoinLevelEvent;
 import net.minecraftforge.event.entity.ProjectileImpactEvent;
-import net.minecraftforge.event.entity.living.ShieldBlockEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
@@ -109,61 +108,31 @@ public class SMEntityEvents {
                 }
             }
         }
-    }
-
-    //TODO: This could be improved
-    @SubscribeEvent
-    public static void onShieldBlockEvent(ShieldBlockEvent event) {
-        Entity entity = event.getEntity();
-        Level level = event.getEntity().getLevel();
-        DamageSource source = event.getDamageSource();
-
-        if (entity instanceof Player player) {
-            Direction direction = player.getDirection();
-            //Level level1 = player.getLevel();
-
-            if (player.getUseItem().is(SMItems.JADE_SHIELD.get())) {
-                Entity damageEntity = source.getDirectEntity();
-
-                if (damageEntity instanceof Projectile projectile) {
-                    Vec3 vec3 = projectile.getDeltaMovement();
-                    float velocity = (float) vec3.length();
-
+        if (!level.isClientSide() && hitResult instanceof EntityHitResult entityHitResult) {
+            if (entityHitResult.getEntity() instanceof Player player) {
+                if (player.isBlocking() && player.getUseItem().is(SMItems.JADE_SHIELD.get())) {
                     if (!(projectile.getType().is(SMEntityTags.CANNOT_BOUNCE))) {
+                        event.setCanceled(true);
+                        Direction direction = projectile.getDirection();
+                        Vec3 angle = player.getLookAngle();
 
-                        Projectile newProjectile = projectile;
+                        Projectile oldProjectile = projectile;
                         projectile = (Projectile) projectile.getType().create(level);
                         if (projectile == null) {
                             return;
                         }
-                        Vec3 vec31 = newProjectile.getDeltaMovement();
-                        double x1 = newProjectile.getX();
-                        double y1 = newProjectile.getY();
-                        double z1 = newProjectile.getZ();
+                        oldProjectile.setRemoved(Entity.RemovalReason.DISCARDED);
 
-
-                        newProjectile.setRemoved(Entity.RemovalReason.DISCARDED);
-
-                        CompoundTag compoundtag = newProjectile.saveWithoutId(new CompoundTag());
+                        CompoundTag compoundtag = oldProjectile.saveWithoutId(new CompoundTag());
                         compoundtag.remove("Motion");
                         projectile.load(compoundtag);
 
-                        projectile.moveTo(newProjectile.getX() - 0.2, newProjectile.getY(), newProjectile.getZ() - 0.2);
+                        projectile.shoot(angle.x, angle.y, angle.z, calculateBounceVelocity(velocity), 0.0F);
 
-
-                        if (direction.getAxis() == Direction.Axis.X) {
-                            projectile.shoot(vec31.reverse().x, vec31.y, vec31.z, calculateBounceVelocity(velocity), 0.0F);
-
-                        } else if (direction.getAxis() == Direction.Axis.Y) {
-                            projectile.shoot(vec31.x, vec31.reverse().y, vec31.z, calculateBounceVelocity(velocity), 0.0F);
-
-                        } else if (direction.getAxis() == Direction.Axis.Z) {
-                            projectile.shoot(vec31.x, vec31.y, vec31.reverse().z, calculateBounceVelocity(velocity), 0.0F);
-                        }
                         level.addFreshEntity(projectile);
-
                         level.playSound(null, player.getX(), player.getY(), player.getZ(), SMSounds.JADE_RICOCHET.get(), player.getSoundSource(),  1.0F, 0.0F);
-                        ((ServerLevel) level).sendParticles(new DirectionParticleOptions(SMParticleTypes.RICOCHET.get(), direction), x1, y1, z1, 1, 0.0D, 0.0D, 0.0D, 0.0D);
+                        ((ServerLevel) level).sendParticles(new DirectionParticleOptions(SMParticleTypes.RICOCHET.get(), direction), projectile.getX(), projectile.getY(), projectile.getZ(), 1, 0.0D, 0.0D, 0.0D, 0.0D);
+
                     }
                 }
             }
