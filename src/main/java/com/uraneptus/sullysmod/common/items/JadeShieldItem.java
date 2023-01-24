@@ -26,8 +26,6 @@ import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.function.Consumer;
 
 @SuppressWarnings("deprecation")
-@ParametersAreNonnullByDefault
-@MethodsReturnNonnullByDefault
 public class JadeShieldItem extends Item {
     private static final TargetedItemCategoryFiller FILLER = new TargetedItemCategoryFiller(() -> Items.SHIELD);
     private final Multimap<Attribute, AttributeModifier> defaultModifiers;

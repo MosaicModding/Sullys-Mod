@@ -6,6 +6,7 @@ import com.teamabnormals.blueprint.common.item.InjectedItem;
 import com.teamabnormals.blueprint.core.util.registry.ItemSubRegistryHelper;
 import com.uraneptus.sullysmod.SullysMod;
 import com.uraneptus.sullysmod.common.items.JadeShieldItem;
+import com.uraneptus.sullysmod.common.items.SMFoodBucketItem;
 import com.uraneptus.sullysmod.core.other.SMProperties;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.EntityType;
@@ -40,7 +41,7 @@ public class SMItems {
     public static final RegistryObject<Item> LANTERNFISH_SLICE = HELPER.createItem("lanternfish_slice", () -> new Item(SMProperties.Items.FD_COMPAT_TAB.food(SMProperties.Foods.LANTERNFISH_SLICE_FOOD)));
     public static final RegistryObject<Item> COOKED_LANTERNFISH_SLICE = HELPER.createItem("cooked_lanternfish_slice", () -> new Item(SMProperties.Items.FD_COMPAT_TAB.food(SMProperties.Foods.COOKED_LANTERNFISH_SLICE_FOOD)));
     public static final RegistryObject<Item> LANTERNFISH_ROLL = HELPER.createItem("lanternfish_roll", () -> new Item(SMProperties.Items.FD_COMPAT_TAB.food(SMProperties.Foods.LANTERNFISH_ROLL_FOOD)));
-    public static final RegistryObject<Item> CAVE_CHUM_BUCKET = HELPER.createItem("cave_chum_bucket", () -> new Item(SMProperties.Items.FD_COMPAT_TAB.food(SMProperties.Foods.CAVE_CHUM_BUCKET_FOOD).craftRemainder(Items.BUCKET)));
+    public static final RegistryObject<Item> CAVE_CHUM_BUCKET = HELPER.createItem("cave_chum_bucket", () -> new SMFoodBucketItem(SMProperties.Items.FD_COMPAT_TAB.food(SMProperties.Foods.CAVE_CHUM_BUCKET_FOOD)));
 
     //Mob Buckets & Spawn Eggs
     public static final RegistryObject<Item> LANTERNFISH_BUCKET = HELPER.createItem("lanternfish_bucket", () -> SMItems.createMobBucketItem(SMEntityTypes.LANTERNFISH::get));
