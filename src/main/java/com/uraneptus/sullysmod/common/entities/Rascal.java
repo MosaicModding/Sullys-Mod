@@ -48,8 +48,9 @@ public class Rascal extends PathfinderMob implements IAnimatable {
     private static final EntityDataAccessor<Float> OLD_ALPHA_TICK = SynchedEntityData.defineId(Rascal.class, EntityDataSerializers.FLOAT);
     int timesLookedAt;
     int lookedAtCooldown;
-    public float alphaTick = 80.0f;
+    public float alphaTick;
     public float alphaTickOld;
+    public boolean shouldTeleport;
 
     @Nullable
     private UUID trackingTarget;
@@ -194,8 +195,8 @@ public class Rascal extends PathfinderMob implements IAnimatable {
                 setOldAlphaTick(0);
 
             }
-            if (getAlphaTick() == 0) {
-
+            if (getAlphaTick() == 1.0F) {
+                this.remove(RemovalReason.DISCARDED);
             }
 
             if (this.getLookedAtCooldown() != 0) {
