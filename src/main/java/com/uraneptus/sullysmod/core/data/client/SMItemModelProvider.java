@@ -84,42 +84,24 @@ public class SMItemModelProvider extends ItemModelProvider {
         basicItem(SMItems.COOKED_LANTERNFISH_SLICE);
         basicItem(SMItems.LANTERNFISH_ROLL);
         basicItem(SMItems.CAVE_CHUM_BUCKET);
+        basicItem(SMItems.TORTOISE_SCUTE);
+        basicItem(SMItems.TORTOISE_SHELL);
 
         SullysMod.LOGGER.info("ITEM MODEL GENERATION COMPLETE");
     }
 
-    /**
-     * Creates a BlockItem Model based on the provided {@link Block}'s BlockModel.
-     * @param blockForItem The supplied {@link Block} from which a BlockItem Model is being created.
-     */
     private void basicBlockItem(Supplier<? extends Block> blockForItem) {
         withExistingParent(name(blockForItem.get()), modBlockLocation(name(blockForItem.get())));
     }
 
-    /**
-     * Creates the standard Generated Item Model for the provided {@link Item}.
-     * @param item The supplied {@link Item} from which the Item Model will be created.
-     */
     private void basicItem(Supplier<? extends Item> item) {
         basicItem(item.get());
     }
 
-    /**
-     * Creates a Generated Item Model for the provided {@link Block}, with a texture file <br/>
-     * that is using the provided {@link Block}'s RegistryName and is located in <code>assets/modid/textures/block</code>. <br/>
-     * E.g.: The {@link net.minecraft.world.level.block.SaplingBlock}'s Block Item.
-     * @param blockForItem The supplied {@link Block} from which a BlockItem Model is being created.
-     */
     private void blockItemWithBlockTexture(Supplier<? extends Block> blockForItem) {
         withExistingParent(name(blockForItem.get()), GENERATED).texture(LAYER0, modBlockLocation(name(blockForItem.get())));
     }
 
-    /**
-     * Creates a Generated Item Model for the provided {@link Block}, with a texture file <br/>
-     * that is using the provided {@link Block}'s RegistryName and is located in <code>assets/modid/textures/item</code>. <br/>
-     * E.g.: The {@link net.minecraft.world.level.block.DoorBlock}'s Block Item.
-     * @param blockForItem The supplied {@link Block} from which a BlockItem Model is being created.
-     */
     private void blockItemWithItemTexture(Supplier<? extends Block> blockForItem) {
         basicItem(blockForItem.get().asItem());
     }
