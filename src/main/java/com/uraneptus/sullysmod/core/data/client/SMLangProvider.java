@@ -80,11 +80,14 @@ public class SMLangProvider extends LanguageProvider {
         add(SMItems.COOKED_LANTERNFISH_SLICE.get(), "Cooked Lanternfish Slice");
         add(SMItems.LANTERNFISH_ROLL.get(), "Lanternfish Roll");
         add(SMItems.CAVE_CHUM_BUCKET.get(), "Cave Chum Bucket");
+        add(SMItems.TORTOISE_SCUTE.get(), "Tortoise Scute");
+        add(SMItems.TORTOISE_SHELL.get(), "Tortoise Shell");
 
         //Entities
         add(SMEntityTypes.LANTERNFISH.get(), "Lanternfish");
         add(SMEntityTypes.TORTOISE.get(), "Tortoise");
         add(SMEntityTypes.COPPER_GOLEM.get(), "Copper Golem");
+        add(SMEntityTypes.TORTOISE_SHELL.get(), "Tortoise Shell");
 
         //Potions
         add(PotionUtils.setPotion(Items.POTION.getDefaultInstance(), SMPotions.UNLUCK.get()), "Potion of Bad Luck");
@@ -128,4 +131,5 @@ public class SMLangProvider extends LanguageProvider {
 
         SullysMod.LOGGER.info("LANGUAGE GENERATION COMPLETE");
     }
+    //TODO some things here could be simplyfied
 }

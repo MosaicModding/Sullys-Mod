@@ -13,8 +13,6 @@ import net.minecraftforge.network.PlayMessages;
 import javax.annotation.Nullable;
 
 public class TortoiseShell extends Entity {
-    private static net.minecraftforge.common.IMinecartCollisionHandler COLLISIONS = null;
-    private boolean canBePushed = true;
 
     public TortoiseShell(EntityType<? extends Entity> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
@@ -24,16 +22,9 @@ public class TortoiseShell extends Entity {
         this(SMEntityTypes.TORTOISE_SHELL.get(), level);
     }
 
-    public net.minecraftforge.common.IMinecartCollisionHandler getCollisionHandler() {
-        return COLLISIONS;
-    }
-
-    public static void registerCollisionHandler(@Nullable net.minecraftforge.common.IMinecartCollisionHandler handler) {
-        COLLISIONS = handler;
-    }
-
-    protected Entity.MovementEmission getMovementEmission() {
-        return Entity.MovementEmission.EVENTS;
+    public TortoiseShell(Level pLevel, double pX, double pY, double pZ) {
+        this(SMEntityTypes.TORTOISE_SHELL.get(), pLevel);
+        this.setPos(pX, pY, pZ);
     }
 
     @Override
@@ -41,16 +32,12 @@ public class TortoiseShell extends Entity {
 
     }
 
-    public boolean canCollideWith(Entity pEntity) {
-        return Boat.canVehicleCollide(this, pEntity);
-    }
-
     public boolean isPushable() {
-        return canBePushed;
+        return true;
     }
 
     public boolean isPickable() {
-        return !this.isRemoved();
+        return this.isAlive();
     }
 
     @Override

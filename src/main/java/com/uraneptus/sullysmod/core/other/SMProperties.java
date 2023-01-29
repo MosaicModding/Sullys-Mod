@@ -28,6 +28,7 @@ public class SMProperties {
 
         public static final Item.Properties MUSIC_DISCS = cannotStack().tab(CreativeModeTab.TAB_MISC).rarity(Rarity.RARE);
         public static final Item.Properties JADE_SHIELD = new Item.Properties().durability(336).tab(CreativeModeTab.TAB_COMBAT);
+        public static final Item.Properties TOROTISE_SHELL = new Item.Properties().stacksTo(1).tab(CreativeModeTab.TAB_MISC);
 
         public static final Item.Properties MISC_TAB = new Item.Properties().tab(CreativeModeTab.TAB_MISC);
         public static final Item.Properties FOOD_TAB = new Item.Properties().tab(CreativeModeTab.TAB_FOOD);
