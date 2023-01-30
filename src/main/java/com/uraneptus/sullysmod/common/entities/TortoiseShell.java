@@ -6,11 +6,8 @@ import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientboundAddEntityPacket;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.vehicle.Boat;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.network.PlayMessages;
-
-import javax.annotation.Nullable;
 
 public class TortoiseShell extends Entity {
 

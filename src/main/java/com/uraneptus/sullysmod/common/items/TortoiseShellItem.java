@@ -1,7 +1,6 @@
 package com.uraneptus.sullysmod.common.items;
 
 import com.teamabnormals.blueprint.common.dispenser.SpawnEggDispenseItemBehavior;
-import com.teamabnormals.blueprint.common.item.BlueprintBoatItem;
 import com.uraneptus.sullysmod.core.registry.SMEntityTypes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;

@@ -190,7 +190,5 @@ public class SMBlockTagsProvider extends BlockTagsProvider {
                 SMBlocks.SMOOTHED_ROUGH_JADE_VERTICAL_SLAB.get(),
                 SMBlocks.ROUGH_JADE_TILE_VERTICAL_SLAB.get()
         );
-
-        SullysMod.LOGGER.info("BLOCK TAG GENERATION COMPLETE");
     }
 }

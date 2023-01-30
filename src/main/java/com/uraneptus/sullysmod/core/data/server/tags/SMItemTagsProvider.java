@@ -105,7 +105,5 @@ public class SMItemTagsProvider extends ItemTagsProvider {
                 SMBlocks.SMOOTHED_ROUGH_JADE_VERTICAL_SLAB.get().asItem(),
                 SMBlocks.ROUGH_JADE_TILE_VERTICAL_SLAB.get().asItem()
         );
-
-        SullysMod.LOGGER.info("ITEM TAG GENERATION COMPLETE");
     }
 }

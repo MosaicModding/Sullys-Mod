@@ -74,7 +74,5 @@ public class SMEntityTagsProvider extends EntityTypeTagsProvider {
                 EntityType.WITHER_SKULL,
                 EntityType.FISHING_BOBBER
         );
-
-        SullysMod.LOGGER.info("ENTITY TAG GENERATION COMPLETE");
     }
 }

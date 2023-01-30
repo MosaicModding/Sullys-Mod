@@ -86,8 +86,6 @@ public class SMItemModelProvider extends ItemModelProvider {
         basicItem(SMItems.CAVE_CHUM_BUCKET);
         basicItem(SMItems.TORTOISE_SCUTE);
         basicItem(SMItems.TORTOISE_SHELL);
-
-        SullysMod.LOGGER.info("ITEM MODEL GENERATION COMPLETE");
     }
 
     private void basicBlockItem(Supplier<? extends Block> blockForItem) {

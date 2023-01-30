@@ -28,7 +28,6 @@ public class SMLootModifierProvider extends LootModifierProvider {
         this.entry("add_lanternfish_to_fishing").selects(BuiltInLootTables.FISHING_FISH).addModifier(new LootPoolEntriesModifier(false, 0, Collections.singletonList(createLootEntryWithCondition(SMItems.LANTERNFISH.get(), 55, 1, 1, SMLootConditions.ON_LANTERNFISH_HEIGHT))));
         this.entry("add_music_disc_scour_to_jungle_temple").selects(BuiltInLootTables.JUNGLE_TEMPLE).addModifier(new LootPoolEntriesModifier(false, 0, Collections.singletonList(createMusicDiscLootEntry(SMItems.MUSIC_DISC_SCOUR.get(), 4))));
 
-        SullysMod.LOGGER.info("GLM GENERATION COMPLETE");
     }
 
     private static LootPoolEntryContainer createLootEntryWithCondition(ItemLike item, int weight, int min, int max, LootItemCondition.Builder condition) {

@@ -69,8 +69,6 @@ public class SMBlockStateProvider extends BlockStateProvider {
         modVerticalSlabBlock(SMBlocks.SMOOTHED_ROUGH_JADE_VERTICAL_SLAB, SMOOTHED_ROUGH_JADE);
         modVerticalSlabBlock(SMBlocks.ROUGH_JADE_TILE_VERTICAL_SLAB, ROUGH_JADE_TILES);
         modEggBlock(SMBlocks.TORTOISE_EGG);
-
-        SullysMod.LOGGER.info("BLOCKSTATE GENERATION COMPLETE");
     }
 
     private void basicBlock(Supplier<? extends Block> block) {

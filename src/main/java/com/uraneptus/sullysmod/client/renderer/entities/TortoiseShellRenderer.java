@@ -2,7 +2,6 @@ package com.uraneptus.sullysmod.client.renderer.entities;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import com.mojang.math.Vector3f;
 import com.uraneptus.sullysmod.SullysMod;
 import com.uraneptus.sullysmod.client.model.TortoiseShellModel;
 import com.uraneptus.sullysmod.common.entities.TortoiseShell;
