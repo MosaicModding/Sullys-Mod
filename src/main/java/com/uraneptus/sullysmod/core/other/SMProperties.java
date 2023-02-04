@@ -35,7 +35,7 @@ public class SMProperties {
         public static final Item.Properties REDSTONE_TAB = new Item.Properties().tab(CreativeModeTab.TAB_REDSTONE);
         public static final Item.Properties BUILDING_TAB = new Item.Properties().tab(CreativeModeTab.TAB_BUILDING_BLOCKS);
 
-        public static final Item.Properties FD_COMPAT_TAB = new Item.Properties().tab(!FDCompat.IS_LOADED ? null : !ModList.get().isLoaded("abnormals_delight") ? FDCompat.FDLoaded.fdTab() : CreativeModeTab.TAB_FOOD);
+        public static final Item.Properties FD_COMPAT_TAB = new Item.Properties().tab(!FDCompat.IS_LOADED ? null : FDCompat.FDLoaded.fdTab());
 
         public static Item.Properties cannotStack() {
             return new Item.Properties().stacksTo(1);
