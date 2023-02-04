@@ -11,12 +11,10 @@ import net.minecraft.sounds.SoundEvent;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.Mob;
-import net.minecraft.world.entity.MobSpawnType;
+import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.entity.ai.goal.RandomSwimmingGoal;
 import net.minecraft.world.entity.ai.util.AirAndWaterRandomPos;
 import net.minecraft.world.entity.animal.AbstractFish;
@@ -26,6 +24,8 @@ import net.minecraft.world.level.LightLayer;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.EnumSet;
 
 @SuppressWarnings({"deprecation", "unused"})
 public class Lanternfish extends AbstractFish {
@@ -42,8 +42,8 @@ public class Lanternfish extends AbstractFish {
     }
 
     protected void registerGoals() {
-        super.registerGoals();
-        this.goalSelector.addGoal(3, new Lanternfish.LightAvoidingRandomSwimmingGoal(this, 1.0D, 3));
+        this.goalSelector.addGoal(0, new Lanternfish.LightAvoidingRandomSwimmingGoal(this));
+        this.goalSelector.addGoal(1, new RandomSwimmingGoal(this, 1.0D, 40));
     }
 
     protected void defineSynchedData() {
@@ -115,28 +115,59 @@ public class Lanternfish extends AbstractFish {
         return pos.getY() <= maxLanternfishSeaLevel && level.getFluidState(pos.below()).is(FluidTags.WATER) && level.getFluidState(pos.above()).is(FluidTags.WATER) && level.getRawBrightness(pos, 0) == 0;
     }
 
-    static class LightAvoidingRandomSwimmingGoal extends RandomSwimmingGoal {
+    static class LightAvoidingRandomSwimmingGoal extends Goal {
         private final Lanternfish lanternfish;
-        protected final float probability;
+        private double wantedX;
+        private double wantedY;
+        private double wantedZ;
 
-        public LightAvoidingRandomSwimmingGoal(Lanternfish lanternfish, double speedModifier, int probability) {
-            super(lanternfish, speedModifier, probability);
+        public LightAvoidingRandomSwimmingGoal(Lanternfish lanternfish) {
             this.lanternfish = lanternfish;
-            this.probability = probability;
+            this.setFlags(EnumSet.of(Flag.MOVE));
         }
 
-        /**
-         *  I think this works, couldn't test it 100% tho!
-         **/
+        public boolean canUse() {
+            if (this.lanternfish.getTarget() != null) {
+                return false;
+            } else if (this.lanternfish.getLevel().getMaxLocalRawBrightness(this.lanternfish.blockPosition()) <= 0) {
+                return false;
+            } else {
+                return this.setWantedPos();
+            }
+        }
+
+        protected boolean setWantedPos() {
+            Vec3 vec3 = this.getPosition();
+            if (vec3 == null) {
+                return false;
+            } else {
+                this.wantedX = vec3.x;
+                this.wantedY = vec3.y;
+                this.wantedZ = vec3.z;
+                return true;
+            }
+        }
+
+        public boolean canContinueToUse() {
+            return !this.lanternfish.getNavigation().isDone();
+        }
+
+        public void start() {
+            this.lanternfish.getNavigation().moveTo(this.wantedX, this.wantedY, this.wantedZ, 1.0D);
+        }
+
         @javax.annotation.Nullable
         protected Vec3 getPosition() {
-            Vec3 vec3 = this.lanternfish.getViewVector(0.0F);
-            if (this.lanternfish.getLevel().getBrightness(LightLayer.BLOCK, lanternfish.blockPosition()) > 0) {
-                Vec3 vec31 = AirAndWaterRandomPos.getPos(this.lanternfish, 16, 16, (int) vec3.reverse().y, vec3.reverse().x, vec3.reverse().z, (float)Math.PI / 2F);
-                return vec31 == null ? super.getPosition() : vec31;
-            } else {
-                return this.lanternfish.getRandom().nextFloat() >= this.probability ? AirAndWaterRandomPos.getPos(this.lanternfish, 16, 16, (int) vec3.reverse().y, vec3.x, vec3.z, (float)Math.PI / 2F) : super.getPosition();
+            RandomSource randomsource = this.lanternfish.getRandom();
+            BlockPos blockpos = this.lanternfish.blockPosition();
+
+            for(int i = 0; i < 10; ++i) {
+                BlockPos blockpos1 = blockpos.offset(randomsource.nextInt(20) - 10, randomsource.nextInt(6) - 3, randomsource.nextInt(20) - 10);
+                if ((this.lanternfish.getLevel().getMaxLocalRawBrightness(blockpos1) <= 0)) {
+                    return Vec3.atBottomCenterOf(blockpos1);
+                }
             }
+            return null;
         }
     }
 }
