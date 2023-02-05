@@ -88,15 +88,10 @@ public class SMEntityEvents {
                 }
                 else if (!(projectile.getType().is(SMEntityTags.CANNOT_BOUNCE))) {
                     event.setCanceled(true);
-
-                    if (direction.getAxis() == Direction.Axis.X) {
-                        projectile.shoot(vec3.reverse().x, vec3.y, vec3.z, calculateBounceVelocity(velocity), 0.0F);
-
-                    } else if (direction.getAxis() == Direction.Axis.Y) {
-                        projectile.shoot(vec3.x, vec3.reverse().y, vec3.z, calculateBounceVelocity(velocity), 0.0F);
-
-                    } else if (direction.getAxis() == Direction.Axis.Z) {
-                        projectile.shoot(vec3.x, vec3.y, vec3.reverse().z, calculateBounceVelocity(velocity), 0.0F);
+                    switch (direction.getAxis()) {
+                        case X -> projectile.shoot(vec3.reverse().x, vec3.y, vec3.z, calculateBounceVelocity(velocity), 0.0F);
+                        case Y -> projectile.shoot(vec3.x, vec3.reverse().y, vec3.z, calculateBounceVelocity(velocity), 0.0F);
+                        case Z -> projectile.shoot(vec3.x, vec3.y, vec3.reverse().z, calculateBounceVelocity(velocity), 0.0F);
                     }
                     projectile.gameEvent(GameEvent.PROJECTILE_SHOOT);
 
