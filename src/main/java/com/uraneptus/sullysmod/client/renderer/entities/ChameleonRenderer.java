@@ -5,17 +5,11 @@ import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.uraneptus.sullysmod.SullysMod;
 import com.uraneptus.sullysmod.client.model.ChameleonModel;
 import com.uraneptus.sullysmod.common.entities.Chameleon;
-import net.minecraft.client.particle.ParticleRenderType;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
-import net.minecraft.client.renderer.entity.SheepRenderer;
-import net.minecraft.client.renderer.entity.layers.WolfCollarLayer;
-import net.minecraft.core.Registry;
-import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.DyeColor;
-import net.minecraft.world.item.DyeableLeatherItem;
+import net.minecraft.util.Mth;
 import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib3.core.util.Color;
 import software.bernie.geckolib3.renderers.geo.GeoEntityRenderer;
@@ -45,12 +39,14 @@ public class ChameleonRenderer extends GeoEntityRenderer<Chameleon> {
 
     @Override
     public Color getRenderColor(Chameleon animatable, float partialTick, PoseStack poseStack, @Nullable MultiBufferSource bufferSource, @Nullable VertexConsumer buffer, int packedLight) {
-        int r = (animatable.getCurrentColour() & 16711680) >> 16;
-        int g = (animatable.getCurrentColour() & '\uff00') >> 8;
-        int b = (animatable.getCurrentColour() & 255);
+        Color current = Color.ofTransparent(animatable.getCurrentColor());
+        Color target = Color.ofTransparent(animatable.getTargetColor());
 
-        Color rawColor = Color.ofRGB(r, g, b);
+        if (!current.equals(target)) {
+            current = Color.ofRGB(Mth.lerp(partialTick / 30F, current.getRed() / 255F, target.getRed() / 255F), Mth.lerp(partialTick / 30F, current.getGreen() / 255F, target.getGreen() / 255F), Mth.lerp(partialTick / 30F, current.getBlue() / 255F, target.getBlue() / 255F));
+            animatable.setCurrentColor(current.hashCode());
+        }
 
-        return rawColor.brighter(1.2);
+        return current.brighter(1.2F);
     }
 }
