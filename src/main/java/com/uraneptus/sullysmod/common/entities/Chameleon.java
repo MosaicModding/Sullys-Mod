@@ -125,8 +125,8 @@ public class Chameleon extends Animal implements IAnimatable {
     @Override
     protected void defineSynchedData() {
         super.defineSynchedData();
-        this.entityData.define(CURRENT_COLOR, 0);
-        this.entityData.define(TARGET_COLOR, 0);
+        this.entityData.define(CURRENT_COLOR, 6645808);
+        this.entityData.define(TARGET_COLOR, 6645808);
     }
 
     @Override
