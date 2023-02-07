@@ -2,6 +2,7 @@ package com.uraneptus.sullysmod.client.renderer.entities;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
+import com.mojang.math.Vector3f;
 import com.uraneptus.sullysmod.SullysMod;
 import com.uraneptus.sullysmod.client.model.TortoiseShellModel;
 import com.uraneptus.sullysmod.common.entities.TortoiseShell;
@@ -11,6 +12,7 @@ import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.Mth;
 
 public class TortoiseShellRenderer <E extends TortoiseShell> extends EntityRenderer<E> {
     public static final ResourceLocation TEXTURE = SullysMod.modPrefix("textures/entity/tortoise/tortoise.png");
@@ -27,6 +29,16 @@ public class TortoiseShellRenderer <E extends TortoiseShell> extends EntityRende
         super.render(pEntity, pEntityYaw, pPartialTicks, pMatrixStack, pBuffer, pPackedLight);
         pMatrixStack.pushPose();
         pMatrixStack.translate(0.0D, -1.0F, 0.0D);
+
+        float hurtTime = (float)pEntity.getHurtTime() - pPartialTicks;
+        float damage = pEntity.getDamage() - pPartialTicks;
+        if (damage < 0.0F) {
+            damage = 0.0F;
+        }
+        if (hurtTime > 0.0F) {
+            pMatrixStack.mulPose(Vector3f.ZP.rotationDegrees(Mth.sin(hurtTime) * hurtTime * damage / 10.0F * (float)pEntity.getHurtDir()));
+        }
+
         VertexConsumer vertexconsumer = pBuffer.getBuffer(this.model.renderType(this.getTextureLocation(pEntity)));
         this.model.renderToBuffer(pMatrixStack, vertexconsumer, pPackedLight, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
         pMatrixStack.popPose();
