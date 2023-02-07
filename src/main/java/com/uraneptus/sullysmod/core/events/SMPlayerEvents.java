@@ -105,15 +105,17 @@ public class SMPlayerEvents {
         InteractionHand hand = player.getUsedItemHand();
         BlockPos pos = player.blockPosition();
         ArrayList<GrindstonePolishingRecipe> recipes = new ArrayList<>(GrindstonePolishingRecipe.getRecipes(level));
-        if (level.isClientSide && SMConfig.PARTICLES_AROUND_GRINDSTONE.get()) {
-            for (GrindstonePolishingRecipe polishingRecipe : recipes) {
-                if (!recipes.isEmpty()) {
-                    ItemStack ingredient = polishingRecipe.ingredient;
-                    if (player.getItemInHand(hand).is(ingredient.getItem())) {
-                        for (BlockPos blockpos : BlockPos.betweenClosed(pos.offset(-7, -7, -7), pos.offset(7, 7, 7))) {
-                            Block block = level.getBlockState(blockpos).getBlock();
-                            if (block instanceof GrindstoneBlock) {
-                                ParticleUtils.spawnParticlesOnBlockFaces(level, blockpos, new DustParticleOptions(new Vector3f(Vec3.fromRGB24(16777215)), 0.4F), UniformInt.of(0, 1));
+        if (level.isClientSide) {
+            if (SMConfig.PARTICLES_AROUND_GRINDSTONE.get()) {
+                for (GrindstonePolishingRecipe polishingRecipe : recipes) {
+                    if (!recipes.isEmpty()) {
+                        ItemStack ingredient = polishingRecipe.ingredient;
+                        if (player.getItemInHand(hand).is(ingredient.getItem())) {
+                            for (BlockPos blockpos : BlockPos.betweenClosed(pos.offset(-7, -7, -7), pos.offset(7, 7, 7))) {
+                                Block block = level.getBlockState(blockpos).getBlock();
+                                if (block instanceof GrindstoneBlock) {
+                                    ParticleUtils.spawnParticlesOnBlockFaces(level, blockpos, new DustParticleOptions(new Vector3f(Vec3.fromRGB24(16777215)), 0.4F), UniformInt.of(0, 1));
+                                }
                             }
                         }
                     }
