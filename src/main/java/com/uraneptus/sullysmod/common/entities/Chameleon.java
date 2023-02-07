@@ -58,7 +58,7 @@ public class Chameleon extends Animal implements IAnimatable {
         return PlayState.STOP;
     }
 
-    @SuppressWarnings({ "rawtypes", "unchecked" })
+    @SuppressWarnings({"rawtypes", "unchecked"})
     @Override
     public void registerControllers(AnimationData data) {
         data.addAnimationController(new AnimationController(this, "controller", 3, this::setAnimation));
@@ -98,12 +98,22 @@ public class Chameleon extends Animal implements IAnimatable {
     @Override
     public void tick() {
         super.tick();
-        BlockPos floorPos = this.blockPosition().below();
+        BlockPos currentPos = this.blockPosition();
+        BlockPos floorPos = currentPos.below();
+        BlockState sharedBlock = level.getBlockState(currentPos);
         BlockState floor = level.getBlockState(floorPos);
-        int floorColor = floor.getMapColor(level, floorPos).col;
 
-        if (this.getTargetColor() != floorColor && floorColor != 0) {
-            this.setTargetColor(floorColor);
+        if (!sharedBlock.isAir()) {
+            int sharedColor = sharedBlock.getMapColor(level, currentPos).col;
+            if (this.getTargetColor() != sharedColor && sharedColor != 0) {
+                this.setTargetColor(sharedColor);
+            }
+        }
+        else {
+            int floorColor = floor.getMapColor(level, floorPos).col;
+            if (this.getTargetColor() != floorColor && floorColor != 0) {
+                this.setTargetColor(floorColor);
+            }
         }
     }
 
