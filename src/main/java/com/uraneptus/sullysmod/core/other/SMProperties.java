@@ -1,6 +1,7 @@
 package com.uraneptus.sullysmod.core.other;
 
 import com.uraneptus.sullysmod.core.integration.fd.FDCompat;
+import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.food.FoodProperties;
@@ -25,10 +26,6 @@ public class SMProperties {
 
     public static final class Items {
 
-        public static final Item.Properties MUSIC_DISCS = cannotStack().tab(CreativeModeTab.TAB_MISC).rarity(Rarity.RARE);
-        public static final Item.Properties JADE_SHIELD = new Item.Properties().durability(336).tab(CreativeModeTab.TAB_COMBAT);
-        public static final Item.Properties TOROTISE_SHELL = new Item.Properties().stacksTo(1).tab(CreativeModeTab.TAB_MISC);
-
         public static final Item.Properties MISC_TAB = new Item.Properties().tab(CreativeModeTab.TAB_MISC);
         public static final Item.Properties FOOD_TAB = new Item.Properties().tab(CreativeModeTab.TAB_FOOD);
         public static final Item.Properties REDSTONE_TAB = new Item.Properties().tab(CreativeModeTab.TAB_REDSTONE);
@@ -42,6 +39,12 @@ public class SMProperties {
         public static Item.Properties sixteenStack() {
            return new Item.Properties().stacksTo(16);
         }
+
+        //Item Specific
+        public static final Item.Properties MUSIC_DISCS = cannotStack().tab(CreativeModeTab.TAB_MISC).rarity(Rarity.RARE);
+        public static final Item.Properties JADE_SHIELD = new Item.Properties().durability(336).tab(CreativeModeTab.TAB_COMBAT);
+        public static final Item.Properties TOROTISE_SHELL = new Item.Properties().stacksTo(1).tab(CreativeModeTab.TAB_MISC);
+        public static final Item.Properties CAVE_CHUM_BUCKET = SMProperties.Items.FD_COMPAT_TAB.food(SMProperties.Foods.CAVE_CHUM_BUCKET_FOOD).stacksTo(16);
     }
 
     public static final class Foods {
