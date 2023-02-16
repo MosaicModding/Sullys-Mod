@@ -1,57 +1,29 @@
 package com.uraneptus.sullysmod.common.entities;
 
-import com.google.common.collect.Lists;
 import com.uraneptus.sullysmod.core.registry.SMEntityTypes;
 import com.uraneptus.sullysmod.core.registry.SMItems;
 import net.minecraft.BlockUtil;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.Packet;
-import net.minecraft.network.protocol.game.ClientboundAddEntityPacket;
-import net.minecraft.network.protocol.game.ServerboundPaddleBoatPacket;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
-import net.minecraft.sounds.SoundEvent;
-import net.minecraft.sounds.SoundEvents;
-import net.minecraft.tags.BlockTags;
-import net.minecraft.util.Mth;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.*;
-import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
-import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.entity.animal.Animal;
-import net.minecraft.world.entity.animal.IronGolem;
-import net.minecraft.world.entity.animal.WaterAnimal;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.vehicle.AbstractMinecart;
-import net.minecraft.world.entity.vehicle.Boat;
-import net.minecraft.world.entity.vehicle.DismountHelper;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.level.GameRules;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.*;
-import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.GameEvent;
-import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
-import net.minecraft.world.phys.shapes.BooleanOp;
-import net.minecraft.world.phys.shapes.Shapes;
-import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.common.ForgeMod;
 import net.minecraftforge.fluids.FluidType;
 import net.minecraftforge.network.NetworkHooks;
 import net.minecraftforge.network.PlayMessages;
-
-import javax.annotation.Nullable;
-import java.util.List;
 
 //TODO Behaves in an unintentional way in water
 public class TortoiseShell extends Entity {
@@ -82,11 +54,6 @@ public class TortoiseShell extends Entity {
     }
 
     @Override
-    protected Entity.MovementEmission getMovementEmission() {
-        return Entity.MovementEmission.EVENTS;
-    }
-
-    @Override
     protected void defineSynchedData() {
         this.entityData.define(DATA_ID_HURT, 0);
         this.entityData.define(DATA_ID_HURTDIR, 1);
@@ -96,13 +63,14 @@ public class TortoiseShell extends Entity {
 
     @Override
     public boolean canBeCollidedWith() {
-        return true;
+        return this.isAlive();
     }
 
     @Override
     public boolean isPushable() {
-        return true;
+        return false;
     }
+
 
     @Override
     protected Vec3 getRelativePortalPosition(Direction.Axis pAxis, BlockUtil.FoundRectangle pPortal) {
@@ -119,23 +87,19 @@ public class TortoiseShell extends Entity {
             this.setDamage(this.getDamage() + pAmount * 10.0F);
             this.markHurt();
             this.gameEvent(GameEvent.ENTITY_DAMAGE, pSource.getEntity());
-            boolean flag = pSource.getEntity() instanceof Player player && player.getAbilities().instabuild;
-            if (flag || this.getDamage() > 40.0F) {
-                if (!flag && this.level.getGameRules().getBoolean(GameRules.RULE_DOENTITYDROPS)) {
-                    this.destroy(pSource);
+            if (pSource.getEntity() instanceof Player player) {
+                boolean flag = player.getAbilities().instabuild;
+                if (flag || this.getDamage() > 40.0F) {
+                    if (!flag && this.level.getGameRules().getBoolean(GameRules.RULE_DOENTITYDROPS)) {
+                        this.spawnAtLocation(this.getDropItem());
+                    }
+                    this.discard();
                 }
-
-                this.discard();
             }
-
             return true;
         } else {
             return true;
         }
-    }
-
-    protected void destroy(DamageSource pDamageSource) {
-        this.spawnAtLocation(this.getDropItem());
     }
 
     public Item getDropItem() {
@@ -148,6 +112,23 @@ public class TortoiseShell extends Entity {
         this.setHurtTime(10);
         this.setDamage(this.getDamage() * 11.0F);
     }
+
+    @Override
+    protected AABB getBoundingBoxForPose(Pose pPose) {
+        return super.getBoundingBoxForPose(pPose);
+    }
+
+    @Override
+    public AABB getBoundingBoxForCulling() {
+        return super.getBoundingBoxForCulling();
+    }
+/*
+    @Override
+    public Direction getMotionDirection() {
+        return this.getDirection().getClockWise();
+    }
+
+ */
 
     @Override
     public boolean isPickable() {
@@ -164,16 +145,30 @@ public class TortoiseShell extends Entity {
         if (this.getDamage() > 0.0F) {
             this.setDamage(this.getDamage() - 1.0F);
         }
+
         super.tick();
-        this.checkOutOfWorld();
-        this.handleNetherPortal();
-        this.move(MoverType.SELF, this.getDeltaMovement());
+
         if (!this.isNoGravity()) {
-            double d0 = this.isInWater() ? -0.005D : -0.04D;
-            this.setDeltaMovement(this.getDeltaMovement().add(0.0D, d0, 0.0D));
+            double yVelocity = -0.04D;
+            FluidType fluidType = this.getEyeInFluidType();
+
+            if (fluidType != ForgeMod.EMPTY_TYPE.get()) {
+                yVelocity *= this.getFluidMotionScale(fluidType);
+            }
+
+            this.setDeltaMovement(this.getDeltaMovement().add(0.0D, yVelocity, 0.0D));
+
         }
-        //this.checkInsideBlocks();
-        //this.updateInWaterStateAndDoFluidPushing();
+
+        Level level = this.getLevel();
+        BlockPos bottomPosition = this.getBlockPosBelowThatAffectsMyMovement();
+        float friction = this.isOnGround() ? level.getBlockState(bottomPosition).getFriction(level, bottomPosition, this) * 0.91F : 0.91F;
+        this.setDeltaMovement(this.getDeltaMovement().multiply(friction, 0.98D, friction));
+
+        if (this.getDeltaMovement() != Vec3.ZERO) {
+            this.move(MoverType.SELF, this.getDeltaMovement());
+        }
+
         if (this.isInLava()) {
             this.lavaHurt();
             this.fallDistance *= 0.5F;
