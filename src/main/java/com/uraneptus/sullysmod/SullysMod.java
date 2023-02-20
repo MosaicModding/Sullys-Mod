@@ -1,8 +1,6 @@
 package com.uraneptus.sullysmod;
 
-import com.google.gson.JsonElement;
 import com.mojang.logging.LogUtils;
-import com.mojang.serialization.JsonOps;
 import com.teamabnormals.blueprint.core.util.registry.RegistryHelper;
 import com.uraneptus.sullysmod.common.entities.CopperGolem;
 import com.uraneptus.sullysmod.common.entities.Lanternfish;
@@ -13,9 +11,11 @@ import com.uraneptus.sullysmod.core.data.client.SMItemModelProvider;
 import com.uraneptus.sullysmod.core.data.client.SMLangProvider;
 import com.uraneptus.sullysmod.core.data.client.SMSoundDefinitionsProvider;
 import com.uraneptus.sullysmod.core.data.server.SMAdvancementProvider;
-import com.uraneptus.sullysmod.core.data.server.SMDatapackRegistryProviders;
 import com.uraneptus.sullysmod.core.data.server.SMLootTableProvider;
 import com.uraneptus.sullysmod.core.data.server.SMRecipeProvider;
+import com.uraneptus.sullysmod.core.data.server.datapack_registries.SMBiomeModifiersProvider;
+import com.uraneptus.sullysmod.core.data.server.datapack_registries.SMConfiguredFeatureProvider;
+import com.uraneptus.sullysmod.core.data.server.datapack_registries.SMPlacedFeaturesProvider;
 import com.uraneptus.sullysmod.core.data.server.modifiers.SMAdvancementModifiersProvider;
 import com.uraneptus.sullysmod.core.data.server.modifiers.SMLootModifierProvider;
 import com.uraneptus.sullysmod.core.data.server.tags.SMBiomeTagsProvider;
@@ -24,9 +24,7 @@ import com.uraneptus.sullysmod.core.data.server.tags.SMEntityTagsProvider;
 import com.uraneptus.sullysmod.core.data.server.tags.SMItemTagsProvider;
 import com.uraneptus.sullysmod.core.integration.fd.FDCompat;
 import com.uraneptus.sullysmod.core.registry.*;
-import net.minecraft.core.RegistryAccess;
 import net.minecraft.data.DataGenerator;
-import net.minecraft.resources.RegistryOps;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.data.ExistingFileHelper;
@@ -93,8 +91,6 @@ public class SullysMod {
         boolean includeServer = event.includeServer();
         DataGenerator generator = event.getGenerator();
         ExistingFileHelper fileHelper = event.getExistingFileHelper();
-        RegistryAccess registryAccess = RegistryAccess.builtinCopy();
-        RegistryOps<JsonElement> registryOps = RegistryOps.create(JsonOps.INSTANCE, registryAccess);
 
         generator.addProvider(includeClient, new SMBlockStateProvider(generator, fileHelper));
         generator.addProvider(includeClient, new SMItemModelProvider(generator, fileHelper));
@@ -102,7 +98,6 @@ public class SullysMod {
         generator.addProvider(includeClient, new SMLangProvider(generator));
 
         SMBlockTagsProvider blockTagProvider = new SMBlockTagsProvider(generator, fileHelper);
-
         generator.addProvider(includeServer, new SMEntityTagsProvider(generator, fileHelper));
         generator.addProvider(includeServer, blockTagProvider);
         generator.addProvider(includeServer, new SMItemTagsProvider(generator, blockTagProvider, fileHelper));
@@ -112,6 +107,8 @@ public class SullysMod {
         generator.addProvider(includeServer, new SMAdvancementProvider(generator, fileHelper));
         generator.addProvider(includeServer, new SMRecipeProvider(generator));
         generator.addProvider(includeServer, new SMLootModifierProvider(generator));
-        SMDatapackRegistryProviders.registerDatapackProviders(fileHelper, generator, registryOps);
+        generator.addProvider(includeServer, SMBiomeModifiersProvider.createBiomeModifiers(generator, fileHelper));
+        generator.addProvider(includeServer, SMConfiguredFeatureProvider.createConfiguredFeatures(generator, fileHelper));
+        generator.addProvider(includeServer, SMPlacedFeaturesProvider.createPlacedFeatures(generator, fileHelper));
     }
 }
