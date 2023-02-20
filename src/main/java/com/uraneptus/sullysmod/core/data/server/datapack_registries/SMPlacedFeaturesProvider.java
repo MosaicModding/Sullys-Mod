@@ -20,9 +20,13 @@ public class SMPlacedFeaturesProvider {
     private static final Map<ResourceLocation, PlacedFeature> ENTRIES = new HashMap<>();
 
     public static JsonCodecProvider<PlacedFeature> createPlacedFeatures(DataGenerator generator, ExistingFileHelper fileHelper) {
-        addFeaturePlacement("jade_ore", HeightRangePlacement.triangle(VerticalAnchor.absolute(-16), VerticalAnchor.absolute(112)), CountPlacement.of(16), InSquarePlacement.spread(), BiomeFilter.biome());
+        addOreFeature("jade_ore", -16, 112, 16);
 
         return JsonCodecProvider.forDatapackRegistry(generator, fileHelper, SullysMod.MOD_ID,  RegistryOps.create(JsonOps.INSTANCE, SMDatagenUtil.REGISTRY_ACCESS), Registry.PLACED_FEATURE_REGISTRY, ENTRIES);
+    }
+
+    private static void addOreFeature(String name, int minHeight, int maxHeight, int count) {
+        addFeaturePlacement(name, HeightRangePlacement.triangle(VerticalAnchor.absolute(minHeight), VerticalAnchor.absolute(maxHeight)), CountPlacement.of(count), InSquarePlacement.spread(), BiomeFilter.biome());
     }
 
     private static void addFeaturePlacement(String name, PlacementModifier... placementModifiers) {
