@@ -2,19 +2,40 @@ package com.uraneptus.sullysmod.core.data;
 
 import com.uraneptus.sullysmod.SullysMod;
 import com.uraneptus.sullysmod.core.registry.SMBlocks;
+import net.minecraft.core.Holder;
+import net.minecraft.core.HolderSet;
+import net.minecraft.core.Registry;
+import net.minecraft.core.RegistryAccess;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
+import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 import net.minecraftforge.client.model.generators.ModelProvider;
 import net.minecraftforge.registries.ForgeRegistries;
 
 @SuppressWarnings("unused")
 public class SMDatagenUtil {
     public static final String LAYER0 = "layer0";
-    public static final String GENERATED = "item/generated";
-    public static final String HANDHELD = "item/handheld";
-    public static final String SPAWN_EGG = "item/template_spawn_egg";
+    public static final ResourceLocation GENERATED = vanillaItemLocation("generated");
+    public static final ResourceLocation HANDHELD = vanillaItemLocation("handheld");
+    public static final ResourceLocation SPAWN_EGG = vanillaItemLocation("template_spawn_egg");
+
+    public static final RegistryAccess REGISTRY_ACCESS = RegistryAccess.builtinCopy();
+    public static final Registry<ConfiguredFeature<?, ?>> CONFIGURED_FEATURE_REGISTRY = REGISTRY_ACCESS.registryOrThrow(Registry.CONFIGURED_FEATURE_REGISTRY);
+    public static final Registry<Biome> BIOME_REGISTRY = REGISTRY_ACCESS.registryOrThrow(Registry.BIOME_REGISTRY);
+    public static final Registry<PlacedFeature> PLACED_FEATURE_REGISTRY = REGISTRY_ACCESS.registryOrThrow(Registry.PLACED_FEATURE_REGISTRY);
+
+    public static Holder<ConfiguredFeature<?, ?>> getConfigHolder(String name) {
+        return SMDatagenUtil.CONFIGURED_FEATURE_REGISTRY.getOrCreateHolderOrThrow(ResourceKey.create(Registry.CONFIGURED_FEATURE_REGISTRY, SullysMod.modPrefix(name)));
+    }
+
+    public static HolderSet<PlacedFeature> getPlacementHolder(String name) {
+        return HolderSet.direct(SMDatagenUtil.PLACED_FEATURE_REGISTRY.getOrCreateHolderOrThrow(ResourceKey.create(Registry.PLACED_FEATURE_REGISTRY, SullysMod.modPrefix(name))));
+    }
 
     public static String name(Block block) {
         return ForgeRegistries.BLOCKS.getKey(block).getPath();

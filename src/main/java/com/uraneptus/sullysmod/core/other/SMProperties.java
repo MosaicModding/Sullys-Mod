@@ -1,7 +1,6 @@
 package com.uraneptus.sullysmod.core.other;
 
 import com.uraneptus.sullysmod.core.integration.fd.FDCompat;
-import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.food.FoodProperties;

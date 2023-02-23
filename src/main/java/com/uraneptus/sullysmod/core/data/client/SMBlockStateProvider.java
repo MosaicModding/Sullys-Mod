@@ -23,7 +23,6 @@ public class SMBlockStateProvider extends BlockStateProvider {
 
     @Override
     protected void registerStatesAndModels() {
-
         basicBlock(SMBlocks.JADE_ORE);
         basicBlock(SMBlocks.DEEPSLATE_JADE_ORE);
         basicBlock(SMBlocks.ROUGH_JADE_BLOCK);
