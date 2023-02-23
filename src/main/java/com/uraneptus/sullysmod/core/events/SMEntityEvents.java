@@ -127,7 +127,7 @@ public class SMEntityEvents {
                         level.addFreshEntity(projectile);
                         level.playSound(null, player.getX(), player.getY(), player.getZ(), SMSounds.JADE_RICOCHET.get(), player.getSoundSource(),  1.0F, 0.0F);
                         ((ServerLevel) level).sendParticles(new DirectionParticleOptions(SMParticleTypes.RICOCHET.get(), direction), projectile.getX(), projectile.getY(), projectile.getZ(), 1, 0.0D, 0.0D, 0.0D, 0.0D);
-
+                        player.getUseItem().hurtAndBreak(1, player, e -> e.broadcastBreakEvent(player.getUsedItemHand()));
                     }
                 }
             }
