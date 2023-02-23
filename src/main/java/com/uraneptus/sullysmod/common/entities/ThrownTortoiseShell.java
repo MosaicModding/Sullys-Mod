@@ -65,6 +65,7 @@ public class ThrownTortoiseShell extends ThrowableItemProjectile {
             }
             this.level.addFreshEntity(shell);
             this.level.broadcastEntityEvent(this, (byte)3);
+            shell.setGotThrown(true);
             this.discard();
         }
 

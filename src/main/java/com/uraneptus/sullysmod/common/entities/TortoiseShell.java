@@ -29,6 +29,7 @@ public class TortoiseShell extends Entity {
     private static final EntityDataAccessor<Integer> DATA_ID_HURT = SynchedEntityData.defineId(TortoiseShell.class, EntityDataSerializers.INT);
     private static final EntityDataAccessor<Integer> DATA_ID_HURTDIR = SynchedEntityData.defineId(TortoiseShell.class, EntityDataSerializers.INT);
     private static final EntityDataAccessor<Float> DATA_ID_DAMAGE = SynchedEntityData.defineId(TortoiseShell.class, EntityDataSerializers.FLOAT);
+    private static final EntityDataAccessor<Boolean> GOT_THROWN = SynchedEntityData.defineId(TortoiseShell.class, EntityDataSerializers.BOOLEAN);
 
     public TortoiseShell(EntityType<? extends TortoiseShell> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
@@ -57,6 +58,7 @@ public class TortoiseShell extends Entity {
         this.entityData.define(DATA_ID_HURT, 0);
         this.entityData.define(DATA_ID_HURTDIR, 1);
         this.entityData.define(DATA_ID_DAMAGE, 0.0F);
+        this.entityData.define(GOT_THROWN, false);
 
     }
 
@@ -121,13 +123,6 @@ public class TortoiseShell extends Entity {
     public AABB getBoundingBoxForCulling() {
         return super.getBoundingBoxForCulling();
     }
-/*
-    @Override
-    public Direction getMotionDirection() {
-        return this.getDirection().getClockWise();
-    }
-
- */
 
     @Override
     public boolean isPickable() {
@@ -136,6 +131,7 @@ public class TortoiseShell extends Entity {
 
     @Override
     public void tick() {
+        System.out.println(gotThrown());
 
         if (this.getHurtTime() > 0) {
             this.setHurtTime(this.getHurtTime() - 1);
@@ -206,6 +202,14 @@ public class TortoiseShell extends Entity {
 
     public int getHurtDir() {
         return this.entityData.get(DATA_ID_HURTDIR);
+    }
+
+    public void setGotThrown(boolean gotThrown) {
+        this.entityData.set(GOT_THROWN, gotThrown);
+    }
+
+    public boolean gotThrown() {
+        return this.entityData.get(GOT_THROWN);
     }
 
     @Override
