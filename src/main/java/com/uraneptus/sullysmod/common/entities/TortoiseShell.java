@@ -89,7 +89,7 @@ public class TortoiseShell extends Entity {
             this.markHurt();
             this.gameEvent(GameEvent.ENTITY_DAMAGE, pSource.getEntity());
             if (pSource.getEntity() instanceof Player player) {
-                boolean flag = player.getAbilities().instabuild;
+                boolean flag = player.getAbilities().instabuild && !(pSource.getDirectEntity() instanceof ThrownTortoiseShell);
                 if (flag || this.getDamage() > 40.0F) {
                     if (!flag && this.level.getGameRules().getBoolean(GameRules.RULE_DOENTITYDROPS)) {
                         this.spawnAtLocation(this.getDropItem());
@@ -151,7 +151,6 @@ public class TortoiseShell extends Entity {
             }
 
             this.setDeltaMovement(this.getDeltaMovement().add(0.0D, yVelocity, 0.0D));
-
         }
 
         Level level = this.getLevel();

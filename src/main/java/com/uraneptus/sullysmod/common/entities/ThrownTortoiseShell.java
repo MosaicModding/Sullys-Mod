@@ -7,12 +7,12 @@ import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.ThrowableItemProjectile;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
+import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.network.PlayMessages;
 
 public class ThrownTortoiseShell extends ThrowableItemProjectile {
@@ -37,11 +37,16 @@ public class ThrownTortoiseShell extends ThrowableItemProjectile {
     public void handleEntityEvent(byte pId) {
         if (pId == 3) {
             double d0 = 0.08D;
-
             for(int i = 0; i < 8; ++i) {
                 this.level.addParticle(new ItemParticleOption(ParticleTypes.ITEM, this.getItem()), this.getX(), this.getY(), this.getZ(), ((double)this.random.nextFloat() - 0.5D) * d0, ((double)this.random.nextFloat() - 0.5D) * d0, ((double)this.random.nextFloat() - 0.5D) * d0);
             }
         }
+    }
+
+    @Override
+    protected void onHitEntity(EntityHitResult pResult) {
+        super.onHitEntity(pResult);
+        pResult.getEntity().hurt(DamageSource.thrown(this, this.getOwner()), 0.0F);
     }
 
     @Override
@@ -52,23 +57,14 @@ public class ThrownTortoiseShell extends ThrowableItemProjectile {
             if (shell == null) {
                 return;
             }
-            if (pResult.getType() == HitResult.Type.BLOCK) {
-                shell.moveTo(this.getX(), this.getY(), this.getZ(), this.getYRot(), 0.0F);
-            } else if (pResult.getType() == HitResult.Type.ENTITY) {
-                EntityHitResult entityHitResult = (EntityHitResult) pResult;
-                if (this.getOwner() instanceof Player player) {
-                    if (!player.getAbilities().instabuild) {
-                        entityHitResult.getEntity().hurt(DamageSource.thrown(this, this.getOwner()), 0.0F);
-                        this.spawnAtLocation(getDefaultItem());
-                    }
-                }
-            }
+            Vec3 vec3 = this.getDeltaMovement();
+            shell.moveTo(this.getX(), this.getY(), this.getZ(), this.getYRot(), 0.0F);
+            shell.setDeltaMovement(vec3.x(), -0.04D, vec3.z());
+            shell.setGotThrown(true);
             this.level.addFreshEntity(shell);
             this.level.broadcastEntityEvent(this, (byte)3);
-            shell.setGotThrown(true);
             this.discard();
         }
-
     }
 
     @Override
