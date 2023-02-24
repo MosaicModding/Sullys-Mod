@@ -131,7 +131,6 @@ public class TortoiseShell extends Entity {
 
     @Override
     public void tick() {
-        System.out.println(gotThrown());
 
         if (this.getHurtTime() > 0) {
             this.setHurtTime(this.getHurtTime() - 1);

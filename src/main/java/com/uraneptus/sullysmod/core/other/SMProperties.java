@@ -47,12 +47,12 @@ public class SMProperties {
     }
 
     public static final class Foods {
-        public static final FoodProperties LANTERNFISH_FOOD = new FoodProperties.Builder().nutrition(2).saturationMod(0.1F).effect(() -> new MobEffectInstance(MobEffects.GLOWING, 200), 0.1F).build();
-        public static final FoodProperties COOKED_LANTERNFISH_FOOD = new FoodProperties.Builder().nutrition(5).saturationMod(0.6F).effect(() -> new MobEffectInstance(MobEffects.GLOWING, 200), 0.1F).build();
+        public static final FoodProperties LANTERNFISH_FOOD = new FoodProperties.Builder().nutrition(2).saturationMod(0.1F).effect(() -> new MobEffectInstance(MobEffects.GLOWING, 200), 1.0F).build();
+        public static final FoodProperties COOKED_LANTERNFISH_FOOD = new FoodProperties.Builder().nutrition(5).saturationMod(0.6F).effect(() -> new MobEffectInstance(MobEffects.GLOWING, 200), 1.0F).build();
 
-        public static final FoodProperties LANTERNFISH_SLICE_FOOD = new FoodProperties.Builder().nutrition(1).saturationMod(0.1F).effect(() -> new MobEffectInstance(MobEffects.GLOWING, 200), 0.1F).fast().build();
-        public static final FoodProperties COOKED_LANTERNFISH_SLICE_FOOD = new FoodProperties.Builder().nutrition(3).saturationMod(0.5F).effect(() -> new MobEffectInstance(MobEffects.GLOWING, 200), 0.1F).fast().build();
-        public static final FoodProperties LANTERNFISH_ROLL_FOOD = new FoodProperties.Builder().nutrition(7).saturationMod(0.6F).effect(() -> new MobEffectInstance(MobEffects.GLOWING, 200), 0.1F).build();
-        public static final FoodProperties CAVE_CHUM_BUCKET_FOOD = new FoodProperties.Builder().nutrition(13).saturationMod(1.0F).effect(() -> new MobEffectInstance(MobEffects.GLOWING, 200), 0.1F).effect(() -> new MobEffectInstance(MobEffects.DIG_SPEED, 800), 1.0F).effect(() -> new MobEffectInstance(MobEffects.NIGHT_VISION, 800), 1.0F).build();
+        public static final FoodProperties LANTERNFISH_SLICE_FOOD = new FoodProperties.Builder().nutrition(1).saturationMod(0.1F).effect(() -> new MobEffectInstance(MobEffects.GLOWING, 200), 1.0F).fast().build();
+        public static final FoodProperties COOKED_LANTERNFISH_SLICE_FOOD = new FoodProperties.Builder().nutrition(3).saturationMod(0.5F).effect(() -> new MobEffectInstance(MobEffects.GLOWING, 200), 1.0F).fast().build();
+        public static final FoodProperties LANTERNFISH_ROLL_FOOD = new FoodProperties.Builder().nutrition(7).saturationMod(0.6F).effect(() -> new MobEffectInstance(MobEffects.GLOWING, 200), 1.0F).build();
+        public static final FoodProperties CAVE_CHUM_BUCKET_FOOD = new FoodProperties.Builder().nutrition(13).saturationMod(1.0F).effect(() -> new MobEffectInstance(MobEffects.GLOWING, 200), 1.0F).effect(() -> new MobEffectInstance(MobEffects.DIG_SPEED, 800), 1.0F).effect(() -> new MobEffectInstance(MobEffects.NIGHT_VISION, 800), 1.0F).build();
     }
 }
