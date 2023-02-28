@@ -7,6 +7,7 @@ import com.teamabnormals.blueprint.core.util.registry.RegistryHelper;
 import com.uraneptus.sullysmod.common.entities.Chameleon;
 import com.uraneptus.sullysmod.common.entities.CopperGolem;
 import com.uraneptus.sullysmod.common.entities.Lanternfish;
+import com.uraneptus.sullysmod.common.entities.Nautilus;
 import com.uraneptus.sullysmod.common.entities.Rascal;
 import com.uraneptus.sullysmod.common.entities.Tortoise;
 import com.uraneptus.sullysmod.core.SMConfig;
@@ -89,6 +90,7 @@ public class SullysMod {
         event.put(SMEntityTypes.TORTOISE.get(), Tortoise.createAttributes().build());
         event.put(SMEntityTypes.RASCAL.get(), Rascal.createAttributes().build());
         event.put(SMEntityTypes.CHAMELEON.get(), Chameleon.createAttributes().build());
+        event.put(SMEntityTypes.NAUTILUS.get(), Nautilus.createAttributes().build());
     }
 
     @SubscribeEvent
