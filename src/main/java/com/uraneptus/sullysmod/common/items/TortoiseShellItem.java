@@ -33,6 +33,7 @@ public class TortoiseShellItem extends Item {
     public InteractionResultHolder<ItemStack> use(Level pLevel, Player pPlayer, InteractionHand pHand) {
         ItemStack itemstack = pPlayer.getItemInHand(pHand);
         pLevel.playSound(null, pPlayer.getX(), pPlayer.getY(), pPlayer.getZ(), SoundEvents.EGG_THROW, SoundSource.PLAYERS, 0.5F, 0.4F / (pLevel.getRandom().nextFloat() * 0.4F + 0.8F));
+        pPlayer.getCooldowns().addCooldown(this, 20);
         if (!pLevel.isClientSide) {
             ThrownTortoiseShell shell = new ThrownTortoiseShell(pLevel, pPlayer);
             shell.setItem(itemstack);

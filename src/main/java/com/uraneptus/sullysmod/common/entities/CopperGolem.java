@@ -42,7 +42,7 @@ public class CopperGolem extends AbstractGolem implements IAnimatable {
 
     @Override
     protected void registerGoals() {
-        if (cachedState < 3) {
+        if (!isStatue) {
             this.goalSelector.addGoal(6, new WaterAvoidingRandomStrollGoal(this, 1.0D));
             this.goalSelector.addGoal(7, new LookAtPlayerGoal(this, Player.class, 6.0F));
             this.goalSelector.addGoal(8, new RandomLookAroundGoal(this));
@@ -89,6 +89,11 @@ public class CopperGolem extends AbstractGolem implements IAnimatable {
     @Override
     public boolean canBeLeashed(Player pPlayer) {
         return false;
+    }
+
+    @Override
+    public boolean canBeCollidedWith() {
+        return this.isStatue;
     }
 
     public void tick() {

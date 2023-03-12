@@ -30,6 +30,7 @@ public class TortoiseShell extends Entity {
     private static final EntityDataAccessor<Integer> DATA_ID_HURTDIR = SynchedEntityData.defineId(TortoiseShell.class, EntityDataSerializers.INT);
     private static final EntityDataAccessor<Float> DATA_ID_DAMAGE = SynchedEntityData.defineId(TortoiseShell.class, EntityDataSerializers.FLOAT);
     private static final EntityDataAccessor<Boolean> GOT_THROWN = SynchedEntityData.defineId(TortoiseShell.class, EntityDataSerializers.BOOLEAN);
+    private static final EntityDataAccessor<Boolean> IS_SPINNING = SynchedEntityData.defineId(TortoiseShell.class, EntityDataSerializers.BOOLEAN);
 
     public TortoiseShell(EntityType<? extends TortoiseShell> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
@@ -72,6 +73,11 @@ public class TortoiseShell extends Entity {
         return false;
     }
 
+    //This prevents the entity from moving when the player is sprinting and hits the entity
+    @Override
+    public void push(double pX, double pY, double pZ) {
+
+    }
 
     @Override
     protected Vec3 getRelativePortalPosition(Direction.Axis pAxis, BlockUtil.FoundRectangle pPortal) {
