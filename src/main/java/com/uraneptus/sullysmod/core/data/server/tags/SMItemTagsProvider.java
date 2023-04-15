@@ -58,6 +58,10 @@ public class SMItemTagsProvider extends ItemTagsProvider {
                 SMBlocks.ROUGH_JADE_TILE_STAIRS.get().asItem(),
                 SMBlocks.SMOOTHED_ROUGH_JADE_STAIRS.get().asItem()
         );
+        tag(ItemTags.FISHES).add(
+                SMItems.LANTERNFISH.get(),
+                SMItems.COOKED_LANTERNFISH.get()
+        );
 
         //Forge Tags
         tag(SMItemTags.RAW_LANTERNFISH).add(
