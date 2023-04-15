@@ -51,7 +51,7 @@ public class SMEntityEvents {
         boolean flingerFlag = false;
 
 
-        if (hitResult instanceof BlockHitResult blockHitResult) {
+        if (hitResult instanceof BlockHitResult blockHitResult && hitResult.getType() == HitResult.Type.BLOCK) {
             BlockPos pos = blockHitResult.getBlockPos();
             BlockState blockState = level.getBlockState(pos);
             Direction direction = blockHitResult.getDirection();
@@ -69,14 +69,14 @@ public class SMEntityEvents {
                     event.setCanceled(true);
                     Direction front = blockState.getValue(JadeFlingerTotem.FACING);
 
-                    Projectile newProjectile = projectile;
+                    Projectile oldProjectile = projectile;
                     projectile = (Projectile) projectile.getType().create(level);
                     if (projectile == null) {
                         return;
                     }
-                    newProjectile.setRemoved(Entity.RemovalReason.DISCARDED);
+                    oldProjectile.setRemoved(Entity.RemovalReason.DISCARDED);
 
-                    CompoundTag compoundtag = newProjectile.saveWithoutId(new CompoundTag());
+                    CompoundTag compoundtag = oldProjectile.saveWithoutId(new CompoundTag());
                     compoundtag.remove("Motion");
                     projectile.load(compoundtag);
 
