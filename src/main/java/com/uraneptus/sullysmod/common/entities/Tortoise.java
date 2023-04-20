@@ -108,6 +108,11 @@ public class Tortoise extends Animal implements IAnimatable {
     }
 
     @Override
+    public boolean canBeCollidedWith() {
+        return this.getHideTimerDuration() > 0;
+    }
+
+    @Override
     public void knockback(double pStrength, double pX, double pZ) {
         if (this.getHideTimerDuration() > 200) {
             super.knockback(pStrength, pX, pZ);
