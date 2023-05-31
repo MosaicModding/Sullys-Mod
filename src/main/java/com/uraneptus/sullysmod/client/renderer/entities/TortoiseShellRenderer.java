@@ -2,11 +2,11 @@ package com.uraneptus.sullysmod.client.renderer.entities;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
+import com.mojang.math.Quaternion;
 import com.mojang.math.Vector3f;
 import com.uraneptus.sullysmod.SullysMod;
 import com.uraneptus.sullysmod.client.model.TortoiseShellModel;
 import com.uraneptus.sullysmod.common.entities.TortoiseShell;
-import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
@@ -16,7 +16,7 @@ import net.minecraft.util.Mth;
 
 public class TortoiseShellRenderer <E extends TortoiseShell> extends EntityRenderer<E> {
     public static final ResourceLocation TEXTURE = SullysMod.modPrefix("textures/entity/tortoise/tortoise.png");
-    protected final EntityModel<E> model;
+    protected final TortoiseShellModel<E> model;
 
     public TortoiseShellRenderer(EntityRendererProvider.Context context) {
         super(context);
@@ -29,6 +29,11 @@ public class TortoiseShellRenderer <E extends TortoiseShell> extends EntityRende
         super.render(pEntity, pEntityYaw, pPartialTicks, pMatrixStack, pBuffer, pPackedLight);
         pMatrixStack.pushPose();
         pMatrixStack.translate(0.0D, -1.0F, 0.0D);
+
+        float spinTime = pEntity.tickCount + pPartialTicks;
+        if (pEntity.spinTicks > 0) {
+            pMatrixStack.mulPose(new Quaternion(new Vector3f(0.0F, 1.0F, 0.0F), spinTime * 0.56F, false));
+        }
 
         float hurtTime = (float)pEntity.getHurtTime() - pPartialTicks;
         float damage = pEntity.getDamage() - pPartialTicks;

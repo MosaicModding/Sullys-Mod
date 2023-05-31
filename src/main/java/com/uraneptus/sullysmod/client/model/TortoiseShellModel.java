@@ -3,15 +3,16 @@ package com.uraneptus.sullysmod.client.model;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.uraneptus.sullysmod.SullysMod;
+import com.uraneptus.sullysmod.common.entities.TortoiseShell;
 import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
-import net.minecraft.world.entity.Entity;
 
-public class TortoiseShellModel <T extends Entity> extends EntityModel<T> {
+public class TortoiseShellModel <T extends TortoiseShell> extends EntityModel<T> {
     public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(SullysMod.modPrefix("tortoise_shell"), "main");
+
     private final ModelPart shell;
 
     public TortoiseShellModel(ModelPart root) {
@@ -30,11 +31,15 @@ public class TortoiseShellModel <T extends Entity> extends EntityModel<T> {
 
     @Override
     public void setupAnim(T pEntity, float pLimbSwing, float pLimbSwingAmount, float pAgeInTicks, float pNetHeadYaw, float pHeadPitch) {
-
     }
+
 
     @Override
     public void renderToBuffer(PoseStack pPoseStack, VertexConsumer pBuffer, int pPackedLight, int pPackedOverlay, float pRed, float pGreen, float pBlue, float pAlpha) {
         this.shell.render(pPoseStack, pBuffer, pPackedLight, pPackedOverlay, pRed, pGreen, pBlue, pAlpha);
+    }
+
+    public ModelPart root() {
+        return this.shell;
     }
 }

@@ -60,6 +60,5 @@ public class SMClientEvents {
     @SubscribeEvent
     public static void onClientSetup(FMLClientSetupEvent event) {
         ItemProperties.register(SMItems.JADE_SHIELD.get(), new ResourceLocation("blocking"), (itemStack, clientWorld, livingEntity, useTime) -> livingEntity != null && livingEntity.isUsingItem() && livingEntity.getUseItem() == itemStack ? 1.0F : 0.0F);
-        EntityRenderers.register(SMEntityTypes.THROWN_TORTOISE_SHELL.get(), ThrownItemRenderer::new);
     }
 }
