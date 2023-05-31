@@ -33,7 +33,6 @@ public class TortoiseShellItem extends Item {
             shell.moveTo(blockpos.getX() + 0.5, blockpos.getY() + 1, blockpos.getZ() + 0.5, player.getYRot(), 0.0F);
             shell.setGotThrown(true);
             level.addFreshEntity(shell);
-            shell.setSpinTimer();
             level.broadcastEntityEvent(shell, (byte) 3);
         }
 
