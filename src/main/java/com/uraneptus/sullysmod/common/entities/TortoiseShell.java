@@ -262,7 +262,7 @@ public class TortoiseShell extends Entity {
         float defaultFriction = this.level.getBlockState(bottomPosition).getFriction(level, bottomPosition, this);
 
         double y = this.getDeltaMovement().get(Direction.Axis.Y);
-        if (y == -0.04 && !this.isInFluidType() && defaultFriction != 0.98F) {
+        if (y == -0.04 && !this.isInFluidType() && defaultFriction == 0.6F) {
             this.setDeltaMovement(this.getDeltaMovement().multiply(friction, 0.98D, friction));
         }
         if (this.isInFluidType()) {
