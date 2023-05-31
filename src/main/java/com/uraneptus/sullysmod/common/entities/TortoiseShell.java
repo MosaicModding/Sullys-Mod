@@ -1,10 +1,8 @@
 package com.uraneptus.sullysmod.common.entities;
 
-import com.uraneptus.sullysmod.core.SMConfig;
 import com.uraneptus.sullysmod.core.registry.SMEntityTypes;
 import com.uraneptus.sullysmod.core.registry.SMItems;
 import net.minecraft.BlockUtil;
-import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
@@ -24,13 +22,9 @@ import net.minecraft.world.level.GameRules;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.GameEvent;
-import net.minecraft.world.level.material.FlowingFluid;
-import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
-import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraftforge.common.ForgeMod;
 import net.minecraftforge.fluids.FluidType;
 import net.minecraftforge.network.NetworkHooks;
@@ -181,9 +175,7 @@ public class TortoiseShell extends Entity {
     private void hurtEntity(List<Entity> pEntities) {
         for(Entity entity : pEntities) {
             if (entity instanceof LivingEntity) {
-                //entity.hurt(DamageSource.mobAttack(this), 10.0F);
                 entity.hurt(DamageSource.thorns(this), 4);
-                //this.doEnchantDamageEffects(this, entity);
             }
         }
 
@@ -198,7 +190,6 @@ public class TortoiseShell extends Entity {
                 double d2 = Math.max(x * x + z * z, 0.001D);
 
                 this.setDeltaMovement(shellX / d2 * 0.5D, 0.005D, shellZ / d2 * 0.5D);
-                //this.setDeltaMovement(x / d2 * 6.5D, 0.05D, z / d2 * 6.5D);
                 entity.push(x / d2 * 0.05D, 0.005D, z / d2 * 0.05D);
 
             }
