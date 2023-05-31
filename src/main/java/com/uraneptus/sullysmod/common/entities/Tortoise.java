@@ -5,6 +5,7 @@ import com.uraneptus.sullysmod.core.other.tags.SMEntityTags;
 import com.uraneptus.sullysmod.core.other.tags.SMItemTags;
 import com.uraneptus.sullysmod.core.registry.SMBlocks;
 import com.uraneptus.sullysmod.core.registry.SMEntityTypes;
+import com.uraneptus.sullysmod.core.registry.SMItems;
 import com.uraneptus.sullysmod.core.registry.SMSounds;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.core.BlockPos;
@@ -27,9 +28,11 @@ import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.animal.Animal;
+import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.vehicle.Boat;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.GameRules;
 import net.minecraft.world.level.Level;
@@ -125,6 +128,8 @@ public class Tortoise extends Animal implements IAnimatable {
         super.tick();
         Level level = this.getLevel();
 
+        System.out.println(this.getAge());
+
         //Hiding core stuff
         if (this.getHideTimerDuration() > 0) {
             setHideTimerDuration(getHideTimerDuration() - 1);
@@ -160,6 +165,15 @@ public class Tortoise extends Animal implements IAnimatable {
                 else this.setHideTimerDuration(200);
             }
         }
+    }
+    @Override
+    protected void ageBoundaryReached() {
+        super.ageBoundaryReached();
+        if (!this.isBaby() && this.level.getGameRules().getBoolean(GameRules.RULE_DOMOBLOOT)) {
+            this.spawnAtLocation(SMItems.TORTOISE_SCUTE.get());
+            this.spawnAtLocation(SMItems.TORTOISE_SCUTE.get());
+        }
+
     }
 
     public @NotNull InteractionResult mobInteract(Player pPlayer, @NotNull InteractionHand pHand) {
