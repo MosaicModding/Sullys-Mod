@@ -2,7 +2,10 @@ package com.uraneptus.sullysmod.core.registry;
 
 import com.teamabnormals.blueprint.core.util.registry.EntitySubRegistryHelper;
 import com.uraneptus.sullysmod.SullysMod;
-import com.uraneptus.sullysmod.common.entities.*;
+import com.uraneptus.sullysmod.common.entities.CopperGolem;
+import com.uraneptus.sullysmod.common.entities.Lanternfish;
+import com.uraneptus.sullysmod.common.entities.Tortoise;
+import com.uraneptus.sullysmod.common.entities.TortoiseShell;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraftforge.fml.common.Mod;

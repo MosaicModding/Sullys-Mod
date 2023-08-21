@@ -54,9 +54,10 @@ public class GrindstonePolishingRecipeBuilder {
 
     //The save methods here could be improved!
     public void save(Consumer<FinishedRecipe> consumer) {
-        ResourceLocation resourcelocation = ForgeRegistries.ITEMS.getKey(this.result);
-        if (resourcelocation != null) {
-            this.save(consumer, SullysMod.MOD_ID + ":grindstone_polishing/" + resourcelocation.getPath() + "_from_grindstone_polishing");
+        ResourceLocation resultLocation = ForgeRegistries.ITEMS.getKey(this.result);
+        ResourceLocation ingredientLocation = ForgeRegistries.ITEMS.getKey(this.ingredient);
+        if (resultLocation != null && ingredientLocation != null) {
+            this.save(consumer, SullysMod.MOD_ID + ":grindstone_polishing/" + resultLocation.getPath() + "_from_polishing" + "_" + ingredientLocation.getPath());
         }
     }
 

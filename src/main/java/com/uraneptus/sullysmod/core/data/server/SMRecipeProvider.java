@@ -147,6 +147,8 @@ public class SMRecipeProvider extends RecipeProvider {
         grindstonePolishingRecipes(Blocks.BLACKSTONE_SLAB, Blocks.POLISHED_BLACKSTONE_SLAB, 1, 0, consumer);
         grindstonePolishingRecipes(Blocks.BLACKSTONE_STAIRS, Blocks.POLISHED_BLACKSTONE_STAIRS, 1, 0, consumer);
         grindstonePolishingRecipes(Blocks.BLACKSTONE_WALL, Blocks.POLISHED_BLACKSTONE_WALL, 1, 0, consumer);
+        grindstonePolishingRecipes(SMBlocks.JADE_ORE.get(), SMItems.POLISHED_JADE.get(), 1, 1, consumer);
+        grindstonePolishingRecipes(SMBlocks.DEEPSLATE_JADE_ORE.get(), SMItems.POLISHED_JADE.get(), 1, 1, consumer);
 
         smithingRecipes(Items.SHIELD, SMItems.POLISHED_JADE.get(), SMItems.JADE_SHIELD.get(), consumer);
 

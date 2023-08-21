@@ -1,0 +1,13 @@
+{
+  "required": true,
+  "package": "com.uraneptus.sullysmod.mixins",
+  "compatibilityLevel": "JAVA_17",
+  "minVersion": "0.8",
+  "refmap": "sullysmod.refmap.json",
+  "mixins": [
+    "VillagerMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
