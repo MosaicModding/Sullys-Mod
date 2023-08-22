@@ -120,6 +120,9 @@ public class SMSoundDefinitionsProvider extends SoundDefinitionsProvider {
                 sound(new ResourceLocation("mob/turtle/baby/egg_hatched3"))
         );
 
+        addbasicSound(SMSounds.TORTOISE_SHELL_PLACE,
+                sound(new ResourceLocation("random/bow")));
+
         addbasicSound(SMSounds.LANTERNFISH_FLOP,
                 sound(new ResourceLocation("entity/fish/flop1")).volume(0.3),
                 sound(new ResourceLocation("entity/fish/flop2")).volume(0.3),

@@ -170,6 +170,12 @@
     ],
     "subtitle": "subtitles.entity.tortoise.lay_egg"
   },
+  "entity.tortoise_shell.place": {
+    "sounds": [
+      "random/bow"
+    ],
+    "subtitle": "subtitles.entity.tortoise_shell.place"
+  },
   "music_disc.scour": {
     "sounds": [
       {

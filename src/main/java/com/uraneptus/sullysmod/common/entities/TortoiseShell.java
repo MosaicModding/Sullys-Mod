@@ -175,7 +175,7 @@ public class TortoiseShell extends Entity {
     private void hurtEntity(List<Entity> pEntities) {
         for(Entity entity : pEntities) {
             if (entity instanceof LivingEntity) {
-                entity.hurt(DamageSource.thorns(this), 4);
+                entity.hurt(DamageSource.GENERIC, 4);
             }
         }
 

@@ -2,6 +2,7 @@ package com.uraneptus.sullysmod.common.items;
 
 import com.uraneptus.sullysmod.common.entities.TortoiseShell;
 import com.uraneptus.sullysmod.core.registry.SMEntityTypes;
+import com.uraneptus.sullysmod.core.registry.SMSounds;
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -25,7 +26,7 @@ public class TortoiseShellItem extends Item {
         BlockPos blockpos = pContext.getClickedPos();
         Player player = pContext.getPlayer();
         InteractionHand hand = pContext.getHand();
-        level.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.EGG_THROW, SoundSource.PLAYERS, 0.5F, 0.4F / (level.getRandom().nextFloat() * 0.4F + 0.8F));
+        level.playSound(null, player.getX(), player.getY(), player.getZ(), SMSounds.TORTOISE_SHELL_PLACE.get(), SoundSource.PLAYERS, 0.5F, 0.4F / (level.getRandom().nextFloat() * 0.4F + 0.8F));
         player.getCooldowns().addCooldown(this, 20);
         player.swing(hand);
         if (!level.isClientSide()) {
