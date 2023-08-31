@@ -365,20 +365,6 @@ public class Tortoise extends Animal implements IAnimatable {
         this.setHasEgg(nbt.getBoolean("HasEgg"));
     }
 
-    @javax.annotation.Nullable //Only for testing purposes atm
-    public SpawnGroupData finalizeSpawn(ServerLevelAccessor pLevel, DifficultyInstance pDifficulty, MobSpawnType pReason, @javax.annotation.Nullable SpawnGroupData pSpawnData, @javax.annotation.Nullable CompoundTag pDataTag) {
-        pSpawnData = super.finalizeSpawn(pLevel, pDifficulty, pReason, pSpawnData, pDataTag);
-        Villager villager = EntityType.VILLAGER.create(this.level);
-        if (villager != null) {
-            villager.setBaby(true);
-            villager.moveTo(this.getX(), this.getY(), this.getZ(), this.getYRot(), 0.0F);
-            villager.finalizeSpawn(pLevel, pDifficulty, pReason, null, null);
-            villager.startRiding(this);
-        }
-
-        return pSpawnData;
-    }
-
     public static class RiderAllowingRandomStrollGoal extends RandomStrollGoal {
         public RiderAllowingRandomStrollGoal(PathfinderMob pMob, double pSpeedModifier) {
             super(pMob, pSpeedModifier);

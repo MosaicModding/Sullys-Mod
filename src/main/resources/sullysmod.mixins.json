@@ -5,7 +5,7 @@
   "minVersion": "0.8",
   "refmap": "sullysmod.refmap.json",
   "mixins": [
-    "VillagerMixin"
+
   ],
   "injectors": {
     "defaultRequire": 1
