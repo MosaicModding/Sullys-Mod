@@ -41,8 +41,7 @@ public class TortoiseShellRenderer <E extends TortoiseShell> extends EntityRende
             damage = 0.0F;
         }
         if (hurtTime > 0.0F) {
-            pMatrixStack.mulPose(Vector3f.ZP.rotationDegrees(Mth.sin(hurtTime) * hurtTime * damage / 75.0F * (float)pEntity.getHurtDir()));
-            pMatrixStack.mulPose(Vector3f.XP.rotationDegrees(Mth.sin(hurtTime) * hurtTime * damage / 75.0F * (float)pEntity.getHurtDir()));
+            pMatrixStack.mulPose(Vector3f.ZP.rotationDegrees(Mth.sin(hurtTime) * hurtTime * damage / 96.0F * (float)pEntity.getHurtDir()));
         }
 
         VertexConsumer vertexconsumer = pBuffer.getBuffer(this.model.renderType(this.getTextureLocation(pEntity)));

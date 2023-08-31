@@ -22,7 +22,10 @@ import net.minecraft.world.level.GameRules;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.GameEvent;
+import net.minecraft.world.level.material.FluidState;
+import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.ForgeMod;
@@ -206,23 +209,29 @@ public class TortoiseShell extends Entity {
     }
 
     private void blockKnockBack() {
-        Block blockXP = this.level.getBlockState(new BlockPos(this.getBlockX() + 1, this.getBlockY(), this.getBlockZ())).getBlock();
-        Block blockXN = this.level.getBlockState(new BlockPos(this.getBlockX() - 1, this.getBlockY(), this.getBlockZ())).getBlock();
-        Block blockZP = this.level.getBlockState(new BlockPos(this.getBlockX(), this.getBlockY(), this.getBlockZ() + 1)).getBlock();
-        Block blockZN = this.level.getBlockState(new BlockPos(this.getBlockX(), this.getBlockY(), this.getBlockZ() - 1)).getBlock();
+        BlockPos XP = new BlockPos(this.getBlockX() + 1, this.getBlockY(), this.getBlockZ());
+        BlockPos XN = new BlockPos(this.getBlockX() - 1, this.getBlockY(), this.getBlockZ());
+        BlockPos ZP = new BlockPos(this.getBlockX(), this.getBlockY(), this.getBlockZ() + 1);
+        BlockPos ZN = new BlockPos(this.getBlockX(), this.getBlockY(), this.getBlockZ() - 1);
+        BlockState blockXP = this.level.getBlockState(XP);
+        BlockState blockXN = this.level.getBlockState(XN);
+        BlockState blockZP = this.level.getBlockState(ZP);
+        BlockState blockZN = this.level.getBlockState(ZN);
         Vec3 vec3 = this.getDeltaMovement();
 
-        if (blockXP != Blocks.AIR && blockXP != Blocks.CAVE_AIR && blockXP != Blocks.VOID_AIR && vec3.x() > 0.0) {
-            this.shoot(vec3.reverse().x, vec3.y, vec3.z, 0.45F, 0.0F);
-        }
-        if (blockXN != Blocks.AIR && blockXN != Blocks.CAVE_AIR && blockXN != Blocks.VOID_AIR && vec3.x() < 0.0) {
-            this.shoot(vec3.reverse().x, vec3.y, vec3.z, 0.45F, 0.0F);
-        }
-        if (blockZP != Blocks.AIR && blockZP != Blocks.CAVE_AIR && blockZP != Blocks.VOID_AIR) {
-            this.shoot(vec3.x, vec3.y, vec3.reverse().z, 0.45F, 0.0F);
-        }
-        if (blockZN != Blocks.AIR && blockZN != Blocks.CAVE_AIR && blockZN != Blocks.VOID_AIR) {
-            this.shoot(vec3.x, vec3.y, vec3.reverse().z, 0.45F, 0.0F);
+        if (blockXP.getFluidState().isEmpty() && blockXN.getFluidState().isEmpty() && blockZP.getFluidState().isEmpty() && blockZN.getFluidState().isEmpty()) {
+           if (blockXP.getBlock() != Blocks.AIR && blockXP.getBlock() != Blocks.CAVE_AIR && blockXP.getBlock() != Blocks.VOID_AIR && blockXP.isCollisionShapeFullBlock(this.getLevel(), XP) && vec3.x() > 0.0) {
+               this.shoot(vec3.reverse().x, vec3.y, vec3.z, 0.45F, 0.0F);
+           }
+           if (blockXN.getBlock() != Blocks.AIR && blockXN.getBlock() != Blocks.CAVE_AIR && blockXN.getBlock() != Blocks.VOID_AIR && blockXN.isCollisionShapeFullBlock(this.getLevel(), XN) && vec3.x() < 0.0) {
+               this.shoot(vec3.reverse().x, vec3.y, vec3.z, 0.45F, 0.0F);
+           }
+           if (blockZP.getBlock() != Blocks.AIR && blockZP.getBlock() != Blocks.CAVE_AIR && blockZP.getBlock() != Blocks.VOID_AIR && blockZP.isCollisionShapeFullBlock(this.getLevel(), ZP)) {
+               this.shoot(vec3.x, vec3.y, vec3.reverse().z, 0.45F, 0.0F);
+           }
+           if (blockZN.getBlock() != Blocks.AIR && blockZN.getBlock() != Blocks.CAVE_AIR && blockZN.getBlock() != Blocks.VOID_AIR && blockZN.isCollisionShapeFullBlock(this.getLevel(), ZN)) {
+               this.shoot(vec3.x, vec3.y, vec3.reverse().z, 0.45F, 0.0F);
+           }
         }
     }
 
@@ -266,10 +275,7 @@ public class TortoiseShell extends Entity {
             this.setDeltaMovement(this.getDeltaMovement().multiply(friction, 0.98D, friction));
         }
         if (this.isInFluidType()) {
-            double yShell = this.getDeltaMovement().get(Direction.Axis.Y);
-            double xShell = this.getDeltaMovement().get(Direction.Axis.X);
-            double zShell = this.getDeltaMovement().get(Direction.Axis.Z);
-            this.setDeltaMovement(xShell * 0.35, yShell, zShell * 0.72);
+            this.setDeltaMovement(this.getDeltaMovement().multiply(0.85, 1, 0.85));
         }
 
 
