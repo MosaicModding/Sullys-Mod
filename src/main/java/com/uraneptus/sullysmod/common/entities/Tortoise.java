@@ -167,10 +167,8 @@ public class Tortoise extends Animal implements IAnimatable {
     protected void ageBoundaryReached() {
         super.ageBoundaryReached();
         if (!this.isBaby() && this.level.getGameRules().getBoolean(GameRules.RULE_DOMOBLOOT)) {
-            this.spawnAtLocation(SMItems.TORTOISE_SCUTE.get());
-            this.spawnAtLocation(SMItems.TORTOISE_SCUTE.get());
+            this.spawnAtLocation(new ItemStack(SMItems.TORTOISE_SCUTE.get(), 2));
         }
-
     }
 
     public @NotNull InteractionResult mobInteract(Player pPlayer, @NotNull InteractionHand pHand) {
