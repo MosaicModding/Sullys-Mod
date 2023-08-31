@@ -1,0 +1,20 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "forge:mod_loaded",
+          "modid": "deeperdarker"
+        }
+      ],
+      "recipe": {
+        "type": "sullysmod:grindstone_polishing",
+        "experience": 0,
+        "ingredient": "deeperdarker:gloomslate_stairs",
+        "result": "deeperdarker:polished_gloomslate_stairs",
+        "resultCount": 1
+      }
+    }
+  ]
+}

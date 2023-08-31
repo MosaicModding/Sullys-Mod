@@ -1,0 +1,24 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "forge:mod_loaded",
+          "modid": "stoneworks"
+        },
+		{
+          "type": "forge:mod_loaded",
+          "modid": "nourished_nether"
+        }
+      ],
+      "recipe": {
+        "type": "sullysmod:grindstone_polishing",
+        "experience": 0,
+        "ingredient": "nourished_nether:netherrack_slab",
+        "result": "stoneworks:polished_netherrack_slab",
+        "resultCount": 1
+      }
+    }
+  ]
+}

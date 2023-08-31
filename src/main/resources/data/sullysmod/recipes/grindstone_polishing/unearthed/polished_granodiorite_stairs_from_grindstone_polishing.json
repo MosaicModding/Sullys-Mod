@@ -1,0 +1,20 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "forge:mod_loaded",
+          "modid": "unearthed"
+        }
+      ],
+      "recipe": {
+        "type": "sullysmod:grindstone_polishing",
+        "experience": 0,
+        "ingredient": "unearthed:granodiorite_stairs",
+        "result": "unearthed:polished_granodiorite_stairs",
+        "resultCount": 1
+      }
+    }
+  ]
+}

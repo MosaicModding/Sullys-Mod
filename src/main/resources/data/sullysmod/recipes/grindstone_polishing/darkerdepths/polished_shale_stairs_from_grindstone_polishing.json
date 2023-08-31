@@ -1,0 +1,20 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "forge:mod_loaded",
+          "modid": "darkerdepths"
+        }
+      ],
+      "recipe": {
+        "type": "sullysmod:grindstone_polishing",
+        "experience": 0,
+        "ingredient": "darkerdepths:shale_stairs",
+        "result": "darkerdepths:polished_shale_stairs",
+        "resultCount": 1
+      }
+    }
+  ]
+}

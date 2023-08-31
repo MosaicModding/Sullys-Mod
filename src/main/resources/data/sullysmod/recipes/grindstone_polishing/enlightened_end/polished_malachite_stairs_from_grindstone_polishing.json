@@ -1,0 +1,20 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "forge:mod_loaded",
+          "modid": "enlightened_end"
+        }
+      ],
+      "recipe": {
+        "type": "sullysmod:grindstone_polishing",
+        "experience": 0,
+        "ingredient": "enlightened_end:malachite_stairs",
+        "result": "enlightened_end:polished_malachite_stairs",
+        "resultCount": 1
+      }
+    }
+  ]
+}
