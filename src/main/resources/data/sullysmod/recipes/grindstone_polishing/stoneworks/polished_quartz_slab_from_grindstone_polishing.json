@@ -1,0 +1,20 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "forge:mod_loaded",
+          "modid": "stoneworks"
+        }
+      ],
+      "recipe": {
+        "type": "sullysmod:grindstone_polishing",
+        "experience": 0,
+        "ingredient": "minecraft:quartz_slab",
+        "result": "stoneworks:polished_quartz_slab",
+        "resultCount": 1
+      }
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "forge:mod_loaded",
+          "modid": "architects_palette"
+        }
+      ],
+      "recipe": {
+        "type": "sullysmod:grindstone_polishing",
+        "experience": 0,
+        "ingredient": "minecraft:packed_ice",
+        "result": "architects_palette:polished_packed_ice",
+        "resultCount": 1
+      }
+    }
+  ]
+}

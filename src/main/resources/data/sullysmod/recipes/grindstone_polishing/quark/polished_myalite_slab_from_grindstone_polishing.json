@@ -1,0 +1,20 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "forge:mod_loaded",
+          "modid": "quark"
+        }
+      ],
+      "recipe": {
+        "type": "sullysmod:grindstone_polishing",
+        "experience": 0,
+        "ingredient": "quark:myalite_slab",
+        "result": "quark:polished_myalite_slab",
+        "resultCount": 1
+      }
+    }
+  ]
+}

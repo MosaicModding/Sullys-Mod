@@ -1,0 +1,24 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "forge:mod_loaded",
+          "modid": "stoneworks"
+        },
+		{
+          "type": "forge:mod_loaded",
+          "modid": "enlightened_end"
+        }
+      ],
+      "recipe": {
+        "type": "sullysmod:grindstone_polishing",
+        "experience": 0,
+        "ingredient": "enlightened_end:end_stone_stairs",
+        "result": "stoneworks:polished_end_stone_stairs",
+        "resultCount": 1
+      }
+    }
+  ]
+}

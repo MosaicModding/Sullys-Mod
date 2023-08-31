@@ -1,0 +1,20 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "forge:mod_loaded",
+          "modid": "stoneworks"
+        }
+      ],
+      "recipe": {
+        "type": "sullysmod:grindstone_polishing",
+        "experience": 0,
+        "ingredient": "minecraft:dark_prismarine_stairs",
+        "result": "stoneworks:polished_dark_prismarine_stairs",
+        "resultCount": 1
+      }
+    }
+  ]
+}

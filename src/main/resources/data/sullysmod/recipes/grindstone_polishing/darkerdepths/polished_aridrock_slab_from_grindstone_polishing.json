@@ -1,0 +1,20 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "forge:mod_loaded",
+          "modid": "darkerdepths"
+        }
+      ],
+      "recipe": {
+        "type": "sullysmod:grindstone_polishing",
+        "experience": 0,
+        "ingredient": "darkerdepths:aridrock_slab",
+        "result": "darkerdepths:polished_aridrock_slab",
+        "resultCount": 1
+      }
+    }
+  ]
+}

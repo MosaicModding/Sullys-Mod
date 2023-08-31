@@ -1,0 +1,20 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "forge:mod_loaded",
+          "modid": "architects_palette"
+        }
+      ],
+      "recipe": {
+        "type": "sullysmod:grindstone_polishing",
+        "experience": 0,
+        "ingredient": "architects_palette:nebulite",
+        "result": "architects_palette:polished_nebulite",
+        "resultCount": 1
+      }
+    }
+  ]
+}
