@@ -209,10 +209,10 @@ public class TortoiseShell extends Entity {
     }
 
     private void blockKnockBack() {
-        BlockPos XP = new BlockPos(this.getBlockX() + 1, this.getBlockY(), this.getBlockZ());
-        BlockPos XN = new BlockPos(this.getBlockX() - 1, this.getBlockY(), this.getBlockZ());
-        BlockPos ZP = new BlockPos(this.getBlockX(), this.getBlockY(), this.getBlockZ() + 1);
-        BlockPos ZN = new BlockPos(this.getBlockX(), this.getBlockY(), this.getBlockZ() - 1);
+        BlockPos XP = this.blockPosition().offset(1, 0, 0);
+        BlockPos XN = this.blockPosition().offset(-1, 0, 0);
+        BlockPos ZP = this.blockPosition().offset(0, 0, 1);
+        BlockPos ZN = this.blockPosition().offset(0, 0, -1);
         BlockState blockXP = this.level.getBlockState(XP);
         BlockState blockXN = this.level.getBlockState(XN);
         BlockState blockZP = this.level.getBlockState(ZP);
