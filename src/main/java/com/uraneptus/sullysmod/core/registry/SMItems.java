@@ -15,6 +15,7 @@ import net.minecraft.world.entity.animal.WaterAnimal;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.MobBucketItem;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraftforge.common.ForgeSpawnEggItem;
 import net.minecraftforge.fml.common.Mod;
@@ -52,6 +53,7 @@ public class SMItems {
     public static final RegistryObject<ForgeSpawnEggItem> TORTOISE_SPAWN_EGG = HELPER.createSpawnEggItem("tortoise", SMEntityTypes.TORTOISE::get, 15198183, 10844478);
 
     public static Item createMobBucketItem(Supplier<EntityType<? extends WaterAnimal>> entityType) {
-        return new BlueprintMobBucketItem(entityType, () -> Fluids.WATER, () -> SoundEvents.BUCKET_EMPTY_FISH, SMProperties.Items.cannotStack().tab(CreativeModeTab.TAB_MISC));
+        return new MobBucketItem(entityType, () -> Fluids.WATER, () -> SoundEvents.BUCKET_EMPTY_FISH, SMProperties.Items.cannotStack());
+        // was blueprintMobBucketItem but thats gone??
     }
 }
