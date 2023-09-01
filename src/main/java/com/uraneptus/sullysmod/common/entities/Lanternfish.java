@@ -130,7 +130,7 @@ public class Lanternfish extends AbstractFish {
         public boolean canUse() {
             if (this.lanternfish.getTarget() != null) {
                 return false;
-            } else if (this.lanternfish.getLevel().getMaxLocalRawBrightness(this.lanternfish.blockPosition()) <= 0) {
+            } else if (this.lanternfish.level().getMaxLocalRawBrightness(this.lanternfish.blockPosition()) <= 0) {
                 return false;
             } else {
                 return this.setWantedPos();
@@ -164,7 +164,7 @@ public class Lanternfish extends AbstractFish {
 
             for(int i = 0; i < 10; ++i) {
                 BlockPos blockpos1 = blockpos.offset(randomsource.nextInt(20) - 10, randomsource.nextInt(6) - 3, randomsource.nextInt(20) - 10);
-                if ((this.lanternfish.getLevel().getMaxLocalRawBrightness(blockpos1) <= 0)) {
+                if ((this.lanternfish.level().getMaxLocalRawBrightness(blockpos1) <= 0)) {
                     return Vec3.atBottomCenterOf(blockpos1);
                 }
             }

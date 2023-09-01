@@ -1,8 +1,7 @@
 package com.uraneptus.sullysmod.client.particles;
 
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import com.mojang.math.Quaternion;
-import com.mojang.math.Vector3f;
+import com.mojang.math.Axis;
 import com.uraneptus.sullysmod.common.particletypes.DirectionParticleOptions;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.client.Camera;
@@ -13,6 +12,8 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import org.joml.Quaternionf;
+import org.joml.Vector3f;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 
@@ -50,20 +51,20 @@ public class RicochetParticle extends TextureSheetParticle {
         float posY = (float) (Mth.lerp((double) partialTicks, this.yo, this.y) - cameraPos.y());
         float posZ = (float) (Mth.lerp((double) partialTicks, this.zo, this.z) - cameraPos.z());
 
-        Quaternion quaternion = this.face.getRotation();
-        quaternion.mul(Vector3f.XP.rotationDegrees(90.0F));
+        Quaternionf quaternion = this.face.getRotation();
+        quaternion.mul(Axis.XP.rotationDegrees(90.0F));
 
         float roll = Mth.lerp(partialTicks, this.oRoll, this.roll);
-        quaternion.mul(Vector3f.ZP.rotation(roll));
+        quaternion.mul(Axis.ZP.rotation(roll));
 
         Vector3f spriteNormal = new Vector3f(-1.0F, -1.0F, 0.0F);
-        spriteNormal.transform(quaternion);
+        spriteNormal.rotate(quaternion); // was transform method before, does it still work?
         Vector3f[] faces = new Vector3f[] { new Vector3f(-1.0F, -1.0F, 0.0F), new Vector3f(-1.0F, 1.0F, 0.0F), new Vector3f(1.0F, 1.0F, 0.0F), new Vector3f(1.0F, -1.0F, 0.0F) };
         float quadSize = this.getQuadSize(partialTicks);
 
         for (int i = 0; i < 4; ++i) {
             Vector3f face = faces[i];
-            face.transform(quaternion);
+            face.rotate(quaternion);
             face.mul(quadSize);
             face.add(posX, posY, posZ);
         }

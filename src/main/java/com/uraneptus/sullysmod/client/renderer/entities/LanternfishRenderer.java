@@ -1,7 +1,7 @@
 package com.uraneptus.sullysmod.client.renderer.entities;
 
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.math.Vector3f;
+import com.mojang.math.Axis;
 import com.uraneptus.sullysmod.SullysMod;
 import com.uraneptus.sullysmod.client.model.LanternfishModel;
 import com.uraneptus.sullysmod.client.renderer.entities.layer.LanternfishGlowLayer;
@@ -32,10 +32,10 @@ public class LanternfishRenderer <E extends Lanternfish> extends MobRenderer<E, 
     protected void setupRotations(E pEntityLiving, PoseStack pMatrixStack, float pAgeInTicks, float pRotationYaw, float pPartialTicks) {
         super.setupRotations(pEntityLiving, pMatrixStack, pAgeInTicks, pRotationYaw, pPartialTicks);
         float f = 4.3F * Mth.sin(0.6F * pAgeInTicks);
-        pMatrixStack.mulPose(Vector3f.YP.rotationDegrees(f));
+        pMatrixStack.mulPose(Axis.YP.rotationDegrees(f));
         if (!pEntityLiving.isInWater()) {
             pMatrixStack.translate(0.1F, 0.1F, -0.1F);
-            pMatrixStack.mulPose(Vector3f.ZP.rotationDegrees(90.0F));
+            pMatrixStack.mulPose(Axis.ZP.rotationDegrees(90.0F));
         }
 
     }

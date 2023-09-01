@@ -2,7 +2,6 @@ package com.uraneptus.sullysmod.common.items;
 
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
-import com.teamabnormals.blueprint.core.util.item.filling.TargetedItemCategoryFiller;
 import com.uraneptus.sullysmod.client.renderer.bewlr.JadeShieldRenderer;
 import com.uraneptus.sullysmod.core.registry.SMItems;
 import net.minecraft.client.Minecraft;

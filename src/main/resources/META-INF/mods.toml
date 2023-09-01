@@ -1,5 +1,5 @@
 modLoader="javafml" #mandatory
-loaderVersion="[43,)" #mandatory
+loaderVersion="[47,)" #mandatory
 license="GNU Lesser General Public License v3.0"
 issueTrackerURL="https://github.com/Uraneptus/Sullys-Mod/issues"
 
@@ -19,28 +19,28 @@ displayTest = "MATCH_VERSION"
 [[dependencies.sullysmod]] #optional
     modId="forge" #mandatory
     mandatory=true #mandatory
-    versionRange="[43,)" #mandatory
+    versionRange="[47,)" #mandatory
     ordering="NONE"
     side="BOTH"
 
 [[dependencies.sullysmod]]
     modId="minecraft"
     mandatory=true
-    versionRange="[1.19.2,)"
+    versionRange="[1.20.1,)"
     ordering="NONE"
     side="BOTH"
 
 [[dependencies.sullysmod]]
     modId = "blueprint"
     mandatory = true
-    versionRange = "[6.1.0,)"
+    versionRange = "[7.0.0,)"
     ordering = "BEFORE"
     side = "BOTH"
 
 [[dependencies.sullysmod]]
     modId = "geckolib3"
     mandatory = true
-    versionRange = "[3.1.36,)"
+    versionRange = "[4.2.2,)"
     ordering = "BEFORE"
     side = "BOTH"
 

@@ -2,8 +2,7 @@ package com.uraneptus.sullysmod.client.renderer.entities;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import com.mojang.math.Quaternion;
-import com.mojang.math.Vector3f;
+import com.mojang.math.Axis;
 import com.uraneptus.sullysmod.SullysMod;
 import com.uraneptus.sullysmod.client.model.TortoiseShellModel;
 import com.uraneptus.sullysmod.common.entities.TortoiseShell;
@@ -13,6 +12,8 @@ import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
+import org.joml.Quaternionf;
+import org.joml.Vector3f;
 
 public class TortoiseShellRenderer <E extends TortoiseShell> extends EntityRenderer<E> {
     public static final ResourceLocation TEXTURE = SullysMod.modPrefix("textures/entity/tortoise/tortoise.png");
@@ -32,7 +33,8 @@ public class TortoiseShellRenderer <E extends TortoiseShell> extends EntityRende
 
         float spinTime = pEntity.tickCount + pPartialTicks;
         if (pEntity.spinTicks > 0) {
-            pMatrixStack.mulPose(new Quaternion(new Vector3f(0.0F, 1.0F, 0.0F), spinTime * 0.56F, false));
+            pMatrixStack.mulPose(new Quaternionf().add(0.0F, 1.0F, 0.0F, spinTime * 0.56F));
+            //pMatrixStack.mulPose(new Quaternion(new Vector3f(0.0F, 1.0F, 0.0F), spinTime * 0.56F, false));
         }
 
         float hurtTime = (float)pEntity.getHurtTime() - pPartialTicks;
@@ -41,7 +43,7 @@ public class TortoiseShellRenderer <E extends TortoiseShell> extends EntityRende
             damage = 0.0F;
         }
         if (hurtTime > 0.0F) {
-            pMatrixStack.mulPose(Vector3f.ZP.rotationDegrees(Mth.sin(hurtTime) * hurtTime * damage / 96.0F * (float)pEntity.getHurtDir()));
+            pMatrixStack.mulPose(Axis.ZP.rotationDegrees(Mth.sin(hurtTime) * hurtTime * damage / 96.0F * (float)pEntity.getHurtDir()));
         }
 
         VertexConsumer vertexconsumer = pBuffer.getBuffer(this.model.renderType(this.getTextureLocation(pEntity)));

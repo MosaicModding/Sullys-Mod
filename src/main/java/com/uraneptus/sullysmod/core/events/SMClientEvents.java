@@ -45,15 +45,17 @@ public class SMClientEvents {
 
     @SubscribeEvent
     public static void registerParticleProvider(RegisterParticleProvidersEvent event) {
-        event.register(SMParticleTypes.RICOCHET.get(), RicochetParticle.RicochetParticleProvider::new);
+        event.registerSpriteSet(SMParticleTypes.RICOCHET.get(), RicochetParticle.RicochetParticleProvider::new);
     }
 
+    /*This is done via datagen now. Gonna do that later
     @SubscribeEvent
     public static void onTextureStitch(TextureStitchEvent.Pre event) {
         if (event.getAtlas().location().equals(TextureAtlas.LOCATION_BLOCKS)) {
             event.addSprite(JadeShieldRenderer.JADE_SHIELD_TEXTURE.texture());
         }
     }
+     */
 
     @SubscribeEvent
     public static void onClientSetup(FMLClientSetupEvent event) {

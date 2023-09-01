@@ -15,19 +15,20 @@ import net.minecraft.world.entity.ai.goal.WaterAvoidingRandomStrollGoal;
 import net.minecraft.world.entity.animal.AbstractGolem;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
-import software.bernie.geckolib3.core.IAnimatable;
-import software.bernie.geckolib3.core.PlayState;
-import software.bernie.geckolib3.core.builder.AnimationBuilder;
-import software.bernie.geckolib3.core.builder.ILoopType;
-import software.bernie.geckolib3.core.controller.AnimationController;
-import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
-import software.bernie.geckolib3.core.manager.AnimationData;
-import software.bernie.geckolib3.core.manager.AnimationFactory;
-import software.bernie.geckolib3.util.GeckoLibUtil;
+import software.bernie.geckolib.animatable.GeoEntity;
+import software.bernie.geckolib.core.animatable.GeoAnimatable;
+import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
+import software.bernie.geckolib.core.animation.AnimatableManager;
+import software.bernie.geckolib.core.animation.AnimationController;
+import software.bernie.geckolib.core.animation.AnimationState;
+import software.bernie.geckolib.core.animation.RawAnimation;
+import software.bernie.geckolib.core.object.PlayState;
+import software.bernie.geckolib.util.GeckoLibUtil;
 
-public class CopperGolem extends AbstractGolem implements IAnimatable {
+public class CopperGolem extends AbstractGolem implements GeoEntity {
     public static final EntityDataAccessor<Integer> OXIDIZATION = SynchedEntityData.defineId(CopperGolem.class, EntityDataSerializers.INT);
-    private final AnimationFactory factory = GeckoLibUtil.createFactory(this);
+    protected static final RawAnimation WALKING = RawAnimation.begin().thenLoop("animation.copper_golem.walking");
+    private final AnimatableInstanceCache instanceCache = GeckoLibUtil.createInstanceCache(this);
     int cachedState;
     int cachedGameTime;
     boolean isStatue;
@@ -99,7 +100,7 @@ public class CopperGolem extends AbstractGolem implements IAnimatable {
     public void tick() {
         super.tick();
 
-        if (!level.isClientSide()) {
+        if (!level().isClientSide()) {
             if (cachedGameTime > 0) {
                 cachedGameTime--;
             }
@@ -118,39 +119,27 @@ public class CopperGolem extends AbstractGolem implements IAnimatable {
     public void makeStatue() {
         this.isStatue = true;
         this.setNoAi(true);
-        this.goalSelector.removeAllGoals();
+        this.removeFreeWill();
         this.setSpeed(0.0F);
     }
 
+    @Override
+    public void registerControllers(AnimatableManager.ControllerRegistrar controllerRegistrar) {
+        controllerRegistrar.add(new AnimationController<>(this, "Walking", 3, this::setWalking));
+    }
 
-    public <E extends IAnimatable> PlayState setAnimation(AnimationEvent<E> event) {
-        boolean onGround = isOnGround();
-        if (!((double)animationSpeed < 0.08D) && onGround && !isStatue) {
-            event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.copper_golem.walking", ILoopType.EDefaultLoopTypes.LOOP));
-            return PlayState.CONTINUE;
-        } /*else {
-            //System.out.println("Flag is true. Animation should be called");
-            event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.copper_golem.head_spin", false));
-            //this.setHeadSpinDelay(200);
-            //flag = false;
-            return PlayState.CONTINUE;
-        }*/
+    @Override
+    public AnimatableInstanceCache getAnimatableInstanceCache() {
+        return instanceCache;
+    }
+
+    public <E extends GeoAnimatable> PlayState setWalking(final AnimationState<E> event) {
+        boolean onGround = this.onGround();
+        if (event.isMoving() && onGround && !isStatue) {
+            return event.setAndContinue(WALKING);
+        }
         return PlayState.STOP;
     }
-
-
-    @SuppressWarnings({ "rawtypes", "unchecked" })
-    @Override
-    public void registerControllers(AnimationData data) {
-        data.setResetSpeedInTicks(4);
-        data.addAnimationController(new AnimationController(this, "controller", 3, this::setAnimation));
-    }
-
-    @Override
-    public AnimationFactory getFactory() {
-        return this.factory;
-    }
-
 
     private void setOxidization(int state) {
         this.entityData.set(OXIDIZATION, state);
@@ -159,5 +148,4 @@ public class CopperGolem extends AbstractGolem implements IAnimatable {
     public int getOxidization() {
         return this.entityData.get(OXIDIZATION);
     }
-
 }

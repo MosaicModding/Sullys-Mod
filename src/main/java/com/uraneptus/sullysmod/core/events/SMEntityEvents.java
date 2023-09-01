@@ -44,7 +44,7 @@ public class SMEntityEvents {
     @SubscribeEvent
     public static void onProjectileHitsBlock(ProjectileImpactEvent event) {
         Projectile projectile = event.getProjectile();
-        Level level = event.getEntity().getLevel();
+        Level level = event.getEntity().level();
         HitResult hitResult = event.getRayTraceResult();
         Vec3 vec3 = projectile.getDeltaMovement();
         float velocity = (float) vec3.length();

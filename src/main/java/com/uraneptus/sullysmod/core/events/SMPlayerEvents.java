@@ -1,6 +1,5 @@
 package com.uraneptus.sullysmod.core.events;
 
-import com.mojang.math.Vector3f;
 import com.uraneptus.sullysmod.SullysMod;
 import com.uraneptus.sullysmod.common.recipes.GrindstonePolishingRecipe;
 import com.uraneptus.sullysmod.core.SMConfig;
@@ -26,6 +25,7 @@ import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import org.joml.Vector3f;
 
 import java.util.ArrayList;
 
@@ -100,7 +100,7 @@ public class SMPlayerEvents {
     @SubscribeEvent
     public static void onPlayerTick(TickEvent.PlayerTickEvent event) {
         Player player = event.player;
-        Level level = player.getLevel();
+        Level level = player.level();
         InteractionHand hand = player.getUsedItemHand();
         BlockPos pos = player.blockPosition();
         ArrayList<GrindstonePolishingRecipe> recipes = new ArrayList<>(GrindstonePolishingRecipe.getRecipes(level));
@@ -114,7 +114,7 @@ public class SMPlayerEvents {
                             for(BlockPos blockpos : BlockPos.betweenClosed(pos.offset(-7, -7, -7), pos.offset(7, 7, 7))) {
                                 Block block = level.getBlockState(blockpos).getBlock();
                                 if (block instanceof GrindstoneBlock) {
-                                    ParticleUtils.spawnParticlesOnBlockFaces(level, blockpos, new DustParticleOptions(new Vector3f(Vec3.fromRGB24(16777215)), 0.4F), UniformInt.of(0, 1));
+                                    ParticleUtils.spawnParticlesOnBlockFaces(level, blockpos, new DustParticleOptions(Vec3.fromRGB24(16777215).toVector3f(), 0.4F), UniformInt.of(0, 1));
                                 }
                             }
                         }
