@@ -220,16 +220,16 @@ public class TortoiseShell extends Entity {
         Vec3 vec3 = this.getDeltaMovement();
 
         if (blockXP.getFluidState().isEmpty() && blockXN.getFluidState().isEmpty() && blockZP.getFluidState().isEmpty() && blockZN.getFluidState().isEmpty()) {
-           if (blockXP.getBlock() != Blocks.AIR && blockXP.getBlock() != Blocks.CAVE_AIR && blockXP.getBlock() != Blocks.VOID_AIR && blockXP.isCollisionShapeFullBlock(this.getLevel(), XP) && vec3.x() > 0.0) {
+           if (!blockXP.isAir() && blockXP.isCollisionShapeFullBlock(this.getLevel(), XP) && vec3.x() > 0.0) {
                this.shoot(vec3.reverse().x, vec3.y, vec3.z, 0.45F, 0.0F);
            }
-           if (blockXN.getBlock() != Blocks.AIR && blockXN.getBlock() != Blocks.CAVE_AIR && blockXN.getBlock() != Blocks.VOID_AIR && blockXN.isCollisionShapeFullBlock(this.getLevel(), XN) && vec3.x() < 0.0) {
+           if (!blockXN.isAir() && blockXN.isCollisionShapeFullBlock(this.getLevel(), XN) && vec3.x() < 0.0) {
                this.shoot(vec3.reverse().x, vec3.y, vec3.z, 0.45F, 0.0F);
            }
-           if (blockZP.getBlock() != Blocks.AIR && blockZP.getBlock() != Blocks.CAVE_AIR && blockZP.getBlock() != Blocks.VOID_AIR && blockZP.isCollisionShapeFullBlock(this.getLevel(), ZP)) {
+           if (!blockZP.isAir() && blockZP.isCollisionShapeFullBlock(this.getLevel(), ZP)) {
                this.shoot(vec3.x, vec3.y, vec3.reverse().z, 0.45F, 0.0F);
            }
-           if (blockZN.getBlock() != Blocks.AIR && blockZN.getBlock() != Blocks.CAVE_AIR && blockZN.getBlock() != Blocks.VOID_AIR && blockZN.isCollisionShapeFullBlock(this.getLevel(), ZN)) {
+           if (!blockZN.isAir() && blockZN.isCollisionShapeFullBlock(this.getLevel(), ZN)) {
                this.shoot(vec3.x, vec3.y, vec3.reverse().z, 0.45F, 0.0F);
            }
         }
