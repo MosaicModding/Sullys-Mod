@@ -101,8 +101,8 @@ public class GrindstonePolishingRecipeBuilder {
                 pJson.addProperty("group", this.group);
             }
 
-            pJson.addProperty("ingredient", Registry.ITEM.getKey(this.ingredient).toString());
-            pJson.addProperty("result", Registry.ITEM.getKey(this.result).toString());
+            pJson.addProperty("ingredient", ForgeRegistries.ITEMS.getKey(this.ingredient).toString());
+            pJson.addProperty("result", ForgeRegistries.ITEMS.getKey(this.result).toString());
             pJson.addProperty("resultCount", this.resultCount);
             pJson.addProperty("experience", this.experience);
         }

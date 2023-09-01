@@ -2,7 +2,9 @@ package com.uraneptus.sullysmod.core.data.server.tags;
 
 import com.uraneptus.sullysmod.SullysMod;
 import com.uraneptus.sullysmod.core.other.tags.SMBiomeTags;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
+import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.BiomeTagsProvider;
 import net.minecraft.tags.BiomeTags;
 import net.minecraft.world.level.biome.Biomes;
@@ -10,13 +12,15 @@ import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.concurrent.CompletableFuture;
+
 public class SMBiomeTagsProvider extends BiomeTagsProvider {
-    public SMBiomeTagsProvider(DataGenerator generator, @Nullable ExistingFileHelper fileHelper) {
-        super(generator, SullysMod.MOD_ID, fileHelper);
+    public SMBiomeTagsProvider(PackOutput packOutput, CompletableFuture<HolderLookup.Provider> pProvider, @Nullable ExistingFileHelper fileHelper) {
+        super(packOutput, pProvider, SullysMod.MOD_ID, fileHelper);
     }
 
     @Override
-    protected void addTags() {
+    protected void addTags(HolderLookup.Provider pProvider) {
         //Our Tags
         tag(SMBiomeTags.JADE_GENERATES_IN).addTag(BiomeTags.IS_JUNGLE);
         tag(SMBiomeTags.TORTOISES_SPAWN_IN).addTag(BiomeTags.IS_SAVANNA).addTag(BiomeTags.IS_JUNGLE).add(

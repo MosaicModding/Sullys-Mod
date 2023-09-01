@@ -5,7 +5,9 @@ import com.teamabnormals.blueprint.common.loot.modification.modifiers.LootPoolEn
 import com.uraneptus.sullysmod.SullysMod;
 import com.uraneptus.sullysmod.core.other.SMLootConditions;
 import com.uraneptus.sullysmod.core.registry.SMItems;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
+import net.minecraft.data.PackOutput;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.storage.loot.BuiltInLootTables;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
@@ -15,16 +17,17 @@ import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
 import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
 
 import java.util.Collections;
+import java.util.concurrent.CompletableFuture;
 
 @SuppressWarnings({"unused", "SameParameterValue"})
 public class SMLootModifierProvider extends LootModifierProvider {
 
-    public SMLootModifierProvider(DataGenerator gen) {
-        super(gen, SullysMod.MOD_ID);
+    public SMLootModifierProvider(PackOutput packOutput, CompletableFuture<HolderLookup.Provider> lookupProvider) {
+        super(SullysMod.MOD_ID, packOutput, lookupProvider);
     }
 
     @Override
-    protected void registerEntries() {
+    protected void registerEntries(HolderLookup.Provider provider) {
         this.entry("add_lanternfish_to_fishing").selects(BuiltInLootTables.FISHING_FISH).addModifier(new LootPoolEntriesModifier(false, 0, Collections.singletonList(createLootEntryWithCondition(SMItems.LANTERNFISH.get(), 55, 1, 1, SMLootConditions.ON_LANTERNFISH_HEIGHT))));
         this.entry("add_music_disc_scour_to_jungle_temple").selects(BuiltInLootTables.JUNGLE_TEMPLE).addModifier(new LootPoolEntriesModifier(false, 0, Collections.singletonList(createMusicDiscLootEntry(SMItems.MUSIC_DISC_SCOUR.get(), 4))));
 

@@ -4,19 +4,23 @@ import com.teamabnormals.blueprint.core.other.tags.BlueprintEntityTypeTags;
 import com.uraneptus.sullysmod.SullysMod;
 import com.uraneptus.sullysmod.core.other.tags.SMEntityTags;
 import com.uraneptus.sullysmod.core.registry.SMEntityTypes;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
+import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.EntityTypeTagsProvider;
 import net.minecraft.world.entity.EntityType;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.concurrent.CompletableFuture;
+
 public class SMEntityTagsProvider extends EntityTypeTagsProvider {
-    public SMEntityTagsProvider(DataGenerator generator, @Nullable ExistingFileHelper existingFileHelper) {
-        super(generator, SullysMod.MOD_ID, existingFileHelper);
+    public SMEntityTagsProvider(PackOutput packOutput, CompletableFuture<HolderLookup.Provider> pProvider, @Nullable ExistingFileHelper existingFileHelper) {
+        super(packOutput, pProvider, SullysMod.MOD_ID, existingFileHelper);
     }
 
     @Override
-    protected void addTags() {
+    protected void addTags(HolderLookup.Provider pProvider) {
         tag(BlueprintEntityTypeTags.FISHES).add(SMEntityTypes.LANTERNFISH.get());
 
         tag(SMEntityTags.SCARES_TORTOISES).add(

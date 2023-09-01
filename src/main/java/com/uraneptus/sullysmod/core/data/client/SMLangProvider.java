@@ -6,6 +6,7 @@ import com.uraneptus.sullysmod.core.registry.SMEntityTypes;
 import com.uraneptus.sullysmod.core.registry.SMItems;
 import com.uraneptus.sullysmod.core.registry.SMPotions;
 import net.minecraft.data.DataGenerator;
+import net.minecraft.data.PackOutput;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.alchemy.Potion;
@@ -16,8 +17,8 @@ import java.util.function.Supplier;
 
 public class SMLangProvider extends LanguageProvider {
 
-    public SMLangProvider(DataGenerator gen) {
-        super(gen, SullysMod.MOD_ID, "en_us");
+    public SMLangProvider(PackOutput packOutput) {
+        super(packOutput, SullysMod.MOD_ID, "en_us");
     }
 
     @Override

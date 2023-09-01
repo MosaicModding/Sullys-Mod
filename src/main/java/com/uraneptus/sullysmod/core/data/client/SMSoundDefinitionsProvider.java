@@ -3,6 +3,7 @@ package com.uraneptus.sullysmod.core.data.client;
 import com.uraneptus.sullysmod.SullysMod;
 import com.uraneptus.sullysmod.core.registry.SMSounds;
 import net.minecraft.data.DataGenerator;
+import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraftforge.common.data.ExistingFileHelper;
@@ -14,8 +15,8 @@ import java.util.function.Supplier;
 @SuppressWarnings("SameParameterValue")
 public class SMSoundDefinitionsProvider extends SoundDefinitionsProvider {
 
-    public SMSoundDefinitionsProvider(DataGenerator generator, ExistingFileHelper helper) {
-        super(generator, SullysMod.MOD_ID, helper);
+    public SMSoundDefinitionsProvider(PackOutput packOutput, ExistingFileHelper helper) {
+        super(packOutput, SullysMod.MOD_ID, helper);
     }
 
     //TODO: make the amount of sounds generated

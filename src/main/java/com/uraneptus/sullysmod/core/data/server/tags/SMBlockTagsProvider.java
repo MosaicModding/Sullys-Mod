@@ -3,21 +3,25 @@ package com.uraneptus.sullysmod.core.data.server.tags;
 import com.uraneptus.sullysmod.SullysMod;
 import com.uraneptus.sullysmod.core.other.tags.SMBlockTags;
 import com.uraneptus.sullysmod.core.registry.SMBlocks;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
-import net.minecraft.data.tags.BlockTagsProvider;
+import net.minecraft.data.PackOutput;
 import net.minecraft.tags.BlockTags;
 import net.minecraftforge.common.Tags;
+import net.minecraftforge.common.data.BlockTagsProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.concurrent.CompletableFuture;
+
 public class SMBlockTagsProvider extends BlockTagsProvider {
 
-    public SMBlockTagsProvider(DataGenerator generator, @Nullable ExistingFileHelper existingFileHelper) {
-        super(generator, SullysMod.MOD_ID, existingFileHelper);
+    public SMBlockTagsProvider(PackOutput packOutput, CompletableFuture<HolderLookup.Provider> pProvider, @Nullable ExistingFileHelper existingFileHelper) {
+        super(packOutput, pProvider, SullysMod.MOD_ID, existingFileHelper);
     }
 
     @Override
-    public void addTags() {
+    public void addTags(HolderLookup.Provider pProvider) {
         //Minecraft Tags
         tag(BlockTags.MINEABLE_WITH_PICKAXE).add(
                 SMBlocks.JADE_ORE.get(),

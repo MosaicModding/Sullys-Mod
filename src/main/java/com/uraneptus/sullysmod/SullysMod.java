@@ -10,8 +10,8 @@ import com.uraneptus.sullysmod.core.data.client.SMBlockStateProvider;
 import com.uraneptus.sullysmod.core.data.client.SMItemModelProvider;
 import com.uraneptus.sullysmod.core.data.client.SMLangProvider;
 import com.uraneptus.sullysmod.core.data.client.SMSoundDefinitionsProvider;
-import com.uraneptus.sullysmod.core.data.server.SMAdvancementProvider;
-import com.uraneptus.sullysmod.core.data.server.SMLootTableProvider;
+import com.uraneptus.sullysmod.core.data.server.advancements.SMAdvancementProvider;
+import com.uraneptus.sullysmod.core.data.server.loot.SMLootTableProvider;
 import com.uraneptus.sullysmod.core.data.server.SMRecipeProvider;
 import com.uraneptus.sullysmod.core.data.server.datapack_registries.SMBiomeModifiersProvider;
 import com.uraneptus.sullysmod.core.data.server.datapack_registries.SMConfiguredFeatureProvider;
@@ -24,7 +24,9 @@ import com.uraneptus.sullysmod.core.data.server.tags.SMEntityTagsProvider;
 import com.uraneptus.sullysmod.core.data.server.tags.SMItemTagsProvider;
 import com.uraneptus.sullysmod.core.integration.fd.FDCompat;
 import com.uraneptus.sullysmod.core.registry.*;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
+import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.data.ExistingFileHelper;
@@ -38,6 +40,8 @@ import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.slf4j.Logger;
+
+import java.util.concurrent.CompletableFuture;
 
 @Mod(SullysMod.MOD_ID)
 @Mod.EventBusSubscriber(modid = SullysMod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
@@ -90,23 +94,25 @@ public class SullysMod {
         boolean includeClient = event.includeClient();
         boolean includeServer = event.includeServer();
         DataGenerator generator = event.getGenerator();
+        PackOutput packOutput = generator.getPackOutput();
         ExistingFileHelper fileHelper = event.getExistingFileHelper();
+        CompletableFuture<HolderLookup.Provider> lookupProvider = event.getLookupProvider();
 
-        generator.addProvider(includeClient, new SMBlockStateProvider(generator, fileHelper));
-        generator.addProvider(includeClient, new SMItemModelProvider(generator, fileHelper));
-        generator.addProvider(includeClient, new SMSoundDefinitionsProvider(generator, fileHelper));
-        generator.addProvider(includeClient, new SMLangProvider(generator));
+        generator.addProvider(includeClient, new SMBlockStateProvider(packOutput, fileHelper));
+        generator.addProvider(includeClient, new SMItemModelProvider(packOutput, fileHelper));
+        generator.addProvider(includeClient, new SMSoundDefinitionsProvider(packOutput, fileHelper));
+        generator.addProvider(includeClient, new SMLangProvider(packOutput));
 
-        SMBlockTagsProvider blockTagProvider = new SMBlockTagsProvider(generator, fileHelper);
-        generator.addProvider(includeServer, new SMEntityTagsProvider(generator, fileHelper));
+        SMBlockTagsProvider blockTagProvider = new SMBlockTagsProvider(packOutput, lookupProvider, fileHelper);
+        generator.addProvider(includeServer, new SMEntityTagsProvider(packOutput, lookupProvider, fileHelper));
         generator.addProvider(includeServer, blockTagProvider);
-        generator.addProvider(includeServer, new SMItemTagsProvider(generator, blockTagProvider, fileHelper));
-        generator.addProvider(includeServer, new SMBiomeTagsProvider(generator, fileHelper));
-        generator.addProvider(includeServer, new SMAdvancementModifiersProvider(generator));
-        generator.addProvider(includeServer, new SMLootTableProvider(generator));
-        generator.addProvider(includeServer, new SMAdvancementProvider(generator, fileHelper));
-        generator.addProvider(includeServer, new SMRecipeProvider(generator));
-        generator.addProvider(includeServer, new SMLootModifierProvider(generator));
+        generator.addProvider(includeServer, new SMItemTagsProvider(packOutput, lookupProvider, blockTagProvider.contentsGetter(), fileHelper));
+        generator.addProvider(includeServer, new SMBiomeTagsProvider(packOutput, lookupProvider, fileHelper));
+        generator.addProvider(includeServer, new SMAdvancementModifiersProvider(packOutput, lookupProvider));
+        generator.addProvider(includeServer, new SMLootTableProvider(packOutput));
+        generator.addProvider(includeServer, new SMAdvancementProvider(packOutput, lookupProvider, fileHelper));
+        generator.addProvider(includeServer, new SMRecipeProvider(packOutput));
+        generator.addProvider(includeServer, new SMLootModifierProvider(packOutput, lookupProvider));
         generator.addProvider(includeServer, SMBiomeModifiersProvider.createBiomeModifiers(generator, fileHelper));
         generator.addProvider(includeServer, SMConfiguredFeatureProvider.createConfiguredFeatures(generator, fileHelper));
         generator.addProvider(includeServer, SMPlacedFeaturesProvider.createPlacedFeatures(generator, fileHelper));

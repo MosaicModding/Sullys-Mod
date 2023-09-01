@@ -6,12 +6,13 @@ import net.minecraft.core.Registry;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraftforge.registries.DeferredRegister;
+import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
 @SuppressWarnings("deprecation")
 public class SMRecipeTypes {
 
-    public static final DeferredRegister<RecipeType<?>> RECIPE_TYPES = DeferredRegister.create(Registry.RECIPE_TYPE.key(), SullysMod.MOD_ID);
+    public static final DeferredRegister<RecipeType<?>> RECIPE_TYPES = DeferredRegister.create(ForgeRegistries.RECIPE_TYPES, SullysMod.MOD_ID);
 
     public static final RegistryObject<RecipeType<GrindstonePolishingRecipe>> GRINDSTONE_POLISHING = RECIPE_TYPES.register(GrindstonePolishingRecipe.NAME, () -> registerType(GrindstonePolishingRecipe.NAME));
 

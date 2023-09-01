@@ -5,6 +5,7 @@ import com.uraneptus.sullysmod.core.registry.SMRecipeSerializer;
 import com.uraneptus.sullysmod.core.registry.SMRecipeTypes;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.core.Registry;
+import net.minecraft.core.RegistryAccess;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.GsonHelper;
@@ -15,6 +16,7 @@ import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.item.crafting.ShapedRecipe;
 import net.minecraft.world.level.Level;
+import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.Nullable;
 
 import javax.annotation.ParametersAreNonnullByDefault;
@@ -49,13 +51,18 @@ public class GrindstonePolishingRecipe implements Recipe<Container> {
     }
 
     @Override
-    public ItemStack assemble(Container pContainer) {
-        return this.result;
+    public ItemStack assemble(Container pContainer, RegistryAccess pRegistryAccess) {
+        return this.result.copy();
     }
 
     @Override
     public boolean canCraftInDimensions(int pWidth, int pHeight) {
         return false;
+    }
+
+    @Override
+    public ItemStack getResultItem(RegistryAccess pRegistryAccess) {
+        return result;
     }
 
     public int getExperience() {
@@ -64,11 +71,6 @@ public class GrindstonePolishingRecipe implements Recipe<Container> {
 
     public int getResultCount() {
         return this.resultCount;
-    }
-
-    @Override
-    public ItemStack getResultItem() {
-        return this.result.copy();
     }
 
     @Override
@@ -114,7 +116,7 @@ public class GrindstonePolishingRecipe implements Recipe<Container> {
             else {
                 String ingredientItem = GsonHelper.getAsString(jsonObject, "ingredient");
                 ResourceLocation resourcelocation = new ResourceLocation(ingredientItem);
-                ingredient = new ItemStack(Registry.ITEM.getOptional(resourcelocation).orElseThrow(() -> new IllegalStateException("Item: " + ingredientItem + " does not exist")));
+                ingredient = new ItemStack(ForgeRegistries.ITEMS.getDelegate(resourcelocation).orElseThrow(() -> new IllegalStateException("Item: " + ingredientItem + " does not exist")));
             }
             if (!jsonObject.has("result")) throw new com.google.gson.JsonSyntaxException("Missing result, expected to find a string or object");
             ItemStack result;
@@ -124,7 +126,7 @@ public class GrindstonePolishingRecipe implements Recipe<Container> {
             else {
                 String resultItem = GsonHelper.getAsString(jsonObject, "result");
                 ResourceLocation resourcelocation = new ResourceLocation(resultItem);
-                result = new ItemStack(Registry.ITEM.getOptional(resourcelocation).orElseThrow(() -> new IllegalStateException("Item: " + resultItem + " does not exist")));
+                result = new ItemStack(ForgeRegistries.ITEMS.getDelegate(resourcelocation).orElseThrow(() -> new IllegalStateException("Item: " + resultItem + " does not exist")));
             }
             int resultCount = GsonHelper.getAsInt(jsonObject, "resultCount", 1);
             int experience = GsonHelper.getAsInt(jsonObject, "experience", 0);

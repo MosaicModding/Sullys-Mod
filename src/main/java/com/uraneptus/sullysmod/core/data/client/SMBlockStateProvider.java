@@ -4,6 +4,7 @@ import com.teamabnormals.blueprint.common.block.VerticalSlabBlock;
 import com.uraneptus.sullysmod.SullysMod;
 import com.uraneptus.sullysmod.core.registry.SMBlocks;
 import net.minecraft.data.DataGenerator;
+import net.minecraft.data.PackOutput;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraftforge.client.model.generators.BlockStateProvider;
@@ -17,8 +18,8 @@ import static com.uraneptus.sullysmod.core.data.SMDatagenUtil.*;
 
 @SuppressWarnings("SameParameterValue")
 public class SMBlockStateProvider extends BlockStateProvider {
-    public SMBlockStateProvider(DataGenerator gen, ExistingFileHelper exFileHelper) {
-        super(gen, SullysMod.MOD_ID, exFileHelper);
+    public SMBlockStateProvider(PackOutput packOutput, ExistingFileHelper exFileHelper) {
+        super(packOutput, SullysMod.MOD_ID, exFileHelper);
     }
 
     @Override
