@@ -24,7 +24,6 @@ import java.util.function.Consumer;
 
 @SuppressWarnings("deprecation")
 public class JadeShieldItem extends Item {
-    private static final TargetedItemCategoryFiller FILLER = new TargetedItemCategoryFiller(() -> Items.SHIELD);
     private final Multimap<Attribute, AttributeModifier> defaultModifiers;
 
     public JadeShieldItem(float useSpeed, Properties pProperties) {
@@ -76,10 +75,5 @@ public class JadeShieldItem extends Item {
     @Override
     public boolean canPerformAction(ItemStack stack, net.minecraftforge.common.ToolAction toolAction) {
         return net.minecraftforge.common.ToolActions.DEFAULT_SHIELD_ACTIONS.contains(toolAction);
-    }
-
-    @Override
-    public void fillItemCategory(CreativeModeTab group, NonNullList<ItemStack> items) {
-        FILLER.fillItem(this, group, items);
     }
 }

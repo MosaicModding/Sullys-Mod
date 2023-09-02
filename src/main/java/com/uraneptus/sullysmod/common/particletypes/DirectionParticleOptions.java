@@ -9,7 +9,9 @@ import net.minecraft.core.Direction;
 import net.minecraft.core.Registry;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleType;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.network.FriendlyByteBuf;
+import net.minecraftforge.registries.ForgeRegistries;
 
 public class DirectionParticleOptions implements ParticleOptions {
     public static final ParticleOptions.Deserializer<DirectionParticleOptions> DESERIALIZER = new ParticleOptions.Deserializer<DirectionParticleOptions>() {
@@ -39,11 +41,7 @@ public class DirectionParticleOptions implements ParticleOptions {
     private final Direction face;
 
     public static Codec<DirectionParticleOptions> codec(ParticleType<DirectionParticleOptions> particleType) {
-        return Direction.CODEC.xmap((face) -> {
-            return new DirectionParticleOptions(particleType, face);
-        }, (particle) -> {
-            return particle.face;
-        });
+        return Direction.CODEC.xmap((face) -> new DirectionParticleOptions(particleType, face), (particle) -> particle.face);
     }
 
     public DirectionParticleOptions(ParticleType<DirectionParticleOptions> particleType, Direction face) {
@@ -56,7 +54,7 @@ public class DirectionParticleOptions implements ParticleOptions {
     }
 
     public String writeToString() {
-        return Registry.PARTICLE_TYPE.getKey(this.getType()) + " " + this.face.toString();
+        return ForgeRegistries.PARTICLE_TYPES.getKey(this.getType()) + " " + this.face.toString();
     }
 
     public ParticleType<DirectionParticleOptions> getType() {

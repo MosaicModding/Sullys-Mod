@@ -54,6 +54,5 @@ public class SMItems {
 
     public static Item createMobBucketItem(Supplier<EntityType<? extends WaterAnimal>> entityType) {
         return new MobBucketItem(entityType, () -> Fluids.WATER, () -> SoundEvents.BUCKET_EMPTY_FISH, SMProperties.Items.cannotStack());
-        // was blueprintMobBucketItem but thats gone??
     }
 }
