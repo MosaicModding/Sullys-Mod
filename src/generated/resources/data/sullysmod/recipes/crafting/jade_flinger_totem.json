@@ -1,5 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
+  "category": "redstone",
   "key": {
     "#": {
       "item": "sullysmod:polished_jade_shingles"
@@ -15,5 +16,6 @@
   ],
   "result": {
     "item": "sullysmod:jade_flinger_totem"
-  }
+  },
+  "show_notification": true
 }

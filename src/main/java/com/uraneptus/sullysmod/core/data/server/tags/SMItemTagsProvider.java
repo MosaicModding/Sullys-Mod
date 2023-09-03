@@ -66,18 +66,21 @@ public class SMItemTagsProvider extends ItemTagsProvider {
                 SMItems.LANTERNFISH.get(),
                 SMItems.COOKED_LANTERNFISH.get()
         );
+        tag(ItemTags.MUSIC_DISCS).add(
+                SMItems.MUSIC_DISC_SCOUR.get()
+        );
 
         //Forge Tags
         tag(SMItemTags.RAW_LANTERNFISH).add(
-                SMItems.LANTERNFISH.get()
-                //SMItems.LANTERNFISH_SLICE.get()
+                SMItems.LANTERNFISH.get(),
+                SMItems.LANTERNFISH_SLICE.get()
         );
         tag(SMItemTags.RAW_FISHES).addTag(
                 SMItemTags.RAW_LANTERNFISH
         );
         tag(SMItemTags.COOKED_LANTERNFISH).add(
-                SMItems.COOKED_LANTERNFISH.get()
-                //SMItems.COOKED_LANTERNFISH_SLICE.get()
+                SMItems.COOKED_LANTERNFISH.get(),
+                SMItems.COOKED_LANTERNFISH_SLICE.get()
         );
         tag(SMItemTags.COOKED_FISHES).addTag(
                 SMItemTags.COOKED_LANTERNFISH

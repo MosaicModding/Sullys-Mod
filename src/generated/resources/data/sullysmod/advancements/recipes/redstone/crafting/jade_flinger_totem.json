@@ -43,5 +43,6 @@
     "recipes": [
       "sullysmod:crafting/jade_flinger_totem"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

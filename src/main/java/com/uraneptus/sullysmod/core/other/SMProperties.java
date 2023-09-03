@@ -1,12 +1,12 @@
 package com.uraneptus.sullysmod.core.other;
 
+import com.teamabnormals.blueprint.core.util.item.CreativeModeTabContentsPopulator;
+import com.uraneptus.sullysmod.SullysMod;
 import com.uraneptus.sullysmod.core.integration.fd.FDCompat;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.food.FoodProperties;
-import net.minecraft.world.item.CreativeModeTab;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.Rarity;
+import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
@@ -24,9 +24,7 @@ public class SMProperties {
     }
 
     public static final class Items {
-
-
-        //public static final Item.Properties FD_COMPAT_TAB = new Item.Properties().tab(!FDCompat.IS_LOADED ? null : FDCompat.FDLoaded.fdTab());
+        public static final Item.Properties FD_COMPAT_TAB = new Item.Properties()/*.tab(!FDCompat.IS_LOADED ? null : FDCompat.FDLoaded.fdTab())*/;
 
         public static Item.Properties cannotStack() {
             return new Item.Properties().stacksTo(1);
@@ -39,7 +37,7 @@ public class SMProperties {
         public static final Item.Properties MUSIC_DISCS = cannotStack().rarity(Rarity.RARE);
         public static final Item.Properties JADE_SHIELD = new Item.Properties().durability(400);
         public static final Item.Properties TOROTISE_SHELL = new Item.Properties().stacksTo(1);
-       // public static final Item.Properties CAVE_CHUM_BUCKET = SMProperties.Items.FD_COMPAT_TAB.food(SMProperties.Foods.CAVE_CHUM_BUCKET_FOOD).stacksTo(16);
+       public static final Item.Properties CAVE_CHUM_BUCKET = SMProperties.Items.FD_COMPAT_TAB.food(SMProperties.Foods.CAVE_CHUM_BUCKET_FOOD).stacksTo(16);
     }
 
     public static final class Foods {

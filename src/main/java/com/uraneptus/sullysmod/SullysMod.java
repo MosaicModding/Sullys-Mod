@@ -6,16 +6,11 @@ import com.uraneptus.sullysmod.common.entities.CopperGolem;
 import com.uraneptus.sullysmod.common.entities.Lanternfish;
 import com.uraneptus.sullysmod.common.entities.Tortoise;
 import com.uraneptus.sullysmod.core.SMConfig;
-import com.uraneptus.sullysmod.core.data.client.SMBlockStateProvider;
-import com.uraneptus.sullysmod.core.data.client.SMItemModelProvider;
-import com.uraneptus.sullysmod.core.data.client.SMLangProvider;
-import com.uraneptus.sullysmod.core.data.client.SMSoundDefinitionsProvider;
+import com.uraneptus.sullysmod.core.data.client.*;
 import com.uraneptus.sullysmod.core.data.server.advancements.SMAdvancementProvider;
-import com.uraneptus.sullysmod.core.data.server.datapack_registries.SMPlacedFeatures;
+import com.uraneptus.sullysmod.core.data.server.SMDatapackBuiltinEntriesProvider;
 import com.uraneptus.sullysmod.core.data.server.loot.SMLootTableProvider;
 import com.uraneptus.sullysmod.core.data.server.SMRecipeProvider;
-import com.uraneptus.sullysmod.core.data.server.datapack_registries.SMBiomeModifiers;
-import com.uraneptus.sullysmod.core.data.server.datapack_registries.SMConfiguredFeatures;
 import com.uraneptus.sullysmod.core.data.server.modifiers.SMAdvancementModifiersProvider;
 import com.uraneptus.sullysmod.core.data.server.modifiers.SMLootModifierProvider;
 import com.uraneptus.sullysmod.core.data.server.tags.SMBiomeTagsProvider;
@@ -25,13 +20,10 @@ import com.uraneptus.sullysmod.core.data.server.tags.SMItemTagsProvider;
 import com.uraneptus.sullysmod.core.integration.fd.FDCompat;
 import com.uraneptus.sullysmod.core.registry.*;
 import net.minecraft.core.HolderLookup;
-import net.minecraft.core.RegistrySetBuilder;
-import net.minecraft.core.registries.Registries;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.common.data.DatapackBuiltinEntriesProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.data.event.GatherDataEvent;
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
@@ -42,10 +34,8 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import net.minecraftforge.registries.ForgeRegistries;
 import org.slf4j.Logger;
 
-import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 
 @Mod(SullysMod.MOD_ID)
@@ -54,10 +44,6 @@ public class SullysMod {
     public static final String MOD_ID = "sullysmod";
     public static final String BLUEPRINT_MOD_ID = "blueprint";
     public static final RegistryHelper REGISTRY_HELPER = new RegistryHelper(MOD_ID);
-    private static final RegistrySetBuilder SET_BUILDER = new RegistrySetBuilder()
-            .add(ForgeRegistries.Keys.BIOME_MODIFIERS, SMBiomeModifiers::create)
-            .add(Registries.CONFIGURED_FEATURE, SMConfiguredFeatures::create)
-            .add(Registries.PLACED_FEATURE, SMPlacedFeatures::create);
     public static final Logger LOGGER = LogUtils.getLogger();
 
     public static ResourceLocation modPrefix(String path) {
@@ -76,13 +62,13 @@ public class SullysMod {
         ModLoadingContext.get().registerConfig(ModConfig.Type.SERVER, SMConfig.SERVER);
         ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, SMConfig.CLIENT);
 
+        FDCompat.register();
         REGISTRY_HELPER.register(bus);
         SMParticleTypes.PARTICLES.register(bus);
         SMPotions.POTIONS.register(bus);
         SMRecipeTypes.RECIPE_TYPES.register(bus);
         SMRecipeSerializer.SERIALIZERS.register(bus);
-
-        FDCompat.register();
+        SMItems.buildCreativeTabContents();
 
         MinecraftForge.EVENT_BUS.register(this);
     }
@@ -111,6 +97,7 @@ public class SullysMod {
         generator.addProvider(includeClient, new SMItemModelProvider(packOutput, fileHelper));
         generator.addProvider(includeClient, new SMSoundDefinitionsProvider(packOutput, fileHelper));
         generator.addProvider(includeClient, new SMLangProvider(packOutput));
+        generator.addProvider(includeClient, new SMSpriteSourceProvider(packOutput, fileHelper));
 
         SMBlockTagsProvider blockTagProvider = new SMBlockTagsProvider(packOutput, lookupProvider, fileHelper);
         generator.addProvider(includeServer, new SMEntityTagsProvider(packOutput, lookupProvider, fileHelper));
@@ -122,6 +109,6 @@ public class SullysMod {
         generator.addProvider(includeServer, new SMAdvancementProvider(packOutput, lookupProvider, fileHelper));
         generator.addProvider(includeServer, new SMRecipeProvider(packOutput));
         generator.addProvider(includeServer, new SMLootModifierProvider(packOutput, lookupProvider));
-        generator.addProvider(includeServer, new DatapackBuiltinEntriesProvider(packOutput, lookupProvider, SET_BUILDER, Set.of(MOD_ID)));
+        generator.addProvider(includeServer, new SMDatapackBuiltinEntriesProvider(packOutput, lookupProvider));
     }
 }

@@ -36,7 +36,7 @@ public class SMRecipeProvider extends RecipeProvider {
         //Cooking, Smelting etc.
         cookingRecipes(SMItems.LANTERNFISH, SMItems.COOKED_LANTERNFISH, 0.35F, consumer);
 
-        //modLoadedCookingRecipes(FDCompat.MOD_ID, SMItems.LANTERNFISH_SLICE, SMItems.COOKED_LANTERNFISH_SLICE, 0.35F, consumer);
+        modLoadedCookingRecipes(FDCompat.MOD_ID, SMItems.LANTERNFISH_SLICE, SMItems.COOKED_LANTERNFISH_SLICE, 0.35F, consumer);
 
         basicSmeltingRecipes(RecipeCategory.BUILDING_BLOCKS, SMBlocks.ROUGH_JADE_BLOCK, SMBlocks.SMOOTHED_ROUGH_JADE, 1.0F, consumer);
 
@@ -99,7 +99,7 @@ public class SMRecipeProvider extends RecipeProvider {
         waxButtonRecipes(SMBlocks.WEATHERED_COPPER_BUTTON, SMBlocks.WAXED_WEATHERED_COPPER_BUTTON, consumer);
         waxButtonRecipes(SMBlocks.OXIDIZED_COPPER_BUTTON, SMBlocks.WAXED_OXIDIZED_COPPER_BUTTON, consumer);
 
-        //fishRollRecipes(SMItems.LANTERNFISH_SLICE, SMItems.LANTERNFISH_ROLL, consumer);
+        fishRollRecipes(SMItems.LANTERNFISH_SLICE, SMItems.LANTERNFISH_ROLL, consumer);
 
         //Stonecutting
         stonecutterRecipes(RecipeCategory.BUILDING_BLOCKS, SMBlocks.ROUGH_JADE_BLOCK, SMBlocks.ROUGH_JADE_BRICKS, 1, consumer);
@@ -263,18 +263,16 @@ public class SMRecipeProvider extends RecipeProvider {
                 .unlockedBy(getHasName(ingredient.get()), has(ingredient.get())).save(consumer, craftingPath(resultName + "_from_honeycomb"));
     }
 
-    /*
+
     private static void fishRollRecipes(Supplier<? extends ItemLike> ingredient, Supplier<? extends ItemLike> result, Consumer<FinishedRecipe> consumer) {
         ConditionalRecipe.builder()
                 .addCondition(new ModLoadedCondition(FDCompat.MOD_ID))
-                .addRecipe(consumer1 -> ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, result.get(), 2).requires(ingredient.get(), 2).requires(FDCompat.FDLoaded.COOKED_RICE)
+                .addRecipe(consumer1 -> ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, result.get(), 2).requires(ingredient.get(), 2).requires(FDCompat.FDLoaded.getFDItem("cooked_rice"))
                         .unlockedBy(getHasName(ingredient.get()), has(ingredient.get()))
                         .save(consumer1, SullysMod.modPrefix(getItemName(result.get()))))
                 .build(consumer, craftingPath(getItemName(result.get())));
 
     }
-
-     */
 
     private static void stonecutterRecipes(RecipeCategory category, Supplier<? extends ItemLike> ingredient, Supplier<? extends ItemLike> result, int resultCount, Consumer<FinishedRecipe> consumer) {
         String prefix = getItemName(result.get()) + "_from_" + getItemName(ingredient.get());

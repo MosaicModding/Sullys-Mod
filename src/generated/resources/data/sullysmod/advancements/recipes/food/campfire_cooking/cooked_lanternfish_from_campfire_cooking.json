@@ -30,5 +30,6 @@
     "recipes": [
       "sullysmod:campfire_cooking/cooked_lanternfish_from_campfire_cooking"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

@@ -1,5 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
+  "category": "misc",
   "key": {
     "#": {
       "item": "sullysmod:tortoise_scute"
@@ -12,5 +13,6 @@
   ],
   "result": {
     "item": "sullysmod:tortoise_shell"
-  }
+  },
+  "show_notification": true
 }

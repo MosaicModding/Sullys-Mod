@@ -6,14 +6,22 @@
         "criteria": {
           "sullysmod:wax_off": {
             "conditions": {
-              "item": {
-                "tag": "forge:tools/axes"
-              },
-              "location": {
-                "block": {
-                  "tag": "forge:waxed_copper_blocks"
+              "location": [
+                {
+                  "condition": "minecraft:location_check",
+                  "predicate": {
+                    "block": {
+                      "tag": "forge:waxed_copper_blocks"
+                    }
+                  }
+                },
+                {
+                  "condition": "minecraft:match_tool",
+                  "predicate": {
+                    "tag": "forge:tools/axes"
+                  }
                 }
-              }
+              ]
             },
             "trigger": "minecraft:item_used_on_block"
           }

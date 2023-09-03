@@ -28,7 +28,7 @@ public class SMBlocks {
     public static final RegistryObject<Block> POLISHED_JADE_TILES = HELPER.createBlock("polished_jade_tiles", () -> new Block(SMProperties.Blocks.POLISHED_JADE_BLOCKS)); //CreativeModeTab.TAB_BUILDING_BLOCKS
     public static final RegistryObject<Block> POLISHED_CHISELED_JADE = HELPER.createBlock("polished_chiseled_jade", () -> new Block(SMProperties.Blocks.POLISHED_JADE_BLOCKS)); //CreativeModeTab.TAB_BUILDING_BLOCKS
     public static final RegistryObject<Block> JADE_TOTEM = HELPER.createBlock("jade_totem", () -> new SMDirectionalBlock(SMProperties.Blocks.POLISHED_JADE_BLOCKS)); //CreativeModeTab.TAB_BUILDING_BLOCKS
-    public static final RegistryObject<Block> JADE_FLINGER_TOTEM = HELPER.createBlock("jade_flinger_totem", () -> new JadeFlingerTotem(SMProperties.Blocks.POLISHED_JADE_BLOCKS)); // CreativeModeTab.TAB_REDSTONE
+    public static final RegistryObject<Block> JADE_FLINGER_TOTEM = HELPER.createBlock("jade_flinger_totem", () -> new JadeFlingerTotem(SMProperties.Blocks.POLISHED_JADE_BLOCKS)); // CreativeModeTab.TAB_REDSTONE after Dropper
     public static final RegistryObject<Block> POLISHED_JADE_PILLAR = HELPER.createBlock("polished_jade_pillar", () -> new RotatedPillarBlock(SMProperties.Blocks.POLISHED_JADE_BLOCKS)); //CreativeModeTab.TAB_BUILDING_BLOCKS
 
     //Jade Stairs

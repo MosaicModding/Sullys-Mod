@@ -30,5 +30,6 @@
     "recipes": [
       "sullysmod:stonecutting/polished_small_jade_brick_slab_from_polished_small_jade_bricks_stonecutting"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

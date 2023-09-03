@@ -4,6 +4,7 @@ import com.uraneptus.sullysmod.SullysMod;
 import com.uraneptus.sullysmod.core.registry.SMBlocks;
 import net.minecraft.core.*;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.data.worldgen.BootstapContext;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
@@ -15,6 +16,9 @@ import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 import net.minecraftforge.client.model.generators.ModelProvider;
 import net.minecraftforge.registries.ForgeRegistries;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @SuppressWarnings("unused")
 public class SMDatagenUtil {
     public static final String LAYER0 = "layer0";
@@ -22,24 +26,17 @@ public class SMDatagenUtil {
     public static final ResourceLocation HANDHELD = vanillaItemLocation("handheld");
     public static final ResourceLocation SPAWN_EGG = vanillaItemLocation("template_spawn_egg");
 
-    /*
-    public static final RegistryAccess REGISTRY_ACCESS = RegistryAccess.builtinCopy();
-    public static final Registry<ConfiguredFeature<?, ?>> CONFIGURED_FEATURE_REGISTRY = REGISTRY_ACCESS.registryOrThrow(Registry.CONFIGURED_FEATURE_REGISTRY);
-    public static final Registry<Biome> BIOME_REGISTRY = REGISTRY_ACCESS.registryOrThrow(Registry.BIOME_REGISTRY);
-    public static final Registry<PlacedFeature> PLACED_FEATURE_REGISTRY = REGISTRY_ACCESS.registryOrThrow(Registries.PLACED_FEATURE);
-
-
-
-
-
-     */
-
-    public static Holder<ConfiguredFeature<?, ?>> getConfigHolder(String name, HolderGetter<ConfiguredFeature<?, ?>> holderGetter) {
-        return Holder.direct(holderGetter.getOrThrow(ResourceKey.create(Registries.CONFIGURED_FEATURE, SullysMod.modPrefix(name))).get());
+    public static Holder<ConfiguredFeature<?, ?>> getConfiguredHolder(BootstapContext<?> context, ResourceKey<ConfiguredFeature<?, ?>> configuredFeature) {
+        return context.lookup(Registries.CONFIGURED_FEATURE).get(configuredFeature).orElseThrow();
     }
 
-    public static HolderSet<PlacedFeature> getPlacementHolder(String name, HolderGetter<PlacedFeature> holderGetter) {
-        return HolderSet.direct(holderGetter.getOrThrow(ResourceKey.create(Registries.PLACED_FEATURE, SullysMod.modPrefix(name))));
+    @SafeVarargs
+    public static HolderSet<PlacedFeature> getPlacedHolderSet(BootstapContext<?> context, ResourceKey<PlacedFeature>... placedFeatures) {
+        List<Holder<PlacedFeature>> holders = new ArrayList<>();
+        for (ResourceKey<PlacedFeature> feature : placedFeatures) {
+            holders.add(context.lookup(Registries.PLACED_FEATURE).getOrThrow(feature));
+        }
+        return HolderSet.direct(holders);
     }
 
     public static String name(Block block) {

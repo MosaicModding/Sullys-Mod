@@ -1,5 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
+  "category": "building",
   "key": {
     "#": {
       "item": "sullysmod:smoothed_rough_jade"
@@ -11,5 +12,6 @@
   "result": {
     "count": 6,
     "item": "sullysmod:smoothed_rough_jade_slab"
-  }
+  },
+  "show_notification": true
 }

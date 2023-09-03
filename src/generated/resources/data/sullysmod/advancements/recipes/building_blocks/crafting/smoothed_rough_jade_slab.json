@@ -30,5 +30,6 @@
     "recipes": [
       "sullysmod:crafting/smoothed_rough_jade_slab"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

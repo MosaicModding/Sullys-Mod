@@ -30,5 +30,6 @@
     "recipes": [
       "sullysmod:crafting/jade_totem"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

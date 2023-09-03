@@ -1,5 +1,6 @@
 {
   "type": "minecraft:crafting_shapeless",
+  "category": "redstone",
   "ingredients": [
     {
       "item": "minecraft:waxed_weathered_cut_copper"

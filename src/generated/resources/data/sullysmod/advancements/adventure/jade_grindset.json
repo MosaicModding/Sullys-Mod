@@ -33,5 +33,6 @@
     [
       "rough_jade"
     ]
-  ]
+  ],
+  "sends_telemetry_event": true
 }

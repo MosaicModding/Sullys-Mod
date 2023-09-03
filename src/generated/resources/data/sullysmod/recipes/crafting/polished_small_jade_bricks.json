@@ -1,5 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
+  "category": "building",
   "key": {
     "#": {
       "item": "sullysmod:polished_jade_tiles"
@@ -12,5 +13,6 @@
   "result": {
     "count": 4,
     "item": "sullysmod:polished_small_jade_bricks"
-  }
+  },
+  "show_notification": true
 }

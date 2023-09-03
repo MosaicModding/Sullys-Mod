@@ -30,5 +30,6 @@
     "recipes": [
       "sullysmod:stonecutting/polished_jade_shingles_from_polished_small_jade_bricks_stonecutting"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

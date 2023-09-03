@@ -84,12 +84,10 @@ public class SMItemModelProvider extends ItemModelProvider {
          */
         basicItem(SMItems.MUSIC_DISC_SCOUR);
         jadeShieldItem(SMItems.JADE_SHIELD);
-        /*
         basicItem(SMItems.LANTERNFISH_SLICE);
         basicItem(SMItems.COOKED_LANTERNFISH_SLICE);
         basicItem(SMItems.LANTERNFISH_ROLL);
         basicItem(SMItems.CAVE_CHUM_BUCKET);
-         */
         basicItem(SMItems.TORTOISE_SCUTE);
         basicItem(SMItems.TORTOISE_SHELL);
     }

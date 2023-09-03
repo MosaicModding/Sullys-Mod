@@ -1,5 +1,5 @@
 {
-  "type": "minecraft:smithing",
+  "type": "minecraft:smithing_transform",
   "addition": {
     "item": "sullysmod:polished_jade"
   },
@@ -8,5 +8,6 @@
   },
   "result": {
     "item": "sullysmod:jade_shield"
-  }
+  },
+  "template": []
 }

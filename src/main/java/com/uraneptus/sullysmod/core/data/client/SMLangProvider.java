@@ -81,12 +81,10 @@ public class SMLangProvider extends LanguageProvider {
         add(SMItems.COOKED_LANTERNFISH.get(), "Cooked Lanternfish");
         add(SMItems.TORTOISE_SPAWN_EGG.get(), "Tortoise Spawn Egg");
         add(SMItems.JADE_SHIELD.get(), "Jade Shield");
-        /*
         add(SMItems.LANTERNFISH_SLICE.get(), "Raw Lanternfish Slice");
         add(SMItems.COOKED_LANTERNFISH_SLICE.get(), "Cooked Lanternfish Slice");
         add(SMItems.LANTERNFISH_ROLL.get(), "Lanternfish Roll");
         add(SMItems.CAVE_CHUM_BUCKET.get(), "Cave Chum Bucket");
-         */
         add(SMItems.TORTOISE_SCUTE.get(), "Tortoise Scute");
         add(SMItems.TORTOISE_SHELL.get(), "Tortoise Shell");
 

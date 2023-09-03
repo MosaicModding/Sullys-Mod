@@ -36,10 +36,13 @@ public class SMEntityLoot extends EntityLootSubProvider {
         return ForgeRegistries.ENTITY_TYPES.getValues().stream().filter(entityType -> ForgeRegistries.ENTITY_TYPES.getKey(entityType) != null && SullysMod.MOD_ID.equals(ForgeRegistries.ENTITY_TYPES.getKey(entityType).getNamespace()));
     }
 
+    /*
     @Override
     protected boolean canHaveLootTable(EntityType<?> entitytype) {
         return !SPECIAL_LOOT_TYPES.contains(entitytype) && entitytype.getCategory() == MobCategory.MISC;
     }
+
+     */
 
     @Override
     public void generate() {

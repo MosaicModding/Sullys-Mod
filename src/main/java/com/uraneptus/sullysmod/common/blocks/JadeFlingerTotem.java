@@ -9,6 +9,4 @@ public class JadeFlingerTotem extends SMDirectionalBlock {
     public JadeFlingerTotem(Properties properties) {
         super(properties);
     }
-
-    private static final Supplier<Item> DROPPER = Blocks.DROPPER::asItem;
 }

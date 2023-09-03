@@ -30,5 +30,6 @@
     "recipes": [
       "sullysmod:crafting/polished_chiseled_jade"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

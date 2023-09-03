@@ -10,6 +10,7 @@
       ],
       "recipe": {
         "type": "minecraft:smelting",
+        "category": "food",
         "cookingtime": 200,
         "experience": 0.35,
         "ingredient": {

@@ -6,16 +6,24 @@
         "criteria": {
           "sullysmod:wax_on": {
             "conditions": {
-              "item": {
-                "items": [
-                  "minecraft:honeycomb"
-                ]
-              },
-              "location": {
-                "block": {
-                  "tag": "forge:waxable_copper_blocks"
+              "location": [
+                {
+                  "condition": "minecraft:location_check",
+                  "predicate": {
+                    "block": {
+                      "tag": "forge:waxable_copper_blocks"
+                    }
+                  }
+                },
+                {
+                  "condition": "minecraft:match_tool",
+                  "predicate": {
+                    "items": [
+                      "minecraft:honeycomb"
+                    ]
+                  }
                 }
-              }
+              ]
             },
             "trigger": "minecraft:item_used_on_block"
           }
