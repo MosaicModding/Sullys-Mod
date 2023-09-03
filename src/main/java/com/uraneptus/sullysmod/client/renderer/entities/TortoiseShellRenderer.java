@@ -33,8 +33,7 @@ public class TortoiseShellRenderer <E extends TortoiseShell> extends EntityRende
 
         float spinTime = pEntity.tickCount + pPartialTicks;
         if (pEntity.spinTicks > 0) {
-            pMatrixStack.mulPose(new Quaternionf().add(0.0F, 1.0F, 0.0F, spinTime * 0.56F));
-            //pMatrixStack.mulPose(new Quaternion(new Vector3f(0.0F, 1.0F, 0.0F), spinTime * 0.56F, false));
+            pMatrixStack.mulPose(new Quaternionf().rotateY(spinTime * 0.56F));
         }
 
         float hurtTime = (float)pEntity.getHurtTime() - pPartialTicks;
