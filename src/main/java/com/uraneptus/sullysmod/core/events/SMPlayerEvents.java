@@ -47,7 +47,7 @@ public class SMPlayerEvents {
                 if (!recipes.isEmpty()) {
                     ItemStack ingredient = polishingRecipe.ingredient;
                     ItemStack itemInHand = player.getItemInHand(hand);
-                    ItemStack result = polishingRecipe.getResultItem();
+                    ItemStack result = polishingRecipe.result; // was getResultItem()
                     int resultCount = polishingRecipe.getResultCount();
                     int xpAmount = polishingRecipe.getExperience();
 

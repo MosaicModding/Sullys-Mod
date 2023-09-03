@@ -1,6 +1,5 @@
 package com.uraneptus.sullysmod.common.blocks;
 
-import com.teamabnormals.blueprint.core.util.item.filling.TargetedItemCategoryFiller;
 import com.uraneptus.sullysmod.core.registry.SMBlocks;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.core.BlockPos;
@@ -17,6 +16,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.ButtonBlock;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.BlockSetType;
 import net.minecraft.world.phys.BlockHitResult;
 
 import java.util.HashMap;
@@ -24,29 +24,15 @@ import java.util.Map;
 import java.util.function.Supplier;
 
 public class CopperButtonBlock extends ButtonBlock {
-    public CopperButtonBlock(Properties pProperties) {
-        super(false, pProperties);
+
+
+    public CopperButtonBlock(Properties pProperties, BlockSetType pType, int pTicksToStayPressed, boolean pArrowsCanPress) {
+        super(pProperties, pType, pTicksToStayPressed, pArrowsCanPress);
     }
 
     @Override
     protected SoundEvent getSound(boolean pushed) {
         return pushed ? SoundEvents.STONE_BUTTON_CLICK_ON : SoundEvents.STONE_BUTTON_CLICK_OFF;
-    }
-
-    @Override
-    public int getPressDuration() {
-        HashMap<Block, Integer> DURATION_TIMES = new HashMap<>();
-
-        DURATION_TIMES.put(SMBlocks.COPPER_BUTTON.get(), 10);
-        DURATION_TIMES.put(SMBlocks.WAXED_COPPER_BUTTON.get(), 10);
-        DURATION_TIMES.put(SMBlocks.EXPOSED_COPPER_BUTTON.get(), 20);
-        DURATION_TIMES.put(SMBlocks.WAXED_EXPOSED_COPPER_BUTTON.get(), 20);
-        DURATION_TIMES.put(SMBlocks.WEATHERED_COPPER_BUTTON.get(), 30);
-        DURATION_TIMES.put(SMBlocks.WAXED_WEATHERED_COPPER_BUTTON.get(), 30);
-        DURATION_TIMES.put(SMBlocks.OXIDIZED_COPPER_BUTTON.get(), 40);
-        DURATION_TIMES.put(SMBlocks.WAXED_OXIDIZED_COPPER_BUTTON.get(), 40);
-
-        return DURATION_TIMES.get(this.asBlock());
     }
 
     @Override
@@ -124,10 +110,4 @@ public class CopperButtonBlock extends ButtonBlock {
 
     //Item Filler
     private static final Supplier<Item> OXIDIZED_COPPER_BUTTON = () -> SMBlocks.OXIDIZED_COPPER_BUTTON.get().asItem();
-    private static final TargetedItemCategoryFiller FILLER = new TargetedItemCategoryFiller(OXIDIZED_COPPER_BUTTON);
-
-    @Override
-    public void fillItemCategory(CreativeModeTab tab, NonNullList<ItemStack> item) {
-        FILLER.fillItem(this.asItem(), tab, item);
-    }
 }

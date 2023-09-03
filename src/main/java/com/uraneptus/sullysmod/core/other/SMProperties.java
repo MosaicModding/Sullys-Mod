@@ -9,28 +9,24 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Rarity;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
-import net.minecraft.world.level.material.Material;
-import net.minecraft.world.level.material.MaterialColor;
+import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
+import net.minecraft.world.level.material.MapColor;
 
 @SuppressWarnings("unused")
 public class SMProperties {
 
     public static final class Blocks {
-        public static final BlockBehaviour.Properties JADE_ORE = BlockBehaviour.Properties.of(Material.STONE).requiresCorrectToolForDrops().strength(3.0F, 3.0F);
-        public static final BlockBehaviour.Properties DEEPSLATE_JADE_ORE = BlockBehaviour.Properties.of(Material.STONE, MaterialColor.DEEPSLATE).requiresCorrectToolForDrops().strength(4.5F, 3.0F).sound(SoundType.DEEPSLATE);
-        public static final BlockBehaviour.Properties ROUGH_JADE_BLOCKS = BlockBehaviour.Properties.of(Material.STONE, MaterialColor.COLOR_GREEN).requiresCorrectToolForDrops().strength(5.0F, 6.0F);
-        public static final BlockBehaviour.Properties POLISHED_JADE_BLOCKS = BlockBehaviour.Properties.of(Material.METAL, MaterialColor.EMERALD).requiresCorrectToolForDrops().strength(5.0F, 6.0F);
-        public static final BlockBehaviour.Properties COPPER_BUTTONS = BlockBehaviour.Properties.of(Material.DECORATION).noCollission().strength(0.5F);
+        public static final BlockBehaviour.Properties JADE_ORE = BlockBehaviour.Properties.of().instrument(NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops().strength(3.0F, 3.0F);
+        public static final BlockBehaviour.Properties DEEPSLATE_JADE_ORE = BlockBehaviour.Properties.of().mapColor(MapColor.DEEPSLATE).instrument(NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops().strength(4.5F, 3.0F).sound(SoundType.DEEPSLATE);
+        public static final BlockBehaviour.Properties ROUGH_JADE_BLOCKS = BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_GREEN).instrument(NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops().strength(5.0F, 6.0F);
+        public static final BlockBehaviour.Properties POLISHED_JADE_BLOCKS = BlockBehaviour.Properties.of().mapColor(MapColor.EMERALD).instrument(NoteBlockInstrument.IRON_XYLOPHONE).requiresCorrectToolForDrops().strength(5.0F, 6.0F);
+        public static final BlockBehaviour.Properties COPPER_BUTTONS = BlockBehaviour.Properties.of().noCollission().strength(0.5F);
     }
 
     public static final class Items {
 
-        public static final Item.Properties MISC_TAB = new Item.Properties().tab(CreativeModeTab.TAB_MISC);
-        public static final Item.Properties FOOD_TAB = new Item.Properties().tab(CreativeModeTab.TAB_FOOD);
-        public static final Item.Properties REDSTONE_TAB = new Item.Properties().tab(CreativeModeTab.TAB_REDSTONE);
-        public static final Item.Properties BUILDING_TAB = new Item.Properties().tab(CreativeModeTab.TAB_BUILDING_BLOCKS);
 
-        public static final Item.Properties FD_COMPAT_TAB = new Item.Properties().tab(!FDCompat.IS_LOADED ? null : FDCompat.FDLoaded.fdTab());
+        //public static final Item.Properties FD_COMPAT_TAB = new Item.Properties().tab(!FDCompat.IS_LOADED ? null : FDCompat.FDLoaded.fdTab());
 
         public static Item.Properties cannotStack() {
             return new Item.Properties().stacksTo(1);
@@ -40,10 +36,10 @@ public class SMProperties {
         }
 
         //Item Specific
-        public static final Item.Properties MUSIC_DISCS = cannotStack().tab(CreativeModeTab.TAB_MISC).rarity(Rarity.RARE);
-        public static final Item.Properties JADE_SHIELD = new Item.Properties().durability(400).tab(CreativeModeTab.TAB_COMBAT);
-        public static final Item.Properties TOROTISE_SHELL = new Item.Properties().stacksTo(1).tab(CreativeModeTab.TAB_MISC);
-        public static final Item.Properties CAVE_CHUM_BUCKET = SMProperties.Items.FD_COMPAT_TAB.food(SMProperties.Foods.CAVE_CHUM_BUCKET_FOOD).stacksTo(16);
+        public static final Item.Properties MUSIC_DISCS = cannotStack().rarity(Rarity.RARE);
+        public static final Item.Properties JADE_SHIELD = new Item.Properties().durability(400);
+        public static final Item.Properties TOROTISE_SHELL = new Item.Properties().stacksTo(1);
+       // public static final Item.Properties CAVE_CHUM_BUCKET = SMProperties.Items.FD_COMPAT_TAB.food(SMProperties.Foods.CAVE_CHUM_BUCKET_FOOD).stacksTo(16);
     }
 
     public static final class Foods {

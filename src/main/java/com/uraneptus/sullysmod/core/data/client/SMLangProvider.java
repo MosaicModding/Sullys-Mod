@@ -61,6 +61,7 @@ public class SMLangProvider extends LanguageProvider {
         add(SMBlocks.ROUGH_JADE_BRICK_SLAB.get(), "Rough Jade Brick Slab");
         add(SMBlocks.SMOOTHED_ROUGH_JADE_SLAB.get(), "Smoothed Rough Jade Slab");
         add(SMBlocks.ROUGH_JADE_TILE_SLAB.get(), "Rough Jade Tile Slab");
+        /*
         add(SMBlocks.POLISHED_JADE_BRICK_VERTICAL_SLAB.get(), "Polished Jade Brick Vertical Slab");
         add(SMBlocks.POLISHED_SMALL_JADE_BRICK_VERTICAL_SLAB.get(), "Polished Small Jade Brick Vertical Slab");
         add(SMBlocks.POLISHED_JADE_SHINGLE_VERTICAL_SLAB.get(), "Polished Jade Shingle Vertical Slab");
@@ -68,6 +69,7 @@ public class SMLangProvider extends LanguageProvider {
         add(SMBlocks.ROUGH_JADE_BRICK_VERTICAL_SLAB.get(), "Rough Jade Brick Vertical Slab");
         add(SMBlocks.SMOOTHED_ROUGH_JADE_VERTICAL_SLAB.get(), "Smoothed Rough Jade Vertical Slab");
         add(SMBlocks.ROUGH_JADE_TILE_VERTICAL_SLAB.get(),  "Rough Jade Tile Vertical Slab");
+         */
         add(SMBlocks.TORTOISE_EGG.get(), "Tortoise Egg");
 
         //Items
@@ -79,10 +81,12 @@ public class SMLangProvider extends LanguageProvider {
         add(SMItems.COOKED_LANTERNFISH.get(), "Cooked Lanternfish");
         add(SMItems.TORTOISE_SPAWN_EGG.get(), "Tortoise Spawn Egg");
         add(SMItems.JADE_SHIELD.get(), "Jade Shield");
+        /*
         add(SMItems.LANTERNFISH_SLICE.get(), "Raw Lanternfish Slice");
         add(SMItems.COOKED_LANTERNFISH_SLICE.get(), "Cooked Lanternfish Slice");
         add(SMItems.LANTERNFISH_ROLL.get(), "Lanternfish Roll");
         add(SMItems.CAVE_CHUM_BUCKET.get(), "Cave Chum Bucket");
+         */
         add(SMItems.TORTOISE_SCUTE.get(), "Tortoise Scute");
         add(SMItems.TORTOISE_SHELL.get(), "Tortoise Shell");
 

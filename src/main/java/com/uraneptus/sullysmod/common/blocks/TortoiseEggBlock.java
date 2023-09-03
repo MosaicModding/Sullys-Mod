@@ -1,6 +1,5 @@
 package com.uraneptus.sullysmod.common.blocks;
 
-import com.teamabnormals.blueprint.common.block.InjectedBlock;
 import com.uraneptus.sullysmod.common.entities.Tortoise;
 import com.uraneptus.sullysmod.core.registry.SMBlocks;
 import com.uraneptus.sullysmod.core.registry.SMEntityTypes;
@@ -16,7 +15,6 @@ import net.minecraft.world.entity.ambient.Bat;
 import net.minecraft.world.entity.monster.Zombie;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -33,7 +31,7 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import javax.annotation.Nullable;
 
 @SuppressWarnings({"deprecation", "unused"})
-public class TortoiseEggBlock extends InjectedBlock {
+public class TortoiseEggBlock extends Block {
     public static final int MAX_HATCH_LEVEL = 2;
     public static final int MIN_EGGS = 1;
     public static final int MAX_EGGS = 4;
@@ -43,7 +41,7 @@ public class TortoiseEggBlock extends InjectedBlock {
     public static final IntegerProperty EGGS = BlockStateProperties.EGGS;
 
     public TortoiseEggBlock(BlockBehaviour.Properties properties) {
-        super(Items.TURTLE_EGG, properties);
+        super(properties);
         this.registerDefaultState(this.stateDefinition.any().setValue(HATCH, 0).setValue(EGGS, 1));
     }
 

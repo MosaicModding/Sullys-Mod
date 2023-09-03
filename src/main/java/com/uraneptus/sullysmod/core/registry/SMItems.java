@@ -1,20 +1,15 @@
 package com.uraneptus.sullysmod.core.registry;
 
-import com.teamabnormals.blueprint.common.item.BlueprintMobBucketItem;
 import com.teamabnormals.blueprint.common.item.BlueprintRecordItem;
-import com.teamabnormals.blueprint.common.item.InjectedItem;
 import com.teamabnormals.blueprint.core.util.registry.ItemSubRegistryHelper;
 import com.uraneptus.sullysmod.SullysMod;
 import com.uraneptus.sullysmod.common.items.JadeShieldItem;
-import com.uraneptus.sullysmod.common.items.SMFoodBucketItem;
 import com.uraneptus.sullysmod.common.items.TortoiseShellItem;
 import com.uraneptus.sullysmod.core.other.SMProperties;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.animal.WaterAnimal;
-import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.item.MobBucketItem;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraftforge.common.ForgeSpawnEggItem;
@@ -28,24 +23,26 @@ public class SMItems {
     public static final ItemSubRegistryHelper HELPER = SullysMod.REGISTRY_HELPER.getItemSubHelper();
 
     //Basic Items
-    public static final RegistryObject<Item> ROUGH_JADE = HELPER.createItem("rough_jade", () -> new InjectedItem(Items.COPPER_INGOT, SMProperties.Items.MISC_TAB));
-    public static final RegistryObject<Item> POLISHED_JADE = HELPER.createItem("polished_jade", () -> new InjectedItem(SMItems.ROUGH_JADE.get(), SMProperties.Items.MISC_TAB));
+    public static final RegistryObject<Item> ROUGH_JADE = HELPER.createItem("rough_jade", () -> new Item(new Item.Properties())); //after copper ingot in creative tab
+    public static final RegistryObject<Item> POLISHED_JADE = HELPER.createItem("polished_jade", () -> new Item(new Item.Properties())); // after rough jade
     public static final RegistryObject<Item> MUSIC_DISC_SCOUR = HELPER.createItem("music_disc_scour", () -> new BlueprintRecordItem(12, SMSounds.MUSIC_DISC_SCOUR, SMProperties.Items.MUSIC_DISCS, 4980));
-    public static final RegistryObject<Item> TORTOISE_SCUTE = HELPER.createItem("tortoise_scute", () -> new InjectedItem(Items.SCUTE, SMProperties.Items.MISC_TAB));
+    public static final RegistryObject<Item> TORTOISE_SCUTE = HELPER.createItem("tortoise_scute", () -> new Item(new Item.Properties())); // after scute
     public static final RegistryObject<Item> TORTOISE_SHELL = HELPER.createItem("tortoise_shell", () -> new TortoiseShellItem(SMProperties.Items.TOROTISE_SHELL));
 
     //Tools
     public static final RegistryObject<Item> JADE_SHIELD = HELPER.createItem("jade_shield", () -> new JadeShieldItem(-2.0F, SMProperties.Items.JADE_SHIELD));
 
     //Food
-    public static final RegistryObject<Item> LANTERNFISH = HELPER.createItem("lanternfish", () -> new InjectedItem(Items.COD, SMProperties.Items.FOOD_TAB.food(SMProperties.Foods.LANTERNFISH_FOOD)));
-    public static final RegistryObject<Item> COOKED_LANTERNFISH = HELPER.createItem("cooked_lanternfish", () -> new InjectedItem(Items.COOKED_COD, SMProperties.Items.FOOD_TAB.food(SMProperties.Foods.COOKED_LANTERNFISH_FOOD)));
+    public static final RegistryObject<Item> LANTERNFISH = HELPER.createItem("lanternfish", () -> new Item(new Item.Properties().food(SMProperties.Foods.LANTERNFISH_FOOD))); // after cod
+    public static final RegistryObject<Item> COOKED_LANTERNFISH = HELPER.createItem("cooked_lanternfish", () -> new Item(new Item.Properties().food(SMProperties.Foods.COOKED_LANTERNFISH_FOOD))); // after cooked cod
 
     //Compat Food
+    /*
     public static final RegistryObject<Item> LANTERNFISH_SLICE = HELPER.createItem("lanternfish_slice", () -> new Item(SMProperties.Items.FD_COMPAT_TAB.food(SMProperties.Foods.LANTERNFISH_SLICE_FOOD)));
     public static final RegistryObject<Item> COOKED_LANTERNFISH_SLICE = HELPER.createItem("cooked_lanternfish_slice", () -> new Item(SMProperties.Items.FD_COMPAT_TAB.food(SMProperties.Foods.COOKED_LANTERNFISH_SLICE_FOOD)));
     public static final RegistryObject<Item> LANTERNFISH_ROLL = HELPER.createItem("lanternfish_roll", () -> new Item(SMProperties.Items.FD_COMPAT_TAB.food(SMProperties.Foods.LANTERNFISH_ROLL_FOOD)));
     public static final RegistryObject<Item> CAVE_CHUM_BUCKET = HELPER.createItem("cave_chum_bucket", () -> new SMFoodBucketItem(SMProperties.Items.CAVE_CHUM_BUCKET));
+    */
 
     //Mob Buckets & Spawn Eggs
     public static final RegistryObject<Item> LANTERNFISH_BUCKET = HELPER.createItem("lanternfish_bucket", () -> SMItems.createMobBucketItem(SMEntityTypes.LANTERNFISH::get));

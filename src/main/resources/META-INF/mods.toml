@@ -38,7 +38,7 @@ displayTest = "MATCH_VERSION"
     side = "BOTH"
 
 [[dependencies.sullysmod]]
-    modId = "geckolib3"
+    modId = "geckolib"
     mandatory = true
     versionRange = "[4.2.2,)"
     ordering = "BEFORE"

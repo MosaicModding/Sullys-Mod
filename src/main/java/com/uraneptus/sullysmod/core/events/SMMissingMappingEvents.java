@@ -51,8 +51,8 @@ public class SMMissingMappingEvents {
                 .put(SullysMod.modPrefix("small_polished_jade_brick_slab"), SMBlocks.POLISHED_SMALL_JADE_BRICK_SLAB)
                 .put(SullysMod.modPrefix("jade_shingle_slab"), SMBlocks.POLISHED_JADE_SHINGLE_SLAB)
                 .put(SullysMod.modPrefix("jade_tile_slab"), SMBlocks.POLISHED_JADE_TILE_SLAB)
-                .put(SullysMod.modPrefix("smooth_rough_jade_vertical_slab"), SMBlocks.SMOOTHED_ROUGH_JADE_VERTICAL_SLAB)
-                .put(SullysMod.modPrefix("small_polished_jade_brick_vertical_slab"), SMBlocks.POLISHED_SMALL_JADE_BRICK_VERTICAL_SLAB)
+                //.put(SullysMod.modPrefix("smooth_rough_jade_vertical_slab"), SMBlocks.SMOOTHED_ROUGH_JADE_VERTICAL_SLAB)
+                //.put(SullysMod.modPrefix("small_polished_jade_brick_vertical_slab"), SMBlocks.POLISHED_SMALL_JADE_BRICK_VERTICAL_SLAB)
                 .build();
 
         Map<ResourceLocation, Supplier<Item>> itemsMap = (new ImmutableMap.Builder<ResourceLocation, Supplier<Item>>())
