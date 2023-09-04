@@ -13,13 +13,18 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.animal.WaterAnimal;
 import net.minecraft.world.item.*;
+import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraftforge.common.ForgeSpawnEggItem;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.RegistryObject;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.function.Supplier;
 
+import static com.uraneptus.sullysmod.core.registry.SMBlocks.*;
 import static net.minecraft.world.item.crafting.Ingredient.of;
 
 @Mod.EventBusSubscriber(modid = SullysMod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
@@ -37,8 +42,8 @@ public class SMItems {
     public static final RegistryObject<Item> JADE_SHIELD = HELPER.createItem("jade_shield", () -> new JadeShieldItem(-2.0F, SMProperties.Items.JADE_SHIELD));
 
     //Food
-    public static final RegistryObject<Item> LANTERNFISH = HELPER.createItem("lanternfish", () -> new Item(new Item.Properties().food(SMProperties.Foods.LANTERNFISH_FOOD))); // after cod
-    public static final RegistryObject<Item> COOKED_LANTERNFISH = HELPER.createItem("cooked_lanternfish", () -> new Item(new Item.Properties().food(SMProperties.Foods.COOKED_LANTERNFISH_FOOD))); // after cooked cod
+    public static final RegistryObject<Item> LANTERNFISH = HELPER.createItem("lanternfish", () -> new Item(new Item.Properties().food(SMProperties.Foods.LANTERNFISH_FOOD)));
+    public static final RegistryObject<Item> COOKED_LANTERNFISH = HELPER.createItem("cooked_lanternfish", () -> new Item(new Item.Properties().food(SMProperties.Foods.COOKED_LANTERNFISH_FOOD)));
 
     //Compat Food
 
@@ -60,22 +65,47 @@ public class SMItems {
     public static void buildCreativeTabContents() {
         CreativeModeTabContentsPopulator.mod(SullysMod.MOD_ID)
                 .tab(CreativeModeTabs.INGREDIENTS)
-                .addItemsAfter(of(Items.COPPER_INGOT), ROUGH_JADE, POLISHED_JADE)
-                .addItemsAfter(of(Items.SCUTE), TORTOISE_SCUTE, TORTOISE_SHELL)
+                .addItemsAfter(of(Items.COPPER_INGOT), POLISHED_JADE)
+                .addItemsAfter(of(Items.RAW_COPPER), ROUGH_JADE)
+                .addItemsAfter(of(Items.SCUTE), TORTOISE_SCUTE)
                 .tab(CreativeModeTabs.TOOLS_AND_UTILITIES)
                 .addItemsAfter(of(Items.MUSIC_DISC_RELIC), MUSIC_DISC_SCOUR)
                 .addItemsAfter(of(Items.COD_BUCKET), LANTERNFISH_BUCKET)
+                .addItemsAfter(of(Items.SADDLE), TORTOISE_SHELL)
                 .tab(CreativeModeTabs.FOOD_AND_DRINKS)
-                .addItemsAfter(of(Items.COD), LANTERNFISH, FDCompat.IS_LOADED ? LANTERNFISH_SLICE : ItemStack.EMPTY::getItem)
-                .addItemsAfter(of(LANTERNFISH_SLICE.get()), FDCompat.IS_LOADED ? LANTERNFISH_ROLL : ItemStack.EMPTY::getItem)
-                .addItemsAfter(of(Items.COOKED_COD), COOKED_LANTERNFISH, FDCompat.IS_LOADED ? COOKED_LANTERNFISH_SLICE : ItemStack.EMPTY::getItem)
-                .addItems(FDCompat.IS_LOADED ? CAVE_CHUM_BUCKET : ItemStack.EMPTY::getItem)
+                .addItemsAfter(of(Items.COD), LANTERNFISH)
+                .addItemsAfter(of(Items.COOKED_COD), COOKED_LANTERNFISH)
                 .tab(CreativeModeTabs.COMBAT)
                 .addItemsAfter(of(Items.SHIELD), JADE_SHIELD)
                 .tab(CreativeModeTabs.SPAWN_EGGS)
                 .addItemsAfter(of(Items.COD_SPAWN_EGG), LANTERNFISH_SPAWN_EGG)
-                .addItemsAfter(of(Items.TURTLE_SPAWN_EGG), TORTOISE_SPAWN_EGG);
+                .addItemsAfter(of(Items.TURTLE_SPAWN_EGG), TORTOISE_SPAWN_EGG)
+                .tab(CreativeModeTabs.NATURAL_BLOCKS)
+                .addItemsAfter(of(Items.COPPER_ORE), JADE_ORE)
+                .addItemsAfter(of(Items.DEEPSLATE_COPPER_ORE), DEEPSLATE_JADE_ORE)
+                .addItemsAfter(of(Items.RAW_COPPER_BLOCK), ROUGH_JADE_BLOCK)
+                .addItemsAfter(of(Items.TURTLE_EGG), TORTOISE_EGG)
+                .tab(CreativeModeTabs.BUILDING_BLOCKS)
+                .addItemsAfter(of(Items.WAXED_OXIDIZED_CUT_COPPER_SLAB),
+                        ROUGH_JADE_BLOCK, ROUGH_JADE_BRICKS, ROUGH_JADE_BRICK_STAIRS, ROUGH_JADE_BRICK_SLAB,
+                        ROUGH_JADE_TILES, ROUGH_JADE_TILE_STAIRS, ROUGH_JADE_TILE_SLAB,
+                        SMOOTHED_ROUGH_JADE, POLISHED_JADE_BLOCK,
+                        POLISHED_JADE_BRICKS, POLISHED_JADE_BRICK_STAIRS, POLISHED_JADE_BRICK_SLAB,
+                        POLISHED_JADE_TILES, POLISHED_JADE_TILE_STAIRS, POLISHED_JADE_TILE_SLAB,
+                        POLISHED_SMALL_JADE_BRICKS, POLISHED_SMALL_JADE_BRICK_STAIRS, POLISHED_SMALL_JADE_BRICK_SLAB,
+                        POLISHED_JADE_SHINGLES, POLISHED_JADE_SHINGLE_STAIRS, POLISHED_JADE_SHINGLE_SLAB,
+                        POLISHED_JADE_PILLAR, POLISHED_CHISELED_JADE, JADE_TOTEM)
+                .tab(CreativeModeTabs.REDSTONE_BLOCKS)
+                .addItemsAfter(of(Items.DROPPER), JADE_FLINGER_TOTEM)
+                .addItemsAfter(of(Items.STONE_BUTTON), COPPER_BUTTON, EXPOSED_COPPER_BUTTON, WEATHERED_COPPER_BUTTON, OXIDIZED_COPPER_BUTTON,
+                        WAXED_COPPER_BUTTON, WAXED_EXPOSED_COPPER_BUTTON, WAXED_WEATHERED_COPPER_BUTTON, WAXED_OXIDIZED_COPPER_BUTTON)
+        ;
+    }
 
-
+    public static void buildFDCreativeTabContents() {
+        CreativeModeTabContentsPopulator.mod(FDCompat.MOD_ID)
+                .tab(FDCompat.FDTAB)
+                .addItems(LANTERNFISH_SLICE, COOKED_LANTERNFISH_SLICE, LANTERNFISH_ROLL, CAVE_CHUM_BUCKET)
+        ;
     }
 }
