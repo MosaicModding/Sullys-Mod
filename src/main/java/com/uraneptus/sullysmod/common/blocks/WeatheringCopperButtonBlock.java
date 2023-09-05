@@ -9,9 +9,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.RandomSource;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.WeatheringCopper;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
@@ -22,9 +20,6 @@ import java.util.function.Supplier;
 @SuppressWarnings({"deprecation", "unused"})
 public class WeatheringCopperButtonBlock extends CopperButtonBlock implements WeatheringCopper {
     private final WeatheringCopper.WeatherState weatherState;
-
-
-
     public static Supplier<BiMap<Block, Block>> NEXT_BY_BLOCK = Suppliers.memoize(() -> ImmutableBiMap.<Block, Block>builder()
             .put(SMBlocks.COPPER_BUTTON.get(), SMBlocks.EXPOSED_COPPER_BUTTON.get())
             .put(SMBlocks.EXPOSED_COPPER_BUTTON.get(), SMBlocks.WEATHERED_COPPER_BUTTON.get())
@@ -66,7 +61,4 @@ public class WeatheringCopperButtonBlock extends CopperButtonBlock implements We
     public WeatherState getAge() {
         return weatherState;
     }
-
-    //Item Filler
-    private static final Supplier<Item> POLISHED_BLACKSTONE_BUTTON = Blocks.POLISHED_BLACKSTONE_BUTTON::asItem;
 }

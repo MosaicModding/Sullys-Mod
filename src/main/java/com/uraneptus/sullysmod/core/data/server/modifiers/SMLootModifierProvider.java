@@ -6,7 +6,6 @@ import com.uraneptus.sullysmod.SullysMod;
 import com.uraneptus.sullysmod.core.other.SMLootConditions;
 import com.uraneptus.sullysmod.core.registry.SMItems;
 import net.minecraft.core.HolderLookup;
-import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.storage.loot.BuiltInLootTables;

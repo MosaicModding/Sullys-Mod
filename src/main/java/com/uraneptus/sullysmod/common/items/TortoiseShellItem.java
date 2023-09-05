@@ -4,7 +4,6 @@ import com.uraneptus.sullysmod.common.entities.TortoiseShell;
 import com.uraneptus.sullysmod.core.registry.SMEntityTypes;
 import com.uraneptus.sullysmod.core.registry.SMSounds;
 import net.minecraft.core.BlockPos;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
@@ -32,7 +31,6 @@ public class TortoiseShellItem extends Item {
         if (!level.isClientSide()) {
             TortoiseShell shell = SMEntityTypes.TORTOISE_SHELL.get().create(level);
             shell.moveTo(blockpos.getX() + 0.5, blockpos.getY() + 1, blockpos.getZ() + 0.5, player.getYRot(), 0.0F);
-            shell.setGotThrown(true);
             level.addFreshEntity(shell);
             level.broadcastEntityEvent(shell, (byte) 3);
         }

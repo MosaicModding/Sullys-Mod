@@ -4,7 +4,6 @@ import com.google.gson.JsonObject;
 import com.uraneptus.sullysmod.core.registry.SMRecipeSerializer;
 import com.uraneptus.sullysmod.core.registry.SMRecipeTypes;
 import net.minecraft.MethodsReturnNonnullByDefault;
-import net.minecraft.core.Registry;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;

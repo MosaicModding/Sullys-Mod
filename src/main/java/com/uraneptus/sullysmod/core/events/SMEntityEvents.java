@@ -1,13 +1,14 @@
 package com.uraneptus.sullysmod.core.events;
 
 import com.uraneptus.sullysmod.SullysMod;
-import com.uraneptus.sullysmod.common.blocks.JadeFlingerTotem;
+import com.uraneptus.sullysmod.common.blocks.SMDirectionalBlock;
 import com.uraneptus.sullysmod.common.entities.Tortoise;
 import com.uraneptus.sullysmod.common.entities.goals.GenericMobAttackTortoiseEggGoal;
 import com.uraneptus.sullysmod.common.particletypes.DirectionParticleOptions;
 import com.uraneptus.sullysmod.core.SMConfig;
 import com.uraneptus.sullysmod.core.other.tags.SMBlockTags;
 import com.uraneptus.sullysmod.core.other.tags.SMEntityTags;
+import com.uraneptus.sullysmod.core.registry.SMBlocks;
 import com.uraneptus.sullysmod.core.registry.SMItems;
 import com.uraneptus.sullysmod.core.registry.SMParticleTypes;
 import com.uraneptus.sullysmod.core.registry.SMSounds;
@@ -50,7 +51,6 @@ public class SMEntityEvents {
         float velocity = (float) vec3.length();
         boolean flingerFlag = false;
 
-
         if (hitResult instanceof BlockHitResult blockHitResult && hitResult.getType() == HitResult.Type.BLOCK) {
             BlockPos pos = blockHitResult.getBlockPos();
             BlockState blockState = level.getBlockState(pos);
@@ -58,8 +58,8 @@ public class SMEntityEvents {
 
             if (blockState.is(SMBlockTags.PROJECTILES_BOUNCE_ON)) {
                 if (!(projectile.getType().is(SMEntityTags.CANNOT_BE_FLUNG))) {
-                    if (blockState.getBlock() instanceof JadeFlingerTotem) {
-                        Direction front = blockState.getValue(JadeFlingerTotem.FACING);
+                    if (blockState.is(SMBlocks.JADE_FLINGER_TOTEM.get())) {
+                        Direction front = blockState.getValue(SMDirectionalBlock.FACING);
                         if (!direction.equals(front)) {
                             flingerFlag = true;
                         }
@@ -67,7 +67,7 @@ public class SMEntityEvents {
                 }
                 if (flingerFlag) {
                     event.setCanceled(true);
-                    Direction front = blockState.getValue(JadeFlingerTotem.FACING);
+                    Direction front = blockState.getValue(SMDirectionalBlock.FACING);
 
                     Projectile oldProjectile = projectile;
                     projectile = (Projectile) projectile.getType().create(level);

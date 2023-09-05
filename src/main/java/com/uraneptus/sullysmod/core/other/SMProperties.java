@@ -1,12 +1,10 @@
 package com.uraneptus.sullysmod.core.other;
 
-import com.teamabnormals.blueprint.core.util.item.CreativeModeTabContentsPopulator;
-import com.uraneptus.sullysmod.SullysMod;
-import com.uraneptus.sullysmod.core.integration.fd.FDCompat;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.food.FoodProperties;
-import net.minecraft.world.item.*;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Rarity;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;

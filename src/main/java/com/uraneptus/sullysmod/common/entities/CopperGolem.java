@@ -35,7 +35,6 @@ public class CopperGolem extends AbstractGolem implements GeoEntity {
 
     public CopperGolem(EntityType<? extends AbstractGolem> entityType, Level world) {
         super(entityType, world);
-        //this.flag = false;
         this.cachedGameTime = Mth.nextInt(random, 100, 200);
         this.cachedState = 0;
 

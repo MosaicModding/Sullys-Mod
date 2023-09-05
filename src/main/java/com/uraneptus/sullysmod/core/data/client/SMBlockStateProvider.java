@@ -3,7 +3,6 @@ package com.uraneptus.sullysmod.core.data.client;
 import com.teamabnormals.blueprint.common.block.VerticalSlabBlock;
 import com.uraneptus.sullysmod.SullysMod;
 import com.uraneptus.sullysmod.core.registry.SMBlocks;
-import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;

@@ -5,11 +5,8 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.registries.ForgeRegistries;
-import vectorwing.farmersdelight.common.registry.ModCreativeTabs;
-import vectorwing.farmersdelight.common.registry.ModItems;
 
 public class FDCompat {
     public static final String MOD_ID = "farmersdelight";

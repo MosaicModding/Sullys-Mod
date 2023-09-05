@@ -2,8 +2,6 @@ package com.uraneptus.sullysmod.core.events;
 
 import com.google.common.collect.ImmutableMap;
 import com.uraneptus.sullysmod.SullysMod;
-import com.uraneptus.sullysmod.core.registry.SMBlocks;
-import com.uraneptus.sullysmod.core.registry.SMItems;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
