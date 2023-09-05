@@ -44,54 +44,52 @@ public class SMPlayerEvents {
         if (block instanceof GrindstoneBlock) {
             ArrayList<GrindstonePolishingRecipe> recipes = new ArrayList<>(GrindstonePolishingRecipe.getRecipes(level));
             for (GrindstonePolishingRecipe polishingRecipe : recipes) {
-                if (!recipes.isEmpty()) {
-                    ItemStack ingredient = polishingRecipe.ingredient;
-                    ItemStack itemInHand = player.getItemInHand(hand);
-                    ItemStack result = polishingRecipe.result; // was getResultItem()
-                    int resultCount = polishingRecipe.getResultCount();
-                    int xpAmount = polishingRecipe.getExperience();
+                ItemStack ingredient = polishingRecipe.ingredient;
+                ItemStack itemInHand = player.getItemInHand(hand);
+                ItemStack result = polishingRecipe.result; // was getResultItem()
+                int resultCount = polishingRecipe.getResultCount();
+                int xpAmount = polishingRecipe.getExperience();
 
-                    if (itemInHand.is(ingredient.getItem())) {
-                        event.setCanceled(true);
-                        event.setCancellationResult(InteractionResult.FAIL);
-                        ItemStack resultItem = result.copy();
-                        if (player.isShiftKeyDown()) {
-                            int ingredientCount = itemInHand.getCount();
+                if (itemInHand.is(ingredient.getItem())) {
+                    event.setCanceled(true);
+                    event.setCancellationResult(InteractionResult.FAIL);
+                    ItemStack resultItem = result.copy();
+                    if (player.isShiftKeyDown()) {
+                        int ingredientCount = itemInHand.getCount();
 
-                            if (!player.getAbilities().instabuild) {
-                                itemInHand.shrink(ingredientCount);
-                            }
-                            if (!player.getInventory().add(new ItemStack(resultItem.getItem(), resultCount * ingredientCount))) {
-                                player.drop(new ItemStack(resultItem.getItem(), resultCount * ingredientCount), false);
-                            }
-                            if (!(xpAmount == 0)) {
-                                for (int i = 0; i <= ingredientCount; i++) {
-                                    int dropXp = random.nextInt(2);
-                                    if (dropXp < 1) {
-                                        xpAmount = xpAmount + polishingRecipe.getExperience();
-                                    }
+                        if (!player.getAbilities().instabuild) {
+                            itemInHand.shrink(ingredientCount);
+                        }
+                        if (!player.getInventory().add(new ItemStack(resultItem.getItem(), resultCount * ingredientCount))) {
+                            player.drop(new ItemStack(resultItem.getItem(), resultCount * ingredientCount), false);
+                        }
+                        if (!(xpAmount == 0)) {
+                            for (int i = 0; i <= ingredientCount; i++) {
+                                int dropXp = random.nextInt(2);
+                                if (dropXp < 1) {
+                                    xpAmount = xpAmount + polishingRecipe.getExperience();
                                 }
+                            }
+                            level.addFreshEntity(new ExperienceOrb(level, pos.getX(), pos.getY() + 1 , pos.getZ(), xpAmount));
+                        }
+                    } else {
+                        resultItem.setCount(resultCount);
+                        if (!player.getAbilities().instabuild) {
+                            itemInHand.shrink(1);
+                        }
+                        if (!player.getInventory().add(new ItemStack(resultItem.getItem(), resultCount))) {
+                            player.drop(new ItemStack(resultItem.getItem(), resultCount), false);
+                        }
+                        if (!(xpAmount == 0)) {
+                            int canDropXp = random.nextInt(2);
+
+                            if (canDropXp < 1) {
                                 level.addFreshEntity(new ExperienceOrb(level, pos.getX(), pos.getY() + 1 , pos.getZ(), xpAmount));
                             }
-                        } else {
-                            resultItem.setCount(resultCount);
-                            if (!player.getAbilities().instabuild) {
-                                itemInHand.shrink(1);
-                            }
-                            if (!player.getInventory().add(new ItemStack(resultItem.getItem(), resultCount))) {
-                                player.drop(new ItemStack(resultItem.getItem(), resultCount), false);
-                            }
-                            if (!(xpAmount == 0)) {
-                                int canDropXp = random.nextInt(2);
-
-                                if (canDropXp < 1) {
-                                    level.addFreshEntity(new ExperienceOrb(level, pos.getX(), pos.getY() + 1 , pos.getZ(), xpAmount));
-                                }
-                            }
                         }
-                        player.swing(hand);
-                        level.playSound(player, pos, SMSounds.POLISH_JADE.get(), SoundSource.BLOCKS, 0.5F, 0.0F);
                     }
+                    player.swing(hand);
+                    level.playSound(player, pos, SMSounds.POLISH_JADE.get(), SoundSource.BLOCKS, 0.5F, 0.0F);
                 }
             }
         }
@@ -107,15 +105,13 @@ public class SMPlayerEvents {
         if (level.isClientSide()) {
             if (SMConfig.PARTICLES_AROUND_GRINDSTONE.get()) {
                 for (GrindstonePolishingRecipe polishingRecipe : recipes) {
-                    if (!recipes.isEmpty()) {
-                        ItemStack ingredient = polishingRecipe.ingredient;
+                    ItemStack ingredient = polishingRecipe.ingredient;
 
-                        if (player.getItemInHand(hand).is(ingredient.getItem())) {
-                            for(BlockPos blockpos : BlockPos.betweenClosed(pos.offset(-7, -7, -7), pos.offset(7, 7, 7))) {
-                                Block block = level.getBlockState(blockpos).getBlock();
-                                if (block instanceof GrindstoneBlock) {
-                                    ParticleUtils.spawnParticlesOnBlockFaces(level, blockpos, new DustParticleOptions(Vec3.fromRGB24(16777215).toVector3f(), 0.4F), UniformInt.of(0, 1));
-                                }
+                    if (player.getItemInHand(hand).is(ingredient.getItem())) {
+                        for(BlockPos blockpos : BlockPos.betweenClosed(pos.offset(-7, -7, -7), pos.offset(7, 7, 7))) {
+                            Block block = level.getBlockState(blockpos).getBlock();
+                            if (block instanceof GrindstoneBlock) {
+                                ParticleUtils.spawnParticlesOnBlockFaces(level, blockpos, new DustParticleOptions(Vec3.fromRGB24(16777215).toVector3f(), 0.4F), UniformInt.of(0, 1));
                             }
                         }
                     }

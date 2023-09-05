@@ -48,14 +48,6 @@ public class TortoiseShell extends Entity {
         this(SMEntityTypes.TORTOISE_SHELL.get(), level);
     }
 
-    public TortoiseShell(Level pLevel, double pX, double pY, double pZ) {
-        this(SMEntityTypes.TORTOISE_SHELL.get(), pLevel);
-        this.setPos(pX, pY, pZ);
-        this.xo = pX;
-        this.yo = pY;
-        this.zo = pZ;
-    }
-
 
     @Override
     protected float getEyeHeight(Pose pPose, EntityDimensions pSize) {
@@ -68,7 +60,6 @@ public class TortoiseShell extends Entity {
         this.entityData.define(DATA_ID_HURTDIR, 1);
         this.entityData.define(DATA_ID_DAMAGE, 0.0F);
         this.entityData.define(GOT_THROWN, false);
-
     }
 
     @Override
@@ -91,15 +82,18 @@ public class TortoiseShell extends Entity {
     protected Vec3 getRelativePortalPosition(Direction.Axis pAxis, BlockUtil.FoundRectangle pPortal) {
         return LivingEntity.resetForwardDirectionOfRelativePortalPosition(super.getRelativePortalPosition(pAxis, pPortal));
     }
+
     public void setSpinTimer() {
         this.spinTicks = 18;
     }
+
     @Override
     public InteractionResult interact(Player pPlayer, InteractionHand pHand) {
+        double yLookAnglePlayer = pPlayer.getLookAngle().get(Direction.Axis.Y);
         double y = this.getDeltaMovement().get(Direction.Axis.Y);
         double x = this.getX() - pPlayer.getX();
         double z = this.getZ() - pPlayer.getZ();
-        if (y == -0.0 && !this.isInFluidType()) {
+        if (y == -0.0 && !this.isInFluidType() && (yLookAnglePlayer > -0.6D && yLookAnglePlayer < 0.1)) {
             double d2 = Math.max(x * x + z * z, 0.001D);
             this.setDeltaMovement(x / d2 * 2.1D, 0.05D, z / d2 * 2.1D);
             setSpinTimer();
