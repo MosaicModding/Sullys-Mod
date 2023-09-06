@@ -41,7 +41,6 @@ public class TortoiseShell extends Entity {
     private static final EntityDataAccessor<Float> DATA_ID_DAMAGE = SynchedEntityData.defineId(TortoiseShell.class, EntityDataSerializers.FLOAT);
     private static final EntityDataAccessor<Boolean> GOT_THROWN = SynchedEntityData.defineId(TortoiseShell.class, EntityDataSerializers.BOOLEAN);
     private static final EntityDataAccessor<Boolean> IS_SPINNING = SynchedEntityData.defineId(TortoiseShell.class, EntityDataSerializers.BOOLEAN);
-
     public int spinTicks = 0;
 
 

@@ -18,6 +18,5 @@ public class SMEntityTypes {
     public static final RegistryObject<EntityType<CopperGolem>> COPPER_GOLEM = HELPER.createLivingEntity("copper_golem", CopperGolem::new, MobCategory.CREATURE, 1.0F, 1.0F);
     public static final RegistryObject<EntityType<Lanternfish>> LANTERNFISH = HELPER.createLivingEntity("lanternfish", Lanternfish::new, MobCategory.WATER_AMBIENT, 0.5F, 0.3F);
     public static final RegistryObject<EntityType<Tortoise>> TORTOISE = HELPER.createLivingEntity("tortoise", Tortoise::new, MobCategory.CREATURE, 1.0F, 0.9F);
-    //The clientTrackingRange might be too high for an entity like this
     public static final RegistryObject<EntityType<TortoiseShell>> TORTOISE_SHELL = HELPER.createEntity("tortoise_shell", TortoiseShell::new, TortoiseShell::new, MobCategory.MISC, 1.1F, 0.9F);
 }
