@@ -39,8 +39,6 @@ public class TortoiseShell extends Entity {
     private static final EntityDataAccessor<Integer> DATA_ID_HURT = SynchedEntityData.defineId(TortoiseShell.class, EntityDataSerializers.INT);
     private static final EntityDataAccessor<Integer> DATA_ID_HURTDIR = SynchedEntityData.defineId(TortoiseShell.class, EntityDataSerializers.INT);
     private static final EntityDataAccessor<Float> DATA_ID_DAMAGE = SynchedEntityData.defineId(TortoiseShell.class, EntityDataSerializers.FLOAT);
-    private static final EntityDataAccessor<Boolean> GOT_THROWN = SynchedEntityData.defineId(TortoiseShell.class, EntityDataSerializers.BOOLEAN);
-    private static final EntityDataAccessor<Boolean> IS_SPINNING = SynchedEntityData.defineId(TortoiseShell.class, EntityDataSerializers.BOOLEAN);
     public int spinTicks = 0;
 
 
@@ -53,15 +51,6 @@ public class TortoiseShell extends Entity {
         this(SMEntityTypes.TORTOISE_SHELL.get(), level);
     }
 
-    public TortoiseShell(Level pLevel, double pX, double pY, double pZ) {
-        this(SMEntityTypes.TORTOISE_SHELL.get(), pLevel);
-        this.setPos(pX, pY, pZ);
-        this.xo = pX;
-        this.yo = pY;
-        this.zo = pZ;
-    }
-
-
     @Override
     protected float getEyeHeight(Pose pPose, EntityDimensions pSize) {
         return pSize.height;
@@ -72,8 +61,6 @@ public class TortoiseShell extends Entity {
         this.entityData.define(DATA_ID_HURT, 0);
         this.entityData.define(DATA_ID_HURTDIR, 1);
         this.entityData.define(DATA_ID_DAMAGE, 0.0F);
-        this.entityData.define(GOT_THROWN, false);
-
     }
 
     @Override
@@ -88,23 +75,24 @@ public class TortoiseShell extends Entity {
 
     //This prevents the entity from moving when the player is sprinting and hits the entity
     @Override
-    public void push(double pX, double pY, double pZ) {
-
-    }
+    public void push(double pX, double pY, double pZ) {}
 
     @Override
     protected Vec3 getRelativePortalPosition(Direction.Axis pAxis, BlockUtil.FoundRectangle pPortal) {
         return LivingEntity.resetForwardDirectionOfRelativePortalPosition(super.getRelativePortalPosition(pAxis, pPortal));
     }
+
     public void setSpinTimer() {
         this.spinTicks = 18;
     }
+
     @Override
     public InteractionResult interact(Player pPlayer, InteractionHand pHand) {
+        double yLookAnglePlayer = pPlayer.getLookAngle().get(Direction.Axis.Y);
         double y = this.getDeltaMovement().get(Direction.Axis.Y);
         double x = this.getX() - pPlayer.getX();
         double z = this.getZ() - pPlayer.getZ();
-        if (y == -0.0 && !this.isInFluidType()) {
+        if (y == -0.0 && !this.isInFluidType() && (yLookAnglePlayer > -0.6D && yLookAnglePlayer < 0.1)) {
             double d2 = Math.max(x * x + z * z, 0.001D);
             this.setDeltaMovement(x / d2 * 2.1D, 0.05D, z / d2 * 2.1D);
             setSpinTimer();
@@ -182,6 +170,7 @@ public class TortoiseShell extends Entity {
         }
 
     }
+
     private void knockBack(List<Entity> pEntities) {
         for(Entity entity : pEntities) {
             if (entity instanceof LivingEntity) {
@@ -197,6 +186,7 @@ public class TortoiseShell extends Entity {
             }
         }
     }
+
     public void shoot(double pX, double pY, double pZ, float pVelocity, float pInaccuracy) {
         Vec3 vec3 = (new Vec3(pX, pY, pZ)).normalize().add(this.random.triangle(0.0D, 0.0172275D * (double)pInaccuracy), this.random.triangle(0.0D, 0.0172275D * (double)pInaccuracy), this.random.triangle(0.0D, 0.0172275D * (double)pInaccuracy)).scale((double)pVelocity);
         this.setDeltaMovement(vec3);
@@ -290,7 +280,6 @@ public class TortoiseShell extends Entity {
     @Override
     protected void addAdditionalSaveData(CompoundTag pCompound) {
         pCompound.putInt("spinTicks", this.spinTicks);
-
     }
 
     @Override
@@ -321,14 +310,6 @@ public class TortoiseShell extends Entity {
         return this.entityData.get(DATA_ID_HURTDIR);
     }
 
-    public void setGotThrown(boolean gotThrown) {
-        this.entityData.set(GOT_THROWN, gotThrown);
-    }
-
-    public boolean gotThrown() {
-        return this.entityData.get(GOT_THROWN);
-    }
-
     @Override
     public Packet<?> getAddEntityPacket() {
         return NetworkHooks.getEntitySpawningPacket(this);
@@ -338,5 +319,4 @@ public class TortoiseShell extends Entity {
     public ItemStack getPickResult() {
         return new ItemStack(this.getDropItem());
     }
-
 }
