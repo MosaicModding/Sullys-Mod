@@ -20,6 +20,7 @@ public class TortoiseShellItem extends Item {
     public TortoiseShellItem(Properties pProperties) {
         super(pProperties);
     }
+
     public InteractionResult useOn(UseOnContext pContext) {
         Level level = pContext.getLevel();
         ItemStack itemstack = pContext.getItemInHand();
@@ -32,7 +33,6 @@ public class TortoiseShellItem extends Item {
         if (!level.isClientSide()) {
             TortoiseShell shell = SMEntityTypes.TORTOISE_SHELL.get().create(level);
             shell.moveTo(blockpos.getX() + 0.5, blockpos.getY() + 1, blockpos.getZ() + 0.5, player.getYRot(), 0.0F);
-            shell.setGotThrown(true);
             level.addFreshEntity(shell);
             level.broadcastEntityEvent(shell, (byte) 3);
         }
@@ -41,7 +41,6 @@ public class TortoiseShellItem extends Item {
         if (!player.getAbilities().instabuild) {
             itemstack.shrink(1);
         }
-
 
         return InteractionResult.CONSUME;
     }
