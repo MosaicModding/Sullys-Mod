@@ -3,9 +3,14 @@ package com.uraneptus.sullysmod.client.model;
 import com.uraneptus.sullysmod.SullysMod;
 import com.uraneptus.sullysmod.common.entities.CopperGolem;
 import net.minecraft.resources.ResourceLocation;
+import software.bernie.geckolib.model.DefaultedEntityGeoModel;
 import software.bernie.geckolib.model.GeoModel;
 
-public class CopperGolemModel <T extends CopperGolem> extends GeoModel<T> {
+public class CopperGolemModel <T extends CopperGolem> extends DefaultedEntityGeoModel<T> {
+
+    public CopperGolemModel() {
+        super(SullysMod.modPrefix("copper_golem"), true);
+    }
 
     @Override
     public ResourceLocation getModelResource(T entity) {
