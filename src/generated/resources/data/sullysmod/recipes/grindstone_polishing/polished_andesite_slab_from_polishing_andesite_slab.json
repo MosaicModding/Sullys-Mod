@@ -1,7 +1,0 @@
-{
-  "type": "sullysmod:grindstone_polishing",
-  "experience": 0,
-  "ingredient": "minecraft:andesite_slab",
-  "result": "minecraft:polished_andesite_slab",
-  "resultCount": 1
-}

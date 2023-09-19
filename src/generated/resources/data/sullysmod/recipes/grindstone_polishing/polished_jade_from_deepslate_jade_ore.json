@@ -1,0 +1,13 @@
+{
+  "type": "sullysmod:grindstone_polishing",
+  "experience": 1,
+  "ingredients": [
+    {
+      "item": "sullysmod:deepslate_jade_ore"
+    }
+  ],
+  "result": {
+    "count": 3,
+    "item": "sullysmod:polished_jade"
+  }
+}

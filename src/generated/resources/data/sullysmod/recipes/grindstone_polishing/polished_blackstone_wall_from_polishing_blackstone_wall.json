@@ -1,7 +1,0 @@
-{
-  "type": "sullysmod:grindstone_polishing",
-  "experience": 0,
-  "ingredient": "minecraft:blackstone_wall",
-  "result": "minecraft:polished_blackstone_wall",
-  "resultCount": 1
-}
