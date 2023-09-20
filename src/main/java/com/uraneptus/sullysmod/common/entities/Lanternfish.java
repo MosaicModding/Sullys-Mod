@@ -32,14 +32,12 @@ import java.util.EnumSet;
 public class Lanternfish extends AbstractFish {
     private static final EntityDataAccessor<Integer> DATA_DARK_TICKS_REMAINING = SynchedEntityData.defineId(Lanternfish.class, EntityDataSerializers.INT);
 
-
     public Lanternfish(EntityType<? extends Lanternfish> entityType, Level world) {
         super(entityType, world);
     }
 
     public static AttributeSupplier.Builder createAttributes() {
-        return Mob.createMobAttributes()
-                .add(Attributes.MAX_HEALTH, 3.0D);
+        return Mob.createMobAttributes().add(Attributes.MAX_HEALTH, 3.0D);
     }
 
     protected void registerGoals() {
@@ -68,7 +66,6 @@ public class Lanternfish extends AbstractFish {
         if (i > 0) {
             this.setDarkTicks(i - 1);
         }
-
     }
 
     public boolean hurt(DamageSource pSource, float pAmount) {
@@ -76,14 +73,12 @@ public class Lanternfish extends AbstractFish {
         if (flag) {
             this.setDarkTicks(100);
         }
-
         return flag;
     }
 
     private void setDarkTicks(int ticksRemaining) {
         this.entityData.set(DATA_DARK_TICKS_REMAINING, ticksRemaining);
     }
-
     public int getDarkTicksRemaining() {
         return this.entityData.get(DATA_DARK_TICKS_REMAINING);
     }

@@ -16,7 +16,6 @@ import java.util.function.Supplier;
 @Mod.EventBusSubscriber(modid = SullysMod.MOD_ID)
 public class SMMissingMappingEvents {
 
-    //Removed this because it's unlikely there still mapping errors
     @SubscribeEvent
     public static void fixMissingBlockMappings(MissingMappingsEvent event) {
         Map<ResourceLocation, Supplier<Block>> blocksMap = (new ImmutableMap.Builder<ResourceLocation, Supplier<Block>>())
@@ -30,7 +29,6 @@ public class SMMissingMappingEvents {
             if (blockSupplier != null) {
                 Block block = blockSupplier.get();
                 mapping.remap(block);
-
             }
         }
 
@@ -39,7 +37,6 @@ public class SMMissingMappingEvents {
             if (itemSupplier != null) {
                 Item item = itemSupplier.get();
                 mapping.remap(item);
-
             }
         }
     }

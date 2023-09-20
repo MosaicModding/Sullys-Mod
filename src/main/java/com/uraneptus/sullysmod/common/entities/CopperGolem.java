@@ -40,6 +40,13 @@ public class CopperGolem extends AbstractGolem implements GeoEntity {
 
     }
 
+    public static AttributeSupplier.Builder createAttributes() {
+        return Mob.createMobAttributes()
+                .add(Attributes.MOVEMENT_SPEED, 0.25D)
+                .add(Attributes.MAX_HEALTH, 45.0D)
+                .add(Attributes.KNOCKBACK_RESISTANCE, 0.5D);
+    }
+
     @Override
     protected void registerGoals() {
         if (!isStatue) {
@@ -77,13 +84,6 @@ public class CopperGolem extends AbstractGolem implements GeoEntity {
 
     protected int decreaseAirSupply(int pAir) {
         return pAir;
-    }
-
-    public static AttributeSupplier.Builder createAttributes() {
-        return Mob.createMobAttributes()
-                .add(Attributes.MOVEMENT_SPEED, 0.25D)
-                .add(Attributes.MAX_HEALTH, 45.0D)
-                .add(Attributes.KNOCKBACK_RESISTANCE, 0.5D);
     }
 
     @Override
@@ -140,11 +140,11 @@ public class CopperGolem extends AbstractGolem implements GeoEntity {
         return PlayState.STOP;
     }
 
-    private void setOxidization(int state) {
-        this.entityData.set(OXIDIZATION, state);
-    }
-
     public int getOxidization() {
         return this.entityData.get(OXIDIZATION);
+    }
+
+    private void setOxidization(int state) {
+        this.entityData.set(OXIDIZATION, state);
     }
 }

@@ -45,7 +45,7 @@ public class SMPlayerEvents {
             for (GrindstonePolishingRecipe polishingRecipe : recipes) {
                 for (ItemStack ingredient : polishingRecipe.getIngredients().iterator().next().getItems()) {
                     ItemStack itemInHand = player.getItemInHand(hand);
-                    ItemStack result = polishingRecipe.result; // was getResultItem()
+                    ItemStack result = polishingRecipe.result;
                     int resultCount = polishingRecipe.getResultCount();
                     int xpAmount = polishingRecipe.getExperience();
 

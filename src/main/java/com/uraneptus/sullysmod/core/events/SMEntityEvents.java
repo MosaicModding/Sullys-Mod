@@ -85,8 +85,7 @@ public class SMEntityEvents {
                     level.addFreshEntity(projectile);
                     level.playSound(null, pos, SMSounds.FLINGER_FLINGS.get(), SoundSource.BLOCKS, 1.0F, 1.0F);
                     projectile.gameEvent(GameEvent.PROJECTILE_SHOOT);
-                }
-                else if (!(projectile.getType().is(SMEntityTags.CANNOT_BOUNCE))) {
+                } else if (!(projectile.getType().is(SMEntityTags.CANNOT_BOUNCE))) {
                     event.setCanceled(true);
                     switch (direction.getAxis()) {
                         case X -> projectile.shoot(vec3.reverse().x, vec3.y, vec3.z, calculateBounceVelocity(velocity), 0.0F);
@@ -125,7 +124,7 @@ public class SMEntityEvents {
                         projectile.shoot(angle.x, angle.y, angle.z, calculateBounceVelocity(velocity), 0.0F);
 
                         level.addFreshEntity(projectile);
-                        level.playSound(null, player.getX(), player.getY(), player.getZ(), SMSounds.JADE_RICOCHET.get(), player.getSoundSource(),  1.0F, 0.0F);
+                        level.playSound(null, player.getX(), player.getY(), player.getZ(), SMSounds.JADE_RICOCHET.get(), player.getSoundSource(), 1.0F, 0.0F);
                         ((ServerLevel) level).sendParticles(new DirectionParticleOptions(SMParticleTypes.RICOCHET.get(), direction), projectile.getX(), projectile.getY(), projectile.getZ(), 1, 0.0D, 0.0D, 0.0D, 0.0D);
                         player.getUseItem().hurtAndBreak(1, player, e -> e.broadcastBreakEvent(player.getUsedItemHand()));
                     }
@@ -141,15 +140,14 @@ public class SMEntityEvents {
         if (entity.getType().is(SMEntityTags.ATTACKS_BABY_TORTOISES) && entity instanceof Mob mob) {
             if (mob instanceof Ocelot ocelot) {
                 ocelot.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(ocelot, Tortoise.class, 10, false, false, Turtle.BABY_ON_LAND_SELECTOR));
-            }
-            else if (mob instanceof TamableAnimal tamable) {
+            } else if (mob instanceof TamableAnimal tamable) {
                 if (!tamable.isTame()) {
                     tamable.targetSelector.addGoal(6, new NonTameRandomTargetGoal<>(tamable, Tortoise.class, false, Turtle.BABY_ON_LAND_SELECTOR));
                 }
+            } else {
+                mob.targetSelector.addGoal(5, new NearestAttackableTargetGoal<>(mob, Tortoise.class, 10, true, false, Turtle.BABY_ON_LAND_SELECTOR));
             }
-            else mob.targetSelector.addGoal(5, new NearestAttackableTargetGoal<>(mob, Tortoise.class, 10, true, false, Turtle.BABY_ON_LAND_SELECTOR));
         }
-
         if (entity instanceof Zombie zombie) {
             zombie.goalSelector.addGoal(4, new GenericMobAttackTortoiseEggGoal(zombie, 1.0D, 3));
         }
@@ -158,7 +156,6 @@ public class SMEntityEvents {
     private static float calculateBounceVelocity(float velocity) {
         if (SMConfig.ENABLE_DYNAMIC_VELOCITY.get() && velocity * 0.8F >= 0.5F) {
             return velocity * 0.8F;
-        }
-        else return 0.5F;
+        } else return 0.5F;
     }
 }

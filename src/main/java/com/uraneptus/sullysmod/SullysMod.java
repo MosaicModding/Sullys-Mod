@@ -48,14 +48,6 @@ public class SullysMod {
     public static final RegistryHelper REGISTRY_HELPER = new RegistryHelper(MOD_ID);
     public static final Logger LOGGER = LogUtils.getLogger();
 
-    public static ResourceLocation modPrefix(String path) {
-        return new ResourceLocation(SullysMod.MOD_ID, path);
-    }
-
-    public static ResourceLocation blueprintPrefix(String path) {
-        return new ResourceLocation(SullysMod.BLUEPRINT_MOD_ID, path);
-    }
-
     public SullysMod() {
         IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
         bus.addListener(this::setup);
@@ -79,8 +71,12 @@ public class SullysMod {
         MinecraftForge.EVENT_BUS.register(this);
     }
 
-    private void setup(final FMLCommonSetupEvent event) {
-        event.enqueueWork(SMBrewingRecipes::register);
+    public static ResourceLocation modPrefix(String path) {
+        return new ResourceLocation(SullysMod.MOD_ID, path);
+    }
+
+    public static ResourceLocation blueprintPrefix(String path) {
+        return new ResourceLocation(SullysMod.BLUEPRINT_MOD_ID, path);
     }
 
     @SubscribeEvent
@@ -88,6 +84,10 @@ public class SullysMod {
         event.put(SMEntityTypes.COPPER_GOLEM.get(), CopperGolem.createAttributes().build());
         event.put(SMEntityTypes.LANTERNFISH.get(), Lanternfish.createAttributes().build());
         event.put(SMEntityTypes.TORTOISE.get(), Tortoise.createAttributes().build());
+    }
+
+    private void setup(final FMLCommonSetupEvent event) {
+        event.enqueueWork(SMBrewingRecipes::register);
     }
 
     @SubscribeEvent

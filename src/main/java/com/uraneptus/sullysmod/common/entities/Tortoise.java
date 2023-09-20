@@ -60,15 +60,21 @@ public class Tortoise extends Animal implements GeoEntity {
     public static final EntityDataAccessor<Integer> HIDE_TIMER = SynchedEntityData.defineId(Tortoise.class, EntityDataSerializers.INT);
     private static final EntityDataAccessor<Boolean> HAS_EGG = SynchedEntityData.defineId(Tortoise.class, EntityDataSerializers.BOOLEAN);
     private static final EntityDataAccessor<Boolean> LAYING_EGG = SynchedEntityData.defineId(Tortoise.class, EntityDataSerializers.BOOLEAN);
-    int layEggCounter;
+    public static final Ingredient FOOD_ITEMS = Ingredient.of(SMItemTags.TORTOISE_FOOD);
     protected static final RawAnimation WALKING_ANIM = RawAnimation.begin().thenLoop("animation.tortoise.walking");
     protected static final RawAnimation HIDING_ANIM = RawAnimation.begin().thenPlayAndHold("animation.tortoise.hide").thenLoop("animation.tortoise.hiding");
     protected static final RawAnimation REVEAL_ANIM = RawAnimation.begin().thenPlayAndHold("animation.tortoise.reveal");
     private final AnimatableInstanceCache instanceCache = GeckoLibUtil.createInstanceCache(this);
-    public static final Ingredient FOOD_ITEMS = Ingredient.of(SMItemTags.TORTOISE_FOOD);
+    int layEggCounter;
 
     public Tortoise(EntityType<? extends Animal> entityType, Level level) {
         super(entityType, level);
+    }
+
+    public static AttributeSupplier.Builder createAttributes() {
+        return Mob.createMobAttributes()
+                .add(Attributes.MOVEMENT_SPEED, 0.275D)
+                .add(Attributes.MAX_HEALTH, 30.0D);
     }
 
     @Nullable
@@ -97,7 +103,7 @@ public class Tortoise extends Animal implements GeoEntity {
     protected void updateControlFlags() {
         boolean flag = !(this.getVehicle() instanceof Boat);
         this.goalSelector.setControlFlag(Goal.Flag.MOVE, true);
-        this.goalSelector.setControlFlag(Goal.Flag.JUMP,   flag);
+        this.goalSelector.setControlFlag(Goal.Flag.JUMP, flag);
         this.goalSelector.setControlFlag(Goal.Flag.LOOK, true);
     }
 
@@ -120,8 +126,7 @@ public class Tortoise extends Animal implements GeoEntity {
     public void knockback(double pStrength, double pX, double pZ) {
         if (this.getHideTimerDuration() > 200) {
             super.knockback(pStrength, pX, pZ);
-        }
-        else super.knockback(pStrength * 0.25D, pX * 0.25D, pZ * 0.25D);
+        } else super.knockback(pStrength * 0.25D, pX * 0.25D, pZ * 0.25D);
     }
 
     @Override
@@ -149,8 +154,7 @@ public class Tortoise extends Animal implements GeoEntity {
                 if (this.getHideTimerDuration() == 0) {
                     this.setHideTimerDuration(205);
                     this.gameEvent(GameEvent.CONTAINER_CLOSE, null);
-                }
-                else this.setHideTimerDuration(200);
+                } else this.setHideTimerDuration(200);
             }
         }
 
@@ -160,11 +164,11 @@ public class Tortoise extends Animal implements GeoEntity {
                 if (this.getHideTimerDuration() == 0) {
                     this.setHideTimerDuration(205);
                     this.gameEvent(GameEvent.CONTAINER_CLOSE, null);
-                }
-                else this.setHideTimerDuration(200);
+                } else this.setHideTimerDuration(200);
             }
         }
     }
+
     @Override
     protected void ageBoundaryReached() {
         super.ageBoundaryReached();
@@ -190,12 +194,6 @@ public class Tortoise extends Animal implements GeoEntity {
         return FOOD_ITEMS.test(stack);
     }
 
-    public static AttributeSupplier.Builder createAttributes() {
-        return Mob.createMobAttributes()
-                .add(Attributes.MOVEMENT_SPEED, 0.275D)
-                .add(Attributes.MAX_HEALTH, 30.0D);
-    }
-
     @Override
     protected float getStandingEyeHeight(@NotNull Pose pose, EntityDimensions size) {
         return size.height * 0.45f;
@@ -212,8 +210,7 @@ public class Tortoise extends Animal implements GeoEntity {
         }
         if (this.getHideTimerDuration() > 1) {
             return super.getPassengersRidingOffset() * 0.75D;
-        }
-        else return super.getPassengersRidingOffset();
+        } else return super.getPassengersRidingOffset();
     }
 
     @Nullable
@@ -292,13 +289,6 @@ public class Tortoise extends Animal implements GeoEntity {
         return this.entityData.get(HIDE_TIMER);
     }
 
-    public boolean hasEgg() {
-        return this.entityData.get(HAS_EGG);
-    }
-    void setHasEgg(boolean pHasEgg) {
-        this.entityData.set(HAS_EGG, pHasEgg);
-    }
-
     public void setHideTimerDuration(int durationInTicks) {
         Level level = this.level();
 
@@ -310,8 +300,21 @@ public class Tortoise extends Animal implements GeoEntity {
         }
     }
 
+    public boolean hasEgg() {
+        return this.entityData.get(HAS_EGG);
+    }
+
+    void setHasEgg(boolean pHasEgg) {
+        this.entityData.set(HAS_EGG, pHasEgg);
+    }
+
     public boolean isLayingEgg() {
         return this.entityData.get(LAYING_EGG);
+    }
+
+    void setLayingEgg(boolean pIsDigging) {
+        this.layEggCounter = pIsDigging ? 1 : 0;
+        this.entityData.set(LAYING_EGG, pIsDigging);
     }
 
     @Override
@@ -322,11 +325,6 @@ public class Tortoise extends Animal implements GeoEntity {
     @Override
     public boolean canBeLeashed(Player pPlayer) {
         return false;
-    }
-
-    void setLayingEgg(boolean pIsDigging) {
-        this.layEggCounter = pIsDigging ? 1 : 0;
-        this.entityData.set(LAYING_EGG, pIsDigging);
     }
 
     public void aiStep() {
@@ -459,7 +457,7 @@ public class Tortoise extends Animal implements GeoEntity {
             }
 
             if (this.lookAt != null && this.lookAt.isPassenger()) {
-                    return false;
+                return false;
             }
 
             return super.canUse();
@@ -526,17 +524,16 @@ public class Tortoise extends Animal implements GeoEntity {
         protected void breed() {
             ServerPlayer player = this.animal.getLoveCause();
 
-            if (this.partner != null) { {
+            if (this.partner != null) {
                 if (player == null && this.partner.getLoveCause() != null) {
                     player = this.partner.getLoveCause();
                 }
-
                 if (player != null) {
                     player.awardStat(Stats.ANIMALS_BRED);
                     CriteriaTriggers.BRED_ANIMALS.trigger(player, this.animal, this.partner, null);
 
                 }
-            }}
+            }
 
             this.tortoise.setHasEgg(true);
             this.tortoise.resetLove();
@@ -595,8 +592,7 @@ public class Tortoise extends Animal implements GeoEntity {
 
                 if (this.tortoise.layEggCounter < 1) {
                     this.tortoise.setLayingEgg(true);
-                }
-                else if (this.tortoise.layEggCounter > this.adjustedTickDelay(200)) {
+                } else if (this.tortoise.layEggCounter > this.adjustedTickDelay(200)) {
                     Level level = this.tortoise.level();
                     level.playSound(null, blockPos, SMSounds.TORTOISE_LAY_EGG.get(), SoundSource.BLOCKS, 0.3F, 0.9F + level.random.nextFloat() * 0.2F);
                     level.setBlock(this.blockPos.above(), SMBlocks.TORTOISE_EGG.get().defaultBlockState().setValue(TurtleEggBlock.EGGS, this.tortoise.random.nextInt(4) + 1), 3);

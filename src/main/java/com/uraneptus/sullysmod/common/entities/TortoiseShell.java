@@ -68,7 +68,8 @@ public class TortoiseShell extends Entity {
 
     //This prevents the entity from moving when the player is sprinting and hits the entity
     @Override
-    public void push(double pX, double pY, double pZ) {}
+    public void push(double pX, double pY, double pZ) {
+    }
 
     @Override
     protected Vec3 getRelativePortalPosition(Direction.Axis pAxis, BlockUtil.FoundRectangle pPortal) {
@@ -156,7 +157,7 @@ public class TortoiseShell extends Entity {
     }
 
     private void hurtEntity(List<Entity> pEntities) {
-        for(Entity entity : pEntities) {
+        for (Entity entity : pEntities) {
             if (entity instanceof LivingEntity) {
                 entity.hurt(this.damageSources().generic(), 4);
             }
@@ -165,7 +166,7 @@ public class TortoiseShell extends Entity {
     }
 
     private void knockBack(List<Entity> pEntities) {
-        for(Entity entity : pEntities) {
+        for (Entity entity : pEntities) {
             if (entity instanceof LivingEntity) {
                 double x = entity.getX() - this.getX();
                 double z = entity.getZ() - this.getZ();
@@ -181,11 +182,11 @@ public class TortoiseShell extends Entity {
     }
 
     public void shoot(double pX, double pY, double pZ, float pVelocity, float pInaccuracy) {
-        Vec3 vec3 = (new Vec3(pX, pY, pZ)).normalize().add(this.random.triangle(0.0D, 0.0172275D * (double)pInaccuracy), this.random.triangle(0.0D, 0.0172275D * (double)pInaccuracy), this.random.triangle(0.0D, 0.0172275D * (double)pInaccuracy)).scale((double)pVelocity);
+        Vec3 vec3 = (new Vec3(pX, pY, pZ)).normalize().add(this.random.triangle(0.0D, 0.0172275D * (double) pInaccuracy), this.random.triangle(0.0D, 0.0172275D * (double) pInaccuracy), this.random.triangle(0.0D, 0.0172275D * (double) pInaccuracy)).scale(pVelocity);
         this.setDeltaMovement(vec3);
         double d0 = vec3.horizontalDistance();
-        this.setYRot((float)(Mth.atan2(vec3.x, vec3.z) * (double)(180F / (float)Math.PI)));
-        this.setXRot((float)(Mth.atan2(vec3.y, d0) * (double)(180F / (float)Math.PI)));
+        this.setYRot((float) (Mth.atan2(vec3.x(), vec3.z()) * (double) (180F / (float) Math.PI)));
+        this.setXRot((float) (Mth.atan2(vec3.y(), d0) * (double) (180F / (float) Math.PI)));
         this.yRotO = this.getYRot();
         this.xRotO = this.getXRot();
     }
@@ -219,7 +220,7 @@ public class TortoiseShell extends Entity {
 
     @Override
     public void tick() {
-        if (spinTicks > 0 ) {
+        if (spinTicks > 0) {
             this.hurtEntity(this.level().getEntities(this, this.getBoundingBox().inflate(0.30D), EntitySelector.NO_CREATIVE_OR_SPECTATOR));
             this.knockBack(this.level().getEntities(this, this.getBoundingBox().inflate(0.30D), EntitySelector.NO_CREATIVE_OR_SPECTATOR));
             blockKnockBack();
@@ -279,23 +280,28 @@ public class TortoiseShell extends Entity {
     protected void readAdditionalSaveData(CompoundTag pCompound) {
     }
 
-    public void setDamage(float pDamageTaken) {
-        this.entityData.set(DATA_ID_DAMAGE, pDamageTaken);
-    }
     public float getDamage() {
         return this.entityData.get(DATA_ID_DAMAGE);
     }
-    public void setHurtTime(int pHurtTime) {
-        this.entityData.set(DATA_ID_HURT, pHurtTime);
+
+    public void setDamage(float pDamageTaken) {
+        this.entityData.set(DATA_ID_DAMAGE, pDamageTaken);
     }
+
     public int getHurtTime() {
         return this.entityData.get(DATA_ID_HURT);
     }
-    public void setHurtDir(int pHurtDirection) {
-        this.entityData.set(DATA_ID_HURTDIR, pHurtDirection);
+
+    public void setHurtTime(int pHurtTime) {
+        this.entityData.set(DATA_ID_HURT, pHurtTime);
     }
+
     public int getHurtDir() {
         return this.entityData.get(DATA_ID_HURTDIR);
+    }
+
+    public void setHurtDir(int pHurtDirection) {
+        this.entityData.set(DATA_ID_HURTDIR, pHurtDirection);
     }
 
     @Override
