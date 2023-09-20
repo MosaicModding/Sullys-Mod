@@ -11,9 +11,14 @@
       "recipe": {
         "type": "sullysmod:grindstone_polishing",
         "experience": 0,
-        "ingredient": "minecraft:glowstone",
-        "result": "architects_palette:polished_glowstone",
-        "resultCount": 1
+        "ingredients": [
+          {
+            "item": "minecraft:glowstone"
+          }
+        ],
+        "result": {
+          "item": "architects_palette:polished_glowstone"
+        }
       }
     }
   ]

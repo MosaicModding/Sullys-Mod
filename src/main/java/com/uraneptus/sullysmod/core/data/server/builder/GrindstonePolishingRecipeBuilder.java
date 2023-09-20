@@ -1,19 +1,25 @@
 package com.uraneptus.sullysmod.core.data.server.builder;
 
+import com.google.common.collect.Lists;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.uraneptus.sullysmod.SullysMod;
 import com.uraneptus.sullysmod.core.registry.SMRecipeSerializer;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.core.Registry;
+import net.minecraft.data.BuiltinRegistries;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.level.ItemLike;
 import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.Nullable;
 
 import javax.annotation.ParametersAreNonnullByDefault;
+import java.util.List;
 import java.util.function.Consumer;
 
 @SuppressWarnings({"unused", "deprecation"})
@@ -21,77 +27,96 @@ import java.util.function.Consumer;
 @MethodsReturnNonnullByDefault
 public class GrindstonePolishingRecipeBuilder {
 
-    private final Item ingredient;
+    private final List<Ingredient> ingredients = Lists.newArrayList();
     private final Item result;
     private final int experience;
-    private final int resultCount;
+    private final int count;
     private final RecipeSerializer<?> serializer;
     private String recipeGroup;
 
-    private GrindstonePolishingRecipeBuilder(ItemLike ingredient, ItemLike result, int resultCount, int experience, RecipeSerializer<?> serializer) {
-        this.ingredient = ingredient.asItem();
+    private GrindstonePolishingRecipeBuilder(ItemLike result, int count, int experience, RecipeSerializer<?> serializer) {
         this.result = result.asItem();
-        this.resultCount = resultCount;
+        this.count = count;
         this.experience = experience;
         this.serializer = serializer;
     }
 
-    public static GrindstonePolishingRecipeBuilder grindstonePolishing(ItemLike ingredient, ItemLike result) {
-        return grindstonePolishing(ingredient, result, 1, 0);
+    public static GrindstonePolishingRecipeBuilder grindstonePolishing(ItemLike result) {
+        return grindstonePolishing(result, 1, 0);
     }
 
-    public static GrindstonePolishingRecipeBuilder grindstonePolishingWithoutExperience(ItemLike ingredient, ItemLike result, int resultCount) {
-        return grindstonePolishing(ingredient, result, resultCount, 0);
+    public static GrindstonePolishingRecipeBuilder grindstonePolishingWithoutExperience(ItemLike result, int count) {
+        return grindstonePolishing(result, count, 0);
     }
 
-    public static GrindstonePolishingRecipeBuilder grindstonePolishingWithoutCount(ItemLike ingredient, ItemLike result, int experience) {
-        return grindstonePolishing(ingredient, result, 1, experience);
+    public static GrindstonePolishingRecipeBuilder grindstonePolishingWithoutCount(ItemLike result, int experience) {
+        return grindstonePolishing(result, 1, experience);
     }
 
-    public static GrindstonePolishingRecipeBuilder grindstonePolishing(ItemLike ingredient, ItemLike result, int resultCount, int experience) {
-        return new GrindstonePolishingRecipeBuilder(ingredient, result, resultCount, experience, SMRecipeSerializer.GRINDSTONE_POLISHING_SERIALIZER.get());
+    public static GrindstonePolishingRecipeBuilder grindstonePolishing(ItemLike result, int count, int experience) {
+        return new GrindstonePolishingRecipeBuilder(result, count, experience, SMRecipeSerializer.GRINDSTONE_POLISHING_SERIALIZER.get());
     }
 
-    //The save methods here could be improved!
+    public GrindstonePolishingRecipeBuilder requires(TagKey<Item> pTag) {
+        return this.requires(Ingredient.of(pTag));
+    }
+
+    public GrindstonePolishingRecipeBuilder requires(ItemLike pItem) {
+        return this.requires(pItem, 1);
+    }
+
+    public GrindstonePolishingRecipeBuilder requires(ItemLike pItem, int pQuantity) {
+        for(int i = 0; i < pQuantity; ++i) {
+            this.requires(Ingredient.of(pItem));
+        }
+        return this;
+    }
+
+    public GrindstonePolishingRecipeBuilder requires(Ingredient pIngredient) {
+        return this.requires(pIngredient, 1);
+    }
+
+    public GrindstonePolishingRecipeBuilder requires(Ingredient pIngredient, int pQuantity) {
+        for(int i = 0; i < pQuantity; ++i) {
+            this.ingredients.add(pIngredient);
+        }
+        return this;
+    }
+
+    public GrindstonePolishingRecipeBuilder group(String pGroupName) {
+        this.recipeGroup = pGroupName;
+        return this;
+    }
+
     public void save(Consumer<FinishedRecipe> consumer) {
+        save(consumer, "");
+    }
+
+    public void save(Consumer<FinishedRecipe> consumer, String suffix) {
         ResourceLocation resultLocation = ForgeRegistries.ITEMS.getKey(this.result);
-        ResourceLocation ingredientLocation = ForgeRegistries.ITEMS.getKey(this.ingredient);
-        if (resultLocation != null && ingredientLocation != null) {
-            this.save(consumer, SullysMod.MOD_ID + ":grindstone_polishing/" + resultLocation.getPath() + "_from_polishing" + "_" + ingredientLocation.getPath());
+        if (resultLocation != null) {
+            consumer.accept(new GrindstonePolishingRecipeBuilder.Result(new ResourceLocation(SullysMod.MOD_ID + ":grindstone_polishing/" + resultLocation.getPath() + suffix), this.serializer, this.recipeGroup == null ? "" : this.recipeGroup, this.ingredients, this.result, this.count, this.experience));
         }
     }
 
-    public void save(Consumer<FinishedRecipe> pFinishedRecipeConsumer, String save) {
-        ResourceLocation defaultResourcelocation = ForgeRegistries.ITEMS.getKey(this.result);
-        ResourceLocation resourcelocation = new ResourceLocation(save);
-        if (resourcelocation.equals(defaultResourcelocation)) {
-            throw new IllegalStateException("Polishing Recipe " + save + " should remove its 'save' argument as it is equal to default one");
-        } else {
-            this.save(pFinishedRecipeConsumer, resourcelocation);
-        }
-    }
-
-    public void save(Consumer<FinishedRecipe> consumer, ResourceLocation id) {
-        consumer.accept(new GrindstonePolishingRecipeBuilder.Result(id, this.serializer, this.recipeGroup == null ? "" : this.recipeGroup, this.ingredient, this.result, this.resultCount, this.experience));
-    }
 
     public static class Result implements FinishedRecipe {
 
         private final ResourceLocation id;
         private final RecipeSerializer<?> serializer;
         private final String group;
-        private final Item ingredient;
+        private final List<Ingredient> ingredients;
         private final Item result;
-        private final int resultCount;
+        private final int count;
         private final int experience;
 
-        public Result(ResourceLocation pId, RecipeSerializer<?> serializer, String pGroup, Item pIngredient, Item pResult, int resultCount, int experience) {
+        public Result(ResourceLocation pId, RecipeSerializer<?> serializer, String pGroup, List<Ingredient> pIngredients, Item pResult, int count, int experience) {
             this.id = pId;
             this.serializer = serializer;
             this.group = pGroup;
-            this.ingredient = pIngredient;
+            this.ingredients = pIngredients;
             this.result = pResult;
-            this.resultCount = resultCount;
+            this.count = count;
             this.experience = experience;
         }
 
@@ -101,9 +126,17 @@ public class GrindstonePolishingRecipeBuilder {
                 pJson.addProperty("group", this.group);
             }
 
-            pJson.addProperty("ingredient", Registry.ITEM.getKey(this.ingredient).toString());
-            pJson.addProperty("result", Registry.ITEM.getKey(this.result).toString());
-            pJson.addProperty("resultCount", this.resultCount);
+            JsonArray jsonarray = new JsonArray();
+            for(Ingredient ingredient : this.ingredients) {
+                jsonarray.add(ingredient.toJson());
+            }
+            pJson.add("ingredients", jsonarray);
+            JsonObject jsonobject = new JsonObject();
+            jsonobject.addProperty("item", Registry.ITEM.getKey(this.result).toString());
+            if (this.count > 1) {
+                jsonobject.addProperty("count", this.count);
+            }
+            pJson.add("result", jsonobject);
             pJson.addProperty("experience", this.experience);
         }
 

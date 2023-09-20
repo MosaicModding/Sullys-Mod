@@ -11,9 +11,14 @@
       "recipe": {
         "type": "sullysmod:grindstone_polishing",
         "experience": 0,
-        "ingredient": "unusualend:raw_purpur_block",
-        "result": "unusualend:polished_purpur",
-        "resultCount": 1
+        "ingredients": [
+          {
+            "item": "unusualend:raw_purpur_block"
+          }
+        ],
+        "result": {
+          "item": "unusualend:polished_purpur"
+        }
       }
     }
   ]

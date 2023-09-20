@@ -11,9 +11,14 @@
       "recipe": {
         "type": "sullysmod:grindstone_polishing",
         "experience": 0,
-        "ingredient": "unearthed:gabbro_wall",
-        "result": "unearthed:polished_gabbro_wall",
-        "resultCount": 1
+        "ingredients": [
+          {
+            "item": "unearthed:gabbro_wall"
+          }
+        ],
+        "result": {
+          "item": "unearthed:polished_gabbro_wall"
+        }
       }
     }
   ]

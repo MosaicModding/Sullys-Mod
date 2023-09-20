@@ -11,9 +11,14 @@
       "recipe": {
         "type": "sullysmod:grindstone_polishing",
         "experience": 0,
-        "ingredient": "minecraft:end_stone",
-        "result": "stoneworks:polished_end_stone",
-        "resultCount": 1
+        "ingredients": [
+          {
+            "item": "minecraft:end_stone"
+          }
+        ],
+        "result": {
+          "item": "stoneworks:polished_end_stone"
+        }
       }
     }
   ]

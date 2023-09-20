@@ -1,0 +1,12 @@
+{
+  "type": "sullysmod:grindstone_polishing",
+  "experience": 0,
+  "ingredients": [
+    {
+      "item": "sullysmod:rough_jade_tile_stairs"
+    }
+  ],
+  "result": {
+    "item": "sullysmod:polished_jade_tile_stairs"
+  }
+}

@@ -11,9 +11,14 @@
       "recipe": {
         "type": "sullysmod:grindstone_polishing",
         "experience": 0,
-        "ingredient": "quark:calcite_slab",
-        "result": "quark:polished_calcite_slab",
-        "resultCount": 1
+        "ingredients": [
+          {
+            "item": "quark:calcite_slab"
+          }
+        ],
+        "result": {
+          "item": "quark:polished_calcite_slab"
+        }
       }
     }
   ]

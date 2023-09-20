@@ -11,9 +11,14 @@
       "recipe": {
         "type": "sullysmod:grindstone_polishing",
         "experience": 0,
-        "ingredient": "darkerdepths:limestone",
-        "result": "darkerdepths:polished_limestone",
-        "resultCount": 1
+        "ingredients": [
+          {
+            "item": "darkerdepths:limestone"
+          }
+        ],
+        "result": {
+          "item": "darkerdepths:polished_limestone"
+        }
       }
     }
   ]

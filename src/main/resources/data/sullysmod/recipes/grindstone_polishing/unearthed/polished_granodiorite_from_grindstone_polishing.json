@@ -11,9 +11,14 @@
       "recipe": {
         "type": "sullysmod:grindstone_polishing",
         "experience": 0,
-        "ingredient": "unearthed:granodiorite",
-        "result": "unearthed:polished_granodiorite",
-        "resultCount": 1
+        "ingredients": [
+          {
+            "item": "unearthed:granodiorite"
+          }
+        ],
+        "result": {
+          "item": "unearthed:polished_granodiorite"
+        }
       }
     }
   ]

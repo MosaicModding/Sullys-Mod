@@ -11,9 +11,14 @@
       "recipe": {
         "type": "sullysmod:grindstone_polishing",
         "experience": 0,
-        "ingredient": "enlightened_end:malachite_slab",
-        "result": "enlightened_end:polished_malachite_slab",
-        "resultCount": 1
+        "ingredients": [
+          {
+            "item": "enlightened_end:malachite_slab"
+          }
+        ],
+        "result": {
+          "item": "enlightened_end:polished_malachite_slab"
+        }
       }
     }
   ]

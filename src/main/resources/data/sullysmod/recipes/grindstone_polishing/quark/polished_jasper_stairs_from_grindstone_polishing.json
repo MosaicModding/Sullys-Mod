@@ -11,9 +11,14 @@
       "recipe": {
         "type": "sullysmod:grindstone_polishing",
         "experience": 0,
-        "ingredient": "quark:jasper_stairs",
-        "result": "quark:polished_jasper_stairs",
-        "resultCount": 1
+        "ingredients": [
+          {
+            "item": "quark:jasper_stairs"
+          }
+        ],
+        "result": {
+          "item": "quark:polished_jasper_stairs"
+        }
       }
     }
   ]

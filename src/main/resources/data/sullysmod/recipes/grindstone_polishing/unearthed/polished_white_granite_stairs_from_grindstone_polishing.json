@@ -11,9 +11,14 @@
       "recipe": {
         "type": "sullysmod:grindstone_polishing",
         "experience": 0,
-        "ingredient": "unearthed:white_granite_stairs",
-        "result": "unearthed:polished_white_granite_stairs",
-        "resultCount": 1
+        "ingredients": [
+          {
+            "item": "unearthed:white_granite_stairs"
+          }
+        ],
+        "result": {
+          "item": "unearthed:polished_white_granite_stairs"
+        }
       }
     }
   ]

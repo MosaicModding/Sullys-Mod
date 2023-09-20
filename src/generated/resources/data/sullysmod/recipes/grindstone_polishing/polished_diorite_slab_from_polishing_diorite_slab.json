@@ -1,7 +1,0 @@
-{
-  "type": "sullysmod:grindstone_polishing",
-  "experience": 0,
-  "ingredient": "minecraft:diorite_slab",
-  "result": "minecraft:polished_diorite_slab",
-  "resultCount": 1
-}

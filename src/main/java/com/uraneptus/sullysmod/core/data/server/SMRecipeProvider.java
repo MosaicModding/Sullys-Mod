@@ -9,6 +9,8 @@ import com.uraneptus.sullysmod.core.registry.SMBlocks;
 import com.uraneptus.sullysmod.core.registry.SMItems;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.recipes.*;
+import net.minecraft.tags.TagKey;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
@@ -121,34 +123,34 @@ public class SMRecipeProvider extends RecipeProvider {
         stonecutterRecipes(SMBlocks.POLISHED_JADE_SHINGLES, SMBlocks.POLISHED_JADE_SHINGLE_STAIRS, 1, consumer);
 
         //Grindstone Polishing
-        grindstonePolishingRecipes(SMItems.ROUGH_JADE.get(), SMItems.POLISHED_JADE.get(), 1, 1, consumer);
-        grindstonePolishingRecipes(SMBlocks.ROUGH_JADE_BLOCK.get(), SMBlocks.POLISHED_JADE_BLOCK.get(), 1, 9, consumer);
-        grindstonePolishingRecipes(SMBlocks.ROUGH_JADE_BRICKS.get(), SMBlocks.POLISHED_JADE_BRICKS.get(), 1, 0, consumer);
-        grindstonePolishingRecipes(SMBlocks.ROUGH_JADE_BRICK_SLAB.get(), SMBlocks.POLISHED_JADE_BRICK_SLAB.get(), 1, 0, consumer);
-        grindstonePolishingRecipes(SMBlocks.ROUGH_JADE_BRICK_STAIRS.get(), SMBlocks.POLISHED_JADE_BRICK_STAIRS.get(), 1, 0, consumer);
-        grindstonePolishingRecipes(SMBlocks.ROUGH_JADE_TILES.get(), SMBlocks.POLISHED_JADE_TILES.get(), 1, 0, consumer);
-        grindstonePolishingRecipes(SMBlocks.ROUGH_JADE_TILE_SLAB.get(), SMBlocks.POLISHED_JADE_TILE_SLAB.get(), 1, 0, consumer);
-        grindstonePolishingRecipes(SMBlocks.ROUGH_JADE_TILE_STAIRS.get(), SMBlocks.POLISHED_JADE_TILE_STAIRS.get(), 1, 0, consumer);
-        grindstonePolishingRecipes(Blocks.GRANITE, Blocks.POLISHED_GRANITE, 1, 0, consumer);
-        grindstonePolishingRecipes(Blocks.GRANITE_SLAB, Blocks.POLISHED_GRANITE_SLAB, 1, 0, consumer);
-        grindstonePolishingRecipes(Blocks.GRANITE_STAIRS, Blocks.POLISHED_GRANITE_STAIRS, 1, 0, consumer);
-        grindstonePolishingRecipes(Blocks.DIORITE, Blocks.POLISHED_DIORITE, 1, 0, consumer);
-        grindstonePolishingRecipes(Blocks.DIORITE_SLAB, Blocks.POLISHED_DIORITE_SLAB, 1, 0, consumer);
-        grindstonePolishingRecipes(Blocks.DIORITE_STAIRS, Blocks.POLISHED_DIORITE_STAIRS, 1, 0, consumer);
-        grindstonePolishingRecipes(Blocks.ANDESITE, Blocks.POLISHED_ANDESITE, 1, 0, consumer);
-        grindstonePolishingRecipes(Blocks.ANDESITE_SLAB, Blocks.POLISHED_ANDESITE_SLAB, 1, 0, consumer);
-        grindstonePolishingRecipes(Blocks.ANDESITE_STAIRS, Blocks.POLISHED_ANDESITE_STAIRS, 1, 0, consumer);
-        grindstonePolishingRecipes(Blocks.COBBLED_DEEPSLATE, Blocks.POLISHED_DEEPSLATE, 1, 0, consumer);
-        grindstonePolishingRecipes(Blocks.COBBLED_DEEPSLATE_SLAB, Blocks.POLISHED_DEEPSLATE_SLAB, 1, 0, consumer);
-        grindstonePolishingRecipes(Blocks.COBBLED_DEEPSLATE_STAIRS, Blocks.POLISHED_DEEPSLATE_STAIRS, 1, 0, consumer);
-        grindstonePolishingRecipes(Blocks.COBBLED_DEEPSLATE_WALL, Blocks.POLISHED_DEEPSLATE_WALL, 1, 0, consumer);
-        grindstonePolishingRecipes(Blocks.BASALT, Blocks.POLISHED_BASALT, 1, 0, consumer);
-        grindstonePolishingRecipes(Blocks.BLACKSTONE, Blocks.POLISHED_BLACKSTONE, 1, 0, consumer);
-        grindstonePolishingRecipes(Blocks.BLACKSTONE_SLAB, Blocks.POLISHED_BLACKSTONE_SLAB, 1, 0, consumer);
-        grindstonePolishingRecipes(Blocks.BLACKSTONE_STAIRS, Blocks.POLISHED_BLACKSTONE_STAIRS, 1, 0, consumer);
-        grindstonePolishingRecipes(Blocks.BLACKSTONE_WALL, Blocks.POLISHED_BLACKSTONE_WALL, 1, 0, consumer);
+        grindstonePolishingRecipes(SMItems.ROUGH_JADE.get(), SMItems.POLISHED_JADE.get(), 1, consumer);
+        grindstonePolishingRecipes(SMBlocks.ROUGH_JADE_BLOCK.get(), SMBlocks.POLISHED_JADE_BLOCK.get(), 9, consumer);
+        grindstonePolishingRecipes(SMBlocks.ROUGH_JADE_BRICKS.get(), SMBlocks.POLISHED_JADE_BRICKS.get(), consumer);
+        grindstonePolishingRecipes(SMBlocks.ROUGH_JADE_BRICK_SLAB.get(), SMBlocks.POLISHED_JADE_BRICK_SLAB.get(), consumer);
+        grindstonePolishingRecipes(SMBlocks.ROUGH_JADE_BRICK_STAIRS.get(), SMBlocks.POLISHED_JADE_BRICK_STAIRS.get(), consumer);
+        grindstonePolishingRecipes(SMBlocks.ROUGH_JADE_TILES.get(), SMBlocks.POLISHED_JADE_TILES.get(), consumer);
+        grindstonePolishingRecipes(SMBlocks.ROUGH_JADE_TILE_SLAB.get(), SMBlocks.POLISHED_JADE_TILE_SLAB.get(), consumer);
+        grindstonePolishingRecipes(SMBlocks.ROUGH_JADE_TILE_STAIRS.get(), SMBlocks.POLISHED_JADE_TILE_STAIRS.get(), consumer);
+        grindstonePolishingRecipes(Blocks.GRANITE, Blocks.POLISHED_GRANITE, consumer);
+        grindstonePolishingRecipes(Blocks.GRANITE_SLAB, Blocks.POLISHED_GRANITE_SLAB, consumer);
+        grindstonePolishingRecipes(Blocks.GRANITE_STAIRS, Blocks.POLISHED_GRANITE_STAIRS, consumer);
+        grindstonePolishingRecipes(Blocks.DIORITE, Blocks.POLISHED_DIORITE, consumer);
+        grindstonePolishingRecipes(Blocks.DIORITE_SLAB, Blocks.POLISHED_DIORITE_SLAB, consumer);
+        grindstonePolishingRecipes(Blocks.DIORITE_STAIRS, Blocks.POLISHED_DIORITE_STAIRS, consumer);
+        grindstonePolishingRecipes(Blocks.ANDESITE, Blocks.POLISHED_ANDESITE, consumer);
+        grindstonePolishingRecipes(Blocks.ANDESITE_SLAB, Blocks.POLISHED_ANDESITE_SLAB, consumer);
+        grindstonePolishingRecipes(Blocks.ANDESITE_STAIRS, Blocks.POLISHED_ANDESITE_STAIRS, consumer);
+        grindstonePolishingRecipes(Blocks.COBBLED_DEEPSLATE, Blocks.POLISHED_DEEPSLATE, consumer);
+        grindstonePolishingRecipes(Blocks.COBBLED_DEEPSLATE_SLAB, Blocks.POLISHED_DEEPSLATE_SLAB, consumer);
+        grindstonePolishingRecipes(Blocks.COBBLED_DEEPSLATE_STAIRS, Blocks.POLISHED_DEEPSLATE_STAIRS, consumer);
+        grindstonePolishingRecipes(Blocks.COBBLED_DEEPSLATE_WALL, Blocks.POLISHED_DEEPSLATE_WALL, consumer);
+        grindstonePolishingRecipes(Blocks.BASALT, Blocks.POLISHED_BASALT, consumer);
+        grindstonePolishingRecipes(Blocks.BLACKSTONE, Blocks.POLISHED_BLACKSTONE, consumer);
+        grindstonePolishingRecipes(Blocks.BLACKSTONE_SLAB, Blocks.POLISHED_BLACKSTONE_SLAB, consumer);
+        grindstonePolishingRecipes(Blocks.BLACKSTONE_STAIRS, Blocks.POLISHED_BLACKSTONE_STAIRS, consumer);
+        grindstonePolishingRecipes(Blocks.BLACKSTONE_WALL, Blocks.POLISHED_BLACKSTONE_WALL, consumer);
         grindstonePolishingRecipes(SMBlocks.JADE_ORE.get(), SMItems.POLISHED_JADE.get(), 1, 1, consumer);
-        grindstonePolishingRecipes(SMBlocks.DEEPSLATE_JADE_ORE.get(), SMItems.POLISHED_JADE.get(), 1, 1, consumer);
+        grindstonePolishingRecipes(SMBlocks.DEEPSLATE_JADE_ORE.get(), SMItems.POLISHED_JADE.get(), 3, 1, consumer);
 
         smithingRecipes(Items.SHIELD, SMItems.POLISHED_JADE.get(), SMItems.JADE_SHIELD.get(), consumer);
 
@@ -274,8 +276,22 @@ public class SMRecipeProvider extends RecipeProvider {
                 .unlockedBy(getHasName(ingredient.get()), has(ingredient.get())).save(consumer, stonecuttingPath(prefix + "_stonecutting"));
     }
 
-    private static void grindstonePolishingRecipes(ItemLike ingredient, ItemLike result, int resultCount, int experience, Consumer<FinishedRecipe> consumer) {
-        GrindstonePolishingRecipeBuilder.grindstonePolishing(ingredient, result, resultCount, experience).save(consumer);
+    private static void grindstonePolishingRecipes(ItemLike ingredient, ItemLike result, Consumer<FinishedRecipe> consumer) {
+        grindstonePolishingRecipes(ingredient, result, 1, 0, consumer);
+    }
+
+    private static void grindstonePolishingRecipes(ItemLike ingredient, ItemLike result, int experience, Consumer<FinishedRecipe> consumer) {
+        grindstonePolishingRecipes(ingredient, result, 1, experience, consumer);
+    }
+
+    private static void grindstonePolishingRecipes(ItemLike ingredient, ItemLike result, int count, int experience, Consumer<FinishedRecipe> consumer) {
+        String ingredientName = getItemName(ingredient);
+        GrindstonePolishingRecipeBuilder.grindstonePolishing(result, count, experience).requires(ingredient).save(consumer, "_from_" + ingredientName);
+    }
+
+    private static void grindstonePolishingRecipes(TagKey<Item> ingredient, ItemLike result, int count, int experience, Consumer<FinishedRecipe> consumer) {
+        String ingredientName = ingredient.location().getPath();
+        GrindstonePolishingRecipeBuilder.grindstonePolishing(result, count, experience).requires(ingredient).save(consumer, "_from_" + ingredientName);
     }
 
     private static void smithingRecipes(ItemLike baseItem, ItemLike ingredient, ItemLike result, Consumer<FinishedRecipe> consumer) {

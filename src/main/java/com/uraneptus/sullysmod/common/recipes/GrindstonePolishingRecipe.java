@@ -1,25 +1,25 @@
 package com.uraneptus.sullysmod.common.recipes;
 
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
 import com.uraneptus.sullysmod.core.registry.SMRecipeSerializer;
 import com.uraneptus.sullysmod.core.registry.SMRecipeTypes;
 import net.minecraft.MethodsReturnNonnullByDefault;
+import net.minecraft.core.NonNullList;
 import net.minecraft.core.Registry;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.GsonHelper;
 import net.minecraft.world.Container;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.Recipe;
-import net.minecraft.world.item.crafting.RecipeSerializer;
-import net.minecraft.world.item.crafting.RecipeType;
-import net.minecraft.world.item.crafting.ShapedRecipe;
+import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.Level;
+import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.Nullable;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.List;
-//TODO Test if Tags work for the ingredients and results, if not then make it work
 
 @SuppressWarnings("deprecation")
 @ParametersAreNonnullByDefault
@@ -29,17 +29,15 @@ public class GrindstonePolishingRecipe implements Recipe<Container> {
 
     private final ResourceLocation id;
     private final String recipeGroup;
-    public final ItemStack ingredient;
+    private final NonNullList<Ingredient> ingredients;
     public final ItemStack result;
-    private final int resultCount;
     private final int experience;
 
-    public GrindstonePolishingRecipe(ResourceLocation id, String recipeGroup, ItemStack ingredient, ItemStack result, int resultCount, int experience) {
+    public GrindstonePolishingRecipe(ResourceLocation id, String recipeGroup, NonNullList<Ingredient> pIngredients, ItemStack result, int experience) {
         this.id = id;
         this.recipeGroup = recipeGroup;
-        this.ingredient = ingredient;
+        this.ingredients = pIngredients;
         this.result = result;
-        this.resultCount = resultCount;
         this.experience = experience;
     }
 
@@ -63,7 +61,12 @@ public class GrindstonePolishingRecipe implements Recipe<Container> {
     }
 
     public int getResultCount() {
-        return this.resultCount;
+        return this.result.getCount();
+    }
+
+    @Override
+    public NonNullList<Ingredient> getIngredients() {
+        return this.ingredients;
     }
 
     @Override
@@ -106,15 +109,9 @@ public class GrindstonePolishingRecipe implements Recipe<Container> {
         public GrindstonePolishingRecipe fromJson(ResourceLocation pRecipeId, JsonObject jsonObject) {
             String group = GsonHelper.getAsString(jsonObject, "group", "");
 
-            if (!jsonObject.has("ingredient")) throw new com.google.gson.JsonSyntaxException("Missing ingredient, expected to find a string or object");
-            ItemStack ingredient;
-            if (jsonObject.get("ingredient").isJsonObject()) {
-                ingredient = ShapedRecipe.itemStackFromJson(GsonHelper.getAsJsonObject(jsonObject, "ingredient"));
-            }
-            else {
-                String ingredientItem = GsonHelper.getAsString(jsonObject, "ingredient");
-                ResourceLocation resourcelocation = new ResourceLocation(ingredientItem);
-                ingredient = new ItemStack(Registry.ITEM.getOptional(resourcelocation).orElseThrow(() -> new IllegalStateException("Item: " + ingredientItem + " does not exist")));
+            NonNullList<Ingredient> nonnulllist = itemsFromJson(GsonHelper.getAsJsonArray(jsonObject, "ingredients"));
+            if (nonnulllist.isEmpty()) {
+                throw new JsonParseException("No ingredients for shapeless recipe");
             }
             if (!jsonObject.has("result")) throw new com.google.gson.JsonSyntaxException("Missing result, expected to find a string or object");
             ItemStack result;
@@ -124,32 +121,47 @@ public class GrindstonePolishingRecipe implements Recipe<Container> {
             else {
                 String resultItem = GsonHelper.getAsString(jsonObject, "result");
                 ResourceLocation resourcelocation = new ResourceLocation(resultItem);
-                result = new ItemStack(Registry.ITEM.getOptional(resourcelocation).orElseThrow(() -> new IllegalStateException("Item: " + resultItem + " does not exist")));
+                result = new ItemStack(ForgeRegistries.ITEMS.getDelegate(resourcelocation).orElseThrow(() -> new IllegalStateException("Item: " + resultItem + " does not exist")));
             }
-            int resultCount = GsonHelper.getAsInt(jsonObject, "resultCount", 1);
             int experience = GsonHelper.getAsInt(jsonObject, "experience", 0);
 
-            return new GrindstonePolishingRecipe(pRecipeId, group, ingredient, result, resultCount, experience);
+            return new GrindstonePolishingRecipe(pRecipeId, group, nonnulllist, result, experience);
+        }
+
+        private static NonNullList<Ingredient> itemsFromJson(JsonArray pIngredientArray) {
+            NonNullList<Ingredient> nonnulllist = NonNullList.create();
+
+            for(int i = 0; i < pIngredientArray.size(); ++i) {
+                Ingredient ingredient = Ingredient.fromJson(pIngredientArray.get(i));
+                if (!ingredient.isEmpty()) {
+                    nonnulllist.add(ingredient);
+                }
+            }
+
+            return nonnulllist;
         }
 
         @Nullable
         @Override
         public GrindstonePolishingRecipe fromNetwork(ResourceLocation pRecipeId, FriendlyByteBuf pBuffer) {
             String group = pBuffer.readUtf();
-            ItemStack ingredient = pBuffer.readItem();
             ItemStack result = pBuffer.readItem();
-            int resultCount = pBuffer.readInt();
             int experience = pBuffer.readInt();
+            int i = pBuffer.readVarInt();
+            NonNullList<Ingredient> nonnulllist = NonNullList.withSize(i, Ingredient.EMPTY);
+            nonnulllist.replaceAll(ignored -> Ingredient.fromNetwork(pBuffer));
 
-            return new GrindstonePolishingRecipe(pRecipeId, group, ingredient, result, resultCount, experience);
+            return new GrindstonePolishingRecipe(pRecipeId, group, nonnulllist, result, experience);
         }
 
         @Override
         public void toNetwork(FriendlyByteBuf pBuffer, GrindstonePolishingRecipe pRecipe) {
             pBuffer.writeUtf(pRecipe.recipeGroup);
-            pBuffer.writeItem(pRecipe.ingredient);
+            pBuffer.writeVarInt(pRecipe.ingredients.size());
+            for(Ingredient ingredient : pRecipe.ingredients) {
+                ingredient.toNetwork(pBuffer);
+            }
             pBuffer.writeItem(pRecipe.result);
-            pBuffer.writeInt(pRecipe.resultCount);
             pBuffer.writeInt(pRecipe.experience);
         }
     }

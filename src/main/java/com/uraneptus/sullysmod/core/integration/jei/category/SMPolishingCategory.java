@@ -66,7 +66,7 @@ public class SMPolishingCategory implements IRecipeCategory<GrindstonePolishingR
 
     @Override
     public void setRecipe(IRecipeLayoutBuilder layout, GrindstonePolishingRecipe polishingRecipes, IFocusGroup ingredients) {
-        layout.addSlot(RecipeIngredientRole.INPUT, 4, 9).addItemStack(polishingRecipes.ingredient);
+        layout.addSlot(RecipeIngredientRole.INPUT, 4, 9).addIngredients(polishingRecipes.getIngredients().iterator().next());
         layout.addSlot(RecipeIngredientRole.OUTPUT, 76, 9).addItemStack(new ItemStack(polishingRecipes.result.getItem(), polishingRecipes.getResultCount()));
     }
 

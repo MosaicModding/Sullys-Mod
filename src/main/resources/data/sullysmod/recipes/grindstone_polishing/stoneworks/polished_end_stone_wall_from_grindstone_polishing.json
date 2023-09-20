@@ -15,9 +15,14 @@
       "recipe": {
         "type": "sullysmod:grindstone_polishing",
         "experience": 0,
-        "ingredient": "enlightened_end:end_stone_wall",
-        "result": "stoneworks:polished_end_stone_wall",
-        "resultCount": 1
+        "ingredients": [
+          {
+            "item": "enlightened_end:end_stone_wall"
+          }
+        ],
+        "result": {
+          "item": "stoneworks:polished_end_stone_wall"
+        }
       }
     }
   ]

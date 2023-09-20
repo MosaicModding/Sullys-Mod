@@ -11,9 +11,14 @@
       "recipe": {
         "type": "sullysmod:grindstone_polishing",
         "experience": 0,
-        "ingredient": "unearthed:rhyolite_slab",
-        "result": "unearthed:polished_rhyolite_slab",
-        "resultCount": 1
+        "ingredients": [
+          {
+            "item": "unearthed:rhyolite_slab"
+          }
+        ],
+        "result": {
+          "item": "unearthed:polished_rhyolite_slab"
+        }
       }
     }
   ]

@@ -11,9 +11,14 @@
       "recipe": {
         "type": "sullysmod:grindstone_polishing",
         "experience": 0,
-        "ingredient": "quark:tuff_slab",
-        "result": "quark:polished_tuff_slab",
-        "resultCount": 1
+        "ingredients": [
+          {
+            "item": "quark:tuff_slab"
+          }
+        ],
+        "result": {
+          "item": "quark:polished_tuff_slab"
+        }
       }
     }
   ]

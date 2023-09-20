@@ -11,9 +11,14 @@
       "recipe": {
         "type": "sullysmod:grindstone_polishing",
         "experience": 0,
-        "ingredient": "unearthed:dacite",
-        "result": "unearthed:polished_dacite",
-        "resultCount": 1
+        "ingredients": [
+          {
+            "item": "unearthed:dacite"
+          }
+        ],
+        "result": {
+          "item": "unearthed:polished_dacite"
+        }
       }
     }
   ]

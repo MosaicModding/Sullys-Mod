@@ -44,8 +44,7 @@ public class SMPlayerEvents {
         if (block instanceof GrindstoneBlock) {
             ArrayList<GrindstonePolishingRecipe> recipes = new ArrayList<>(GrindstonePolishingRecipe.getRecipes(level));
             for (GrindstonePolishingRecipe polishingRecipe : recipes) {
-                if (!recipes.isEmpty()) {
-                    ItemStack ingredient = polishingRecipe.ingredient;
+                for (ItemStack ingredient : polishingRecipe.getIngredients().iterator().next().getItems()) {
                     ItemStack itemInHand = player.getItemInHand(hand);
                     ItemStack result = polishingRecipe.getResultItem();
                     int resultCount = polishingRecipe.getResultCount();
@@ -107,9 +106,7 @@ public class SMPlayerEvents {
         if (level.isClientSide()) {
             if (SMConfig.PARTICLES_AROUND_GRINDSTONE.get()) {
                 for (GrindstonePolishingRecipe polishingRecipe : recipes) {
-                    if (!recipes.isEmpty()) {
-                        ItemStack ingredient = polishingRecipe.ingredient;
-
+                    for (ItemStack ingredient : polishingRecipe.getIngredients().iterator().next().getItems()) {
                         if (player.getItemInHand(hand).is(ingredient.getItem())) {
                             for(BlockPos blockpos : BlockPos.betweenClosed(pos.offset(-7, -7, -7), pos.offset(7, 7, 7))) {
                                 Block block = level.getBlockState(blockpos).getBlock();
@@ -122,7 +119,6 @@ public class SMPlayerEvents {
                 }
             }
         }
-
     }
 
     @SubscribeEvent

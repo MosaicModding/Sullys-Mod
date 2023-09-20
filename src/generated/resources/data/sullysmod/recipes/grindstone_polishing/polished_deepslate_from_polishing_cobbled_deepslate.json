@@ -1,7 +1,0 @@
-{
-  "type": "sullysmod:grindstone_polishing",
-  "experience": 0,
-  "ingredient": "minecraft:cobbled_deepslate",
-  "result": "minecraft:polished_deepslate",
-  "resultCount": 1
-}

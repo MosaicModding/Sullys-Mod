@@ -11,9 +11,14 @@
       "recipe": {
         "type": "sullysmod:grindstone_polishing",
         "experience": 0,
-        "ingredient": "quark:dripstone_block_stairs",
-        "result": "quark:polished_dripstone_stairs",
-        "resultCount": 1
+        "ingredients": [
+          {
+            "item": "quark:dripstone_block_stairs"
+          }
+        ],
+        "result": {
+          "item": "quark:polished_dripstone_stairs"
+        }
       }
     }
   ]

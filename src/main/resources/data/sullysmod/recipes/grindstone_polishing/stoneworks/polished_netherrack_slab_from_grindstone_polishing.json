@@ -15,9 +15,14 @@
       "recipe": {
         "type": "sullysmod:grindstone_polishing",
         "experience": 0,
-        "ingredient": "nourished_nether:netherrack_slab",
-        "result": "stoneworks:polished_netherrack_slab",
-        "resultCount": 1
+        "ingredients": [
+          {
+            "item": "nourished_nether:netherrack_slab"
+          }
+        ],
+        "result": {
+          "item": "stoneworks:polished_netherrack_slab"
+        }
       }
     }
   ]

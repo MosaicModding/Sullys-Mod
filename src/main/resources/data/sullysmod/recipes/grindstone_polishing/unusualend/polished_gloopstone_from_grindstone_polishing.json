@@ -11,9 +11,14 @@
       "recipe": {
         "type": "sullysmod:grindstone_polishing",
         "experience": 0,
-        "ingredient": "unusualend:gloopstone",
-        "result": "unusualend:polished_gloopstone",
-        "resultCount": 1
+        "ingredients": [
+          {
+            "item": "unusualend:gloopstone"
+          }
+        ],
+        "result": {
+          "item": "unusualend:polished_gloopstone"
+        }
       }
     }
   ]

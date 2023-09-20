@@ -11,9 +11,14 @@
       "recipe": {
         "type": "sullysmod:grindstone_polishing",
         "experience": 0,
-        "ingredient": "quark:shale",
-        "result": "quark:polished_shale",
-        "resultCount": 1
+        "ingredients": [
+          {
+            "item": "quark:shale"
+          }
+        ],
+        "result": {
+          "item": "quark:polished_shale"
+        }
       }
     }
   ]

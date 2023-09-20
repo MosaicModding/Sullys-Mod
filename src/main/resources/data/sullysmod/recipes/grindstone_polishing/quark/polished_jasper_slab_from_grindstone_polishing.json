@@ -11,9 +11,14 @@
       "recipe": {
         "type": "sullysmod:grindstone_polishing",
         "experience": 0,
-        "ingredient": "quark:jasper_slab",
-        "result": "quark:polished_jasper_slab",
-        "resultCount": 1
+        "ingredients": [
+          {
+            "item": "quark:jasper_slab"
+          }
+        ],
+        "result": {
+          "item": "quark:polished_jasper_slab"
+        }
       }
     }
   ]

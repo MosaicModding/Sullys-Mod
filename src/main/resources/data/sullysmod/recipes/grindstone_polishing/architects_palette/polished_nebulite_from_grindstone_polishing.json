@@ -11,9 +11,14 @@
       "recipe": {
         "type": "sullysmod:grindstone_polishing",
         "experience": 0,
-        "ingredient": "architects_palette:nebulite",
-        "result": "architects_palette:polished_nebulite",
-        "resultCount": 1
+        "ingredients": [
+          {
+            "item": "architects_palette:nebulite"
+          }
+        ],
+        "result": {
+          "item": "architects_palette:polished_nebulite"
+        }
       }
     }
   ]

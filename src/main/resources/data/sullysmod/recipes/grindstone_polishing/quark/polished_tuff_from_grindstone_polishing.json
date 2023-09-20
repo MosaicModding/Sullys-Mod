@@ -11,9 +11,14 @@
       "recipe": {
         "type": "sullysmod:grindstone_polishing",
         "experience": 0,
-        "ingredient": "minecraft:tuff",
-        "result": "quark:polished_tuff",
-        "resultCount": 1
+        "ingredients": [
+          {
+            "item": "minecraft:tuff"
+          }
+        ],
+        "result": {
+          "item": "quark:polished_tuff"
+        }
       }
     }
   ]
