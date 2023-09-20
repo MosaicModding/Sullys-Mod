@@ -11,9 +11,14 @@
       "recipe": {
         "type": "sullysmod:grindstone_polishing",
         "experience": 0,
-        "ingredient": "deeperdarker:sculk_stone_wall",
-        "result": "deeperdarker:polished_sculk_stone_wall",
-        "resultCount": 1
+        "ingredients": [
+          {
+            "item": "deeperdarker:sculk_stone_wall"
+          }
+        ],
+        "result": {
+          "item": "deeperdarker:polished_sculk_stone_wall"
+        }
       }
     }
   ]

@@ -15,9 +15,14 @@
       "recipe": {
         "type": "sullysmod:grindstone_polishing",
         "experience": 0,
-        "ingredient": "mcwlights:glowstone_slab",
-        "result": "architects_palette:polished_glowstone_slab",
-        "resultCount": 1
+        "ingredients": [
+          {
+            "item": "mcwlights:glowstone_slab"
+          }
+        ],
+        "result": {
+          "item": "architects_palette:polished_glowstone_slab"
+        }
       }
     }
   ]

@@ -11,9 +11,14 @@
       "recipe": {
         "type": "sullysmod:grindstone_polishing",
         "experience": 0,
-        "ingredient": "minecraft:purpur_block",
-        "result": "stoneworks:polished_purpur",
-        "resultCount": 1
+        "ingredients": [
+          {
+            "item": "minecraft:purpur_block"
+          }
+        ],
+        "result": {
+          "item": "stoneworks:polished_purpur"
+        }
       }
     }
   ]

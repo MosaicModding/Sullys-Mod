@@ -11,9 +11,14 @@
       "recipe": {
         "type": "sullysmod:grindstone_polishing",
         "experience": 0,
-        "ingredient": "minecraft:netherrack",
-        "result": "stoneworks:polished_netherrack",
-        "resultCount": 1
+        "ingredients": [
+          {
+            "item": "minecraft:netherrack"
+          }
+        ],
+        "result": {
+          "item": "stoneworks:polished_netherrack"
+        }
       }
     }
   ]

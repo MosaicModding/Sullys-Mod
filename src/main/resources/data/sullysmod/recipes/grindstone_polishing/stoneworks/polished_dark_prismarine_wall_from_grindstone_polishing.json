@@ -15,9 +15,14 @@
       "recipe": {
         "type": "sullysmod:grindstone_polishing",
         "experience": 0,
-        "ingredient": "immersive_weathering:dark_prismarine_wall",
-        "result": "stoneworks:polished_dark_prismarine_wall",
-        "resultCount": 1
+        "ingredients": [
+          {
+            "item": "immersive_weathering:dark_prismarine_wall"
+          }
+        ],
+        "result": {
+          "item": "stoneworks:polished_dark_prismarine_wall"
+        }
       }
     }
   ]

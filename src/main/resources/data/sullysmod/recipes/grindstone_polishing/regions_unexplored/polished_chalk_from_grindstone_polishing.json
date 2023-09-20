@@ -11,9 +11,14 @@
       "recipe": {
         "type": "sullysmod:grindstone_polishing",
         "experience": 0,
-        "ingredient": "regions_unexplored:chalk",
-        "result": "regions_unexplored:polished_chalk",
-        "resultCount": 1
+        "ingredients": [
+          {
+            "item": "regions_unexplored:chalk"
+          }
+        ],
+        "result": {
+          "item": "regions_unexplored:polished_chalk"
+        }
       }
     }
   ]

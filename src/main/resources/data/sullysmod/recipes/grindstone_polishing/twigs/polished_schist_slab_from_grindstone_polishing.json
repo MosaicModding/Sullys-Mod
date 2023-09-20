@@ -11,9 +11,14 @@
       "recipe": {
         "type": "sullysmod:grindstone_polishing",
         "experience": 0,
-        "ingredient": "twigs:schist_slab",
-        "result": "twigs:polished_schist_slab",
-        "resultCount": 1
+        "ingredients": [
+          {
+            "item": "twigs:schist_slab"
+          }
+        ],
+        "result": {
+          "item": "twigs:polished_schist_slab"
+        }
       }
     }
   ]

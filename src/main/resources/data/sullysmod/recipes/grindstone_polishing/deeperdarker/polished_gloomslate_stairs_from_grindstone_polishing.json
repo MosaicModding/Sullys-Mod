@@ -11,9 +11,14 @@
       "recipe": {
         "type": "sullysmod:grindstone_polishing",
         "experience": 0,
-        "ingredient": "deeperdarker:gloomslate_stairs",
-        "result": "deeperdarker:polished_gloomslate_stairs",
-        "resultCount": 1
+        "ingredients": [
+          {
+            "item": "deeperdarker:gloomslate_stairs"
+          }
+        ],
+        "result": {
+          "item": "deeperdarker:polished_gloomslate_stairs"
+        }
       }
     }
   ]

@@ -11,9 +11,14 @@
       "recipe": {
         "type": "sullysmod:grindstone_polishing",
         "experience": 0,
-        "ingredient": "enlightened_end:void_shale_wall",
-        "result": "enlightened_end:polished_void_shale_wall",
-        "resultCount": 1
+        "ingredients": [
+          {
+            "item": "enlightened_end:void_shale_wall"
+          }
+        ],
+        "result": {
+          "item": "enlightened_end:polished_void_shale_wall"
+        }
       }
     }
   ]

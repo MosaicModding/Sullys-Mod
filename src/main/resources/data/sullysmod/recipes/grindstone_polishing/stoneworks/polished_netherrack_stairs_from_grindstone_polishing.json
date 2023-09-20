@@ -15,9 +15,14 @@
       "recipe": {
         "type": "sullysmod:grindstone_polishing",
         "experience": 0,
-        "ingredient": "nourished_nether:netherrack_stairs",
-        "result": "stoneworks:polished_netherrack_stairs",
-        "resultCount": 1
+        "ingredients": [
+          {
+            "item": "nourished_nether:netherrack_stairs"
+          }
+        ],
+        "result": {
+          "item": "stoneworks:polished_netherrack_stairs"
+        }
       }
     }
   ]

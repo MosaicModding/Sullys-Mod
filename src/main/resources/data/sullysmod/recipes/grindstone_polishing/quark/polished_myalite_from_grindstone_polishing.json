@@ -11,9 +11,14 @@
       "recipe": {
         "type": "sullysmod:grindstone_polishing",
         "experience": 0,
-        "ingredient": "quark:myalite",
-        "result": "quark:polished_myalite",
-        "resultCount": 1
+        "ingredients": [
+          {
+            "item": "quark:myalite"
+          }
+        ],
+        "result": {
+          "item": "quark:polished_myalite"
+        }
       }
     }
   ]

@@ -11,9 +11,14 @@
       "recipe": {
         "type": "sullysmod:grindstone_polishing",
         "experience": 0,
-        "ingredient": "minecraft:amethyst_block",
-        "result": "twigs:polished_amethyst",
-        "resultCount": 1
+        "ingredients": [
+          {
+            "item": "minecraft:amethyst_block"
+          }
+        ],
+        "result": {
+          "item": "twigs:polished_amethyst"
+        }
       }
     }
   ]

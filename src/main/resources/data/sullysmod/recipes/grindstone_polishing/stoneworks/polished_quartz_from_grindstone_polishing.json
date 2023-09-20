@@ -11,9 +11,14 @@
       "recipe": {
         "type": "sullysmod:grindstone_polishing",
         "experience": 0,
-        "ingredient": "minecraft:quartz_block",
-        "result": "stoneworks:polished_quartz",
-        "resultCount": 1
+        "ingredients": [
+          {
+            "item": "minecraft:quartz_block"
+          }
+        ],
+        "result": {
+          "item": "stoneworks:polished_quartz"
+        }
       }
     }
   ]

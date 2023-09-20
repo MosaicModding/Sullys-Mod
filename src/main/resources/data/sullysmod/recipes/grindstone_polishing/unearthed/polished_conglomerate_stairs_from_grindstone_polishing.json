@@ -11,9 +11,14 @@
       "recipe": {
         "type": "sullysmod:grindstone_polishing",
         "experience": 0,
-        "ingredient": "unearthed:conglomerate_stairs",
-        "result": "unearthed:polished_conglomerate_stairs",
-        "resultCount": 1
+        "ingredients": [
+          {
+            "item": "unearthed:conglomerate_stairs"
+          }
+        ],
+        "result": {
+          "item": "unearthed:polished_conglomerate_stairs"
+        }
       }
     }
   ]

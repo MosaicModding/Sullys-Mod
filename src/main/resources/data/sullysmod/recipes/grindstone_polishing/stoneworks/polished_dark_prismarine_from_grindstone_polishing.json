@@ -11,9 +11,14 @@
       "recipe": {
         "type": "sullysmod:grindstone_polishing",
         "experience": 0,
-        "ingredient": "minecraft:dark_prismarine",
-        "result": "stoneworks:polished_dark_prismarine",
-        "resultCount": 1
+        "ingredients": [
+          {
+            "item": "minecraft:dark_prismarine"
+          }
+        ],
+        "result": {
+          "item": "stoneworks:polished_dark_prismarine"
+        }
       }
     }
   ]

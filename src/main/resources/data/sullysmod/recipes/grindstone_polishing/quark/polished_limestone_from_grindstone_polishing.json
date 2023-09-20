@@ -11,9 +11,14 @@
       "recipe": {
         "type": "sullysmod:grindstone_polishing",
         "experience": 0,
-        "ingredient": "quark:limestone",
-        "result": "quark:polished_limestone",
-        "resultCount": 1
+        "ingredients": [
+          {
+            "item": "quark:limestone"
+          }
+        ],
+        "result": {
+          "item": "quark:polished_limestone"
+        }
       }
     }
   ]

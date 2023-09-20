@@ -11,9 +11,14 @@
       "recipe": {
         "type": "sullysmod:grindstone_polishing",
         "experience": 0,
-        "ingredient": "twigs:rhyolite_stairs",
-        "result": "twigs:polished_rhyolite_stairs",
-        "resultCount": 1
+        "ingredients": [
+          {
+            "item": "twigs:rhyolite_stairs"
+          }
+        ],
+        "result": {
+          "item": "twigs:polished_rhyolite_stairs"
+        }
       }
     }
   ]

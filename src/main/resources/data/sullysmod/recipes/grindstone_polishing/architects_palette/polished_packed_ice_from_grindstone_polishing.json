@@ -11,9 +11,14 @@
       "recipe": {
         "type": "sullysmod:grindstone_polishing",
         "experience": 0,
-        "ingredient": "minecraft:packed_ice",
-        "result": "architects_palette:polished_packed_ice",
-        "resultCount": 1
+        "ingredients": [
+          {
+            "item": "minecraft:packed_ice"
+          }
+        ],
+        "result": {
+          "item": "architects_palette:polished_packed_ice"
+        }
       }
     }
   ]

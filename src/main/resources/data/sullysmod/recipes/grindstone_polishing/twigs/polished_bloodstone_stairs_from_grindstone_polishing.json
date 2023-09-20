@@ -11,9 +11,14 @@
       "recipe": {
         "type": "sullysmod:grindstone_polishing",
         "experience": 0,
-        "ingredient": "twigs:bloodstone_stairs",
-        "result": "twigs:polished_bloodstone_stairs",
-        "resultCount": 1
+        "ingredients": [
+          {
+            "item": "twigs:bloodstone_stairs"
+          }
+        ],
+        "result": {
+          "item": "twigs:polished_bloodstone_stairs"
+        }
       }
     }
   ]

@@ -11,9 +11,14 @@
       "recipe": {
         "type": "sullysmod:grindstone_polishing",
         "experience": 0,
-        "ingredient": "enlightened_end:palerock",
-        "result": "enlightened_end:polished_palerock",
-        "resultCount": 1
+        "ingredients": [
+          {
+            "item": "enlightened_end:palerock"
+          }
+        ],
+        "result": {
+          "item": "enlightened_end:polished_palerock"
+        }
       }
     }
   ]

@@ -11,9 +11,14 @@
       "recipe": {
         "type": "sullysmod:grindstone_polishing",
         "experience": 0,
-        "ingredient": "darkerdepths:shale_slab",
-        "result": "darkerdepths:polished_shale_slab",
-        "resultCount": 1
+        "ingredients": [
+          {
+            "item": "darkerdepths:shale_slab"
+          }
+        ],
+        "result": {
+          "item": "darkerdepths:polished_shale_slab"
+        }
       }
     }
   ]

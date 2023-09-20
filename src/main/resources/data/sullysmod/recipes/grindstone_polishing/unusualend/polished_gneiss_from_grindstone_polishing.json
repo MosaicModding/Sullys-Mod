@@ -11,9 +11,14 @@
       "recipe": {
         "type": "sullysmod:grindstone_polishing",
         "experience": 0,
-        "ingredient": "unusualend:gneiss",
-        "result": "unusualend:polished_gneiss",
-        "resultCount": 1
+        "ingredients": [
+          {
+            "item": "unusualend:gneiss"
+          }
+        ],
+        "result": {
+          "item": "unusualend:polished_gneiss"
+        }
       }
     }
   ]

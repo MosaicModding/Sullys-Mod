@@ -11,9 +11,14 @@
       "recipe": {
         "type": "sullysmod:grindstone_polishing",
         "experience": 0,
-        "ingredient": "darkerdepths:grimestone_slab",
-        "result": "darkerdepths:polished_grimestone_slab",
-        "resultCount": 1
+        "ingredients": [
+          {
+            "item": "darkerdepths:grimestone_slab"
+          }
+        ],
+        "result": {
+          "item": "darkerdepths:polished_grimestone_slab"
+        }
       }
     }
   ]

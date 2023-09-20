@@ -11,9 +11,14 @@
       "recipe": {
         "type": "sullysmod:grindstone_polishing",
         "experience": 0,
-        "ingredient": "unearthed:gabbro_stairs",
-        "result": "unearthed:polished_gabbro_stairs",
-        "resultCount": 1
+        "ingredients": [
+          {
+            "item": "unearthed:gabbro_stairs"
+          }
+        ],
+        "result": {
+          "item": "unearthed:polished_gabbro_stairs"
+        }
       }
     }
   ]
