@@ -6,12 +6,18 @@ import com.uraneptus.sullysmod.core.registry.SMEntityTypes;
 import com.uraneptus.sullysmod.core.registry.SMItems;
 import com.uraneptus.sullysmod.core.registry.SMPotions;
 import net.minecraft.data.PackOutput;
+import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.alchemy.Potion;
 import net.minecraft.world.item.alchemy.PotionUtils;
+import net.minecraft.world.level.block.Block;
 import net.minecraftforge.common.data.LanguageProvider;
+import net.minecraftforge.registries.ForgeRegistries;
+import org.apache.commons.compress.utils.Lists;
 
+import java.util.List;
+import java.util.Objects;
 import java.util.function.Supplier;
 
 public class SMLangProvider extends LanguageProvider {
@@ -23,79 +29,81 @@ public class SMLangProvider extends LanguageProvider {
     @Override
     protected void addTranslations() {
         //Blocks
-        add(SMBlocks.JADE_ORE.get(), "Jade Ore");
-        add(SMBlocks.DEEPSLATE_JADE_ORE.get(), "Deepslate Jade Ore");
-        add(SMBlocks.ROUGH_JADE_BLOCK.get(), "Block of Rough Jade");
-        add(SMBlocks.ROUGH_JADE_BRICKS.get(), "Rough Jade Bricks");
-        add(SMBlocks.SMOOTHED_ROUGH_JADE.get(), "Smoothed Rough Jade");
-        add(SMBlocks.ROUGH_JADE_TILES.get(), "Rough Jade Tiles");
-        add(SMBlocks.POLISHED_JADE_BLOCK.get(), "Block of Polished Jade");
-        add(SMBlocks.POLISHED_JADE_BRICKS.get(), "Polished Jade Bricks");
-        add(SMBlocks.POLISHED_SMALL_JADE_BRICKS.get(), "Polished Small Jade Bricks");
-        add(SMBlocks.POLISHED_JADE_SHINGLES.get(), "Polished Jade Shingles");
-        add(SMBlocks.POLISHED_JADE_TILES.get(), "Polished Jade Tiles");
-        add(SMBlocks.POLISHED_CHISELED_JADE.get(), "Polished Chiseled Jade");
-        add(SMBlocks.POLISHED_JADE_PILLAR.get(), "Polished Jade Pillar");
-        add(SMBlocks.JADE_TOTEM.get(), "Jade Totem");
-        add(SMBlocks.JADE_FLINGER_TOTEM.get(), "Jade Flinger Totem");
-        add(SMBlocks.COPPER_BUTTON.get(), "Copper Button");
-        add(SMBlocks.EXPOSED_COPPER_BUTTON.get(), "Exposed Copper Button");
-        add(SMBlocks.WEATHERED_COPPER_BUTTON.get(), "Weathered Copper Button");
-        add(SMBlocks.OXIDIZED_COPPER_BUTTON.get(), "Oxidized Copper Button");
-        add(SMBlocks.WAXED_COPPER_BUTTON.get(), "Waxed Copper Button");
-        add(SMBlocks.WAXED_EXPOSED_COPPER_BUTTON.get(), "Waxed Exposed Copper Button");
-        add(SMBlocks.WAXED_WEATHERED_COPPER_BUTTON.get(), "Waxed Weathered Copper Button");
-        add(SMBlocks.WAXED_OXIDIZED_COPPER_BUTTON.get(), "Waxed Oxidized Copper Button");
-        add(SMBlocks.POLISHED_JADE_BRICK_STAIRS.get(), "Polished Jade Brick Stairs");
-        add(SMBlocks.POLISHED_SMALL_JADE_BRICK_STAIRS.get(), "Polished Small Jade Brick Stairs");
-        add(SMBlocks.POLISHED_JADE_SHINGLE_STAIRS.get(), "Polished Jade Shingle Stairs");
-        add(SMBlocks.POLISHED_JADE_TILE_STAIRS.get(), "Polished Jade Tile Stairs");
-        add(SMBlocks.POLISHED_JADE_BRICK_SLAB.get(), "Polished Jade Brick Slab");
-        add(SMBlocks.POLISHED_SMALL_JADE_BRICK_SLAB.get(), "Polished Small Jade Brick Slab");
-        add(SMBlocks.POLISHED_JADE_SHINGLE_SLAB.get(), "Polished Jade Shingle Slab");
-        add(SMBlocks.POLISHED_JADE_TILE_SLAB.get(), "Polished Jade Tile Slab");
-        add(SMBlocks.ROUGH_JADE_BRICK_STAIRS.get(), "Rough Jade Brick Stairs");
-        add(SMBlocks.SMOOTHED_ROUGH_JADE_STAIRS.get(), "Smoothed Rough Jade Stairs");
-        add(SMBlocks.ROUGH_JADE_TILE_STAIRS.get(), "Rough Jade Tile Stairs");
-        add(SMBlocks.ROUGH_JADE_BRICK_SLAB.get(), "Rough Jade Brick Slab");
-        add(SMBlocks.SMOOTHED_ROUGH_JADE_SLAB.get(), "Smoothed Rough Jade Slab");
-        add(SMBlocks.ROUGH_JADE_TILE_SLAB.get(), "Rough Jade Tile Slab");
+        forBlock(SMBlocks.JADE_ORE);
+        forBlock(SMBlocks.DEEPSLATE_JADE_ORE);
+        forBlock(SMBlocks.ROUGH_JADE_BRICKS);
+        forBlock(SMBlocks.SMOOTHED_ROUGH_JADE);
+        forBlock(SMBlocks.ROUGH_JADE_TILES);
+        forBlock(SMBlocks.POLISHED_JADE_BRICKS);
+        forBlock(SMBlocks.POLISHED_SMALL_JADE_BRICKS);
+        forBlock(SMBlocks.POLISHED_JADE_SHINGLES);
+        forBlock(SMBlocks.POLISHED_JADE_TILES);
+        forBlock(SMBlocks.POLISHED_CHISELED_JADE);
+        forBlock(SMBlocks.POLISHED_JADE_PILLAR);
+        forBlock(SMBlocks.JADE_TOTEM);
+        forBlock(SMBlocks.JADE_FLINGER_TOTEM);
+        forBlock(SMBlocks.COPPER_BUTTON);
+        forBlock(SMBlocks.EXPOSED_COPPER_BUTTON);
+        forBlock(SMBlocks.WEATHERED_COPPER_BUTTON);
+        forBlock(SMBlocks.OXIDIZED_COPPER_BUTTON);
+        forBlock(SMBlocks.WAXED_COPPER_BUTTON);
+        forBlock(SMBlocks.WAXED_EXPOSED_COPPER_BUTTON);
+        forBlock(SMBlocks.WAXED_WEATHERED_COPPER_BUTTON);
+        forBlock(SMBlocks.WAXED_OXIDIZED_COPPER_BUTTON);
+        forBlock(SMBlocks.POLISHED_JADE_BRICK_STAIRS);
+        forBlock(SMBlocks.POLISHED_SMALL_JADE_BRICK_STAIRS);
+        forBlock(SMBlocks.POLISHED_JADE_SHINGLE_STAIRS);
+        forBlock(SMBlocks.POLISHED_JADE_TILE_STAIRS);
+        forBlock(SMBlocks.POLISHED_JADE_BRICK_SLAB);
+        forBlock(SMBlocks.POLISHED_SMALL_JADE_BRICK_SLAB);
+        forBlock(SMBlocks.POLISHED_JADE_SHINGLE_SLAB);
+        forBlock(SMBlocks.POLISHED_JADE_TILE_SLAB);
+        forBlock(SMBlocks.ROUGH_JADE_BRICK_STAIRS);
+        forBlock(SMBlocks.SMOOTHED_ROUGH_JADE_STAIRS);
+        forBlock(SMBlocks.ROUGH_JADE_TILE_STAIRS);
+        forBlock(SMBlocks.ROUGH_JADE_BRICK_SLAB);
+        forBlock(SMBlocks.SMOOTHED_ROUGH_JADE_SLAB);
+        forBlock(SMBlocks.ROUGH_JADE_TILE_SLAB);
         /*
-        add(SMBlocks.POLISHED_JADE_BRICK_VERTICAL_SLAB.get(), "Polished Jade Brick Vertical Slab");
-        add(SMBlocks.POLISHED_SMALL_JADE_BRICK_VERTICAL_SLAB.get(), "Polished Small Jade Brick Vertical Slab");
-        add(SMBlocks.POLISHED_JADE_SHINGLE_VERTICAL_SLAB.get(), "Polished Jade Shingle Vertical Slab");
-        add(SMBlocks.POLISHED_JADE_TILE_VERTICAL_SLAB.get(), "Polished Jade Tile Vertical Slab");
-        add(SMBlocks.ROUGH_JADE_BRICK_VERTICAL_SLAB.get(), "Rough Jade Brick Vertical Slab");
-        add(SMBlocks.SMOOTHED_ROUGH_JADE_VERTICAL_SLAB.get(), "Smoothed Rough Jade Vertical Slab");
-        add(SMBlocks.ROUGH_JADE_TILE_VERTICAL_SLAB.get(),  "Rough Jade Tile Vertical Slab");
+        forBlock(SMBlocks.POLISHED_JADE_BRICK_VERTICAL_SLAB);
+        forBlock(SMBlocks.POLISHED_SMALL_JADE_BRICK_VERTICAL_SLAB);
+        forBlock(SMBlocks.POLISHED_JADE_SHINGLE_VERTICAL_SLAB);
+        forBlock(SMBlocks.POLISHED_JADE_TILE_VERTICAL_SLAB);
+        forBlock(SMBlocks.ROUGH_JADE_BRICK_VERTICAL_SLAB);
+        forBlock(SMBlocks.SMOOTHED_ROUGH_JADE_VERTICAL_SLAB);
+        forBlock(SMBlocks.ROUGH_JADE_TILE_VERTICAL_SLAB);
          */
-        add(SMBlocks.TORTOISE_EGG.get(), "Tortoise Egg");
+        forBlock(SMBlocks.TORTOISE_EGG);
+
+        addBlock(SMBlocks.POLISHED_JADE_BLOCK, "Block of Polished Jade");
+        addBlock(SMBlocks.ROUGH_JADE_BLOCK, "Block of Rough Jade");
 
         //Items
-        add(SMItems.ROUGH_JADE.get(), "Rough Jade");
-        add(SMItems.POLISHED_JADE.get(), "Polished Jade");
+        forItem(SMItems.ROUGH_JADE);
+        forItem(SMItems.POLISHED_JADE);
+        forItem(SMItems.LANTERNFISH_SPAWN_EGG);
+        forItem(SMItems.COOKED_LANTERNFISH);
+        forItem(SMItems.TORTOISE_SPAWN_EGG);
+        forItem(SMItems.JADE_SHIELD);
+        forItem(SMItems.COOKED_LANTERNFISH_SLICE);
+        forItem(SMItems.LANTERNFISH_ROLL);
+        forItem(SMItems.CAVE_CHUM_BUCKET);
+        forItem(SMItems.TORTOISE_SCUTE);
+        forItem(SMItems.TORTOISE_SHELL);
+
         add(SMItems.LANTERNFISH_BUCKET.get(), "Bucket of Lanternfish");
-        add(SMItems.LANTERNFISH_SPAWN_EGG.get(), "Lanternfish Spawn Egg");
         add(SMItems.LANTERNFISH.get(), "Raw Lanternfish");
-        add(SMItems.COOKED_LANTERNFISH.get(), "Cooked Lanternfish");
-        add(SMItems.TORTOISE_SPAWN_EGG.get(), "Tortoise Spawn Egg");
-        add(SMItems.JADE_SHIELD.get(), "Jade Shield");
         add(SMItems.LANTERNFISH_SLICE.get(), "Raw Lanternfish Slice");
-        add(SMItems.COOKED_LANTERNFISH_SLICE.get(), "Cooked Lanternfish Slice");
-        add(SMItems.LANTERNFISH_ROLL.get(), "Lanternfish Roll");
-        add(SMItems.CAVE_CHUM_BUCKET.get(), "Cave Chum Bucket");
-        add(SMItems.TORTOISE_SCUTE.get(), "Tortoise Scute");
-        add(SMItems.TORTOISE_SHELL.get(), "Tortoise Shell");
 
         addMusicDisc(SMItems.MUSIC_DISC_SCOUR, "LudoCrypt - scour");
 
         addSmithingTemplate("jade", "Shield", "Polished Jade", "Add Polished Jade", "Add shield");
 
         //Entities
-        add(SMEntityTypes.LANTERNFISH.get(), "Lanternfish");
-        add(SMEntityTypes.TORTOISE.get(), "Tortoise");
-        add(SMEntityTypes.COPPER_GOLEM.get(), "Copper Golem");
-        add(SMEntityTypes.TORTOISE_SHELL.get(), "Tortoise Shell");
+        forEntity(SMEntityTypes.LANTERNFISH);
+        forEntity(SMEntityTypes.TORTOISE);
+        forEntity(SMEntityTypes.COPPER_GOLEM);
+        forEntity(SMEntityTypes.TORTOISE_SHELL);
 
         //Potions
         addPotionsForEffect(SMPotions.UNLUCK, "Bad Luck");
@@ -159,6 +167,31 @@ public class SMLangProvider extends LanguageProvider {
         add(key + ".base_slot_description", base_slot_description);
         add(key + ".additions_slot_description", additions_slot_description);
     }
+
+    public void forItem(Supplier<? extends Item> item) {
+        addItem(item, createTranslation(Objects.requireNonNull(ForgeRegistries.ITEMS.getKey(item.get())).getPath()));
+    }
+
+    public void forBlock(Supplier<? extends Block> block) {
+        addBlock(block, createTranslation(Objects.requireNonNull(ForgeRegistries.BLOCKS.getKey(block.get())).getPath()));
+    }
+
+    public void forEntity(Supplier<? extends EntityType<?>> entity) {
+        addEntityType(entity, createTranslation(Objects.requireNonNull(ForgeRegistries.ENTITY_TYPES.getKey(entity.get())).getPath()));
+    }
+
+    public String createTranslation(String path) {
+        var translation = "";
+        List<String> translationParts = Lists.newArrayList();
+        var splitList = path.split("_");
+        for (String split : splitList) {
+            var capitalized = firstToUpperCase(split);
+            translationParts.add(capitalized);
+        }
+        translation = String.join(" ", translationParts);
+        return translation;
+    }
+
     public String firstToUpperCase(String string) {
         var firstLetter = string.charAt(0);
         return string.replaceFirst(String.valueOf(firstLetter), String.valueOf(firstLetter).toUpperCase());
