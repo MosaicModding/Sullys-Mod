@@ -89,6 +89,8 @@ public class SMLangProvider extends LanguageProvider {
 
         addMusicDisc(SMItems.MUSIC_DISC_SCOUR, "LudoCrypt - scour");
 
+        addSmithingTemplate("jade", "Shield", "Polished Jade", "Add Polished Jade", "Add shield");
+
         //Entities
         add(SMEntityTypes.LANTERNFISH.get(), "Lanternfish");
         add(SMEntityTypes.TORTOISE.get(), "Tortoise");
@@ -147,5 +149,18 @@ public class SMLangProvider extends LanguageProvider {
         add(PotionUtils.setPotion(Items.SPLASH_POTION.getDefaultInstance(), potionEffect.get()), "Splash Potion of " + name);
         add(PotionUtils.setPotion(Items.LINGERING_POTION.getDefaultInstance(), potionEffect.get()), "Lingering Potion of " + name);
         add(PotionUtils.setPotion(Items.TIPPED_ARROW.getDefaultInstance(), potionEffect.get()), "Arrow of " + name);
+    }
+
+    public void addSmithingTemplate(String material, String applies_to, String ingredients, String additions_slot_description, String base_slot_description) {
+        String key = "item.minecraft.smithing_template." + material + "_upgrade";
+        add("upgrade.minecraft." + material + "_upgrade", firstToUpperCase(material) + " Upgrade");
+        add(key + ".applies_to", applies_to);
+        add(key + ".ingredients", ingredients);
+        add(key + ".base_slot_description", base_slot_description);
+        add(key + ".additions_slot_description", additions_slot_description);
+    }
+    public String firstToUpperCase(String string) {
+        var firstLetter = string.charAt(0);
+        return string.replaceFirst(String.valueOf(firstLetter), String.valueOf(firstLetter).toUpperCase());
     }
 }

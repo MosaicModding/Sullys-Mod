@@ -5,6 +5,7 @@ import com.teamabnormals.blueprint.core.util.item.CreativeModeTabContentsPopulat
 import com.teamabnormals.blueprint.core.util.registry.ItemSubRegistryHelper;
 import com.uraneptus.sullysmod.SullysMod;
 import com.uraneptus.sullysmod.common.items.JadeShieldItem;
+import com.uraneptus.sullysmod.common.items.JadeSmithingTemplateItem;
 import com.uraneptus.sullysmod.common.items.SMFoodBucketItem;
 import com.uraneptus.sullysmod.common.items.TortoiseShellItem;
 import com.uraneptus.sullysmod.core.integration.fd.FDCompat;
@@ -12,10 +13,7 @@ import com.uraneptus.sullysmod.core.other.SMProperties;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.animal.WaterAnimal;
-import net.minecraft.world.item.CreativeModeTabs;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.Items;
-import net.minecraft.world.item.MobBucketItem;
+import net.minecraft.world.item.*;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraftforge.common.ForgeSpawnEggItem;
 import net.minecraftforge.fml.common.Mod;
@@ -36,6 +34,7 @@ public class SMItems {
     public static final RegistryObject<Item> MUSIC_DISC_SCOUR = HELPER.createItem("music_disc_scour", () -> new BlueprintRecordItem(12, SMSounds.MUSIC_DISC_SCOUR, SMProperties.Items.MUSIC_DISCS, 4980));
     public static final RegistryObject<Item> TORTOISE_SCUTE = HELPER.createItem("tortoise_scute", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> TORTOISE_SHELL = HELPER.createItem("tortoise_shell", () -> new TortoiseShellItem(SMProperties.Items.TOROTISE_SHELL));
+    public static final RegistryObject<Item> JADE_UPGRADE_SMITHING_TEMPLATE = HELPER.createItem("jade_upgrade_smithing_template", JadeSmithingTemplateItem::new);
 
     //Tools
     public static final RegistryObject<Item> JADE_SHIELD = HELPER.createItem("jade_shield", () -> new JadeShieldItem(-2.0F, SMProperties.Items.JADE_SHIELD));
@@ -67,23 +66,30 @@ public class SMItems {
                 .addItemsAfter(of(Items.COPPER_INGOT), POLISHED_JADE)
                 .addItemsAfter(of(Items.RAW_COPPER), ROUGH_JADE)
                 .addItemsAfter(of(Items.SCUTE), TORTOISE_SCUTE)
+                .addItemsAfter(of(Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE), JADE_UPGRADE_SMITHING_TEMPLATE)
+
                 .tab(CreativeModeTabs.TOOLS_AND_UTILITIES)
                 .addItemsAfter(of(Items.MUSIC_DISC_RELIC), MUSIC_DISC_SCOUR)
                 .addItemsAfter(of(Items.COD_BUCKET), LANTERNFISH_BUCKET)
                 .addItemsAfter(of(Items.SADDLE), TORTOISE_SHELL)
+
                 .tab(CreativeModeTabs.FOOD_AND_DRINKS)
                 .addItemsAfter(of(Items.COD), LANTERNFISH)
                 .addItemsAfter(of(Items.COOKED_COD), COOKED_LANTERNFISH)
+
                 .tab(CreativeModeTabs.COMBAT)
                 .addItemsAfter(of(Items.SHIELD), JADE_SHIELD)
+
                 .tab(CreativeModeTabs.SPAWN_EGGS)
                 .addItemsAfter(of(Items.COD_SPAWN_EGG), LANTERNFISH_SPAWN_EGG)
                 .addItemsAfter(of(Items.TURTLE_SPAWN_EGG), TORTOISE_SPAWN_EGG)
+
                 .tab(CreativeModeTabs.NATURAL_BLOCKS)
                 .addItemsAfter(of(Items.COPPER_ORE), JADE_ORE)
                 .addItemsAfter(of(Items.DEEPSLATE_COPPER_ORE), DEEPSLATE_JADE_ORE)
                 .addItemsAfter(of(Items.RAW_COPPER_BLOCK), ROUGH_JADE_BLOCK)
                 .addItemsAfter(of(Items.TURTLE_EGG), TORTOISE_EGG)
+
                 .tab(CreativeModeTabs.BUILDING_BLOCKS)
                 .addItemsAfter(of(Items.WAXED_OXIDIZED_CUT_COPPER_SLAB),
                         ROUGH_JADE_BLOCK, ROUGH_JADE_BRICKS, ROUGH_JADE_BRICK_STAIRS, ROUGH_JADE_BRICK_SLAB,
@@ -94,6 +100,7 @@ public class SMItems {
                         POLISHED_SMALL_JADE_BRICKS, POLISHED_SMALL_JADE_BRICK_STAIRS, POLISHED_SMALL_JADE_BRICK_SLAB,
                         POLISHED_JADE_SHINGLES, POLISHED_JADE_SHINGLE_STAIRS, POLISHED_JADE_SHINGLE_SLAB,
                         POLISHED_JADE_PILLAR, POLISHED_CHISELED_JADE, JADE_TOTEM)
+
                 .tab(CreativeModeTabs.REDSTONE_BLOCKS)
                 .addItemsAfter(of(Items.DROPPER), JADE_FLINGER_TOTEM)
                 .addItemsAfter(of(Items.STONE_BUTTON), COPPER_BUTTON, EXPOSED_COPPER_BUTTON, WEATHERED_COPPER_BUTTON, OXIDIZED_COPPER_BUTTON,

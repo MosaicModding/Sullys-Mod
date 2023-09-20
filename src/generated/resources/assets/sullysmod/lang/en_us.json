@@ -47,6 +47,10 @@
   "entity.sullysmod.tortoise_shell": "Tortoise Shell",
   "item.minecraft.lingering_potion.effect.unluck": "Lingering Potion of Bad Luck",
   "item.minecraft.potion.effect.unluck": "Potion of Bad Luck",
+  "item.minecraft.smithing_template.jade_upgrade.additions_slot_description": "Add Polished Jade",
+  "item.minecraft.smithing_template.jade_upgrade.applies_to": "Shield",
+  "item.minecraft.smithing_template.jade_upgrade.base_slot_description": "Add shield",
+  "item.minecraft.smithing_template.jade_upgrade.ingredients": "Polished Jade",
   "item.minecraft.splash_potion.effect.unluck": "Splash Potion of Bad Luck",
   "item.minecraft.tipped_arrow.effect.unluck": "Arrow of Bad Luck",
   "item.sullysmod.cave_chum_bucket": "Cave Chum Bucket",
@@ -85,5 +89,6 @@
   "subtitles.entity.tortoise_shell.place": "Tortoise Shell placed",
   "subtitles.entity.zombie.destroy_egg": "Egg stomped",
   "sullysmod.jei.grindstone_polishing": "Polishing",
-  "sullysmod.jei.grindstone_polishing.info": "Right click to polish"
+  "sullysmod.jei.grindstone_polishing.info": "Right click to polish",
+  "upgrade.minecraft.jade_upgrade": "Jade Upgrade"
 }

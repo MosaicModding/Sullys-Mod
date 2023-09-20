@@ -88,6 +88,7 @@ public class SMItemModelProvider extends ItemModelProvider {
         basicItem(SMItems.CAVE_CHUM_BUCKET);
         basicItem(SMItems.TORTOISE_SCUTE);
         basicItem(SMItems.TORTOISE_SHELL);
+        basicItem(SMItems.JADE_UPGRADE_SMITHING_TEMPLATE);
     }
 
     private void basicBlockItem(Supplier<? extends Block> blockForItem) {

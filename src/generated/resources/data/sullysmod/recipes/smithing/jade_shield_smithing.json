@@ -9,5 +9,7 @@
   "result": {
     "item": "sullysmod:jade_shield"
   },
-  "template": []
+  "template": {
+    "item": "sullysmod:jade_upgrade_smithing_template"
+  }
 }
