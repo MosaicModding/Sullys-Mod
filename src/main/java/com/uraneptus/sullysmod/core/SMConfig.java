@@ -6,7 +6,6 @@ import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(modid = SullysMod.MOD_ID)
 public class SMConfig {
-    public static final ForgeConfigSpec.ConfigValue<Boolean> PARTICLES_AROUND_GRINDSTONE;
     public static final ForgeConfigSpec.ConfigValue<Boolean> ENABLE_DYNAMIC_VELOCITY;
 
     public static final ForgeConfigSpec SERVER;
@@ -17,9 +16,6 @@ public class SMConfig {
         ForgeConfigSpec.Builder CLIENT_BUILDER = new ForgeConfigSpec.Builder();
 
         //Client
-        CLIENT_BUILDER.comment("Particles").push("particles");
-        PARTICLES_AROUND_GRINDSTONE = CLIENT_BUILDER.comment("If Particles spawn around the grindstone, while the Player is holding an Item that can be polished. (default = true)").define("Particles around Grindstone", true);
-        CLIENT_BUILDER.pop();
 
         //Server
         SERVER_BULDER.comment("Blocks").push("blocks");
