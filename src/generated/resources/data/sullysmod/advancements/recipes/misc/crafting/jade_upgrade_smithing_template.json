@@ -1,12 +1,12 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_polished_jade": {
+    "has_jade_upgrade_smithing_template": {
       "conditions": {
         "items": [
           {
             "items": [
-              "sullysmod:polished_jade"
+              "sullysmod:jade_upgrade_smithing_template"
             ]
           }
         ]
@@ -15,20 +15,20 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "sullysmod:smithing/jade_shield_smithing"
+        "recipe": "sullysmod:crafting/jade_upgrade_smithing_template"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
   },
   "requirements": [
     [
-      "has_polished_jade",
+      "has_jade_upgrade_smithing_template",
       "has_the_recipe"
     ]
   ],
   "rewards": {
     "recipes": [
-      "sullysmod:smithing/jade_shield_smithing"
+      "sullysmod:crafting/jade_upgrade_smithing_template"
     ]
   },
   "sends_telemetry_event": false

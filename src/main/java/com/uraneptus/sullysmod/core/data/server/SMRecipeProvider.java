@@ -158,7 +158,7 @@ public class SMRecipeProvider extends RecipeProvider {
 
         grindstonePolishingRecipes(RecipeCategory.MISC, SMBlocks.DEEPSLATE_JADE_ORE.get(), SMItems.POLISHED_JADE.get(), 3, 1, consumer);
 
-        smithingRecipes(RecipeCategory.TOOLS, SMItems.JADE_UPGRADE_SMITHING_TEMPLATE.get(), Items.SHIELD, SMItems.POLISHED_JADE.get(), SMItems.JADE_SHIELD.get(), consumer);
+        smithingTemplateRecipes(RecipeCategory.TOOLS, SMItems.JADE_UPGRADE_SMITHING_TEMPLATE.get(), Items.SHIELD, SMItems.POLISHED_JADE.get(), SMItems.JADE_SHIELD.get(), SMBlocks.POLISHED_JADE_BLOCK.get(), consumer);
 
         //Custom
         ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, SMBlocks.JADE_TOTEM.get()).define('#', SMBlocks.POLISHED_JADE_SHINGLES.get()).pattern("###").pattern("# #").pattern("###").unlockedBy(getHasName(SMBlocks.POLISHED_JADE_SHINGLES.get()), has(SMBlocks.POLISHED_JADE_SHINGLES.get())).save(consumer, craftingPath(getItemName(SMBlocks.JADE_TOTEM.get())));
@@ -283,8 +283,6 @@ public class SMRecipeProvider extends RecipeProvider {
                 .unlockedBy(getHasName(ingredient.get()), has(ingredient.get())).save(consumer, stonecuttingPath(prefix + "_stonecutting"));
     }
 
-
-
     private static void grindstonePolishingRecipes(RecipeCategory category, ItemLike ingredient, ItemLike result, Consumer<FinishedRecipe> consumer) {
         grindstonePolishingRecipes(category, ingredient, result, 1, 0, consumer);
     }
@@ -305,7 +303,12 @@ public class SMRecipeProvider extends RecipeProvider {
 
     private static void smithingRecipes(RecipeCategory category, ItemLike templateItem, ItemLike baseItem, ItemLike addition, ItemLike result, Consumer<FinishedRecipe> consumer) {
         String resultName = getItemName(result);
-        SmithingTransformRecipeBuilder.smithing(Ingredient.of(templateItem), Ingredient.of(baseItem), Ingredient.of(addition), category, result.asItem()).unlocks("has_polished_jade", has(SMItems.POLISHED_JADE.get())).save(consumer, smithingPath(resultName) + "_smithing");
+        SmithingTransformRecipeBuilder.smithing(Ingredient.of(templateItem), Ingredient.of(baseItem), Ingredient.of(addition), category, result.asItem()).unlocks(getHasName(addition), has(addition)).save(consumer, smithingPath(resultName));
+    }
+
+    private static void smithingTemplateRecipes(RecipeCategory category, ItemLike templateItem, ItemLike baseItem, ItemLike addition, ItemLike result, ItemLike duplicationBase, Consumer<FinishedRecipe> consumer) {
+        smithingRecipes(category, templateItem, baseItem, addition, result, consumer);
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, templateItem, 2).define('#', Items.DIAMOND).define('C', duplicationBase).define('S', templateItem).pattern("#S#").pattern("#C#").pattern("###").unlockedBy(getHasName(templateItem), has(templateItem)).save(consumer, craftingPath(getItemName(templateItem)));
     }
 
     private static void verticalSlabRecipes(Supplier<? extends ItemLike> slab, Supplier<? extends ItemLike> verticalSlab, Consumer<FinishedRecipe> consumer) {
