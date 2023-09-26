@@ -8,6 +8,7 @@ import com.uraneptus.sullysmod.core.registry.SMSounds;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.DustParticleOptions;
+import net.minecraft.core.particles.ItemParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.*;
 import net.minecraft.resources.ResourceLocation;
@@ -93,7 +94,8 @@ public class SMPlayerEvents {
                             }
                         }
                         player.swing(hand);
-                        ParticleUtils.spawnParticlesOnBlockFace(level, pos, ParticleTypes.CRIT, UniformInt.of(1, 2), event.getFace(), () -> new Vec3(Mth.nextDouble(random, -0.5D, 0.5D), Mth.nextDouble(random, 0.0D, 0.5D), Mth.nextDouble(random, -0.5D, 0.5D)), 0.55D);
+                        ParticleUtils.spawnParticlesOnBlockFace(level, pos, ParticleTypes.CRIT, UniformInt.of(1, 4), event.getFace(), () -> new Vec3(player.getLookAngle().x() + Mth.nextDouble(random, -0.5, 0.5), 0.8D, player.getLookAngle().z() + Mth.nextDouble(random, -0.5, 0.5)), 0.55D);
+                        ParticleUtils.spawnParticlesOnBlockFace(level, pos, new ItemParticleOption(ParticleTypes.ITEM, itemInHand), UniformInt.of(1, 2), event.getFace(), () -> new Vec3(Mth.nextDouble(random, -0.05D, 0.05D), 0, Mth.nextDouble(random, -0.05D, 0.05D)), 0.55D);
                         level.playSound(player, pos, SMSounds.POLISH_JADE.get(), SoundSource.BLOCKS, 0.5F, 0.0F);
                     }
                 }
@@ -120,6 +122,5 @@ public class SMPlayerEvents {
                 }
             }
         }
-
     }
 }
