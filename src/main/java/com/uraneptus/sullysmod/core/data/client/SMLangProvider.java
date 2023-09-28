@@ -90,6 +90,7 @@ public class SMLangProvider extends LanguageProvider {
         forItem(SMItems.CAVE_CHUM_BUCKET);
         forItem(SMItems.TORTOISE_SCUTE);
         forItem(SMItems.TORTOISE_SHELL);
+        forItem(SMItems.BOULDERING_ZOMBIE_SPAWN_EGG);
 
         add(SMItems.LANTERNFISH_BUCKET.get(), "Bucket of Lanternfish");
         add(SMItems.LANTERNFISH.get(), "Raw Lanternfish");
@@ -104,6 +105,7 @@ public class SMLangProvider extends LanguageProvider {
         forEntity(SMEntityTypes.TORTOISE);
         forEntity(SMEntityTypes.COPPER_GOLEM);
         forEntity(SMEntityTypes.TORTOISE_SHELL);
+        forEntity(SMEntityTypes.BOULDERING_ZOMBIE);
 
         //Potions
         addPotionsForEffect(SMPotions.UNLUCK, "Bad Luck");
