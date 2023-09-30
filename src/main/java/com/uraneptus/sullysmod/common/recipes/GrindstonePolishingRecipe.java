@@ -144,11 +144,13 @@ public class GrindstonePolishingRecipe implements Recipe<Container> {
         @Override
         public GrindstonePolishingRecipe fromNetwork(ResourceLocation pRecipeId, FriendlyByteBuf pBuffer) {
             String group = pBuffer.readUtf();
-            int experience = pBuffer.readInt();
             int i = pBuffer.readVarInt();
             NonNullList<Ingredient> nonnulllist = NonNullList.withSize(i, Ingredient.EMPTY);
-            nonnulllist.replaceAll(ignored -> Ingredient.fromNetwork(pBuffer));
+            for (int j = 0; j < i; j++) {
+                nonnulllist.set(j, Ingredient.fromNetwork(pBuffer));
+            }
             ItemStack result = pBuffer.readItem();
+            int experience = pBuffer.readInt();
 
             return new GrindstonePolishingRecipe(pRecipeId, group, nonnulllist, result, experience);
         }
