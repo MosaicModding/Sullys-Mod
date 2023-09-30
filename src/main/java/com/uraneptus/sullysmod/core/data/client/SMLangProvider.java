@@ -132,6 +132,9 @@ public class SMLangProvider extends LanguageProvider {
         add("sullysmod.jei.grindstone_polishing", "Polishing");
         add("sullysmod.jei.grindstone_polishing.info", "Right click to polish");
 
+        //Other
+        add("sullysmod.polishing.tooltip", "Polishable at grindstone");
+
     }
 
     public void addMusicDisc(Supplier<? extends Item> item, String description) {

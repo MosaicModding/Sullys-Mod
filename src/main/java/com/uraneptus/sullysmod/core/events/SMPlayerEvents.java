@@ -7,8 +7,15 @@ import com.uraneptus.sullysmod.core.SMConfig;
 import com.uraneptus.sullysmod.core.registry.SMItems;
 import com.uraneptus.sullysmod.core.registry.SMSounds;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.core.particles.DustParticleOptions;
+import net.minecraft.core.particles.ItemParticleOption;
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.Style;
+import net.minecraft.network.chat.TextColor;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.util.Mth;
 import net.minecraft.util.ParticleUtils;
 import net.minecraft.util.RandomSource;
 import net.minecraft.util.valueproviders.UniformInt;
@@ -40,6 +47,7 @@ public class SMPlayerEvents {
         InteractionHand hand = event.getHand();
         Block block = level.getBlockState(pos).getBlock();
         RandomSource random = level.getRandom();
+        Direction face = event.getFace();
 
         if (block instanceof GrindstoneBlock) {
             ArrayList<GrindstonePolishingRecipe> recipes = new ArrayList<>(GrindstonePolishingRecipe.getRecipes(level));
@@ -89,6 +97,8 @@ public class SMPlayerEvents {
                             }
                         }
                         player.swing(hand);
+                        ParticleUtils.spawnParticlesOnBlockFace(level, pos, ParticleTypes.CRIT, UniformInt.of(1, 4), event.getFace(), () -> new Vec3(player.getLookAngle().x() + Mth.nextDouble(random, -0.5, 0.5), 0.8D, player.getLookAngle().z() + Mth.nextDouble(random, -0.5, 0.5)), 0.55D);
+                        ParticleUtils.spawnParticlesOnBlockFace(level, pos, new ItemParticleOption(ParticleTypes.ITEM, itemInHand), UniformInt.of(1, 2), event.getFace(), () -> new Vec3(Mth.nextDouble(random, -0.05D, 0.05D), 0, Mth.nextDouble(random, -0.05D, 0.05D)), 0.55D);
                         level.playSound(player, pos, SMSounds.POLISH_JADE.get(), SoundSource.BLOCKS, 0.5F, 0.0F);
                     }
                 }
@@ -97,35 +107,22 @@ public class SMPlayerEvents {
     }
 
     @SubscribeEvent
-    public static void onPlayerTick(TickEvent.PlayerTickEvent event) {
-        Player player = event.player;
-        Level level = player.getLevel();
-        InteractionHand hand = player.getUsedItemHand();
-        BlockPos pos = player.blockPosition();
-        ArrayList<GrindstonePolishingRecipe> recipes = new ArrayList<>(GrindstonePolishingRecipe.getRecipes(level));
-        if (level.isClientSide()) {
-            if (SMConfig.PARTICLES_AROUND_GRINDSTONE.get()) {
-                for (GrindstonePolishingRecipe polishingRecipe : recipes) {
-                    for (ItemStack ingredient : polishingRecipe.getIngredients().iterator().next().getItems()) {
-                        if (player.getItemInHand(hand).is(ingredient.getItem())) {
-                            for(BlockPos blockpos : BlockPos.betweenClosed(pos.offset(-7, -7, -7), pos.offset(7, 7, 7))) {
-                                Block block = level.getBlockState(blockpos).getBlock();
-                                if (block instanceof GrindstoneBlock) {
-                                    ParticleUtils.spawnParticlesOnBlockFaces(level, blockpos, new DustParticleOptions(new Vector3f(Vec3.fromRGB24(16777215)), 0.4F), UniformInt.of(0, 1));
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-    @SubscribeEvent
     public static void onItemTooltip(ItemTooltipEvent event) {
+        Player player = event.getEntity();
         ItemStack item = event.getItemStack();
         if (item.is(SMItems.JADE_SHIELD.get())) {
             item.hideTooltipPart(ItemStack.TooltipPart.MODIFIERS);
+        }
+        if (player != null) {
+            ArrayList<GrindstonePolishingRecipe> recipes = new ArrayList<>(GrindstonePolishingRecipe.getRecipes(player.getLevel()));
+            for (GrindstonePolishingRecipe polishingRecipe : recipes) {
+                for (ItemStack itemStack : polishingRecipe.getIngredients().iterator().next().getItems()) {
+                    if (item.is(itemStack.getItem())) {
+                        Style polishingStyle = Style.EMPTY.withColor(TextColor.fromRgb(8355711)).withItalic(true);
+                        event.getToolTip().add(Component.translatable(SullysMod.MOD_ID + ".polishing.tooltip").setStyle(polishingStyle));
+                    }
+                }
+            }
         }
     }
 }
