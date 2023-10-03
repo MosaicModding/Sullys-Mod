@@ -13,7 +13,6 @@ import software.bernie.geckolib.core.animatable.model.CoreGeoBone;
 import software.bernie.geckolib.core.animation.AnimationState;
 import software.bernie.geckolib.model.DefaultedEntityGeoModel;
 
-//Somehow add vanilla idle & walking animations that zombies use
 public class BoulderingZombieModel <E extends BoulderingZombie> extends DefaultedEntityGeoModel<E> {
 
     public BoulderingZombieModel() {
@@ -51,13 +50,6 @@ public class BoulderingZombieModel <E extends BoulderingZombie> extends Defaulte
         GeoBone leftArm = (GeoBone) this.getAnimationProcessor().getBone("LeftArm");
 
         if (!animatable.onClimbable()) {
-            /*
-            body.setRotY(0.0F);
-            rightArm.setPosZ(0.0F);
-            rightArm.setPosX(0.0F);
-            leftArm.setPosZ(0.0F);
-            leftArm.setPosX(0.0F);
-            */
             float f = 1.0F;
             if (flag) {
                 f = (float)animatable.getDeltaMovement().lengthSqr();
@@ -92,7 +84,6 @@ public class BoulderingZombieModel <E extends BoulderingZombie> extends Defaulte
 
 
             animateZombieArms(leftArm, rightArm, animatable.isAggressive(), animatable.attackAnim, (float) tick);
-            //this.setupAttackAnimation(pEntity, pAgeInTicks);
         }
     }
 
