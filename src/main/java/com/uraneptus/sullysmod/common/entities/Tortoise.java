@@ -230,7 +230,7 @@ public class Tortoise extends Animal implements GeoEntity {
     }
 
     public <E extends GeoAnimatable> PlayState setAnimation(final AnimationState<E> event) {
-        if (this.isMoving() && getHideTimerDuration() == 0 && onGround()) {
+        if (event.isMoving() && getHideTimerDuration() == 0 && onGround()) {
             return event.setAndContinue(WALKING_ANIM);
         } else if (getHideTimerDuration() > 1) {
             return event.setAndContinue(HIDING_ANIM);
@@ -238,16 +238,6 @@ public class Tortoise extends Animal implements GeoEntity {
             return event.setAndContinue(REVEAL_ANIM);
         }
         return PlayState.STOP;
-    }
-
-    /**
-     * This is similar to how AnimationState#isMoving works, but with a lower motionThreshold to detect entities that are moving slowly e.g. Tortoise
-     */
-    private boolean isMoving() {
-        float motionThreshold = 0.005F;
-        Vec3 velocity = this.getDeltaMovement();
-        float avgVelocity = (float)(Math.abs(velocity.x) + Math.abs(velocity.z)) / 2f;
-        return avgVelocity >= motionThreshold;
     }
 
     @Override

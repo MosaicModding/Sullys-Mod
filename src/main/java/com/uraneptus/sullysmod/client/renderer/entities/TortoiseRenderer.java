@@ -15,6 +15,12 @@ public class TortoiseRenderer <E extends Tortoise> extends GeoEntityRenderer<E> 
         this.shadowRadius = 0.75f;
     }
 
+    //Reduced motionThreshold to detect entities that are moving slowly e.g. Tortoise
+    @Override
+    public float getMotionAnimThreshold(E animatable) {
+        return 0.005F;
+    }
+
     @Override
     public void preRender(PoseStack poseStack, E animatable, BakedGeoModel model, MultiBufferSource bufferSource, VertexConsumer buffer, boolean isReRender, float partialTick, int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
         super.preRender(poseStack, animatable, model, bufferSource, buffer, isReRender, partialTick, packedLight, packedOverlay, red, green, blue, alpha);
