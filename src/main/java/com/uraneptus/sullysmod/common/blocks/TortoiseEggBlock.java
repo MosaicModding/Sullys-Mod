@@ -45,16 +45,17 @@ public class TortoiseEggBlock extends Block {
         this.registerDefaultState(this.stateDefinition.any().setValue(HATCH, 0).setValue(EGGS, 1));
     }
 
+    @Override
     public void stepOn(Level pLevel, BlockPos pPos, BlockState pState, Entity pEntity) {
         this.destroyEgg(pLevel, pState, pPos, pEntity, 100);
         super.stepOn(pLevel, pPos, pState, pEntity);
     }
 
+    @Override
     public void fallOn(Level pLevel, BlockState pState, BlockPos pPos, Entity pEntity, float pFallDistance) {
         if (!(pEntity instanceof Zombie)) {
             this.destroyEgg(pLevel, pState, pPos, pEntity, 3);
         }
-
         super.fallOn(pLevel, pState, pPos, pEntity, pFallDistance);
     }
 
@@ -63,7 +64,6 @@ public class TortoiseEggBlock extends Block {
             if (!pLevel.isClientSide && pLevel.random.nextInt(pChance) == 0 && pState.is(SMBlocks.TORTOISE_EGG.get())) {
                 this.decreaseEggs(pLevel, pPos, pState);
             }
-
         }
     }
 
@@ -76,9 +76,9 @@ public class TortoiseEggBlock extends Block {
             pLevel.setBlock(pPos, pState.setValue(EGGS, i - 1), 2);
             pLevel.levelEvent(2001, pPos, Block.getId(pState));
         }
-
     }
 
+    @Override
     public void randomTick(BlockState pState, ServerLevel pLevel, BlockPos pPos, RandomSource pRandom) {
         if (this.shouldUpdateHatchLevel(pLevel) && onDirt(pLevel, pPos)) {
             int i = pState.getValue(HATCH);
@@ -104,18 +104,14 @@ public class TortoiseEggBlock extends Block {
     }
 
     public static boolean onDirt(BlockGetter pLevel, BlockPos pPos) {
-        return isDirt(pLevel, pPos.below());
+        return pLevel.getBlockState(pPos.below()).is(BlockTags.DIRT);
     }
 
-    public static boolean isDirt(BlockGetter getter, BlockPos pos) {
-        return getter.getBlockState(pos).is(BlockTags.DIRT);
-    }
-
+    @Override
     public void onPlace(BlockState pState, Level pLevel, BlockPos pPos, BlockState pOldState, boolean pIsMoving) {
         if (onDirt(pLevel, pPos) && !pLevel.isClientSide) {
             pLevel.levelEvent(2005, pPos, 0);
         }
-
     }
 
     private boolean shouldUpdateHatchLevel(Level pLevel) {
@@ -127,38 +123,38 @@ public class TortoiseEggBlock extends Block {
         }
     }
 
+    @Override
     public void playerDestroy(Level pLevel, Player pPlayer, BlockPos pPos, BlockState pState, @javax.annotation.Nullable BlockEntity pTe, ItemStack pStack) {
         super.playerDestroy(pLevel, pPlayer, pPos, pState, pTe, pStack);
         this.decreaseEggs(pLevel, pPos, pState);
     }
 
+    @Override
     public boolean canBeReplaced(BlockState pState, BlockPlaceContext pUseContext) {
         return !pUseContext.isSecondaryUseActive() && pUseContext.getItemInHand().is(this.asItem()) && pState.getValue(EGGS) < 4 || super.canBeReplaced(pState, pUseContext);
     }
 
     @Nullable
+    @Override
     public BlockState getStateForPlacement(BlockPlaceContext pContext) {
         BlockState blockstate = pContext.getLevel().getBlockState(pContext.getClickedPos());
         return blockstate.is(this) ? blockstate.setValue(EGGS, Math.min(4, blockstate.getValue(EGGS) + 1)) : super.getStateForPlacement(pContext);
     }
 
+    @Override
     public VoxelShape getShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
         return pState.getValue(EGGS) > 1 ? MULTIPLE_EGGS_AABB : ONE_EGG_AABB;
     }
 
+    @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> pBuilder) {
         pBuilder.add(HATCH, EGGS);
     }
 
     private boolean canDestroyEgg(Level pLevel, Entity pEntity) {
-        if (!(pEntity instanceof Tortoise) && !(pEntity instanceof Bat)) {
-            if (!(pEntity instanceof LivingEntity)) {
-                return false;
-            } else {
-                return pEntity instanceof Player || net.minecraftforge.event.ForgeEventFactory.getMobGriefingEvent(pLevel, pEntity);
-            }
-        } else {
-            return false;
+        if (pEntity instanceof LivingEntity livingEntity && !(livingEntity instanceof Tortoise) && !(livingEntity instanceof Bat)) {
+            return livingEntity instanceof Player || net.minecraftforge.event.ForgeEventFactory.getMobGriefingEvent(pLevel, livingEntity);
         }
+        return false;
     }
 }

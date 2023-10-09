@@ -2,16 +2,14 @@ package com.uraneptus.sullysmod.core.events;
 
 import com.uraneptus.sullysmod.SullysMod;
 import com.uraneptus.sullysmod.common.recipes.GrindstonePolishingRecipe;
-import com.uraneptus.sullysmod.core.SMConfig;
 import com.uraneptus.sullysmod.core.registry.SMItems;
 import com.uraneptus.sullysmod.core.registry.SMSounds;
-import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.particles.DustParticleOptions;
 import net.minecraft.core.particles.ItemParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.network.chat.*;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.Style;
+import net.minecraft.network.chat.TextColor;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
 import net.minecraft.util.ParticleUtils;
@@ -26,7 +24,6 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.GrindstoneBlock;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -61,13 +58,8 @@ public class SMPlayerEvents {
                         ItemStack resultItem = result.copy();
                         if (player.isShiftKeyDown()) {
                             int ingredientCount = itemInHand.getCount();
+                            shrinkIngredientAddResults(player, itemInHand, resultItem, resultCount, ingredientCount);
 
-                            if (!player.getAbilities().instabuild) {
-                                itemInHand.shrink(ingredientCount);
-                            }
-                            if (!player.getInventory().add(new ItemStack(resultItem.getItem(), resultCount * ingredientCount))) {
-                                player.drop(new ItemStack(resultItem.getItem(), resultCount * ingredientCount), false);
-                            }
                             if (!(xpAmount == 0)) {
                                 for (int i = 0; i <= ingredientCount; i++) {
                                     int dropXp = random.nextInt(2);
@@ -79,12 +71,8 @@ public class SMPlayerEvents {
                             }
                         } else {
                             resultItem.setCount(resultCount);
-                            if (!player.getAbilities().instabuild) {
-                                itemInHand.shrink(1);
-                            }
-                            if (!player.getInventory().add(new ItemStack(resultItem.getItem(), resultCount))) {
-                                player.drop(new ItemStack(resultItem.getItem(), resultCount), false);
-                            }
+                            shrinkIngredientAddResults(player, itemInHand, resultItem, resultCount, 1);
+
                             if (!(xpAmount == 0)) {
                                 int canDropXp = random.nextInt(2);
 
@@ -100,6 +88,15 @@ public class SMPlayerEvents {
                     }
                 }
             }
+        }
+    }
+
+    private static void shrinkIngredientAddResults(Player player, ItemStack itemInHand, ItemStack resultItem, int resultCount, int ingredientCount) {
+        if (!player.getAbilities().instabuild) {
+            itemInHand.shrink(ingredientCount);
+        }
+        if (!player.getInventory().add(new ItemStack(resultItem.getItem(), resultCount * ingredientCount))) {
+            player.drop(new ItemStack(resultItem.getItem(), resultCount * ingredientCount), false);
         }
     }
 

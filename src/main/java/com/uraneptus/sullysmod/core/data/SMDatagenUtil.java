@@ -11,7 +11,6 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 import net.minecraftforge.client.model.generators.ModelProvider;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -38,13 +37,8 @@ public class SMDatagenUtil {
     public static final String ROUGH_JADE_BRICKS = name(SMBlocks.ROUGH_JADE_BRICKS.get());
     public static final String SMOOTHED_ROUGH_JADE = name(SMBlocks.SMOOTHED_ROUGH_JADE.get());
     public static final String ROUGH_JADE_TILES = name(SMBlocks.ROUGH_JADE_TILES.get());
-    public static final String POLISHED_CHISELED_JADE = name(SMBlocks.POLISHED_CHISELED_JADE.get());
     //Quark Flag (We're going to need this a fair amount once that wood gets added)
     public static ResourceLocation QUARK_FLAG = SullysMod.blueprintPrefix("quark_flag");
-
-    public static Holder<ConfiguredFeature<?, ?>> getConfiguredHolder(BootstapContext<?> context, ResourceKey<ConfiguredFeature<?, ?>> configuredFeature) {
-        return context.lookup(Registries.CONFIGURED_FEATURE).get(configuredFeature).orElseThrow();
-    }
 
     @SafeVarargs
     public static HolderSet<PlacedFeature> getPlacedHolderSet(BootstapContext<?> context, ResourceKey<PlacedFeature>... placedFeatures) {

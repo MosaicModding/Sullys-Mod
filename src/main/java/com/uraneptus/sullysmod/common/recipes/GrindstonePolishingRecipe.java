@@ -129,8 +129,8 @@ public class GrindstonePolishingRecipe implements Recipe<Container> {
 
         private static NonNullList<Ingredient> itemsFromJson(JsonArray pIngredientArray) {
             NonNullList<Ingredient> nonnulllist = NonNullList.create();
-
-            for(int i = 0; i < pIngredientArray.size(); ++i) {
+            int ingredientSize = pIngredientArray.size();
+            for(int i = 0; i < ingredientSize; ++i) {
                 Ingredient ingredient = Ingredient.fromJson(pIngredientArray.get(i));
                 if (!ingredient.isEmpty()) {
                     nonnulllist.add(ingredient);

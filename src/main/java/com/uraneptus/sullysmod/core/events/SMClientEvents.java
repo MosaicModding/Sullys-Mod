@@ -1,7 +1,6 @@
 package com.uraneptus.sullysmod.core.events;
 
 import com.uraneptus.sullysmod.SullysMod;
-import com.uraneptus.sullysmod.client.model.BoulderingZombieModel;
 import com.uraneptus.sullysmod.client.model.JadeShieldModel;
 import com.uraneptus.sullysmod.client.model.LanternfishModel;
 import com.uraneptus.sullysmod.client.model.TortoiseShellModel;

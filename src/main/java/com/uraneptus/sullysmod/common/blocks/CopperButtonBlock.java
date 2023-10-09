@@ -56,40 +56,27 @@ public class CopperButtonBlock extends ButtonBlock {
 
         if (stack.getItem() instanceof AxeItem) {
             if (WeatheringCopperButtonBlock.PREVIOUS_BY_BLOCK.get().containsKey(state.getBlock())) {
-                if (player instanceof ServerPlayer) {
-                    CriteriaTriggers.ITEM_USED_ON_BLOCK.trigger((ServerPlayer)player, pos, stack);
-                }
-
+                this.triggerItemUsed(player, stack, pos);
                 level.setBlock(pos, WeatheringCopperButtonBlock.PREVIOUS_BY_BLOCK.get().get(state.getBlock()).withPropertiesOf(state), 11);
                 level.playSound(player, pos, SoundEvents.AXE_SCRAPE, SoundSource.BLOCKS, 1.0F, 1.0F);
                 level.levelEvent(player, 3005, pos, 0);
 
-                if (!player.isCreative()) {
-                    stack.hurtAndBreak(1, player, (player1) -> player1.broadcastBreakEvent(hand));
-                }
+                this.damageItem(player, stack, hand);
                 returnResult = InteractionResult.sidedSuccess(true);
             }
             else if (WAX_OFF_LIST.containsKey(state.getBlock())) {
-                if (player instanceof ServerPlayer) {
-                    CriteriaTriggers.ITEM_USED_ON_BLOCK.trigger((ServerPlayer)player, pos, stack);
-                }
-
+                this.triggerItemUsed(player, stack, pos);
                 level.setBlock(pos, WAX_OFF_LIST.get(state.getBlock()).withPropertiesOf(state), 11);
                 level.playSound(player, pos, SoundEvents.AXE_WAX_OFF, SoundSource.BLOCKS, 1.0F, 1.0F);
                 level.levelEvent(player, 3004, pos, 0);
 
-                if (!player.isCreative()) {
-                    stack.hurtAndBreak(1, player, (player1) -> player1.broadcastBreakEvent(hand));
-                }
+                this.damageItem(player, stack, hand);
                 returnResult = InteractionResult.sidedSuccess(true);
             }
         }
         else if (stack.getItem().equals(Items.HONEYCOMB)) {
             if (WAX_ON_LIST.containsKey(state.getBlock())) {
-                if (player instanceof ServerPlayer) {
-                    CriteriaTriggers.ITEM_USED_ON_BLOCK.trigger((ServerPlayer)player, pos, stack);
-                }
-
+                this.triggerItemUsed(player, stack, pos);
                 level.setBlock(pos, WAX_ON_LIST.get(state.getBlock()).withPropertiesOf(state), 11);
                 level.playSound(player, pos, SoundEvents.HONEYCOMB_WAX_ON, SoundSource.BLOCKS, 1.0F, 1.0F);
                 level.levelEvent(player, 3003, pos, 0);
@@ -97,7 +84,6 @@ public class CopperButtonBlock extends ButtonBlock {
                 if (!player.isCreative()) {
                     stack.shrink(1);
                 }
-
                 returnResult = InteractionResult.sidedSuccess(true);
             }
         }
@@ -105,5 +91,17 @@ public class CopperButtonBlock extends ButtonBlock {
             returnResult = super.use(state, level, pos, player, hand, result);
         }
         return returnResult;
+    }
+
+    public void damageItem(Player player, ItemStack stack, InteractionHand hand) {
+        if (!player.isCreative()) {
+            stack.hurtAndBreak(1, player, (player1) -> player1.broadcastBreakEvent(hand));
+        }
+    }
+
+    public void triggerItemUsed(Player player, ItemStack stack, BlockPos pos) {
+        if (player instanceof ServerPlayer serverPlayer) {
+            CriteriaTriggers.ITEM_USED_ON_BLOCK.trigger(serverPlayer, pos, stack);
+        }
     }
 }

@@ -38,6 +38,7 @@ import net.minecraftforge.event.entity.EntityJoinLevelEvent;
 import net.minecraftforge.event.entity.ProjectileImpactEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import org.jetbrains.annotations.Nullable;
 
 @Mod.EventBusSubscriber(modid = SullysMod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class SMEntityEvents {
@@ -49,7 +50,6 @@ public class SMEntityEvents {
         HitResult hitResult = event.getRayTraceResult();
         Vec3 vec3 = projectile.getDeltaMovement();
         float velocity = (float) vec3.length();
-        boolean flingerFlag = false;
 
         if (hitResult instanceof BlockHitResult blockHitResult && hitResult.getType() == HitResult.Type.BLOCK) {
             BlockPos pos = blockHitResult.getBlockPos();
@@ -57,34 +57,18 @@ public class SMEntityEvents {
             Direction direction = blockHitResult.getDirection();
 
             if (blockState.is(SMBlockTags.PROJECTILES_BOUNCE_ON)) {
-                if (!(projectile.getType().is(SMEntityTags.CANNOT_BE_FLUNG))) {
-                    if (blockState.is(SMBlocks.JADE_FLINGER_TOTEM.get())) {
-                        Direction front = blockState.getValue(SMDirectionalBlock.FACING);
-                        if (!direction.equals(front)) {
-                            flingerFlag = true;
-                        }
-                    }
-                }
-                if (flingerFlag) {
+                if (isFlingerAndFlings(projectile, blockState, direction)) {
                     event.setCanceled(true);
                     Direction front = blockState.getValue(SMDirectionalBlock.FACING);
 
-                    Projectile oldProjectile = projectile;
-                    projectile = (Projectile) projectile.getType().create(level);
-                    if (projectile == null) {
-                        return;
-                    }
-                    oldProjectile.setRemoved(Entity.RemovalReason.DISCARDED);
-
-                    CompoundTag compoundtag = oldProjectile.saveWithoutId(new CompoundTag());
-                    compoundtag.remove("Motion");
-                    projectile.load(compoundtag);
-
+                    projectile = replaceProjectile(projectile, level);
+                    if (projectile == null) return;
                     projectile.moveTo(pos.getX() + 0.5 + front.getStepX(), pos.getY() + 0.5F + front.getStepY(), pos.getZ() + 0.5 + front.getStepZ());
                     projectile.shoot(front.getStepX(), front.getStepY(), front.getStepZ(), velocity, 0.0F);
                     level.addFreshEntity(projectile);
-                    level.playSound(null, pos, SMSounds.FLINGER_FLINGS.get(), SoundSource.BLOCKS, 1.0F, 1.0F);
                     projectile.gameEvent(GameEvent.PROJECTILE_SHOOT);
+                    level.playSound(null, pos, SMSounds.FLINGER_FLINGS.get(), SoundSource.BLOCKS, 1.0F, 1.0F);
+
                 } else if (!(projectile.getType().is(SMEntityTags.CANNOT_BOUNCE))) {
                     event.setCanceled(true);
                     switch (direction.getAxis()) {
@@ -93,44 +77,49 @@ public class SMEntityEvents {
                         case Z -> projectile.shoot(vec3.x, vec3.y, vec3.reverse().z, calculateBounceVelocity(velocity), 0.0F);
                     }
                     projectile.gameEvent(GameEvent.PROJECTILE_SHOOT);
-
-                    Vec3 particlePos = new Vec3(blockHitResult.getLocation().x, blockHitResult.getLocation().y, blockHitResult.getLocation().z);
-                    particlePos = particlePos.relative(direction, 0.1D);
-
+                    Vec3 particlePos = new Vec3(blockHitResult.getLocation().x, blockHitResult.getLocation().y, blockHitResult.getLocation().z).relative(direction, 0.1D);
                     level.addParticle(new DirectionParticleOptions(SMParticleTypes.RICOCHET.get(), direction), particlePos.x, particlePos.y, particlePos.z, 0, 0, 0);
                     level.playLocalSound(projectile.getX(), projectile.getY(), projectile.getZ(), SMSounds.JADE_RICOCHET.get(), SoundSource.BLOCKS, 1.0F, 0.0F, false);
                 }
             }
         }
-        if (!level.isClientSide() && hitResult instanceof EntityHitResult entityHitResult) {
-            if (entityHitResult.getEntity() instanceof Player player) {
-                if (player.isBlocking() && player.getUseItem().is(SMItems.JADE_SHIELD.get())) {
-                    if (!(projectile.getType().is(SMEntityTags.CANNOT_BOUNCE))) {
-                        event.setCanceled(true);
-                        Direction direction = projectile.getDirection();
-                        Vec3 angle = player.getLookAngle();
+        if (!level.isClientSide() && hitResult instanceof EntityHitResult entityHitResult
+                && entityHitResult.getEntity() instanceof Player player && player.isBlocking()
+                && player.getUseItem().is(SMItems.JADE_SHIELD.get())
+                && !(projectile.getType().is(SMEntityTags.CANNOT_BOUNCE))) {
+            event.setCanceled(true);
+            Direction direction = projectile.getDirection();
+            Vec3 angle = player.getLookAngle();
 
-                        Projectile oldProjectile = projectile;
-                        projectile = (Projectile) projectile.getType().create(level);
-                        if (projectile == null) {
-                            return;
-                        }
-                        oldProjectile.setRemoved(Entity.RemovalReason.DISCARDED);
+            projectile = replaceProjectile(projectile, level);
+            if (projectile == null) return;
 
-                        CompoundTag compoundtag = oldProjectile.saveWithoutId(new CompoundTag());
-                        compoundtag.remove("Motion");
-                        projectile.load(compoundtag);
+            projectile.shoot(angle.x, angle.y, angle.z, calculateBounceVelocity(velocity), 0.0F);
+            level.addFreshEntity(projectile);
+            projectile.gameEvent(GameEvent.PROJECTILE_SHOOT);
 
-                        projectile.shoot(angle.x, angle.y, angle.z, calculateBounceVelocity(velocity), 0.0F);
-
-                        level.addFreshEntity(projectile);
-                        level.playSound(null, player.getX(), player.getY(), player.getZ(), SMSounds.JADE_RICOCHET.get(), player.getSoundSource(), 1.0F, 0.0F);
-                        ((ServerLevel) level).sendParticles(new DirectionParticleOptions(SMParticleTypes.RICOCHET.get(), direction), projectile.getX(), projectile.getY(), projectile.getZ(), 1, 0.0D, 0.0D, 0.0D, 0.0D);
-                        player.getUseItem().hurtAndBreak(1, player, e -> e.broadcastBreakEvent(player.getUsedItemHand()));
-                    }
-                }
-            }
+            level.playSound(null, player.getX(), player.getY(), player.getZ(), SMSounds.JADE_RICOCHET.get(), player.getSoundSource(), 1.0F, 0.0F);
+            ((ServerLevel) level).sendParticles(new DirectionParticleOptions(SMParticleTypes.RICOCHET.get(), direction), projectile.getX(), projectile.getY(), projectile.getZ(), 1, 0.0D, 0.0D, 0.0D, 0.0D);
+            player.getUseItem().hurtAndBreak(1, player, e -> e.broadcastBreakEvent(player.getUsedItemHand()));
         }
+    }
+
+    @Nullable
+    private static Projectile replaceProjectile(Projectile projectile, Level level) {
+        Projectile oldProjectile = projectile;
+        projectile = (Projectile) projectile.getType().create(level);
+        if (projectile == null) {
+            return null;
+        }
+        oldProjectile.setRemoved(Entity.RemovalReason.DISCARDED);
+        CompoundTag compoundtag = oldProjectile.saveWithoutId(new CompoundTag());
+        compoundtag.remove("Motion");
+        projectile.load(compoundtag);
+        return projectile;
+    }
+
+    private static boolean isFlingerAndFlings(Projectile projectile, BlockState blockState, Direction direction) {
+        return !(projectile.getType().is(SMEntityTags.CANNOT_BE_FLUNG)) && blockState.is(SMBlocks.JADE_FLINGER_TOTEM.get()) && !direction.equals(blockState.getValue(SMDirectionalBlock.FACING));
     }
 
     @SubscribeEvent
@@ -140,10 +129,8 @@ public class SMEntityEvents {
         if (entity.getType().is(SMEntityTags.ATTACKS_BABY_TORTOISES) && entity instanceof Mob mob) {
             if (mob instanceof Ocelot ocelot) {
                 ocelot.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(ocelot, Tortoise.class, 10, false, false, Turtle.BABY_ON_LAND_SELECTOR));
-            } else if (mob instanceof TamableAnimal tamable) {
-                if (!tamable.isTame()) {
-                    tamable.targetSelector.addGoal(6, new NonTameRandomTargetGoal<>(tamable, Tortoise.class, false, Turtle.BABY_ON_LAND_SELECTOR));
-                }
+            } else if (mob instanceof TamableAnimal tamable && !tamable.isTame()) {
+                tamable.targetSelector.addGoal(6, new NonTameRandomTargetGoal<>(tamable, Tortoise.class, false, Turtle.BABY_ON_LAND_SELECTOR));
             } else {
                 mob.targetSelector.addGoal(5, new NearestAttackableTargetGoal<>(mob, Tortoise.class, 10, true, false, Turtle.BABY_ON_LAND_SELECTOR));
             }
@@ -154,8 +141,6 @@ public class SMEntityEvents {
     }
 
     private static float calculateBounceVelocity(float velocity) {
-        if (SMConfig.ENABLE_DYNAMIC_VELOCITY.get() && velocity * 0.8F >= 0.5F) {
-            return velocity * 0.8F;
-        } else return 0.5F;
+        return SMConfig.ENABLE_DYNAMIC_VELOCITY.get() && (velocity * 0.8F >= 0.5F) ? velocity * 0.8F : 0.5F;
     }
 }

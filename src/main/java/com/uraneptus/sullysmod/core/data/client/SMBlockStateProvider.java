@@ -35,7 +35,7 @@ public class SMBlockStateProvider extends BlockStateProvider {
         basicBlock(SMBlocks.POLISHED_JADE_SHINGLES);
         basicBlock(SMBlocks.POLISHED_JADE_TILES);
         basicBlock(SMBlocks.POLISHED_CHISELED_JADE);
-        pillarBlock(SMBlocks.POLISHED_JADE_PILLAR, POLISHED_CHISELED_JADE);
+        pillarBlock(SMBlocks.POLISHED_JADE_PILLAR, name(SMBlocks.POLISHED_CHISELED_JADE.get()));
         totemBlock(SMBlocks.JADE_TOTEM);
         totemBlock(SMBlocks.JADE_FLINGER_TOTEM);
         basicButtonBlock(SMBlocks.COPPER_BUTTON, COPPER_BLOCK);
