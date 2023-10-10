@@ -95,7 +95,7 @@ public class BoulderingZombie extends Zombie implements GeoEntity {
     @Override
     public boolean hurt(DamageSource pSource, float pAmount) {
         if (pSource.is(DamageTypeTags.IS_FIRE)) {
-            pAmount *= 5.0F;
+            pAmount *= 1.5F;
         }
         return super.hurt(pSource, pAmount);
     }

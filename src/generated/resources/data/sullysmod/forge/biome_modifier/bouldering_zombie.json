@@ -1,0 +1,10 @@
+{
+  "type": "forge:add_spawns",
+  "biomes": "#sullysmod:bouldering_zombie_spawn_in",
+  "spawners": {
+    "type": "sullysmod:bouldering_zombie",
+    "maxCount": 5,
+    "minCount": 3,
+    "weight": 10
+  }
+}
