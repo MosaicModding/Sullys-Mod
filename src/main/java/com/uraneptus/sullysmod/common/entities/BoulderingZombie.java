@@ -1,15 +1,18 @@
 package com.uraneptus.sullysmod.common.entities;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.MobSpawnType;
+import net.minecraft.world.entity.SpawnGroupData;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.navigation.PathNavigation;
@@ -18,6 +21,7 @@ import net.minecraft.world.entity.monster.Zombie;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
+import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.core.animatable.GeoAnimatable;
 import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
@@ -27,6 +31,8 @@ import software.bernie.geckolib.core.animation.AnimationState;
 import software.bernie.geckolib.core.animation.RawAnimation;
 import software.bernie.geckolib.core.object.PlayState;
 import software.bernie.geckolib.util.GeckoLibUtil;
+
+import java.util.Random;
 
 public class BoulderingZombie extends Zombie implements GeoEntity {
     private static final EntityDataAccessor<Byte> DATA_FLAGS_ID = SynchedEntityData.defineId(BoulderingZombie.class, EntityDataSerializers.BYTE);
@@ -51,10 +57,26 @@ public class BoulderingZombie extends Zombie implements GeoEntity {
         return new WallClimberNavigation(this, pLevel);
     }
 
-    public static boolean checkBoulderingZombieSpawnRules(EntityType<? extends LivingEntity> entityType, ServerLevelAccessor level, MobSpawnType spawnType, BlockPos pos, RandomSource random) {
-        return false; //Soon
+    public static boolean checkBoulderingZombieSpawnRules(EntityType<? extends BoulderingZombie> entityType, ServerLevelAccessor level, MobSpawnType spawnType, BlockPos pos, RandomSource random) {
+        return isInDeepslateLayer(pos, random);
     }
-
+    public static boolean isInDeepslateLayer(BlockPos pos, RandomSource random) {
+        int chance = random.nextInt(100);
+        double y = pos.getY();
+        if (y <= -4 && y >= -15 && chance < 5) {
+            return true;
+        }
+        if (y <= -16 && y >= -30 && chance < 17) {
+            return true;
+        }
+        if (y <= -31 && y >= -45 && chance < 33) {
+            return true;
+        }
+        if (y <= -46 && y >= -64 && chance < 56) {
+            return true;
+        }
+        return false;
+    }
 
     @Override
     protected void defineSynchedData() {
