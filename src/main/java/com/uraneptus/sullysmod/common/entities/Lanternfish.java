@@ -23,6 +23,7 @@ import net.minecraft.world.entity.animal.AbstractFish;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
+import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
 
@@ -108,7 +109,7 @@ public class Lanternfish extends AbstractFish {
     public static boolean checkLanternfishSpawnRules(EntityType<? extends LivingEntity> entityType, ServerLevelAccessor level, MobSpawnType spawnType, BlockPos pos, RandomSource random) {
         int seaLevel = level.getSeaLevel();
         int maxLanternfishSeaLevel = seaLevel - 47;
-        return pos.getY() <= maxLanternfishSeaLevel && level.getFluidState(pos.below()).is(FluidTags.WATER) && level.getFluidState(pos.above()).is(FluidTags.WATER) && level.getRawBrightness(pos, 0) == 0;
+        return pos.getY() <= maxLanternfishSeaLevel && level.getFluidState(pos.below()).is(Fluids.WATER) && level.getFluidState(pos.above()).is(FluidTags.WATER) && level.getRawBrightness(pos, 0) == 0;
     }
 
     static class LightAvoidingRandomSwimmingGoal extends Goal {
