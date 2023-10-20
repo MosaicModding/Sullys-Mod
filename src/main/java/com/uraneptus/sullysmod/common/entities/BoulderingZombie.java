@@ -17,6 +17,7 @@ import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.navigation.PathNavigation;
 import net.minecraft.world.entity.ai.navigation.WallClimberNavigation;
+import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.monster.Zombie;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
@@ -58,24 +59,14 @@ public class BoulderingZombie extends Zombie implements GeoEntity {
     }
 
     public static boolean checkBoulderingZombieSpawnRules(EntityType<? extends BoulderingZombie> entityType, ServerLevelAccessor level, MobSpawnType spawnType, BlockPos pos, RandomSource random) {
-        return isInDeepslateLayer(pos, random);
+        System.out.println(isInDeepslateLayer(pos, random));
+        return isInDeepslateLayer(pos, random) && Monster.checkMonsterSpawnRules(entityType, level, spawnType, pos, random);
     }
     public static boolean isInDeepslateLayer(BlockPos pos, RandomSource random) {
         int chance = random.nextInt(100);
         double y = pos.getY();
-        if (y <= -4 && y >= -15 && chance < 5) {
-            return true;
-        }
-        if (y <= -16 && y >= -30 && chance < 17) {
-            return true;
-        }
-        if (y <= -31 && y >= -45 && chance < 33) {
-            return true;
-        }
-        if (y <= -46 && y >= -64 && chance < 56) {
-            return true;
-        }
-        return false;
+        System.out.println("Chance:" + chance + " Y"  + y);
+        return (y <= -4 && y >= -15 && chance < 50) || (y <= -16 && y >= -30 && chance < 68) || (y <= -31 && y >= -39 && chance < 80) || (y <= -40 && y >= -63 && chance < 90);
     }
 
     @Override
