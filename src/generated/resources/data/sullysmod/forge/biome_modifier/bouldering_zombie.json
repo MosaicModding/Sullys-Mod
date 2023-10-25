@@ -3,8 +3,8 @@
   "biomes": "#sullysmod:bouldering_zombie_spawn_in",
   "spawners": {
     "type": "sullysmod:bouldering_zombie",
-    "maxCount": 10,
-    "minCount": 5,
+    "maxCount": 6,
+    "minCount": 4,
     "weight": 100
   }
 }
