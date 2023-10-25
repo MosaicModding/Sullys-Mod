@@ -54,7 +54,6 @@ public class SullysMod {
         bus.addListener(this::setup);
         bus.addListener(this::gatherData);
 
-        ModLoadingContext.get().registerConfig(ModConfig.Type.SERVER, SMConfig.SERVER);
         ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, SMConfig.CLIENT);
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, SMConfig.COMMON);
 
