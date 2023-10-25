@@ -18,6 +18,7 @@ import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.navigation.GroundPathNavigation;
 import net.minecraft.world.entity.ai.navigation.PathNavigation;
 import net.minecraft.world.entity.ai.navigation.WallClimberNavigation;
+import net.minecraft.world.entity.ai.navigation.WaterBoundPathNavigation;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.monster.Zombie;
 import net.minecraft.world.item.ItemStack;
@@ -40,9 +41,14 @@ public class BoulderingZombie extends Zombie implements GeoEntity {
     private static final EntityDataAccessor<Byte> DATA_FLAGS_ID = SynchedEntityData.defineId(BoulderingZombie.class, EntityDataSerializers.BYTE);
     private static final RawAnimation CLIMBING_ANIM = RawAnimation.begin().thenLoop("animation.bouldering_zombie.climb");
     private final AnimatableInstanceCache instanceCache = GeckoLibUtil.createInstanceCache(this);
+    //TODO slowness & speed doesn't affect climbing speed atm
+    protected final WallClimberNavigation climberNavigation;
+    protected final GroundPathNavigation groundNavigation;
 
     public BoulderingZombie(EntityType<? extends BoulderingZombie> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
+        this.climberNavigation = new WallClimberNavigation(this, pLevel);
+        this.groundNavigation = new GroundPathNavigation(this, pLevel);
     }
 
     public static AttributeSupplier.Builder createAttributes() {
@@ -54,10 +60,6 @@ public class BoulderingZombie extends Zombie implements GeoEntity {
         super.registerGoals();
     }
 
-    @Override
-    protected PathNavigation createNavigation(Level pLevel) {
-        return this.getTarget() == null ? new GroundPathNavigation(this, pLevel) : new WallClimberNavigation(this, pLevel);
-    }
 
     public static boolean checkBoulderingZombieSpawnRules(EntityType<? extends BoulderingZombie> entityType, ServerLevelAccessor level, MobSpawnType spawnType, BlockPos pos, RandomSource random) {
         return isInDeepslateLayer(pos, random) && Monster.checkMonsterSpawnRules(entityType, level, spawnType, pos, random);
@@ -85,7 +87,12 @@ public class BoulderingZombie extends Zombie implements GeoEntity {
     public void tick() {
         super.tick();
         if (!this.level().isClientSide) {
-            this.setClimbing(this.horizontalCollision);
+            if (this.getTarget() != null) {
+                this.navigation = climberNavigation;
+                this.setClimbing(this.horizontalCollision);
+            } else {
+                this.navigation = groundNavigation;
+            }
         }
     }
 
@@ -99,7 +106,7 @@ public class BoulderingZombie extends Zombie implements GeoEntity {
 
     @Override
     public boolean onClimbable() {
-        return (this.entityData.get(DATA_FLAGS_ID) & 1) != 0 && this.getTarget() != null;
+        return (this.entityData.get(DATA_FLAGS_ID) & 1) != 0;
     }
 
     public void setClimbing(boolean pClimbing) {
