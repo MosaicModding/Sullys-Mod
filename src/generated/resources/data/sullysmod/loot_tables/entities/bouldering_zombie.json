@@ -56,7 +56,8 @@
         },
         {
           "type": "minecraft:item",
-          "name": "sullysmod:lanternfish"
+          "name": "sullysmod:lanternfish",
+          "weight": 5
         }
       ],
       "functions": [

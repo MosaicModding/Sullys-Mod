@@ -26,7 +26,6 @@ import java.util.Set;
 import java.util.stream.Stream;
 
 public class SMEntityLoot extends EntityLootSubProvider {
-    private static final Set<EntityType<?>> SPECIAL_LOOT_TYPES = ImmutableSet.of(SMEntityTypes.COPPER_GOLEM.get());
 
     protected SMEntityLoot() {
         super(FeatureFlags.REGISTRY.allFlags());
@@ -37,19 +36,11 @@ public class SMEntityLoot extends EntityLootSubProvider {
         return ForgeRegistries.ENTITY_TYPES.getValues().stream().filter(entityType -> ForgeRegistries.ENTITY_TYPES.getKey(entityType) != null && SullysMod.MOD_ID.equals(ForgeRegistries.ENTITY_TYPES.getKey(entityType).getNamespace()));
     }
 
-    /*
-    @Override
-    protected boolean canHaveLootTable(EntityType<?> entitytype) {
-        return !SPECIAL_LOOT_TYPES.contains(entitytype) && entitytype.getCategory() == MobCategory.MISC;
-    }
-
-     */
-
     @Override
     public void generate() {
         this.add(SMEntityTypes.LANTERNFISH.get(), LootTable.lootTable().withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F)).add(LootItem.lootTableItem(SMItems.LANTERNFISH.get()).apply(SmeltItemFunction.smelted().when(LootItemEntityPropertyCondition.hasProperties(LootContext.EntityTarget.THIS, ENTITY_ON_FIRE))))).withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F)).add(LootItem.lootTableItem(Items.BONE_MEAL)).when(LootItemRandomChanceCondition.randomChance(0.05F))));
         this.add(SMEntityTypes.COPPER_GOLEM.get(), LootTable.lootTable());
         this.add(SMEntityTypes.TORTOISE.get(), LootTable.lootTable());
-        this.add(SMEntityTypes.BOULDERING_ZOMBIE.get(), LootTable.lootTable().withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F)).add(LootItem.lootTableItem(Items.ROTTEN_FLESH).apply(SetItemCountFunction.setCount(UniformGenerator.between(0.0F, 2.0F))).apply(LootingEnchantFunction.lootingMultiplier(UniformGenerator.between(0.0F, 1.0F))))).withPool(LootPool.lootPool().apply(LootingEnchantFunction.lootingMultiplier(UniformGenerator.between(0.0F, 2.0F))).setRolls(UniformGenerator.between(0.0F, 1.0F)).add(LootItem.lootTableItem(Items.COAL).setWeight(30)).add(LootItem.lootTableItem(Items.DEEPSLATE).setWeight(35).apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 2.0F)))).add(LootItem.lootTableItem(SMItems.LANTERNFISH.get()).setWeight(1))));
+        this.add(SMEntityTypes.BOULDERING_ZOMBIE.get(), LootTable.lootTable().withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F)).add(LootItem.lootTableItem(Items.ROTTEN_FLESH).apply(SetItemCountFunction.setCount(UniformGenerator.between(0.0F, 2.0F))).apply(LootingEnchantFunction.lootingMultiplier(UniformGenerator.between(0.0F, 1.0F))))).withPool(LootPool.lootPool().apply(LootingEnchantFunction.lootingMultiplier(UniformGenerator.between(0.0F, 2.0F))).setRolls(UniformGenerator.between(0.0F, 1.0F)).add(LootItem.lootTableItem(Items.COAL).setWeight(30)).add(LootItem.lootTableItem(Items.DEEPSLATE).setWeight(35).apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 2.0F)))).add(LootItem.lootTableItem(SMItems.LANTERNFISH.get()).setWeight(5))));
     }
 }
