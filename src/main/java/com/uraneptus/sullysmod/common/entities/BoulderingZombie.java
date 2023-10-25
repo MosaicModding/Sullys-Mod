@@ -15,6 +15,7 @@ import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.SpawnGroupData;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.ai.navigation.GroundPathNavigation;
 import net.minecraft.world.entity.ai.navigation.PathNavigation;
 import net.minecraft.world.entity.ai.navigation.WallClimberNavigation;
 import net.minecraft.world.entity.monster.Monster;
@@ -55,7 +56,7 @@ public class BoulderingZombie extends Zombie implements GeoEntity {
 
     @Override
     protected PathNavigation createNavigation(Level pLevel) {
-        return new WallClimberNavigation(this, pLevel);
+        return this.getTarget() == null ? new GroundPathNavigation(this, pLevel) : new WallClimberNavigation(this, pLevel);
     }
 
     public static boolean checkBoulderingZombieSpawnRules(EntityType<? extends BoulderingZombie> entityType, ServerLevelAccessor level, MobSpawnType spawnType, BlockPos pos, RandomSource random) {
@@ -65,7 +66,7 @@ public class BoulderingZombie extends Zombie implements GeoEntity {
     public static boolean isInDeepslateLayer(BlockPos pos, RandomSource random) {
         int chance = random.nextInt(100);
         double y = pos.getY();
-        System.out.println("Chance:" + chance + " Y"  + y);
+
         return (y <= -4 && y >= -15 && chance < 50) || (y <= -16 && y >= -30 && chance < 68) || (y <= -31 && y >= -39 && chance < 80) || (y <= -40 && y >= -63 && chance < 90);
     }
 
@@ -93,11 +94,7 @@ public class BoulderingZombie extends Zombie implements GeoEntity {
 
     @Override
     public boolean onClimbable() {
-        return this.isClimbing();
-    }
-
-    public boolean isClimbing() {
-        return (this.entityData.get(DATA_FLAGS_ID) & 1) != 0;
+        return (this.entityData.get(DATA_FLAGS_ID) & 1) != 0 && this.getTarget() != null;
     }
 
     public void setClimbing(boolean pClimbing) {

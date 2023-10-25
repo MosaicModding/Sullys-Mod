@@ -89,7 +89,7 @@ public class SMDatapackBuiltinEntriesProvider extends DatapackBuiltinEntriesProv
         public static void create(BootstapContext<BiomeModifier> context) {
             register(context, "lanternfish", () -> addSingleSpawnModifier(context, SMBiomeTags.LANTERNFISH_SPAWN_IN, SMEntityTypes.LANTERNFISH.get(), 15, 4, 6));
             register(context, "tortoise", () -> addSingleSpawnModifier(context, SMBiomeTags.TORTOISES_SPAWN_IN, SMEntityTypes.TORTOISE.get(), 5, 1, 3));
-            register(context, "bouldering_zombie", () -> addSingleSpawnModifier(context, SMBiomeTags.BOULDERING_ZOMBIE_SPAWN_IN, SMEntityTypes.BOULDERING_ZOMBIE.get(), 100, 6, 15));
+            register(context, "bouldering_zombie", () -> addSingleSpawnModifier(context, SMBiomeTags.BOULDERING_ZOMBIE_SPAWN_IN, SMEntityTypes.BOULDERING_ZOMBIE.get(), 100, 5, 10));
             register(context, "jade_ore", () -> addFeatureModifier(context, SMDatagenUtil.getPlacedHolderSet(context, SMDatapackBuiltinEntriesProvider.PLACED_JADE_ORE), SMBiomeTags.JADE_GENERATES_IN, GenerationStep.Decoration.UNDERGROUND_ORES));
 
         }
