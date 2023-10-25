@@ -35,7 +35,28 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "minecraft:coal"
+          "name": "minecraft:coal",
+          "weight": 30
+        },
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "add": false,
+              "count": {
+                "type": "minecraft:uniform",
+                "max": 2.0,
+                "min": 1.0
+              },
+              "function": "minecraft:set_count"
+            }
+          ],
+          "name": "minecraft:deepslate",
+          "weight": 35
+        },
+        {
+          "type": "minecraft:item",
+          "name": "sullysmod:lanternfish"
         }
       ],
       "functions": [
