@@ -60,14 +60,19 @@ public class BoulderingZombie extends Zombie implements GeoEntity {
     }
 
     public static boolean checkBoulderingZombieSpawnRules(EntityType<? extends BoulderingZombie> entityType, ServerLevelAccessor level, MobSpawnType spawnType, BlockPos pos, RandomSource random) {
-        System.out.println(isInDeepslateLayer(pos, random));
         return isInDeepslateLayer(pos, random) && Monster.checkMonsterSpawnRules(entityType, level, spawnType, pos, random);
     }
+
     public static boolean isInDeepslateLayer(BlockPos pos, RandomSource random) {
         int chance = random.nextInt(100);
         double y = pos.getY();
 
         return (y <= -4 && y >= -15 && chance < 50) || (y <= -16 && y >= -30 && chance < 68) || (y <= -31 && y >= -39 && chance < 80) || (y <= -40 && y >= -63 && chance < 90);
+    }
+
+    @Override
+    public float getScale() {
+        return this.isBaby() ? 0.5F : 1.0625F;
     }
 
     @Override

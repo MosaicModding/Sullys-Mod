@@ -4,6 +4,7 @@ import com.uraneptus.sullysmod.SullysMod;
 import com.uraneptus.sullysmod.common.entities.BoulderingZombie;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
+import net.minecraft.world.entity.LivingEntity;
 import software.bernie.geckolib.cache.object.GeoBone;
 import software.bernie.geckolib.core.animation.AnimationState;
 import software.bernie.geckolib.model.DefaultedEntityGeoModel;
@@ -38,7 +39,6 @@ public class BoulderingZombieModel <E extends BoulderingZombie> extends Defaulte
         float pLimbSwingAmount = animationState.getLimbSwingAmount();
         double tick = animationState.getAnimationTick();
 
-        GeoBone body = (GeoBone) this.getAnimationProcessor().getBone("Body");
         GeoBone rightLeg = (GeoBone) this.getAnimationProcessor().getBone("RightLeg");
         GeoBone leftLeg = (GeoBone) this.getAnimationProcessor().getBone("LeftLeg");
         GeoBone rightArm = (GeoBone) this.getAnimationProcessor().getBone("RightArm");
@@ -51,11 +51,9 @@ public class BoulderingZombieModel <E extends BoulderingZombie> extends Defaulte
                 f /= 0.2F;
                 f *= f * f;
             }
-
             if (f < 1.0F) {
                 f = 1.0F;
             }
-
             rightArm.setRotX(Mth.cos(pLimbSwing * 0.6662F + (float)Math.PI) * 2.0F * pLimbSwingAmount * 0.5F / f);
             leftArm.setRotX(Mth.cos(pLimbSwing * 0.6662F) * 2.0F * pLimbSwingAmount * 0.5F / f);
             rightArm.setRotZ(0.0F);
@@ -66,18 +64,8 @@ public class BoulderingZombieModel <E extends BoulderingZombie> extends Defaulte
             leftLeg.setRotY(-0.005F);
             rightLeg.setRotZ(0.005F);
             leftLeg.setRotZ(-0.005F);
-            if (animatable.isPassenger()) {
-                rightArm.setRotX(rightArm.getRotX() + (-(float)Math.PI / 5F));
-                leftArm.setRotX(leftArm.getRotX() + (-(float)Math.PI / 5F));
-                rightLeg.setRotX(-1.4137167F);
-                rightLeg.setRotY(((float)Math.PI / 10F));
-                rightLeg.setRotZ(0.07853982F);
-                leftLeg.setRotX(-1.4137167F);
-                leftLeg.setRotY((-(float)Math.PI / 10F));
-                leftLeg.setRotZ(-0.07853982F);
-            }
 
-
+            handleRotationOnVehicle(animatable, rightArm, leftArm, rightLeg, leftLeg);
             animateZombieArms(leftArm, rightArm, animatable.isAggressive(), animatable.attackAnim, (float) tick);
         }
     }
@@ -105,5 +93,18 @@ public class BoulderingZombieModel <E extends BoulderingZombie> extends Defaulte
     public static void bobArms(GeoBone pRightArm, GeoBone pLeftArm, float pAgeInTicks) {
         bobModelPart(pRightArm, pAgeInTicks, 1.0F);
         bobModelPart(pLeftArm, pAgeInTicks, -1.0F);
+    }
+
+    public static void handleRotationOnVehicle(LivingEntity animatable, GeoBone rightArm, GeoBone leftArm, GeoBone rightLeg, GeoBone leftLeg) {
+        if (animatable.isPassenger()) {
+            rightArm.setRotX(rightArm.getRotX() + (-(float)Math.PI / 5F));
+            leftArm.setRotX(leftArm.getRotX() + (-(float)Math.PI / 5F));
+            rightLeg.setRotX(1.4137167F);
+            rightLeg.setRotY((-(float)Math.PI / 10F));
+            rightLeg.setRotZ(0.07853982F);
+            leftLeg.setRotX(1.4137167F);
+            leftLeg.setRotY(((float)Math.PI / 10F));
+            leftLeg.setRotZ(-0.07853982F);
+        }
     }
 }
