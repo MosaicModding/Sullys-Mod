@@ -56,6 +56,7 @@ public class SullysMod {
 
         ModLoadingContext.get().registerConfig(ModConfig.Type.SERVER, SMConfig.SERVER);
         ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, SMConfig.CLIENT);
+        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, SMConfig.COMMON);
 
 
         REGISTRY_HELPER.register(bus);
