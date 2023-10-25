@@ -87,6 +87,7 @@ public class SMItems {
                 .tab(CreativeModeTabs.SPAWN_EGGS)
                 .addItemsAfter(of(Items.COD_SPAWN_EGG), LANTERNFISH_SPAWN_EGG)
                 .addItemsAfter(of(Items.TURTLE_SPAWN_EGG), TORTOISE_SPAWN_EGG)
+                .addItemsAfter(of(Items.ZOMBIE_SPAWN_EGG), BOULDERING_ZOMBIE_SPAWN_EGG)
 
                 .tab(CreativeModeTabs.NATURAL_BLOCKS)
                 .addItemsAfter(of(Items.COPPER_ORE), JADE_ORE)

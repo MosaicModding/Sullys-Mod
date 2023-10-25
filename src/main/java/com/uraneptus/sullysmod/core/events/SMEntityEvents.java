@@ -36,6 +36,7 @@ import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.event.entity.EntityJoinLevelEvent;
 import net.minecraftforge.event.entity.ProjectileImpactEvent;
+import net.minecraftforge.event.entity.living.MobSpawnEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import org.jetbrains.annotations.Nullable;
@@ -118,6 +119,10 @@ public class SMEntityEvents {
         return projectile;
     }
 
+    private static float calculateBounceVelocity(float velocity) {
+        return SMConfig.ENABLE_DYNAMIC_VELOCITY.get() && (velocity * 0.8F >= 0.5F) ? velocity * 0.8F : 0.5F;
+    }
+
     private static boolean isFlingerAndFlings(Projectile projectile, BlockState blockState, Direction direction) {
         return !(projectile.getType().is(SMEntityTags.CANNOT_BE_FLUNG)) && blockState.is(SMBlocks.JADE_FLINGER_TOTEM.get()) && !direction.equals(blockState.getValue(SMDirectionalBlock.FACING));
     }
@@ -138,9 +143,5 @@ public class SMEntityEvents {
         if (entity instanceof Zombie zombie) {
             zombie.goalSelector.addGoal(4, new GenericMobAttackTortoiseEggGoal(zombie, 1.0D, 3));
         }
-    }
-
-    private static float calculateBounceVelocity(float velocity) {
-        return SMConfig.ENABLE_DYNAMIC_VELOCITY.get() && (velocity * 0.8F >= 0.5F) ? velocity * 0.8F : 0.5F;
     }
 }
