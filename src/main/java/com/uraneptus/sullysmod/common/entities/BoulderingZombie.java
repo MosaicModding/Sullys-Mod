@@ -41,7 +41,6 @@ public class BoulderingZombie extends Zombie implements GeoEntity {
     private static final EntityDataAccessor<Byte> DATA_FLAGS_ID = SynchedEntityData.defineId(BoulderingZombie.class, EntityDataSerializers.BYTE);
     private static final RawAnimation CLIMBING_ANIM = RawAnimation.begin().thenLoop("animation.bouldering_zombie.climb");
     private final AnimatableInstanceCache instanceCache = GeckoLibUtil.createInstanceCache(this);
-    //TODO slowness & speed doesn't affect climbing speed atm
     protected final WallClimberNavigation climberNavigation;
     protected final GroundPathNavigation groundNavigation;
 
