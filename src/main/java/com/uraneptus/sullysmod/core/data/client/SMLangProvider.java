@@ -124,6 +124,7 @@ public class SMLangProvider extends LanguageProvider {
         forEntity(SMEntityTypes.BOULDERING_ZOMBIE);
         forEntity(SMEntityTypes.JUNGLE_SPIDER);
         forEntity(SMEntityTypes.PIRANHA);
+        forEntity(SMEntityTypes.CHAMELEON);
 
         //Potions
         addPotionsForEffect(SMPotions.UNLUCK, "Bad Luck");
