@@ -3,7 +3,7 @@
 	"minecraft:geometry": [
 		{
 			"description": {
-				"identifier": "geometry.unknown",
+				"identifier": "geometry.chameleon",
 				"texture_width": 64,
 				"texture_height": 64,
 				"visible_bounds_width": 3,
@@ -35,7 +35,7 @@
 				},
 				{
 					"name": "leftHindLeg",
-					"parent": "bone5",
+					"parent": "root",
 					"pivot": [2.5, 4, 2],
 					"cubes": [
 						{"origin": [2.5, 0, 1], "size": [2, 4, 2], "uv": [0, 30], "mirror": true},
@@ -44,7 +44,7 @@
 				},
 				{
 					"name": "rightHindLeg",
-					"parent": "bone5",
+					"parent": "root",
 					"pivot": [-2.5, 4, 2],
 					"cubes": [
 						{"origin": [-4.5, 0, 1], "size": [2, 4, 2], "uv": [0, 30]},

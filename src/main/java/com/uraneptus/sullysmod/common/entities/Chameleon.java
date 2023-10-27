@@ -36,6 +36,10 @@ public class Chameleon extends Animal implements GeoEntity {
     }
 
     @Override
+    protected void registerGoals() {
+    }
+
+    @Override
     public AnimatableInstanceCache getAnimatableInstanceCache() {
         return instanceCache;
     }
