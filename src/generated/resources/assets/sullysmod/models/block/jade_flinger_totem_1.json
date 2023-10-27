@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "down": "sullysmod:block/jade_flinger_totem_top_1",
+    "east": "sullysmod:block/jade_flinger_totem_right_1",
+    "north": "sullysmod:block/jade_flinger_totem_front",
+    "particle": "sullysmod:block/jade_flinger_totem_back",
+    "south": "sullysmod:block/jade_flinger_totem_back_1",
+    "up": "sullysmod:block/jade_flinger_totem_top_1",
+    "west": "sullysmod:block/jade_flinger_totem_left_1"
+  }
+}

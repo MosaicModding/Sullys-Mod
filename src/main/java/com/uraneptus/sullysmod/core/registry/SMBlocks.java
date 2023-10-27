@@ -2,10 +2,7 @@ package com.uraneptus.sullysmod.core.registry;
 
 import com.teamabnormals.blueprint.core.util.registry.BlockSubRegistryHelper;
 import com.uraneptus.sullysmod.SullysMod;
-import com.uraneptus.sullysmod.common.blocks.CopperButtonBlock;
-import com.uraneptus.sullysmod.common.blocks.SMDirectionalBlock;
-import com.uraneptus.sullysmod.common.blocks.TortoiseEggBlock;
-import com.uraneptus.sullysmod.common.blocks.WeatheringCopperButtonBlock;
+import com.uraneptus.sullysmod.common.blocks.*;
 import com.uraneptus.sullysmod.core.other.SMProperties;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
@@ -31,7 +28,7 @@ public class SMBlocks {
     public static final RegistryObject<Block> POLISHED_JADE_TILES = HELPER.createBlock("polished_jade_tiles", () -> new Block(SMProperties.Blocks.POLISHED_JADE_BLOCKS));
     public static final RegistryObject<Block> POLISHED_CHISELED_JADE = HELPER.createBlock("polished_chiseled_jade", () -> new Block(SMProperties.Blocks.POLISHED_JADE_BLOCKS));
     public static final RegistryObject<Block> JADE_TOTEM = HELPER.createBlock("jade_totem", () -> new SMDirectionalBlock(SMProperties.Blocks.POLISHED_JADE_BLOCKS));
-    public static final RegistryObject<Block> JADE_FLINGER_TOTEM = HELPER.createBlock("jade_flinger_totem", () -> new SMDirectionalBlock(SMProperties.Blocks.POLISHED_JADE_BLOCKS));
+    public static final RegistryObject<Block> JADE_FLINGER_TOTEM = HELPER.createBlock("jade_flinger_totem", () -> new FlingerTotem(SMProperties.Blocks.POLISHED_JADE_BLOCKS));
     public static final RegistryObject<Block> POLISHED_JADE_PILLAR = HELPER.createBlock("polished_jade_pillar", () -> new RotatedPillarBlock(SMProperties.Blocks.POLISHED_JADE_BLOCKS));
 
     //Jade Stairs
