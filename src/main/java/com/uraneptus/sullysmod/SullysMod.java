@@ -2,10 +2,7 @@ package com.uraneptus.sullysmod;
 
 import com.mojang.logging.LogUtils;
 import com.teamabnormals.blueprint.core.util.registry.RegistryHelper;
-import com.uraneptus.sullysmod.common.entities.BoulderingZombie;
-import com.uraneptus.sullysmod.common.entities.CopperGolem;
-import com.uraneptus.sullysmod.common.entities.Lanternfish;
-import com.uraneptus.sullysmod.common.entities.Tortoise;
+import com.uraneptus.sullysmod.common.entities.*;
 import com.uraneptus.sullysmod.core.SMConfig;
 import com.uraneptus.sullysmod.core.data.client.*;
 import com.uraneptus.sullysmod.core.data.server.SMDatapackBuiltinEntriesProvider;
@@ -86,6 +83,7 @@ public class SullysMod {
         event.put(SMEntityTypes.LANTERNFISH.get(), Lanternfish.createAttributes().build());
         event.put(SMEntityTypes.TORTOISE.get(), Tortoise.createAttributes().build());
         event.put(SMEntityTypes.BOULDERING_ZOMBIE.get(), BoulderingZombie.createAttributes().build());
+        event.put(SMEntityTypes.CHAMELEON.get(), Chameleon.createAttributes().build());
     }
 
     private void setup(final FMLCommonSetupEvent event) {
