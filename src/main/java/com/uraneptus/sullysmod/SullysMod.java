@@ -2,10 +2,7 @@ package com.uraneptus.sullysmod;
 
 import com.mojang.logging.LogUtils;
 import com.teamabnormals.blueprint.core.util.registry.RegistryHelper;
-import com.uraneptus.sullysmod.common.entities.BoulderingZombie;
-import com.uraneptus.sullysmod.common.entities.CopperGolem;
-import com.uraneptus.sullysmod.common.entities.Lanternfish;
-import com.uraneptus.sullysmod.common.entities.Tortoise;
+import com.uraneptus.sullysmod.common.entities.*;
 import com.uraneptus.sullysmod.core.SMConfig;
 import com.uraneptus.sullysmod.core.data.client.*;
 import com.uraneptus.sullysmod.core.data.server.SMDatapackBuiltinEntriesProvider;
@@ -19,11 +16,16 @@ import com.uraneptus.sullysmod.core.data.server.tags.SMBlockTagsProvider;
 import com.uraneptus.sullysmod.core.data.server.tags.SMEntityTagsProvider;
 import com.uraneptus.sullysmod.core.data.server.tags.SMItemTagsProvider;
 import com.uraneptus.sullysmod.core.integration.fd.FDCompat;
+import com.uraneptus.sullysmod.core.other.tags.SMMobEffectTags;
 import com.uraneptus.sullysmod.core.registry.*;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.TagKey;
+import net.minecraft.world.effect.MobEffect;
+import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.data.ExistingFileHelper;
@@ -37,8 +39,11 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.registries.ForgeRegistries;
 import org.slf4j.Logger;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
 @Mod(SullysMod.MOD_ID)
@@ -49,6 +54,7 @@ public class SullysMod {
     public static final RegistryHelper REGISTRY_HELPER = new RegistryHelper(MOD_ID);
     public static final Logger LOGGER = LogUtils.getLogger();
 
+
     public SullysMod() {
         IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
         bus.addListener(this::setup);
@@ -58,6 +64,7 @@ public class SullysMod {
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, SMConfig.COMMON);
 
 
+        createEffectLists();
         REGISTRY_HELPER.register(bus);
         SMParticleTypes.PARTICLES.register(bus);
         SMPotions.POTIONS.register(bus);
@@ -86,6 +93,7 @@ public class SullysMod {
         event.put(SMEntityTypes.LANTERNFISH.get(), Lanternfish.createAttributes().build());
         event.put(SMEntityTypes.TORTOISE.get(), Tortoise.createAttributes().build());
         event.put(SMEntityTypes.BOULDERING_ZOMBIE.get(), BoulderingZombie.createAttributes().build());
+        event.put(SMEntityTypes.JUNGLE_SPIDER.get(), JungleSpider.createAttributes().build());
     }
 
     private void setup(final FMLCommonSetupEvent event) {
@@ -118,5 +126,18 @@ public class SullysMod {
         generator.addProvider(includeServer, new SMRecipeProvider(packOutput));
         generator.addProvider(includeServer, new SMLootModifierProvider(packOutput, lookupProvider));
         generator.addProvider(includeServer, new SMDatapackBuiltinEntriesProvider(packOutput, lookupProvider));
+    }
+    public static final List<MobEffect> BENEFICIAL_MOB_EFFECTS = new ArrayList<>();
+    public static final List<MobEffect> HARMFUL_MOB_EFFECTS = new ArrayList<>();
+
+    public void createEffectLists() {
+        ForgeRegistries.MOB_EFFECTS.iterator().forEachRemaining(mobEffect -> {
+            if (mobEffect.getCategory() == MobEffectCategory.BENEFICIAL) {
+                BENEFICIAL_MOB_EFFECTS.add(mobEffect);
+            }
+            if (mobEffect.getCategory() == MobEffectCategory.HARMFUL) {
+                HARMFUL_MOB_EFFECTS.add(mobEffect);
+            }
+        });
     }
 }
