@@ -42,5 +42,6 @@ public class SMEntityLoot extends EntityLootSubProvider {
         this.add(SMEntityTypes.COPPER_GOLEM.get(), LootTable.lootTable());
         this.add(SMEntityTypes.TORTOISE.get(), LootTable.lootTable());
         this.add(SMEntityTypes.BOULDERING_ZOMBIE.get(), LootTable.lootTable().withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F)).add(LootItem.lootTableItem(Items.ROTTEN_FLESH).apply(SetItemCountFunction.setCount(UniformGenerator.between(0.0F, 2.0F))).apply(LootingEnchantFunction.lootingMultiplier(UniformGenerator.between(0.0F, 1.0F))))).withPool(LootPool.lootPool().apply(LootingEnchantFunction.lootingMultiplier(UniformGenerator.between(0.0F, 2.0F))).setRolls(UniformGenerator.between(0.0F, 1.0F)).add(LootItem.lootTableItem(Items.COAL).setWeight(30)).add(LootItem.lootTableItem(Items.DEEPSLATE).setWeight(35).apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 2.0F)))).add(LootItem.lootTableItem(SMItems.LANTERNFISH.get()).setWeight(5))));
+        this.add(SMEntityTypes.JUNGLE_SPIDER.get(), LootTable.lootTable().withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F)).add(LootItem.lootTableItem(Items.STRING).apply(SetItemCountFunction.setCount(UniformGenerator.between(0.0F, 2.0F))))));
     }
 }

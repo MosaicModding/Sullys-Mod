@@ -91,6 +91,7 @@ public class SMLangProvider extends LanguageProvider {
         forItem(SMItems.TORTOISE_SCUTE);
         forItem(SMItems.TORTOISE_SHELL);
         forItem(SMItems.BOULDERING_ZOMBIE_SPAWN_EGG);
+        forItem(SMItems.JUNGLE_SPIDER_SPAWN_EGG);
 
         add(SMItems.LANTERNFISH_BUCKET.get(), "Bucket of Lanternfish");
         add(SMItems.LANTERNFISH.get(), "Raw Lanternfish");
