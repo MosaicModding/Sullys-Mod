@@ -12,7 +12,7 @@ public class ChameleonModel<E extends Chameleon> extends DefaultedEntityGeoModel
 
     @Override
     public ResourceLocation getModelResource(E animatable) {
-        return SullysMod.modPrefix("geo/chameleon.json");
+        return SullysMod.modPrefix("geo/chameleon.geo.json");
     }
 
     @Override
