@@ -13,6 +13,7 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.worldgen.BootstapContext;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.tags.BiomeTags;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.EntityType;
@@ -90,6 +91,7 @@ public class SMDatapackBuiltinEntriesProvider extends DatapackBuiltinEntriesProv
             register(context, "lanternfish", () -> addSingleSpawnModifier(context, SMBiomeTags.LANTERNFISH_SPAWN_IN, SMEntityTypes.LANTERNFISH.get(), 15, 4, 6));
             register(context, "tortoise", () -> addSingleSpawnModifier(context, SMBiomeTags.TORTOISES_SPAWN_IN, SMEntityTypes.TORTOISE.get(), 5, 1, 3));
             register(context, "bouldering_zombie", () -> addSingleSpawnModifier(context, SMBiomeTags.BOULDERING_ZOMBIE_SPAWN_IN, SMEntityTypes.BOULDERING_ZOMBIE.get(), 100, 4, 6));
+            register(context, "jungle_spider", () -> addSingleSpawnModifier(context, BiomeTags.IS_JUNGLE, SMEntityTypes.JUNGLE_SPIDER.get(), 100, 3, 6));
             register(context, "jade_ore", () -> addFeatureModifier(context, SMDatagenUtil.getPlacedHolderSet(context, SMDatapackBuiltinEntriesProvider.PLACED_JADE_ORE), SMBiomeTags.JADE_GENERATES_IN, GenerationStep.Decoration.UNDERGROUND_ORES));
 
         }

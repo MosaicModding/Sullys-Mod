@@ -4,6 +4,7 @@ import com.uraneptus.sullysmod.SullysMod;
 import com.uraneptus.sullysmod.common.entities.BoulderingZombie;
 import com.uraneptus.sullysmod.common.entities.Lanternfish;
 import com.uraneptus.sullysmod.core.SMConfig;
+import com.uraneptus.sullysmod.core.other.tags.SMBiomeTags;
 import com.uraneptus.sullysmod.core.registry.SMEntityTypes;
 import net.minecraft.client.resources.ClientPackSource;
 import net.minecraft.core.BlockPos;
@@ -13,6 +14,7 @@ import net.minecraft.server.packs.metadata.pack.PackMetadataSection;
 import net.minecraft.server.packs.metadata.pack.PackMetadataSectionSerializer;
 import net.minecraft.server.packs.repository.Pack;
 import net.minecraft.server.packs.repository.PackSource;
+import net.minecraft.tags.BiomeTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobSpawnType;
@@ -20,6 +22,7 @@ import net.minecraft.world.entity.SpawnPlacements;
 import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.level.ServerLevelAccessor;
+import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraftforge.data.loading.DatagenModLoader;
 import net.minecraftforge.event.AddPackFindersEvent;
@@ -42,12 +45,18 @@ public class SMCommonEvents {
        event.register(SMEntityTypes.LANTERNFISH.get(), SpawnPlacements.Type.IN_WATER, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Lanternfish::checkLanternfishSpawnRules, SpawnPlacementRegisterEvent.Operation.AND);
        event.register(SMEntityTypes.TORTOISE.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules, SpawnPlacementRegisterEvent.Operation.AND);
        event.register(SMEntityTypes.BOULDERING_ZOMBIE.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, BoulderingZombie::checkBoulderingZombieSpawnRules, SpawnPlacementRegisterEvent.Operation.AND);
+       event.register(SMEntityTypes.JUNGLE_SPIDER.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Monster::checkMonsterSpawnRules, SpawnPlacementRegisterEvent.Operation.AND);
 
        event.register(EntityType.ZOMBIE, SMCommonEvents::zombieExtraRules, SpawnPlacementRegisterEvent.Operation.AND);
+       event.register(EntityType.SPIDER, SMCommonEvents::spiderExtraRules, SpawnPlacementRegisterEvent.Operation.AND);
     }
 
     public static boolean zombieExtraRules(EntityType<? extends Monster> pType, ServerLevelAccessor pLevel, MobSpawnType pSpawnType, BlockPos pPos, RandomSource pRandom) {
         return !SMConfig.DISABLE_DEEPSLATE_ZOMBIE_SPAWNS.get() || pPos.getY() > 0;
+    }
+
+    public static boolean spiderExtraRules(EntityType<? extends Monster> pType, ServerLevelAccessor pLevel, MobSpawnType pSpawnType, BlockPos pPos, RandomSource pRandom) {
+        return !SMConfig.DISABLE_JUNGLE_SPIDER_SPAWNS.get() || !pLevel.getBiome(pPos).is(BiomeTags.IS_JUNGLE);
     }
 
     @SubscribeEvent
