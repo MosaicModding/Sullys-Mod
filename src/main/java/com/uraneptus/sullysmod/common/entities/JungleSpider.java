@@ -1,6 +1,5 @@
 package com.uraneptus.sullysmod.common.entities;
 
-import com.uraneptus.sullysmod.SullysMod;
 import com.uraneptus.sullysmod.core.other.tags.SMMobEffectTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
@@ -14,6 +13,7 @@ import net.minecraft.world.Difficulty;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffect;
+import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.*;
@@ -36,21 +36,22 @@ import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import javax.annotation.Nullable;
-import java.util.function.Predicate;
-import java.util.stream.Stream;
+import java.util.ArrayList;
+import java.util.List;
 
 public class JungleSpider extends Monster {
     private static final EntityDataAccessor<Byte> DATA_FLAGS_ID = SynchedEntityData.defineId(JungleSpider.class, EntityDataSerializers.BYTE);
-
+    private final List<MobEffect> BENEFICIAL_MOB_EFFECTS = new ArrayList<>();
+    private final List<MobEffect> HARMFUL_MOB_EFFECTS = new ArrayList<>();
 
     private MobEffect beneficialEffect;
     private MobEffect harmfulEffect;
-
 
     private static final float SPIDER_SPECIAL_EFFECT_CHANCE = 0.1F;
 
     public JungleSpider(EntityType<? extends JungleSpider> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
+        this.createEffectLists();
         this.beneficialEffect = this.chooseBeneficialEffect();
         this.harmfulEffect = this.chooseHarmfulEffect();
     }
@@ -182,12 +183,25 @@ public class JungleSpider extends Monster {
             return false;
         }
     }
+
+    public void createEffectLists() {
+        ForgeRegistries.MOB_EFFECTS.iterator().forEachRemaining(mobEffect -> {
+
+            if (mobEffect.getCategory() == MobEffectCategory.BENEFICIAL && ForgeRegistries.MOB_EFFECTS.getHolder(ForgeRegistries.MOB_EFFECTS.getKey(mobEffect)).orElseThrow().is(SMMobEffectTags.JUNGLE_SPIDER_BENEFICIAL_EFFECTS)) {
+                BENEFICIAL_MOB_EFFECTS.add(mobEffect);
+            }
+            if (mobEffect.getCategory() == MobEffectCategory.HARMFUL && ForgeRegistries.MOB_EFFECTS.getHolder(ForgeRegistries.MOB_EFFECTS.getKey(mobEffect)).orElseThrow().is(SMMobEffectTags.JUNGLE_SPIDER_HARMFUL_EFFECTS)) {
+                HARMFUL_MOB_EFFECTS.add(mobEffect);
+            }
+        });
+    }
+
     private MobEffect chooseBeneficialEffect() {
-        return SullysMod.BENEFICIAL_MOB_EFFECTS.get(random.nextInt(SullysMod.BENEFICIAL_MOB_EFFECTS.size()));
+        return BENEFICIAL_MOB_EFFECTS.get(random.nextInt(BENEFICIAL_MOB_EFFECTS.size()));
     }
 
     private MobEffect chooseHarmfulEffect() {
-        return SullysMod.HARMFUL_MOB_EFFECTS.get(random.nextInt(SullysMod.HARMFUL_MOB_EFFECTS.size()));
+        return HARMFUL_MOB_EFFECTS.get(this.level().random.nextInt(HARMFUL_MOB_EFFECTS.size()));
     }
     @Override
     public void addAdditionalSaveData(CompoundTag compoundTag) {

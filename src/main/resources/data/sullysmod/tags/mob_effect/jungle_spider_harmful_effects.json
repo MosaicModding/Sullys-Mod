@@ -1,7 +1,6 @@
 {
   "values": [
     "minecraft:mining_fatigue",
-    "minecraft:darkness",
-    "minecraft:fatal_poison",
+    "minecraft:darkness"
   ]
 }
