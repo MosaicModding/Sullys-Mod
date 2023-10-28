@@ -185,6 +185,9 @@ public class JungleSpider extends Spider {
         pSpawnData = super.finalizeSpawn(pLevel, pDifficulty, pReason, pSpawnData, pDataTag);
         RandomSource randomsource = pLevel.getRandom();
 
+        this.harmfulEffect = this.chooseHarmfulEffect();
+        this.beneficialEffect = this.chooseBeneficialEffect();
+
 
         if (randomsource.nextInt(100) == 0) {
             Skeleton skeleton = EntityType.SKELETON.create(this.level());
