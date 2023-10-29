@@ -43,9 +43,4 @@ public class SMSounds {
     public static final RegistryObject<SoundEvent> BOULDERING_ZOMBIE_AMBIENT = HELPER.createSoundEvent("entity.bouldering_zombie.ambient");
     public static final RegistryObject<SoundEvent> BOULDERING_ZOMBIE_HURT = HELPER.createSoundEvent("entity.bouldering_zombie.hurt");
     public static final RegistryObject<SoundEvent> BOULDERING_ZOMBIE_DEATH = HELPER.createSoundEvent("entity.bouldering_zombie.death");
-
-    public static final RegistryObject<SoundEvent> JUNGLE_SPIDER_AMBIENT = HELPER.createSoundEvent("entity.jungle_spider.ambient");
-    public static final RegistryObject<SoundEvent> JUNGLE_SPIDER_STEP = HELPER.createSoundEvent("entity.jungle_spider.step");
-    public static final RegistryObject<SoundEvent> JUNGLE_SPIDER_HURT = HELPER.createSoundEvent("entity.jungle_spider.hurt");
-    public static final RegistryObject<SoundEvent> JUNGLE_SPIDER_DEATH = HELPER.createSoundEvent("entity.jungle_spider.death");
 }

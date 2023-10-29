@@ -156,24 +156,4 @@ public class JungleSpider extends Spider {
     protected float getStandingEyeHeight(Pose pPose, EntityDimensions pSize) {
         return 0.45F;
     }
-
-    @Override
-    protected SoundEvent getAmbientSound() {
-        return SMSounds.JUNGLE_SPIDER_AMBIENT.get();
-    }
-
-    @Override
-    protected SoundEvent getHurtSound(DamageSource pDamageSource) {
-        return SMSounds.JUNGLE_SPIDER_HURT.get();
-    }
-
-    @Override
-    protected SoundEvent getDeathSound() {
-        return SMSounds.JUNGLE_SPIDER_DEATH.get();
-    }
-
-    @Override
-    protected void playStepSound(BlockPos pPos, BlockState pBlock) {
-        this.playSound(SMSounds.JUNGLE_SPIDER_STEP.get(), 0.15F, 1.0F);
-    }
 }
