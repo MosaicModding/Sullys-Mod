@@ -143,6 +143,49 @@ public class SMSoundDefinitionsProvider extends SoundDefinitionsProvider {
                 sound(new ResourceLocation("entity/fish/hurt3")),
                 sound(new ResourceLocation("entity/fish/hurt4"))
         );
+
+        addbasicSound(SMSounds.BOULDERING_ZOMBIE_AMBIENT,
+                sound(new ResourceLocation("mob/zombie/say1")),
+                sound(new ResourceLocation("mob/zombie/say2")),
+                sound(new ResourceLocation("mob/zombie/say3"))
+        );
+
+        addbasicSound(SMSounds.BOULDERING_ZOMBIE_HURT,
+                sound(new ResourceLocation("mob/zombie/hurt1")),
+                sound(new ResourceLocation("mob/zombie/hurt2"))
+        );
+
+        addbasicSound(SMSounds.BOULDERING_ZOMBIE_DEATH,
+                sound(new ResourceLocation("mob/zombie/death"))
+        );
+
+        addbasicSound(SMSounds.JUNGLE_SPIDER_AMBIENT,
+                sound(new ResourceLocation("mob/spider/say1")),
+                sound(new ResourceLocation("mob/spider/say2")),
+                sound(new ResourceLocation("mob/spider/say3")),
+                sound(new ResourceLocation("mob/spider/say4"))
+        );
+
+        add(SMSounds.JUNGLE_SPIDER_STEP,
+                SoundDefinition.definition()
+                        .subtitle("subtitles.block.generic.footsteps")
+                        .with(sound(new ResourceLocation("mob/spider/step1")),
+                                sound(new ResourceLocation("mob/spider/step2")),
+                                sound(new ResourceLocation("mob/spider/step3")),
+                                sound(new ResourceLocation("mob/spider/step4"))
+                        )
+        );
+
+        addbasicSound(SMSounds.JUNGLE_SPIDER_HURT,
+                sound(new ResourceLocation("mob/spider/say1")),
+                sound(new ResourceLocation("mob/spider/say2")),
+                sound(new ResourceLocation("mob/spider/say3")),
+                sound(new ResourceLocation("mob/spider/say4"))
+        );
+
+        addbasicSound(SMSounds.JUNGLE_SPIDER_DEATH,
+                sound(new ResourceLocation("mob/spider/death"))
+        );
     }
 
     private void addbasicSound(Supplier<SoundEvent> soundEvent, SoundDefinition.Sound... sounds) {

@@ -1,10 +1,14 @@
 package com.uraneptus.sullysmod.common.entities;
 
 import com.uraneptus.sullysmod.core.other.tags.SMMobEffectTags;
+import com.uraneptus.sullysmod.core.registry.SMSounds;
+import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.sounds.SoundEvent;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.DifficultyInstance;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -16,6 +20,7 @@ import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.monster.Spider;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import javax.annotation.Nullable;
@@ -143,5 +148,25 @@ public class JungleSpider extends Spider {
     @Override
     protected float getStandingEyeHeight(Pose pPose, EntityDimensions pSize) {
         return 0.45F;
+    }
+
+    @Override
+    protected SoundEvent getAmbientSound() {
+        return SMSounds.JUNGLE_SPIDER_AMBIENT.get();
+    }
+
+    @Override
+    protected SoundEvent getHurtSound(DamageSource pDamageSource) {
+        return SMSounds.JUNGLE_SPIDER_HURT.get();
+    }
+
+    @Override
+    protected SoundEvent getDeathSound() {
+        return SMSounds.JUNGLE_SPIDER_DEATH.get();
+    }
+
+    @Override
+    protected void playStepSound(BlockPos pPos, BlockState pBlock) {
+        this.playSound(SMSounds.JUNGLE_SPIDER_STEP.get(), 0.15F, 1.0F);
     }
 }

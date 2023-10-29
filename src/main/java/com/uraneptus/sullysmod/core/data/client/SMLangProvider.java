@@ -143,6 +143,14 @@ public class SMLangProvider extends LanguageProvider {
         add("subtitles.entity.lanternfish.hurt", "Lanternfish hurts");
         add("subtitles.entity.lanternfish.death", "Lanternfish dies");
 
+        add("subtitles.entity.bouldering_zombie.ambient", "Bouldering Zombie groans");
+        add("subtitles.entity.bouldering_zombie.hurt", "Bouldering Zombie hurts");
+        add("subtitles.entity.bouldering_zombie.death", "Bouldering Zombie dies");
+
+        add("subtitles.entity.jungle_spider.ambient", "Jungle Spider hisses");
+        add("subtitles.entity.jungle_spider.hurt", "Jungle Spider hurts");
+        add("subtitles.entity.jungle_spider.death", "Jungle Spider dies");
+
         //JEI
         add("sullysmod.jei.grindstone_polishing", "Polishing");
         add("sullysmod.jei.grindstone_polishing.info", "Right click to polish");
