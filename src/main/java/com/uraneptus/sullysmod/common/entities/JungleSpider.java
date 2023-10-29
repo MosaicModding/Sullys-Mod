@@ -4,10 +4,12 @@ import com.uraneptus.sullysmod.core.other.tags.SMMobEffectTags;
 import com.uraneptus.sullysmod.core.registry.SMSounds;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.network.syncher.EntityDataSerializers;
+import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
-import net.minecraft.util.RandomSource;
 import net.minecraft.world.Difficulty;
-import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
@@ -19,27 +21,23 @@ import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.monster.Spider;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.registries.ForgeRegistries;
 
-import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class JungleSpider extends Spider {
-    private final List<MobEffect> BENEFICIAL_VENOM_EFFECTS = new ArrayList<>();
-    private final List<MobEffect> HARMFUL_VENOM_EFFECTS = new ArrayList<>();
+    private static final EntityDataAccessor<String> BENEFICIAL_VENOM_EFFECT = SynchedEntityData.defineId(JungleSpider.class, EntityDataSerializers.STRING);
+    private static final EntityDataAccessor<String> HARMFUL_VENOM_EFFECT = SynchedEntityData.defineId(JungleSpider.class, EntityDataSerializers.STRING);
 
-    private MobEffect beneficialEffect;
-    private MobEffect harmfulEffect;
 
+    private static final List<MobEffect> BENEFICIAL_VENOM_EFFECTS = new ArrayList<>();
+    private static final List<MobEffect> HARMFUL_VENOM_EFFECTS = new ArrayList<>();
 
     public JungleSpider(EntityType<? extends JungleSpider> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
-        this.createEffectLists();
-        this.beneficialEffect = this.chooseBeneficialEffect();
-        this.harmfulEffect = this.chooseHarmfulEffect();
     }
 
     protected void registerGoals() {
@@ -48,6 +46,25 @@ public class JungleSpider extends Spider {
 
     protected void defineSynchedData() {
         super.defineSynchedData();
+        this.createEffectLists();
+        this.entityData.define(BENEFICIAL_VENOM_EFFECT, Objects.requireNonNull(ForgeRegistries.MOB_EFFECTS.getKey(this.chooseBeneficialEffect())).toString());
+        this.entityData.define(HARMFUL_VENOM_EFFECT, Objects.requireNonNull(ForgeRegistries.MOB_EFFECTS.getKey(this.chooseHarmfulEffect())).toString());
+    }
+
+    public MobEffect getBeneficialVenomEffect() {
+        return Objects.requireNonNull(ForgeRegistries.MOB_EFFECTS.getValue(new ResourceLocation(this.entityData.get(BENEFICIAL_VENOM_EFFECT))));
+    }
+
+    public MobEffect getHarmfulVenomEffect() {
+        return Objects.requireNonNull(ForgeRegistries.MOB_EFFECTS.getValue(new ResourceLocation(this.entityData.get(HARMFUL_VENOM_EFFECT))));
+    }
+
+    public void setBeneficialVenomEffect(MobEffect mobEffect) {
+        this.entityData.set(BENEFICIAL_VENOM_EFFECT, Objects.requireNonNull(ForgeRegistries.MOB_EFFECTS.getKey(mobEffect)).toString());
+    }
+
+    public void setHarmfulVenomEffect(MobEffect mobEffect) {
+        this.entityData.set(HARMFUL_VENOM_EFFECT, Objects.requireNonNull(ForgeRegistries.MOB_EFFECTS.getKey(mobEffect)).toString());
     }
 
     /**
@@ -56,23 +73,23 @@ public class JungleSpider extends Spider {
     @Override
     public void tick() {
         super.tick();
-        if (this.harmfulEffect == MobEffects.BLINDNESS && this.beneficialEffect == MobEffects.NIGHT_VISION) {
-            this.harmfulEffect = chooseHarmfulEffect();
+        if (this.getHarmfulVenomEffect() == MobEffects.BLINDNESS && this.getBeneficialVenomEffect() == MobEffects.NIGHT_VISION) {
+            setHarmfulVenomEffect(chooseHarmfulEffect());
         }
-        if (this.harmfulEffect == MobEffects.DIG_SLOWDOWN && this.beneficialEffect == MobEffects.DIG_SPEED) {
-            this.beneficialEffect = chooseBeneficialEffect();
+        if (this.getHarmfulVenomEffect() == MobEffects.DIG_SLOWDOWN && this.getBeneficialVenomEffect() == MobEffects.DIG_SPEED) {
+            setBeneficialVenomEffect(chooseBeneficialEffect());
         }
-        if (this.harmfulEffect == MobEffects.MOVEMENT_SLOWDOWN && this.beneficialEffect == MobEffects.MOVEMENT_SPEED) {
-            this.beneficialEffect = chooseBeneficialEffect();
+        if (this.getHarmfulVenomEffect() == MobEffects.MOVEMENT_SLOWDOWN && this.getBeneficialVenomEffect() == MobEffects.MOVEMENT_SPEED) {
+            this.setBeneficialVenomEffect(chooseBeneficialEffect());
         }
-        if(this.harmfulEffect == MobEffects.UNLUCK && this.beneficialEffect == MobEffects.LUCK) {
-            this.harmfulEffect = chooseHarmfulEffect();
+        if(this.getHarmfulVenomEffect() == MobEffects.UNLUCK && this.getBeneficialVenomEffect() == MobEffects.LUCK) {
+            this.setHarmfulVenomEffect(chooseHarmfulEffect());
         }
-        if (this.harmfulEffect == null) {
-            this.harmfulEffect = chooseHarmfulEffect();
+        if (this.getHarmfulVenomEffect() == null) {
+            this.setHarmfulVenomEffect(chooseHarmfulEffect());
         }
-        if (this.beneficialEffect == null) {
-            this.beneficialEffect = chooseBeneficialEffect();
+        if (this.getBeneficialVenomEffect() == null) {
+            this.setBeneficialVenomEffect(chooseHarmfulEffect());
         }
 
     }
@@ -91,8 +108,8 @@ public class JungleSpider extends Spider {
                 } else if (this.level().getDifficulty() == Difficulty.HARD) {
                     i = 8;
                 }
-                ((LivingEntity)pEntity).addEffect(new MobEffectInstance(this.harmfulEffect, i * 20, 0), this);
-                ((LivingEntity)pEntity).addEffect(new MobEffectInstance(this.beneficialEffect, i * 20, 0), this);
+                ((LivingEntity)pEntity).addEffect(new MobEffectInstance(this.getHarmfulVenomEffect(), i * 20, 0), this);
+                ((LivingEntity)pEntity).addEffect(new MobEffectInstance(this.getBeneficialVenomEffect(), i * 20, 0), this);
             }
 
             return true;
@@ -106,6 +123,7 @@ public class JungleSpider extends Spider {
 
             if ((mobEffect.getCategory() == MobEffectCategory.BENEFICIAL || mobEffect.getCategory() == MobEffectCategory.NEUTRAL) && ForgeRegistries.MOB_EFFECTS.getHolder(ForgeRegistries.MOB_EFFECTS.getKey(mobEffect)).orElseThrow().is(SMMobEffectTags.JUNGLE_SPIDER_BENEFICIAL_OR_NEUTRAL_VENOM_EFFECTS)) {
                 BENEFICIAL_VENOM_EFFECTS.add(mobEffect);
+
             }
             if (mobEffect.getCategory() == MobEffectCategory.HARMFUL && ForgeRegistries.MOB_EFFECTS.getHolder(ForgeRegistries.MOB_EFFECTS.getKey(mobEffect)).orElseThrow().is(SMMobEffectTags.JUNGLE_SPIDER_HARMFUL_VENOM_EFFECTS)) {
                 HARMFUL_VENOM_EFFECTS.add(mobEffect);
@@ -123,50 +141,19 @@ public class JungleSpider extends Spider {
     @Override
     public void addAdditionalSaveData(CompoundTag compoundTag) {
         super.addAdditionalSaveData(compoundTag);
-        compoundTag.putInt("BeneficialEffect", MobEffect.getId(this.beneficialEffect));
-        compoundTag.putInt("HarmfulEffect", MobEffect.getId(this.harmfulEffect));
+        compoundTag.putString("BeneficialEffect", this.entityData.get(BENEFICIAL_VENOM_EFFECT));
+        compoundTag.putString("HarmfulEffect", this.entityData.get(HARMFUL_VENOM_EFFECT));
     }
 
     @Override
     public void readAdditionalSaveData(CompoundTag compoundTag) {
         super.readAdditionalSaveData(compoundTag);
-        this.beneficialEffect = MobEffect.byId(compoundTag.getInt("BeneficialEffect"));
-        this.harmfulEffect = MobEffect.byId(compoundTag.getInt("HarmfulEffect"));
-    }
-
-    @Nullable
-    public SpawnGroupData finalizeSpawn(ServerLevelAccessor pLevel, DifficultyInstance pDifficulty, MobSpawnType pReason, @Nullable SpawnGroupData pSpawnData, @Nullable CompoundTag pDataTag) {
-        pSpawnData = super.finalizeSpawn(pLevel, pDifficulty, pReason, pSpawnData, pDataTag);
-        RandomSource randomsource = pLevel.getRandom();
-
-        this.harmfulEffect = this.chooseHarmfulEffect();
-        this.beneficialEffect = this.chooseBeneficialEffect();
-
-        return pSpawnData;
+        this.setBeneficialVenomEffect(Objects.requireNonNull(ForgeRegistries.MOB_EFFECTS.getValue(new ResourceLocation(compoundTag.getString("BeneficialEffect")))));
+        this.setHarmfulVenomEffect(Objects.requireNonNull(ForgeRegistries.MOB_EFFECTS.getValue(new ResourceLocation(compoundTag.getString("HarmfulEffect")))));
     }
 
     @Override
     protected float getStandingEyeHeight(Pose pPose, EntityDimensions pSize) {
         return 0.45F;
-    }
-
-    @Override
-    protected SoundEvent getAmbientSound() {
-        return SMSounds.JUNGLE_SPIDER_AMBIENT.get();
-    }
-
-    @Override
-    protected SoundEvent getHurtSound(DamageSource pDamageSource) {
-        return SMSounds.JUNGLE_SPIDER_HURT.get();
-    }
-
-    @Override
-    protected SoundEvent getDeathSound() {
-        return SMSounds.JUNGLE_SPIDER_DEATH.get();
-    }
-
-    @Override
-    protected void playStepSound(BlockPos pPos, BlockState pBlock) {
-        this.playSound(SMSounds.JUNGLE_SPIDER_STEP.get(), 0.15F, 1.0F);
     }
 }
