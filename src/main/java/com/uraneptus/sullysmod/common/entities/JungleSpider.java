@@ -1,6 +1,5 @@
 package com.uraneptus.sullysmod.common.entities;
 
-import com.uraneptus.sullysmod.SullysMod;
 import com.uraneptus.sullysmod.core.other.tags.SMMobEffectTags;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.FriendlyByteBuf;
