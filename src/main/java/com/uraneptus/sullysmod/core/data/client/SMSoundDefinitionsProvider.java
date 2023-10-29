@@ -143,6 +143,21 @@ public class SMSoundDefinitionsProvider extends SoundDefinitionsProvider {
                 sound(new ResourceLocation("entity/fish/hurt3")),
                 sound(new ResourceLocation("entity/fish/hurt4"))
         );
+
+        addbasicSound(SMSounds.BOULDERING_ZOMBIE_AMBIENT,
+                sound(new ResourceLocation("mob/zombie/say1")),
+                sound(new ResourceLocation("mob/zombie/say2")),
+                sound(new ResourceLocation("mob/zombie/say3"))
+        );
+
+        addbasicSound(SMSounds.BOULDERING_ZOMBIE_HURT,
+                sound(new ResourceLocation("mob/zombie/hurt1")),
+                sound(new ResourceLocation("mob/zombie/hurt2"))
+        );
+
+        addbasicSound(SMSounds.BOULDERING_ZOMBIE_DEATH,
+                sound(new ResourceLocation("mob/zombie/death"))
+        );
     }
 
     private void addbasicSound(Supplier<SoundEvent> soundEvent, SoundDefinition.Sound... sounds) {

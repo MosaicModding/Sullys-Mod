@@ -1,9 +1,11 @@
 package com.uraneptus.sullysmod.common.entities;
 
+import com.uraneptus.sullysmod.core.registry.SMSounds;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.sounds.SoundEvent;
 import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.damagesource.DamageSource;
@@ -130,5 +132,20 @@ public class BoulderingZombie extends Zombie implements GeoEntity {
             return event.setAndContinue(CLIMBING_ANIM);
         }
         return PlayState.STOP;
+    }
+
+    @Override
+    protected SoundEvent getAmbientSound() {
+        return SMSounds.BOULDERING_ZOMBIE_AMBIENT.get();
+    }
+
+    @Override
+    protected SoundEvent getHurtSound(DamageSource pDamageSource) {
+        return SMSounds.BOULDERING_ZOMBIE_HURT.get();
+    }
+
+    @Override
+    protected SoundEvent getDeathSound() {
+        return SMSounds.BOULDERING_ZOMBIE_DEATH.get();
     }
 }

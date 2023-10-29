@@ -39,4 +39,8 @@ public class SMSounds {
     public static final RegistryObject<SoundEvent> LANTERNFISH_FLOP = HELPER.createSoundEvent("entity.lanternfish.flop");
     public static final RegistryObject<SoundEvent> LANTERNFISH_HURT = HELPER.createSoundEvent("entity.lanternfish.hurt");
     public static final RegistryObject<SoundEvent> LANTERNFISH_DEATH = HELPER.createSoundEvent("entity.lanternfish.death");
+
+    public static final RegistryObject<SoundEvent> BOULDERING_ZOMBIE_AMBIENT = HELPER.createSoundEvent("entity.bouldering_zombie.ambient");
+    public static final RegistryObject<SoundEvent> BOULDERING_ZOMBIE_HURT = HELPER.createSoundEvent("entity.bouldering_zombie.hurt");
+    public static final RegistryObject<SoundEvent> BOULDERING_ZOMBIE_DEATH = HELPER.createSoundEvent("entity.bouldering_zombie.death");
 }
