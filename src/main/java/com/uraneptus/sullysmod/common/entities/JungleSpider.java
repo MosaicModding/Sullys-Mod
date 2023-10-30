@@ -67,6 +67,10 @@ public class JungleSpider extends Spider implements IEntityAdditionalSpawnData {
         this.entityData.set(HARMFUL_VENOM_EFFECT, Objects.requireNonNull(ForgeRegistries.MOB_EFFECTS.getKey(mobEffect)).toString());
     }
 
+    public boolean isEffectExtended(MobEffect mobEffect) {
+        return Objects.requireNonNull(ForgeRegistries.MOB_EFFECTS.tags()).getTag(SMMobEffectTags.EXTENDED_VENOM_EFFECTS).contains(mobEffect);
+    }
+
     /**
      * Called to update the entity's position/logic.
      */
@@ -81,9 +85,6 @@ public class JungleSpider extends Spider implements IEntityAdditionalSpawnData {
         }
         if (this.getHarmfulVenomEffect() == MobEffects.MOVEMENT_SLOWDOWN && this.getBeneficialVenomEffect() == MobEffects.MOVEMENT_SPEED) {
             this.setBeneficialVenomEffect(chooseBeneficialEffect());
-        }
-        if(this.getHarmfulVenomEffect() == MobEffects.UNLUCK && this.getBeneficialVenomEffect() == MobEffects.LUCK) {
-            this.setHarmfulVenomEffect(chooseHarmfulEffect());
         }
         if (this.getHarmfulVenomEffect() == null) {
             this.setHarmfulVenomEffect(chooseHarmfulEffect());
@@ -102,13 +103,19 @@ public class JungleSpider extends Spider implements IEntityAdditionalSpawnData {
         if (super.doHurtTarget(pEntity)) {
             if (pEntity instanceof LivingEntity) {
                 int i = 0;
-                if (this.level().getDifficulty() == Difficulty.NORMAL) {
+
+                if (this.level().getDifficulty().equals(Difficulty.EASY)) {
                     i = 5;
-                } else if (this.level().getDifficulty() == Difficulty.HARD) {
-                    i = 8;
+                } else if (this.level().getDifficulty().equals(Difficulty.NORMAL)) {
+                    i = 10;
+                } else if (this.level().getDifficulty().equals(Difficulty.HARD)) {
+                    i = 15;
                 }
-                ((LivingEntity)pEntity).addEffect(new MobEffectInstance(this.getHarmfulVenomEffect(), i * 20, 0), this);
-                ((LivingEntity)pEntity).addEffect(new MobEffectInstance(this.getBeneficialVenomEffect(), i * 20, 0), this);
+
+                if (i > 0) {
+                    ((LivingEntity)pEntity).addEffect(new MobEffectInstance(this.getHarmfulVenomEffect(), isEffectExtended(this.getHarmfulVenomEffect()) ? (i * 20) + 5 : i * 20, 0), this);
+                    ((LivingEntity)pEntity).addEffect(new MobEffectInstance(this.getBeneficialVenomEffect(), isEffectExtended(this.getBeneficialVenomEffect()) ? (i * 20) + 5 : i * 20, 0), this);
+                }
             }
 
             return true;
@@ -137,6 +144,7 @@ public class JungleSpider extends Spider implements IEntityAdditionalSpawnData {
     private MobEffect chooseHarmfulEffect() {
         return HARMFUL_VENOM_EFFECTS.get(random.nextInt(HARMFUL_VENOM_EFFECTS.size()));
     }
+
     @Override
     public void addAdditionalSaveData(CompoundTag compoundTag) {
         super.addAdditionalSaveData(compoundTag);
