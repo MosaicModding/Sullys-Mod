@@ -6,6 +6,6 @@
     "minecraft:hunger",
     "minecraft:weakness",
     "minecraft:poison",
-    "minecraft:unluck"
+    "minecraft:slowness"
   ]
 }
