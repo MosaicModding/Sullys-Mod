@@ -47,7 +47,7 @@ public class SMCommonEvents {
     }
 
     public static boolean spiderExtraRules(EntityType<? extends Monster> pType, ServerLevelAccessor pLevel, MobSpawnType pSpawnType, BlockPos pPos, RandomSource pRandom) {
-        return !SMConfig.DISABLE_JUNGLE_SPIDER_SPAWNS.get() || !pLevel.getBiome(pPos).is(BiomeTags.IS_JUNGLE);
+        return !SMConfig.DISABLE_SPIDER_IN_JUNGLE_SPAWNS.get() || !pLevel.getBiome(pPos).is(BiomeTags.IS_JUNGLE);
     }
 
     @SubscribeEvent
