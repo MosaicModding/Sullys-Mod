@@ -57,7 +57,7 @@ public class SMEntityEvents {
             Direction direction = blockHitResult.getDirection();
 
             if (blockState.is(SMBlockTags.PROJECTILES_BOUNCE_ON)) {
-                if (canFling(projectile, blockState, direction) && blockState.getBlock() instanceof FlingerTotem totem) {
+                if (blockState.getBlock() instanceof FlingerTotem totem && canFling(projectile, blockState, direction)) {
                     event.setCanceled(true);
                     Direction front = blockState.getValue(SMDirectionalBlock.FACING);
 
