@@ -1,0 +1,10 @@
+{
+  "type": "forge:add_spawns",
+  "biomes": "#sullysmod:jungle_spider_spawn_in",
+  "spawners": {
+    "type": "sullysmod:jungle_spider",
+    "maxCount": 6,
+    "minCount": 3,
+    "weight": 100
+  }
+}

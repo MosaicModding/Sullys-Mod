@@ -2,6 +2,7 @@ package com.uraneptus.sullysmod.core.data.client;
 
 import com.teamabnormals.blueprint.common.block.VerticalSlabBlock;
 import com.uraneptus.sullysmod.SullysMod;
+import com.uraneptus.sullysmod.common.blocks.FlingerTotem;
 import com.uraneptus.sullysmod.core.registry.SMBlocks;
 import net.minecraft.data.PackOutput;
 import net.minecraft.world.level.block.*;
@@ -37,7 +38,7 @@ public class SMBlockStateProvider extends BlockStateProvider {
         basicBlock(SMBlocks.POLISHED_CHISELED_JADE);
         pillarBlock(SMBlocks.POLISHED_JADE_PILLAR, name(SMBlocks.POLISHED_CHISELED_JADE.get()));
         totemBlock(SMBlocks.JADE_TOTEM);
-        totemBlock(SMBlocks.JADE_FLINGER_TOTEM);
+        flingerTotem(SMBlocks.JADE_FLINGER_TOTEM);
         basicButtonBlock(SMBlocks.COPPER_BUTTON, COPPER_BLOCK);
         basicButtonBlock(SMBlocks.EXPOSED_COPPER_BUTTON, EXPOSED_COPPER);
         basicButtonBlock(SMBlocks.WEATHERED_COPPER_BUTTON, WEATHERED_COPPER);
@@ -94,6 +95,30 @@ public class SMBlockStateProvider extends BlockStateProvider {
                 .modelFile(totemModel)
                 .rotationY(((int) blockState.getValue(BlockStateProperties.HORIZONTAL_FACING).toYRot() + 180) % 360)
                 .build());
+    }
+
+    private void flingerTotem(Supplier<? extends Block> block) {
+        getVariantBuilder(block.get()).forAllStates(blockState -> {
+            int honey = blockState.getValue(FlingerTotem.HONEY_AMOUNT);
+            String state = "";
+            for (int i = 1; i <= honey; i++) {
+                state = "_" + honey;
+            }
+
+            ModelFile totemModel = models().cube(name(block.get()) + state,
+                            modBlockLocation(name(block.get()) + "_top" + state),
+                            modBlockLocation(name(block.get()) + "_top" + state),
+                            modBlockLocation(name(block.get()) + "_front"),
+                            modBlockLocation(name(block.get()) + "_back" + state),
+                            modBlockLocation(name(block.get()) + "_right" + state),
+                            modBlockLocation(name(block.get()) + "_left" + state))
+                    .texture("particle", modBlockLocation(name(block.get()) + "_back"));
+
+            return ConfiguredModel.builder()
+                    .modelFile(totemModel)
+                    .rotationY(((int) blockState.getValue(BlockStateProperties.HORIZONTAL_FACING).toYRot() + 180) % 360)
+                    .build();
+        });
     }
 
     private void basicButtonBlock(Supplier<? extends Block> block, String texture) {

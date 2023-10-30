@@ -44,5 +44,6 @@ public class SMBiomeTagsProvider extends BiomeTagsProvider {
                 .addTag(Tags.Biomes.IS_MUSHROOM)
                 .add(Biomes.DRIPSTONE_CAVES);
         tag(SMBiomeTags.BOULDERING_ZOMBIE_SPAWN_IN).addTag(BiomeTags.IS_OVERWORLD);
+        tag(SMBiomeTags.JUNGLE_SPIDER_SPAWN_IN).addTag(BiomeTags.IS_JUNGLE);
     }
 }

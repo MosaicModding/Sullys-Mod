@@ -1,18 +1,78 @@
 {
   "variants": {
-    "facing=east": {
+    "facing=east,honey_amount=0": {
       "model": "sullysmod:block/jade_flinger_totem",
       "y": 90
     },
-    "facing=north": {
+    "facing=east,honey_amount=1": {
+      "model": "sullysmod:block/jade_flinger_totem_1",
+      "y": 90
+    },
+    "facing=east,honey_amount=2": {
+      "model": "sullysmod:block/jade_flinger_totem_2",
+      "y": 90
+    },
+    "facing=east,honey_amount=3": {
+      "model": "sullysmod:block/jade_flinger_totem_3",
+      "y": 90
+    },
+    "facing=east,honey_amount=4": {
+      "model": "sullysmod:block/jade_flinger_totem_4",
+      "y": 90
+    },
+    "facing=north,honey_amount=0": {
       "model": "sullysmod:block/jade_flinger_totem"
     },
-    "facing=south": {
+    "facing=north,honey_amount=1": {
+      "model": "sullysmod:block/jade_flinger_totem_1"
+    },
+    "facing=north,honey_amount=2": {
+      "model": "sullysmod:block/jade_flinger_totem_2"
+    },
+    "facing=north,honey_amount=3": {
+      "model": "sullysmod:block/jade_flinger_totem_3"
+    },
+    "facing=north,honey_amount=4": {
+      "model": "sullysmod:block/jade_flinger_totem_4"
+    },
+    "facing=south,honey_amount=0": {
       "model": "sullysmod:block/jade_flinger_totem",
       "y": 180
     },
-    "facing=west": {
+    "facing=south,honey_amount=1": {
+      "model": "sullysmod:block/jade_flinger_totem_1",
+      "y": 180
+    },
+    "facing=south,honey_amount=2": {
+      "model": "sullysmod:block/jade_flinger_totem_2",
+      "y": 180
+    },
+    "facing=south,honey_amount=3": {
+      "model": "sullysmod:block/jade_flinger_totem_3",
+      "y": 180
+    },
+    "facing=south,honey_amount=4": {
+      "model": "sullysmod:block/jade_flinger_totem_4",
+      "y": 180
+    },
+    "facing=west,honey_amount=0": {
       "model": "sullysmod:block/jade_flinger_totem",
+      "y": 270
+    },
+    "facing=west,honey_amount=1": {
+      "model": "sullysmod:block/jade_flinger_totem_1",
+      "y": 270
+    },
+    "facing=west,honey_amount=2": {
+      "model": "sullysmod:block/jade_flinger_totem_2",
+      "y": 270
+    },
+    "facing=west,honey_amount=3": {
+      "model": "sullysmod:block/jade_flinger_totem_3",
+      "y": 270
+    },
+    "facing=west,honey_amount=4": {
+      "model": "sullysmod:block/jade_flinger_totem_4",
       "y": 270
     }
   }

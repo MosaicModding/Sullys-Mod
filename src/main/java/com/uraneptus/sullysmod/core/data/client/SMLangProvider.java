@@ -91,6 +91,7 @@ public class SMLangProvider extends LanguageProvider {
         forItem(SMItems.TORTOISE_SCUTE);
         forItem(SMItems.TORTOISE_SHELL);
         forItem(SMItems.BOULDERING_ZOMBIE_SPAWN_EGG);
+        forItem(SMItems.JUNGLE_SPIDER_SPAWN_EGG);
 
         add(SMItems.LANTERNFISH_BUCKET.get(), "Bucket of Lanternfish");
         add(SMItems.LANTERNFISH.get(), "Raw Lanternfish");
@@ -106,6 +107,7 @@ public class SMLangProvider extends LanguageProvider {
         forEntity(SMEntityTypes.COPPER_GOLEM);
         forEntity(SMEntityTypes.TORTOISE_SHELL);
         forEntity(SMEntityTypes.BOULDERING_ZOMBIE);
+        forEntity(SMEntityTypes.JUNGLE_SPIDER);
         forEntity(SMEntityTypes.CHAMELEON);
 
         //Potions
@@ -142,6 +144,10 @@ public class SMLangProvider extends LanguageProvider {
         add("subtitles.entity.lanternfish.flop", "Lanternfish flops");
         add("subtitles.entity.lanternfish.hurt", "Lanternfish hurts");
         add("subtitles.entity.lanternfish.death", "Lanternfish dies");
+
+        add("subtitles.entity.bouldering_zombie.ambient", "Bouldering Zombie groans");
+        add("subtitles.entity.bouldering_zombie.hurt", "Bouldering Zombie hurts");
+        add("subtitles.entity.bouldering_zombie.death", "Bouldering Zombie dies");
 
         //JEI
         add("sullysmod.jei.grindstone_polishing", "Polishing");

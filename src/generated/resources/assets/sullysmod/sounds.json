@@ -20,6 +20,27 @@
     ],
     "subtitle": "subtitles.block.jade.ricochet"
   },
+  "entity.bouldering_zombie.ambient": {
+    "sounds": [
+      "mob/zombie/say1",
+      "mob/zombie/say2",
+      "mob/zombie/say3"
+    ],
+    "subtitle": "subtitles.entity.bouldering_zombie.ambient"
+  },
+  "entity.bouldering_zombie.death": {
+    "sounds": [
+      "mob/zombie/death"
+    ],
+    "subtitle": "subtitles.entity.bouldering_zombie.death"
+  },
+  "entity.bouldering_zombie.hurt": {
+    "sounds": [
+      "mob/zombie/hurt1",
+      "mob/zombie/hurt2"
+    ],
+    "subtitle": "subtitles.entity.bouldering_zombie.hurt"
+  },
   "entity.lanternfish.death": {
     "sounds": [
       "entity/fish/hurt1",
