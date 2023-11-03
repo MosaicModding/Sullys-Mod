@@ -19,6 +19,7 @@ public class SMSounds {
     //Block Sounds
     public static final RegistryObject<SoundEvent> JADE_RICOCHET = HELPER.createSoundEvent("block.jade.ricochet");
     public static final RegistryObject<SoundEvent> FLINGER_FLINGS = HELPER.createSoundEvent("block.flinger_totem.shoot");
+    public static final RegistryObject<SoundEvent> FLINGER_INPUT_HONEY = HELPER.createSoundEvent("block.flinger_totem.input_honey");
 
     //Entity Sounds
     public static final RegistryObject<SoundEvent> TORTOISE_HURT = HELPER.createSoundEvent("entity.tortoise.hurt");

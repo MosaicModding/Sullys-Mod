@@ -2,6 +2,7 @@ package com.uraneptus.sullysmod.core.events;
 
 import com.uraneptus.sullysmod.SullysMod;
 import com.uraneptus.sullysmod.common.blocks.FlingerTotem;
+import com.uraneptus.sullysmod.common.blocks.FlingerTotemBlockEntity;
 import com.uraneptus.sullysmod.common.blocks.SMDirectionalBlock;
 import com.uraneptus.sullysmod.common.entities.Tortoise;
 import com.uraneptus.sullysmod.common.entities.goals.GenericMobAttackTortoiseEggGoal;
@@ -57,26 +58,9 @@ public class SMEntityEvents {
             Direction direction = blockHitResult.getDirection();
 
             if (blockState.is(SMBlockTags.PROJECTILES_BOUNCE_ON)) {
-                if (blockState.getBlock() instanceof FlingerTotem totem && canFling(projectile, blockState, direction)) {
+                if (isFlingerAndFlings(projectile, blockState, direction) && level.getBlockEntity(pos) instanceof FlingerTotemBlockEntity blockEntity && !blockEntity.isFull()) {
                     event.setCanceled(true);
-                    Direction front = blockState.getValue(SMDirectionalBlock.FACING);
-
-                    projectile = replaceProjectile(projectile, level);
-                    if (projectile == null) return;
-
-                    System.out.println(blockState.getValue(FlingerTotem.HONEY_AMOUNT));
-                    if (blockState.getValue(FlingerTotem.HONEY_AMOUNT) == 0) {
-                        projectile.moveTo(pos.getX() + 0.5 + front.getStepX(), pos.getY() + 0.5F + front.getStepY(), pos.getZ() + 0.5 + front.getStepZ());
-                        projectile.shoot(front.getStepX(), front.getStepY(), front.getStepZ(), velocity, 0.0F);
-                        level.addFreshEntity(projectile);
-                        projectile.gameEvent(GameEvent.PROJECTILE_SHOOT);
-                        level.playSound(null, pos, SMSounds.FLINGER_FLINGS.get(), SoundSource.BLOCKS, 1.0F, 1.0F);
-
-                    } else {
-                        totem.sendProjectileToBlock(projectile);
-                        //if (canShootProjectile(projectile)) {}
-                    }
-
+                    blockEntity.addProjectile(projectile);
 
                 } else if (!(projectile.getType().is(SMEntityTags.CANNOT_BOUNCE))) {
                     event.setCanceled(true);
@@ -114,7 +98,7 @@ public class SMEntityEvents {
     }
 
     @Nullable
-    private static Projectile replaceProjectile(Projectile projectile, Level level) {
+    public static Projectile replaceProjectile(Projectile projectile, Level level) {
         Projectile oldProjectile = projectile;
         projectile = (Projectile) projectile.getType().create(level);
         if (projectile == null) {
@@ -131,8 +115,8 @@ public class SMEntityEvents {
         return SMConfig.ENABLE_DYNAMIC_VELOCITY.get() && (velocity * 0.8F >= 0.5F) ? velocity * 0.8F : 0.5F;
     }
 
-    private static boolean canFling(Projectile projectile, BlockState blockState, Direction direction) {
-        return !(projectile.getType().is(SMEntityTags.CANNOT_BE_FLUNG)) && !direction.equals(blockState.getValue(SMDirectionalBlock.FACING));
+    public static boolean isFlingerAndFlings(Projectile projectile, BlockState blockState, Direction direction) {
+        return !(projectile.getType().is(SMEntityTags.CANNOT_BE_FLUNG)) && blockState.getBlock() instanceof FlingerTotem && !direction.equals(blockState.getValue(SMDirectionalBlock.FACING));
     }
 
     @SubscribeEvent

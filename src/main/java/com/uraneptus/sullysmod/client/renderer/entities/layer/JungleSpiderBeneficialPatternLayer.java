@@ -1,7 +1,6 @@
 package com.uraneptus.sullysmod.client.renderer.entities.layer;
 
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.blaze3d.vertex.VertexBuffer;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.uraneptus.sullysmod.SullysMod;
 import com.uraneptus.sullysmod.client.model.JungleSpiderModel;

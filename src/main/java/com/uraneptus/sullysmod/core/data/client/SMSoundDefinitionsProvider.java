@@ -38,7 +38,13 @@ public class SMSoundDefinitionsProvider extends SoundDefinitionsProvider {
         );
 
         addbasicSound(SMSounds.FLINGER_FLINGS,
-                sound(new ResourceLocation("random/bow"))
+                sound(SullysMod.modPrefix("block/flinger_totem/flinger_fling1")),
+                sound(SullysMod.modPrefix("block/flinger_totem/flinger_fling3")),
+                sound(SullysMod.modPrefix("block/flinger_totem/flinger_fling3"))
+        );
+
+        addbasicSound(SMSounds.FLINGER_INPUT_HONEY,
+                sound(SullysMod.modPrefix("block/flinger_totem/flinger_input_honey"))
         );
 
         //Entity Sounds
