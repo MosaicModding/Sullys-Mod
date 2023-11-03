@@ -1,16 +1,15 @@
 package com.uraneptus.sullysmod.common.entities;
 
 import com.uraneptus.sullysmod.core.other.tags.SMMobEffectTags;
-import com.uraneptus.sullysmod.core.registry.SMSounds;
-import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.network.protocol.Packet;
+import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.Difficulty;
-import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -21,14 +20,15 @@ import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.monster.Spider;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.state.BlockState;
+import net.minecraftforge.entity.IEntityAdditionalSpawnData;
+import net.minecraftforge.network.NetworkHooks;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class JungleSpider extends Spider {
+public class JungleSpider extends Spider implements IEntityAdditionalSpawnData {
     private static final EntityDataAccessor<String> BENEFICIAL_VENOM_EFFECT = SynchedEntityData.defineId(JungleSpider.class, EntityDataSerializers.STRING);
     private static final EntityDataAccessor<String> HARMFUL_VENOM_EFFECT = SynchedEntityData.defineId(JungleSpider.class, EntityDataSerializers.STRING);
 
@@ -67,6 +67,10 @@ public class JungleSpider extends Spider {
         this.entityData.set(HARMFUL_VENOM_EFFECT, Objects.requireNonNull(ForgeRegistries.MOB_EFFECTS.getKey(mobEffect)).toString());
     }
 
+    public boolean isEffectExtended(MobEffect mobEffect) {
+        return Objects.requireNonNull(ForgeRegistries.MOB_EFFECTS.tags()).getTag(SMMobEffectTags.EXTENDED_VENOM_EFFECTS).contains(mobEffect);
+    }
+
     /**
      * Called to update the entity's position/logic.
      */
@@ -82,16 +86,12 @@ public class JungleSpider extends Spider {
         if (this.getHarmfulVenomEffect() == MobEffects.MOVEMENT_SLOWDOWN && this.getBeneficialVenomEffect() == MobEffects.MOVEMENT_SPEED) {
             this.setBeneficialVenomEffect(chooseBeneficialEffect());
         }
-        if(this.getHarmfulVenomEffect() == MobEffects.UNLUCK && this.getBeneficialVenomEffect() == MobEffects.LUCK) {
-            this.setHarmfulVenomEffect(chooseHarmfulEffect());
-        }
         if (this.getHarmfulVenomEffect() == null) {
             this.setHarmfulVenomEffect(chooseHarmfulEffect());
         }
         if (this.getBeneficialVenomEffect() == null) {
             this.setBeneficialVenomEffect(chooseHarmfulEffect());
         }
-
     }
 
     public static AttributeSupplier.Builder createAttributes() {
@@ -103,13 +103,19 @@ public class JungleSpider extends Spider {
         if (super.doHurtTarget(pEntity)) {
             if (pEntity instanceof LivingEntity) {
                 int i = 0;
-                if (this.level().getDifficulty() == Difficulty.NORMAL) {
+
+                if (this.level().getDifficulty().equals(Difficulty.EASY)) {
                     i = 5;
-                } else if (this.level().getDifficulty() == Difficulty.HARD) {
-                    i = 8;
+                } else if (this.level().getDifficulty().equals(Difficulty.NORMAL)) {
+                    i = 10;
+                } else if (this.level().getDifficulty().equals(Difficulty.HARD)) {
+                    i = 15;
                 }
-                ((LivingEntity)pEntity).addEffect(new MobEffectInstance(this.getHarmfulVenomEffect(), i * 20, 0), this);
-                ((LivingEntity)pEntity).addEffect(new MobEffectInstance(this.getBeneficialVenomEffect(), i * 20, 0), this);
+
+                if (i > 0) {
+                    ((LivingEntity)pEntity).addEffect(new MobEffectInstance(this.getHarmfulVenomEffect(), isEffectExtended(this.getHarmfulVenomEffect()) ? (i * 20) + 5 : i * 20, 0), this);
+                    ((LivingEntity)pEntity).addEffect(new MobEffectInstance(this.getBeneficialVenomEffect(), isEffectExtended(this.getBeneficialVenomEffect()) ? (i * 20) + 5 : i * 20, 0), this);
+                }
             }
 
             return true;
@@ -138,6 +144,7 @@ public class JungleSpider extends Spider {
     private MobEffect chooseHarmfulEffect() {
         return HARMFUL_VENOM_EFFECTS.get(random.nextInt(HARMFUL_VENOM_EFFECTS.size()));
     }
+
     @Override
     public void addAdditionalSaveData(CompoundTag compoundTag) {
         super.addAdditionalSaveData(compoundTag);
@@ -150,6 +157,23 @@ public class JungleSpider extends Spider {
         super.readAdditionalSaveData(compoundTag);
         this.setBeneficialVenomEffect(Objects.requireNonNull(ForgeRegistries.MOB_EFFECTS.getValue(new ResourceLocation(compoundTag.getString("BeneficialEffect")))));
         this.setHarmfulVenomEffect(Objects.requireNonNull(ForgeRegistries.MOB_EFFECTS.getValue(new ResourceLocation(compoundTag.getString("HarmfulEffect")))));
+    }
+
+    @Override
+    public void writeSpawnData(FriendlyByteBuf buffer) {
+        buffer.writeResourceLocation(Objects.requireNonNull(ForgeRegistries.MOB_EFFECTS.getKey(this.getBeneficialVenomEffect())));
+        buffer.writeResourceLocation(Objects.requireNonNull(ForgeRegistries.MOB_EFFECTS.getKey(this.getHarmfulVenomEffect())));
+    }
+
+    @Override
+    public void readSpawnData(FriendlyByteBuf additionalData) {
+        this.setBeneficialVenomEffect(Objects.requireNonNull(ForgeRegistries.MOB_EFFECTS.getValue(additionalData.readResourceLocation())));
+        this.setHarmfulVenomEffect(Objects.requireNonNull(ForgeRegistries.MOB_EFFECTS.getValue(additionalData.readResourceLocation())));
+    }
+
+    @Override
+    public Packet<ClientGamePacketListener> getAddEntityPacket() {
+        return NetworkHooks.getEntitySpawningPacket(this);
     }
 
     @Override

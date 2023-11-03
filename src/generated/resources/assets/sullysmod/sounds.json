@@ -1,7 +1,15 @@
 {
+  "block.flinger_totem.input_honey": {
+    "sounds": [
+      "sullysmod:block/flinger_totem/flinger_input_honey"
+    ],
+    "subtitle": "subtitles.block.flinger_totem.input_honey"
+  },
   "block.flinger_totem.shoot": {
     "sounds": [
-      "random/bow"
+      "sullysmod:block/flinger_totem/flinger_fling1",
+      "sullysmod:block/flinger_totem/flinger_fling3",
+      "sullysmod:block/flinger_totem/flinger_fling3"
     ],
     "subtitle": "subtitles.block.flinger_totem.shoot"
   },

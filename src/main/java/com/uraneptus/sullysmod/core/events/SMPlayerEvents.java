@@ -2,6 +2,7 @@ package com.uraneptus.sullysmod.core.events;
 
 import com.uraneptus.sullysmod.SullysMod;
 import com.uraneptus.sullysmod.common.recipes.GrindstonePolishingRecipe;
+import com.uraneptus.sullysmod.core.SMConfig;
 import com.uraneptus.sullysmod.core.registry.SMItems;
 import com.uraneptus.sullysmod.core.registry.SMSounds;
 import net.minecraft.core.BlockPos;
@@ -109,12 +110,14 @@ public class SMPlayerEvents {
         }
 
         if (player != null) {
-            ArrayList<GrindstonePolishingRecipe> recipes = new ArrayList<>(GrindstonePolishingRecipe.getRecipes(player.level()));
-            for (GrindstonePolishingRecipe polishingRecipe : recipes) {
-                for (ItemStack itemStack : polishingRecipe.getIngredients().iterator().next().getItems()) {
-                    if (item.is(itemStack.getItem())) {
-                        Style polishingStyle = Style.EMPTY.withColor(TextColor.fromRgb(8355711)).withItalic(true);
-                        event.getToolTip().add(Component.translatable(SullysMod.MOD_ID + ".polishing.tooltip").setStyle(polishingStyle));
+            if (SMConfig.ENABLE_POLISHABLE_TOOLTIP.get()) {
+                ArrayList<GrindstonePolishingRecipe> recipes = new ArrayList<>(GrindstonePolishingRecipe.getRecipes(player.level()));
+                for (GrindstonePolishingRecipe polishingRecipe : recipes) {
+                    for (ItemStack itemStack : polishingRecipe.getIngredients().iterator().next().getItems()) {
+                        if (item.is(itemStack.getItem())) {
+                            Style polishingStyle = Style.EMPTY.withColor(TextColor.fromRgb(8355711)).withItalic(true);
+                            event.getToolTip().add(Component.translatable(SullysMod.MOD_ID + ".polishing.tooltip").setStyle(polishingStyle));
+                        }
                     }
                 }
             }

@@ -8,7 +8,8 @@ import net.minecraftforge.fml.common.Mod;
 public class SMConfig {
     public static final ForgeConfigSpec.ConfigValue<Boolean> ENABLE_DYNAMIC_VELOCITY;
     public static final ForgeConfigSpec.ConfigValue<Boolean> DISABLE_DEEPSLATE_ZOMBIE_SPAWNS;
-    public static final ForgeConfigSpec.ConfigValue<Boolean> DISABLE_JUNGLE_SPIDER_SPAWNS;
+    public static final ForgeConfigSpec.ConfigValue<Boolean> DISABLE_SPIDER_IN_JUNGLE_SPAWNS;
+    public static final ForgeConfigSpec.ConfigValue<Boolean> ENABLE_POLISHABLE_TOOLTIP;
 
     public static final ForgeConfigSpec CLIENT;
     public static final ForgeConfigSpec COMMON;
@@ -18,11 +19,12 @@ public class SMConfig {
         ForgeConfigSpec.Builder COMMON_BUILDER = new ForgeConfigSpec.Builder();
 
         //Client
+        ENABLE_POLISHABLE_TOOLTIP = CLIENT_BUILDER.comment("Enables the 'Polishable' tooltip on polishable items").define("Enable Polishable Tooltip", true);
 
         //COMMON
         COMMON_BUILDER.comment("Vanilla Spawn Modifications").push("vanilla_spawn_modifications");
         DISABLE_DEEPSLATE_ZOMBIE_SPAWNS = COMMON_BUILDER.comment("Disables zombie spawning in deepslate levels. This is done to prevent too many zombies spawning in this area, since the Bouldering Zombie spawns there exclusively").define("Disable deepslate zombie spawning", true);
-        DISABLE_JUNGLE_SPIDER_SPAWNS = COMMON_BUILDER.comment("Disables spider spawning in jungle biomes. This is done to prevent too many spiders spawning in this area, since the Jungle Spider spawns there exclusively").define("Disable spider spawning in jungles", true);
+        DISABLE_SPIDER_IN_JUNGLE_SPAWNS = COMMON_BUILDER.comment("Disables spider spawning in jungle biomes. This is done to prevent too many spiders spawning in this area, since the Jungle Spider spawns there exclusively").define("Disable spider spawning in jungles", false);
         COMMON_BUILDER.pop();
 
         COMMON_BUILDER.comment("Blocks").push("blocks");
