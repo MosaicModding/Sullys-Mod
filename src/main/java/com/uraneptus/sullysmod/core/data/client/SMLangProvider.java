@@ -153,6 +153,8 @@ public class SMLangProvider extends LanguageProvider {
 
         //Other
         add("sullysmod.polishing.tooltip", "Polishable at grindstone");
+        add("death.attack.tortoise_shell", "%1$s took a Tortoise Shell to the knees");
+        add("death.attack.tortoise_shell.player", "%1$s got bonked to death");
 
     }
 

@@ -41,6 +41,8 @@
   "block.sullysmod.waxed_oxidized_copper_button": "Waxed Oxidized Copper Button",
   "block.sullysmod.waxed_weathered_copper_button": "Waxed Weathered Copper Button",
   "block.sullysmod.weathered_copper_button": "Weathered Copper Button",
+  "death.attack.tortoise_shell": "%1$s took a Tortoise Shell to the knees",
+  "death.attack.tortoise_shell.player": "%1$s got bonked to death",
   "entity.sullysmod.bouldering_zombie": "Bouldering Zombie",
   "entity.sullysmod.copper_golem": "Copper Golem",
   "entity.sullysmod.lanternfish": "Lanternfish",

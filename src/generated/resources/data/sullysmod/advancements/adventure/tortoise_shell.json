@@ -1,0 +1,38 @@
+{
+  "parent": "sullysmod:adventure/polish_jade",
+  "criteria": {
+    "shot_tortoise_shell": {
+      "trigger": "minecraft:player_hurt_entity",
+      "conditions": {
+        "damage": {
+          "type": {
+            "direct_entity": {
+              "type": "#sullysmod:cannot_bounce"
+            }
+          }
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "shot_tortoise_shell"
+    ]
+  ],
+  "sends_telemetry_event": true,
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.adventure.polish_jade.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "sullysmod:tortoise_shell"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "bully the bullies"
+    }
+  }
+}

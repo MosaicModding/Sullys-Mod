@@ -1,5 +1,6 @@
 package com.uraneptus.sullysmod.common.entities;
 
+import com.uraneptus.sullysmod.core.registry.SMDamageTypes;
 import com.uraneptus.sullysmod.core.registry.SMEntityTypes;
 import com.uraneptus.sullysmod.core.registry.SMItems;
 import net.minecraft.BlockUtil;
@@ -9,11 +10,14 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.monster.Ravager;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -27,13 +31,17 @@ import net.minecraftforge.common.ForgeMod;
 import net.minecraftforge.fluids.FluidType;
 import net.minecraftforge.network.PlayMessages;
 
+import javax.annotation.Nullable;
 import java.util.List;
+import java.util.UUID;
 
 public class TortoiseShell extends Entity {
     private static final EntityDataAccessor<Integer> DATA_ID_HURT = SynchedEntityData.defineId(TortoiseShell.class, EntityDataSerializers.INT);
     private static final EntityDataAccessor<Integer> DATA_ID_HURTDIR = SynchedEntityData.defineId(TortoiseShell.class, EntityDataSerializers.INT);
     private static final EntityDataAccessor<Float> DATA_ID_DAMAGE = SynchedEntityData.defineId(TortoiseShell.class, EntityDataSerializers.FLOAT);
     public int spinTicks = 0;
+    private Entity cachedOwner;
+    private UUID ownerUUID;
 
     public TortoiseShell(EntityType<? extends TortoiseShell> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
@@ -42,6 +50,23 @@ public class TortoiseShell extends Entity {
 
     public TortoiseShell(PlayMessages.SpawnEntity spawnEntity, Level level) {
         this(SMEntityTypes.TORTOISE_SHELL.get(), level);
+    }
+    public void setOwner(@Nullable Entity pOwner) {
+        if (pOwner != null) {
+            this.ownerUUID = pOwner.getUUID();
+            this.cachedOwner = pOwner;
+        }
+    }
+    @Nullable
+    public Entity getOwner() {
+        if (this.cachedOwner != null && !this.cachedOwner.isRemoved()) {
+            return this.cachedOwner;
+        } else if (this.ownerUUID != null && this.level() instanceof ServerLevel) {
+            this.cachedOwner = ((ServerLevel)this.level()).getEntity(this.ownerUUID);
+            return this.cachedOwner;
+        } else {
+            return null;
+        }
     }
 
     @Override
@@ -77,7 +102,7 @@ public class TortoiseShell extends Entity {
     }
 
     public void setSpinTimer() {
-        this.spinTicks = 18;
+        this.spinTicks = 22;
     }
 
     @Override
@@ -86,12 +111,19 @@ public class TortoiseShell extends Entity {
         double y = this.getDeltaMovement().get(Direction.Axis.Y);
         double x = this.getX() - pPlayer.getX();
         double z = this.getZ() - pPlayer.getZ();
-        if (y == -0.0 && !this.isInFluidType() && (yLookAnglePlayer > -0.6D && yLookAnglePlayer < 0.1)) {
+        if (y == -0.0 && !this.isInFluidType() && (yLookAnglePlayer > -0.6D && yLookAnglePlayer < 0.1) && this.spinTicks == 0) {
             double d2 = Math.max(x * x + z * z, 0.001D);
             this.setDeltaMovement(x / d2 * 2.1D, 0.05D, z / d2 * 2.1D);
             setSpinTimer();
             return InteractionResult.SUCCESS;
         }
+        while (this.getDeltaMovement().x() < -0.7 || this.getDeltaMovement().z() < -0.7) {
+            this.setDeltaMovement(this.getDeltaMovement().multiply(0.6D, 0.6D, 0.6D));
+        }
+        while (this.getDeltaMovement().x() > 0.7 || this.getDeltaMovement().z() > 0.7) {
+            this.setDeltaMovement(this.getDeltaMovement().multiply(0.6D, 0.6D, 0.6D));
+        }
+        this.setOwner(pPlayer);
         return InteractionResult.PASS;
     }
 
@@ -156,13 +188,50 @@ public class TortoiseShell extends Entity {
         return !this.isRemoved();
     }
 
+
     private void hurtEntity(List<Entity> pEntities) {
         for (Entity entity : pEntities) {
-            if (entity instanceof LivingEntity) {
-                entity.hurt(this.damageSources().generic(), 4);
+            if (entity instanceof LivingEntity livingEntity) {
+                if (livingEntity instanceof Player player) {
+                    if (player.isBlocking()) {
+                        player.getCooldowns().addCooldown(player.getUseItem().getItem(), 100);
+                        player.stopUsingItem();
+                        player.level().broadcastEntityEvent(player, (byte) 30);
+                    }
+                    if (!player.isBlocking()){
+                        entity.hurt(this.damageSources().source(SMDamageTypes.TORTOISE_SHELL), 4);
+                    }
+                } else {
+                    entity.hurt(this.damageSources().source(SMDamageTypes.TORTOISE_SHELL), 4);
+                }
+            }
+            if (entity instanceof Ravager ravagerEntity) {
+                if (ravagerEntity.getStunnedTick() == 0 && ravagerEntity.getRoarTick() == 0) {
+                    ravagerEntity.handleEntityEvent((byte) 39);
+                    ravagerEntity.playSound(SoundEvents.RAVAGER_STUNNED, 1.0F, 1.0F);
+                    ravagerEntity.level().broadcastEntityEvent(ravagerEntity, (byte) 39);
+                }
             }
         }
+    }
+    private void hitShield(List<Entity> pEntities) {
+        for (Entity entity : pEntities) {
+            if (entity instanceof Player player) {
+                if (player.isBlocking()) {
+                    double x = player.getX() - this.getX();
+                    double z = player.getZ() - this.getZ();
+                    double shellX = this.getX() - player.getX();
+                    double shellZ = this.getZ() - player.getZ();
+                    double d2 = Math.max(x * x + z * z, 0.001D);
 
+                    this.setDeltaMovement(shellX / d2 * 0.4D, 0.005D, shellZ / d2 * 0.4D);
+
+                    player.getCooldowns().addCooldown(player.getUseItem().getItem(), 100);
+                    player.stopUsingItem();
+                    player.level().broadcastEntityEvent(player, (byte) 30);
+                }
+            }
+        }
     }
 
     private void knockBack(List<Entity> pEntities) {
@@ -174,9 +243,8 @@ public class TortoiseShell extends Entity {
                 double shellZ = this.getZ() - entity.getZ();
                 double d2 = Math.max(x * x + z * z, 0.001D);
 
-                this.setDeltaMovement(shellX / d2 * 0.5D, 0.005D, shellZ / d2 * 0.5D);
+                this.setDeltaMovement(shellX / d2 * 0.4D, 0.005D, shellZ / d2 * 0.4D);
                 entity.push(x / d2 * 0.05D, 0.005D, z / d2 * 0.05D);
-
             }
         }
     }
@@ -221,10 +289,17 @@ public class TortoiseShell extends Entity {
     @Override
     public void tick() {
         if (spinTicks > 0) {
-            this.hurtEntity(this.level().getEntities(this, this.getBoundingBox().inflate(0.30D), EntitySelector.NO_CREATIVE_OR_SPECTATOR));
-            this.knockBack(this.level().getEntities(this, this.getBoundingBox().inflate(0.30D), EntitySelector.NO_CREATIVE_OR_SPECTATOR));
+            this.hitShield(this.level().getEntities(this, this.getBoundingBox().inflate(0.50D), EntitySelector.NO_CREATIVE_OR_SPECTATOR));
+            this.hurtEntity(this.level().getEntities(this, this.getBoundingBox().inflate(0.10D), EntitySelector.NO_CREATIVE_OR_SPECTATOR));
+            this.knockBack(this.level().getEntities(this, this.getBoundingBox().inflate(0.10D), EntitySelector.NO_CREATIVE_OR_SPECTATOR));
             blockKnockBack();
             spinTicks--;
+            while (this.getDeltaMovement().x() < -0.7 || this.getDeltaMovement().z() < -0.7) {
+                this.setDeltaMovement(this.getDeltaMovement().multiply(0.6D, 0.6D, 0.6D));
+            }
+            while (this.getDeltaMovement().x() > 0.7 || this.getDeltaMovement().z() > 0.7) {
+                this.setDeltaMovement(this.getDeltaMovement().multiply(0.6D, 0.6D, 0.6D));
+            }
         }
         if (this.getHurtTime() > 0) {
             this.setHurtTime(this.getHurtTime() - 1);
@@ -274,10 +349,17 @@ public class TortoiseShell extends Entity {
     @Override
     protected void addAdditionalSaveData(CompoundTag pCompound) {
         pCompound.putInt("spinTicks", this.spinTicks);
+        if (this.ownerUUID != null) {
+            pCompound.putUUID("Owner", this.ownerUUID);
+        }
     }
 
     @Override
     protected void readAdditionalSaveData(CompoundTag pCompound) {
+        if (pCompound.hasUUID("Owner")) {
+            this.ownerUUID = pCompound.getUUID("Owner");
+            this.cachedOwner = null;
+        }
     }
 
     public float getDamage() {
