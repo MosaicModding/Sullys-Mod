@@ -1,5 +1,6 @@
 package com.uraneptus.sullysmod.core.other;
 
+import com.teamabnormals.blueprint.core.util.PropertyUtil;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.food.FoodProperties;
@@ -24,14 +25,9 @@ public class SMProperties {
     public static final class Items {
         public static final Item.Properties FD_COMPAT_TAB = new Item.Properties();
         //Item Specific
-        public static final Item.Properties MUSIC_DISCS = cannotStack().rarity(Rarity.RARE);
+        public static final Item.Properties MUSIC_DISCS = PropertyUtil.stacksOnce().rarity(Rarity.RARE);
         public static final Item.Properties JADE_SHIELD = new Item.Properties().durability(400);
-        public static final Item.Properties TOROTISE_SHELL = new Item.Properties().stacksTo(1);
-        public static final Item.Properties CAVE_CHUM_BUCKET = SMProperties.Items.FD_COMPAT_TAB.food(SMProperties.Foods.CAVE_CHUM_BUCKET_FOOD).stacksTo(16);
-
-        public static Item.Properties cannotStack() {
-            return new Item.Properties().stacksTo(1);
-        }
+        public static final Item.Properties CAVE_CHUM_BUCKET = sixteenStack().food(SMProperties.Foods.CAVE_CHUM_BUCKET_FOOD);
 
         public static Item.Properties sixteenStack() {
             return new Item.Properties().stacksTo(16);

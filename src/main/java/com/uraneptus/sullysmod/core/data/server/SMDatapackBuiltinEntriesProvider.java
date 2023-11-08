@@ -110,11 +110,12 @@ public class SMDatapackBuiltinEntriesProvider extends DatapackBuiltinEntriesProv
             context.register(ResourceKey.create(ForgeRegistries.Keys.BIOME_MODIFIERS, SullysMod.modPrefix(name)), modifier.get());
         }
     }
-    private static class DamageSources
-    {
+
+    private static class DamageSources {
         protected static void create(BootstapContext<DamageType> context) {
-            register(context, SMDamageTypes.TORTOISE_SHELL, new DamageType("tortoise_shell", 0F));
+            SMDamageTypes.damageTypeMap.forEach(((damageTypeKey, damageType) -> register(context, damageTypeKey, damageType)));
         }
+
         protected static void register(BootstapContext<DamageType> context, ResourceKey<DamageType> key, DamageType damageType) {
             context.register(key, damageType);
         }

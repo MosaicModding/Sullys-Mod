@@ -4,9 +4,9 @@ import com.uraneptus.sullysmod.SullysMod;
 import com.uraneptus.sullysmod.common.entities.BoulderingZombie;
 import com.uraneptus.sullysmod.common.entities.Lanternfish;
 import com.uraneptus.sullysmod.core.SMConfig;
+import com.uraneptus.sullysmod.core.other.SMTextDefinitions;
 import com.uraneptus.sullysmod.core.registry.SMEntityTypes;
 import net.minecraft.core.BlockPos;
-import net.minecraft.network.chat.Component;
 import net.minecraft.server.packs.PackType;
 import net.minecraft.server.packs.repository.Pack;
 import net.minecraft.server.packs.repository.PackSource;
@@ -29,7 +29,7 @@ import net.minecraftforge.resource.PathPackResources;
 
 @Mod.EventBusSubscriber(modid = SullysMod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class SMCommonEvents {
-    public static final String ZOMBIE_PACK_NAME = "zombie_retextures";
+
 
     @SubscribeEvent
     public static void registerSpawnPlacement(SpawnPlacementRegisterEvent event) {
@@ -53,10 +53,10 @@ public class SMCommonEvents {
     @SubscribeEvent
     public static void addPackFinders(AddPackFindersEvent event) {
         event.addRepositorySource(consumer -> {
-            String path = SullysMod.modPrefix(ZOMBIE_PACK_NAME).toString();
+            String path = SullysMod.modPrefix(SMTextDefinitions.ZOMBIE_PACK_NAME).toString();
             IModFile file = ModList.get().getModFileById(SullysMod.MOD_ID).getFile();
-            try (PathPackResources packResources = new PathPackResources(path, true, file.findResource("builtin/" + ZOMBIE_PACK_NAME))) {
-                consumer.accept(Pack.readMetaAndCreate(path, Component.literal("Sully's Mod Zombie Retextures"), false, (id) -> packResources, PackType.CLIENT_RESOURCES, Pack.Position.TOP, PackSource.BUILT_IN));
+            try (PathPackResources packResources = new PathPackResources(path, true, file.findResource("builtin/" + SMTextDefinitions.ZOMBIE_PACK_NAME))) {
+                consumer.accept(Pack.readMetaAndCreate(path, SMTextDefinitions.ZOMBIE_PACK_DISPLAY_NAME, false, (id) -> packResources, PackType.CLIENT_RESOURCES, Pack.Position.TOP, PackSource.BUILT_IN));
             }
         });
     }

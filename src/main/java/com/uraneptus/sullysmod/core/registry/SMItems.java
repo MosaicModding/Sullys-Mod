@@ -1,6 +1,7 @@
 package com.uraneptus.sullysmod.core.registry;
 
 import com.teamabnormals.blueprint.common.item.BlueprintRecordItem;
+import com.teamabnormals.blueprint.core.util.PropertyUtil;
 import com.teamabnormals.blueprint.core.util.item.CreativeModeTabContentsPopulator;
 import com.teamabnormals.blueprint.core.util.registry.ItemSubRegistryHelper;
 import com.uraneptus.sullysmod.SullysMod;
@@ -36,21 +37,21 @@ public class SMItems {
     public static final RegistryObject<Item> POLISHED_JADE = HELPER.createItem("polished_jade", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> MUSIC_DISC_SCOUR = HELPER.createItem("music_disc_scour", () -> new BlueprintRecordItem(12, SMSounds.MUSIC_DISC_SCOUR, SMProperties.Items.MUSIC_DISCS, 4980));
     public static final RegistryObject<Item> TORTOISE_SCUTE = HELPER.createItem("tortoise_scute", () -> new Item(new Item.Properties()));
-    public static final RegistryObject<Item> TORTOISE_SHELL = HELPER.createItem("tortoise_shell", () -> new TortoiseShellItem(SMProperties.Items.TOROTISE_SHELL));
+    public static final RegistryObject<Item> TORTOISE_SHELL = HELPER.createItem("tortoise_shell", () -> new TortoiseShellItem(PropertyUtil.stacksOnce()));
     public static final RegistryObject<Item> JADE_UPGRADE_SMITHING_TEMPLATE = HELPER.createItem("jade_upgrade_smithing_template", JadeSmithingTemplateItem::new);
 
     //Tools
     public static final RegistryObject<Item> JADE_SHIELD = HELPER.createItem("jade_shield", () -> new JadeShieldItem(-2.0F, SMProperties.Items.JADE_SHIELD));
 
     //Food
-    public static final RegistryObject<Item> LANTERNFISH = HELPER.createItem("lanternfish", () -> new Item(new Item.Properties().food(SMProperties.Foods.LANTERNFISH_FOOD)));
-    public static final RegistryObject<Item> COOKED_LANTERNFISH = HELPER.createItem("cooked_lanternfish", () -> new Item(new Item.Properties().food(SMProperties.Foods.COOKED_LANTERNFISH_FOOD)));
+    public static final RegistryObject<Item> LANTERNFISH = HELPER.createItem("lanternfish", () -> new Item(PropertyUtil.food(SMProperties.Foods.LANTERNFISH_FOOD)));
+    public static final RegistryObject<Item> COOKED_LANTERNFISH = HELPER.createItem("cooked_lanternfish", () -> new Item(PropertyUtil.food(SMProperties.Foods.COOKED_LANTERNFISH_FOOD)));
 
     //Compat Food
 
-    public static final RegistryObject<Item> LANTERNFISH_SLICE = HELPER.createItem("lanternfish_slice", () -> new Item(SMProperties.Items.FD_COMPAT_TAB.food(SMProperties.Foods.LANTERNFISH_SLICE_FOOD)));
-    public static final RegistryObject<Item> COOKED_LANTERNFISH_SLICE = HELPER.createItem("cooked_lanternfish_slice", () -> new Item(SMProperties.Items.FD_COMPAT_TAB.food(SMProperties.Foods.COOKED_LANTERNFISH_SLICE_FOOD)));
-    public static final RegistryObject<Item> LANTERNFISH_ROLL = HELPER.createItem("lanternfish_roll", () -> new Item(SMProperties.Items.FD_COMPAT_TAB.food(SMProperties.Foods.LANTERNFISH_ROLL_FOOD)));
+    public static final RegistryObject<Item> LANTERNFISH_SLICE = HELPER.createItem("lanternfish_slice", () -> new Item(PropertyUtil.food(SMProperties.Foods.LANTERNFISH_SLICE_FOOD)));
+    public static final RegistryObject<Item> COOKED_LANTERNFISH_SLICE = HELPER.createItem("cooked_lanternfish_slice", () -> new Item(PropertyUtil.food(SMProperties.Foods.COOKED_LANTERNFISH_SLICE_FOOD)));
+    public static final RegistryObject<Item> LANTERNFISH_ROLL = HELPER.createItem("lanternfish_roll", () -> new Item(PropertyUtil.food(SMProperties.Foods.LANTERNFISH_ROLL_FOOD)));
     public static final RegistryObject<Item> CAVE_CHUM_BUCKET = HELPER.createItem("cave_chum_bucket", () -> new SMFoodBucketItem(SMProperties.Items.CAVE_CHUM_BUCKET));
 
 
@@ -63,7 +64,7 @@ public class SMItems {
     public static final RegistryObject<ForgeSpawnEggItem> JUNGLE_SPIDER_SPAWN_EGG = HELPER.createSpawnEggItem("jungle_spider", SMEntityTypes.JUNGLE_SPIDER::get, 5597514, 11013646);
 
     public static Item createMobBucketItem(Supplier<EntityType<? extends WaterAnimal>> entityType) {
-        return new MobBucketItem(entityType, () -> Fluids.WATER, () -> SoundEvents.BUCKET_EMPTY_FISH, SMProperties.Items.cannotStack());
+        return new MobBucketItem(entityType, () -> Fluids.WATER, () -> SoundEvents.BUCKET_EMPTY_FISH, PropertyUtil.stacksOnce());
     }
 
     public static void buildCreativeTabContents() {

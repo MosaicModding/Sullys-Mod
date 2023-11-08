@@ -3,14 +3,12 @@ package com.uraneptus.sullysmod.core.events;
 import com.uraneptus.sullysmod.SullysMod;
 import com.uraneptus.sullysmod.common.recipes.GrindstonePolishingRecipe;
 import com.uraneptus.sullysmod.core.SMConfig;
+import com.uraneptus.sullysmod.core.other.SMTextDefinitions;
 import com.uraneptus.sullysmod.core.registry.SMItems;
 import com.uraneptus.sullysmod.core.registry.SMSounds;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ItemParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.Style;
-import net.minecraft.network.chat.TextColor;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
 import net.minecraft.util.ParticleUtils;
@@ -115,8 +113,7 @@ public class SMPlayerEvents {
                 for (GrindstonePolishingRecipe polishingRecipe : recipes) {
                     for (ItemStack itemStack : polishingRecipe.getIngredients().iterator().next().getItems()) {
                         if (item.is(itemStack.getItem())) {
-                            Style polishingStyle = Style.EMPTY.withColor(TextColor.fromRgb(8355711)).withItalic(true);
-                            event.getToolTip().add(Component.translatable(SullysMod.MOD_ID + ".polishing.tooltip").setStyle(polishingStyle));
+                            event.getToolTip().add(SMTextDefinitions.POLISHABLE);
                         }
                     }
                 }

@@ -1,6 +1,7 @@
 package com.uraneptus.sullysmod.core.data.client;
 
 import com.uraneptus.sullysmod.SullysMod;
+import com.uraneptus.sullysmod.core.other.TextUtil;
 import com.uraneptus.sullysmod.core.registry.SMBlocks;
 import com.uraneptus.sullysmod.core.registry.SMEntityTypes;
 import com.uraneptus.sullysmod.core.registry.SMItems;
@@ -14,9 +15,7 @@ import net.minecraft.world.item.alchemy.PotionUtils;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.common.data.LanguageProvider;
 import net.minecraftforge.registries.ForgeRegistries;
-import org.apache.commons.compress.utils.Lists;
 
-import java.util.List;
 import java.util.Objects;
 import java.util.function.Supplier;
 
@@ -99,8 +98,6 @@ public class SMLangProvider extends LanguageProvider {
 
         addMusicDisc(SMItems.MUSIC_DISC_SCOUR, "LudoCrypt - scour");
 
-        addSmithingTemplate("jade", "Shield", "Polished Jade", "Add Polished Jade", "Add shield");
-
         //Entities
         forEntity(SMEntityTypes.LANTERNFISH);
         forEntity(SMEntityTypes.TORTOISE);
@@ -111,13 +108,6 @@ public class SMLangProvider extends LanguageProvider {
 
         //Potions
         addPotionsForEffect(SMPotions.UNLUCK, "Bad Luck");
-
-        //Advancements
-        add("advancements.adventure.jade_grindset.title", "Jade Grindset");
-        add("advancements.adventure.jade_grindset.description", "Acquire Rough Jade from within a jungle biome");
-
-        add("advancements.adventure.polish_jade.title", "Sparkles Like New!");
-        add("advancements.adventure.polish_jade.description", "Polish Rough Jade using a Grindstone");
 
         //Subtitles
         add("subtitles.block.grindstone.polish_jade", "Grindstone polishes");
@@ -149,12 +139,8 @@ public class SMLangProvider extends LanguageProvider {
         add("subtitles.entity.bouldering_zombie.hurt", "Bouldering Zombie hurts");
         add("subtitles.entity.bouldering_zombie.death", "Bouldering Zombie dies");
 
-        //JEI
-        add("sullysmod.jei.grindstone_polishing", "Polishing");
-        add("sullysmod.jei.grindstone_polishing.info", "Right click to polish");
-
         //Other
-        add("sullysmod.polishing.tooltip", "Polishable at grindstone");
+        TextUtil.TRANSLATABLES.forEach(this::add);
         add("death.attack.tortoise_shell", "%1$s took a Tortoise Shell to the knees");
         add("death.attack.tortoise_shell.player", "%1$s got bonked to death");
 
@@ -173,41 +159,15 @@ public class SMLangProvider extends LanguageProvider {
         add(PotionUtils.setPotion(Items.TIPPED_ARROW.getDefaultInstance(), potionEffect.get()), "Arrow of " + name);
     }
 
-    public void addSmithingTemplate(String material, String applies_to, String ingredients, String additions_slot_description, String base_slot_description) {
-        String key = "item.minecraft.smithing_template." + material + "_upgrade";
-        add("upgrade.minecraft." + material + "_upgrade", firstToUpperCase(material) + " Upgrade");
-        add(key + ".applies_to", applies_to);
-        add(key + ".ingredients", ingredients);
-        add(key + ".base_slot_description", base_slot_description);
-        add(key + ".additions_slot_description", additions_slot_description);
-    }
-
     public void forItem(Supplier<? extends Item> item) {
-        addItem(item, createTranslation(Objects.requireNonNull(ForgeRegistries.ITEMS.getKey(item.get())).getPath()));
+        addItem(item, TextUtil.createTranslation(Objects.requireNonNull(ForgeRegistries.ITEMS.getKey(item.get())).getPath()));
     }
 
     public void forBlock(Supplier<? extends Block> block) {
-        addBlock(block, createTranslation(Objects.requireNonNull(ForgeRegistries.BLOCKS.getKey(block.get())).getPath()));
+        addBlock(block, TextUtil.createTranslation(Objects.requireNonNull(ForgeRegistries.BLOCKS.getKey(block.get())).getPath()));
     }
 
     public void forEntity(Supplier<? extends EntityType<?>> entity) {
-        addEntityType(entity, createTranslation(Objects.requireNonNull(ForgeRegistries.ENTITY_TYPES.getKey(entity.get())).getPath()));
-    }
-
-    public String createTranslation(String path) {
-        var translation = "";
-        List<String> translationParts = Lists.newArrayList();
-        var splitList = path.split("_");
-        for (String split : splitList) {
-            var capitalized = firstToUpperCase(split);
-            translationParts.add(capitalized);
-        }
-        translation = String.join(" ", translationParts);
-        return translation;
-    }
-
-    public String firstToUpperCase(String string) {
-        var firstLetter = string.charAt(0);
-        return string.replaceFirst(String.valueOf(firstLetter), String.valueOf(firstLetter).toUpperCase());
+        addEntityType(entity, TextUtil.createTranslation(Objects.requireNonNull(ForgeRegistries.ENTITY_TYPES.getKey(entity.get())).getPath()));
     }
 }

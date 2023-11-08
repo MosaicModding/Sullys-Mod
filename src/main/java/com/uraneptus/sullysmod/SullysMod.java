@@ -16,6 +16,7 @@ import com.uraneptus.sullysmod.core.data.server.tags.SMBlockTagsProvider;
 import com.uraneptus.sullysmod.core.data.server.tags.SMEntityTagsProvider;
 import com.uraneptus.sullysmod.core.data.server.tags.SMItemTagsProvider;
 import com.uraneptus.sullysmod.core.integration.fd.FDCompat;
+import com.uraneptus.sullysmod.core.other.SMTextDefinitions;
 import com.uraneptus.sullysmod.core.registry.*;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
@@ -46,7 +47,6 @@ public class SullysMod {
     public static final RegistryHelper REGISTRY_HELPER = new RegistryHelper(MOD_ID);
     public static final Logger LOGGER = LogUtils.getLogger();
 
-
     public SullysMod() {
         IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
         bus.addListener(this::setup);
@@ -54,6 +54,8 @@ public class SullysMod {
 
         ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, SMConfig.CLIENT);
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, SMConfig.COMMON);
+
+        SMTextDefinitions.init();
 
         REGISTRY_HELPER.register(bus);
         SMParticleTypes.PARTICLES.register(bus);
