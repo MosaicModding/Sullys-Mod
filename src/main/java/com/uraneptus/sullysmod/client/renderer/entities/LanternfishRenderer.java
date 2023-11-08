@@ -7,6 +7,7 @@ import com.uraneptus.sullysmod.client.model.LanternfishModel;
 import com.uraneptus.sullysmod.client.renderer.entities.layer.LanternfishGlowLayer;
 import com.uraneptus.sullysmod.common.entities.Lanternfish;
 import net.minecraft.MethodsReturnNonnullByDefault;
+import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.resources.ResourceLocation;

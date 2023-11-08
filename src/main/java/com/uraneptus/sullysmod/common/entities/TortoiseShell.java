@@ -35,12 +35,12 @@ import javax.annotation.Nullable;
 import java.util.List;
 import java.util.UUID;
 
-public class TortoiseShell extends Entity {
+public class TortoiseShell extends Entity implements OwnableEntity {
     private static final EntityDataAccessor<Integer> DATA_ID_HURT = SynchedEntityData.defineId(TortoiseShell.class, EntityDataSerializers.INT);
     private static final EntityDataAccessor<Integer> DATA_ID_HURTDIR = SynchedEntityData.defineId(TortoiseShell.class, EntityDataSerializers.INT);
     private static final EntityDataAccessor<Float> DATA_ID_DAMAGE = SynchedEntityData.defineId(TortoiseShell.class, EntityDataSerializers.FLOAT);
     public int spinTicks = 0;
-    private Entity cachedOwner;
+    private LivingEntity cachedOwner;
     private UUID ownerUUID;
 
     public TortoiseShell(EntityType<? extends TortoiseShell> pEntityType, Level pLevel) {
@@ -51,18 +51,25 @@ public class TortoiseShell extends Entity {
     public TortoiseShell(PlayMessages.SpawnEntity spawnEntity, Level level) {
         this(SMEntityTypes.TORTOISE_SHELL.get(), level);
     }
-    public void setOwner(@Nullable Entity pOwner) {
+    public void setOwner(@Nullable LivingEntity pOwner) {
         if (pOwner != null) {
             this.ownerUUID = pOwner.getUUID();
             this.cachedOwner = pOwner;
         }
     }
+
+    @org.jetbrains.annotations.Nullable
+    @Override
+    public UUID getOwnerUUID() {
+        return this.cachedOwner.getUUID();
+    }
+
     @Nullable
-    public Entity getOwner() {
+    public LivingEntity getOwner() {
         if (this.cachedOwner != null && !this.cachedOwner.isRemoved()) {
             return this.cachedOwner;
         } else if (this.ownerUUID != null && this.level() instanceof ServerLevel) {
-            this.cachedOwner = ((ServerLevel)this.level()).getEntity(this.ownerUUID);
+            this.cachedOwner = (LivingEntity) ((ServerLevel)this.level()).getEntity(this.ownerUUID);
             return this.cachedOwner;
         } else {
             return null;

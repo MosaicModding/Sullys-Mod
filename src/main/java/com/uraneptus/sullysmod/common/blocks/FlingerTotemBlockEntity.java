@@ -84,7 +84,6 @@ public class FlingerTotemBlockEntity extends BlockEntity {
 
     public static void serverTick(Level pLevel, BlockPos pPos, BlockState pState, FlingerTotemBlockEntity pBlockEntity) {
         boolean flag = false;
-        System.out.println(pBlockEntity.stored.size());
         FlingerTotemBlockEntity.ProjectileData projectileData;
         for(Iterator<FlingerTotemBlockEntity.ProjectileData> iterator = pBlockEntity.stored.iterator(); iterator.hasNext(); projectileData.delayTicks--) {
             projectileData = iterator.next();
@@ -126,7 +125,6 @@ public class FlingerTotemBlockEntity extends BlockEntity {
     @Override
     public void load(CompoundTag pTag) {
         super.load(pTag);
-        //this.stored.clear(); Mojang does this, but why?
         ListTag listtag = pTag.getList("Projectiles", 10);
 
         for(int i = 0; i < listtag.size(); ++i) {

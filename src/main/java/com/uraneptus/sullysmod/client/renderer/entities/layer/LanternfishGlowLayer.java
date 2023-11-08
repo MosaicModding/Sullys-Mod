@@ -26,10 +26,10 @@ public class LanternfishGlowLayer <E extends Lanternfish> extends RenderLayer<E,
 
     @Override
     public void render(PoseStack pMatrixStack, MultiBufferSource pBuffer, int pPackedLight, E pLivingEntity, float pLimbSwing, float pLimbSwingAmount, float pPartialTicks, float pAgeInTicks, float pNetHeadYaw, float pHeadPitch) {
-        int i = (int) Mth.clampedLerp(0.0F, 15.0F, 1.0F - (float) pLivingEntity.getDarkTicksRemaining() / 10.0F);
-        int packedLight = i == 15 ? 240 : pPackedLight;
-        RenderType renderType = i == 15 ? BlueprintRenderTypes.getUnshadedCutoutEntity(GLOW_LAYER, true) : RenderType.entityCutoutNoCull(GLOW_LAYER);
-        VertexConsumer vertexconsumer = pBuffer.getBuffer(renderType);
-        this.getParentModel().renderToBuffer(pMatrixStack, vertexconsumer, packedLight, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
+        if (pLivingEntity.renderGlow()) {
+            RenderType renderType = RenderType.eyes(GLOW_LAYER);
+            VertexConsumer vertexconsumer = pBuffer.getBuffer(renderType);
+            this.getParentModel().renderToBuffer(pMatrixStack, vertexconsumer, pPackedLight, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
+        }
     }
 }

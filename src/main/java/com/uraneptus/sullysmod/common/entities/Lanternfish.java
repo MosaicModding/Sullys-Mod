@@ -9,6 +9,7 @@ import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.tags.FluidTags;
+import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.EntityType;
@@ -82,6 +83,11 @@ public class Lanternfish extends AbstractFish {
     }
     public int getDarkTicksRemaining() {
         return this.entityData.get(DATA_DARK_TICKS_REMAINING);
+    }
+
+    public boolean renderGlow() {
+        int i = (int) Mth.clampedLerp(0.0F, 15.0F, 1.0F - (float) this.getDarkTicksRemaining() / 10.0F);
+        return i == 15;
     }
 
     @Override

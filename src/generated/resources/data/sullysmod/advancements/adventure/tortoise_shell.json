@@ -7,7 +7,7 @@
         "damage": {
           "type": {
             "direct_entity": {
-              "type": "#sullysmod:cannot_bounce"
+              "type": "sullysmod:tortoise_shell"
             }
           }
         }
