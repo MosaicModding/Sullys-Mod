@@ -364,8 +364,6 @@ public class TortoiseShell extends Entity implements OwnableEntity {
             this.lavaHurt();
             this.fallDistance *= 0.5F;
         }
-
-        System.out.println(getOwner());
     }
 
     @Override
