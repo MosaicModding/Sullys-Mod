@@ -5,19 +5,13 @@ import com.teamabnormals.blueprint.core.util.PropertyUtil;
 import com.teamabnormals.blueprint.core.util.item.CreativeModeTabContentsPopulator;
 import com.teamabnormals.blueprint.core.util.registry.ItemSubRegistryHelper;
 import com.uraneptus.sullysmod.SullysMod;
-import com.uraneptus.sullysmod.common.items.JadeShieldItem;
-import com.uraneptus.sullysmod.common.items.JadeSmithingTemplateItem;
-import com.uraneptus.sullysmod.common.items.SMFoodBucketItem;
-import com.uraneptus.sullysmod.common.items.TortoiseShellItem;
+import com.uraneptus.sullysmod.common.items.*;
 import com.uraneptus.sullysmod.core.integration.fd.FDCompat;
 import com.uraneptus.sullysmod.core.other.SMProperties;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.animal.WaterAnimal;
-import net.minecraft.world.item.CreativeModeTabs;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.Items;
-import net.minecraft.world.item.MobBucketItem;
+import net.minecraft.world.item.*;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraftforge.common.ForgeSpawnEggItem;
 import net.minecraftforge.fml.common.Mod;
@@ -39,6 +33,8 @@ public class SMItems {
     public static final RegistryObject<Item> TORTOISE_SCUTE = HELPER.createItem("tortoise_scute", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> TORTOISE_SHELL = HELPER.createItem("tortoise_shell", () -> new TortoiseShellItem(PropertyUtil.stacksOnce()));
     public static final RegistryObject<Item> JADE_UPGRADE_SMITHING_TEMPLATE = HELPER.createItem("jade_upgrade_smithing_template", JadeSmithingTemplateItem::new);
+    public static final RegistryObject<Item> GLASS_VIAL = HELPER.createItem("glass_vial", () -> new VialItem(new Item.Properties()));
+    public static final RegistryObject<Item> VENOM_VIAL = HELPER.createItem("venom_vial", () -> new VenomVialItem(new Item.Properties().stacksTo(16)));
 
     //Tools
     public static final RegistryObject<Item> JADE_SHIELD = HELPER.createItem("jade_shield", () -> new JadeShieldItem(-2.0F, SMProperties.Items.JADE_SHIELD));
@@ -74,6 +70,7 @@ public class SMItems {
                 .addItemsAfter(of(Items.RAW_COPPER), ROUGH_JADE)
                 .addItemsAfter(of(Items.SCUTE), TORTOISE_SCUTE)
                 .addItemsAfter(of(Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE), JADE_UPGRADE_SMITHING_TEMPLATE)
+                .addItemsAfter(of(Items.GLASS_BOTTLE), GLASS_VIAL)
 
                 .tab(CreativeModeTabs.TOOLS_AND_UTILITIES)
                 .addItemsAfter(of(Items.MUSIC_DISC_RELIC), MUSIC_DISC_SCOUR)

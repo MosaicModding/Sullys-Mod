@@ -25,6 +25,13 @@ public class SMSoundDefinitionsProvider extends SoundDefinitionsProvider {
         //Music Discs
         addMusicDiscSound(SMSounds.MUSIC_DISC_SCOUR, "scour");
 
+        //Item Sounds
+        addbasicSound(SMSounds.VIAL_SHATTERS,
+                sound("random/glass1"),
+                sound("random/glass2"),
+                sound("random/glass3")
+        );
+
         //Block Sounds
         addbasicSound(SMSounds.POLISH_JADE,
                 sound(SullysMod.modPrefix("block/grindstone/jade_polish0")),

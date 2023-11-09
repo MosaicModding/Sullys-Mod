@@ -205,6 +205,14 @@
     ],
     "subtitle": "subtitles.entity.tortoise_shell.place"
   },
+  "item.vial.shatter": {
+    "sounds": [
+      "random/glass1",
+      "random/glass2",
+      "random/glass3"
+    ],
+    "subtitle": "subtitles.item.vial.shatter"
+  },
   "music_disc.scour": {
     "sounds": [
       {

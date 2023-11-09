@@ -91,6 +91,8 @@ public class SMItemModelProvider extends ItemModelProvider {
         basicItem(SMItems.TORTOISE_SCUTE);
         basicItem(SMItems.TORTOISE_SHELL);
         basicItem(SMItems.JADE_UPGRADE_SMITHING_TEMPLATE);
+        basicItem(SMItems.GLASS_VIAL);
+        venomVialItem(SMItems.VENOM_VIAL);
     }
 
     private void basicBlockItem(Supplier<? extends Block> blockForItem) {
@@ -140,5 +142,13 @@ public class SMItemModelProvider extends ItemModelProvider {
                 .transform(ItemDisplayContext.GROUND).rotation(0, 0, 0).translation(2, 4, 2).scale(0.25F, 0.25F, 0.25F).end()
                 .end()
                 .override().predicate(new ResourceLocation("blocking"), 1).model(new ModelFile.UncheckedModelFile(modItemLocation(name(item.get()) + "_blocking")));
+    }
+
+    private void venomVialItem(Supplier<? extends Item> item) {
+        getBuilder(name(item.get()))
+                .parent(new ModelFile.UncheckedModelFile("item/generated"))
+                .texture("layer0", modLoc("item/glass_vial"))
+                .texture("layer1", modLoc("item/venom_vial_1"))
+                .texture("layer2", modLoc("item/venom_vial_2"));
     }
 }
