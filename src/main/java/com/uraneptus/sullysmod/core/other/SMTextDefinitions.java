@@ -27,8 +27,12 @@ public class SMTextDefinitions {
     //ADVANCEMENTS
     public static final String JADE_GRINDSET_ADV_NAME = "jade_grindset";
     public static final String POLISH_JADE_ADV_NAME = "polish_jade";
+    public static final String SHELL_HIT_ADV_NAME = "tortoise_shell_hit";
+    public static final String SHELL_HIT_RAVAGER_ADV_NAME = "tortoise_shell_hit_ravager";
     public static Pair<Component, Component> JADE_GRINDSET_ADV;
     public static Pair<Component, Component> POLISH_JADE_ADV;
+    public static Pair<Component, Component> SHELL_HIT_ADV;
+    public static Pair<Component, Component> SHELL_HIT_RAVAGER_ADV;
 
     public static void init() {
         POLISHABLE = TextUtil.addSMTranslatable("polishing.tooltip", "Polishable at grindstone").setStyle(polishingStyle);
@@ -41,6 +45,8 @@ public class SMTextDefinitions {
         JADE_UPGRADE_ADDITIONS_SLOT_DESCRIPTION = TextUtil.addTranslatable(Util.makeDescriptionId("item", jadeUpgradeString("additions_slot_description")), "Add Polished Jade");
         JADE_GRINDSET_ADV = TextUtil.addAdvancementTranslatables("advancements.adventure." + JADE_GRINDSET_ADV_NAME, TextUtil.createTranslation(JADE_GRINDSET_ADV_NAME), "Acquire Rough Jade from within a jungle biome");
         POLISH_JADE_ADV = TextUtil.addAdvancementTranslatables("advancements.adventure." + POLISH_JADE_ADV_NAME, "Sparkles Like New!", "Polish Rough Jade using a Grindstone");
+        SHELL_HIT_ADV = TextUtil.addAdvancementTranslatables("advancements.adventure." + SHELL_HIT_ADV_NAME, "Get Bonked!", "Hit an Entity with a Tortoise Shell");
+        SHELL_HIT_RAVAGER_ADV = TextUtil.addAdvancementTranslatables("advancements.adventure." + SHELL_HIT_RAVAGER_ADV_NAME, "Bully the Bullies", "Hit an Ravager with a Tortoise Shell");
     }
 
     private static ResourceLocation jadeUpgradeString(String suffix) {

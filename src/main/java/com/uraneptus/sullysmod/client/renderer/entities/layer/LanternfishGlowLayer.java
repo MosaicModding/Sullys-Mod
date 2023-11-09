@@ -2,7 +2,6 @@ package com.uraneptus.sullysmod.client.renderer.entities.layer;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import com.teamabnormals.blueprint.client.BlueprintRenderTypes;
 import com.uraneptus.sullysmod.SullysMod;
 import com.uraneptus.sullysmod.client.model.LanternfishModel;
 import com.uraneptus.sullysmod.common.entities.Lanternfish;
@@ -12,7 +11,6 @@ import net.minecraft.client.renderer.entity.RenderLayerParent;
 import net.minecraft.client.renderer.entity.layers.RenderLayer;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.util.Mth;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 

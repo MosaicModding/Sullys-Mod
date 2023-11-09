@@ -62,12 +62,13 @@ public class SullysMod {
         SMPotions.POTIONS.register(bus);
         SMRecipeTypes.RECIPE_TYPES.register(bus);
         SMRecipeSerializer.SERIALIZERS.register(bus);
-        SMDamageTypes.DAMAGE_TYPES.register(bus);
+
         FDCompat.register();
         DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> SMItems::buildCreativeTabContents);
         if (FDCompat.IS_LOADED) {
             DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> SMItems::buildFDCreativeTabContents);
         }
+
 
         MinecraftForge.EVENT_BUS.register(this);
     }

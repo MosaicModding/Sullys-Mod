@@ -1,0 +1,47 @@
+{
+  "parent": "sullysmod:adventure/tortoise_shell_hit",
+  "criteria": {
+    "tortoise_shell": {
+      "conditions": {
+        "damage": {
+          "type": {
+            "direct_entity": {
+              "type": "sullysmod:tortoise_shell"
+            }
+          }
+        },
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "type": "minecraft:ravager"
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:player_hurt_entity"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.adventure.tortoise_shell_hit_ravager.description"
+    },
+    "frame": "challenge",
+    "hidden": false,
+    "icon": {
+      "item": "sullysmod:tortoise_shell"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.adventure.tortoise_shell_hit_ravager.title"
+    }
+  },
+  "requirements": [
+    [
+      "tortoise_shell"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

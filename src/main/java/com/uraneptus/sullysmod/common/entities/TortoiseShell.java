@@ -51,6 +51,7 @@ public class TortoiseShell extends Entity implements OwnableEntity {
     public TortoiseShell(PlayMessages.SpawnEntity spawnEntity, Level level) {
         this(SMEntityTypes.TORTOISE_SHELL.get(), level);
     }
+
     public void setOwner(@Nullable LivingEntity pOwner) {
         if (pOwner != null) {
             this.ownerUUID = pOwner.getUUID();
@@ -122,6 +123,7 @@ public class TortoiseShell extends Entity implements OwnableEntity {
             double d2 = Math.max(x * x + z * z, 0.001D);
             this.setDeltaMovement(x / d2 * 2.1D, 0.05D, z / d2 * 2.1D);
             setSpinTimer();
+            this.setOwner(pPlayer);
             return InteractionResult.SUCCESS;
         }
         while (this.getDeltaMovement().x() < -0.7 || this.getDeltaMovement().z() < -0.7) {
@@ -130,7 +132,7 @@ public class TortoiseShell extends Entity implements OwnableEntity {
         while (this.getDeltaMovement().x() > 0.7 || this.getDeltaMovement().z() > 0.7) {
             this.setDeltaMovement(this.getDeltaMovement().multiply(0.6D, 0.6D, 0.6D));
         }
-        this.setOwner(pPlayer);
+
         return InteractionResult.PASS;
     }
 
@@ -199,17 +201,18 @@ public class TortoiseShell extends Entity implements OwnableEntity {
     private void hurtEntity(List<Entity> pEntities) {
         for (Entity entity : pEntities) {
             if (entity instanceof LivingEntity livingEntity) {
+                LivingEntity owner = this.getOwner();
                 if (livingEntity instanceof Player player) {
                     if (player.isBlocking()) {
                         player.getCooldowns().addCooldown(player.getUseItem().getItem(), 100);
                         player.stopUsingItem();
                         player.level().broadcastEntityEvent(player, (byte) 30);
                     }
-                    if (!player.isBlocking()){
-                        entity.hurt(this.damageSources().source(SMDamageTypes.TORTOISE_SHELL), 4);
+                    if (!player.isBlocking()) {
+                        handleDamage(owner, entity);
                     }
                 } else {
-                    entity.hurt(this.damageSources().source(SMDamageTypes.TORTOISE_SHELL), 4);
+                    handleDamage(owner, entity);
                 }
             }
             if (entity instanceof Ravager ravagerEntity) {
@@ -221,6 +224,16 @@ public class TortoiseShell extends Entity implements OwnableEntity {
             }
         }
     }
+
+    public void handleDamage(@Nullable LivingEntity owner, Entity entity) {
+        if (owner == null) {
+            entity.hurt(this.damageSources().source(SMDamageTypes.TORTOISE_SHELL, this, this), 4);
+        } else {
+            entity.hurt(this.damageSources().source(SMDamageTypes.TORTOISE_SHELL, this, owner), 4);
+            owner.setLastHurtMob(entity);
+        }
+    }
+
     private void hitShield(List<Entity> pEntities) {
         for (Entity entity : pEntities) {
             if (entity instanceof Player player) {
@@ -351,6 +364,8 @@ public class TortoiseShell extends Entity implements OwnableEntity {
             this.lavaHurt();
             this.fallDistance *= 0.5F;
         }
+
+        System.out.println(getOwner());
     }
 
     @Override

@@ -4,14 +4,12 @@ import com.uraneptus.sullysmod.SullysMod;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.damagesource.DamageType;
-import net.minecraftforge.registries.DeferredRegister;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class SMDamageTypes {
     public static Map<ResourceKey<DamageType>, DamageType> damageTypeMap = new HashMap<>();
-    public static final DeferredRegister<DamageType> DAMAGE_TYPES = DeferredRegister.create(Registries.DAMAGE_TYPE, SullysMod.MOD_ID);
 
     public static final ResourceKey<DamageType> TORTOISE_SHELL = register(new DamageType("tortoise_shell", 0));
 
