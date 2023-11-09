@@ -101,6 +101,13 @@ public class SMRecipeProvider extends RecipeProvider {
 
         fishRollRecipes(SMItems.LANTERNFISH_SLICE, SMItems.LANTERNFISH_ROLL, consumer);
 
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, SMItems.GLASS_VIAL.get(), 3)
+                .define('#', Items.GLASS_PANE)
+                .pattern("# #")
+                .pattern(" # ")
+                .unlockedBy(getHasName(Items.GLASS_PANE), has(Items.GLASS_PANE))
+                .save(consumer, craftingPath(getItemName(SMItems.GLASS_VIAL.get())));
+
         //Stonecutting
         stonecutterRecipes(RecipeCategory.BUILDING_BLOCKS, SMBlocks.ROUGH_JADE_BLOCK, SMBlocks.ROUGH_JADE_BRICKS, 1, consumer);
         stonecutterRecipes(RecipeCategory.BUILDING_BLOCKS, SMBlocks.ROUGH_JADE_BRICKS, SMBlocks.ROUGH_JADE_TILES, 1, consumer);

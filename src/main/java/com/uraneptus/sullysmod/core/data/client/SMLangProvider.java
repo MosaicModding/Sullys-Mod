@@ -91,6 +91,8 @@ public class SMLangProvider extends LanguageProvider {
         forItem(SMItems.TORTOISE_SHELL);
         forItem(SMItems.BOULDERING_ZOMBIE_SPAWN_EGG);
         forItem(SMItems.JUNGLE_SPIDER_SPAWN_EGG);
+        forItem(SMItems.GLASS_VIAL);
+        add(SMItems.VENOM_VIAL.get(), "Vial of Jungle Venom");
 
         add(SMItems.LANTERNFISH_BUCKET.get(), "Bucket of Lanternfish");
         add(SMItems.LANTERNFISH.get(), "Raw Lanternfish");
@@ -110,6 +112,9 @@ public class SMLangProvider extends LanguageProvider {
         addPotionsForEffect(SMPotions.UNLUCK, "Bad Luck");
 
         //Subtitles
+        add("subtitles.item.vial.shatter", "Vial shatters");
+        add("subtitles.item.vial.harvest", "Vial fills");
+
         add("subtitles.block.grindstone.polish_jade", "Grindstone polishes");
         add("subtitles.block.jade.ricochet", "Projectile ricochets");
         add("subtitles.block.flinger_totem.shoot", "Flinger Totem flings");
