@@ -1,8 +1,10 @@
 package com.uraneptus.sullysmod.common.entities;
 
+import com.uraneptus.sullysmod.core.other.tags.SMBlockTags;
 import com.uraneptus.sullysmod.core.registry.SMDamageTypes;
 import com.uraneptus.sullysmod.core.registry.SMEntityTypes;
 import com.uraneptus.sullysmod.core.registry.SMItems;
+import com.uraneptus.sullysmod.core.registry.SMSounds;
 import net.minecraft.BlockUtil;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -39,7 +41,8 @@ public class TortoiseShell extends Entity implements OwnableEntity {
     private static final EntityDataAccessor<Integer> DATA_ID_HURT = SynchedEntityData.defineId(TortoiseShell.class, EntityDataSerializers.INT);
     private static final EntityDataAccessor<Integer> DATA_ID_HURTDIR = SynchedEntityData.defineId(TortoiseShell.class, EntityDataSerializers.INT);
     private static final EntityDataAccessor<Float> DATA_ID_DAMAGE = SynchedEntityData.defineId(TortoiseShell.class, EntityDataSerializers.FLOAT);
-    public int spinTicks = 0;
+
+    public static final EntityDataAccessor<Integer> SPIN_TICKS = SynchedEntityData.defineId(TortoiseShell.class, EntityDataSerializers.INT);
     private LivingEntity cachedOwner;
     private UUID ownerUUID;
 
@@ -87,6 +90,11 @@ public class TortoiseShell extends Entity implements OwnableEntity {
         this.entityData.define(DATA_ID_HURT, 0);
         this.entityData.define(DATA_ID_HURTDIR, 1);
         this.entityData.define(DATA_ID_DAMAGE, 0.0F);
+        this.entityData.define(SPIN_TICKS, 0);
+    }
+
+    public Integer getSpinTicksEntityData() {
+        return this.entityData.get(SPIN_TICKS);
     }
 
     @Override
@@ -110,7 +118,7 @@ public class TortoiseShell extends Entity implements OwnableEntity {
     }
 
     public void setSpinTimer() {
-        this.spinTicks = 22;
+        this.entityData.set(SPIN_TICKS, 22);
     }
 
     @Override
@@ -119,7 +127,7 @@ public class TortoiseShell extends Entity implements OwnableEntity {
         double y = this.getDeltaMovement().get(Direction.Axis.Y);
         double x = this.getX() - pPlayer.getX();
         double z = this.getZ() - pPlayer.getZ();
-        if (y == -0.0 && !this.isInFluidType() && (yLookAnglePlayer > -0.6D && yLookAnglePlayer < 0.1) && this.spinTicks == 0) {
+        if (y == -0.0 && !this.isInFluidType() && (yLookAnglePlayer > -0.6D && yLookAnglePlayer < 0.1) && getSpinTicksEntityData() == 0) {
             double d2 = Math.max(x * x + z * z, 0.001D);
             this.setDeltaMovement(x / d2 * 2.1D, 0.05D, z / d2 * 2.1D);
             setSpinTimer();
@@ -290,11 +298,12 @@ public class TortoiseShell extends Entity implements OwnableEntity {
         BlockState blockZN = this.level().getBlockState(ZN);
         Vec3 vec3 = this.getDeltaMovement();
 
+
         if (blockXP.getFluidState().isEmpty() && blockXN.getFluidState().isEmpty() && blockZP.getFluidState().isEmpty() && blockZN.getFluidState().isEmpty()) {
-            if (!blockXP.isAir() && blockXP.isCollisionShapeFullBlock(this.level(), XP) && vec3.x() > 0.0) {
+            if (!blockXP.isAir() && blockZP.isAir() && blockZN.isAir() && blockXP.isCollisionShapeFullBlock(this.level(), XP) && vec3.x() > 0.0) {
                 this.shoot(vec3.reverse().x, vec3.y, vec3.z, 0.45F, 0.0F);
             }
-            if (!blockXN.isAir() && blockXN.isCollisionShapeFullBlock(this.level(), XN) && vec3.x() < 0.0) {
+            if (!blockXN.isAir() && blockZP.isAir() && blockZN.isAir() && blockXN.isCollisionShapeFullBlock(this.level(), XN) && vec3.x() < 0.0) {
                 this.shoot(vec3.reverse().x, vec3.y, vec3.z, 0.45F, 0.0F);
             }
             if (!blockZP.isAir() && blockZP.isCollisionShapeFullBlock(this.level(), ZP)) {
@@ -304,16 +313,23 @@ public class TortoiseShell extends Entity implements OwnableEntity {
                 this.shoot(vec3.x, vec3.y, vec3.reverse().z, 0.45F, 0.0F);
             }
         }
+
+        if (blockXP.getBlockHolder().is(SMBlockTags.PROJECTILES_BOUNCE_ON) || blockXN.getBlockHolder().is(SMBlockTags.PROJECTILES_BOUNCE_ON) || blockZP.getBlockHolder().is(SMBlockTags.PROJECTILES_BOUNCE_ON) || blockZN.getBlockHolder().is(SMBlockTags.PROJECTILES_BOUNCE_ON)) {
+            this.level().playSound(null, this.getX(), this.getY(), this.getZ(), SMSounds.JADE_RICOCHET.get(), this.getSoundSource(), 1.0F, 0.0F);
+            this.entityData.set(SPIN_TICKS, Mth.clamp(getSpinTicksEntityData() + 20, 0, 30));
+        }
     }
 
     @Override
     public void tick() {
-        if (spinTicks > 0) {
+        if (this.getSpinTicksEntityData() > 0) {
             this.hitShield(this.level().getEntities(this, this.getBoundingBox().inflate(0.50D), EntitySelector.NO_CREATIVE_OR_SPECTATOR));
             this.hurtEntity(this.level().getEntities(this, this.getBoundingBox().inflate(0.10D), EntitySelector.NO_CREATIVE_OR_SPECTATOR));
             this.knockBack(this.level().getEntities(this, this.getBoundingBox().inflate(0.10D), EntitySelector.NO_CREATIVE_OR_SPECTATOR));
             blockKnockBack();
-            spinTicks--;
+            System.out.println(this.getSpinTicksEntityData());
+            System.out.println(this.getDeltaMovement());
+            this.entityData.set(SPIN_TICKS, this.getSpinTicksEntityData() - 1);
             while (this.getDeltaMovement().x() < -0.7 || this.getDeltaMovement().z() < -0.7) {
                 this.setDeltaMovement(this.getDeltaMovement().multiply(0.6D, 0.6D, 0.6D));
             }
@@ -368,7 +384,7 @@ public class TortoiseShell extends Entity implements OwnableEntity {
 
     @Override
     protected void addAdditionalSaveData(CompoundTag pCompound) {
-        pCompound.putInt("spinTicks", this.spinTicks);
+        pCompound.putInt("spinTicks", getSpinTicksEntityData());
         if (this.ownerUUID != null) {
             pCompound.putUUID("Owner", this.ownerUUID);
         }

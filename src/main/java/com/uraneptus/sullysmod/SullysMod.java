@@ -2,6 +2,7 @@ package com.uraneptus.sullysmod;
 
 import com.mojang.logging.LogUtils;
 import com.teamabnormals.blueprint.core.util.registry.RegistryHelper;
+import com.uraneptus.sullysmod.common.dispenser.TortoiseShellDispenseBehavior;
 import com.uraneptus.sullysmod.common.entities.*;
 import com.uraneptus.sullysmod.core.SMConfig;
 import com.uraneptus.sullysmod.core.data.client.*;
@@ -91,7 +92,10 @@ public class SullysMod {
     }
 
     private void setup(final FMLCommonSetupEvent event) {
-        event.enqueueWork(SMBrewingRecipes::register);
+        event.enqueueWork(() -> {
+            SMBrewingRecipes.register();
+            TortoiseShellDispenseBehavior.register();
+        });
     }
 
     @SubscribeEvent

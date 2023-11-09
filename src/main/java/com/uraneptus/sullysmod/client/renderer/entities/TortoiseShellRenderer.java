@@ -31,7 +31,7 @@ public class TortoiseShellRenderer <E extends TortoiseShell> extends EntityRende
         pMatrixStack.translate(0.0D, -1.0F, 0.0D);
 
         float spinTime = pEntity.tickCount + pPartialTicks;
-        if (pEntity.spinTicks > 0) {
+        if (pEntity.getSpinTicksEntityData() > 0) {
             pMatrixStack.mulPose(new Quaternionf().rotateY(spinTime * 0.56F));
         }
 
