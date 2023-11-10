@@ -93,6 +93,7 @@ public class SMItemModelProvider extends ItemModelProvider {
         basicItem(SMItems.JADE_UPGRADE_SMITHING_TEMPLATE);
         basicItem(SMItems.GLASS_VIAL);
         venomVialItem(SMItems.VENOM_VIAL);
+        basicItem(SMItems.JADE_HORSE_ARMOR);
     }
 
     private void basicBlockItem(Supplier<? extends Block> blockForItem) {

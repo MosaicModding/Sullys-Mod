@@ -25,6 +25,7 @@ import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.NonTameRandomTargetGoal;
 import net.minecraft.world.entity.animal.Ocelot;
 import net.minecraft.world.entity.animal.Turtle;
+import net.minecraft.world.entity.animal.horse.Horse;
 import net.minecraft.world.entity.monster.Zombie;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.Projectile;
@@ -76,24 +77,42 @@ public class SMEntityEvents {
                 }
             }
         }
-        if (!level.isClientSide() && hitResult instanceof EntityHitResult entityHitResult
-                && entityHitResult.getEntity() instanceof Player player && player.isBlocking()
-                && player.getUseItem().is(SMItems.JADE_SHIELD.get())
-                && !(projectile.getType().is(SMEntityTags.CANNOT_BOUNCE))) {
-            event.setCanceled(true);
-            Direction direction = projectile.getDirection();
-            Vec3 angle = player.getLookAngle();
+        if (!level.isClientSide() && hitResult instanceof EntityHitResult entityHitResult && !(projectile.getType().is(SMEntityTags.CANNOT_BOUNCE))) {
+            if (entityHitResult.getEntity() instanceof Player player && player.isBlocking() && player.getUseItem().is(SMItems.JADE_SHIELD.get())) {
+                event.setCanceled(true);
+                Direction direction = projectile.getDirection();
+                Vec3 angle = player.getLookAngle();
 
-            projectile = replaceProjectile(projectile, level);
-            if (projectile == null) return;
+                projectile = replaceProjectile(projectile, level);
+                if (projectile == null) return;
 
-            projectile.shoot(angle.x, angle.y, angle.z, calculateBounceVelocity(velocity), 0.0F);
-            level.addFreshEntity(projectile);
-            projectile.gameEvent(GameEvent.PROJECTILE_SHOOT);
+                projectile.shoot(angle.x, angle.y, angle.z, calculateBounceVelocity(velocity), 0.0F);
+                level.addFreshEntity(projectile);
+                projectile.gameEvent(GameEvent.PROJECTILE_SHOOT);
 
-            level.playSound(null, player.getX(), player.getY(), player.getZ(), SMSounds.JADE_RICOCHET.get(), player.getSoundSource(), 1.0F, 0.0F);
-            ((ServerLevel) level).sendParticles(new DirectionParticleOptions(SMParticleTypes.RICOCHET.get(), direction), projectile.getX(), projectile.getY(), projectile.getZ(), 1, 0.0D, 0.0D, 0.0D, 0.0D);
-            player.getUseItem().hurtAndBreak(1, player, e -> e.broadcastBreakEvent(player.getUsedItemHand()));
+                level.playSound(null, player.getX(), player.getY(), player.getZ(), SMSounds.JADE_RICOCHET.get(), player.getSoundSource(), 1.0F, 0.0F);
+                ((ServerLevel) level).sendParticles(new DirectionParticleOptions(SMParticleTypes.RICOCHET.get(), direction), projectile.getX(), projectile.getY(), projectile.getZ(), 1, 0.0D, 0.0D, 0.0D, 0.0D);
+                player.getUseItem().hurtAndBreak(1, player, e -> e.broadcastBreakEvent(player.getUsedItemHand()));
+            }
+            if (entityHitResult.getEntity() instanceof Horse horse && horse.getArmor().is(SMItems.JADE_HORSE_ARMOR.get())) {
+                event.setCanceled(true);
+                Direction direction = projectile.getDirection();
+
+                projectile = replaceProjectile(projectile, level);
+                if (projectile == null) return;
+
+                switch (direction.getAxis()) {
+                    case X -> projectile.shoot(vec3.reverse().x, vec3.y, vec3.z, calculateBounceVelocity(velocity), 0.0F);
+                    case Y -> projectile.shoot(vec3.x, vec3.reverse().y, vec3.z, calculateBounceVelocity(velocity), 0.0F);
+                    case Z -> projectile.shoot(vec3.x, vec3.y, vec3.reverse().z, calculateBounceVelocity(velocity), 0.0F);
+                }
+                level.addFreshEntity(projectile);
+                projectile.gameEvent(GameEvent.PROJECTILE_SHOOT);
+                //TODO add particles & sound
+                //Vec3 particlePos = new Vec3(entityHitResult.getLocation().x, entityHitResult.getLocation().y, entityHitResult.getLocation().z).relative(direction, 0.1D);
+                //level.addParticle(new DirectionParticleOptions(SMParticleTypes.RICOCHET.get(), direction), particlePos.x, particlePos.y, particlePos.z, 0, 0, 0);
+                //level.playLocalSound(projectile.getX(), projectile.getY(), projectile.getZ(), SMSounds.JADE_RICOCHET.get(), SoundSource.BLOCKS, 1.0F, 0.0F, false);
+            }
         }
     }
 
