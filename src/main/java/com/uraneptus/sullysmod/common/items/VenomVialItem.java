@@ -73,10 +73,11 @@ public class VenomVialItem extends Item {
             player.awardStat(Stats.ITEM_USED.get(this));
             if (!player.getAbilities().instabuild) {
                 stack.shrink(1);
+                level.playSound(null, livingEntity.getOnPos(), SMSounds.VIAL_SHATTERS.get(), SoundSource.NEUTRAL, 1.0F, 1.3F);
             }
         }
 
-        level.playSound(null, livingEntity.getOnPos(), SMSounds.VIAL_SHATTERS.get(), SoundSource.NEUTRAL, 1.0F, 1.0F);
+
         livingEntity.gameEvent(GameEvent.DRINK);
         return stack;
     }
@@ -97,7 +98,7 @@ public class VenomVialItem extends Item {
         MobEffectInstance harmfulInstance = new MobEffectInstance(getHarmfulEffect(stack), 200, 0);
         List<MobEffectInstance> effectList = new ArrayList<>();
         effectList.add(beneficialInstance);
-        effectList.add(harmfulInstance) ;
+        effectList.add(harmfulInstance);
         PotionUtils.addPotionTooltip(effectList, tooltip, 1.0F);
     }
 
