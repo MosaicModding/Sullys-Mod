@@ -165,6 +165,7 @@ public class SMRecipeProvider extends RecipeProvider {
         grindstonePolishingRecipes(RecipeCategory.MISC, SMBlocks.DEEPSLATE_JADE_ORE.get(), SMItems.POLISHED_JADE.get(), 3, 1, consumer);
 
         smithingTemplateRecipes(RecipeCategory.TOOLS, SMItems.JADE_UPGRADE_SMITHING_TEMPLATE.get(), Items.SHIELD, SMItems.POLISHED_JADE.get(), SMItems.JADE_SHIELD.get(), SMBlocks.POLISHED_JADE_BLOCK.get(), consumer);
+        smithingRecipes(RecipeCategory.TOOLS, SMItems.JADE_UPGRADE_SMITHING_TEMPLATE.get(), Items.DIAMOND_HORSE_ARMOR, SMItems.POLISHED_JADE.get(), SMItems.JADE_HORSE_ARMOR.get(), consumer);
 
         //Custom
         ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, SMBlocks.JADE_TOTEM.get()).define('#', SMBlocks.POLISHED_JADE_SHINGLES.get()).pattern("###").pattern("# #").pattern("###").unlockedBy(getHasName(SMBlocks.POLISHED_JADE_SHINGLES.get()), has(SMBlocks.POLISHED_JADE_SHINGLES.get())).save(consumer, craftingPath(getItemName(SMBlocks.JADE_TOTEM.get())));

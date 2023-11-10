@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": {
+    "item": "sullysmod:polished_jade"
+  },
+  "base": {
+    "item": "minecraft:diamond_horse_armor"
+  },
+  "result": {
+    "item": "sullysmod:jade_horse_armor"
+  },
+  "template": {
+    "item": "sullysmod:jade_upgrade_smithing_template"
+  }
+}

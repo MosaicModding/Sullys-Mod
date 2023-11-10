@@ -39,9 +39,9 @@ public class SMTextDefinitions {
         JEI_POLISHING_TITLE = TextUtil.addSMTranslatable("jei." + GrindstonePolishingRecipe.NAME, "Polishing");
         JEI_POLISHING_INFO = TextUtil.addSMTranslatable("jei." + GrindstonePolishingRecipe.NAME + ".info", "Right click to polish");
         JADE_UPGRADE = TextUtil.addTranslatable(Util.makeDescriptionId("upgrade", new ResourceLocation("jade_upgrade")), "Jade Upgrade").withStyle(TITLE_FORMAT);
-        JADE_UPGRADE_APPLIES_TO = TextUtil.addTranslatable(Util.makeDescriptionId("item", jadeUpgradeString("applies_to")), "Shield").withStyle(DESCRIPTION_FORMAT);
+        JADE_UPGRADE_APPLIES_TO = TextUtil.addTranslatable(Util.makeDescriptionId("item", jadeUpgradeString("applies_to")), "Shield, Diamond Horse Armor").withStyle(DESCRIPTION_FORMAT);
         JADE_UPGRADE_INGREDIENTS = TextUtil.addTranslatable(Util.makeDescriptionId("item", jadeUpgradeString("ingredients")), "Polished Jade").withStyle(DESCRIPTION_FORMAT);
-        JADE_UPGRADE_BASE_SLOT_DESCRIPTION = TextUtil.addTranslatable(Util.makeDescriptionId("item", jadeUpgradeString("base_slot_description")), "Add shield");
+        JADE_UPGRADE_BASE_SLOT_DESCRIPTION = TextUtil.addTranslatable(Util.makeDescriptionId("item", jadeUpgradeString("base_slot_description")), "Add Shield/Horse Armor");
         JADE_UPGRADE_ADDITIONS_SLOT_DESCRIPTION = TextUtil.addTranslatable(Util.makeDescriptionId("item", jadeUpgradeString("additions_slot_description")), "Add Polished Jade");
         JADE_GRINDSET_ADV = TextUtil.addAdvancementTranslatables("advancements.adventure." + JADE_GRINDSET_ADV_NAME, TextUtil.createTranslation(JADE_GRINDSET_ADV_NAME), "Acquire Rough Jade from within a jungle biome");
         POLISH_JADE_ADV = TextUtil.addAdvancementTranslatables("advancements.adventure." + POLISH_JADE_ADV_NAME, "Sparkles Like New!", "Polish Rough Jade using a Grindstone");
