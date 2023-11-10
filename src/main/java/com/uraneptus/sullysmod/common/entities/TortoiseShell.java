@@ -23,11 +23,13 @@ import net.minecraft.world.entity.monster.Ravager;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.GameRules;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.AABB;
+import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.ForgeMod;
 import net.minecraftforge.fluids.FluidType;
@@ -132,13 +134,9 @@ public class TortoiseShell extends Entity implements OwnableEntity {
             this.setDeltaMovement(x / d2 * 2.1D, 0.05D, z / d2 * 2.1D);
             setSpinTimer();
             this.setOwner(pPlayer);
+            this.setYRot(pPlayer.getYRot());
+            this.yRotO = this.getYRot();
             return InteractionResult.SUCCESS;
-        }
-        while (this.getDeltaMovement().x() < -0.7 || this.getDeltaMovement().z() < -0.7) {
-            this.setDeltaMovement(this.getDeltaMovement().multiply(0.6D, 0.6D, 0.6D));
-        }
-        while (this.getDeltaMovement().x() > 0.7 || this.getDeltaMovement().z() > 0.7) {
-            this.setDeltaMovement(this.getDeltaMovement().multiply(0.6D, 0.6D, 0.6D));
         }
 
         return InteractionResult.PASS;
@@ -277,46 +275,50 @@ public class TortoiseShell extends Entity implements OwnableEntity {
         }
     }
 
+
     public void shoot(double pX, double pY, double pZ, float pVelocity, float pInaccuracy) {
-        Vec3 vec3 = (new Vec3(pX, pY, pZ)).normalize().add(this.random.triangle(0.0D, 0.0172275D * (double) pInaccuracy), this.random.triangle(0.0D, 0.0172275D * (double) pInaccuracy), this.random.triangle(0.0D, 0.0172275D * (double) pInaccuracy)).scale(pVelocity);
+        Vec3 vec3 = (new Vec3(pX, pY, pZ)).normalize().add(this.random.triangle(0.0D, 0.0172275D * (double)pInaccuracy), this.random.triangle(0.0D, 0.0172275D * (double)pInaccuracy), this.random.triangle(0.0D, 0.0172275D * (double)pInaccuracy)).scale((double)pVelocity);
         this.setDeltaMovement(vec3);
         double d0 = vec3.horizontalDistance();
-        this.setYRot((float) (Mth.atan2(vec3.x(), vec3.z()) * (double) (180F / (float) Math.PI)));
-        this.setXRot((float) (Mth.atan2(vec3.y(), d0) * (double) (180F / (float) Math.PI)));
+        this.setYRot((float)(Mth.atan2(vec3.x, vec3.z) * (double)(180F / (float)Math.PI)));
+        this.setXRot((float)(Mth.atan2(vec3.y, d0) * (double)(180F / (float)Math.PI)));
         this.yRotO = this.getYRot();
         this.xRotO = this.getXRot();
     }
 
+    protected static BlockHitResult getTortoiseShellPOVHitResult(Level pLevel, Entity entity, ClipContext.Fluid pFluidMode) {
+        float xRot = entity.getXRot();
+        float yRot = entity.getYRot();
+        Vec3 vec3 = entity.getEyePosition();
+        float f2 = Mth.cos(-yRot * ((float)Math.PI / 180F) - (float)Math.PI);
+        float f3 = Mth.sin(-yRot * ((float)Math.PI / 180F) - (float)Math.PI);
+        float f4 = -Mth.cos(-xRot * ((float)Math.PI / 180F));
+        float f5 = Mth.sin(-xRot * ((float)Math.PI / 180F));
+        float f6 = f3 * f4;
+        float f7 = f2 * f4;
+        double range = 1.15;
+        Vec3 vec31 = vec3.add((double)f6 * range, (double)f5 * range, (double)f7 * range);
+        return pLevel.clip(new ClipContext(vec3, vec31, ClipContext.Block.OUTLINE, pFluidMode, entity));
+    }
+
     private void blockKnockBack() {
-        BlockPos XP = this.blockPosition().offset(1, 0, 0);
-        BlockPos XN = this.blockPosition().offset(-1, 0, 0);
-        BlockPos ZP = this.blockPosition().offset(0, 0, 1);
-        BlockPos ZN = this.blockPosition().offset(0, 0, -1);
-        BlockState blockXP = this.level().getBlockState(XP);
-        BlockState blockXN = this.level().getBlockState(XN);
-        BlockState blockZP = this.level().getBlockState(ZP);
-        BlockState blockZN = this.level().getBlockState(ZN);
         Vec3 vec3 = this.getDeltaMovement();
+        BlockHitResult hitResult = getTortoiseShellPOVHitResult(this.level(), this, ClipContext.Fluid.NONE);
+        BlockPos blockPos = hitResult.getBlockPos();
 
-
-        if (blockXP.getFluidState().isEmpty() && blockXN.getFluidState().isEmpty() && blockZP.getFluidState().isEmpty() && blockZN.getFluidState().isEmpty()) {
-            if (!blockXP.isAir() && blockZP.isAir() && blockZN.isAir() && blockXP.isCollisionShapeFullBlock(this.level(), XP) && vec3.x() > 0.0) {
-                this.shoot(vec3.reverse().x, vec3.y, vec3.z, 0.45F, 0.0F);
+        if (hitResult.getType() == HitResult.Type.BLOCK) {
+            if (hitResult.getDirection().getAxis() == Direction.Axis.X) {
+                this.shoot(this.getDeltaMovement().reverse().x, vec3.y, vec3.z, 0.80F, 0F);
+                this.setYRot(this.getYRot() + 180);
+                this.yRotO = this.getYRot();
             }
-            if (!blockXN.isAir() && blockZP.isAir() && blockZN.isAir() && blockXN.isCollisionShapeFullBlock(this.level(), XN) && vec3.x() < 0.0) {
-                this.shoot(vec3.reverse().x, vec3.y, vec3.z, 0.45F, 0.0F);
+            if (hitResult.getDirection().getAxis() == Direction.Axis.Z) {
+                this.shoot(vec3.x, vec3.y, this.getDeltaMovement().reverse().z, 0.80F, 0F);
             }
-            if (!blockZP.isAir() && blockZP.isCollisionShapeFullBlock(this.level(), ZP)) {
-                this.shoot(vec3.x, vec3.y, vec3.reverse().z, 0.45F, 0.0F);
+            if (this.level().getBlockState(blockPos).is(SMBlockTags.PROJECTILES_BOUNCE_ON)) {
+                this.level().playSound(null, this.getX(), this.getY(), this.getZ(), SMSounds.JADE_RICOCHET.get(), this.getSoundSource(), 1.0F, 0.0F);
+                this.entityData.set(SPIN_TICKS, Mth.clamp(getSpinTicksEntityData() + 20, 0, 30));
             }
-            if (!blockZN.isAir() && blockZN.isCollisionShapeFullBlock(this.level(), ZN)) {
-                this.shoot(vec3.x, vec3.y, vec3.reverse().z, 0.45F, 0.0F);
-            }
-        }
-
-        if (blockXP.getBlockHolder().is(SMBlockTags.PROJECTILES_BOUNCE_ON) || blockXN.getBlockHolder().is(SMBlockTags.PROJECTILES_BOUNCE_ON) || blockZP.getBlockHolder().is(SMBlockTags.PROJECTILES_BOUNCE_ON) || blockZN.getBlockHolder().is(SMBlockTags.PROJECTILES_BOUNCE_ON)) {
-            this.level().playSound(null, this.getX(), this.getY(), this.getZ(), SMSounds.JADE_RICOCHET.get(), this.getSoundSource(), 1.0F, 0.0F);
-            this.entityData.set(SPIN_TICKS, Mth.clamp(getSpinTicksEntityData() + 20, 0, 30));
         }
     }
 
@@ -327,8 +329,6 @@ public class TortoiseShell extends Entity implements OwnableEntity {
             this.hurtEntity(this.level().getEntities(this, this.getBoundingBox().inflate(0.10D), EntitySelector.NO_CREATIVE_OR_SPECTATOR));
             this.knockBack(this.level().getEntities(this, this.getBoundingBox().inflate(0.10D), EntitySelector.NO_CREATIVE_OR_SPECTATOR));
             blockKnockBack();
-            System.out.println(this.getSpinTicksEntityData());
-            System.out.println(this.getDeltaMovement());
             this.entityData.set(SPIN_TICKS, this.getSpinTicksEntityData() - 1);
             while (this.getDeltaMovement().x() < -0.7 || this.getDeltaMovement().z() < -0.7) {
                 this.setDeltaMovement(this.getDeltaMovement().multiply(0.6D, 0.6D, 0.6D));
