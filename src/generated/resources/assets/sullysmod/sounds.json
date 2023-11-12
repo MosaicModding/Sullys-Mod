@@ -1,9 +1,23 @@
 {
+  "block.flinger_totem.add_honey": {
+    "sounds": [
+      "item/honeycomb/wax_on1",
+      "item/honeycomb/wax_on2",
+      "item/honeycomb/wax_on3"
+    ],
+    "subtitle": "subtitles.block.flinger_totem.add_honey"
+  },
   "block.flinger_totem.input_honey": {
     "sounds": [
       "sullysmod:block/flinger_totem/flinger_input_honey"
     ],
     "subtitle": "subtitles.block.flinger_totem.input_honey"
+  },
+  "block.flinger_totem.reduce_honey": {
+    "sounds": [
+      "block/beehive/shear"
+    ],
+    "subtitle": "subtitles.block.flinger_totem.reduce_honey"
   },
   "block.flinger_totem.shoot": {
     "sounds": [

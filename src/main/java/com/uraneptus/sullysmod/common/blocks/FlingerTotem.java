@@ -1,6 +1,7 @@
 package com.uraneptus.sullysmod.common.blocks;
 
 import com.uraneptus.sullysmod.core.registry.SMBlockEntityTypes;
+import com.uraneptus.sullysmod.core.registry.SMSounds;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.sounds.SoundEvents;
@@ -55,19 +56,18 @@ public class FlingerTotem extends BaseEntityBlock {
         return InteractionResult.PASS;
     }
 
-    //TODO use different soundevents
     public static void increaseHoneyLevel(@Nullable Entity pEntity, Level pLevel, BlockPos pPos, BlockState pState) {
         BlockState blockstate = pState.setValue(HONEY_AMOUNT, pState.getValue(HONEY_AMOUNT) + 1);
         pLevel.setBlock(pPos, blockstate, 3);
         pLevel.gameEvent(GameEvent.BLOCK_CHANGE, pPos, GameEvent.Context.of(pEntity, blockstate));
-        pLevel.playSound(null, (double)pPos.getX() + 0.5D, (double)pPos.getY() + 0.5D, (double)pPos.getZ() + 0.5D, SoundEvents.HONEYCOMB_WAX_ON, SoundSource.BLOCKS, 1.0F, 1.0F);
+        pLevel.playSound(null, (double)pPos.getX() + 0.5D, (double)pPos.getY() + 0.5D, (double)pPos.getZ() + 0.5D, SMSounds.FLINGER_ADD_HONEY.get(), SoundSource.BLOCKS, 1.0F, 1.0F);
     }
 
     public static void decreaseHoneyLevel(@Nullable Entity pEntity, Level pLevel, BlockPos pPos, BlockState pState) {
         BlockState blockstate = pState.setValue(HONEY_AMOUNT, pState.getValue(HONEY_AMOUNT) - 1);
         pLevel.setBlock(pPos, blockstate, 3);
         pLevel.gameEvent(GameEvent.BLOCK_CHANGE, pPos, GameEvent.Context.of(pEntity, blockstate));
-        pLevel.playSound(null, (double)pPos.getX() + 0.5D, (double)pPos.getY() + 0.5D, (double)pPos.getZ() + 0.5D, SoundEvents.BEEHIVE_SHEAR, SoundSource.BLOCKS, 1.0F, 1.0F);
+        pLevel.playSound(null, (double)pPos.getX() + 0.5D, (double)pPos.getY() + 0.5D, (double)pPos.getZ() + 0.5D, SMSounds.FLINGER_REDUCE_HONEY.get(), SoundSource.BLOCKS, 1.0F, 1.0F);
     }
 
     @Override

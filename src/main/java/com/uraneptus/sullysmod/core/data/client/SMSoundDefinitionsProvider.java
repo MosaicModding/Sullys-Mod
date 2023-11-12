@@ -39,9 +39,9 @@ public class SMSoundDefinitionsProvider extends SoundDefinitionsProvider {
         );
 
         addbasicSound(SMSounds.JADE_RICOCHET,
-                sound(new ResourceLocation("block/end_portal/eyeplace1")),
-                sound(new ResourceLocation("block/end_portal/eyeplace2")),
-                sound(new ResourceLocation("block/end_portal/eyeplace3"))
+                sound("block/end_portal/eyeplace1"),
+                sound("block/end_portal/eyeplace2"),
+                sound("block/end_portal/eyeplace3")
         );
 
         addbasicSound(SMSounds.FLINGER_FLINGS,
@@ -54,25 +54,35 @@ public class SMSoundDefinitionsProvider extends SoundDefinitionsProvider {
                 sound(SullysMod.modPrefix("block/flinger_totem/flinger_input_honey"))
         );
 
+        addbasicSound(SMSounds.FLINGER_ADD_HONEY,
+                sound("item/honeycomb/wax_on1"),
+                sound("item/honeycomb/wax_on2"),
+                sound("item/honeycomb/wax_on3")
+        );
+
+        addbasicSound(SMSounds.FLINGER_REDUCE_HONEY,
+                sound("block/beehive/shear")
+        );
+
         //Entity Sounds
         addbasicSound(SMSounds.TORTOISE_AMBIENT,
-                sound(new ResourceLocation("mob/turtle/idle1")).volume(0.8F),
-                sound(new ResourceLocation("mob/turtle/idle2")).volume(0.7F),
-                sound(new ResourceLocation("mob/turtle/idle3")).volume(0.8F)
+                sound("mob/turtle/idle1").volume(0.8F),
+                sound("mob/turtle/idle2").volume(0.7F),
+                sound("mob/turtle/idle3").volume(0.8F)
         );
 
         addbasicSound(SMSounds.TORTOISE_DEATH,
-                sound(new ResourceLocation("mob/turtle/death1")),
-                sound(new ResourceLocation("mob/turtle/death2")),
-                sound(new ResourceLocation("mob/turtle/death3"))
+                sound("mob/turtle/death1"),
+                sound("mob/turtle/death2"),
+                sound("mob/turtle/death3")
         );
 
         addbasicSound(SMSounds.TORTOISE_HURT,
-                sound(new ResourceLocation("mob/turtle/hurt1")),
-                sound(new ResourceLocation("mob/turtle/hurt2")),
-                sound(new ResourceLocation("mob/turtle/hurt3")),
-                sound(new ResourceLocation("mob/turtle/hurt4")),
-                sound(new ResourceLocation("mob/turtle/hurt5"))
+                sound("mob/turtle/hurt1"),
+                sound("mob/turtle/hurt2"),
+                sound("mob/turtle/hurt3"),
+                sound("mob/turtle/hurt4"),
+                sound("mob/turtle/hurt5")
         );
 
         addbasicSound(SMSounds.TORTOISE_HIDE,
