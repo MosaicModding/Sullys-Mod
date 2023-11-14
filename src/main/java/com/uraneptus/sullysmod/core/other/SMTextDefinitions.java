@@ -29,10 +29,12 @@ public class SMTextDefinitions {
     public static final String POLISH_JADE_ADV_NAME = "polish_jade";
     public static final String SHELL_HIT_ADV_NAME = "tortoise_shell_hit";
     public static final String SHELL_HIT_RAVAGER_ADV_NAME = "tortoise_shell_hit_ravager";
+    public static final String FILL_VIAL_JUNGLE_SPIDER_ADV_NAME = "glass_vial_filled_jungle_spider";
     public static Pair<Component, Component> JADE_GRINDSET_ADV;
     public static Pair<Component, Component> POLISH_JADE_ADV;
     public static Pair<Component, Component> SHELL_HIT_ADV;
     public static Pair<Component, Component> SHELL_HIT_RAVAGER_ADV;
+    public static Pair<Component, Component> FILL_VIAL_JUNGLE_SPIDER_ADV;
 
     public static void init() {
         POLISHABLE = TextUtil.addSMTranslatable("polishing.tooltip", "Polishable at grindstone").setStyle(polishingStyle);
@@ -46,7 +48,8 @@ public class SMTextDefinitions {
         JADE_GRINDSET_ADV = TextUtil.addAdvancementTranslatables("advancements.adventure." + JADE_GRINDSET_ADV_NAME, TextUtil.createTranslation(JADE_GRINDSET_ADV_NAME), "Acquire Rough Jade from within a jungle biome");
         POLISH_JADE_ADV = TextUtil.addAdvancementTranslatables("advancements.adventure." + POLISH_JADE_ADV_NAME, "Sparkles Like New!", "Polish Rough Jade using a Grindstone");
         SHELL_HIT_ADV = TextUtil.addAdvancementTranslatables("advancements.adventure." + SHELL_HIT_ADV_NAME, "Get Bonked!", "Hit an Entity with a Tortoise Shell");
-        SHELL_HIT_RAVAGER_ADV = TextUtil.addAdvancementTranslatables("advancements.adventure." + SHELL_HIT_RAVAGER_ADV_NAME, "Bully the Bullies", "Hit an Ravager with a Tortoise Shell");
+        SHELL_HIT_RAVAGER_ADV = TextUtil.addAdvancementTranslatables("advancements.adventure." + SHELL_HIT_RAVAGER_ADV_NAME, "Bully the Bullies", "Hit a Ravager with a Tortoise Shell");
+        FILL_VIAL_JUNGLE_SPIDER_ADV = TextUtil.addAdvancementTranslatables("advancements.adventure." + FILL_VIAL_JUNGLE_SPIDER_ADV_NAME, "Jungle Fever", "Harvest a Jungle Spider's venom using a Glass Vial");
     }
 
     private static ResourceLocation jadeUpgradeString(String suffix) {

@@ -1,0 +1,38 @@
+{
+  "parent": "minecraft:adventure/root",
+  "criteria": {
+    "harvest_venom": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "sullysmod:venom_vial"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.adventure.glass_vial_filled_jungle_spider.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "sullysmod:glass_vial"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.adventure.glass_vial_filled_jungle_spider.title"
+    }
+  },
+  "requirements": [
+    [
+      "harvest_venom"
+    ]
+  ],
+  "sends_telemetry_event": true
+}
