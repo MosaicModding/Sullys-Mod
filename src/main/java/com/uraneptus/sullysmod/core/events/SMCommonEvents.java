@@ -44,7 +44,7 @@ public class SMCommonEvents {
     }
 
     public static boolean zombieExtraRules(EntityType<? extends Monster> pType, ServerLevelAccessor pLevel, MobSpawnType pSpawnType, BlockPos pPos, RandomSource pRandom) {
-        return !SMConfig.DISABLE_DEEPSLATE_ZOMBIE_SPAWNS.get() || pPos.getY() > 0;
+        return !SMConfig.DISABLE_DEEPSLATE_ZOMBIE_SPAWNS.get() || pSpawnType.equals(MobSpawnType.SPAWNER) || pPos.getY() > 0;
     }
 
     public static boolean spiderExtraRules(EntityType<? extends Monster> pType, ServerLevelAccessor pLevel, MobSpawnType pSpawnType, BlockPos pPos, RandomSource pRandom) {
