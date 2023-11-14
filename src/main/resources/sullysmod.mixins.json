@@ -1,11 +1,11 @@
 {
   "required": true,
-  "package": "com.uraneptus.sullysmod.mixins",
+  "package": "com.uraneptus.sullysmod.core.mixin",
   "compatibilityLevel": "JAVA_17",
   "minVersion": "0.8",
   "refmap": "sullysmod.refmap.json",
   "mixins": [
-
+    "MonsterRoomFeatureMixin"
   ],
   "injectors": {
     "defaultRequire": 1
