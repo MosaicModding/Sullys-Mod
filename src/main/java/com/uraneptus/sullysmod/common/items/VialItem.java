@@ -35,6 +35,9 @@ public class VialItem extends Item {
 
     protected void turnVialIntoItem(ItemStack vialStack, Player player, ItemStack filledVial) {
         player.awardStat(Stats.ITEM_USED.get(this));
-        ItemUtils.createFilledResult(vialStack, player, filledVial, true);
+        ItemUtils.createFilledResult(vialStack, player, filledVial);
+        if (vialStack.isEmpty()) {
+            player.addItem(filledVial);
+        }
     }
 }
