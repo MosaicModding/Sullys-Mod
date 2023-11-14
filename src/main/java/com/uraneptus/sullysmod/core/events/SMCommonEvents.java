@@ -5,6 +5,7 @@ import com.uraneptus.sullysmod.common.entities.BoulderingZombie;
 import com.uraneptus.sullysmod.common.entities.Lanternfish;
 import com.uraneptus.sullysmod.core.SMConfig;
 import com.uraneptus.sullysmod.core.other.SMTextDefinitions;
+import com.uraneptus.sullysmod.core.other.tags.SMBiomeTags;
 import com.uraneptus.sullysmod.core.registry.SMEntityTypes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.packs.PackType;
@@ -47,7 +48,7 @@ public class SMCommonEvents {
     }
 
     public static boolean spiderExtraRules(EntityType<? extends Monster> pType, ServerLevelAccessor pLevel, MobSpawnType pSpawnType, BlockPos pPos, RandomSource pRandom) {
-        return !SMConfig.DISABLE_SPIDER_IN_JUNGLE_SPAWNS.get() || !pLevel.getBiome(pPos).is(BiomeTags.IS_JUNGLE);
+        return !SMConfig.DISABLE_SPIDER_IN_JUNGLE_SPAWNS.get() || !pLevel.getBiome(pPos).is(SMBiomeTags.JUNGLE_SPIDER_SPAWN_IN);
     }
 
     @SubscribeEvent
