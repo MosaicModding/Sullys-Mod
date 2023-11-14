@@ -73,7 +73,7 @@ public class VenomVialItem extends Item {
             player.awardStat(Stats.ITEM_USED.get(this));
             if (!player.getAbilities().instabuild) {
                 stack.shrink(1);
-                level.playSound(null, livingEntity.getOnPos(), SMSounds.VIAL_SHATTERS.get(), SoundSource.NEUTRAL, 1.0F, 1.3F);
+                level.playSound(null, livingEntity.getOnPos(), SMSounds.VIAL_SHATTERS.get(), SoundSource.NEUTRAL, 1.0F, 1.0F);
             }
         }
 

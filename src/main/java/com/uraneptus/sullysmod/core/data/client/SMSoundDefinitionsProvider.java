@@ -27,9 +27,15 @@ public class SMSoundDefinitionsProvider extends SoundDefinitionsProvider {
 
         //Item Sounds
         addbasicSound(SMSounds.VIAL_SHATTERS,
-                sound("random/glass1"),
-                sound("random/glass2"),
-                sound("random/glass3")
+                sound("random/glass1").pitch(1.3F),
+                sound("random/glass2").pitch(1.3F),
+                sound("random/glass3").pitch(1.3F)
+        );
+        addbasicSound(SMSounds.VIAL_FILLS,
+                sound("item/bottle/fill1").pitch(1.3F),
+                sound("item/bottle/fill2").pitch(1.3F),
+                sound("item/bottle/fill3").pitch(1.3F),
+                sound("item/bottle/fill4").pitch(1.3F)
         );
 
         //Block Sounds

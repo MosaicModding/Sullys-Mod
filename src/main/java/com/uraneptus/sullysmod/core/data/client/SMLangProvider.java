@@ -114,7 +114,7 @@ public class SMLangProvider extends LanguageProvider {
 
         //Subtitles
         add("subtitles.item.vial.shatter", "Vial shatters");
-        add("subtitles.item.vial.harvest", "Vial fills");
+        add("subtitles.item.vial.fill", "Vial fills");
 
         add("subtitles.block.grindstone.polish_jade", "Grindstone polishes");
         add("subtitles.block.jade.ricochet", "Projectile ricochets");

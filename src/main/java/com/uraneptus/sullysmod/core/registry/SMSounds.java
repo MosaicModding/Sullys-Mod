@@ -16,6 +16,7 @@ public class SMSounds {
     //Item Sounds
     public static final RegistryObject<SoundEvent> POLISH_JADE = HELPER.createSoundEvent("block.grindstone.polish_jade");
     public static final RegistryObject<SoundEvent> VIAL_SHATTERS = HELPER.createSoundEvent("item.vial.shatter");
+    public static final RegistryObject<SoundEvent> VIAL_FILLS = HELPER.createSoundEvent("item.vial.fill");
 
     //Block Sounds
     public static final RegistryObject<SoundEvent> JADE_RICOCHET = HELPER.createSoundEvent("block.jade.ricochet");

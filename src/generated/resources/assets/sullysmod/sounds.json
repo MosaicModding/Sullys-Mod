@@ -219,11 +219,41 @@
     ],
     "subtitle": "subtitles.entity.tortoise_shell.place"
   },
+  "item.vial.fill": {
+    "sounds": [
+      {
+        "name": "item/bottle/fill1",
+        "pitch": 1.3
+      },
+      {
+        "name": "item/bottle/fill2",
+        "pitch": 1.3
+      },
+      {
+        "name": "item/bottle/fill3",
+        "pitch": 1.3
+      },
+      {
+        "name": "item/bottle/fill4",
+        "pitch": 1.3
+      }
+    ],
+    "subtitle": "subtitles.item.vial.fill"
+  },
   "item.vial.shatter": {
     "sounds": [
-      "random/glass1",
-      "random/glass2",
-      "random/glass3"
+      {
+        "name": "random/glass1",
+        "pitch": 1.3
+      },
+      {
+        "name": "random/glass2",
+        "pitch": 1.3
+      },
+      {
+        "name": "random/glass3",
+        "pitch": 1.3
+      }
     ],
     "subtitle": "subtitles.item.vial.shatter"
   },
