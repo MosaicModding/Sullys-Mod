@@ -1,0 +1,17 @@
+{
+  "modifiers": [
+    {
+      "type": "effects_changed",
+      "config": {
+        "criteria": "all_effects",
+        "effects": {
+          "minecraft:luck": {},
+          "minecraft:unluck": {}
+        },
+        "removes": false
+      }
+    }
+  ],
+  "priority": "normal",
+  "selector": "minecraft:nether/all_effects"
+}

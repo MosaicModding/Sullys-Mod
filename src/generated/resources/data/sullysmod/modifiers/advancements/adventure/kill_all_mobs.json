@@ -1,0 +1,50 @@
+{
+  "modifiers": [
+    {
+      "type": "criteria",
+      "config": {
+        "criteria": {
+          "sullysmod:bouldering_zombie": {
+            "conditions": {
+              "entity": [
+                {
+                  "condition": "minecraft:entity_properties",
+                  "entity": "this",
+                  "predicate": {
+                    "type": "sullysmod:bouldering_zombie"
+                  }
+                }
+              ]
+            },
+            "trigger": "minecraft:player_killed_entity"
+          },
+          "sullysmod:jungle_spider": {
+            "conditions": {
+              "entity": [
+                {
+                  "condition": "minecraft:entity_properties",
+                  "entity": "this",
+                  "predicate": {
+                    "type": "sullysmod:jungle_spider"
+                  }
+                }
+              ]
+            },
+            "trigger": "minecraft:player_killed_entity"
+          }
+        },
+        "requirements": [
+          [
+            "sullysmod:bouldering_zombie"
+          ],
+          [
+            "sullysmod:jungle_spider"
+          ]
+        ],
+        "should_replace_requirements": false
+      }
+    }
+  ],
+  "priority": "normal",
+  "selector": "minecraft:adventure/kill_all_mobs"
+}
