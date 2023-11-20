@@ -25,8 +25,8 @@ public class MonsterRoomFeatureMixin {
 
     @Inject(method = "place", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/block/entity/SpawnerBlockEntity;setEntityId(Lnet/minecraft/world/entity/EntityType;Lnet/minecraft/util/RandomSource;)V", shift = At.Shift.AFTER), locals = LocalCapture.CAPTURE_FAILHARD)
 
-    private void replaceZombie (FeaturePlaceContext<NoneFeatureConfiguration> pContext, CallbackInfoReturnable<Boolean> cir, Predicate predicate, BlockPos blockpos, RandomSource randomsource, WorldGenLevel worldgenlevel, int i, int j, int k, int l, int i1, int j1, int k1, int l1, int i2, int j2, BlockEntity blockentity, SpawnerBlockEntity spawnerblockentity) {
-        if (Objects.requireNonNull(spawnerblockentity.getSpawner().getOrCreateDisplayEntity(Objects.requireNonNull(spawnerblockentity.getLevel()), randomsource, blockpos)).getType() == EntityType.ZOMBIE && SMConfig.DISABLE_DEEPSLATE_ZOMBIE_SPAWNS.get() && blockpos.getY() <= 0) {
+    private void sullysmod_replaceZombie (FeaturePlaceContext<NoneFeatureConfiguration> pContext, CallbackInfoReturnable<Boolean> cir, Predicate predicate, BlockPos blockpos, RandomSource randomsource, WorldGenLevel worldgenlevel, int i, int j, int k, int l, int i1, int j1, int k1, int l1, int i2, int j2, BlockEntity blockentity, SpawnerBlockEntity spawnerblockentity) {
+        if (Objects.requireNonNull(spawnerblockentity.getSpawner().getOrCreateDisplayEntity(worldgenlevel.getLevel(), randomsource, blockpos)).getType() == EntityType.ZOMBIE && SMConfig.DISABLE_DEEPSLATE_ZOMBIE_SPAWNS.get() && blockpos.getY() <= 0) {
             spawnerblockentity.setEntityId(SMEntityTypes.BOULDERING_ZOMBIE.get(), randomsource);
         }
     }
