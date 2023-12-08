@@ -24,20 +24,28 @@ public class VialItem extends Item {
             vialStack.getOrCreateTag().putString("beneficialEffect", ForgeRegistries.MOB_EFFECTS.getKey(jungleSpider.getBeneficialVenomEffect()).toString());
             vialStack.getOrCreateTag().putString("harmfulEffect", ForgeRegistries.MOB_EFFECTS.getKey(jungleSpider.getHarmfulVenomEffect()).toString());
 
-
-            player.level().playSound(target, target.getOnPos(), SMSounds.VIAL_FILLS.get(), SoundSource.NEUTRAL, 1.0F, 1.0F);
-            this.turnVialIntoItem(stack, player, vialStack);
+            this.createFilledVialResult(stack, player, target, vialStack);
             return InteractionResult.sidedSuccess(player.level().isClientSide);
         }
-
         return super.interactLivingEntity(stack, player, target, hand);
     }
 
-    protected void turnVialIntoItem(ItemStack vialStack, Player player, ItemStack filledVial) {
-        player.awardStat(Stats.ITEM_USED.get(this));
-        ItemUtils.createFilledResult(vialStack, player, filledVial);
-        if (vialStack.isEmpty()) {
-            player.addItem(filledVial);
+    protected void createFilledVialResult(ItemStack pEmptyStack, Player pPlayer, LivingEntity soundTarget, ItemStack pFilledStack) {
+        if (pPlayer.getAbilities().instabuild) {
+            if (!pPlayer.getInventory().contains(pFilledStack)) {
+                pPlayer.level().playSound(soundTarget, soundTarget.getOnPos(), SMSounds.VIAL_FILLS.get(), SoundSource.NEUTRAL, 1.0F, 1.0F);
+                pPlayer.awardStat(Stats.ITEM_USED.get(this));
+                pPlayer.getInventory().add(pFilledStack);
+            }
+        } else {
+            if (!pEmptyStack.isEmpty()) {
+                if (!pPlayer.getInventory().add(pFilledStack)) {
+                    pPlayer.drop(pFilledStack, false);
+                }
+                pEmptyStack.shrink(1);
+                pPlayer.level().playSound(soundTarget, soundTarget.getOnPos(), SMSounds.VIAL_FILLS.get(), SoundSource.NEUTRAL, 1.0F, 1.0F);
+                pPlayer.awardStat(Stats.ITEM_USED.get(this));
+            }
         }
     }
 }

@@ -1,7 +1,7 @@
 package com.uraneptus.sullysmod.core.data.client;
 
 import com.uraneptus.sullysmod.SullysMod;
-import com.uraneptus.sullysmod.core.other.TextUtil;
+import com.uraneptus.sullysmod.core.other.SMTextUtil;
 import com.uraneptus.sullysmod.core.registry.SMBlocks;
 import com.uraneptus.sullysmod.core.registry.SMEntityTypes;
 import com.uraneptus.sullysmod.core.registry.SMItems;
@@ -148,7 +148,7 @@ public class SMLangProvider extends LanguageProvider {
         add("subtitles.entity.bouldering_zombie.death", "Bouldering Zombie dies");
 
         //Other
-        TextUtil.TRANSLATABLES.forEach(this::add);
+        SMTextUtil.TRANSLATABLES.forEach(this::add);
         add("death.attack.tortoise_shell", "%1$s took a Tortoise Shell to the knees");
         add("death.attack.tortoise_shell.player", "%1$s got bonked to death");
 
@@ -168,14 +168,14 @@ public class SMLangProvider extends LanguageProvider {
     }
 
     public void forItem(Supplier<? extends Item> item) {
-        addItem(item, TextUtil.createTranslation(Objects.requireNonNull(ForgeRegistries.ITEMS.getKey(item.get())).getPath()));
+        addItem(item, SMTextUtil.createTranslation(Objects.requireNonNull(ForgeRegistries.ITEMS.getKey(item.get())).getPath()));
     }
 
     public void forBlock(Supplier<? extends Block> block) {
-        addBlock(block, TextUtil.createTranslation(Objects.requireNonNull(ForgeRegistries.BLOCKS.getKey(block.get())).getPath()));
+        addBlock(block, SMTextUtil.createTranslation(Objects.requireNonNull(ForgeRegistries.BLOCKS.getKey(block.get())).getPath()));
     }
 
     public void forEntity(Supplier<? extends EntityType<?>> entity) {
-        addEntityType(entity, TextUtil.createTranslation(Objects.requireNonNull(ForgeRegistries.ENTITY_TYPES.getKey(entity.get())).getPath()));
+        addEntityType(entity, SMTextUtil.createTranslation(Objects.requireNonNull(ForgeRegistries.ENTITY_TYPES.getKey(entity.get())).getPath()));
     }
 }

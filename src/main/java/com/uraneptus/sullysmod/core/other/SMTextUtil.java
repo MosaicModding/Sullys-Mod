@@ -10,7 +10,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class TextUtil {
+public class SMTextUtil {
     public static Map<String, String> TRANSLATABLES = new HashMap<>();
 
     public static MutableComponent addTranslatable(String translatable, String translation) {

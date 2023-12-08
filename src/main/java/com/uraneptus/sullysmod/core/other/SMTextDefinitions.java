@@ -14,7 +14,7 @@ public class SMTextDefinitions {
     public static final ChatFormatting TITLE_FORMAT = ChatFormatting.GRAY;
     public static final ChatFormatting DESCRIPTION_FORMAT = ChatFormatting.BLUE;
     public static final String ZOMBIE_PACK_NAME = "zombie_retextures";
-    public static final Component ZOMBIE_PACK_DISPLAY_NAME = Component.literal("Sully's Mod " + TextUtil.createTranslation(ZOMBIE_PACK_NAME));
+    public static final Component ZOMBIE_PACK_DISPLAY_NAME = Component.literal("Sully's Mod " + SMTextUtil.createTranslation(ZOMBIE_PACK_NAME));
     public static Component POLISHABLE;
     public static Component JEI_POLISHING_TITLE;
     public static Component JEI_POLISHING_INFO;
@@ -37,19 +37,19 @@ public class SMTextDefinitions {
     public static Pair<Component, Component> FILL_VIAL_JUNGLE_SPIDER_ADV;
 
     public static void init() {
-        POLISHABLE = TextUtil.addSMTranslatable("polishing.tooltip", "Polishable at grindstone").setStyle(polishingStyle);
-        JEI_POLISHING_TITLE = TextUtil.addSMTranslatable("jei." + GrindstonePolishingRecipe.NAME, "Polishing");
-        JEI_POLISHING_INFO = TextUtil.addSMTranslatable("jei." + GrindstonePolishingRecipe.NAME + ".info", "Right click to polish");
-        JADE_UPGRADE = TextUtil.addTranslatable(Util.makeDescriptionId("upgrade", new ResourceLocation("jade_upgrade")), "Jade Upgrade").withStyle(TITLE_FORMAT);
-        JADE_UPGRADE_APPLIES_TO = TextUtil.addTranslatable(Util.makeDescriptionId("item", jadeUpgradeString("applies_to")), "Shield, Diamond Horse Armor").withStyle(DESCRIPTION_FORMAT);
-        JADE_UPGRADE_INGREDIENTS = TextUtil.addTranslatable(Util.makeDescriptionId("item", jadeUpgradeString("ingredients")), "Polished Jade").withStyle(DESCRIPTION_FORMAT);
-        JADE_UPGRADE_BASE_SLOT_DESCRIPTION = TextUtil.addTranslatable(Util.makeDescriptionId("item", jadeUpgradeString("base_slot_description")), "Add Shield/Horse Armor");
-        JADE_UPGRADE_ADDITIONS_SLOT_DESCRIPTION = TextUtil.addTranslatable(Util.makeDescriptionId("item", jadeUpgradeString("additions_slot_description")), "Add Polished Jade");
-        JADE_GRINDSET_ADV = TextUtil.addAdvancementTranslatables("advancements.adventure." + JADE_GRINDSET_ADV_NAME, TextUtil.createTranslation(JADE_GRINDSET_ADV_NAME), "Acquire Rough Jade from within a jungle biome");
-        POLISH_JADE_ADV = TextUtil.addAdvancementTranslatables("advancements.adventure." + POLISH_JADE_ADV_NAME, "Sparkles Like New!", "Polish Rough Jade using a Grindstone");
-        SHELL_HIT_ADV = TextUtil.addAdvancementTranslatables("advancements.adventure." + SHELL_HIT_ADV_NAME, "Get Bonked!", "Hit an Entity with a Tortoise Shell");
-        SHELL_HIT_RAVAGER_ADV = TextUtil.addAdvancementTranslatables("advancements.adventure." + SHELL_HIT_RAVAGER_ADV_NAME, "Bully the Bullies", "Hit a Ravager with a Tortoise Shell");
-        FILL_VIAL_JUNGLE_SPIDER_ADV = TextUtil.addAdvancementTranslatables("advancements.adventure." + FILL_VIAL_JUNGLE_SPIDER_ADV_NAME, "Jungle Fever", "Harvest a Jungle Spider's venom using a Glass Vial");
+        POLISHABLE = SMTextUtil.addSMTranslatable("polishing.tooltip", "Polishable at grindstone").setStyle(polishingStyle);
+        JEI_POLISHING_TITLE = SMTextUtil.addSMTranslatable("jei." + GrindstonePolishingRecipe.NAME, "Polishing");
+        JEI_POLISHING_INFO = SMTextUtil.addSMTranslatable("jei." + GrindstonePolishingRecipe.NAME + ".info", "Right click to polish");
+        JADE_UPGRADE = SMTextUtil.addTranslatable(Util.makeDescriptionId("upgrade", new ResourceLocation("jade_upgrade")), "Jade Upgrade").withStyle(TITLE_FORMAT);
+        JADE_UPGRADE_APPLIES_TO = SMTextUtil.addTranslatable(Util.makeDescriptionId("item", jadeUpgradeString("applies_to")), "Shield, Diamond Horse Armor").withStyle(DESCRIPTION_FORMAT);
+        JADE_UPGRADE_INGREDIENTS = SMTextUtil.addTranslatable(Util.makeDescriptionId("item", jadeUpgradeString("ingredients")), "Polished Jade").withStyle(DESCRIPTION_FORMAT);
+        JADE_UPGRADE_BASE_SLOT_DESCRIPTION = SMTextUtil.addTranslatable(Util.makeDescriptionId("item", jadeUpgradeString("base_slot_description")), "Add Shield/Horse Armor");
+        JADE_UPGRADE_ADDITIONS_SLOT_DESCRIPTION = SMTextUtil.addTranslatable(Util.makeDescriptionId("item", jadeUpgradeString("additions_slot_description")), "Add Polished Jade");
+        JADE_GRINDSET_ADV = SMTextUtil.addAdvancementTranslatables("advancements.adventure." + JADE_GRINDSET_ADV_NAME, SMTextUtil.createTranslation(JADE_GRINDSET_ADV_NAME), "Acquire Rough Jade from within a jungle biome");
+        POLISH_JADE_ADV = SMTextUtil.addAdvancementTranslatables("advancements.adventure." + POLISH_JADE_ADV_NAME, "Sparkles Like New!", "Polish Rough Jade using a Grindstone");
+        SHELL_HIT_ADV = SMTextUtil.addAdvancementTranslatables("advancements.adventure." + SHELL_HIT_ADV_NAME, "Get Bonked!", "Hit an Entity with a Tortoise Shell");
+        SHELL_HIT_RAVAGER_ADV = SMTextUtil.addAdvancementTranslatables("advancements.adventure." + SHELL_HIT_RAVAGER_ADV_NAME, "Bully the Bullies", "Hit a Ravager with a Tortoise Shell");
+        FILL_VIAL_JUNGLE_SPIDER_ADV = SMTextUtil.addAdvancementTranslatables("advancements.adventure." + FILL_VIAL_JUNGLE_SPIDER_ADV_NAME, "Jungle Fever", "Harvest a Jungle Spider's venom using a Glass Vial");
     }
 
     private static ResourceLocation jadeUpgradeString(String suffix) {
