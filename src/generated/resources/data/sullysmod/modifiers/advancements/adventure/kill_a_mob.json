@@ -33,13 +33,16 @@
             "trigger": "minecraft:player_killed_entity"
           }
         },
-        "requirements": [
-          [
-            "sullysmod:bouldering_zombie",
-            "sullysmod:jungle_spider"
-          ]
-        ],
-        "should_replace_requirements": false
+        "indexed_requirements": [
+          {
+            "index": 0,
+            "replace": false,
+            "requirements": [
+              "sullysmod:jungle_spider",
+              "sullysmod:bouldering_zombie"
+            ]
+          }
+        ]
       }
     }
   ],
