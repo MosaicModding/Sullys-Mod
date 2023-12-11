@@ -155,8 +155,11 @@ public class JungleSpider extends Spider implements IEntityAdditionalSpawnData {
     @Override
     public void readAdditionalSaveData(CompoundTag compoundTag) {
         super.readAdditionalSaveData(compoundTag);
-        this.setBeneficialVenomEffect(Objects.requireNonNull(ForgeRegistries.MOB_EFFECTS.getValue(new ResourceLocation(compoundTag.getString("BeneficialEffect")))));
-        this.setHarmfulVenomEffect(Objects.requireNonNull(ForgeRegistries.MOB_EFFECTS.getValue(new ResourceLocation(compoundTag.getString("HarmfulEffect")))));
+        MobEffect BENEFICIAL = ForgeRegistries.MOB_EFFECTS.getValue(new ResourceLocation(compoundTag.getString("BeneficialEffect")));
+        MobEffect HARMFUL = ForgeRegistries.MOB_EFFECTS.getValue(new ResourceLocation(compoundTag.getString("HarmfulEffect")));
+
+        this.setBeneficialVenomEffect(BENEFICIAL != null ? BENEFICIAL : chooseBeneficialEffect());
+        this.setHarmfulVenomEffect(HARMFUL != null ? HARMFUL : chooseHarmfulEffect());
     }
 
     @Override
