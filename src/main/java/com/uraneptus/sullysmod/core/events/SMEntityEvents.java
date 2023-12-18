@@ -98,20 +98,22 @@ public class SMEntityEvents {
                 event.setCanceled(true);
                 Direction direction = projectile.getDirection();
 
-                projectile = replaceProjectile(projectile, level);
-                if (projectile == null) return;
+                if (projectile.yo < horse.getBoundingBox().maxY) {
+                    projectile = replaceProjectile(projectile, level);
+                    if (projectile == null) return;
 
-                switch (direction.getAxis()) {
-                    case X -> projectile.shoot(vec3.reverse().x, vec3.y, vec3.z, calculateBounceVelocity(velocity), 0.0F);
-                    case Y -> projectile.shoot(vec3.x, vec3.reverse().y, vec3.z, calculateBounceVelocity(velocity), 0.0F);
-                    case Z -> projectile.shoot(vec3.x, vec3.y, vec3.reverse().z, calculateBounceVelocity(velocity), 0.0F);
+                    switch (direction.getAxis()) {
+                        case X -> projectile.shoot(vec3.reverse().x, vec3.y, vec3.z, calculateBounceVelocity(velocity), 0.0F);
+                        case Y -> projectile.shoot(vec3.x, vec3.reverse().y, vec3.z, calculateBounceVelocity(velocity), 0.0F);
+                        case Z -> projectile.shoot(vec3.x, vec3.y, vec3.reverse().z, calculateBounceVelocity(velocity), 0.0F);
+                    }
+                    level.addFreshEntity(projectile);
+                    projectile.gameEvent(GameEvent.PROJECTILE_SHOOT);
                 }
-                level.addFreshEntity(projectile);
-                projectile.gameEvent(GameEvent.PROJECTILE_SHOOT);
-                //TODO add particles & sound
-                //Vec3 particlePos = new Vec3(entityHitResult.getLocation().x, entityHitResult.getLocation().y, entityHitResult.getLocation().z).relative(direction, 0.1D);
-                //level.addParticle(new DirectionParticleOptions(SMParticleTypes.RICOCHET.get(), direction), particlePos.x, particlePos.y, particlePos.z, 0, 0, 0);
-                //level.playLocalSound(projectile.getX(), projectile.getY(), projectile.getZ(), SMSounds.JADE_RICOCHET.get(), SoundSource.BLOCKS, 1.0F, 0.0F, false);
+                level.playSound(null, horse.getX(), horse.getY(), horse.getZ(), SMSounds.JADE_RICOCHET.get(), horse.getSoundSource(), 1.0F, 0.0F);
+                //TODO particles only spawn when facing east or west. No idea why
+                ((ServerLevel) level).sendParticles(new DirectionParticleOptions(SMParticleTypes.RICOCHET.get(), direction), projectile.getX(), projectile.getY(), projectile.getZ(), 1, 0.0D, 0.0D, 0.0D, 0.0D);
+
             }
         }
     }
