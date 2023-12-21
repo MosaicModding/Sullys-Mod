@@ -87,10 +87,9 @@ public class SMItems {
                 .addItemsAfter(of(Items.DIAMOND_HORSE_ARMOR), JADE_HORSE_ARMOR)
 
                 .tab(CreativeModeTabs.SPAWN_EGGS)
-                .addItemsAfter(of(Items.COD_SPAWN_EGG), LANTERNFISH_SPAWN_EGG)
-                .addItemsAfter(of(Items.TURTLE_SPAWN_EGG), TORTOISE_SPAWN_EGG)
-                .addItemsAfter(of(Items.ZOMBIE_SPAWN_EGG), BOULDERING_ZOMBIE_SPAWN_EGG)
-                .addItemsAfter(of(Items.SPIDER_SPAWN_EGG), JUNGLE_SPIDER_SPAWN_EGG)
+                .addItemsAfter(of(Items.TADPOLE_SPAWN_EGG), TORTOISE_SPAWN_EGG)
+                .addItemsAfter(of(Items.BLAZE_SPAWN_EGG), BOULDERING_ZOMBIE_SPAWN_EGG)
+                .addItemsAfter(of(Items.IRON_GOLEM_SPAWN_EGG), JUNGLE_SPIDER_SPAWN_EGG, LANTERNFISH_SPAWN_EGG)
 
                 .tab(CreativeModeTabs.NATURAL_BLOCKS)
                 .addItemsAfter(of(Items.COPPER_ORE), JADE_ORE)
