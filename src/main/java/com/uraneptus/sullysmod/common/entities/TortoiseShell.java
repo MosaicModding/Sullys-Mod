@@ -13,6 +13,7 @@ import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.players.OldUsersConverter;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
@@ -37,16 +38,17 @@ import net.minecraftforge.network.PlayMessages;
 
 import javax.annotation.Nullable;
 import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
 import java.util.UUID;
 
 public class TortoiseShell extends Entity implements OwnableEntity {
     private static final EntityDataAccessor<Integer> DATA_ID_HURT = SynchedEntityData.defineId(TortoiseShell.class, EntityDataSerializers.INT);
     private static final EntityDataAccessor<Integer> DATA_ID_HURTDIR = SynchedEntityData.defineId(TortoiseShell.class, EntityDataSerializers.INT);
     private static final EntityDataAccessor<Float> DATA_ID_DAMAGE = SynchedEntityData.defineId(TortoiseShell.class, EntityDataSerializers.FLOAT);
+    protected static final EntityDataAccessor<Optional<UUID>> DATA_OWNERUUID_ID = SynchedEntityData.defineId(TortoiseShell.class, EntityDataSerializers.OPTIONAL_UUID);
 
     public static final EntityDataAccessor<Integer> SPIN_TICKS = SynchedEntityData.defineId(TortoiseShell.class, EntityDataSerializers.INT);
-    private LivingEntity cachedOwner;
-    private UUID ownerUUID;
 
     public TortoiseShell(EntityType<? extends TortoiseShell> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
@@ -57,29 +59,18 @@ public class TortoiseShell extends Entity implements OwnableEntity {
         this(SMEntityTypes.TORTOISE_SHELL.get(), level);
     }
 
-    public void setOwner(@Nullable LivingEntity pOwner) {
-        if (pOwner != null) {
-            this.ownerUUID = pOwner.getUUID();
-            this.cachedOwner = pOwner;
-        }
-    }
-
-    @org.jetbrains.annotations.Nullable
-    @Override
-    public UUID getOwnerUUID() {
-        return this.cachedOwner.getUUID();
+    public void setOwner(LivingEntity pOwner) {
+        this.setOwnerUUID(pOwner.getUUID());
     }
 
     @Nullable
-    public LivingEntity getOwner() {
-        if (this.cachedOwner != null && !this.cachedOwner.isRemoved()) {
-            return this.cachedOwner;
-        } else if (this.ownerUUID != null && this.level() instanceof ServerLevel) {
-            this.cachedOwner = (LivingEntity) ((ServerLevel)this.level()).getEntity(this.ownerUUID);
-            return this.cachedOwner;
-        } else {
-            return null;
-        }
+    @Override
+    public UUID getOwnerUUID() {
+        return this.entityData.get(DATA_OWNERUUID_ID).orElse(null);
+    }
+
+    public void setOwnerUUID(@Nullable UUID pUuid) {
+        this.entityData.set(DATA_OWNERUUID_ID, Optional.ofNullable(pUuid));
     }
 
     @Override
@@ -93,6 +84,7 @@ public class TortoiseShell extends Entity implements OwnableEntity {
         this.entityData.define(DATA_ID_HURTDIR, 1);
         this.entityData.define(DATA_ID_DAMAGE, 0.0F);
         this.entityData.define(SPIN_TICKS, 0);
+        this.entityData.define(DATA_OWNERUUID_ID, Optional.empty());
     }
 
     public Integer getSpinTicksEntityData() {
@@ -111,8 +103,7 @@ public class TortoiseShell extends Entity implements OwnableEntity {
 
     //This prevents the entity from moving when the player is sprinting and hits the entity
     @Override
-    public void push(double pX, double pY, double pZ) {
-    }
+    public void push(double pX, double pY, double pZ) {}
 
     @Override
     protected Vec3 getRelativePortalPosition(Direction.Axis pAxis, BlockUtil.FoundRectangle pPortal) {
@@ -385,16 +376,23 @@ public class TortoiseShell extends Entity implements OwnableEntity {
     @Override
     protected void addAdditionalSaveData(CompoundTag pCompound) {
         pCompound.putInt("spinTicks", getSpinTicksEntityData());
-        if (this.ownerUUID != null) {
-            pCompound.putUUID("Owner", this.ownerUUID);
+        if (this.getOwnerUUID() != null) {
+            pCompound.putUUID("Owner", this.getOwnerUUID());
         }
     }
 
     @Override
     protected void readAdditionalSaveData(CompoundTag pCompound) {
+        UUID uuid;
         if (pCompound.hasUUID("Owner")) {
-            this.ownerUUID = pCompound.getUUID("Owner");
-            this.cachedOwner = null;
+            uuid = pCompound.getUUID("Owner");
+        } else {
+            String s = pCompound.getString("Owner");
+            uuid = OldUsersConverter.convertMobOwnerIfNecessary(Objects.requireNonNull(this.getServer()), s);
+        }
+
+        if (uuid != null) {
+            this.setOwnerUUID(uuid);
         }
     }
 
