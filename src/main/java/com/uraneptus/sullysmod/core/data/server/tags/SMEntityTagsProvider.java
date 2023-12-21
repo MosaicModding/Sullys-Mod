@@ -7,6 +7,7 @@ import com.uraneptus.sullysmod.core.registry.SMEntityTypes;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.EntityTypeTagsProvider;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EntityType;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import org.jetbrains.annotations.Nullable;
@@ -76,6 +77,6 @@ public class SMEntityTagsProvider extends EntityTypeTagsProvider {
                 EntityType.SHULKER_BULLET,
                 EntityType.WITHER_SKULL,
                 EntityType.FISHING_BOBBER
-        );
+        ).addOptional(new ResourceLocation("botania", "mana_burst"));
     }
 }

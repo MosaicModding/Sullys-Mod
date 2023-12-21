@@ -5,6 +5,10 @@
     "minecraft:dragon_fireball",
     "minecraft:shulker_bullet",
     "minecraft:wither_skull",
-    "minecraft:fishing_bobber"
+    "minecraft:fishing_bobber",
+    {
+      "id": "botania:mana_burst",
+      "required": false
+    }
   ]
 }
