@@ -79,8 +79,7 @@ public class SMItems {
                 .addItemsAfter(of(Items.SADDLE), TORTOISE_SHELL)
 
                 .tab(CreativeModeTabs.FOOD_AND_DRINKS)
-                .addItemsAfter(of(Items.COD), LANTERNFISH)
-                .addItemsAfter(of(Items.COOKED_COD), COOKED_LANTERNFISH)
+                .addItemsAfter(of(Items.COOKED_COD), LANTERNFISH, COOKED_LANTERNFISH)
 
                 .tab(CreativeModeTabs.COMBAT)
                 .addItemsAfter(of(Items.SHIELD), JADE_SHIELD)
