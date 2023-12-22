@@ -77,15 +77,16 @@ public class BoulderingZombie extends Zombie implements GeoEntity {
 
     @Override
     public void tick() {
-        super.tick();
         if (!this.level().isClientSide) {
             if (this.getTarget() != null) {
                 this.navigation = climberNavigation;
                 this.setClimbing(this.horizontalCollision);
             } else {
                 this.navigation = groundNavigation;
+                this.setClimbing(false);
             }
         }
+        super.tick();
     }
 
     @Override
