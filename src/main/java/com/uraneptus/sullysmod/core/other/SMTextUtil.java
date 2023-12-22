@@ -36,23 +36,5 @@ public class SMTextUtil {
             builder.append(Character.toUpperCase(part.charAt(0))).append(part.substring(1));
         }
         return builder.toString();
-
-        /*
-        var translation = "";
-        List<String> translationParts = Lists.newArrayList();
-        var splitList = path.split("_");
-        for (String split : splitList) {
-            var capitalized = firstToUpperCase(split);
-            translationParts.add(capitalized);
-        }
-        translation = String.join(" ", translationParts);
-        return translation;
-
-         */
-    }
-
-    public static String firstToUpperCase(String string) {
-        var firstLetter = string.charAt(0);
-        return string.replaceFirst(String.valueOf(firstLetter), String.valueOf(firstLetter).toUpperCase());
     }
 }
