@@ -2,6 +2,7 @@ package com.uraneptus.sullysmod.common.blocks;
 
 import com.uraneptus.sullysmod.core.registry.SMBlockEntityTypes;
 import com.uraneptus.sullysmod.core.registry.SMSounds;
+import it.unimi.dsi.fastutil.objects.ObjectArrayList;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
@@ -14,17 +15,17 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.GameEvent;
-import org.apache.commons.compress.utils.Lists;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
 public class FlingerTotemBlockEntity extends BlockEntity {
     private static final List<String> IGNORED_NBT = Arrays.asList("UUID");
-    private final List<FlingerTotemBlockEntity.ProjectileData> stored = Lists.newArrayList();
+    private final List<FlingerTotemBlockEntity.ProjectileData> stored = new ObjectArrayList<>();
 
     public FlingerTotemBlockEntity(BlockPos pPos, BlockState pBlockState) {
         super(SMBlockEntityTypes.FLINGER_TOTEM.get(), pPos, pBlockState);

@@ -2,6 +2,7 @@ package com.uraneptus.sullysmod.core.data;
 
 import com.uraneptus.sullysmod.SullysMod;
 import com.uraneptus.sullysmod.core.registry.SMBlocks;
+import it.unimi.dsi.fastutil.objects.ObjectArrayList;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderSet;
 import net.minecraft.core.registries.Registries;
@@ -42,7 +43,7 @@ public class SMDatagenUtil {
 
     @SafeVarargs
     public static HolderSet<PlacedFeature> getPlacedHolderSet(BootstapContext<?> context, ResourceKey<PlacedFeature>... placedFeatures) {
-        List<Holder<PlacedFeature>> holders = new ArrayList<>();
+        List<Holder<PlacedFeature>> holders = new ObjectArrayList<>();
         for (ResourceKey<PlacedFeature> feature : placedFeatures) {
             holders.add(context.lookup(Registries.PLACED_FEATURE).getOrThrow(feature));
         }

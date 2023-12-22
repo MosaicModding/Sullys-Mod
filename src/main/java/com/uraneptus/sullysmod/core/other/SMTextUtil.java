@@ -3,11 +3,9 @@ package com.uraneptus.sullysmod.core.other;
 import com.uraneptus.sullysmod.SullysMod;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
-import org.apache.commons.compress.utils.Lists;
 import org.apache.commons.lang3.tuple.Pair;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class SMTextUtil {
@@ -29,6 +27,17 @@ public class SMTextUtil {
     }
 
     public static String createTranslation(String path) {
+        final StringBuilder builder = new StringBuilder();
+
+        for (String part : path.split("_")) {
+            if (!builder.isEmpty()) {
+                builder.append(" ");
+            }
+            builder.append(Character.toUpperCase(part.charAt(0))).append(part.substring(1));
+        }
+        return builder.toString();
+
+        /*
         var translation = "";
         List<String> translationParts = Lists.newArrayList();
         var splitList = path.split("_");
@@ -38,6 +47,8 @@ public class SMTextUtil {
         }
         translation = String.join(" ", translationParts);
         return translation;
+
+         */
     }
 
     public static String firstToUpperCase(String string) {

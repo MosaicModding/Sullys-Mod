@@ -1,29 +1,22 @@
 {
-  "type": "forge:conditional",
-  "recipes": [
+  "type": "sullysmod:grindstone_polishing",
+  "experience": 0,
+  "ingredients": [
     {
-      "conditions": [
-        {
-          "type": "forge:mod_loaded",
-          "modid": "architects_palette"
-        },
-		{
-          "type": "forge:mod_loaded",
-          "modid": "mcwlights"
-        }
-      ],
-      "recipe": {
-        "type": "sullysmod:grindstone_polishing",
-        "experience": 0,
-        "ingredients": [
-          {
-            "item": "mcwlights:glowstone_slab"
-          }
-        ],
-        "result": {
-          "item": "architects_palette:polished_glowstone_slab"
-        }
-      }
+      "item": "mcwlights:glowstone_slab"
+    }
+  ],
+  "result": {
+    "item": "architects_palette:polished_glowstone_slab"
+  },
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "architects_palette"
+    },
+    {
+      "type": "forge:mod_loaded",
+      "modid": "mcwlights"
     }
   ]
 }
