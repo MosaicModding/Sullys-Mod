@@ -72,15 +72,13 @@ public class SMItemTagsProvider extends ItemTagsProvider {
 
         //Forge Tags
         tag(SMItemTags.RAW_LANTERNFISH).add(
-                SMItems.LANTERNFISH.get(),
-                SMItems.LANTERNFISH_SLICE.get()
+                SMItems.LANTERNFISH.get()
         );
         tag(SMItemTags.RAW_FISHES).addTag(
                 SMItemTags.RAW_LANTERNFISH
         );
         tag(SMItemTags.COOKED_LANTERNFISH).add(
-                SMItems.COOKED_LANTERNFISH.get(),
-                SMItems.COOKED_LANTERNFISH_SLICE.get()
+                SMItems.COOKED_LANTERNFISH.get()
         );
         tag(SMItemTags.COOKED_FISHES).addTag(
                 SMItemTags.COOKED_LANTERNFISH
@@ -105,18 +103,5 @@ public class SMItemTagsProvider extends ItemTagsProvider {
         tag(Tags.Items.TOOLS_SHIELDS).add(
                 SMItems.JADE_SHIELD.get()
         );
-
-        //Quark Tags
-        /*tag(SMItemTags.VERTICAL_SLABS).add(
-                SMBlocks.POLISHED_SMALL_JADE_BRICK_VERTICAL_SLAB.get().asItem(),
-                SMBlocks.POLISHED_JADE_BRICK_VERTICAL_SLAB.get().asItem(),
-                SMBlocks.POLISHED_JADE_SHINGLE_VERTICAL_SLAB.get().asItem(),
-                SMBlocks.POLISHED_JADE_TILE_VERTICAL_SLAB.get().asItem(),
-                SMBlocks.ROUGH_JADE_BRICK_VERTICAL_SLAB.get().asItem(),
-                SMBlocks.SMOOTHED_ROUGH_JADE_VERTICAL_SLAB.get().asItem(),
-                SMBlocks.ROUGH_JADE_TILE_VERTICAL_SLAB.get().asItem()
-        );
-
-         */
     }
 }

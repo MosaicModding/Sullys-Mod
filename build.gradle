@@ -97,12 +97,8 @@ dependencies {
 
     compileOnly fg.deobf("mezz.jei:jei-${mc_version}-forge-api:${jei_version}")
     implementation fg.deobf("mezz.jei:jei-${mc_version}-forge:${jei_version}")
-    implementation fg.deobf("curse.maven:farmers-delight-398521:4679319")
-    //runtimeOnly fg.deobf("curse.maven:quark-243121:4140000")
-    //runtimeOnly fg.deobf("curse.maven:autoreglib-250363:4100299")
     runtimeOnly fg.deobf("curse.maven:catalogue-459701:4590890")
     //runtimeOnly fg.deobf("curse.maven:configured-457570:4011355")
-    //runtimeOnly fg.deobf("curse.maven:abnormals-delight-442719:4371935")
 
 }
 

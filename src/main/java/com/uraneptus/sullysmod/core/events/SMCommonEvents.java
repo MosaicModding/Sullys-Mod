@@ -30,7 +30,6 @@ import net.minecraftforge.resource.PathPackResources;
 @Mod.EventBusSubscriber(modid = SullysMod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class SMCommonEvents {
 
-
     @SubscribeEvent
     public static void registerSpawnPlacement(SpawnPlacementRegisterEvent event) {
        event.register(SMEntityTypes.LANTERNFISH.get(), SpawnPlacements.Type.IN_WATER, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Lanternfish::checkLanternfishSpawnRules, SpawnPlacementRegisterEvent.Operation.AND);

@@ -49,17 +49,6 @@ public class SMBlocks {
     public static final RegistryObject<Block> POLISHED_JADE_SHINGLE_SLAB = HELPER.createBlock("polished_jade_shingle_slab", () -> new SlabBlock(SMProperties.Blocks.POLISHED_JADE_BLOCKS));
     public static final RegistryObject<Block> POLISHED_JADE_TILE_SLAB = HELPER.createBlock("polished_jade_tile_slab", () -> new SlabBlock(SMProperties.Blocks.POLISHED_JADE_BLOCKS));
 
-    //Jade Vertical Slabs
-    /*
-    public static final RegistryObject<Block> ROUGH_JADE_BRICK_VERTICAL_SLAB = HELPER.createCompatBlock("quark", "rough_jade_brick_vertical_slab", () -> new VerticalSlabBlock(SMProperties.Blocks.ROUGH_JADE_BLOCKS)); //CreativeModeTab.TAB_BUILDING_BLOCKS
-    public static final RegistryObject<Block> SMOOTHED_ROUGH_JADE_VERTICAL_SLAB = HELPER.createCompatBlock("quark", "smoothed_rough_jade_vertical_slab", () -> new VerticalSlabBlock(SMProperties.Blocks.ROUGH_JADE_BLOCKS)); //CreativeModeTab.TAB_BUILDING_BLOCKS
-    public static final RegistryObject<Block> ROUGH_JADE_TILE_VERTICAL_SLAB = HELPER.createCompatBlock("quark", "rough_jade_tile_vertical_slab", () -> new VerticalSlabBlock(SMProperties.Blocks.ROUGH_JADE_BLOCKS)); //CreativeModeTab.TAB_BUILDING_BLOCKS
-    public static final RegistryObject<Block> POLISHED_JADE_BRICK_VERTICAL_SLAB = HELPER.createCompatBlock("quark", "polished_jade_brick_vertical_slab", () -> new VerticalSlabBlock(SMProperties.Blocks.POLISHED_JADE_BLOCKS)); //CreativeModeTab.TAB_BUILDING_BLOCKS
-    public static final RegistryObject<Block> POLISHED_SMALL_JADE_BRICK_VERTICAL_SLAB = HELPER.createCompatBlock("quark", "polished_small_jade_brick_vertical_slab", () -> new VerticalSlabBlock(SMProperties.Blocks.POLISHED_JADE_BLOCKS)); //CreativeModeTab.TAB_BUILDING_BLOCKS
-    public static final RegistryObject<Block> POLISHED_JADE_SHINGLE_VERTICAL_SLAB = HELPER.createCompatBlock("quark", "polished_jade_shingle_vertical_slab", () -> new VerticalSlabBlock(SMProperties.Blocks.POLISHED_JADE_BLOCKS)); //CreativeModeTab.TAB_BUILDING_BLOCKS
-    public static final RegistryObject<Block> POLISHED_JADE_TILE_VERTICAL_SLAB = HELPER.createCompatBlock("quark", "polished_jade_tile_vertical_slab", () -> new VerticalSlabBlock(SMProperties.Blocks.POLISHED_JADE_BLOCKS)); //CreativeModeTab.TAB_BUILDING_BLOCKS
-     */
-
     //Copper Buttons
     public static final RegistryObject<Block> COPPER_BUTTON = HELPER.createBlock("copper_button", () -> new WeatheringCopperButtonBlock(SMProperties.Blocks.COPPER_BUTTONS, BlockSetType.STONE, 10, true, WeatheringCopper.WeatherState.UNAFFECTED));
     public static final RegistryObject<Block> EXPOSED_COPPER_BUTTON = HELPER.createBlock("exposed_copper_button", () -> new WeatheringCopperButtonBlock(SMProperties.Blocks.COPPER_BUTTONS, BlockSetType.STONE, 20, true, WeatheringCopper.WeatherState.EXPOSED));

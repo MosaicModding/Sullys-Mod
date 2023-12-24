@@ -1,10 +1,6 @@
 package com.uraneptus.sullysmod.core.data.server;
 
-import com.teamabnormals.blueprint.core.api.conditions.QuarkFlagRecipeCondition;
-import com.uraneptus.sullysmod.SullysMod;
-import com.uraneptus.sullysmod.core.data.SMDatagenUtil;
 import com.uraneptus.sullysmod.core.data.server.builder.GrindstonePolishingRecipeBuilder;
-import com.uraneptus.sullysmod.core.integration.fd.FDCompat;
 import com.uraneptus.sullysmod.core.registry.SMBlocks;
 import com.uraneptus.sullysmod.core.registry.SMItems;
 import net.minecraft.data.PackOutput;
@@ -15,8 +11,6 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraftforge.common.crafting.ConditionalRecipe;
-import net.minecraftforge.common.crafting.conditions.ModLoadedCondition;
 
 import java.util.function.Consumer;
 import java.util.function.Supplier;
@@ -35,8 +29,6 @@ public class SMRecipeProvider extends RecipeProvider {
 
         //Cooking, Smelting etc.
         cookingRecipes(SMItems.LANTERNFISH, SMItems.COOKED_LANTERNFISH, 0.35F, consumer);
-
-        modLoadedCookingRecipes(FDCompat.MOD_ID, SMItems.LANTERNFISH_SLICE, SMItems.COOKED_LANTERNFISH_SLICE, 0.35F, consumer);
 
         basicSmeltingRecipes(RecipeCategory.BUILDING_BLOCKS, SMBlocks.ROUGH_JADE_BLOCK, SMBlocks.SMOOTHED_ROUGH_JADE, 1.0F, consumer);
 
@@ -70,17 +62,6 @@ public class SMRecipeProvider extends RecipeProvider {
         slabRecipes(SMBlocks.POLISHED_SMALL_JADE_BRICKS, SMBlocks.POLISHED_SMALL_JADE_BRICK_SLAB, consumer);
         slabRecipes(SMBlocks.POLISHED_JADE_SHINGLES, SMBlocks.POLISHED_JADE_SHINGLE_SLAB, consumer);
 
-        /*
-        verticalSlabRecipes(SMBlocks.ROUGH_JADE_BRICK_SLAB, SMBlocks.ROUGH_JADE_BRICK_VERTICAL_SLAB, consumer);
-        verticalSlabRecipes(SMBlocks.ROUGH_JADE_TILE_SLAB, SMBlocks.ROUGH_JADE_TILE_VERTICAL_SLAB, consumer);
-        verticalSlabRecipes(SMBlocks.SMOOTHED_ROUGH_JADE_SLAB, SMBlocks.SMOOTHED_ROUGH_JADE_VERTICAL_SLAB, consumer);
-        verticalSlabRecipes(SMBlocks.POLISHED_JADE_BRICK_SLAB, SMBlocks.POLISHED_JADE_BRICK_VERTICAL_SLAB, consumer);
-        verticalSlabRecipes(SMBlocks.POLISHED_JADE_TILE_SLAB, SMBlocks.POLISHED_JADE_TILE_VERTICAL_SLAB, consumer);
-        verticalSlabRecipes(SMBlocks.POLISHED_SMALL_JADE_BRICK_SLAB, SMBlocks.POLISHED_SMALL_JADE_BRICK_VERTICAL_SLAB, consumer);
-        verticalSlabRecipes(SMBlocks.POLISHED_JADE_SHINGLE_SLAB, SMBlocks.POLISHED_JADE_SHINGLE_VERTICAL_SLAB, consumer);
-
-         */
-
         pillarRecipes(SMBlocks.POLISHED_JADE_BLOCK, SMBlocks.POLISHED_JADE_PILLAR, consumer);
 
         chiseledRecipes(SMBlocks.POLISHED_JADE_BRICK_SLAB, SMBlocks.POLISHED_CHISELED_JADE, consumer);
@@ -98,8 +79,6 @@ public class SMRecipeProvider extends RecipeProvider {
         waxButtonRecipes(SMBlocks.EXPOSED_COPPER_BUTTON, SMBlocks.WAXED_EXPOSED_COPPER_BUTTON, consumer);
         waxButtonRecipes(SMBlocks.WEATHERED_COPPER_BUTTON, SMBlocks.WAXED_WEATHERED_COPPER_BUTTON, consumer);
         waxButtonRecipes(SMBlocks.OXIDIZED_COPPER_BUTTON, SMBlocks.WAXED_OXIDIZED_COPPER_BUTTON, consumer);
-
-        fishRollRecipes(SMItems.LANTERNFISH_SLICE, SMItems.LANTERNFISH_ROLL, consumer);
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, SMItems.GLASS_VIAL.get(), 3)
                 .define('#', Items.GLASS_PANE)
@@ -174,26 +153,26 @@ public class SMRecipeProvider extends RecipeProvider {
         ShapelessRecipeBuilder.shapeless(RecipeCategory.REDSTONE, SMBlocks.JADE_FLINGER_TOTEM.get()).requires(SMBlocks.JADE_TOTEM.get()).requires(Items.TRIPWIRE_HOOK).unlockedBy(getHasName(Items.TRIPWIRE_HOOK), has(Items.TRIPWIRE_HOOK)).unlockedBy(getHasName(SMBlocks.JADE_TOTEM.get()), has(SMBlocks.JADE_TOTEM.get())).save(consumer, craftingPath(getItemName(SMBlocks.JADE_FLINGER_TOTEM.get()) + "_from_jade_totem"));
     }
 
-    private static void packableBlockRecipes(Supplier<? extends ItemLike> unpacked, Supplier<? extends ItemLike> packed, Consumer<FinishedRecipe> consumer) {
+    protected static void packableBlockRecipes(Supplier<? extends ItemLike> unpacked, Supplier<? extends ItemLike> packed, Consumer<FinishedRecipe> consumer) {
         ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, packed.get()).define('#', unpacked.get()).pattern("###").pattern("###").pattern("###")
                 .unlockedBy(getHasName(unpacked.get()), has(unpacked.get())).save(consumer, craftingPath(getItemName(packed.get())));
         ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, unpacked.get(), 9).requires(packed.get())
                 .unlockedBy(getHasName(packed.get()), has(packed.get())).save(consumer, craftingPath(getItemName(unpacked.get())));
     }
 
-    private static void tilingBlockRecipes(Supplier<? extends ItemLike> ingredient, Supplier<? extends ItemLike> result, Consumer<FinishedRecipe> consumer) {
+    protected static void tilingBlockRecipes(Supplier<? extends ItemLike> ingredient, Supplier<? extends ItemLike> result, Consumer<FinishedRecipe> consumer) {
         ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, result.get(), 4).define('#', ingredient.get()).pattern("##").pattern("##")
                 .unlockedBy(getHasName(ingredient.get()), has(ingredient.get())).save(consumer, craftingPath(getItemName(result.get())));
     }
 
-    private static void basicSmeltingRecipes(RecipeCategory category, Supplier<? extends ItemLike> ingredient, Supplier<? extends ItemLike> result, float experience, Consumer<FinishedRecipe> consumer) {
+    protected static void basicSmeltingRecipes(RecipeCategory category, Supplier<? extends ItemLike> ingredient, Supplier<? extends ItemLike> result, float experience, Consumer<FinishedRecipe> consumer) {
         String resultName = getItemName(result.get());
         String ingredientName = getItemName(ingredient.get());
         SimpleCookingRecipeBuilder.smelting(Ingredient.of(ingredient.get()), category, result.get(), experience, 200)
                 .unlockedBy(getHasName(ingredient.get()), has(ingredient.get())).save(consumer, smeltingPath(resultName + "_from_smelting" + "_" + ingredientName));
     }
 
-    private static void oreCookingRecipes(RecipeCategory category, Supplier<? extends ItemLike> ingredient, Supplier<? extends ItemLike> result, float experience, Consumer<FinishedRecipe> consumer) {
+    protected static void oreCookingRecipes(RecipeCategory category, Supplier<? extends ItemLike> ingredient, Supplier<? extends ItemLike> result, float experience, Consumer<FinishedRecipe> consumer) {
         String resultName = getItemName(result.get());
         String ingredientName = getItemName(ingredient.get());
 
@@ -204,7 +183,7 @@ public class SMRecipeProvider extends RecipeProvider {
                 .unlockedBy(getHasName(ingredient.get()), has(ingredient.get())).save(consumer, blastingPath(resultName + "_from_blasting" + "_" + ingredientName));
     }
 
-    private static void cookingRecipes(Supplier<? extends ItemLike> ingredient, Supplier<? extends ItemLike> result, float experience, Consumer<FinishedRecipe> consumer) {
+    protected static void cookingRecipes(Supplier<? extends ItemLike> ingredient, Supplier<? extends ItemLike> result, float experience, Consumer<FinishedRecipe> consumer) {
         String resultName = getItemName(result.get());
 
         SimpleCookingRecipeBuilder.smelting(Ingredient.of(ingredient.get()), RecipeCategory.FOOD, result.get(), experience, 200)
@@ -218,115 +197,69 @@ public class SMRecipeProvider extends RecipeProvider {
                 .save(consumer, smokingPath(resultName + "_from_smoking"));
     }
 
-    private static void modLoadedCookingRecipes(String modId, Supplier<? extends ItemLike> ingredient, Supplier<? extends ItemLike> result, float experience, Consumer<FinishedRecipe> consumer) {
-        String resultName = getItemName(result.get());
-
-        ConditionalRecipe.builder()
-                .addCondition(new ModLoadedCondition(modId))
-                .addRecipe(consumer1 -> SimpleCookingRecipeBuilder.smelting(Ingredient.of(ingredient.get()), RecipeCategory.FOOD, result.get(), experience, 200)
-                        .unlockedBy(getHasName(ingredient.get()), has(ingredient.get()))
-                        .save(consumer1, SullysMod.modPrefix(getItemName(result.get()))))
-                .build(consumer, smeltingPath(resultName));
-        ConditionalRecipe.builder()
-                .addCondition(new ModLoadedCondition(modId))
-                .addRecipe(consumer1 -> SimpleCookingRecipeBuilder.campfireCooking(Ingredient.of(ingredient.get()), RecipeCategory.FOOD, result.get(), experience, 600)
-                        .unlockedBy(getHasName(ingredient.get()), has(ingredient.get()))
-                        .save(consumer1, SullysMod.modPrefix(getItemName(result.get()))))
-                .build(consumer, campfire_cookingPath(resultName + "_from_campfire_cooking"));
-        ConditionalRecipe.builder()
-                .addCondition(new ModLoadedCondition(modId))
-                .addRecipe(consumer1 -> SimpleCookingRecipeBuilder.smoking(Ingredient.of(ingredient.get()), RecipeCategory.FOOD, result.get(), experience, 100)
-                        .unlockedBy(getHasName(ingredient.get()), has(ingredient.get()))
-                        .save(consumer1, SullysMod.modPrefix(getItemName(result.get()))))
-                .build(consumer, smokingPath(resultName + "_from_smoking"));
-    }
-
-    private static void stairRecipes(Supplier<? extends ItemLike> ingredient, Supplier<? extends ItemLike> result, Consumer<FinishedRecipe> consumer) {
+    protected static void stairRecipes(Supplier<? extends ItemLike> ingredient, Supplier<? extends ItemLike> result, Consumer<FinishedRecipe> consumer) {
         ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, result.get(), 4).define('#', ingredient.get()).pattern("#  ").pattern("## ").pattern("###")
                 .unlockedBy(getHasName(ingredient.get()), has(ingredient.get())).save(consumer, craftingPath(getItemName(result.get())));
     }
 
-    private static void slabRecipes(Supplier<? extends ItemLike> ingredient, Supplier<? extends ItemLike> result, Consumer<FinishedRecipe> consumer) {
+    protected static void slabRecipes(Supplier<? extends ItemLike> ingredient, Supplier<? extends ItemLike> result, Consumer<FinishedRecipe> consumer) {
         ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, result.get(), 6).define('#', ingredient.get()).pattern("###")
                 .unlockedBy(getHasName(ingredient.get()), has(ingredient.get())).save(consumer, craftingPath(getItemName(result.get())));
     }
 
-    private static void pillarRecipes(Supplier<? extends ItemLike> ingredient, Supplier<? extends ItemLike> result, Consumer<FinishedRecipe> consumer) {
+    protected static void pillarRecipes(Supplier<? extends ItemLike> ingredient, Supplier<? extends ItemLike> result, Consumer<FinishedRecipe> consumer) {
       ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, result.get(), 2).define('#', ingredient.get()).pattern("#").pattern("#")
               .unlockedBy(getHasName(ingredient.get()), has(ingredient.get())).save(consumer, craftingPath(getItemName(result.get())));
     }
 
-    private static void chiseledRecipes(Supplier<? extends ItemLike> ingredient, Supplier<? extends ItemLike> result, Consumer<FinishedRecipe> consumer) {
+    protected static void chiseledRecipes(Supplier<? extends ItemLike> ingredient, Supplier<? extends ItemLike> result, Consumer<FinishedRecipe> consumer) {
         ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, result.get(), 1).define('#', ingredient.get()).pattern("#").pattern("#")
                 .unlockedBy(getHasName(ingredient.get()), has(ingredient.get())).save(consumer, craftingPath(getItemName(result.get())));
     }
 
-    private static void buttonRecipes(ItemLike ingredient, Supplier<? extends ItemLike> result, Consumer<FinishedRecipe> consumer) {
+    protected static void buttonRecipes(ItemLike ingredient, Supplier<? extends ItemLike> result, Consumer<FinishedRecipe> consumer) {
         ShapelessRecipeBuilder.shapeless(RecipeCategory.REDSTONE, result.get()).requires(ingredient)
                 .unlockedBy(getHasName(ingredient), has(ingredient)).save(consumer, craftingPath(getItemName(result.get())));
     }
 
-    private static void waxButtonRecipes(Supplier<? extends ItemLike> ingredient, Supplier<? extends ItemLike> result, Consumer<FinishedRecipe> consumer) {
+    protected static void waxButtonRecipes(Supplier<? extends ItemLike> ingredient, Supplier<? extends ItemLike> result, Consumer<FinishedRecipe> consumer) {
         String resultName = getItemName(result.get());
 
         ShapelessRecipeBuilder.shapeless(RecipeCategory.REDSTONE, result.get()).requires(ingredient.get()).requires(Items.HONEYCOMB)
                 .unlockedBy(getHasName(ingredient.get()), has(ingredient.get())).save(consumer, craftingPath(resultName + "_from_honeycomb"));
     }
 
-
-    private static void fishRollRecipes(Supplier<? extends ItemLike> ingredient, Supplier<? extends ItemLike> result, Consumer<FinishedRecipe> consumer) {
-        ConditionalRecipe.builder()
-                .addCondition(new ModLoadedCondition(FDCompat.MOD_ID))
-                .addRecipe(consumer1 -> ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, result.get(), 2).requires(ingredient.get(), 2).requires(FDCompat.getFDItem("cooked_rice"))
-                        .unlockedBy(getHasName(ingredient.get()), has(ingredient.get()))
-                        .save(consumer1, SullysMod.modPrefix(getItemName(result.get()))))
-                .build(consumer, craftingPath(getItemName(result.get())));
-
-    }
-
-    private static void stonecutterRecipes(RecipeCategory category, Supplier<? extends ItemLike> ingredient, Supplier<? extends ItemLike> result, int resultCount, Consumer<FinishedRecipe> consumer) {
+    protected static void stonecutterRecipes(RecipeCategory category, Supplier<? extends ItemLike> ingredient, Supplier<? extends ItemLike> result, int resultCount, Consumer<FinishedRecipe> consumer) {
         String prefix = getItemName(result.get()) + "_from_" + getItemName(ingredient.get());
         SingleItemRecipeBuilder.stonecutting(Ingredient.of(ingredient.get()), category, result.get(), resultCount)
                 .unlockedBy(getHasName(ingredient.get()), has(ingredient.get())).save(consumer, stonecuttingPath(prefix + "_stonecutting"));
     }
 
-    private static void grindstonePolishingRecipes(RecipeCategory category, ItemLike ingredient, ItemLike result, Consumer<FinishedRecipe> consumer) {
+    protected static void grindstonePolishingRecipes(RecipeCategory category, ItemLike ingredient, ItemLike result, Consumer<FinishedRecipe> consumer) {
         grindstonePolishingRecipes(category, ingredient, result, 1, 0, consumer);
     }
 
-    private static void grindstonePolishingRecipes(RecipeCategory category, ItemLike ingredient, ItemLike result, int experience, Consumer<FinishedRecipe> consumer) {
+    protected static void grindstonePolishingRecipes(RecipeCategory category, ItemLike ingredient, ItemLike result, int experience, Consumer<FinishedRecipe> consumer) {
         grindstonePolishingRecipes(category, ingredient, result, 1, experience, consumer);
     }
 
-    private static void grindstonePolishingRecipes(RecipeCategory category, ItemLike ingredient, ItemLike result, int count, int experience, Consumer<FinishedRecipe> consumer) {
+    protected static void grindstonePolishingRecipes(RecipeCategory category, ItemLike ingredient, ItemLike result, int count, int experience, Consumer<FinishedRecipe> consumer) {
         String ingredientName = getItemName(ingredient);
         GrindstonePolishingRecipeBuilder.grindstonePolishing(category, result, count, experience).requires(ingredient).save(consumer, "_from_" + ingredientName);
     }
 
-    private static void grindstonePolishingRecipes(RecipeCategory category, TagKey<Item> ingredient, ItemLike result, int count, int experience, Consumer<FinishedRecipe> consumer) {
+    protected static void grindstonePolishingRecipes(RecipeCategory category, TagKey<Item> ingredient, ItemLike result, int count, int experience, Consumer<FinishedRecipe> consumer) {
         String ingredientName = ingredient.location().getPath();
         GrindstonePolishingRecipeBuilder.grindstonePolishing(category, result, count, experience).requires(ingredient).save(consumer, "_from_" + ingredientName);
     }
 
-    private static void smithingRecipes(RecipeCategory category, ItemLike templateItem, ItemLike baseItem, ItemLike addition, ItemLike result, Consumer<FinishedRecipe> consumer) {
+    protected static void smithingRecipes(RecipeCategory category, ItemLike templateItem, ItemLike baseItem, ItemLike addition, ItemLike result, Consumer<FinishedRecipe> consumer) {
         String resultName = getItemName(result);
         SmithingTransformRecipeBuilder.smithing(Ingredient.of(templateItem), Ingredient.of(baseItem), Ingredient.of(addition), category, result.asItem()).unlocks(getHasName(addition), has(addition)).save(consumer, smithingPath(resultName));
     }
 
-    private static void smithingTemplateRecipes(RecipeCategory category, ItemLike templateItem, ItemLike baseItem, ItemLike addition, ItemLike result, ItemLike duplicationBase, Consumer<FinishedRecipe> consumer) {
+    protected static void smithingTemplateRecipes(RecipeCategory category, ItemLike templateItem, ItemLike baseItem, ItemLike addition, ItemLike result, ItemLike duplicationBase, Consumer<FinishedRecipe> consumer) {
         smithingRecipes(category, templateItem, baseItem, addition, result, consumer);
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, templateItem, 2).define('#', Items.DIAMOND).define('C', duplicationBase).define('S', templateItem).pattern("#S#").pattern("#C#").pattern("###").unlockedBy(getHasName(templateItem), has(templateItem)).save(consumer, craftingPath(getItemName(templateItem)));
-    }
-
-    private static void verticalSlabRecipes(Supplier<? extends ItemLike> slab, Supplier<? extends ItemLike> verticalSlab, Consumer<FinishedRecipe> consumer) {
-        ConditionalRecipe.builder()
-                .addCondition(new QuarkFlagRecipeCondition(SMDatagenUtil.QUARK_FLAG, "vertical_slabs"))
-                .addRecipe(consumer1 -> ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, verticalSlab.get(), 3).define('#', slab.get()).pattern("#").pattern("#").pattern("#").unlockedBy(getHasName(slab.get()), has(slab.get())).save(consumer1, SullysMod.modPrefix(getItemName(verticalSlab.get()))))
-                .build(consumer, craftingPath(getItemName(verticalSlab.get())));
-
-        ConditionalRecipe.builder()
-                .addCondition(new QuarkFlagRecipeCondition(SMDatagenUtil.QUARK_FLAG, "vertical_slabs"))
-                .addRecipe(consumer1 -> ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, slab.get()).requires(verticalSlab.get()).unlockedBy(getHasName(verticalSlab.get()), has(verticalSlab.get())).save(consumer1, SullysMod.modPrefix(getItemName(verticalSlab.get()) + "_revert")))
-                .build(consumer, craftingPath(getItemName(verticalSlab.get()) + "_revert"));
     }
 }

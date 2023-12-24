@@ -14,6 +14,4 @@ public class SMBlockTags {
     public static final TagKey<Block> WAXED_COPPER_BLOCKS = TagUtil.blockTag("forge", "waxed_copper_blocks");
     public static final TagKey<Block> JADE_ORES = TagUtil.blockTag("forge", "ores/jade");
 
-    //Quark Tags
-    public static final TagKey<Block> VERTICAL_SLABS = TagUtil.blockTag("quark", "vertical_slabs");
 }

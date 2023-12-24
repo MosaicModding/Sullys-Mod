@@ -17,6 +17,4 @@ public class SMItemTags {
     public static final TagKey<Item> COOKED_LANTERNFISH = TagUtil.itemTag("forge", "cooked_fishes/lanternfish");
     public static final TagKey<Item> JADE_ORES = TagUtil.itemTag("forge", "ores/jade");
 
-    //Quark Tags
-    public static final TagKey<Item> VERTICAL_SLABS = TagUtil.itemTag("quark", "vertical_slabs");
 }
