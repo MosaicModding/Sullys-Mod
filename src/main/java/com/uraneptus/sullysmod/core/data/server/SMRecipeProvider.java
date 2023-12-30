@@ -35,6 +35,7 @@ public class SMRecipeProvider extends RecipeProvider {
 
         //Cooking, Smelting etc.
         cookingRecipes(SMItems.LANTERNFISH, SMItems.COOKED_LANTERNFISH, 0.35F, consumer);
+        cookingRecipes(SMItems.PIRANHA, SMItems.COOKED_PIRANHA, 0.35F, consumer);
 
         modLoadedCookingRecipes(FDCompat.MOD_ID, SMItems.LANTERNFISH_SLICE, SMItems.COOKED_LANTERNFISH_SLICE, 0.35F, consumer);
 

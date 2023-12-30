@@ -91,6 +91,7 @@ public class SMDatapackBuiltinEntriesProvider extends DatapackBuiltinEntriesProv
     private static class BiomeModifiers {
         public static void create(BootstapContext<BiomeModifier> context) {
             register(context, "lanternfish", () -> addSingleSpawnModifier(context, SMBiomeTags.LANTERNFISH_SPAWN_IN, SMEntityTypes.LANTERNFISH.get(), 15, 4, 6));
+            register(context, "piranha", () -> addSingleSpawnModifier(context, SMBiomeTags.PIRANHA_SPAWN_IN, SMEntityTypes.PIRANHA.get(), 10, 2, 5));
             register(context, "tortoise", () -> addSingleSpawnModifier(context, SMBiomeTags.TORTOISES_SPAWN_IN, SMEntityTypes.TORTOISE.get(), 5, 1, 3));
             register(context, "bouldering_zombie", () -> addSingleSpawnModifier(context, SMBiomeTags.BOULDERING_ZOMBIE_SPAWN_IN, SMEntityTypes.BOULDERING_ZOMBIE.get(), 100, 4, 6));
             register(context, "jungle_spider", () -> addSingleSpawnModifier(context, SMBiomeTags.JUNGLE_SPIDER_SPAWN_IN, SMEntityTypes.JUNGLE_SPIDER.get(), 100, 3, 6));

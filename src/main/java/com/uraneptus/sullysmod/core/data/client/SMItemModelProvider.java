@@ -44,12 +44,16 @@ public class SMItemModelProvider extends ItemModelProvider {
         basicItem(SMItems.ROUGH_JADE);
         basicItem(SMItems.POLISHED_JADE);
         basicItem(SMItems.LANTERNFISH_BUCKET);
+        basicItem(SMItems.PIRANHA_BUCKET);
         basicSpawnEggItem(SMItems.LANTERNFISH_SPAWN_EGG);
+        basicSpawnEggItem(SMItems.PIRANHA_SPAWN_EGG);
         basicSpawnEggItem(SMItems.TORTOISE_SPAWN_EGG);
         basicSpawnEggItem(SMItems.BOULDERING_ZOMBIE_SPAWN_EGG);
         basicSpawnEggItem(SMItems.JUNGLE_SPIDER_SPAWN_EGG);
         basicItem(SMItems.LANTERNFISH);
         basicItem(SMItems.COOKED_LANTERNFISH);
+        basicItem(SMItems.PIRANHA);
+        basicItem(SMItems.COOKED_PIRANHA);
         blockItemWithItemTexture(SMBlocks.TORTOISE_EGG);
         copperButtonBlockItem(SMBlocks.COPPER_BUTTON, COPPER_BLOCK);
         copperButtonBlockItem(SMBlocks.EXPOSED_COPPER_BUTTON, EXPOSED_COPPER);

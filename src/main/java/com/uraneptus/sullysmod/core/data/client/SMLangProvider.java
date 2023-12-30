@@ -81,7 +81,9 @@ public class SMLangProvider extends LanguageProvider {
         forItem(SMItems.ROUGH_JADE);
         forItem(SMItems.POLISHED_JADE);
         forItem(SMItems.LANTERNFISH_SPAWN_EGG);
+        forItem(SMItems.PIRANHA_SPAWN_EGG);
         forItem(SMItems.COOKED_LANTERNFISH);
+        forItem(SMItems.COOKED_PIRANHA);
         forItem(SMItems.TORTOISE_SPAWN_EGG);
         forItem(SMItems.JADE_SHIELD);
         forItem(SMItems.COOKED_LANTERNFISH_SLICE);
@@ -96,8 +98,10 @@ public class SMLangProvider extends LanguageProvider {
         forItem(SMItems.JADE_HORSE_ARMOR);
 
         add(SMItems.LANTERNFISH_BUCKET.get(), "Bucket of Lanternfish");
+        add(SMItems.PIRANHA_BUCKET.get(), "Bucket of Piranha");
         add(SMItems.LANTERNFISH.get(), "Raw Lanternfish");
         add(SMItems.LANTERNFISH_SLICE.get(), "Raw Lanternfish Slice");
+        add(SMItems.PIRANHA.get(), "Raw Piranha");
 
         addMusicDisc(SMItems.MUSIC_DISC_SCOUR, "LudoCrypt - scour");
 
@@ -108,6 +112,7 @@ public class SMLangProvider extends LanguageProvider {
         forEntity(SMEntityTypes.TORTOISE_SHELL);
         forEntity(SMEntityTypes.BOULDERING_ZOMBIE);
         forEntity(SMEntityTypes.JUNGLE_SPIDER);
+        forEntity(SMEntityTypes.PIRANHA);
 
         //Potions
         addPotionsForEffect(SMPotions.UNLUCK, "Bad Luck");

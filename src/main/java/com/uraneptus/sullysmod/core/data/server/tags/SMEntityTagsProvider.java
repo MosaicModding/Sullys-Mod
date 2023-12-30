@@ -21,7 +21,10 @@ public class SMEntityTagsProvider extends EntityTypeTagsProvider {
 
     @Override
     protected void addTags(HolderLookup.Provider pProvider) {
-        tag(BlueprintEntityTypeTags.FISHES).add(SMEntityTypes.LANTERNFISH.get());
+        tag(BlueprintEntityTypeTags.FISHES).add(
+                SMEntityTypes.LANTERNFISH.get(),
+                SMEntityTypes.PIRANHA.get()
+        );
 
         tag(SMEntityTags.SCARES_TORTOISES).add(
                 //Undead

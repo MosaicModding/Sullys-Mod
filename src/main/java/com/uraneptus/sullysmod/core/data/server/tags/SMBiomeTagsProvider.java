@@ -62,5 +62,6 @@ public class SMBiomeTagsProvider extends BiomeTagsProvider {
                 .add(Biomes.LUSH_CAVES)
                 .add(Biomes.DRIPSTONE_CAVES);
         tag(SMBiomeTags.JUNGLE_SPIDER_SPAWN_IN).addTag(BiomeTags.IS_JUNGLE);
+        tag(SMBiomeTags.PIRANHA_SPAWN_IN).addTag(BiomeTags.IS_JUNGLE).add(Biomes.MANGROVE_SWAMP);
     }
 }

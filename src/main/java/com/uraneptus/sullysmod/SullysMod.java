@@ -89,6 +89,7 @@ public class SullysMod {
         event.put(SMEntityTypes.TORTOISE.get(), Tortoise.createAttributes().build());
         event.put(SMEntityTypes.BOULDERING_ZOMBIE.get(), BoulderingZombie.createAttributes().build());
         event.put(SMEntityTypes.JUNGLE_SPIDER.get(), JungleSpider.createAttributes().build());
+        event.put(SMEntityTypes.PIRANHA.get(), Piranha.createAttributes().build());
     }
 
     private void setup(final FMLCommonSetupEvent event) {

@@ -12,7 +12,7 @@ import software.bernie.geckolib.renderer.GeoEntityRenderer;
 public class TortoiseRenderer <E extends Tortoise> extends GeoEntityRenderer<E> {
     public TortoiseRenderer(EntityRendererProvider.Context renderManager) {
         super(renderManager, new TortoiseModel<>());
-        this.shadowRadius = 0.75f;
+        this.shadowRadius = 0.75F;
     }
 
     //Reduced motionThreshold to detect entities that are moving slowly e.g. Tortoise

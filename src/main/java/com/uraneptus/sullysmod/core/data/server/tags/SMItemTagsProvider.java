@@ -17,6 +17,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.concurrent.CompletableFuture;
 
+@SuppressWarnings("unchecked")
 public class SMItemTagsProvider extends ItemTagsProvider {
 
     public SMItemTagsProvider(PackOutput packOutput, CompletableFuture<HolderLookup.Provider> pProvider, CompletableFuture<TagsProvider.TagLookup<Block>> blockProvider, @Nullable ExistingFileHelper existingFileHelper) {
@@ -64,7 +65,9 @@ public class SMItemTagsProvider extends ItemTagsProvider {
         );
         tag(ItemTags.FISHES).add(
                 SMItems.LANTERNFISH.get(),
-                SMItems.COOKED_LANTERNFISH.get()
+                SMItems.COOKED_LANTERNFISH.get(),
+                SMItems.PIRANHA.get(),
+                SMItems.COOKED_PIRANHA.get()
         );
         tag(ItemTags.MUSIC_DISCS).add(
                 SMItems.MUSIC_DISC_SCOUR.get()
@@ -75,15 +78,23 @@ public class SMItemTagsProvider extends ItemTagsProvider {
                 SMItems.LANTERNFISH.get(),
                 SMItems.LANTERNFISH_SLICE.get()
         );
-        tag(SMItemTags.RAW_FISHES).addTag(
-                SMItemTags.RAW_LANTERNFISH
+        tag(SMItemTags.RAW_PIRANHA).add(
+                SMItems.PIRANHA.get()
+        );
+        tag(SMItemTags.RAW_FISHES).addTags(
+                SMItemTags.RAW_LANTERNFISH,
+                SMItemTags.RAW_PIRANHA
         );
         tag(SMItemTags.COOKED_LANTERNFISH).add(
                 SMItems.COOKED_LANTERNFISH.get(),
                 SMItems.COOKED_LANTERNFISH_SLICE.get()
         );
-        tag(SMItemTags.COOKED_FISHES).addTag(
-                SMItemTags.COOKED_LANTERNFISH
+        tag(SMItemTags.COOKED_PIRANHA).add(
+                SMItems.COOKED_PIRANHA.get()
+        );
+        tag(SMItemTags.COOKED_FISHES).addTags(
+                SMItemTags.COOKED_LANTERNFISH,
+                SMItemTags.COOKED_PIRANHA
         );
         tag(Tags.Items.STORAGE_BLOCKS).add(
                 SMBlocks.ROUGH_JADE_BLOCK.get().asItem(),

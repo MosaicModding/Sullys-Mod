@@ -25,6 +25,32 @@
           }
         ]
       }
+    },
+    {
+      "type": "criteria",
+      "config": {
+        "criteria": {
+          "sullysmod:piranha_bucket": {
+            "conditions": {
+              "item": {
+                "items": [
+                  "sullysmod:piranha_bucket"
+                ]
+              }
+            },
+            "trigger": "minecraft:filled_bucket"
+          }
+        },
+        "indexed_requirements": [
+          {
+            "index": 0,
+            "replace": false,
+            "requirements": [
+              "sullysmod:piranha_bucket"
+            ]
+          }
+        ]
+      }
     }
   ],
   "priority": "normal",
