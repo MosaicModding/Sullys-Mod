@@ -1,5 +1,21 @@
 {
   "values": [
-    "#minecraft:is_overworld"
+    "#minecraft:is_ocean",
+    "#minecraft:is_forest",
+    "#minecraft:is_savanna",
+    "#minecraft:is_mountain",
+    "#minecraft:is_badlands",
+    "#minecraft:is_jungle",
+    "#minecraft:is_beach",
+    "#minecraft:is_river",
+    "#minecraft:is_hill",
+    "#minecraft:is_taiga",
+    "#forge:is_snowy",
+    "#forge:is_plains",
+    "#forge:is_sandy",
+    "#forge:is_swamp",
+    "#forge:is_mushroom",
+    "minecraft:lush_caves",
+    "minecraft:dripstone_caves"
   ]
 }
