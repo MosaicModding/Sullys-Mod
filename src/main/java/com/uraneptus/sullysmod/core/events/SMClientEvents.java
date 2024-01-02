@@ -33,6 +33,7 @@ public class SMClientEvents {
         event.registerEntityRenderer(SMEntityTypes.BOULDERING_ZOMBIE.get(), BoulderingZombieRenderer::new);
         event.registerEntityRenderer(SMEntityTypes.JUNGLE_SPIDER.get(), JungleSpiderRenderer::new);
         event.registerEntityRenderer(SMEntityTypes.PIRANHA.get(), PiranhaRenderer::new);
+        event.registerEntityRenderer(SMEntityTypes.THROWN_THROWING_KNIFE.get(), ThrownThrowingKnifeRenderer::new);
     }
 
     @SubscribeEvent

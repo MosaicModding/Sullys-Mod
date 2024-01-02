@@ -39,6 +39,7 @@ public class SMItems {
 
     //Tools
     public static final RegistryObject<Item> JADE_SHIELD = HELPER.createItem("jade_shield", () -> new JadeShieldItem(-2.0F, SMProperties.Items.JADE_SHIELD));
+    public static final RegistryObject<Item> THROWING_KNIFE = HELPER.createItem("throwing_knife", () -> new ThrowingKnifeItem(SMProperties.Items.sixteenStack()));
 
     //Food
     public static final RegistryObject<Item> LANTERNFISH = HELPER.createItem("lanternfish", () -> new Item(PropertyUtil.food(SMProperties.Foods.LANTERNFISH_FOOD)));
@@ -88,6 +89,7 @@ public class SMItems {
                 .tab(CreativeModeTabs.COMBAT)
                 .addItemsAfter(of(Items.SHIELD), JADE_SHIELD)
                 .addItemsAfter(of(Items.DIAMOND_HORSE_ARMOR), JADE_HORSE_ARMOR)
+                .addItemsAfter(of(Items.TRIDENT), THROWING_KNIFE)
 
                 .tab(CreativeModeTabs.SPAWN_EGGS) //Sorted alphabetically
                 .addItemsAfter(of(Items.TADPOLE_SPAWN_EGG), TORTOISE_SPAWN_EGG)

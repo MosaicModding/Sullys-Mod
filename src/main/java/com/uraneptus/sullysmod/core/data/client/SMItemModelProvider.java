@@ -98,6 +98,7 @@ public class SMItemModelProvider extends ItemModelProvider {
         basicItem(SMItems.GLASS_VIAL);
         venomVialItem(SMItems.VENOM_VIAL);
         basicItem(SMItems.JADE_HORSE_ARMOR);
+        basicItemHandheld(SMItems.THROWING_KNIFE);
     }
 
     private void basicBlockItem(Supplier<? extends Block> blockForItem) {
@@ -106,6 +107,11 @@ public class SMItemModelProvider extends ItemModelProvider {
 
     private void basicItem(Supplier<? extends Item> item) {
         basicItem(item.get());
+    }
+
+    private void basicItemHandheld(Supplier<? extends Item> item) {
+        withExistingParent(name(item.get()), HANDHELD)
+                .texture(LAYER0, modItemLocation(name(item.get())));
     }
 
     private void blockItemWithItemTexture(Supplier<? extends Block> blockForItem) {
@@ -150,10 +156,9 @@ public class SMItemModelProvider extends ItemModelProvider {
     }
 
     private void venomVialItem(Supplier<? extends Item> item) {
-        getBuilder(name(item.get()))
-                .parent(new ModelFile.UncheckedModelFile("item/generated"))
-                .texture("layer0", modLoc("item/glass_vial"))
-                .texture("layer1", modLoc("item/venom_vial_1"))
-                .texture("layer2", modLoc("item/venom_vial_2"));
+        withExistingParent(name(item.get()), GENERATED)
+                .texture("layer0", modItemLocation("glass_vial"))
+                .texture("layer1", modItemLocation("venom_vial_1"))
+                .texture("layer2", modItemLocation("venom_vial_2"));
     }
 }

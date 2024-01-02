@@ -96,6 +96,7 @@ public class SMLangProvider extends LanguageProvider {
         forItem(SMItems.GLASS_VIAL);
         add(SMItems.VENOM_VIAL.get(), "Vial of Jungle Venom");
         forItem(SMItems.JADE_HORSE_ARMOR);
+        forItem(SMItems.THROWING_KNIFE);
 
         add(SMItems.LANTERNFISH_BUCKET.get(), "Bucket of Lanternfish");
         add(SMItems.PIRANHA_BUCKET.get(), "Bucket of Piranha");
