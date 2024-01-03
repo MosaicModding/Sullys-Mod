@@ -109,7 +109,6 @@ public class SMLangProvider extends LanguageProvider {
         //Entities
         forEntity(SMEntityTypes.LANTERNFISH);
         forEntity(SMEntityTypes.TORTOISE);
-        forEntity(SMEntityTypes.COPPER_GOLEM);
         forEntity(SMEntityTypes.TORTOISE_SHELL);
         forEntity(SMEntityTypes.BOULDERING_ZOMBIE);
         forEntity(SMEntityTypes.JUNGLE_SPIDER);

@@ -84,7 +84,6 @@ public class SullysMod {
 
     @SubscribeEvent
     public static void addEntityAttributes(final EntityAttributeCreationEvent event) {
-        event.put(SMEntityTypes.COPPER_GOLEM.get(), CopperGolem.createAttributes().build());
         event.put(SMEntityTypes.LANTERNFISH.get(), Lanternfish.createAttributes().build());
         event.put(SMEntityTypes.TORTOISE.get(), Tortoise.createAttributes().build());
         event.put(SMEntityTypes.BOULDERING_ZOMBIE.get(), BoulderingZombie.createAttributes().build());

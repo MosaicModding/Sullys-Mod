@@ -27,6 +27,7 @@ import net.minecraftforge.client.extensions.common.IClientItemExtensions;
 
 import java.util.function.Consumer;
 
+//TODO add to dungeon loot
 public class ThrowingKnifeItem extends Item {
 
     public ThrowingKnifeItem(Properties pProperties) {
