@@ -6,7 +6,6 @@ import com.teamabnormals.blueprint.core.util.item.CreativeModeTabContentsPopulat
 import com.teamabnormals.blueprint.core.util.registry.ItemSubRegistryHelper;
 import com.uraneptus.sullysmod.SullysMod;
 import com.uraneptus.sullysmod.common.items.*;
-import com.uraneptus.sullysmod.core.integration.fd.FDCompat;
 import com.uraneptus.sullysmod.core.other.SMProperties;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.EntityType;
@@ -46,13 +45,6 @@ public class SMItems {
     public static final RegistryObject<Item> COOKED_LANTERNFISH = HELPER.createItem("cooked_lanternfish", () -> new Item(PropertyUtil.food(SMProperties.Foods.COOKED_LANTERNFISH_FOOD)));
     public static final RegistryObject<Item> PIRANHA = HELPER.createItem("piranha", () -> new Item(PropertyUtil.food(SMProperties.Foods.PIRANHA_FOOD)));
     public static final RegistryObject<Item> COOKED_PIRANHA = HELPER.createItem("cooked_piranha", () -> new Item(PropertyUtil.food(SMProperties.Foods.COOKED_PIRANHA_FOOD)));
-
-    //Compat Food
-    public static final RegistryObject<Item> LANTERNFISH_SLICE = HELPER.createItem("lanternfish_slice", () -> new Item(PropertyUtil.food(SMProperties.Foods.LANTERNFISH_SLICE_FOOD)));
-    public static final RegistryObject<Item> COOKED_LANTERNFISH_SLICE = HELPER.createItem("cooked_lanternfish_slice", () -> new Item(PropertyUtil.food(SMProperties.Foods.COOKED_LANTERNFISH_SLICE_FOOD)));
-    public static final RegistryObject<Item> LANTERNFISH_ROLL = HELPER.createItem("lanternfish_roll", () -> new Item(PropertyUtil.food(SMProperties.Foods.LANTERNFISH_ROLL_FOOD)));
-    public static final RegistryObject<Item> CAVE_CHUM_BUCKET = HELPER.createItem("cave_chum_bucket", () -> new SMFoodBucketItem(SMProperties.Items.CAVE_CHUM_BUCKET));
-
 
     //Mob Buckets & Spawn Eggs
     public static final RegistryObject<Item> LANTERNFISH_BUCKET = HELPER.createItem("lanternfish_bucket", () -> SMItems.createMobBucketItem(SMEntityTypes.LANTERNFISH::get));
@@ -118,13 +110,6 @@ public class SMItems {
                 .addItemsAfter(of(Items.DROPPER), JADE_FLINGER_TOTEM)
                 .addItemsAfter(of(Items.STONE_BUTTON), COPPER_BUTTON, EXPOSED_COPPER_BUTTON, WEATHERED_COPPER_BUTTON, OXIDIZED_COPPER_BUTTON,
                         WAXED_COPPER_BUTTON, WAXED_EXPOSED_COPPER_BUTTON, WAXED_WEATHERED_COPPER_BUTTON, WAXED_OXIDIZED_COPPER_BUTTON)
-        ;
-    }
-
-    public static void buildFDCreativeTabContents() {
-        CreativeModeTabContentsPopulator.mod(FDCompat.MOD_ID)
-                .tab(FDCompat.FDTAB)
-                .addItems(LANTERNFISH_SLICE, COOKED_LANTERNFISH_SLICE, LANTERNFISH_ROLL, CAVE_CHUM_BUCKET)
         ;
     }
 }

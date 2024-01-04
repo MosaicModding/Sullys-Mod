@@ -1,6 +1,5 @@
 package com.uraneptus.sullysmod.core.data.client;
 
-import com.uraneptus.sullysmod.SullysMod;
 import com.uraneptus.sullysmod.core.other.SMTextUtil;
 import com.uraneptus.sullysmod.core.registry.SMBlocks;
 import com.uraneptus.sullysmod.core.registry.SMEntityTypes;
@@ -21,8 +20,8 @@ import java.util.function.Supplier;
 
 public class SMLangProvider extends LanguageProvider {
 
-    public SMLangProvider(PackOutput packOutput) {
-        super(packOutput, SullysMod.MOD_ID, "en_us");
+    public SMLangProvider(PackOutput packOutput, String modId) {
+        super(packOutput, modId, "en_us");
     }
 
     @Override
@@ -63,15 +62,6 @@ public class SMLangProvider extends LanguageProvider {
         forBlock(SMBlocks.ROUGH_JADE_BRICK_SLAB);
         forBlock(SMBlocks.SMOOTHED_ROUGH_JADE_SLAB);
         forBlock(SMBlocks.ROUGH_JADE_TILE_SLAB);
-        /*
-        forBlock(SMBlocks.POLISHED_JADE_BRICK_VERTICAL_SLAB);
-        forBlock(SMBlocks.POLISHED_SMALL_JADE_BRICK_VERTICAL_SLAB);
-        forBlock(SMBlocks.POLISHED_JADE_SHINGLE_VERTICAL_SLAB);
-        forBlock(SMBlocks.POLISHED_JADE_TILE_VERTICAL_SLAB);
-        forBlock(SMBlocks.ROUGH_JADE_BRICK_VERTICAL_SLAB);
-        forBlock(SMBlocks.SMOOTHED_ROUGH_JADE_VERTICAL_SLAB);
-        forBlock(SMBlocks.ROUGH_JADE_TILE_VERTICAL_SLAB);
-         */
         forBlock(SMBlocks.TORTOISE_EGG);
 
         addBlock(SMBlocks.POLISHED_JADE_BLOCK, "Block of Polished Jade");
@@ -86,9 +76,6 @@ public class SMLangProvider extends LanguageProvider {
         forItem(SMItems.COOKED_PIRANHA);
         forItem(SMItems.TORTOISE_SPAWN_EGG);
         forItem(SMItems.JADE_SHIELD);
-        forItem(SMItems.COOKED_LANTERNFISH_SLICE);
-        forItem(SMItems.LANTERNFISH_ROLL);
-        forItem(SMItems.CAVE_CHUM_BUCKET);
         forItem(SMItems.TORTOISE_SCUTE);
         forItem(SMItems.TORTOISE_SHELL);
         forItem(SMItems.BOULDERING_ZOMBIE_SPAWN_EGG);
@@ -101,7 +88,6 @@ public class SMLangProvider extends LanguageProvider {
         add(SMItems.LANTERNFISH_BUCKET.get(), "Bucket of Lanternfish");
         add(SMItems.PIRANHA_BUCKET.get(), "Bucket of Piranha");
         add(SMItems.LANTERNFISH.get(), "Raw Lanternfish");
-        add(SMItems.LANTERNFISH_SLICE.get(), "Raw Lanternfish Slice");
         add(SMItems.PIRANHA.get(), "Raw Piranha");
 
         addMusicDisc(SMItems.MUSIC_DISC_SCOUR, "LudoCrypt - scour");
@@ -159,28 +145,28 @@ public class SMLangProvider extends LanguageProvider {
 
     }
 
-    public void addMusicDisc(Supplier<? extends Item> item, String description) {
+    protected void addMusicDisc(Supplier<? extends Item> item, String description) {
         String disc = item.get().getDescriptionId();
         add(disc, "Music Disc");
         add(disc + ".desc", description);
     }
 
-    public void addPotionsForEffect(Supplier<? extends Potion> potionEffect, String name) {
+    protected void addPotionsForEffect(Supplier<? extends Potion> potionEffect, String name) {
         add(PotionUtils.setPotion(Items.POTION.getDefaultInstance(), potionEffect.get()), "Potion of " + name);
         add(PotionUtils.setPotion(Items.SPLASH_POTION.getDefaultInstance(), potionEffect.get()), "Splash Potion of " + name);
         add(PotionUtils.setPotion(Items.LINGERING_POTION.getDefaultInstance(), potionEffect.get()), "Lingering Potion of " + name);
         add(PotionUtils.setPotion(Items.TIPPED_ARROW.getDefaultInstance(), potionEffect.get()), "Arrow of " + name);
     }
 
-    public void forItem(Supplier<? extends Item> item) {
+    protected void forItem(Supplier<? extends Item> item) {
         addItem(item, SMTextUtil.createTranslation(Objects.requireNonNull(ForgeRegistries.ITEMS.getKey(item.get())).getPath()));
     }
 
-    public void forBlock(Supplier<? extends Block> block) {
+    protected void forBlock(Supplier<? extends Block> block) {
         addBlock(block, SMTextUtil.createTranslation(Objects.requireNonNull(ForgeRegistries.BLOCKS.getKey(block.get())).getPath()));
     }
 
-    public void forEntity(Supplier<? extends EntityType<?>> entity) {
+    protected void forEntity(Supplier<? extends EntityType<?>> entity) {
         addEntityType(entity, SMTextUtil.createTranslation(Objects.requireNonNull(ForgeRegistries.ENTITY_TYPES.getKey(entity.get())).getPath()));
     }
 }

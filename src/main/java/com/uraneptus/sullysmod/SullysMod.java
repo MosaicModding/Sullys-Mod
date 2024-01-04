@@ -16,7 +16,6 @@ import com.uraneptus.sullysmod.core.data.server.tags.SMBiomeTagsProvider;
 import com.uraneptus.sullysmod.core.data.server.tags.SMBlockTagsProvider;
 import com.uraneptus.sullysmod.core.data.server.tags.SMEntityTagsProvider;
 import com.uraneptus.sullysmod.core.data.server.tags.SMItemTagsProvider;
-import com.uraneptus.sullysmod.core.integration.fd.FDCompat;
 import com.uraneptus.sullysmod.core.other.SMTextDefinitions;
 import com.uraneptus.sullysmod.core.registry.*;
 import net.minecraft.core.HolderLookup;
@@ -64,12 +63,7 @@ public class SullysMod {
         SMRecipeTypes.RECIPE_TYPES.register(bus);
         SMRecipeSerializer.SERIALIZERS.register(bus);
 
-        FDCompat.register();
         DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> SMItems::buildCreativeTabContents);
-        if (FDCompat.IS_LOADED) {
-            DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> SMItems::buildFDCreativeTabContents);
-        }
-
 
         MinecraftForge.EVENT_BUS.register(this);
     }
@@ -110,7 +104,7 @@ public class SullysMod {
         generator.addProvider(includeClient, new SMBlockStateProvider(packOutput, fileHelper));
         generator.addProvider(includeClient, new SMItemModelProvider(packOutput, fileHelper));
         generator.addProvider(includeClient, new SMSoundDefinitionsProvider(packOutput, fileHelper));
-        generator.addProvider(includeClient, new SMLangProvider(packOutput));
+        generator.addProvider(includeClient, new SMLangProvider(packOutput, SullysMod.MOD_ID));
         generator.addProvider(includeClient, new SMSpriteSourceProvider(packOutput, fileHelper));
 
         SMBlockTagsProvider blockTagProvider = new SMBlockTagsProvider(packOutput, lookupProvider, fileHelper);
