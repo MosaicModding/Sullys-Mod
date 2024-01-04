@@ -5,6 +5,7 @@ import com.uraneptus.sullysmod.SullysMod;
 import com.uraneptus.sullysmod.common.blocks.FlingerTotem;
 import com.uraneptus.sullysmod.core.registry.SMBlocks;
 import net.minecraft.data.PackOutput;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraftforge.client.model.generators.BlockStateProvider;
@@ -71,6 +72,11 @@ public class SMBlockStateProvider extends BlockStateProvider {
         modVerticalSlabBlock(SMBlocks.ROUGH_JADE_TILE_VERTICAL_SLAB, ROUGH_JADE_TILES);
          */
         modEggBlock(SMBlocks.TORTOISE_EGG);
+        basicBlock(SMBlocks.AMBER);
+        basicBlock(SMBlocks.AMBER_BRICKS);
+        modSlabBlock(SMBlocks.AMBER_BRICK_SLAB, AMBER_BRICKS);
+        modWallBlock(SMBlocks.AMBER_BRICK_WALL, AMBER_BRICKS);
+        modStairsBlock(SMBlocks.AMBER_BRICK_STAIRS, AMBER_BRICKS);
     }
 
     private void basicBlock(Supplier<? extends Block> block) {
@@ -127,6 +133,9 @@ public class SMBlockStateProvider extends BlockStateProvider {
 
     private void modStairsBlock(Supplier<? extends Block> block, String texture) {
         stairsBlock((StairBlock) block.get(), modBlockLocation(texture));
+    }
+    private void modWallBlock(Supplier<? extends Block> block, String texture) {
+        wallBlock((WallBlock) block.get(), modBlockLocation(texture));
     }
 
     private void modSlabBlock(Supplier<? extends Block> block, String texture) {

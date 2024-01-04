@@ -69,12 +69,6 @@ public class SMBlockLoot extends BlockLootSubProvider {
         createSlab(SMBlocks.POLISHED_SMALL_JADE_BRICK_SLAB.get());
         createSlab(SMBlocks.POLISHED_JADE_TILE_SLAB.get());
         createSlab(SMBlocks.POLISHED_JADE_SHINGLE_SLAB.get());
-        /*
-        createSlab(SMBlocks.POLISHED_JADE_BRICK_VERTICAL_SLAB.get());
-        createSlab(SMBlocks.POLISHED_SMALL_JADE_BRICK_VERTICAL_SLAB.get());
-        createSlab(SMBlocks.POLISHED_JADE_TILE_VERTICAL_SLAB.get());
-        createSlab(SMBlocks.POLISHED_JADE_SHINGLE_VERTICAL_SLAB.get());
-         */
 
         //Copper Buttons
         this.dropSelf(SMBlocks.COPPER_BUTTON.get());
@@ -88,6 +82,13 @@ public class SMBlockLoot extends BlockLootSubProvider {
 
         //Tortoise Egg
         this.dropWhenSilkTouch(SMBlocks.TORTOISE_EGG.get());
+
+        //Amber
+        this.dropSelf(SMBlocks.AMBER.get());
+        this.dropSelf(SMBlocks.AMBER_BRICKS.get());
+        this.dropSelf(SMBlocks.AMBER_BRICK_SLAB.get());
+        this.dropSelf(SMBlocks.AMBER_BRICK_STAIRS.get());
+        this.dropSelf(SMBlocks.AMBER_BRICK_WALL.get());
     }
 
     private LootTable.Builder createJadeOreDrops(Block block) {

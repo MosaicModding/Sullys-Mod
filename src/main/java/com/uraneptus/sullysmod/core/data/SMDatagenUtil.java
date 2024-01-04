@@ -37,6 +37,7 @@ public class SMDatagenUtil {
     public static final String ROUGH_JADE_BRICKS = name(SMBlocks.ROUGH_JADE_BRICKS.get());
     public static final String SMOOTHED_ROUGH_JADE = name(SMBlocks.SMOOTHED_ROUGH_JADE.get());
     public static final String ROUGH_JADE_TILES = name(SMBlocks.ROUGH_JADE_TILES.get());
+    public static final String AMBER_BRICKS = name(SMBlocks.AMBER_BRICKS.get());
     //Quark Flag (We're going to need this a fair amount once that wood gets added)
     public static ResourceLocation QUARK_FLAG = SullysMod.blueprintPrefix("quark_flag");
 

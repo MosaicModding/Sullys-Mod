@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "sullysmod:block/amber_brick_slab"
+    },
+    "type=double": {
+      "model": "sullysmod:block/amber_bricks"
+    },
+    "type=top": {
+      "model": "sullysmod:block/amber_brick_slab_top"
+    }
+  }
+}

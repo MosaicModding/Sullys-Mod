@@ -99,6 +99,11 @@ public class SMItemModelProvider extends ItemModelProvider {
         venomVialItem(SMItems.VENOM_VIAL);
         basicItem(SMItems.JADE_HORSE_ARMOR);
         basicItemHandheld(SMItems.THROWING_KNIFE);
+        basicBlockItem(SMBlocks.AMBER);
+        basicBlockItem(SMBlocks.AMBER_BRICKS);
+        basicBlockItem(SMBlocks.AMBER_BRICK_SLAB);
+        //basicBlockItem(SMBlocks.AMBER_BRICK_WALL);
+        basicBlockItem(SMBlocks.AMBER_BRICK_STAIRS);
     }
 
     private void basicBlockItem(Supplier<? extends Block> blockForItem) {

@@ -60,6 +60,12 @@ public class SMBlocks {
     public static final RegistryObject<Block> WAXED_WEATHERED_COPPER_BUTTON = HELPER.createBlock("waxed_weathered_copper_button", () -> new CopperButtonBlock(SMProperties.Blocks.COPPER_BUTTONS, BlockSetType.STONE, 30, true));
     public static final RegistryObject<Block> WAXED_OXIDIZED_COPPER_BUTTON = HELPER.createBlock("waxed_oxidized_copper_button", () -> new CopperButtonBlock(SMProperties.Blocks.COPPER_BUTTONS, BlockSetType.STONE, 40, true));
 
+    //Amber
+    public static final RegistryObject<Block> AMBER = HELPER.createBlock("amber", () -> new AmberBlock(SMProperties.Blocks.AMBER.noOcclusion().dynamicShape()));
+    public static final RegistryObject<Block> AMBER_BRICKS = HELPER.createBlock("amber_bricks", () -> new AmberBlock(SMProperties.Blocks.AMBER));
+    public static final RegistryObject<Block> AMBER_BRICK_STAIRS = HELPER.createBlock("amber_brick_stairs", () -> new AmberStairBlock(AMBER_BRICKS.get().defaultBlockState(), SMProperties.Blocks.AMBER));
+    public static final RegistryObject<Block> AMBER_BRICK_SLAB = HELPER.createBlock("amber_brick_slab", () -> new AmberSlabBlock(SMProperties.Blocks.AMBER));
+    public static final RegistryObject<Block> AMBER_BRICK_WALL = HELPER.createBlock("amber_brick_wall", () -> new AmberWallBlock(SMProperties.Blocks.AMBER));
     //Misc
     public static final RegistryObject<Block> TORTOISE_EGG = HELPER.createBlock("tortoise_egg", () -> new TortoiseEggBlock(BlockBehaviour.Properties.copy(Blocks.TURTLE_EGG)));
 }

@@ -8,9 +8,12 @@ import com.uraneptus.sullysmod.client.model.TortoiseShellModel;
 import com.uraneptus.sullysmod.client.particles.RicochetParticle;
 import com.uraneptus.sullysmod.client.renderer.entities.*;
 import com.uraneptus.sullysmod.common.items.VenomVialItem;
+import com.uraneptus.sullysmod.core.registry.SMBlocks;
 import com.uraneptus.sullysmod.core.registry.SMEntityTypes;
 import com.uraneptus.sullysmod.core.registry.SMItems;
 import com.uraneptus.sullysmod.core.registry.SMParticleTypes;
+import net.minecraft.client.renderer.ItemBlockRenderTypes;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
@@ -51,6 +54,7 @@ public class SMClientEvents {
     @SubscribeEvent
     public static void onClientSetup(FMLClientSetupEvent event) {
         ItemProperties.register(SMItems.JADE_SHIELD.get(), new ResourceLocation("blocking"), (itemStack, clientWorld, livingEntity, useTime) -> livingEntity != null && livingEntity.isUsingItem() && livingEntity.getUseItem() == itemStack ? 1.0F : 0.0F);
+        ItemBlockRenderTypes.setRenderLayer(SMBlocks.AMBER.get(), RenderType.translucent());
     }
 
     @SubscribeEvent
