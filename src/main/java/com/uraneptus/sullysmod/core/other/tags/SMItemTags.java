@@ -13,8 +13,10 @@ public class SMItemTags {
     public static final TagKey<Item> AXE_ITEMS = TagUtil.itemTag("forge", "tools/axes");
     public static final TagKey<Item> RAW_FISHES = TagUtil.itemTag("forge", "raw_fishes");
     public static final TagKey<Item> RAW_LANTERNFISH = TagUtil.itemTag("forge", "raw_fishes/lanternfish");
+    public static final TagKey<Item> RAW_PIRANHA = TagUtil.itemTag("forge", "raw_fishes/piranha");
     public static final TagKey<Item> COOKED_FISHES = TagUtil.itemTag("forge", "cooked_fishes");
     public static final TagKey<Item> COOKED_LANTERNFISH = TagUtil.itemTag("forge", "cooked_fishes/lanternfish");
+    public static final TagKey<Item> COOKED_PIRANHA = TagUtil.itemTag("forge", "cooked_fishes/piranha");
     public static final TagKey<Item> JADE_ORES = TagUtil.itemTag("forge", "ores/jade");
 
 }

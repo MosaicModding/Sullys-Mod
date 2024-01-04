@@ -1,0 +1,10 @@
+{
+  "type": "forge:add_spawns",
+  "biomes": "#sullysmod:piranha_spawn_in",
+  "spawners": {
+    "type": "sullysmod:piranha",
+    "maxCount": 5,
+    "minCount": 2,
+    "weight": 10
+  }
+}

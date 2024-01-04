@@ -173,6 +173,27 @@ public class SMSoundDefinitionsProvider extends SoundDefinitionsProvider {
                 sound(new ResourceLocation("entity/fish/hurt4"))
         );
 
+        addbasicSound(SMSounds.PIRANHA_FLOP,
+                sound(new ResourceLocation("entity/fish/flop1")).volume(0.3),
+                sound(new ResourceLocation("entity/fish/flop2")).volume(0.3),
+                sound(new ResourceLocation("entity/fish/flop3")).volume(0.3),
+                sound(new ResourceLocation("entity/fish/flop4")).volume(0.3)
+        );
+
+        addbasicSound(SMSounds.PIRANHA_DEATH,
+                sound(new ResourceLocation("entity/fish/hurt1")),
+                sound(new ResourceLocation("entity/fish/hurt2")),
+                sound(new ResourceLocation("entity/fish/hurt3")),
+                sound(new ResourceLocation("entity/fish/hurt4"))
+        );
+
+        addbasicSound(SMSounds.PIRANHA_HURT,
+                sound(new ResourceLocation("entity/fish/hurt1")),
+                sound(new ResourceLocation("entity/fish/hurt2")),
+                sound(new ResourceLocation("entity/fish/hurt3")),
+                sound(new ResourceLocation("entity/fish/hurt4"))
+        );
+
         addbasicSound(SMSounds.BOULDERING_ZOMBIE_AMBIENT,
                 sound(new ResourceLocation("mob/zombie/say1")),
                 sound(new ResourceLocation("mob/zombie/say2")),

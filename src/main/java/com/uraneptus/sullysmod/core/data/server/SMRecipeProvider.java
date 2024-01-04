@@ -29,6 +29,7 @@ public class SMRecipeProvider extends RecipeProvider {
 
         //Cooking, Smelting etc.
         cookingRecipes(SMItems.LANTERNFISH, SMItems.COOKED_LANTERNFISH, 0.35F, consumer);
+        cookingRecipes(SMItems.PIRANHA, SMItems.COOKED_PIRANHA, 0.35F, consumer);
 
         basicSmeltingRecipes(RecipeCategory.BUILDING_BLOCKS, SMBlocks.ROUGH_JADE_BLOCK, SMBlocks.SMOOTHED_ROUGH_JADE, 1.0F, consumer);
 

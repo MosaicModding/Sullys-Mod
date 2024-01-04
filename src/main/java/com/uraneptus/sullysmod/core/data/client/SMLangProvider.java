@@ -71,7 +71,9 @@ public class SMLangProvider extends LanguageProvider {
         forItem(SMItems.ROUGH_JADE);
         forItem(SMItems.POLISHED_JADE);
         forItem(SMItems.LANTERNFISH_SPAWN_EGG);
+        forItem(SMItems.PIRANHA_SPAWN_EGG);
         forItem(SMItems.COOKED_LANTERNFISH);
+        forItem(SMItems.COOKED_PIRANHA);
         forItem(SMItems.TORTOISE_SPAWN_EGG);
         forItem(SMItems.JADE_SHIELD);
         forItem(SMItems.TORTOISE_SCUTE);
@@ -81,19 +83,22 @@ public class SMLangProvider extends LanguageProvider {
         forItem(SMItems.GLASS_VIAL);
         add(SMItems.VENOM_VIAL.get(), "Vial of Jungle Venom");
         forItem(SMItems.JADE_HORSE_ARMOR);
+        forItem(SMItems.THROWING_KNIFE);
 
         add(SMItems.LANTERNFISH_BUCKET.get(), "Bucket of Lanternfish");
+        add(SMItems.PIRANHA_BUCKET.get(), "Bucket of Piranha");
         add(SMItems.LANTERNFISH.get(), "Raw Lanternfish");
+        add(SMItems.PIRANHA.get(), "Raw Piranha");
 
         addMusicDisc(SMItems.MUSIC_DISC_SCOUR, "LudoCrypt - scour");
 
         //Entities
         forEntity(SMEntityTypes.LANTERNFISH);
         forEntity(SMEntityTypes.TORTOISE);
-        forEntity(SMEntityTypes.COPPER_GOLEM);
         forEntity(SMEntityTypes.TORTOISE_SHELL);
         forEntity(SMEntityTypes.BOULDERING_ZOMBIE);
         forEntity(SMEntityTypes.JUNGLE_SPIDER);
+        forEntity(SMEntityTypes.PIRANHA);
 
         //Potions
         addPotionsForEffect(SMPotions.UNLUCK, "Bad Luck");

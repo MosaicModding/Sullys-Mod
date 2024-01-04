@@ -44,12 +44,16 @@ public class SMItemModelProvider extends ItemModelProvider {
         basicItem(SMItems.ROUGH_JADE);
         basicItem(SMItems.POLISHED_JADE);
         basicItem(SMItems.LANTERNFISH_BUCKET);
+        basicItem(SMItems.PIRANHA_BUCKET);
         basicSpawnEggItem(SMItems.LANTERNFISH_SPAWN_EGG);
+        basicSpawnEggItem(SMItems.PIRANHA_SPAWN_EGG);
         basicSpawnEggItem(SMItems.TORTOISE_SPAWN_EGG);
         basicSpawnEggItem(SMItems.BOULDERING_ZOMBIE_SPAWN_EGG);
         basicSpawnEggItem(SMItems.JUNGLE_SPIDER_SPAWN_EGG);
         basicItem(SMItems.LANTERNFISH);
         basicItem(SMItems.COOKED_LANTERNFISH);
+        basicItem(SMItems.PIRANHA);
+        basicItem(SMItems.COOKED_PIRANHA);
         blockItemWithItemTexture(SMBlocks.TORTOISE_EGG);
         copperButtonBlockItem(SMBlocks.COPPER_BUTTON, COPPER_BLOCK);
         copperButtonBlockItem(SMBlocks.EXPOSED_COPPER_BUTTON, EXPOSED_COPPER);
@@ -81,6 +85,7 @@ public class SMItemModelProvider extends ItemModelProvider {
         basicItem(SMItems.GLASS_VIAL);
         venomVialItem(SMItems.VENOM_VIAL);
         basicItem(SMItems.JADE_HORSE_ARMOR);
+        basicItemHandheld(SMItems.THROWING_KNIFE);
     }
 
     private void basicBlockItem(Supplier<? extends Block> blockForItem) {
@@ -89,6 +94,11 @@ public class SMItemModelProvider extends ItemModelProvider {
 
     private void basicItem(Supplier<? extends Item> item) {
         basicItem(item.get());
+    }
+
+    private void basicItemHandheld(Supplier<? extends Item> item) {
+        withExistingParent(name(item.get()), HANDHELD)
+                .texture(LAYER0, modItemLocation(name(item.get())));
     }
 
     private void blockItemWithItemTexture(Supplier<? extends Block> blockForItem) {
@@ -133,10 +143,9 @@ public class SMItemModelProvider extends ItemModelProvider {
     }
 
     private void venomVialItem(Supplier<? extends Item> item) {
-        getBuilder(name(item.get()))
-                .parent(new ModelFile.UncheckedModelFile("item/generated"))
-                .texture("layer0", modLoc("item/glass_vial"))
-                .texture("layer1", modLoc("item/venom_vial_1"))
-                .texture("layer2", modLoc("item/venom_vial_2"));
+        withExistingParent(name(item.get()), GENERATED)
+                .texture("layer0", modItemLocation("glass_vial"))
+                .texture("layer1", modItemLocation("venom_vial_1"))
+                .texture("layer2", modItemLocation("venom_vial_2"));
     }
 }

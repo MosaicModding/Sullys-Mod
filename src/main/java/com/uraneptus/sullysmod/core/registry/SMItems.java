@@ -38,19 +38,24 @@ public class SMItems {
 
     //Tools
     public static final RegistryObject<Item> JADE_SHIELD = HELPER.createItem("jade_shield", () -> new JadeShieldItem(-2.0F, SMProperties.Items.JADE_SHIELD));
+    public static final RegistryObject<Item> THROWING_KNIFE = HELPER.createItem("throwing_knife", () -> new ThrowingKnifeItem(SMProperties.Items.sixteenStack()));
 
     //Food
     public static final RegistryObject<Item> LANTERNFISH = HELPER.createItem("lanternfish", () -> new Item(PropertyUtil.food(SMProperties.Foods.LANTERNFISH_FOOD)));
     public static final RegistryObject<Item> COOKED_LANTERNFISH = HELPER.createItem("cooked_lanternfish", () -> new Item(PropertyUtil.food(SMProperties.Foods.COOKED_LANTERNFISH_FOOD)));
-
+    public static final RegistryObject<Item> PIRANHA = HELPER.createItem("piranha", () -> new Item(PropertyUtil.food(SMProperties.Foods.PIRANHA_FOOD)));
+    public static final RegistryObject<Item> COOKED_PIRANHA = HELPER.createItem("cooked_piranha", () -> new Item(PropertyUtil.food(SMProperties.Foods.COOKED_PIRANHA_FOOD)));
 
     //Mob Buckets & Spawn Eggs
     public static final RegistryObject<Item> LANTERNFISH_BUCKET = HELPER.createItem("lanternfish_bucket", () -> SMItems.createMobBucketItem(SMEntityTypes.LANTERNFISH::get));
     public static final RegistryObject<ForgeSpawnEggItem> LANTERNFISH_SPAWN_EGG = HELPER.createSpawnEggItem("lanternfish", SMEntityTypes.LANTERNFISH::get, 16316617, 9306085);
     public static final RegistryObject<ForgeSpawnEggItem> TORTOISE_SPAWN_EGG = HELPER.createSpawnEggItem("tortoise", SMEntityTypes.TORTOISE::get, 15198183, 10844478);
     public static final RegistryObject<ForgeSpawnEggItem> BOULDERING_ZOMBIE_SPAWN_EGG = HELPER.createSpawnEggItem("bouldering_zombie", SMEntityTypes.BOULDERING_ZOMBIE::get, 8142370, 4608338);
-
     public static final RegistryObject<ForgeSpawnEggItem> JUNGLE_SPIDER_SPAWN_EGG = HELPER.createSpawnEggItem("jungle_spider", SMEntityTypes.JUNGLE_SPIDER::get, 5597514, 11013646);
+    public static final RegistryObject<Item> PIRANHA_BUCKET = HELPER.createItem("piranha_bucket", () -> SMItems.createMobBucketItem(SMEntityTypes.PIRANHA::get));
+    public static final RegistryObject<ForgeSpawnEggItem> PIRANHA_SPAWN_EGG = HELPER.createSpawnEggItem("piranha", SMEntityTypes.PIRANHA::get, 14576163, 10721937);
+
+
 
     public static Item createMobBucketItem(Supplier<EntityType<? extends WaterAnimal>> entityType) {
         return new MobBucketItem(entityType, () -> Fluids.WATER, () -> SoundEvents.BUCKET_EMPTY_FISH, PropertyUtil.stacksOnce());
@@ -67,20 +72,22 @@ public class SMItems {
 
                 .tab(CreativeModeTabs.TOOLS_AND_UTILITIES)
                 .addItemsAfter(of(Items.MUSIC_DISC_RELIC), MUSIC_DISC_SCOUR)
-                .addItemsAfter(of(Items.COD_BUCKET), LANTERNFISH_BUCKET)
+                .addItemsAfter(of(Items.COD_BUCKET), LANTERNFISH_BUCKET, PIRANHA_BUCKET)
                 .addItemsAfter(of(Items.SADDLE), TORTOISE_SHELL)
 
                 .tab(CreativeModeTabs.FOOD_AND_DRINKS)
-                .addItemsAfter(of(Items.COOKED_COD), LANTERNFISH, COOKED_LANTERNFISH)
+                .addItemsAfter(of(Items.COOKED_COD), LANTERNFISH, COOKED_LANTERNFISH, PIRANHA, COOKED_PIRANHA)
 
                 .tab(CreativeModeTabs.COMBAT)
                 .addItemsAfter(of(Items.SHIELD), JADE_SHIELD)
                 .addItemsAfter(of(Items.DIAMOND_HORSE_ARMOR), JADE_HORSE_ARMOR)
+                .addItemsAfter(of(Items.TRIDENT), THROWING_KNIFE)
 
-                .tab(CreativeModeTabs.SPAWN_EGGS)
+                .tab(CreativeModeTabs.SPAWN_EGGS) //Sorted alphabetically
                 .addItemsAfter(of(Items.TADPOLE_SPAWN_EGG), TORTOISE_SPAWN_EGG)
                 .addItemsAfter(of(Items.BLAZE_SPAWN_EGG), BOULDERING_ZOMBIE_SPAWN_EGG)
                 .addItemsAfter(of(Items.IRON_GOLEM_SPAWN_EGG), JUNGLE_SPIDER_SPAWN_EGG, LANTERNFISH_SPAWN_EGG)
+                .addItemsAfter(of(Items.PILLAGER_SPAWN_EGG), PIRANHA_SPAWN_EGG)
 
                 .tab(CreativeModeTabs.NATURAL_BLOCKS)
                 .addItemsAfter(of(Items.COPPER_ORE), JADE_ORE)

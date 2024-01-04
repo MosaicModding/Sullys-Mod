@@ -14,11 +14,31 @@
             },
             "trigger": "minecraft:consume_item"
           },
+          "sullysmod:cooked_piranha": {
+            "conditions": {
+              "item": {
+                "items": [
+                  "sullysmod:cooked_piranha"
+                ]
+              }
+            },
+            "trigger": "minecraft:consume_item"
+          },
           "sullysmod:lanternfish": {
             "conditions": {
               "item": {
                 "items": [
                   "sullysmod:lanternfish"
+                ]
+              }
+            },
+            "trigger": "minecraft:consume_item"
+          },
+          "sullysmod:piranha": {
+            "conditions": {
+              "item": {
+                "items": [
+                  "sullysmod:piranha"
                 ]
               }
             },
@@ -31,6 +51,12 @@
           ],
           [
             "sullysmod:cooked_lanternfish"
+          ],
+          [
+            "sullysmod:piranha"
+          ],
+          [
+            "sullysmod:cooked_piranha"
           ]
         ],
         "should_replace_requirements": false
