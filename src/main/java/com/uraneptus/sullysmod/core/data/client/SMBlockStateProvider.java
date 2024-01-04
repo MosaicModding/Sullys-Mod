@@ -1,6 +1,5 @@
 package com.uraneptus.sullysmod.core.data.client;
 
-import com.teamabnormals.blueprint.common.block.VerticalSlabBlock;
 import com.uraneptus.sullysmod.SullysMod;
 import com.uraneptus.sullysmod.common.blocks.FlingerTotem;
 import com.uraneptus.sullysmod.core.registry.SMBlocks;
@@ -62,15 +61,6 @@ public class SMBlockStateProvider extends BlockStateProvider {
         modSlabBlock(SMBlocks.ROUGH_JADE_BRICK_SLAB, ROUGH_JADE_BRICKS);
         modSlabBlock(SMBlocks.SMOOTHED_ROUGH_JADE_SLAB, SMOOTHED_ROUGH_JADE);
         modSlabBlock(SMBlocks.ROUGH_JADE_TILE_SLAB, ROUGH_JADE_TILES);
-        /*
-        modVerticalSlabBlock(SMBlocks.POLISHED_JADE_BRICK_VERTICAL_SLAB, JADE_BRICKS);
-        modVerticalSlabBlock(SMBlocks.POLISHED_SMALL_JADE_BRICK_VERTICAL_SLAB, SMALL_JADE_BRICKS);
-        modVerticalSlabBlock(SMBlocks.POLISHED_JADE_SHINGLE_VERTICAL_SLAB, JADE_SHINGLES);
-        modVerticalSlabBlock(SMBlocks.POLISHED_JADE_TILE_VERTICAL_SLAB, JADE_TILES);
-        modVerticalSlabBlock(SMBlocks.ROUGH_JADE_BRICK_VERTICAL_SLAB, ROUGH_JADE_BRICKS);
-        modVerticalSlabBlock(SMBlocks.SMOOTHED_ROUGH_JADE_VERTICAL_SLAB, SMOOTHED_ROUGH_JADE);
-        modVerticalSlabBlock(SMBlocks.ROUGH_JADE_TILE_VERTICAL_SLAB, ROUGH_JADE_TILES);
-         */
         modEggBlock(SMBlocks.TORTOISE_EGG);
         basicBlock(SMBlocks.AMBER);
         basicBlock(SMBlocks.AMBER_BRICKS);
@@ -169,20 +159,5 @@ public class SMBlockStateProvider extends BlockStateProvider {
                     .nextModel().modelFile(modelFile).rotationY(270)
                     .build();
         });
-    }
-
-    private void modVerticalSlabBlock(Supplier<? extends Block> slab, String path) {
-        ModelFile model = this.models()
-                .withExistingParent(name(slab.get()), blueprintBlockLocation("vertical_slab"))
-                .texture("top", modBlockLocation(path))
-                .texture("bottom", modBlockLocation(path))
-                .texture("side", modBlockLocation(path));
-
-        getVariantBuilder(slab.get())
-                .partialState().with(VerticalSlabBlock.TYPE, VerticalSlabBlock.VerticalSlabType.NORTH).addModels(new ConfiguredModel(model, 0, 0, true))
-                .partialState().with(VerticalSlabBlock.TYPE, VerticalSlabBlock.VerticalSlabType.SOUTH).addModels(new ConfiguredModel(model, 0, 180, true))
-                .partialState().with(VerticalSlabBlock.TYPE, VerticalSlabBlock.VerticalSlabType.EAST).addModels(new ConfiguredModel(model, 0, 90, true))
-                .partialState().with(VerticalSlabBlock.TYPE, VerticalSlabBlock.VerticalSlabType.WEST).addModels(new ConfiguredModel(model, 0, 270, true))
-                .partialState().with(VerticalSlabBlock.TYPE, VerticalSlabBlock.VerticalSlabType.DOUBLE).addModels(new ConfiguredModel(this.models().getExistingFile(modBlockLocation(path))));
     }
 }

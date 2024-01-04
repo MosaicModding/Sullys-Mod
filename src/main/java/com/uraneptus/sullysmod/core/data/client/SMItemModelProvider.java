@@ -77,21 +77,8 @@ public class SMItemModelProvider extends ItemModelProvider {
         basicBlockItem(SMBlocks.ROUGH_JADE_BRICK_SLAB);
         basicBlockItem(SMBlocks.SMOOTHED_ROUGH_JADE_SLAB);
         basicBlockItem(SMBlocks.ROUGH_JADE_TILE_SLAB);
-        /*
-        basicBlockItem(SMBlocks.POLISHED_JADE_BRICK_VERTICAL_SLAB);
-        basicBlockItem(SMBlocks.POLISHED_SMALL_JADE_BRICK_VERTICAL_SLAB);
-        basicBlockItem(SMBlocks.POLISHED_JADE_SHINGLE_VERTICAL_SLAB);
-        basicBlockItem(SMBlocks.POLISHED_JADE_TILE_VERTICAL_SLAB);
-        basicBlockItem(SMBlocks.ROUGH_JADE_BRICK_VERTICAL_SLAB);
-        basicBlockItem(SMBlocks.SMOOTHED_ROUGH_JADE_VERTICAL_SLAB);
-        basicBlockItem(SMBlocks.ROUGH_JADE_TILE_VERTICAL_SLAB);
-         */
         basicItem(SMItems.MUSIC_DISC_SCOUR);
         jadeShieldItem(SMItems.JADE_SHIELD);
-        basicItem(SMItems.LANTERNFISH_SLICE);
-        basicItem(SMItems.COOKED_LANTERNFISH_SLICE);
-        basicItem(SMItems.LANTERNFISH_ROLL);
-        basicItem(SMItems.CAVE_CHUM_BUCKET);
         basicItem(SMItems.TORTOISE_SCUTE);
         basicItem(SMItems.TORTOISE_SHELL);
         basicItem(SMItems.JADE_UPGRADE_SMITHING_TEMPLATE);

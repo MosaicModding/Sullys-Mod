@@ -45,11 +45,6 @@ public class SMBlockLoot extends BlockLootSubProvider {
         createSlab(SMBlocks.ROUGH_JADE_BRICK_SLAB.get());
         createSlab(SMBlocks.ROUGH_JADE_TILE_SLAB.get());
         createSlab(SMBlocks.SMOOTHED_ROUGH_JADE_SLAB.get());
-        /*
-        createSlab(SMBlocks.ROUGH_JADE_BRICK_VERTICAL_SLAB.get());
-        createSlab(SMBlocks.ROUGH_JADE_TILE_VERTICAL_SLAB.get());
-        createSlab(SMBlocks.SMOOTHED_ROUGH_JADE_VERTICAL_SLAB.get());
-         */
 
         //Jade
         this.dropSelf(SMBlocks.POLISHED_JADE_BLOCK.get());
@@ -91,11 +86,11 @@ public class SMBlockLoot extends BlockLootSubProvider {
         this.dropSelf(SMBlocks.AMBER_BRICK_WALL.get());
     }
 
-    private LootTable.Builder createJadeOreDrops(Block block) {
+    protected LootTable.Builder createJadeOreDrops(Block block) {
         return createSilkTouchDispatchTable(block, applyExplosionDecay(block, LootItem.lootTableItem(SMItems.ROUGH_JADE.get()).apply(SetItemCountFunction.setCount(UniformGenerator.between(2.0F, 5.0F))).apply(ApplyBonusCount.addOreBonusCount(Enchantments.BLOCK_FORTUNE))));
     }
 
-    private void createSlab(Block block) {
+    protected void createSlab(Block block) {
         add(block, createSlabItemTable(block));
     }
 }
