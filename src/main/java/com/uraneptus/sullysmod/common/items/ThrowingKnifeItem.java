@@ -3,6 +3,7 @@ package com.uraneptus.sullysmod.common.items;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
 import com.uraneptus.sullysmod.common.entities.ThrownThrowingKnife;
+import com.uraneptus.sullysmod.core.registry.SMSounds;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.core.BlockPos;
@@ -117,7 +118,7 @@ public class ThrowingKnifeItem extends Item {
                         thrownThrowingKnife.pickup = AbstractArrow.Pickup.CREATIVE_ONLY;
                     }
                     pLevel.addFreshEntity(thrownThrowingKnife);
-                    pLevel.playSound(null, thrownThrowingKnife, SoundEvents.TRIDENT_THROW, SoundSource.PLAYERS, 1.0F, 1.0F); //TODO change sound
+                    pLevel.playSound(null, thrownThrowingKnife, SMSounds.THROWING_KNIFE_THROW.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
                     if (!player.getAbilities().instabuild) {
                         pStack.shrink(1);
                     }

@@ -17,6 +17,9 @@ public class SMSounds {
     public static final RegistryObject<SoundEvent> POLISH_JADE = HELPER.createSoundEvent("block.grindstone.polish_jade");
     public static final RegistryObject<SoundEvent> VIAL_SHATTERS = HELPER.createSoundEvent("item.vial.shatter");
     public static final RegistryObject<SoundEvent> VIAL_FILLS = HELPER.createSoundEvent("item.vial.fill");
+    public static final RegistryObject<SoundEvent> THROWING_KNIFE_HIT = HELPER.createSoundEvent("item.throwing_knife.hit");
+    public static final RegistryObject<SoundEvent> THROWING_KNIFE_HIT_GROUND = HELPER.createSoundEvent("item.throwing_knife.hit_ground");
+    public static final RegistryObject<SoundEvent> THROWING_KNIFE_THROW = HELPER.createSoundEvent("item.throwing_knife.throw");
 
     //Block Sounds
     public static final RegistryObject<SoundEvent> JADE_RICOCHET = HELPER.createSoundEvent("block.jade.ricochet");

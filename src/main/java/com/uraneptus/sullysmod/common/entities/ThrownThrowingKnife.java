@@ -1,8 +1,10 @@
 package com.uraneptus.sullysmod.common.entities;
 
 import com.uraneptus.sullysmod.core.other.tags.SMEntityTags;
+import com.uraneptus.sullysmod.core.registry.SMDamageTypes;
 import com.uraneptus.sullysmod.core.registry.SMEntityTypes;
 import com.uraneptus.sullysmod.core.registry.SMItems;
+import com.uraneptus.sullysmod.core.registry.SMSounds;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerLevel;
@@ -58,8 +60,8 @@ public class ThrownThrowingKnife extends AbstractArrow {
         }
 
         Entity owner = this.getOwner();
-        DamageSource damagesource = this.damageSources().trident(this, owner == null ? this : owner); //TODO add own damagesource
-        SoundEvent soundevent = SoundEvents.TRIDENT_HIT; //TODO change sound
+        DamageSource damagesource = this.damageSources().source(SMDamageTypes.THROWING_KNIFE, this, owner == null ? this : owner);
+        SoundEvent soundevent = SMSounds.THROWING_KNIFE_HIT.get();
         if (entity.hurt(damagesource, f)) {
             if (entity.getType() == EntityType.ENDERMAN) {
                 return;
@@ -81,7 +83,7 @@ public class ThrownThrowingKnife extends AbstractArrow {
 
     @Override
     protected SoundEvent getDefaultHitGroundSoundEvent() {
-        return SoundEvents.TRIDENT_HIT_GROUND; //TODO add own sound
+        return SMSounds.THROWING_KNIFE_HIT_GROUND.get();
     }
 
     @Override
@@ -100,7 +102,7 @@ public class ThrownThrowingKnife extends AbstractArrow {
 
     @Override
     protected float getWaterInertia() {
-        return 0.7F; //This is how projectiles moves through water
+        return 0.7F;
     }
 
     @Override

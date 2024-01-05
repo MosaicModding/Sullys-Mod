@@ -143,11 +143,16 @@ public class SMLangProvider extends LanguageProvider {
         add("subtitles.entity.bouldering_zombie.hurt", "Bouldering Zombie hurts");
         add("subtitles.entity.bouldering_zombie.death", "Bouldering Zombie dies");
 
+        add("subtitles.item.throwing_knife.hit", "Knife hits entity");
+        add("subtitles.item.throwing_knife.hit_ground", "Knife hits ground");
+        add("subtitles.item.throwing_knife.throw", "Knife flies");
+
         //Other
         SMTextUtil.TRANSLATABLES.forEach(this::add);
         add("death.attack.tortoise_shell", "%1$s took a Tortoise Shell to the knees");
         add("death.attack.tortoise_shell.player", "%1$s got bonked to death");
-
+        add("death.attack.throwing_knife", "%1$s got pierced from a distance");
+        add("death.attack.throwing_knife.player", "%1$s got shanked by %2$s"); //Not quite sure about this one yet?
     }
 
     protected void addMusicDisc(Supplier<? extends Item> item, String description) {
