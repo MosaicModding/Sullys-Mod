@@ -37,6 +37,20 @@ public class SMSoundDefinitionsProvider extends SoundDefinitionsProvider {
                 sound("item/bottle/fill3").pitch(1.3F),
                 sound("item/bottle/fill4").pitch(1.3F)
         );
+        addbasicSound(SMSounds.THROWING_KNIFE_HIT,
+                sound(SullysMod.modPrefix("item/throwing_knife/hit1")),
+                sound(SullysMod.modPrefix("item/throwing_knife/hit2")),
+                sound(SullysMod.modPrefix("item/throwing_knife/hit3"))
+        );
+        addbasicSound(SMSounds.THROWING_KNIFE_HIT_GROUND,
+                sound(SullysMod.modPrefix("item/throwing_knife/hit1")),
+                sound(SullysMod.modPrefix("item/throwing_knife/hit2")),
+                sound(SullysMod.modPrefix("item/throwing_knife/hit3"))
+        );
+        addbasicSound(SMSounds.THROWING_KNIFE_THROW,
+                sound(SullysMod.modPrefix("item/throwing_knife/throw1")),
+                sound(SullysMod.modPrefix("item/throwing_knife/throw2"))
+        );
 
         //Block Sounds
         addbasicSound(SMSounds.POLISH_JADE,

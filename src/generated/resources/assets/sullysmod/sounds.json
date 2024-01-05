@@ -258,6 +258,29 @@
     ],
     "subtitle": "subtitles.entity.tortoise_shell.place"
   },
+  "item.throwing_knife.hit": {
+    "sounds": [
+      "sullysmod:item/throwing_knife/hit1",
+      "sullysmod:item/throwing_knife/hit2",
+      "sullysmod:item/throwing_knife/hit3"
+    ],
+    "subtitle": "subtitles.item.throwing_knife.hit"
+  },
+  "item.throwing_knife.hit_ground": {
+    "sounds": [
+      "sullysmod:item/throwing_knife/hit1",
+      "sullysmod:item/throwing_knife/hit2",
+      "sullysmod:item/throwing_knife/hit3"
+    ],
+    "subtitle": "subtitles.item.throwing_knife.hit_ground"
+  },
+  "item.throwing_knife.throw": {
+    "sounds": [
+      "sullysmod:item/throwing_knife/throw1",
+      "sullysmod:item/throwing_knife/throw2"
+    ],
+    "subtitle": "subtitles.item.throwing_knife.throw"
+  },
   "item.vial.fill": {
     "sounds": [
       {
