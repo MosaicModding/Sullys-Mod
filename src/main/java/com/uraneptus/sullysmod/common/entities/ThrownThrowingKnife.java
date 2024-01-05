@@ -1,5 +1,6 @@
 package com.uraneptus.sullysmod.common.entities;
 
+import com.uraneptus.sullysmod.core.other.tags.SMEntityTags;
 import com.uraneptus.sullysmod.core.registry.SMEntityTypes;
 import com.uraneptus.sullysmod.core.registry.SMItems;
 import net.minecraft.core.BlockPos;
@@ -9,10 +10,10 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.LightningBolt;
-import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.ai.control.FlyingMoveControl;
+import net.minecraft.world.entity.ai.navigation.FlyingPathNavigation;
+import net.minecraft.world.entity.animal.FlyingAnimal;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.item.ItemStack;
@@ -25,7 +26,6 @@ import net.minecraftforge.network.PlayMessages;
 
 import javax.annotation.Nullable;
 
-//TODO reduce hitbox
 public class ThrownThrowingKnife extends AbstractArrow {
     private ItemStack knifeItem = new ItemStack(SMItems.THROWING_KNIFE.get());
 
@@ -53,8 +53,8 @@ public class ThrownThrowingKnife extends AbstractArrow {
     protected void onHitEntity(EntityHitResult pResult) {
         Entity entity = pResult.getEntity();
         float f = 2.0F;
-        if (entity instanceof LivingEntity livingentity) {
-            f += EnchantmentHelper.getDamageBonus(this.knifeItem, livingentity.getMobType());
+        if (entity.getType().is(SMEntityTags.IS_FLYING_MOB) || (entity instanceof Mob mob && (mob.getNavigation() instanceof FlyingPathNavigation || mob instanceof FlyingMob || mob instanceof FlyingAnimal))) {
+            f += 4.0F;
         }
 
         Entity owner = this.getOwner();

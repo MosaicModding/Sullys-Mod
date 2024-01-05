@@ -46,7 +46,7 @@ public class ThrowingKnifeItem extends Item {
 
             private static final HumanoidModel.ArmPose THROWING_KNIFE_POSE = HumanoidModel.ArmPose.create("THROWING_KNIFE", false, (model, entity, arm) -> {
                 if (arm == HumanoidArm.RIGHT) {
-                    model.rightArm.xRot = (model.rightArm.xRot - 2.5F) + (model.head.xRot + 0.5F);
+                    model.rightArm.xRot = (model.rightArm.xRot - 2.8F) + (model.head.xRot + 0.5F);
                     model.rightArm.yRot = 0.0F + (model.head.yRot + 0.13F);
                 } else {
                     model.leftArm.xRot = (model.leftArm.xRot - 2.5F) + (model.head.xRot + 0.5F);
@@ -73,10 +73,10 @@ public class ThrowingKnifeItem extends Item {
                 poseStack.translate(i * 0.56F, -0.52F + equipProcess * -0.6F, -0.72F);
                 if (player.isUsingItem()) {
                     ItemStack stack = player.getUseItem();
-                    poseStack.translate(i * -0.28F, 0.55F, 0.07F);
+                    poseStack.translate(i * -0.33F, 0.55F, 0.07F);
                     poseStack.mulPose(Axis.XP.rotationDegrees(23.0F));
-                    poseStack.mulPose(Axis.YP.rotationDegrees(i * 20.0F));
-                    poseStack.mulPose(Axis.ZP.rotationDegrees(i * 10.0F));
+                    poseStack.mulPose(Axis.YP.rotationDegrees(i * 48.0F));
+                    poseStack.mulPose(Axis.ZP.rotationDegrees(i * 13.0F));
                     //Rest is copied from trident item rendenderer so don't ask me what all the 'f' variables mean! Idk either
                     float drawDuration = (float)stack.getUseDuration() - ((float)player.getUseItemRemainingTicks() - partialTick + 1.0F);
                     float f11 = drawDuration / 10.0F;
