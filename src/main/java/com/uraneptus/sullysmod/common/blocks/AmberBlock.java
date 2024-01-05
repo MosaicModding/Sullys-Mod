@@ -9,11 +9,11 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.ai.targeting.TargetingConditions;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LightLayer;
-import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.HalfTransparentBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
@@ -22,13 +22,16 @@ import net.minecraft.world.phys.shapes.EntityCollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
+import java.util.ArrayList;
+
 public class AmberBlock extends HalfTransparentBlock {
 
     private static final VoxelShape MELTING_COLLISION_SHAPE = Shapes.box(0.0D, 0.0D, 0.0D, 1.0D, (double)0.0F, 1.0D);
+
+    LivingEntity ENTITY_STUCK;
     public AmberBlock(Properties pProperties) {
         super(pProperties);
     }
-
 
 
     public VoxelShape getCollisionShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
@@ -54,6 +57,20 @@ public class AmberBlock extends HalfTransparentBlock {
             System.out.println("BRIGHT");
         }
     }
+
+    public void onRemove(BlockState pState, Level pLevel, BlockPos pPos, BlockState pNewState, boolean pIsMoving) {
+
+        Entity entity = pLevel.getNearestEntity(new ArrayList<>(), TargetingConditions.DEFAULT, null, pPos.getX(), pPos.getY(), pPos.getZ());
+        if (entity instanceof Mob mob) {
+            mob.setNoAi(false);
+        }
+        if (ENTITY_STUCK instanceof Mob mob) {
+            mob.setNoAi(false);
+        }
+        System.out.println("AMBER BROKE");
+        super.onRemove(pState, pLevel, pPos, pNewState, pIsMoving);
+    }
+
     public void stepOn(Level pLevel, BlockPos pPos, BlockState pState, Entity pEntity) {
         BlockPos blockPos = new BlockPos(pPos.getX(), pPos.getY() + 1, pPos.getZ());
         if (pLevel.getBrightness(LightLayer.BLOCK, blockPos) > 11) {
@@ -73,7 +90,11 @@ public class AmberBlock extends HalfTransparentBlock {
             } else if (pEntity instanceof Mob mob) {
                 pEntity.makeStuckInBlock(pState, new Vec3((double) 0.0F, 0.1D, (double) 0.0F));
                 if (mob.getBlockStateOn() != SMBlocks.AMBER.get().defaultBlockState()) {
+                    mob.setSilent(true);
+                    mob.setRemainingFireTicks(0);
+                    mob.setInvulnerable(true);
                     mob.setNoAi(true);
+                    ENTITY_STUCK = mob;
                 }
             }
             if (pLevel.isClientSide) {
