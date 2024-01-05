@@ -99,6 +99,7 @@ dependencies {
     implementation fg.deobf("mezz.jei:jei-${mc_version}-forge:${jei_version}")
     runtimeOnly fg.deobf("curse.maven:catalogue-459701:4590890")
     //runtimeOnly fg.deobf("curse.maven:configured-457570:4011355")
+    runtimeOnly fg.deobf("curse.maven:neat-238372:4580940")
 
 }
 

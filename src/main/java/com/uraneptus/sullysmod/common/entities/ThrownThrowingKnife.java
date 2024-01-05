@@ -55,9 +55,12 @@ public class ThrownThrowingKnife extends AbstractArrow {
     protected void onHitEntity(EntityHitResult pResult) {
         Entity entity = pResult.getEntity();
         float f = 2.0F;
-        if (entity.getType().is(SMEntityTags.IS_FLYING_MOB) || (entity instanceof Mob mob && (mob.getNavigation() instanceof FlyingPathNavigation || mob instanceof FlyingMob || mob instanceof FlyingAnimal))) {
+
+        if (!entity.onGround() && !entity.isInFluidType()) {
+            System.out.println("not on ground");
             f += 4.0F;
         }
+
 
         Entity owner = this.getOwner();
         DamageSource damagesource = this.damageSources().source(SMDamageTypes.THROWING_KNIFE, this, owner == null ? this : owner);

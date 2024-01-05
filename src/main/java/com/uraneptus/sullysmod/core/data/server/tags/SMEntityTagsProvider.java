@@ -81,18 +81,5 @@ public class SMEntityTagsProvider extends EntityTypeTagsProvider {
                 EntityType.WITHER_SKULL,
                 EntityType.FISHING_BOBBER
         ).addOptional(new ResourceLocation("botania", "mana_burst"));
-
-        tag(SMEntityTags.IS_FLYING_MOB).add(
-                EntityType.BEE,
-                EntityType.PARROT,
-                EntityType.BAT,
-                EntityType.WITHER,
-                EntityType.ENDER_DRAGON,
-                EntityType.GHAST,
-                EntityType.VEX,
-                EntityType.PHANTOM,
-                EntityType.ALLAY,
-                EntityType.BLAZE
-        );
     }
 }

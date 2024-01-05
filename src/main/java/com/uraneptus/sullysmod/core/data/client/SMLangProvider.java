@@ -151,8 +151,8 @@ public class SMLangProvider extends LanguageProvider {
         SMTextUtil.TRANSLATABLES.forEach(this::add);
         add("death.attack.tortoise_shell", "%1$s took a Tortoise Shell to the knees");
         add("death.attack.tortoise_shell.player", "%1$s got bonked to death");
-        add("death.attack.throwing_knife", "%1$s got pierced from a distance");
-        add("death.attack.throwing_knife.player", "%1$s got shanked by %2$s"); //Not quite sure about this one yet?
+        add("death.attack.throwing_knife", "%1$s got sliced and diced");
+        add("death.attack.throwing_knife.player", "%1$s was turned into a dart board by %2$s");
     }
 
     protected void addMusicDisc(Supplier<? extends Item> item, String description) {
