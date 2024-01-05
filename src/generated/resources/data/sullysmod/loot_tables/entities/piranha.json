@@ -42,6 +42,23 @@
         }
       ],
       "rolls": 1.0
+    },
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "chance": 0.27,
+          "condition": "minecraft:random_chance_with_looting",
+          "looting_multiplier": 0.06
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "sullysmod:piranha_tooth"
+        }
+      ],
+      "rolls": 1.0
     }
   ],
   "random_sequence": "sullysmod:entities/piranha"

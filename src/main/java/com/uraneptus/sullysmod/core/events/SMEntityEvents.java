@@ -28,6 +28,7 @@ import net.minecraft.world.entity.animal.Turtle;
 import net.minecraft.world.entity.animal.horse.Horse;
 import net.minecraft.world.entity.monster.Zombie;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
@@ -59,12 +60,11 @@ public class SMEntityEvents {
             Direction direction = blockHitResult.getDirection();
 
             if (blockState.is(SMBlockTags.PROJECTILES_BOUNCE_ON)) {
+                event.setCanceled(true);
                 if (isFlingerAndFlings(projectile, blockState, direction) && level.getBlockEntity(pos) instanceof FlingerTotemBlockEntity blockEntity && !blockEntity.isFull()) {
-                    event.setCanceled(true);
                     blockEntity.addProjectile(projectile);
 
                 } else if (!(projectile.getType().is(SMEntityTags.CANNOT_BOUNCE))) {
-                    event.setCanceled(true);
                     switch (direction.getAxis()) {
                         case X -> projectile.shoot(vec3.reverse().x, vec3.y, vec3.z, calculateBounceVelocity(velocity), 0.0F);
                         case Y -> projectile.shoot(vec3.x, vec3.reverse().y, vec3.z, calculateBounceVelocity(velocity), 0.0F);
@@ -111,7 +111,7 @@ public class SMEntityEvents {
                     projectile.gameEvent(GameEvent.PROJECTILE_SHOOT);
                 }
                 level.playSound(null, horse.getX(), horse.getY(), horse.getZ(), SMSounds.JADE_RICOCHET.get(), horse.getSoundSource(), 1.0F, 0.0F);
-                //TODO particles only spawn when facing east or west. No idea why
+                //TODO particles only spawn when facing east or west. No idea why (same goes for the jade shield)
                 ((ServerLevel) level).sendParticles(new DirectionParticleOptions(SMParticleTypes.RICOCHET.get(), direction), projectile.getX(), projectile.getY(), projectile.getZ(), 1, 0.0D, 0.0D, 0.0D, 0.0D);
 
             }

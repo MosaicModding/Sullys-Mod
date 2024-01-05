@@ -35,6 +35,7 @@ public class SMItems {
     public static final RegistryObject<Item> GLASS_VIAL = HELPER.createItem("glass_vial", () -> new VialItem(new Item.Properties()));
     public static final RegistryObject<Item> VENOM_VIAL = HELPER.createItem("venom_vial", () -> new VenomVialItem(new Item.Properties().stacksTo(16)));
     public static final RegistryObject<Item> JADE_HORSE_ARMOR = HELPER.createItem("jade_horse_armor", () -> new HorseArmorItem(9, "jade", PropertyUtil.stacksOnce()));
+    public static final RegistryObject<Item> PIRANHA_TOOTH = HELPER.createItem("piranha_tooth", () -> new Item(new Item.Properties()));
 
     //Tools
     public static final RegistryObject<Item> JADE_SHIELD = HELPER.createItem("jade_shield", () -> new JadeShieldItem(-2.0F, SMProperties.Items.JADE_SHIELD));
@@ -55,8 +56,6 @@ public class SMItems {
     public static final RegistryObject<Item> PIRANHA_BUCKET = HELPER.createItem("piranha_bucket", () -> SMItems.createMobBucketItem(SMEntityTypes.PIRANHA::get));
     public static final RegistryObject<ForgeSpawnEggItem> PIRANHA_SPAWN_EGG = HELPER.createSpawnEggItem("piranha", SMEntityTypes.PIRANHA::get, 14576163, 10721937);
 
-
-
     public static Item createMobBucketItem(Supplier<EntityType<? extends WaterAnimal>> entityType) {
         return new MobBucketItem(entityType, () -> Fluids.WATER, () -> SoundEvents.BUCKET_EMPTY_FISH, PropertyUtil.stacksOnce());
     }
@@ -69,6 +68,7 @@ public class SMItems {
                 .addItemsAfter(of(Items.SCUTE), TORTOISE_SCUTE)
                 .addItemsAfter(of(Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE), JADE_UPGRADE_SMITHING_TEMPLATE)
                 .addItemsAfter(of(Items.GLASS_BOTTLE), GLASS_VIAL)
+                .addItemsBefore(of(Items.BONE), PIRANHA_TOOTH)
 
                 .tab(CreativeModeTabs.TOOLS_AND_UTILITIES)
                 .addItemsAfter(of(Items.MUSIC_DISC_RELIC), MUSIC_DISC_SCOUR)

@@ -91,6 +91,7 @@ public class SMItemModelProvider extends ItemModelProvider {
         basicBlockItem(SMBlocks.AMBER_BRICK_SLAB);
         //basicBlockItem(SMBlocks.AMBER_BRICK_WALL);
         basicBlockItem(SMBlocks.AMBER_BRICK_STAIRS);
+        basicItem(SMItems.PIRANHA_TOOTH);
     }
 
     private void basicBlockItem(Supplier<? extends Block> blockForItem) {

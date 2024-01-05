@@ -60,7 +60,7 @@ public class Piranha extends AbstractSchoolingFish implements GeoEntity, Neutral
 
     @Override
     protected void registerGoals() {
-        //Never call the super method! We don't want the panic goal in AbstractFish
+        //NOTE: Never call the super method! We don't want the panic goal in AbstractFish
         this.goalSelector.addGoal(0, new PiranhaAttackGoal(this));
         this.goalSelector.addGoal(2, new AvoidEntityGoal<>(this, Player.class, 8.0F, 1.6D, 1.4D, EntitySelector.NO_SPECTATORS::test));
         this.goalSelector.addGoal(4, new PiranhaSwimGoal(this));
@@ -74,7 +74,7 @@ public class Piranha extends AbstractSchoolingFish implements GeoEntity, Neutral
         return 5;
     }
 
-    public boolean isPiranhaAngry(LivingEntity pTarget) {
+    public boolean isPiranhaAngry(LivingEntity pTarget) { //doesn't attack lanternfish??
         return isAngryAt(pTarget) || pTarget.getHealth() < pTarget.getMaxHealth();
     }
 
