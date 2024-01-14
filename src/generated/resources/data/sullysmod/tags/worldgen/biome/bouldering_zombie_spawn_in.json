@@ -14,7 +14,6 @@
     "#forge:is_plains",
     "#forge:is_sandy",
     "#forge:is_swamp",
-    "#forge:is_mushroom",
     "minecraft:lush_caves",
     "minecraft:dripstone_caves"
   ]
