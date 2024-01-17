@@ -57,15 +57,12 @@ public class ThrownThrowingKnife extends AbstractArrow {
         float f = 2.0F;
 
         if (!entity.onGround() && !entity.isInFluidType()) {
-            System.out.println("not on ground");
             f += 4.0F;
         }
 
 
         Entity owner = this.getOwner();
-        DamageSource damagesource = this.damageSources().source(SMDamageTypes.THROWING_KNIFE, this, owner == null ? this : owner);
-        SoundEvent soundevent = SMSounds.THROWING_KNIFE_HIT.get();
-        if (entity.hurt(damagesource, f)) {
+        if (entity.hurt(this.damageSources().source(SMDamageTypes.THROWING_KNIFE, this, owner == null ? this : owner), f)) {
             if (entity.getType() == EntityType.ENDERMAN) {
                 return;
             }
@@ -81,7 +78,7 @@ public class ThrownThrowingKnife extends AbstractArrow {
         }
 
         this.discard();
-        this.playSound(soundevent, 1.0F, 1.0F);
+        this.playSound(SMSounds.THROWING_KNIFE_HIT.get(), 1.0F, 1.0F);
     }
 
     @Override

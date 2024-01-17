@@ -71,9 +71,9 @@ public class SMEntityEvents {
                         case Z -> projectile.shoot(vec3.x, vec3.y, vec3.reverse().z, calculateBounceVelocity(velocity), 0.0F);
                     }
                     projectile.gameEvent(GameEvent.PROJECTILE_SHOOT);
-                    Vec3 particlePos = new Vec3(blockHitResult.getLocation().x, blockHitResult.getLocation().y, blockHitResult.getLocation().z).relative(direction, 0.1D);
+                    Vec3 particlePos = new Vec3(blockHitResult.getLocation().x, blockHitResult.getLocation().y, blockHitResult.getLocation().z).relative(direction, 0.1D); //TODO add this for shield/horse too to fix bug mentioned below
                     level.addParticle(new DirectionParticleOptions(SMParticleTypes.RICOCHET.get(), direction), particlePos.x, particlePos.y, particlePos.z, 0, 0, 0);
-                    level.playLocalSound(projectile.getX(), projectile.getY(), projectile.getZ(), SMSounds.JADE_RICOCHET.get(), SoundSource.BLOCKS, 1.0F, 0.0F, false);
+                    level.playSound(null, projectile.getX(), projectile.getY(), projectile.getZ(), SMSounds.JADE_RICOCHET.get(), SoundSource.BLOCKS, 1.0F, 0.0F);
                 }
             }
         }

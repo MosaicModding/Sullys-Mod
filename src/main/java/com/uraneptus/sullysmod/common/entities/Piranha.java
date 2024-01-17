@@ -1,5 +1,6 @@
 package com.uraneptus.sullysmod.common.entities;
 
+import com.uraneptus.sullysmod.core.registry.SMEntityTypes;
 import com.uraneptus.sullysmod.core.registry.SMItems;
 import com.uraneptus.sullysmod.core.registry.SMSounds;
 import net.minecraft.core.BlockPos;
@@ -24,6 +25,7 @@ import net.minecraft.world.entity.ai.goal.target.ResetUniversalAngerTargetGoal;
 import net.minecraft.world.entity.animal.AbstractFish;
 import net.minecraft.world.entity.animal.AbstractSchoolingFish;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.vehicle.Boat;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
@@ -66,7 +68,8 @@ public class Piranha extends AbstractSchoolingFish implements GeoEntity, Neutral
         this.goalSelector.addGoal(4, new PiranhaSwimGoal(this));
         this.goalSelector.addGoal(5, new FollowFlockLeaderGoal(this));
         this.targetSelector.addGoal(1, new HurtByTargetGoal(this));
-        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Player.class, true, this::isPiranhaAngry)); //TODO maybe devide this into player and mob
+        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Player.class, true, this::isPiranhaAngry));
+        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Mob.class, true, this::isPiranhaAngry));
         this.targetSelector.addGoal(3, new ResetUniversalAngerTargetGoal<>(this, false));
     }
 
@@ -74,8 +77,8 @@ public class Piranha extends AbstractSchoolingFish implements GeoEntity, Neutral
         return 5;
     }
 
-    public boolean isPiranhaAngry(LivingEntity pTarget) { //doesn't attack lanternfish??
-        return isAngryAt(pTarget) || pTarget.getHealth() < pTarget.getMaxHealth();
+    public boolean isPiranhaAngry(LivingEntity pTarget) {
+        return (isAngryAt(pTarget) || pTarget.getHealth() < pTarget.getMaxHealth()) && !(pTarget instanceof Piranha);
     }
 
     public static boolean checkPiranhaSpawnRules(EntityType<? extends LivingEntity> entityType, ServerLevelAccessor level, MobSpawnType spawnType, BlockPos pos, RandomSource random) {
@@ -208,10 +211,6 @@ public class Piranha extends AbstractSchoolingFish implements GeoEntity, Neutral
                     this.piranha.stopBeingAngry();
                 }
             }
-        }
-
-        private boolean shouldAttack() {
-            return this.piranha.getTarget().getHealth() < this.piranha.getTarget().getMaxHealth() || this.piranha.isPiranhaAngry(this.piranha.getTarget());
         }
     }
 }

@@ -27,10 +27,21 @@ public class SMLootModifierProvider extends LootModifierProvider {
 
     @Override
     protected void registerEntries(HolderLookup.Provider provider) {
-        this.entry("add_lanternfish_to_fishing").selects(BuiltInLootTables.FISHING_FISH).addModifier(new LootPoolEntriesModifier(false, 0, Collections.singletonList(createLootEntryWithCondition(SMItems.LANTERNFISH.get(), 55, 1, 1, SMLootConditions.ON_LANTERNFISH_HEIGHT))));
-        this.entry("add_piranha_to_fishing").selects(BuiltInLootTables.FISHING_FISH).addModifier(new LootPoolEntriesModifier(false, 0, Collections.singletonList(createLootEntryWithCondition(SMItems.PIRANHA.get(), 40, 1, 1, SMLootConditions.getPiranhaBiomes()))));
-        this.entry("add_music_disc_scour_to_jungle_temple").selects(BuiltInLootTables.JUNGLE_TEMPLE).addModifier(new LootPoolEntriesModifier(false, 0, Collections.singletonList(createMusicDiscLootEntry(SMItems.MUSIC_DISC_SCOUR.get(), 4))));
-        this.entry("add_jade_smithing_template_to_jungle_temple").selects(BuiltInLootTables.JUNGLE_TEMPLE).addModifier(new LootPoolEntriesModifier(false, 0, Collections.singletonList(createLootEntry(SMItems.JADE_UPGRADE_SMITHING_TEMPLATE.get(), 4, 1, 2))));
+        this.entry("lanternfish_to_fishing").selects(BuiltInLootTables.FISHING_FISH).addModifier(basicModifier(createLootEntryWithCondition(SMItems.LANTERNFISH.get(), 55, 1, 1, SMLootConditions.ON_LANTERNFISH_HEIGHT)));
+        this.entry("piranha_to_fishing").selects(BuiltInLootTables.FISHING_FISH).addModifier(basicModifier(createLootEntryWithCondition(SMItems.PIRANHA.get(), 40, 1, 1, SMLootConditions.getPiranhaBiomes())));
+        this.entry("music_disc_scour_to_jungle_temple").selects(BuiltInLootTables.JUNGLE_TEMPLE).addModifier(basicModifier(createMusicDiscLootEntry(SMItems.MUSIC_DISC_SCOUR.get(), 4)));
+        this.entry("jade_smithing_template_to_jungle_temple").selects(BuiltInLootTables.JUNGLE_TEMPLE).addModifier(basicModifier(createLootEntry(SMItems.JADE_UPGRADE_SMITHING_TEMPLATE.get(), 4, 1, 2)));
+        this.entry("throwing_knife_to_shipwreck_supply").selects(BuiltInLootTables.SHIPWRECK_SUPPLY).addModifier(basicModifier(createLootEntry(SMItems.THROWING_KNIFE.get(), 3, 2, 5)));
+        this.entry("throwing_knife_to_simple_dungeon").selects(BuiltInLootTables.SIMPLE_DUNGEON).addModifier(basicModifier(createLootEntry(SMItems.THROWING_KNIFE.get(), 15, 3, 7)));
+        this.entry("throwing_knife_to_jungle_temple_dispenser").selects(BuiltInLootTables.JUNGLE_TEMPLE_DISPENSER).addModifier(basicModifier(createLootEntry(SMItems.THROWING_KNIFE.get(), 10, 2, 7)));
+        this.entry("throwing_knife_to_underwater_ruin_big").selects(BuiltInLootTables.UNDERWATER_RUIN_BIG).addModifier(basicModifier(createLootEntry(SMItems.THROWING_KNIFE.get(), 5, 1, 6)));
+        this.entry("throwing_knife_to_underwater_ruin_small").selects(BuiltInLootTables.UNDERWATER_RUIN_SMALL).addModifier(basicModifier(createLootEntry(SMItems.THROWING_KNIFE.get(), 5, 1, 5)));
+        this.entry("throwing_knife_to_buried_treasure").selects(BuiltInLootTables.BURIED_TREASURE).addModifier(basicModifier(createLootEntry(SMItems.THROWING_KNIFE.get(), 2, 1, 7)));
+        this.entry("throwing_knife_to_desert_pyramid").selects(BuiltInLootTables.DESERT_PYRAMID).addModifier(basicModifier(createLootEntry(SMItems.THROWING_KNIFE.get(), 20, 1, 8)));
+    }
+
+    private static LootPoolEntriesModifier basicModifier(LootPoolEntryContainer... containers) {
+        return new LootPoolEntriesModifier(false, 0, containers);
     }
 
     private static LootPoolEntryContainer createLootEntryWithCondition(ItemLike item, int weight, int min, int max, LootItemCondition.Builder condition) {

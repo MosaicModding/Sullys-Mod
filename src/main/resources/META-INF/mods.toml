@@ -19,7 +19,7 @@ displayTest = "MATCH_VERSION"
 [[dependencies.sullysmod]] #optional
     modId="forge" #mandatory
     mandatory=true #mandatory
-    versionRange="(,47.1.3]" #mandatory
+    versionRange="(47,]" #mandatory
     ordering="NONE"
     side="BOTH"
 
