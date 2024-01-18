@@ -15,6 +15,8 @@ import com.uraneptus.sullysmod.core.registry.SMParticleTypes;
 import com.uraneptus.sullysmod.core.registry.SMSounds;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.particles.DustColorTransitionOptions;
+import net.minecraft.core.particles.DustParticleOptions;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundSource;
@@ -33,14 +35,15 @@ import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.GameEvent;
-import net.minecraft.world.phys.BlockHitResult;
-import net.minecraft.world.phys.EntityHitResult;
-import net.minecraft.world.phys.HitResult;
-import net.minecraft.world.phys.Vec3;
+import net.minecraft.world.phys.*;
 import net.minecraftforge.event.entity.EntityJoinLevelEvent;
 import net.minecraftforge.event.entity.ProjectileImpactEvent;
+import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.loading.FMLLoader;
+import org.apache.maven.artifact.versioning.ArtifactVersion;
+import org.apache.maven.artifact.versioning.DefaultArtifactVersion;
 import org.jetbrains.annotations.Nullable;
 
 @Mod.EventBusSubscriber(modid = SullysMod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
@@ -59,27 +62,29 @@ public class SMEntityEvents {
             BlockState blockState = level.getBlockState(pos);
             Direction direction = blockHitResult.getDirection();
 
-            if (blockState.is(SMBlockTags.PROJECTILES_BOUNCE_ON)) {
-                event.setCanceled(true);
-                if (isFlingerAndFlings(projectile, blockState, direction) && level.getBlockEntity(pos) instanceof FlingerTotemBlockEntity blockEntity && !blockEntity.isFull()) {
-                    blockEntity.addProjectile(projectile);
+            if (!blockState.is(SMBlockTags.PROJECTILES_BOUNCE_ON)) {
+                return;
+            }
 
-                } else if (!(projectile.getType().is(SMEntityTags.CANNOT_BOUNCE))) {
-                    switch (direction.getAxis()) {
-                        case X -> projectile.shoot(vec3.reverse().x, vec3.y, vec3.z, calculateBounceVelocity(velocity), 0.0F);
-                        case Y -> projectile.shoot(vec3.x, vec3.reverse().y, vec3.z, calculateBounceVelocity(velocity), 0.0F);
-                        case Z -> projectile.shoot(vec3.x, vec3.y, vec3.reverse().z, calculateBounceVelocity(velocity), 0.0F);
-                    }
-                    projectile.gameEvent(GameEvent.PROJECTILE_SHOOT);
-                    Vec3 particlePos = new Vec3(blockHitResult.getLocation().x, blockHitResult.getLocation().y, blockHitResult.getLocation().z).relative(direction, 0.1D); //TODO add this for shield/horse too to fix bug mentioned below
-                    level.addParticle(new DirectionParticleOptions(SMParticleTypes.RICOCHET.get(), direction), particlePos.x, particlePos.y, particlePos.z, 0, 0, 0);
-                    level.playSound(null, projectile.getX(), projectile.getY(), projectile.getZ(), SMSounds.JADE_RICOCHET.get(), SoundSource.BLOCKS, 1.0F, 0.0F);
+            if (isFlingerAndFlings(projectile, blockState, direction) && level.getBlockEntity(pos) instanceof FlingerTotemBlockEntity blockEntity && !blockEntity.isFull()) {
+                blockEntity.addProjectile(projectile);
+            } else if (!(projectile.getType().is(SMEntityTags.CANNOT_BOUNCE))) {
+                handleCancellation(event);
+                projectile = replaceProjectile(projectile, level);
+                if (projectile == null) return;
+
+                switch (direction.getAxis()) {
+                    case X -> projectile.shoot(vec3.reverse().x, vec3.y, vec3.z, calculateBounceVelocity(velocity), 0.0F);
+                    case Y -> projectile.shoot(vec3.x, vec3.reverse().y, vec3.z, calculateBounceVelocity(velocity), 0.0F);
+                    case Z -> projectile.shoot(vec3.x, vec3.y, vec3.reverse().z, calculateBounceVelocity(velocity), 0.0F);
                 }
+                level.addFreshEntity(projectile);
+                handleParticleAndSound(level, blockHitResult, direction, projectile);
             }
         }
-        if (!level.isClientSide() && hitResult instanceof EntityHitResult entityHitResult && !(projectile.getType().is(SMEntityTags.CANNOT_BOUNCE))) {
+        if (hitResult instanceof EntityHitResult entityHitResult && !(projectile.getType().is(SMEntityTags.CANNOT_BOUNCE))) {
             if (entityHitResult.getEntity() instanceof Player player && player.isBlocking() && player.getUseItem().is(SMItems.JADE_SHIELD.get())) {
-                event.setCanceled(true);
+                handleCancellation(event);
                 Direction direction = projectile.getDirection();
                 Vec3 angle = player.getLookAngle();
 
@@ -88,32 +93,30 @@ public class SMEntityEvents {
 
                 projectile.shoot(angle.x, angle.y, angle.z, calculateBounceVelocity(velocity), 0.0F);
                 level.addFreshEntity(projectile);
-                projectile.gameEvent(GameEvent.PROJECTILE_SHOOT);
-
-                level.playSound(null, player.getX(), player.getY(), player.getZ(), SMSounds.JADE_RICOCHET.get(), player.getSoundSource(), 1.0F, 0.0F);
-                ((ServerLevel) level).sendParticles(new DirectionParticleOptions(SMParticleTypes.RICOCHET.get(), direction), projectile.getX(), projectile.getY(), projectile.getZ(), 1, 0.0D, 0.0D, 0.0D, 0.0D);
                 player.getUseItem().hurtAndBreak(1, player, e -> e.broadcastBreakEvent(player.getUsedItemHand()));
+                handleParticleAndSound(level, entityHitResult, direction, projectile);
             }
             if (entityHitResult.getEntity() instanceof Horse horse && horse.getArmor().is(SMItems.JADE_HORSE_ARMOR.get())) {
-                event.setCanceled(true);
                 Direction direction = projectile.getDirection();
+                handleCancellation(event);
 
                 if (projectile.yo < horse.getBoundingBox().maxY) {
                     projectile = replaceProjectile(projectile, level);
                     if (projectile == null) return;
 
+                    //TODO This should use the direction of the hit side of the bounding box of the horse, but idk where I'd get that from!
+                    // The issues are: Projectile bugging when shot from above (workaround is the yo < maxY check) & projectile bugging sometimes when shot weird at the side
                     switch (direction.getAxis()) {
                         case X -> projectile.shoot(vec3.reverse().x, vec3.y, vec3.z, calculateBounceVelocity(velocity), 0.0F);
-                        case Y -> projectile.shoot(vec3.x, vec3.reverse().y, vec3.z, calculateBounceVelocity(velocity), 0.0F);
+                        case Y -> projectile.shoot(vec3.x, vec3.reverse().y + 1, vec3.z, calculateBounceVelocity(velocity), 0.0F);
                         case Z -> projectile.shoot(vec3.x, vec3.y, vec3.reverse().z, calculateBounceVelocity(velocity), 0.0F);
                     }
                     level.addFreshEntity(projectile);
-                    projectile.gameEvent(GameEvent.PROJECTILE_SHOOT);
+                    if (direction == Direction.SOUTH || direction == Direction.NORTH) {
+                        direction = direction.getOpposite();
+                    }
+                    handleParticleAndSound(level, entityHitResult, direction, projectile);
                 }
-                level.playSound(null, horse.getX(), horse.getY(), horse.getZ(), SMSounds.JADE_RICOCHET.get(), horse.getSoundSource(), 1.0F, 0.0F);
-                //TODO particles only spawn when facing east or west. No idea why (same goes for the jade shield)
-                ((ServerLevel) level).sendParticles(new DirectionParticleOptions(SMParticleTypes.RICOCHET.get(), direction), projectile.getX(), projectile.getY(), projectile.getZ(), 1, 0.0D, 0.0D, 0.0D, 0.0D);
-
             }
         }
     }
@@ -138,6 +141,34 @@ public class SMEntityEvents {
 
     public static boolean isFlingerAndFlings(Projectile projectile, BlockState blockState, Direction direction) {
         return !(projectile.getType().is(SMEntityTags.CANNOT_BE_FLUNG)) && blockState.getBlock() instanceof FlingerTotem && !direction.equals(blockState.getValue(SMDirectionalBlock.FACING));
+    }
+
+    private static void handleParticleAndSound(Level level, HitResult hitResult, Direction direction, Projectile projectile) {
+        Vec3 particlePos = Vec3.ZERO;
+        if (hitResult instanceof BlockHitResult blockHitResult) {
+            particlePos = new Vec3(blockHitResult.getLocation().x, blockHitResult.getLocation().y, blockHitResult.getLocation().z).relative(direction, 0.1D);
+        } else if (hitResult instanceof EntityHitResult entityHitResult) {
+            particlePos = new Vec3(projectile.getX(), projectile.getY(), projectile.getZ()).relative(direction, 0.1D);
+        }
+        if (level instanceof ServerLevel serverLevel) {
+            serverLevel.sendParticles(new DirectionParticleOptions(SMParticleTypes.RICOCHET.get(), direction), particlePos.x(), particlePos.y(), particlePos.z(), 1, 0.0D, 0.0D, 0.0D, 0.0D);
+        }
+        level.playSound(null, projectile.getX(), projectile.getY(), projectile.getZ(), SMSounds.JADE_RICOCHET.get(), SoundSource.BLOCKS, 1.0F, 0.0F);
+        projectile.gameEvent(GameEvent.PROJECTILE_SHOOT);
+    }
+
+    /*
+     * This handles a breaking change of Forge in version 47.1.4!
+     * With this fix, the mod is compatible with any version above 47.1.0 and not just with versions below 47.1.4!
+     */
+    @SuppressWarnings("removal")
+    private static void handleCancellation(ProjectileImpactEvent event) {
+        ArtifactVersion FORGE_VERSION = new DefaultArtifactVersion(FMLLoader.versionInfo().forgeVersion());
+        if (new DefaultArtifactVersion("47.1.4").compareTo(FORGE_VERSION) < 0) {
+            event.setImpactResult(ProjectileImpactEvent.ImpactResult.STOP_AT_CURRENT_NO_DAMAGE);
+        } else {
+            event.setCanceled(true);
+        }
     }
 
     @SubscribeEvent

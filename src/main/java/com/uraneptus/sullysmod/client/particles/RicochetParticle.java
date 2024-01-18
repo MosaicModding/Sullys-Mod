@@ -14,6 +14,7 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import org.joml.Quaternionf;
 import org.joml.Vector3f;
+import org.joml.Vector3fc;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 
@@ -47,9 +48,9 @@ public class RicochetParticle extends TextureSheetParticle {
     @Override
     public void render(VertexConsumer vertexConsumer, Camera camera, float partialTicks) {
         Vec3 cameraPos = camera.getPosition();
-        float posX = (float) (Mth.lerp((double) partialTicks, this.xo, this.x) - cameraPos.x());
-        float posY = (float) (Mth.lerp((double) partialTicks, this.yo, this.y) - cameraPos.y());
-        float posZ = (float) (Mth.lerp((double) partialTicks, this.zo, this.z) - cameraPos.z());
+        float posX = (float) (Mth.lerp(partialTicks, this.xo, this.x) - cameraPos.x());
+        float posY = (float) (Mth.lerp(partialTicks, this.yo, this.y) - cameraPos.y());
+        float posZ = (float) (Mth.lerp(partialTicks, this.zo, this.z) - cameraPos.z());
 
         Quaternionf quaternion = this.face.getRotation();
         quaternion.mul(Axis.XP.rotationDegrees(90.0F));
@@ -70,10 +71,10 @@ public class RicochetParticle extends TextureSheetParticle {
         }
 
         int light = this.getLightColor(partialTicks);
-        vertexConsumer.vertex((double) faces[0].x(), (double) faces[0].y(), (double) faces[0].z()).uv(this.getU1(), this.getV1()).color(this.rCol, this.gCol, this.bCol, this.alpha).uv2(light).endVertex();
-        vertexConsumer.vertex((double) faces[1].x(), (double) faces[1].y(), (double) faces[1].z()).uv(this.getU1(), this.getV0()).color(this.rCol, this.gCol, this.bCol, this.alpha).uv2(light).endVertex();
-        vertexConsumer.vertex((double) faces[2].x(), (double) faces[2].y(), (double) faces[2].z()).uv(this.getU0(), this.getV0()).color(this.rCol, this.gCol, this.bCol, this.alpha).uv2(light).endVertex();
-        vertexConsumer.vertex((double) faces[3].x(), (double) faces[3].y(), (double) faces[3].z()).uv(this.getU0(), this.getV1()).color(this.rCol, this.gCol, this.bCol, this.alpha).uv2(light).endVertex();
+        vertexConsumer.vertex(faces[0].x(), faces[0].y(), faces[0].z()).uv(this.getU1(), this.getV1()).color(this.rCol, this.gCol, this.bCol, this.alpha).uv2(light).endVertex();
+        vertexConsumer.vertex(faces[1].x(), faces[1].y(), faces[1].z()).uv(this.getU1(), this.getV0()).color(this.rCol, this.gCol, this.bCol, this.alpha).uv2(light).endVertex();
+        vertexConsumer.vertex(faces[2].x(), faces[2].y(), faces[2].z()).uv(this.getU0(), this.getV0()).color(this.rCol, this.gCol, this.bCol, this.alpha).uv2(light).endVertex();
+        vertexConsumer.vertex(faces[3].x(), faces[3].y(), faces[3].z()).uv(this.getU0(), this.getV1()).color(this.rCol, this.gCol, this.bCol, this.alpha).uv2(light).endVertex();
     }
 
     @Override
