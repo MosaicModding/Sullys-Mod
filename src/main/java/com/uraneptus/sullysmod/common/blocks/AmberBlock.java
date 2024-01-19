@@ -1,28 +1,17 @@
 package com.uraneptus.sullysmod.common.blocks;
 
-import com.uraneptus.sullysmod.core.registry.SMBlocks;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.server.level.ServerLevel;
-import net.minecraft.util.Mth;
-import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.Mob;
-import net.minecraft.world.entity.ai.targeting.TargetingConditions;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LightLayer;
 import net.minecraft.world.level.block.HalfTransparentBlock;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.EntityCollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
-
-import java.util.ArrayList;
 
 public class AmberBlock extends HalfTransparentBlock {
 
@@ -48,40 +37,7 @@ public class AmberBlock extends HalfTransparentBlock {
         return Shapes.block();
     }
 
-
-
-    @Override
-    public void randomTick(BlockState pState, ServerLevel pLevel, BlockPos pPos, RandomSource pRandom) {
-        BlockPos blockPos = new BlockPos(pPos.getX(), pPos.getY() + 1, pPos.getZ());
-        if (pLevel.getBrightness(LightLayer.BLOCK, blockPos) > 11) {
-            System.out.println("BRIGHT");
-        }
-    }
-
-    public void onRemove(BlockState pState, Level pLevel, BlockPos pPos, BlockState pNewState, boolean pIsMoving) {
-
-        Entity entity = pLevel.getNearestEntity(new ArrayList<>(), TargetingConditions.DEFAULT, null, pPos.getX(), pPos.getY(), pPos.getZ());
-        if (entity instanceof Mob mob) {
-            mob.setNoAi(false);
-        }
-        if (ENTITY_STUCK instanceof Mob mob) {
-            mob.setNoAi(false);
-        }
-        System.out.println("AMBER BROKE");
-        super.onRemove(pState, pLevel, pPos, pNewState, pIsMoving);
-    }
-
-    public void stepOn(Level pLevel, BlockPos pPos, BlockState pState, Entity pEntity) {
-        BlockPos blockPos = new BlockPos(pPos.getX(), pPos.getY() + 1, pPos.getZ());
-        if (pLevel.getBrightness(LightLayer.BLOCK, blockPos) > 11) {
-            if (pEntity instanceof LivingEntity) {
-                System.out.println("BRIGHT STEP");
-                //pEntity.teleportTo(pPos.getX(), pPos.getY() - 0.5F, pPos.getZ());
-            }
-        }
-
-        super.stepOn(pLevel, pPos, pState, pEntity);
-    }
+    /*
 
     public void entityInside(BlockState pState, Level pLevel, BlockPos pPos, Entity pEntity) {
         if (!(pEntity instanceof LivingEntity) || pEntity.getFeetBlockState().is(this)) {
@@ -106,4 +62,6 @@ public class AmberBlock extends HalfTransparentBlock {
             }
         }
     }
+
+     */
 }

@@ -10,6 +10,7 @@ import com.uraneptus.sullysmod.common.particletypes.DirectionParticleOptions;
 import com.uraneptus.sullysmod.core.SMConfig;
 import com.uraneptus.sullysmod.core.other.tags.SMBlockTags;
 import com.uraneptus.sullysmod.core.other.tags.SMEntityTags;
+import com.uraneptus.sullysmod.core.registry.SMBlocks;
 import com.uraneptus.sullysmod.core.registry.SMItems;
 import com.uraneptus.sullysmod.core.registry.SMParticleTypes;
 import com.uraneptus.sullysmod.core.registry.SMSounds;
@@ -17,17 +18,19 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.DustColorTransitionOptions;
 import net.minecraft.core.particles.DustParticleOptions;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundSource;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.Mob;
-import net.minecraft.world.entity.TamableAnimal;
+import net.minecraft.util.Mth;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.NonTameRandomTargetGoal;
 import net.minecraft.world.entity.animal.Ocelot;
 import net.minecraft.world.entity.animal.Turtle;
 import net.minecraft.world.entity.animal.horse.Horse;
+import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.monster.Zombie;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.AbstractArrow;
@@ -186,6 +189,48 @@ public class SMEntityEvents {
         }
         if (entity instanceof Zombie zombie) {
             zombie.goalSelector.addGoal(4, new GenericMobAttackTortoiseEggGoal(zombie, 1.0D, 3));
+        }
+    }
+
+    //AMBER STUFF
+    @SubscribeEvent
+    public static void onLivingTick(LivingEvent.LivingTickEvent event) {
+        Entity entity = event.getEntity();
+        Level level = entity.level();
+        BlockState state = entity.getFeetBlockState();
+        BlockPos blockPos = new BlockPos(entity.getBlockX(), entity.getBlockY(), entity.getBlockZ());
+
+        if (state.is(SMBlocks.AMBER.get())) {
+            if (entity instanceof Player) {
+                entity.makeStuckInBlock(state, new Vec3((double) 0.8F, 0.1D, (double) 0.8F));
+            }
+            if (entity instanceof Mob mob) {
+                mob.makeStuckInBlock(state, new Vec3((double) 0.0F, 0.1D, (double) 0.0F));
+                if (mob.getSpawnType() != MobSpawnType.COMMAND) {
+                    if (mob.getBlockStateOn() != SMBlocks.AMBER.get().defaultBlockState()) {
+                        mob.setSilent(true);
+                        mob.setRemainingFireTicks(0);
+                        mob.setInvulnerable(true);
+                        mob.setNoAi(true);
+                    }
+                }
+
+            }
+            if (level.isClientSide) {
+                RandomSource randomsource = level.getRandom();
+                boolean flag = entity.xOld != entity.getX() || entity.zOld != entity.getZ();
+                if (flag && randomsource.nextBoolean()) {
+                    level.addParticle(ParticleTypes.SOUL_FIRE_FLAME, entity.getX(), (double)(blockPos.getY() + 1), entity.getZ(), (double)(Mth.randomBetween(randomsource, -1.0F, 1.0F) * 0.083333336F), (double)0.05F, (double)(Mth.randomBetween(randomsource, -1.0F, 1.0F) * 0.083333336F));
+                }
+            }
+        } else {
+            if (entity instanceof Mob mob) {
+                if (mob.getSpawnType() != MobSpawnType.COMMAND && mob.isNoAi()) {
+                    mob.setSilent(false);
+                    mob.setInvulnerable(false);
+                    mob.setNoAi(false);
+                }
+            }
         }
     }
 }
