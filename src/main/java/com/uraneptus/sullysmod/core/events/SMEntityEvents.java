@@ -43,6 +43,7 @@ import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.*;
 import net.minecraftforge.event.entity.EntityJoinLevelEvent;
 import net.minecraftforge.event.entity.ProjectileImpactEvent;
+import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -208,18 +209,24 @@ public class SMEntityEvents {
                 entity.makeStuckInBlock(state, new Vec3((double) 0.8F, 0.1D, (double) 0.8F));
             }
             if (entity instanceof Mob mob) {
-                mob.makeStuckInBlock(state, new Vec3((double) 0.0F, 0.1D, (double) 0.0F));
-                if (mob.getBlockStateOn() != SMBlocks.AMBER.get().defaultBlockState()) {
-                    if (blockEntity instanceof AmberBlockEntity amber) {
-                        mob.setSilent(true);
-                        mob.setRemainingFireTicks(0);
-                        mob.setInvulnerable(true);
-                        mob.setNoAi(true);
-                        System.out.println("MOB STUCK IN AMBER");
-                        amber.setStuckMob(mob.getId());
+                if (blockEntity instanceof AmberBlockEntity amber) {
+                    mob.makeStuckInBlock(state, new Vec3((double) 0.0F, 0.1D, (double) 0.0F));
+                    if (amber.getStuckMob() == 0) {
+                        if (mob.getBlockStateOn() != SMBlocks.AMBER.get().defaultBlockState()) {
+                            mob.setSilent(true);
+                            mob.setRemainingFireTicks(0);
+                            mob.setInvulnerable(true);
+                            mob.setNoAi(true);
+                            amber.setStuckMob(mob.getId());
+                        }
+                    } else {
+                        amber.setStuckMob(amber.getStuckMob());
+                    }
+                    if (mob.getId() != amber.getStuckMob() && amber.getStuckMob() != 0) {
+                        mob.hurt(mob.damageSources().cramming(), 2F);
+                        mob.setNoAi(false);
                     }
                 }
-
             }
             if (level.isClientSide) {
                 RandomSource randomsource = level.getRandom();
@@ -238,5 +245,12 @@ public class SMEntityEvents {
             }
         }
         */
+        //I TRIED DOING THIS ON A LIVING DEATH EVENT BUT IT DIDN'T WORK SO I DID THIS INSTEAD
+        if (blockEntity instanceof AmberBlockEntity amber) {
+            if (!entity.isAlive() && entity.getId() == amber.getStuckMob()) {
+                System.out.println("DEAD");
+                amber.setStuckMob(0);
+            }
+        }
     }
 }

@@ -39,7 +39,8 @@ public class AmberBlock extends BaseEntityBlock {
             Entity entity = entitycollisioncontext.getEntity();
             if (entity != null) {
                 Level level = entity.level();
-                if (level.getBrightness(LightLayer.BLOCK, blockPos) > 11) {
+                BlockEntity blockEntity = level.getBlockEntity(pPos);
+                if (level.getBrightness(LightLayer.BLOCK, blockPos) > 11 && blockEntity != null && ((AmberBlockEntity) blockEntity).getStuckMob() == 0) {
                     return MELTING_COLLISION_SHAPE;
                 }
             }
