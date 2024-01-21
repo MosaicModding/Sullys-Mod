@@ -1,6 +1,7 @@
 package com.uraneptus.sullysmod.core.events;
 
 import com.uraneptus.sullysmod.SullysMod;
+import com.uraneptus.sullysmod.common.blocks.AmberBlockEntity;
 import com.uraneptus.sullysmod.common.blocks.FlingerTotem;
 import com.uraneptus.sullysmod.common.blocks.FlingerTotemBlockEntity;
 import com.uraneptus.sullysmod.common.blocks.SMDirectionalBlock;
@@ -36,6 +37,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.*;
@@ -199,6 +201,7 @@ public class SMEntityEvents {
         Level level = entity.level();
         BlockState state = entity.getFeetBlockState();
         BlockPos blockPos = new BlockPos(entity.getBlockX(), entity.getBlockY(), entity.getBlockZ());
+        BlockEntity blockEntity = level.getBlockEntity(blockPos);
 
         if (state.is(SMBlocks.AMBER.get())) {
             if (entity instanceof Player) {
@@ -206,12 +209,14 @@ public class SMEntityEvents {
             }
             if (entity instanceof Mob mob) {
                 mob.makeStuckInBlock(state, new Vec3((double) 0.0F, 0.1D, (double) 0.0F));
-                if (mob.getSpawnType() != MobSpawnType.COMMAND) {
-                    if (mob.getBlockStateOn() != SMBlocks.AMBER.get().defaultBlockState()) {
+                if (mob.getBlockStateOn() != SMBlocks.AMBER.get().defaultBlockState()) {
+                    if (blockEntity instanceof AmberBlockEntity amber) {
                         mob.setSilent(true);
                         mob.setRemainingFireTicks(0);
                         mob.setInvulnerable(true);
                         mob.setNoAi(true);
+                        System.out.println("MOB STUCK IN AMBER");
+                        amber.setStuckMob(mob.getId());
                     }
                 }
 
@@ -223,7 +228,7 @@ public class SMEntityEvents {
                     level.addParticle(ParticleTypes.SOUL_FIRE_FLAME, entity.getX(), (double)(blockPos.getY() + 1), entity.getZ(), (double)(Mth.randomBetween(randomsource, -1.0F, 1.0F) * 0.083333336F), (double)0.05F, (double)(Mth.randomBetween(randomsource, -1.0F, 1.0F) * 0.083333336F));
                 }
             }
-        } else {
+        } /* else {
             if (entity instanceof Mob mob) {
                 if (mob.getSpawnType() != MobSpawnType.COMMAND && mob.isNoAi()) {
                     mob.setSilent(false);
@@ -232,5 +237,6 @@ public class SMEntityEvents {
                 }
             }
         }
+        */
     }
 }

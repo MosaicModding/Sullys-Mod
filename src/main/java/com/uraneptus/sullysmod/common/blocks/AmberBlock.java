@@ -1,23 +1,33 @@
 package com.uraneptus.sullysmod.common.blocks;
 
+import com.uraneptus.sullysmod.core.registry.SMBlockEntityTypes;
+import com.uraneptus.sullysmod.core.registry.SMBlocks;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.util.Mth;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LightLayer;
+import net.minecraft.world.level.block.BaseEntityBlock;
 import net.minecraft.world.level.block.HalfTransparentBlock;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.EntityCollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import org.jetbrains.annotations.Nullable;
 
-public class AmberBlock extends HalfTransparentBlock {
+public class AmberBlock extends BaseEntityBlock {
 
     private static final VoxelShape MELTING_COLLISION_SHAPE = Shapes.box(0.0D, 0.0D, 0.0D, 1.0D, (double)0.0F, 1.0D);
 
-    LivingEntity ENTITY_STUCK;
     public AmberBlock(Properties pProperties) {
         super(pProperties);
     }
@@ -37,8 +47,27 @@ public class AmberBlock extends HalfTransparentBlock {
         return Shapes.block();
     }
 
-    /*
+    public void onRemove(BlockState pState, Level pLevel, BlockPos pPos, BlockState pNewState, boolean pIsMoving) {
 
+        //Entity entity = pLevel.getNearestEntity(new ArrayList<>(), TargetingConditions.DEFAULT, null, pPos.getX(), pPos.getY(), pPos.getZ());
+        BlockEntity blockEntity = pLevel.getBlockEntity(pPos);
+        assert blockEntity != null;
+        Entity entity = pLevel.getEntity(((AmberBlockEntity) blockEntity).getStuckMob());
+        if (entity instanceof Mob mob) {
+            mob.setNoAi(false);
+        }
+        System.out.println("AMBER BROKE");
+        super.onRemove(pState, pLevel, pPos, pNewState, pIsMoving);
+    }
+
+    @Nullable
+    @Override
+    public BlockEntity newBlockEntity(BlockPos pPos, BlockState pState) {
+        return SMBlockEntityTypes.AMBER.get().create(pPos, pState);
+    }
+
+
+/*
     public void entityInside(BlockState pState, Level pLevel, BlockPos pPos, Entity pEntity) {
         if (!(pEntity instanceof LivingEntity) || pEntity.getFeetBlockState().is(this)) {
             if (pEntity instanceof Player) {
@@ -50,7 +79,7 @@ public class AmberBlock extends HalfTransparentBlock {
                     mob.setRemainingFireTicks(0);
                     mob.setInvulnerable(true);
                     mob.setNoAi(true);
-                    ENTITY_STUCK = mob;
+                    System.out.println("MOB STUCK IN AMBER");
                 }
             }
             if (pLevel.isClientSide) {
@@ -63,5 +92,6 @@ public class AmberBlock extends HalfTransparentBlock {
         }
     }
 
-     */
+ */
+
 }
