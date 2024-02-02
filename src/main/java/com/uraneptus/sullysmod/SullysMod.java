@@ -1,6 +1,7 @@
 package com.uraneptus.sullysmod;
 
 import com.mojang.logging.LogUtils;
+import com.teamabnormals.blueprint.core.Blueprint;
 import com.teamabnormals.blueprint.core.util.registry.RegistryHelper;
 import com.uraneptus.sullysmod.common.dispenser.TortoiseShellDispenseBehavior;
 import com.uraneptus.sullysmod.common.entities.*;
@@ -43,7 +44,6 @@ import java.util.concurrent.CompletableFuture;
 @Mod.EventBusSubscriber(modid = SullysMod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class SullysMod {
     public static final String MOD_ID = "sullysmod";
-    public static final String BLUEPRINT_MOD_ID = "blueprint";
     public static final RegistryHelper REGISTRY_HELPER = new RegistryHelper(MOD_ID);
     public static final Logger LOGGER = LogUtils.getLogger();
 
@@ -73,7 +73,7 @@ public class SullysMod {
     }
 
     public static ResourceLocation blueprintPrefix(String path) {
-        return new ResourceLocation(SullysMod.BLUEPRINT_MOD_ID, path);
+        return new ResourceLocation(Blueprint.MOD_ID, path);
     }
 
     @SubscribeEvent
