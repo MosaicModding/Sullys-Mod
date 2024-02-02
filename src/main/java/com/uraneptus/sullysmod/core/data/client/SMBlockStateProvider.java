@@ -3,6 +3,7 @@ package com.uraneptus.sullysmod.core.data.client;
 import com.uraneptus.sullysmod.SullysMod;
 import com.uraneptus.sullysmod.common.blocks.FlingerTotem;
 import com.uraneptus.sullysmod.core.registry.SMBlocks;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.*;
@@ -62,7 +63,7 @@ public class SMBlockStateProvider extends BlockStateProvider {
         modSlabBlock(SMBlocks.SMOOTHED_ROUGH_JADE_SLAB, SMOOTHED_ROUGH_JADE);
         modSlabBlock(SMBlocks.ROUGH_JADE_TILE_SLAB, ROUGH_JADE_TILES);
         modEggBlock(SMBlocks.TORTOISE_EGG);
-        basicBlock(SMBlocks.AMBER);
+        basicBlockWRenderType(SMBlocks.AMBER, "translucent");
         basicBlock(SMBlocks.AMBER_BRICKS);
         modSlabBlock(SMBlocks.AMBER_BRICK_SLAB, AMBER_BRICKS);
         modWallBlock(SMBlocks.AMBER_BRICK_WALL, AMBER_BRICKS);
@@ -71,6 +72,11 @@ public class SMBlockStateProvider extends BlockStateProvider {
 
     private void basicBlock(Supplier<? extends Block> block) {
         simpleBlock(block.get());
+    }
+
+    private void basicBlockWRenderType(Supplier<? extends Block> block, String renderType) {
+        ModelFile modelFile = models().cubeAll(name(block.get()), blockTexture(block.get())).renderType(renderType);
+        getVariantBuilder(block.get()).partialState().setModels(new ConfiguredModel(modelFile));
     }
 
     private void pillarBlock(Supplier<? extends Block> block, String topTexture) {
