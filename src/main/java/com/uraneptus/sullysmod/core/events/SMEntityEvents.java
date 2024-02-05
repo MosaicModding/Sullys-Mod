@@ -75,7 +75,7 @@ public class SMEntityEvents {
             if (isFlingerAndFlings(projectile, blockState, direction) && level.getBlockEntity(pos) instanceof FlingerTotemBlockEntity blockEntity && !blockEntity.isFull()) {
                 blockEntity.addProjectile(projectile);
             } else if (!(projectile.getType().is(SMEntityTags.CANNOT_BOUNCE))) {
-                handleCancellation(event);
+
                 projectile = replaceProjectile(projectile, level);
                 if (projectile == null) return;
 
@@ -87,6 +87,7 @@ public class SMEntityEvents {
                 level.addFreshEntity(projectile);
                 handleParticleAndSound(level, blockHitResult, direction, projectile);
             }
+            handleCancellation(event);
         }
         if (hitResult instanceof EntityHitResult entityHitResult && !(projectile.getType().is(SMEntityTags.CANNOT_BOUNCE))) {
             if (entityHitResult.getEntity() instanceof Player player && player.isBlocking() && player.getUseItem().is(SMItems.JADE_SHIELD.get())) {
