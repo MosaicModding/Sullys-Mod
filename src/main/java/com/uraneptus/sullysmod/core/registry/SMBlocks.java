@@ -1,5 +1,7 @@
 package com.uraneptus.sullysmod.core.registry;
 
+import com.teamabnormals.blueprint.common.block.wood.LogBlock;
+import com.teamabnormals.blueprint.common.block.wood.WoodBlock;
 import com.teamabnormals.blueprint.core.util.PropertyUtil;
 import com.teamabnormals.blueprint.core.util.registry.BlockSubRegistryHelper;
 import com.uraneptus.sullysmod.SullysMod;
@@ -10,11 +12,12 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
-import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.RegistryObject;
+
+import java.util.function.Supplier;
 
 @Mod.EventBusSubscriber(modid = SullysMod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class SMBlocks {
@@ -73,32 +76,35 @@ public class SMBlocks {
     public static final RegistryObject<Block> AMBER_BRICK_WALL = HELPER.createBlock("amber_brick_wall", () -> new AmberWallBlock(SMProperties.Blocks.AMBER));
 
     //Petrified Wood
-    public static final RegistryObject<Block> PETRIFIED_PLANKS = HELPER.createBlock("petrified_planks", () -> new Block(SMProperties.Blocks.PETRIFIED));
+    public static final RegistryObject<Block> PETRIFIED_PLANKS = HELPER.createBlock("petrified_planks", () -> new Block(SMProperties.Blocks.petrified()));
+    public static final RegistryObject<Block> STRIPPED_PETRIFIED_LOG = HELPER.createBlock("stripped_petrified_log", () -> strippedLog(MapColor.TERRACOTTA_ORANGE, MapColor.TERRACOTTA_ORANGE));
+    public static final RegistryObject<Block> PETRIFIED_LOG = HELPER.createBlock("petrified_log", () -> log(STRIPPED_PETRIFIED_LOG, MapColor.TERRACOTTA_ORANGE, MapColor.COLOR_BROWN));
+    public static final RegistryObject<Block> STRIPPED_PETRIFIED_WOOD = HELPER.createBlock("stripped_petrified_wood", () -> new RotatedPillarBlock(SMProperties.Blocks.petrified().mapColor(MapColor.TERRACOTTA_ORANGE)));
+    public static final RegistryObject<Block> PETRIFIED_WOOD = HELPER.createBlock("petrified_wood", () -> new WoodBlock(STRIPPED_PETRIFIED_WOOD, SMProperties.Blocks.petrified().mapColor(MapColor.COLOR_BROWN)));
     //SIGN
     //WALL_SIGN
     //HANGING SIGN
     //WALL HANGING SIGN
-    public static final RegistryObject<Block> PETRIFIED_PRESSURE_PLATE = HELPER.createBlock("petrified_pressure_plate", () -> new PressurePlateBlock(PressurePlateBlock.Sensitivity.MOBS, SMProperties.Blocks.PETRIFIED.forceSolidOn().noCollission().pushReaction(PushReaction.DESTROY).strength(0.5F), BlockSetType.STONE));
-    //HAs no collision atm for some reason
-    public static final RegistryObject<Block> PETRIFIED_TRAPDOOR = HELPER.createBlock("petrified_trapdoor", () -> new TrapDoorBlock(SMProperties.Blocks.PETRIFIED.noOcclusion().isValidSpawn(PropertyUtil::never).strength(3.0F), BlockSetType.STONE));
-    public static final RegistryObject<Block> PETRIFIED_STAIRS = HELPER.createBlock("petrified_stairs", () -> new StairBlock(() -> PETRIFIED_PLANKS.get().defaultBlockState(), SMProperties.Blocks.PETRIFIED));
-    public static final RegistryObject<Block> PETRIFIED_SLAB = HELPER.createBlock("petrified_slab", () -> new SlabBlock(SMProperties.Blocks.PETRIFIED));
-    public static final RegistryObject<Block> PETRIFIED_BUTTON = HELPER.createBlock("petrified_button", () -> new ButtonBlock(SMProperties.Blocks.PETRIFIED.noCollission().strength(0.5F).pushReaction(PushReaction.DESTROY), BlockSetType.STONE, 20, false));
-    public static final RegistryObject<Block> PETRIFIED_FENCE_GATE = HELPER.createBlock("petrified_fence_gate", () -> new FenceGateBlock(SMProperties.Blocks.PETRIFIED.forceSolidOn(), SoundEvents.FENCE_GATE_OPEN, SoundEvents.FENCE_GATE_CLOSE));
-    public static final RegistryObject<Block> PETRIFIED_FENCE = HELPER.createBlock("petrified_fence", () -> new FenceBlock(SMProperties.Blocks.PETRIFIED));
+    public static final RegistryObject<Block> PETRIFIED_PRESSURE_PLATE = HELPER.createBlock("petrified_pressure_plate", () -> new PressurePlateBlock(PressurePlateBlock.Sensitivity.MOBS, SMProperties.Blocks.PETRIFIED_PRESSURE_PLATE, BlockSetType.STONE));
+    public static final RegistryObject<Block> PETRIFIED_TRAPDOOR = HELPER.createBlock("petrified_trapdoor", () -> new TrapDoorBlock(SMProperties.Blocks.PETRIFIED_TRAPDOOR, BlockSetType.STONE));
+    public static final RegistryObject<Block> PETRIFIED_STAIRS = HELPER.createBlock("petrified_stairs", () -> new StairBlock(() -> PETRIFIED_PLANKS.get().defaultBlockState(), SMProperties.Blocks.petrified()));
+    public static final RegistryObject<Block> PETRIFIED_SLAB = HELPER.createBlock("petrified_slab", () -> new SlabBlock(SMProperties.Blocks.petrified()));
+    public static final RegistryObject<Block> PETRIFIED_BUTTON = HELPER.createBlock("petrified_button", () -> new ButtonBlock(SMProperties.Blocks.PETRIFIED_BUTTON, BlockSetType.STONE, 20, false));
+    public static final RegistryObject<Block> PETRIFIED_FENCE_GATE = HELPER.createBlock("petrified_fence_gate", () -> new FenceGateBlock(SMProperties.Blocks.petrified().forceSolidOn(), SoundEvents.FENCE_GATE_OPEN, SoundEvents.FENCE_GATE_CLOSE));
+    public static final RegistryObject<Block> PETRIFIED_FENCE = HELPER.createBlock("petrified_fence", () -> new FenceBlock(SMProperties.Blocks.petrified()));
     //DOOR
-
-    public static final RegistryObject<Block> PETRIFIED_LOG = HELPER.createBlock("petrified_log", () -> log(MapColor.TERRACOTTA_ORANGE, MapColor.COLOR_BROWN));
-    public static final RegistryObject<Block> STRIPPED_PETRIFIED_LOG = HELPER.createBlock("stripped_petrified_log", () -> log(MapColor.TERRACOTTA_ORANGE, MapColor.TERRACOTTA_ORANGE));
-    public static final RegistryObject<Block> PETRIFIED_WOOD = HELPER.createBlock("petrified_wood", () -> log(MapColor.COLOR_BROWN, MapColor.COLOR_BROWN));
-    public static final RegistryObject<Block> STRIPPED_PETRIFIED_WOOD = HELPER.createBlock("stripped_petrified_wood", () -> log(MapColor.TERRACOTTA_ORANGE, MapColor.TERRACOTTA_ORANGE));
 
 
     //Misc
     public static final RegistryObject<Block> TORTOISE_EGG = HELPER.createBlock("tortoise_egg", () -> new TortoiseEggBlock(BlockBehaviour.Properties.copy(Blocks.TURTLE_EGG)));
 
-    private static RotatedPillarBlock log(MapColor pTopMapColor, MapColor pSideMapColor) {
-        return new RotatedPillarBlock(SMProperties.Blocks.PETRIFIED.mapColor((blockState) ->
+    private static LogBlock log(Supplier<Block> strippedBlock, MapColor pTopMapColor, MapColor pSideMapColor) {
+        return new LogBlock(strippedBlock, SMProperties.Blocks.petrified().mapColor((blockState) ->
+                blockState.getValue(RotatedPillarBlock.AXIS) == Direction.Axis.Y ? pTopMapColor : pSideMapColor));
+    }
+
+    private static RotatedPillarBlock strippedLog(MapColor pTopMapColor, MapColor pSideMapColor) {
+        return new RotatedPillarBlock(SMProperties.Blocks.petrified().mapColor((blockState) ->
                 blockState.getValue(RotatedPillarBlock.AXIS) == Direction.Axis.Y ? pTopMapColor : pSideMapColor));
     }
 }

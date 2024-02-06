@@ -94,7 +94,7 @@ public class SMBlockLoot extends BlockLootSubProvider {
         this.dropSelf(SMBlocks.PETRIFIED_PRESSURE_PLATE.get());
         this.dropSelf(SMBlocks.PETRIFIED_TRAPDOOR.get());
         this.dropSelf(SMBlocks.PETRIFIED_STAIRS.get());
-        this.dropSelf(SMBlocks.PETRIFIED_SLAB.get());
+        createSlab(SMBlocks.PETRIFIED_SLAB.get());
         this.dropSelf(SMBlocks.PETRIFIED_BUTTON.get());
         this.dropSelf(SMBlocks.PETRIFIED_FENCE_GATE.get());
         this.dropSelf(SMBlocks.PETRIFIED_FENCE.get());

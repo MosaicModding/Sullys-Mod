@@ -56,7 +56,11 @@ public class SMBlockTagsProvider extends BlockTagsProvider {
                 SMBlocks.PETRIFIED_LOG.get(),
                 SMBlocks.STRIPPED_PETRIFIED_LOG.get(),
                 SMBlocks.PETRIFIED_WOOD.get(),
-                SMBlocks.STRIPPED_PETRIFIED_WOOD.get()
+                SMBlocks.STRIPPED_PETRIFIED_WOOD.get(),
+                SMBlocks.PETRIFIED_STAIRS.get(),
+                SMBlocks.PETRIFIED_SLAB.get(),
+                SMBlocks.PETRIFIED_FENCE_GATE.get(),
+                SMBlocks.PETRIFIED_FENCE.get()
         );
         tag(BlockTags.NEEDS_IRON_TOOL).add(
                 SMBlocks.JADE_ORE.get(),
@@ -106,7 +110,8 @@ public class SMBlockTagsProvider extends BlockTagsProvider {
                 SMBlocks.POLISHED_JADE_SHINGLE_SLAB.get(),
                 SMBlocks.ROUGH_JADE_BRICK_SLAB.get(),
                 SMBlocks.ROUGH_JADE_TILE_SLAB.get(),
-                SMBlocks.SMOOTHED_ROUGH_JADE_SLAB.get()
+                SMBlocks.SMOOTHED_ROUGH_JADE_SLAB.get(),
+                SMBlocks.PETRIFIED_SLAB.get()
         );
         tag(BlockTags.STAIRS).add(
                 SMBlocks.POLISHED_JADE_BRICK_STAIRS.get(),
@@ -115,8 +120,11 @@ public class SMBlockTagsProvider extends BlockTagsProvider {
                 SMBlocks.POLISHED_JADE_SHINGLE_STAIRS.get(),
                 SMBlocks.ROUGH_JADE_BRICK_STAIRS.get(),
                 SMBlocks.ROUGH_JADE_TILE_STAIRS.get(),
-                SMBlocks.SMOOTHED_ROUGH_JADE_STAIRS.get()
+                SMBlocks.SMOOTHED_ROUGH_JADE_STAIRS.get(),
+                SMBlocks.AMBER_BRICK_STAIRS.get()
         );
+        tag(BlockTags.FENCE_GATES).add(SMBlocks.PETRIFIED_FENCE_GATE.get());
+        tag(BlockTags.FENCES).add(SMBlocks.PETRIFIED_FENCE.get());
 
         //Our Tags
         tag(SMBlockTags.PROJECTILES_BOUNCE_ON).add(

@@ -78,7 +78,7 @@ public class SMBlockStateProvider extends BlockStateProvider {
         modWoodBlock(SMBlocks.PETRIFIED_WOOD, SMBlocks.PETRIFIED_LOG);
         modWoodBlock(SMBlocks.STRIPPED_PETRIFIED_WOOD, SMBlocks.STRIPPED_PETRIFIED_LOG);
         modPressurePlateBlock(SMBlocks.PETRIFIED_PRESSURE_PLATE, SMBlocks.PETRIFIED_PLANKS);
-        modTrapdoorBlock(SMBlocks.PETRIFIED_TRAPDOOR);
+        modTrapdoorWithRenderType(SMBlocks.PETRIFIED_TRAPDOOR, "cutout");
         modStairsBlock(SMBlocks.PETRIFIED_STAIRS, SMBlocks.PETRIFIED_PLANKS);
         modSlabBlock(SMBlocks.PETRIFIED_SLAB, SMBlocks.PETRIFIED_PLANKS);
         basicButtonBlock(SMBlocks.PETRIFIED_BUTTON, SMBlocks.PETRIFIED_PLANKS);
@@ -127,6 +127,9 @@ public class SMBlockStateProvider extends BlockStateProvider {
 
     private void modTrapdoorBlock(Supplier<? extends Block> block) {
         trapdoorBlock((TrapDoorBlock) block.get(), modBlockLocation(name(block.get())), true);
+    }
+    private void modTrapdoorWithRenderType(Supplier<? extends Block> block, String renderType) {
+        trapdoorBlockWithRenderType((TrapDoorBlock)block.get(), modBlockLocation(name(block.get())), true, renderType);
     }
 
     private void signBlock(Pair<RegistryObject<BlueprintStandingSignBlock>, RegistryObject<BlueprintWallSignBlock>> pair, String texture) {
