@@ -84,6 +84,20 @@ public class SMBlockLoot extends BlockLootSubProvider {
         this.dropSelf(SMBlocks.AMBER_BRICK_SLAB.get());
         this.dropSelf(SMBlocks.AMBER_BRICK_STAIRS.get());
         this.dropSelf(SMBlocks.AMBER_BRICK_WALL.get());
+
+        //Petrified Wood
+        this.dropSelf(SMBlocks.PETRIFIED_PLANKS.get());
+        this.dropSelf(SMBlocks.PETRIFIED_LOG.get());
+        this.dropSelf(SMBlocks.STRIPPED_PETRIFIED_LOG.get());
+        this.dropSelf(SMBlocks.PETRIFIED_WOOD.get());
+        this.dropSelf(SMBlocks.STRIPPED_PETRIFIED_WOOD.get());
+        this.dropSelf(SMBlocks.PETRIFIED_PRESSURE_PLATE.get());
+        this.dropSelf(SMBlocks.PETRIFIED_TRAPDOOR.get());
+        this.dropSelf(SMBlocks.PETRIFIED_STAIRS.get());
+        this.dropSelf(SMBlocks.PETRIFIED_SLAB.get());
+        this.dropSelf(SMBlocks.PETRIFIED_BUTTON.get());
+        this.dropSelf(SMBlocks.PETRIFIED_FENCE_GATE.get());
+        this.dropSelf(SMBlocks.PETRIFIED_FENCE.get());
     }
 
     protected LootTable.Builder createJadeOreDrops(Block block) {

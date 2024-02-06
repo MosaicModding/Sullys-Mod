@@ -6,6 +6,7 @@ import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Rarity;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
@@ -22,6 +23,9 @@ public class SMProperties {
         public static final BlockBehaviour.Properties COPPER_BUTTONS = BlockBehaviour.Properties.of().noCollission().strength(0.5F);
 
         public static final BlockBehaviour.Properties AMBER = BlockBehaviour.Properties.of().strength(1.3F, 3F).mapColor(MapColor.COLOR_ORANGE).requiresCorrectToolForDrops().randomTicks();
+
+        //TODO use the Blueprint thingy instead
+        public static final BlockBehaviour.Properties PETRIFIED = BlockBehaviour.Properties.copy(net.minecraft.world.level.block.Blocks.COBBLESTONE).sound(SoundType.STONE).mapColor(MapColor.TERRACOTTA_ORANGE);
     }
 
     public static final class Items {

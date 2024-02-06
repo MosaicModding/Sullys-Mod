@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "sullysmod:block/stripped_petrified_wood",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "sullysmod:block/stripped_petrified_wood"
+    },
+    "axis=z": {
+      "model": "sullysmod:block/stripped_petrified_wood",
+      "x": 90
+    }
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "sullysmod:block/petrified_slab"
+    },
+    "type=double": {
+      "model": "sullysmod:block/petrified_planks"
+    },
+    "type=top": {
+      "model": "sullysmod:block/petrified_slab_top"
+    }
+  }
+}

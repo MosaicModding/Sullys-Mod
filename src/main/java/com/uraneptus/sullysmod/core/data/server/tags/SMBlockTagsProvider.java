@@ -51,7 +51,12 @@ public class SMBlockTagsProvider extends BlockTagsProvider {
                 SMBlocks.ROUGH_JADE_TILE_STAIRS.get(),
                 SMBlocks.ROUGH_JADE_BRICK_SLAB.get(),
                 SMBlocks.SMOOTHED_ROUGH_JADE_SLAB.get(),
-                SMBlocks.ROUGH_JADE_TILE_SLAB.get()
+                SMBlocks.ROUGH_JADE_TILE_SLAB.get(),
+                SMBlocks.PETRIFIED_PLANKS.get(),
+                SMBlocks.PETRIFIED_LOG.get(),
+                SMBlocks.STRIPPED_PETRIFIED_LOG.get(),
+                SMBlocks.PETRIFIED_WOOD.get(),
+                SMBlocks.STRIPPED_PETRIFIED_WOOD.get()
         );
         tag(BlockTags.NEEDS_IRON_TOOL).add(
                 SMBlocks.JADE_ORE.get(),

@@ -28,6 +28,11 @@
     "sullysmod:rough_jade_tile_stairs",
     "sullysmod:rough_jade_brick_slab",
     "sullysmod:smoothed_rough_jade_slab",
-    "sullysmod:rough_jade_tile_slab"
+    "sullysmod:rough_jade_tile_slab",
+    "sullysmod:petrified_planks",
+    "sullysmod:petrified_log",
+    "sullysmod:stripped_petrified_log",
+    "sullysmod:petrified_wood",
+    "sullysmod:stripped_petrified_wood"
   ]
 }

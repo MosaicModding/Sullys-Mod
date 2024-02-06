@@ -1,5 +1,8 @@
 package com.uraneptus.sullysmod.core.data.client;
 
+import com.mojang.datafixers.util.Pair;
+import com.teamabnormals.blueprint.common.block.sign.BlueprintStandingSignBlock;
+import com.teamabnormals.blueprint.common.block.sign.BlueprintWallSignBlock;
 import com.uraneptus.sullysmod.SullysMod;
 import com.uraneptus.sullysmod.common.blocks.FlingerTotem;
 import com.uraneptus.sullysmod.core.registry.SMBlocks;
@@ -12,6 +15,7 @@ import net.minecraftforge.client.model.generators.BlockStateProvider;
 import net.minecraftforge.client.model.generators.ConfiguredModel;
 import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.common.data.ExistingFileHelper;
+import net.minecraftforge.registries.RegistryObject;
 
 import java.util.function.Supplier;
 
@@ -40,34 +44,46 @@ public class SMBlockStateProvider extends BlockStateProvider {
         pillarBlock(SMBlocks.POLISHED_JADE_PILLAR, name(SMBlocks.POLISHED_CHISELED_JADE.get()));
         totemBlock(SMBlocks.JADE_TOTEM);
         flingerTotem(SMBlocks.JADE_FLINGER_TOTEM);
-        basicButtonBlock(SMBlocks.COPPER_BUTTON, COPPER_BLOCK);
-        basicButtonBlock(SMBlocks.EXPOSED_COPPER_BUTTON, EXPOSED_COPPER);
-        basicButtonBlock(SMBlocks.WEATHERED_COPPER_BUTTON, WEATHERED_COPPER);
-        basicButtonBlock(SMBlocks.OXIDIZED_COPPER_BUTTON, OXIDIZED_COPPER);
-        basicButtonBlock(SMBlocks.WAXED_COPPER_BUTTON, COPPER_BLOCK);
-        basicButtonBlock(SMBlocks.WAXED_EXPOSED_COPPER_BUTTON, EXPOSED_COPPER);
-        basicButtonBlock(SMBlocks.WAXED_WEATHERED_COPPER_BUTTON, WEATHERED_COPPER);
-        basicButtonBlock(SMBlocks.WAXED_OXIDIZED_COPPER_BUTTON, OXIDIZED_COPPER);
-        modStairsBlock(SMBlocks.POLISHED_JADE_BRICK_STAIRS, JADE_BRICKS);
-        modStairsBlock(SMBlocks.POLISHED_SMALL_JADE_BRICK_STAIRS, SMALL_JADE_BRICKS);
-        modStairsBlock(SMBlocks.POLISHED_JADE_SHINGLE_STAIRS, JADE_SHINGLES);
-        modStairsBlock(SMBlocks.POLISHED_JADE_TILE_STAIRS, JADE_TILES);
-        modStairsBlock(SMBlocks.ROUGH_JADE_BRICK_STAIRS, ROUGH_JADE_BRICKS);
-        modStairsBlock(SMBlocks.SMOOTHED_ROUGH_JADE_STAIRS, SMOOTHED_ROUGH_JADE);
-        modStairsBlock(SMBlocks.ROUGH_JADE_TILE_STAIRS, ROUGH_JADE_TILES);
-        modSlabBlock(SMBlocks.POLISHED_JADE_BRICK_SLAB, JADE_BRICKS);
-        modSlabBlock(SMBlocks.POLISHED_SMALL_JADE_BRICK_SLAB, SMALL_JADE_BRICKS);
-        modSlabBlock(SMBlocks.POLISHED_JADE_SHINGLE_SLAB, JADE_SHINGLES);
-        modSlabBlock(SMBlocks.POLISHED_JADE_TILE_SLAB, JADE_TILES);
-        modSlabBlock(SMBlocks.ROUGH_JADE_BRICK_SLAB, ROUGH_JADE_BRICKS);
-        modSlabBlock(SMBlocks.SMOOTHED_ROUGH_JADE_SLAB, SMOOTHED_ROUGH_JADE);
-        modSlabBlock(SMBlocks.ROUGH_JADE_TILE_SLAB, ROUGH_JADE_TILES);
+        basicButtonBlock(SMBlocks.COPPER_BUTTON, () -> Blocks.COPPER_BLOCK);
+        basicButtonBlock(SMBlocks.EXPOSED_COPPER_BUTTON, () -> Blocks.EXPOSED_COPPER);
+        basicButtonBlock(SMBlocks.WEATHERED_COPPER_BUTTON, () -> Blocks.WEATHERED_COPPER);
+        basicButtonBlock(SMBlocks.OXIDIZED_COPPER_BUTTON, () -> Blocks.OXIDIZED_COPPER);
+        basicButtonBlock(SMBlocks.WAXED_COPPER_BUTTON, () -> Blocks.COPPER_BLOCK);
+        basicButtonBlock(SMBlocks.WAXED_EXPOSED_COPPER_BUTTON, () -> Blocks.EXPOSED_COPPER);
+        basicButtonBlock(SMBlocks.WAXED_WEATHERED_COPPER_BUTTON, () -> Blocks.WEATHERED_COPPER);
+        basicButtonBlock(SMBlocks.WAXED_OXIDIZED_COPPER_BUTTON, () -> Blocks.OXIDIZED_COPPER);
+        modStairsBlock(SMBlocks.POLISHED_JADE_BRICK_STAIRS, SMBlocks.POLISHED_JADE_BRICKS);
+        modStairsBlock(SMBlocks.POLISHED_SMALL_JADE_BRICK_STAIRS, SMBlocks.POLISHED_SMALL_JADE_BRICKS);
+        modStairsBlock(SMBlocks.POLISHED_JADE_SHINGLE_STAIRS, SMBlocks.POLISHED_JADE_SHINGLES);
+        modStairsBlock(SMBlocks.POLISHED_JADE_TILE_STAIRS, SMBlocks.POLISHED_JADE_TILES);
+        modStairsBlock(SMBlocks.ROUGH_JADE_BRICK_STAIRS, SMBlocks.ROUGH_JADE_BRICKS);
+        modStairsBlock(SMBlocks.SMOOTHED_ROUGH_JADE_STAIRS, SMBlocks.SMOOTHED_ROUGH_JADE);
+        modStairsBlock(SMBlocks.ROUGH_JADE_TILE_STAIRS, SMBlocks.ROUGH_JADE_TILES);
+        modSlabBlock(SMBlocks.POLISHED_JADE_BRICK_SLAB, SMBlocks.POLISHED_JADE_BRICKS);
+        modSlabBlock(SMBlocks.POLISHED_SMALL_JADE_BRICK_SLAB, SMBlocks.POLISHED_SMALL_JADE_BRICKS);
+        modSlabBlock(SMBlocks.POLISHED_JADE_SHINGLE_SLAB, SMBlocks.POLISHED_JADE_SHINGLES);
+        modSlabBlock(SMBlocks.POLISHED_JADE_TILE_SLAB, SMBlocks.POLISHED_JADE_TILES);
+        modSlabBlock(SMBlocks.ROUGH_JADE_BRICK_SLAB, SMBlocks.ROUGH_JADE_BRICKS);
+        modSlabBlock(SMBlocks.SMOOTHED_ROUGH_JADE_SLAB, SMBlocks.SMOOTHED_ROUGH_JADE);
+        modSlabBlock(SMBlocks.ROUGH_JADE_TILE_SLAB, SMBlocks.ROUGH_JADE_TILES);
         modEggBlock(SMBlocks.TORTOISE_EGG);
         basicBlockWRenderType(SMBlocks.AMBER, "translucent");
         basicBlock(SMBlocks.AMBER_BRICKS);
-        modSlabBlock(SMBlocks.AMBER_BRICK_SLAB, AMBER_BRICKS);
-        modWallBlock(SMBlocks.AMBER_BRICK_WALL, AMBER_BRICKS);
-        modStairsBlock(SMBlocks.AMBER_BRICK_STAIRS, AMBER_BRICKS);
+        modSlabBlock(SMBlocks.AMBER_BRICK_SLAB, SMBlocks.AMBER_BRICKS);
+        modWallBlock(SMBlocks.AMBER_BRICK_WALL, SMBlocks.AMBER_BRICKS);
+        modStairsBlock(SMBlocks.AMBER_BRICK_STAIRS, SMBlocks.AMBER_BRICKS);
+        basicBlock(SMBlocks.PETRIFIED_PLANKS);
+        modLogBlock(SMBlocks.PETRIFIED_LOG);
+        modLogBlock(SMBlocks.STRIPPED_PETRIFIED_LOG);
+        modWoodBlock(SMBlocks.PETRIFIED_WOOD, SMBlocks.PETRIFIED_LOG);
+        modWoodBlock(SMBlocks.STRIPPED_PETRIFIED_WOOD, SMBlocks.STRIPPED_PETRIFIED_LOG);
+        modPressurePlateBlock(SMBlocks.PETRIFIED_PRESSURE_PLATE, SMBlocks.PETRIFIED_PLANKS);
+        modTrapdoorBlock(SMBlocks.PETRIFIED_TRAPDOOR);
+        modStairsBlock(SMBlocks.PETRIFIED_STAIRS, SMBlocks.PETRIFIED_PLANKS);
+        modSlabBlock(SMBlocks.PETRIFIED_SLAB, SMBlocks.PETRIFIED_PLANKS);
+        basicButtonBlock(SMBlocks.PETRIFIED_BUTTON, SMBlocks.PETRIFIED_PLANKS);
+        modFenceGateBlock(SMBlocks.PETRIFIED_FENCE_GATE, SMBlocks.PETRIFIED_PLANKS);
+        modFenceBlock(SMBlocks.PETRIFIED_FENCE, SMBlocks.PETRIFIED_PLANKS);
     }
 
     private void basicBlock(Supplier<? extends Block> block) {
@@ -81,6 +97,41 @@ public class SMBlockStateProvider extends BlockStateProvider {
 
     private void pillarBlock(Supplier<? extends Block> block, String topTexture) {
         axisBlock((RotatedPillarBlock) block.get(), modBlockLocation(name(block.get())), modBlockLocation(topTexture));
+    }
+
+    private void modLogBlock(Supplier<? extends Block> block) {
+        this.logBlock((RotatedPillarBlock) block.get());
+    }
+
+    private void modWoodBlock(Supplier<? extends Block> block, Supplier<? extends Block> blockForTexture) {
+        axisBlock((RotatedPillarBlock) block.get(),
+                models().cubeColumn(name(block.get()), modBlockLocation(name(blockForTexture.get())), modBlockLocation(name(blockForTexture.get()))),
+                models().cubeColumnHorizontal(name(block.get()), modBlockLocation(name(blockForTexture.get())), modBlockLocation(name(blockForTexture.get()))));
+    }
+
+    private void modFenceBlock(Supplier<? extends Block> block, Supplier<? extends Block> blockForTexture) {
+        fenceBlock((FenceBlock) block.get(), modBlockLocation(name(blockForTexture.get())));
+    }
+
+    private void modFenceGateBlock(Supplier<? extends Block> block, Supplier<? extends Block> blockForTexture) {
+        fenceGateBlock((FenceGateBlock) block.get(), modBlockLocation(name(blockForTexture.get())));
+    }
+
+    private void modPressurePlateBlock(Supplier<? extends Block> block, Supplier<? extends Block> blockForTexture) {
+        pressurePlateBlock((PressurePlateBlock) block.get(), modBlockLocation(name(blockForTexture.get())));
+    }
+
+    private void modDoorBlock(Supplier<? extends Block> block) {
+        doorBlock((DoorBlock) block.get(), modBlockLocation(name(block.get()) + "_bottom"), modBlockLocation(name(block.get()) + "_top"));
+    }
+
+    private void modTrapdoorBlock(Supplier<? extends Block> block) {
+        trapdoorBlock((TrapDoorBlock) block.get(), modBlockLocation(name(block.get())), true);
+    }
+
+    private void signBlock(Pair<RegistryObject<BlueprintStandingSignBlock>, RegistryObject<BlueprintWallSignBlock>> pair, String texture) {
+        simpleBlock(pair.getFirst().get(), models().sign(name(pair.getFirst().get()), modBlockLocation(texture)));
+        simpleBlock(pair.getSecond().get(), models().sign(name(pair.getSecond().get()), modBlockLocation(texture)));
     }
 
     private void totemBlock(Supplier<? extends Block> block) {
@@ -123,19 +174,19 @@ public class SMBlockStateProvider extends BlockStateProvider {
         });
     }
 
-    private void basicButtonBlock(Supplier<? extends Block> block, String texture) {
-        buttonBlock((ButtonBlock)block.get(), vanillaBlockLocation(texture));
+    private void basicButtonBlock(Supplier<? extends Block> block, Supplier<? extends Block> blockForTexture) {
+        buttonBlock((ButtonBlock)block.get(), blockTexture(blockForTexture.get()));
     }
 
-    private void modStairsBlock(Supplier<? extends Block> block, String texture) {
-        stairsBlock((StairBlock) block.get(), modBlockLocation(texture));
+    private void modStairsBlock(Supplier<? extends Block> block, Supplier<? extends Block> blockForTexture) {
+        stairsBlock((StairBlock) block.get(), blockTexture(blockForTexture.get()));
     }
-    private void modWallBlock(Supplier<? extends Block> block, String texture) {
-        wallBlock((WallBlock) block.get(), modBlockLocation(texture));
+    private void modWallBlock(Supplier<? extends Block> block, Supplier<? extends Block> blockForTexture) {
+        wallBlock((WallBlock) block.get(), blockTexture(blockForTexture.get()));
     }
 
-    private void modSlabBlock(Supplier<? extends Block> block, String texture) {
-        slabBlock((SlabBlock) block.get(), modBlockLocation(texture), modBlockLocation(texture));
+    private void modSlabBlock(Supplier<? extends Block> block, Supplier<? extends Block> blockForTexture) {
+        slabBlock((SlabBlock) block.get(), blockTexture(blockForTexture.get()), blockTexture(blockForTexture.get()));
     }
 
     private void modEggBlock(Supplier<? extends Block> block) {

@@ -9,6 +9,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.client.model.generators.ItemModelProvider;
 import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.common.data.ExistingFileHelper;
@@ -55,14 +56,14 @@ public class SMItemModelProvider extends ItemModelProvider {
         basicItem(SMItems.PIRANHA);
         basicItem(SMItems.COOKED_PIRANHA);
         blockItemWithItemTexture(SMBlocks.TORTOISE_EGG);
-        copperButtonBlockItem(SMBlocks.COPPER_BUTTON, COPPER_BLOCK);
-        copperButtonBlockItem(SMBlocks.EXPOSED_COPPER_BUTTON, EXPOSED_COPPER);
-        copperButtonBlockItem(SMBlocks.WEATHERED_COPPER_BUTTON, WEATHERED_COPPER);
-        copperButtonBlockItem(SMBlocks.OXIDIZED_COPPER_BUTTON, OXIDIZED_COPPER);
-        copperButtonBlockItem(SMBlocks.WAXED_COPPER_BUTTON, COPPER_BLOCK);
-        copperButtonBlockItem(SMBlocks.WAXED_EXPOSED_COPPER_BUTTON, EXPOSED_COPPER);
-        copperButtonBlockItem(SMBlocks.WAXED_WEATHERED_COPPER_BUTTON, WEATHERED_COPPER);
-        copperButtonBlockItem(SMBlocks.WAXED_OXIDIZED_COPPER_BUTTON, OXIDIZED_COPPER);
+        copperButtonBlockItem(SMBlocks.COPPER_BUTTON, () -> Blocks.COPPER_BLOCK);
+        copperButtonBlockItem(SMBlocks.EXPOSED_COPPER_BUTTON, () -> Blocks.EXPOSED_COPPER);
+        copperButtonBlockItem(SMBlocks.WEATHERED_COPPER_BUTTON, () -> Blocks.WEATHERED_COPPER);
+        copperButtonBlockItem(SMBlocks.OXIDIZED_COPPER_BUTTON, () -> Blocks.OXIDIZED_COPPER);
+        copperButtonBlockItem(SMBlocks.WAXED_COPPER_BUTTON, () -> Blocks.COPPER_BLOCK);
+        copperButtonBlockItem(SMBlocks.WAXED_EXPOSED_COPPER_BUTTON, () -> Blocks.EXPOSED_COPPER);
+        copperButtonBlockItem(SMBlocks.WAXED_WEATHERED_COPPER_BUTTON, () -> Blocks.WEATHERED_COPPER);
+        copperButtonBlockItem(SMBlocks.WAXED_OXIDIZED_COPPER_BUTTON, () -> Blocks.OXIDIZED_COPPER);
         basicBlockItem(SMBlocks.POLISHED_JADE_BRICK_STAIRS);
         basicBlockItem(SMBlocks.POLISHED_SMALL_JADE_BRICK_STAIRS);
         basicBlockItem(SMBlocks.POLISHED_JADE_SHINGLE_STAIRS);
@@ -92,6 +93,18 @@ public class SMItemModelProvider extends ItemModelProvider {
         //basicBlockItem(SMBlocks.AMBER_BRICK_WALL);
         basicBlockItem(SMBlocks.AMBER_BRICK_STAIRS);
         basicItem(SMItems.PIRANHA_TOOTH);
+        basicBlockItem(SMBlocks.PETRIFIED_PLANKS);
+        basicBlockItem(SMBlocks.PETRIFIED_LOG);
+        basicBlockItem(SMBlocks.STRIPPED_PETRIFIED_LOG);
+        basicBlockItem(SMBlocks.PETRIFIED_WOOD);
+        basicBlockItem(SMBlocks.STRIPPED_PETRIFIED_WOOD);
+        basicBlockItem(SMBlocks.PETRIFIED_PRESSURE_PLATE);
+        trapdoorBlockItem(SMBlocks.PETRIFIED_TRAPDOOR);
+        basicBlockItem(SMBlocks.PETRIFIED_STAIRS);
+        basicBlockItem(SMBlocks.PETRIFIED_SLAB);
+        modButtonBlockItem(SMBlocks.PETRIFIED_BUTTON, SMBlocks.PETRIFIED_PLANKS);
+        basicBlockItem(SMBlocks.PETRIFIED_FENCE_GATE);
+        fenceBlockItem(SMBlocks.PETRIFIED_FENCE, SMBlocks.PETRIFIED_PLANKS);
     }
 
     private void basicBlockItem(Supplier<? extends Block> blockForItem) {
@@ -111,8 +124,24 @@ public class SMItemModelProvider extends ItemModelProvider {
         basicItem(blockForItem.get().asItem());
     }
 
-    private void copperButtonBlockItem(Supplier<? extends Block> blockForItem, String texture) {
-        buttonInventory(name(blockForItem.get()), vanillaBlockLocation(texture));
+    private void modButtonBlockItem(Supplier<? extends Block> blockForItem, Supplier<? extends Block> blockForTexture) {
+        buttonInventory(name(blockForItem.get()), modBlockLocation(name(blockForTexture.get())));
+    }
+
+    private void copperButtonBlockItem(Supplier<? extends Block> blockForItem, Supplier<? extends Block> blockForTexture) {
+        buttonInventory(name(blockForItem.get()), vanillaBlockLocation(name(blockForTexture.get())));
+    }
+
+    private void fenceBlockItem(Supplier<? extends Block> block, Supplier<? extends Block> blockForTexture) {
+        fenceInventory(name(block.get()), modBlockLocation(name(blockForTexture.get())));
+    }
+
+    private void basicBlockItemWithSuffix(Supplier<? extends Block> block, String suffix) {
+        withExistingParent(name(block.get()), modBlockLocation(name(block.get()) + suffix));
+    }
+
+    private void trapdoorBlockItem(Supplier<? extends Block> block) {
+        basicBlockItemWithSuffix(block, "_bottom");
     }
 
     private void basicSpawnEggItem(Supplier<? extends Item> item) {

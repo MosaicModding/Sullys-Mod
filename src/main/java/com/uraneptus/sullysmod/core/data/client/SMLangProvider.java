@@ -68,6 +68,18 @@ public class SMLangProvider extends LanguageProvider {
         forBlock(SMBlocks.AMBER_BRICK_STAIRS);
         forBlock(SMBlocks.AMBER_BRICK_SLAB);
         forBlock(SMBlocks.AMBER_BRICK_WALL);
+        forBlock(SMBlocks.PETRIFIED_PLANKS);
+        forBlock(SMBlocks.PETRIFIED_LOG);
+        forBlock(SMBlocks.STRIPPED_PETRIFIED_LOG);
+        forBlock(SMBlocks.PETRIFIED_WOOD);
+        forBlock(SMBlocks.STRIPPED_PETRIFIED_WOOD);
+        forBlock(SMBlocks.PETRIFIED_PRESSURE_PLATE);
+        forBlock(SMBlocks.PETRIFIED_TRAPDOOR);
+        forBlock(SMBlocks.PETRIFIED_STAIRS);
+        forBlock(SMBlocks.PETRIFIED_SLAB);
+        forBlock(SMBlocks.PETRIFIED_BUTTON);
+        forBlock(SMBlocks.PETRIFIED_FENCE_GATE);
+        forBlock(SMBlocks.PETRIFIED_FENCE);
 
         addBlock(SMBlocks.POLISHED_JADE_BLOCK, "Block of Polished Jade");
         addBlock(SMBlocks.ROUGH_JADE_BLOCK, "Block of Rough Jade");
