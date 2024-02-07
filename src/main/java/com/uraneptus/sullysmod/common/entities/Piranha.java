@@ -46,7 +46,8 @@ import java.util.UUID;
 public class Piranha extends AbstractSchoolingFish implements GeoEntity, NeutralMob {
     private final AnimatableInstanceCache instanceCache = GeckoLibUtil.createInstanceCache(this);
     protected static final RawAnimation SWIMMING_ANIM = RawAnimation.begin().thenLoop("animation.piranha.swim");
-    protected static final RawAnimation JUMPING_ANIM = RawAnimation.begin().thenPlay("animation.piranha.jump");
+    protected static final RawAnimation SWIMMING_ANGRY_ANIM = RawAnimation.begin().thenLoop("animation.piranha.swim_angry");
+    //protected static final RawAnimation JUMPING_ANIM = RawAnimation.begin().thenPlay("animation.piranha.jump");
     private static final EntityDataAccessor<Integer> DATA_REMAINING_ANGER_TIME = SynchedEntityData.defineId(Piranha.class, EntityDataSerializers.INT);
     private static final UniformInt PERSISTENT_ANGER_TIME = TimeUtil.rangeOfSeconds(5, 10);
     @Nullable
@@ -103,6 +104,12 @@ public class Piranha extends AbstractSchoolingFish implements GeoEntity, Neutral
         this.readPersistentAngerSaveData(this.level(), pCompound);
     }
 
+    public void tick() {
+        super.tick();
+        if (level().isClientSide()) System.out.println("Client: " + this.getTarget());
+        if (!level().isClientSide()) System.out.println("Server: " + this.getTarget());
+    }
+
     @Override
     public void aiStep() {
         super.aiStep();
@@ -145,7 +152,11 @@ public class Piranha extends AbstractSchoolingFish implements GeoEntity, Neutral
 
     public <E extends GeoAnimatable> PlayState setAnimation(final AnimationState<E> event) {
         if (event.isMoving()) {
-            return event.setAndContinue(SWIMMING_ANIM);
+            if ((this.getRemainingPersistentAngerTime() > 0)) {
+                return event.setAndContinue(SWIMMING_ANGRY_ANIM);
+            } else {
+                return event.setAndContinue(SWIMMING_ANIM);
+            }
         }
         return PlayState.STOP;
     }
