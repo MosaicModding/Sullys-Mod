@@ -3,6 +3,9 @@
     "minecraft:mutton",
     "minecraft:porkchop",
     "minecraft:beef",
-    "minecraft:chicken"
+    "minecraft:chicken",
+    "minecraft:rabbit",
+    "alexsmobs:moose_ribs",
+    "alexsmobs:kangaroo_meat"
   ]
 }
