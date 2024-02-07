@@ -8,10 +8,7 @@ import com.uraneptus.sullysmod.client.model.TortoiseShellModel;
 import com.uraneptus.sullysmod.client.particles.RicochetParticle;
 import com.uraneptus.sullysmod.client.renderer.entities.*;
 import com.uraneptus.sullysmod.common.items.VenomVialItem;
-import com.uraneptus.sullysmod.core.registry.SMBlocks;
-import com.uraneptus.sullysmod.core.registry.SMEntityTypes;
-import com.uraneptus.sullysmod.core.registry.SMItems;
-import com.uraneptus.sullysmod.core.registry.SMParticleTypes;
+import com.uraneptus.sullysmod.core.registry.*;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.item.ItemProperties;
@@ -36,6 +33,7 @@ public class SMClientEvents {
         event.registerEntityRenderer(SMEntityTypes.JUNGLE_SPIDER.get(), JungleSpiderRenderer::new);
         event.registerEntityRenderer(SMEntityTypes.PIRANHA.get(), PiranhaRenderer::new);
         event.registerEntityRenderer(SMEntityTypes.THROWN_THROWING_KNIFE.get(), ThrownThrowingKnifeRenderer::new);
+        event.registerBlockEntityRenderer(SMBlockEntityTypes.AMBER.get(), AmberBlockEntityRenderer::new);
     }
 
     @SubscribeEvent

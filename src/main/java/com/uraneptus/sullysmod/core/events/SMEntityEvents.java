@@ -17,33 +17,33 @@ import com.uraneptus.sullysmod.core.registry.SMParticleTypes;
 import com.uraneptus.sullysmod.core.registry.SMSounds;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.core.particles.DustColorTransitionOptions;
-import net.minecraft.core.particles.DustParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
-import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.TamableAnimal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.NonTameRandomTargetGoal;
 import net.minecraft.world.entity.animal.Ocelot;
 import net.minecraft.world.entity.animal.Turtle;
 import net.minecraft.world.entity.animal.horse.Horse;
-import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.monster.Zombie;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.GameEvent;
-import net.minecraft.world.phys.*;
+import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.EntityHitResult;
+import net.minecraft.world.phys.HitResult;
+import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.event.entity.EntityJoinLevelEvent;
 import net.minecraftforge.event.entity.ProjectileImpactEvent;
-import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -212,20 +212,10 @@ public class SMEntityEvents {
             if (entity instanceof Mob mob) {
                 if (blockEntity instanceof AmberBlockEntity amber) {
                     mob.makeStuckInBlock(state, new Vec3((double) 0.0F, 0.1D, (double) 0.0F));
-                    if (amber.getStuckMob() == 0) {
+                    if (!amber.isFull()) {
                         if (mob.getBlockStateOn() != SMBlocks.AMBER.get().defaultBlockState()) {
-                            mob.setSilent(true);
-                            mob.setRemainingFireTicks(0);
-                            mob.setInvulnerable(true);
-                            mob.setNoAi(true);
-                            amber.setStuckMob(mob.getId());
+                            amber.makeEntityStuck(mob);
                         }
-                    } else {
-                        amber.setStuckMob(amber.getStuckMob());
-                    }
-                    if (mob.getId() != amber.getStuckMob() && amber.getStuckMob() != 0) {
-                        mob.hurt(mob.damageSources().cramming(), 2F);
-                        mob.setNoAi(false);
                     }
                 }
             }
@@ -235,22 +225,6 @@ public class SMEntityEvents {
                 if (flag && randomsource.nextBoolean()) {
                     level.addParticle(ParticleTypes.SOUL_FIRE_FLAME, entity.getX(), (double)(blockPos.getY() + 1), entity.getZ(), (double)(Mth.randomBetween(randomsource, -1.0F, 1.0F) * 0.083333336F), (double)0.05F, (double)(Mth.randomBetween(randomsource, -1.0F, 1.0F) * 0.083333336F));
                 }
-            }
-        } /* else {
-            if (entity instanceof Mob mob) {
-                if (mob.getSpawnType() != MobSpawnType.COMMAND && mob.isNoAi()) {
-                    mob.setSilent(false);
-                    mob.setInvulnerable(false);
-                    mob.setNoAi(false);
-                }
-            }
-        }
-        */
-        //I TRIED DOING THIS ON A LIVING DEATH EVENT BUT IT DIDN'T WORK SO I DID THIS INSTEAD
-        if (blockEntity instanceof AmberBlockEntity amber) {
-            if (!entity.isAlive() && entity.getId() == amber.getStuckMob()) {
-                System.out.println("DEAD");
-                amber.setStuckMob(0);
             }
         }
     }

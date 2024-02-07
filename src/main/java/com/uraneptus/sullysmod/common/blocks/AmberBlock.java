@@ -2,14 +2,19 @@ package com.uraneptus.sullysmod.common.blocks;
 
 import com.uraneptus.sullysmod.core.registry.SMBlockEntityTypes;
 import com.uraneptus.sullysmod.core.registry.SMBlocks;
+import com.uraneptus.sullysmod.core.registry.SMSounds;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LightLayer;
@@ -18,6 +23,7 @@ import net.minecraft.world.level.block.HalfTransparentBlock;
 import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.EntityCollisionContext;
@@ -46,7 +52,7 @@ public class AmberBlock extends BaseEntityBlock {
             if (entity != null) {
                 Level level = entity.level();
                 BlockEntity blockEntity = level.getBlockEntity(pPos);
-                if (level.getBrightness(LightLayer.BLOCK, blockPos) > 11 && blockEntity != null && ((AmberBlockEntity) blockEntity).getStuckMob() == 0) {
+                if (level.getBrightness(LightLayer.BLOCK, blockPos) > 11 && blockEntity != null && !((AmberBlockEntity) blockEntity).isFull()) {
                     return MELTING_COLLISION_SHAPE;
                 }
             }
@@ -54,18 +60,26 @@ public class AmberBlock extends BaseEntityBlock {
         return Shapes.block();
     }
 
+    /*
     public void onRemove(BlockState pState, Level pLevel, BlockPos pPos, BlockState pNewState, boolean pIsMoving) {
-
-        //Entity entity = pLevel.getNearestEntity(new ArrayList<>(), TargetingConditions.DEFAULT, null, pPos.getX(), pPos.getY(), pPos.getZ());
-        BlockEntity blockEntity = pLevel.getBlockEntity(pPos);
-        assert blockEntity != null;
-        Entity entity = pLevel.getEntity(((AmberBlockEntity) blockEntity).getStuckMob());
-        if (entity instanceof Mob mob) {
-            mob.setNoAi(false);
-        }
-        System.out.println("AMBER BROKE");
         super.onRemove(pState, pLevel, pPos, pNewState, pIsMoving);
+        /*
+        BlockEntity blockEntity = pLevel.getBlockEntity(new BlockPos(pPos.getX(), pPos.getY(), pPos.getZ()));
+        assert blockEntity != null;
+        CompoundTag compoundtag = ((AmberBlockEntity) blockEntity).getEntityStuck(1).entityData;
+        FlingerTotemBlockEntity.removeIgnoredNBT(compoundtag);
+        if (((AmberBlockEntity) blockEntity).isFull()) {
+            LivingEntity livingEntity = (LivingEntity) EntityType.loadEntityRecursive(compoundtag, pLevel, entity -> entity);
+            livingEntity.moveTo(pPos.getX() + 0.5, pPos.getY(), pPos.getZ() + 0.5);
+            pLevel.addFreshEntity(livingEntity);
+            System.out.println("BROKE WORKED");
+        }
+        System.out.println(blockEntity);
+        System.out.println("AMBER BROKE");
+
+
     }
+    */
 
     @Nullable
     @Override
