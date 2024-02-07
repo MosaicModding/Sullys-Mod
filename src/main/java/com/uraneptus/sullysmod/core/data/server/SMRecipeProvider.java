@@ -153,7 +153,7 @@ public class SMRecipeProvider extends RecipeProvider {
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, SMItems.TORTOISE_SHELL.get()).define('#', SMItems.TORTOISE_SCUTE.get()).pattern("## ").pattern("## ").pattern("   ").unlockedBy(getHasName(SMItems.TORTOISE_SCUTE.get()), has(SMItems.TORTOISE_SCUTE.get())).save(consumer, craftingPath(getItemName(SMItems.TORTOISE_SHELL.get())));
         ShapelessRecipeBuilder.shapeless(RecipeCategory.REDSTONE, SMBlocks.JADE_FLINGER_TOTEM.get()).requires(SMBlocks.JADE_TOTEM.get()).requires(Items.TRIPWIRE_HOOK).unlockedBy(getHasName(Items.TRIPWIRE_HOOK), has(Items.TRIPWIRE_HOOK)).unlockedBy(getHasName(SMBlocks.JADE_TOTEM.get()), has(SMBlocks.JADE_TOTEM.get())).save(consumer, craftingPath(getItemName(SMBlocks.JADE_FLINGER_TOTEM.get()) + "_from_jade_totem"));
         ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, SMItems.THROWING_KNIFE.get()).define('#', Items.STICK).define('X', SMItems.PIRANHA_TOOTH.get()).pattern(" X").pattern("# ").unlockedBy(getHasName(SMItems.PIRANHA_TOOTH.get()), has(SMItems.PIRANHA_TOOTH.get())).save(consumer, craftingPath(getItemName(SMItems.THROWING_KNIFE.get())));
-
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, Items.ARROW, 4).define('#', Items.STICK).define('X', SMItems.PIRANHA_TOOTH.get()).define('Y', Items.FEATHER).pattern("X").pattern("#").pattern("Y").unlockedBy("has_feather", has(Items.FEATHER)).unlockedBy(getHasName(SMItems.PIRANHA_TOOTH.get()), has(SMItems.PIRANHA_TOOTH.get())).save(consumer, craftingPath("arrow_from_piranha_tooth"));
     }
 
     protected static void packableBlockRecipes(Supplier<? extends ItemLike> unpacked, Supplier<? extends ItemLike> packed, Consumer<FinishedRecipe> consumer) {
