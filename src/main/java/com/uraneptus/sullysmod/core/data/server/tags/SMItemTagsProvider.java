@@ -1,6 +1,7 @@
 package com.uraneptus.sullysmod.core.data.server.tags;
 
 import com.uraneptus.sullysmod.SullysMod;
+import com.uraneptus.sullysmod.core.other.tags.SMBlockTags;
 import com.uraneptus.sullysmod.core.other.tags.SMItemTags;
 import com.uraneptus.sullysmod.core.registry.SMBlocks;
 import com.uraneptus.sullysmod.core.registry.SMItems;
@@ -8,6 +9,7 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.ItemTagsProvider;
 import net.minecraft.data.tags.TagsProvider;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
@@ -40,6 +42,12 @@ public class SMItemTagsProvider extends ItemTagsProvider {
                 Items.BEEF,
                 Items.CHICKEN
         );
+        tag(SMItemTags.PETRIFIED_LOGS).add(
+                SMBlocks.PETRIFIED_LOG.get().asItem(),
+                SMBlocks.STRIPPED_PETRIFIED_LOG.get().asItem(),
+                SMBlocks.PETRIFIED_WOOD.get().asItem(),
+                SMBlocks.STRIPPED_PETRIFIED_WOOD.get().asItem()
+        );
 
         //Minecraft Tags
         tag(ItemTags.BUTTONS).add(
@@ -59,7 +67,8 @@ public class SMItemTagsProvider extends ItemTagsProvider {
                 SMBlocks.POLISHED_JADE_SHINGLE_SLAB.get().asItem(),
                 SMBlocks.ROUGH_JADE_BRICK_SLAB.get().asItem(),
                 SMBlocks.ROUGH_JADE_TILE_SLAB.get().asItem(),
-                SMBlocks.SMOOTHED_ROUGH_JADE_SLAB.get().asItem()
+                SMBlocks.SMOOTHED_ROUGH_JADE_SLAB.get().asItem(),
+                SMBlocks.PETRIFIED_SLAB.get().asItem()
         );
         tag(ItemTags.STAIRS).add(
                 SMBlocks.POLISHED_JADE_BRICK_STAIRS.get().asItem(),
@@ -68,7 +77,8 @@ public class SMItemTagsProvider extends ItemTagsProvider {
                 SMBlocks.POLISHED_JADE_SHINGLE_STAIRS.get().asItem(),
                 SMBlocks.ROUGH_JADE_BRICK_STAIRS.get().asItem(),
                 SMBlocks.ROUGH_JADE_TILE_STAIRS.get().asItem(),
-                SMBlocks.SMOOTHED_ROUGH_JADE_STAIRS.get().asItem()
+                SMBlocks.SMOOTHED_ROUGH_JADE_STAIRS.get().asItem(),
+                SMBlocks.PETRIFIED_STAIRS.get().asItem()
         );
         tag(ItemTags.FISHES).add(
                 SMItems.LANTERNFISH.get(),
@@ -79,6 +89,14 @@ public class SMItemTagsProvider extends ItemTagsProvider {
         tag(ItemTags.MUSIC_DISCS).add(
                 SMItems.MUSIC_DISC_SCOUR.get()
         );
+        tag(ItemTags.FENCE_GATES).add(SMBlocks.PETRIFIED_FENCE_GATE.get().asItem());
+        tag(ItemTags.FENCES).add(SMBlocks.PETRIFIED_FENCE.get().asItem());
+        tag(ItemTags.SIGNS).add(SMBlocks.PETRIFIED_SIGN.getFirst().get().asItem());
+        tag(ItemTags.HANGING_SIGNS).add(SMBlocks.PETRIFIED_SIGN.getFirst().get().asItem());
+        tag(ItemTags.DOORS).add(SMBlocks.PETRIFIED_DOOR.get().asItem());
+        tag(ItemTags.TRAPDOORS).add(SMBlocks.PETRIFIED_TRAPDOOR.get().asItem());
+        tag(ItemTags.STONE_BUTTONS).add(SMBlocks.PETRIFIED_BUTTON.get().asItem());
+        tag(ItemTags.STONE_TOOL_MATERIALS).addTag(SMItemTags.PETRIFIED_LOGS);
 
         //Forge Tags
         tag(SMItemTags.RAW_LANTERNFISH).add(
@@ -121,5 +139,8 @@ public class SMItemTagsProvider extends ItemTagsProvider {
         tag(Tags.Items.TOOLS_SHIELDS).add(
                 SMItems.JADE_SHIELD.get()
         );
+        tag(Tags.Items.FENCES).add(SMBlocks.PETRIFIED_FENCE.get().asItem());
+        tag(Tags.Items.FENCE_GATES).add(SMBlocks.PETRIFIED_FENCE_GATE.get().asItem());
+        tag(Tags.Items.COBBLESTONE_NORMAL).addTag(SMItemTags.PETRIFIED_LOGS);
     }
 }

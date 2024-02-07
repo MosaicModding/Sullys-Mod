@@ -98,6 +98,11 @@ public class SMBlockLoot extends BlockLootSubProvider {
         this.dropSelf(SMBlocks.PETRIFIED_BUTTON.get());
         this.dropSelf(SMBlocks.PETRIFIED_FENCE_GATE.get());
         this.dropSelf(SMBlocks.PETRIFIED_FENCE.get());
+        this.dropSelf(SMBlocks.PETRIFIED_SIGN.getFirst().get());
+        this.dropSelf(SMBlocks.PETRIFIED_SIGN.getSecond().get());
+        this.dropSelf(SMBlocks.PETRIFIED_HANGING_SIGN.getFirst().get());
+        this.dropSelf(SMBlocks.PETRIFIED_HANGING_SIGN.getSecond().get());
+        createDoor(SMBlocks.PETRIFIED_DOOR.get());
     }
 
     protected LootTable.Builder createJadeOreDrops(Block block) {
@@ -106,5 +111,9 @@ public class SMBlockLoot extends BlockLootSubProvider {
 
     protected void createSlab(Block block) {
         add(block, createSlabItemTable(block));
+    }
+
+    protected void createDoor(Block block) {
+        add(block, createDoorTable(block));
     }
 }

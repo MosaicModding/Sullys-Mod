@@ -25,9 +25,9 @@ public class SMProperties {
         public static final BlockBehaviour.Properties AMBER = BlockBehaviour.Properties.of().strength(1.3F, 3F).mapColor(MapColor.COLOR_ORANGE).requiresCorrectToolForDrops().randomTicks();
 
         public static BlockBehaviour.Properties petrified() {
-            return BlockBehaviour.Properties.of().instrument(NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops().strength(2.0F, 6.0F).sound(SoundType.STONE).mapColor(MapColor.TERRACOTTA_ORANGE);
+            return BlockBehaviour.Properties.of().instrument(NoteBlockInstrument.BASEDRUM).strength(2.0F, 6.0F).sound(SoundType.STONE).mapColor(MapColor.TERRACOTTA_ORANGE);
         }
-        public static final BlockBehaviour.Properties PETRIFIED_TRAPDOOR = petrified().noOcclusion().isValidSpawn(PropertyUtil::never).strength(3.0F);
+        public static final BlockBehaviour.Properties PETRIFIED_TRAPDOOR = petrified().requiresCorrectToolForDrops().noOcclusion().isValidSpawn(PropertyUtil::never).strength(3.0F);
         public static final BlockBehaviour.Properties PETRIFIED_PRESSURE_PLATE = petrified().forceSolidOn().noCollission().pushReaction(PushReaction.DESTROY).strength(0.5F);
         public static final BlockBehaviour.Properties PETRIFIED_BUTTON = petrified().noCollission().strength(0.5F).pushReaction(PushReaction.DESTROY);
     }

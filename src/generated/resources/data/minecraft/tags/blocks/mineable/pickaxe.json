@@ -37,6 +37,9 @@
     "sullysmod:petrified_stairs",
     "sullysmod:petrified_slab",
     "sullysmod:petrified_fence_gate",
-    "sullysmod:petrified_fence"
+    "sullysmod:petrified_fence",
+    "sullysmod:petrified_sign",
+    "sullysmod:petrified_hanging_sign",
+    "sullysmod:petrified_door"
   ]
 }

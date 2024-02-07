@@ -80,6 +80,9 @@ public class SMLangProvider extends LanguageProvider {
         forBlock(SMBlocks.PETRIFIED_BUTTON);
         forBlock(SMBlocks.PETRIFIED_FENCE_GATE);
         forBlock(SMBlocks.PETRIFIED_FENCE);
+        forBlock(SMBlocks.PETRIFIED_SIGN.getFirst());
+        forBlock(SMBlocks.PETRIFIED_HANGING_SIGN.getFirst());
+        forBlock(SMBlocks.PETRIFIED_DOOR);
 
         addBlock(SMBlocks.POLISHED_JADE_BLOCK, "Block of Polished Jade");
         addBlock(SMBlocks.ROUGH_JADE_BLOCK, "Block of Rough Jade");

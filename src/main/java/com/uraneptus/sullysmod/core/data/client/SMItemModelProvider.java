@@ -105,6 +105,9 @@ public class SMItemModelProvider extends ItemModelProvider {
         modButtonBlockItem(SMBlocks.PETRIFIED_BUTTON, SMBlocks.PETRIFIED_PLANKS);
         basicBlockItem(SMBlocks.PETRIFIED_FENCE_GATE);
         fenceBlockItem(SMBlocks.PETRIFIED_FENCE, SMBlocks.PETRIFIED_PLANKS);
+        blockItemWithItemTexture(SMBlocks.PETRIFIED_SIGN.getFirst());
+        blockItemWithItemTexture(SMBlocks.PETRIFIED_HANGING_SIGN.getFirst());
+        blockItemWithItemTexture(SMBlocks.PETRIFIED_DOOR);
     }
 
     private void basicBlockItem(Supplier<? extends Block> blockForItem) {

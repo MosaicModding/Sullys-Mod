@@ -1,14 +1,14 @@
 package com.uraneptus.sullysmod.core.data.client;
 
 import com.mojang.datafixers.util.Pair;
+import com.teamabnormals.blueprint.common.block.sign.BlueprintCeilingHangingSignBlock;
 import com.teamabnormals.blueprint.common.block.sign.BlueprintStandingSignBlock;
+import com.teamabnormals.blueprint.common.block.sign.BlueprintWallHangingSignBlock;
 import com.teamabnormals.blueprint.common.block.sign.BlueprintWallSignBlock;
 import com.uraneptus.sullysmod.SullysMod;
 import com.uraneptus.sullysmod.common.blocks.FlingerTotem;
 import com.uraneptus.sullysmod.core.registry.SMBlocks;
-import net.minecraft.client.renderer.RenderType;
 import net.minecraft.data.PackOutput;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraftforge.client.model.generators.BlockStateProvider;
@@ -84,6 +84,9 @@ public class SMBlockStateProvider extends BlockStateProvider {
         basicButtonBlock(SMBlocks.PETRIFIED_BUTTON, SMBlocks.PETRIFIED_PLANKS);
         modFenceGateBlock(SMBlocks.PETRIFIED_FENCE_GATE, SMBlocks.PETRIFIED_PLANKS);
         modFenceBlock(SMBlocks.PETRIFIED_FENCE, SMBlocks.PETRIFIED_PLANKS);
+        modSignBlock(SMBlocks.PETRIFIED_SIGN, SMBlocks.PETRIFIED_PLANKS);
+        modHangingSignBlock(SMBlocks.PETRIFIED_HANGING_SIGN, SMBlocks.PETRIFIED_PLANKS);
+        modDoorBlockWithRenderType(SMBlocks.PETRIFIED_DOOR, "cutout");
     }
 
     private void basicBlock(Supplier<? extends Block> block) {
@@ -125,6 +128,10 @@ public class SMBlockStateProvider extends BlockStateProvider {
         doorBlock((DoorBlock) block.get(), modBlockLocation(name(block.get()) + "_bottom"), modBlockLocation(name(block.get()) + "_top"));
     }
 
+    private void modDoorBlockWithRenderType(Supplier<? extends Block> block, String rendertype) {
+        doorBlockWithRenderType((DoorBlock) block.get(), modBlockLocation(name(block.get()) + "_bottom"), modBlockLocation(name(block.get()) + "_top"), rendertype);
+    }
+
     private void modTrapdoorBlock(Supplier<? extends Block> block) {
         trapdoorBlock((TrapDoorBlock) block.get(), modBlockLocation(name(block.get())), true);
     }
@@ -132,9 +139,14 @@ public class SMBlockStateProvider extends BlockStateProvider {
         trapdoorBlockWithRenderType((TrapDoorBlock)block.get(), modBlockLocation(name(block.get())), true, renderType);
     }
 
-    private void signBlock(Pair<RegistryObject<BlueprintStandingSignBlock>, RegistryObject<BlueprintWallSignBlock>> pair, String texture) {
-        simpleBlock(pair.getFirst().get(), models().sign(name(pair.getFirst().get()), modBlockLocation(texture)));
-        simpleBlock(pair.getSecond().get(), models().sign(name(pair.getSecond().get()), modBlockLocation(texture)));
+    private void modSignBlock(Pair<RegistryObject<BlueprintStandingSignBlock>, RegistryObject<BlueprintWallSignBlock>> pair, Supplier<? extends Block> blockForTexture) {
+        signBlock(pair.getFirst().get(), pair.getSecond().get(), modBlockLocation(name(blockForTexture.get())));
+    }
+
+    private void modHangingSignBlock(Pair<RegistryObject<BlueprintCeilingHangingSignBlock>, RegistryObject<BlueprintWallHangingSignBlock>> pair, Supplier<? extends Block> blockForTexture) {
+        ModelFile sign = models().sign(name(pair.getFirst().get()), modBlockLocation(name(blockForTexture.get())));
+        simpleBlock(pair.getFirst().get(), sign);
+        simpleBlock(pair.getSecond().get(), sign);
     }
 
     private void totemBlock(Supplier<? extends Block> block) {

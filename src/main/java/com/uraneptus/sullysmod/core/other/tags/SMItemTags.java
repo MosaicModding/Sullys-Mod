@@ -4,11 +4,13 @@ import com.teamabnormals.blueprint.core.util.TagUtil;
 import com.uraneptus.sullysmod.SullysMod;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.level.block.Block;
 
 public class SMItemTags {
     //Our Tags
     public static final TagKey<Item> TORTOISE_FOOD = TagUtil.itemTag(SullysMod.MOD_ID, "tortoise_food");
     public static final TagKey<Item> CARNIVORE_CONSUMABLES = TagUtil.itemTag(SullysMod.MOD_ID, "carnivore_consumables");
+    public static final TagKey<Item> PETRIFIED_LOGS = TagUtil.itemTag(SullysMod.MOD_ID, "petrified_logs");
 
     //Forge Tags
     public static final TagKey<Item> AXE_ITEMS = TagUtil.itemTag("forge", "tools/axes");
