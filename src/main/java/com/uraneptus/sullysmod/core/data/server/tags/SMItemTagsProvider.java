@@ -34,6 +34,13 @@ public class SMItemTagsProvider extends ItemTagsProvider {
                 Items.APPLE
         );
 
+        tag(SMItemTags.CARNIVORE_CONSUMABLES).add(
+                Items.MUTTON,
+                Items.PORKCHOP,
+                Items.BEEF,
+                Items.CHICKEN
+        );
+
         //Minecraft Tags
         tag(ItemTags.BUTTONS).add(
                 SMBlocks.COPPER_BUTTON.get().asItem(),

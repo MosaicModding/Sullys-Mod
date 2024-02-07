@@ -10,6 +10,7 @@ public class SMConfig {
     public static final ForgeConfigSpec.ConfigValue<Boolean> DISABLE_DEEPSLATE_ZOMBIE_SPAWNS;
     public static final ForgeConfigSpec.ConfigValue<Boolean> DISABLE_SPIDER_IN_JUNGLE_SPAWNS;
     public static final ForgeConfigSpec.ConfigValue<Boolean> ENABLE_POLISHABLE_TOOLTIP;
+    public static final ForgeConfigSpec.ConfigValue<Boolean> ENABLE_WOLF_CARNIVORE;
 
     public static final ForgeConfigSpec CLIENT;
     public static final ForgeConfigSpec COMMON;
@@ -25,6 +26,10 @@ public class SMConfig {
         COMMON_BUILDER.comment("Vanilla Spawn Modifications").push("vanilla_spawn_modifications");
         DISABLE_DEEPSLATE_ZOMBIE_SPAWNS = COMMON_BUILDER.comment("Disables zombie spawning in deepslate levels. This is done to prevent too many zombies spawning in this area, since the Bouldering Zombie spawns there exclusively").define("Disable deepslate zombie spawning", true);
         DISABLE_SPIDER_IN_JUNGLE_SPAWNS = COMMON_BUILDER.comment("Disables spider spawning in jungle biomes. This is done to prevent too many spiders spawning in this area, since the Jungle Spider spawns there exclusively").define("Disable spider spawning in jungles", false);
+        COMMON_BUILDER.pop();
+
+        COMMON_BUILDER.comment("Experimental Entity Modifications").push("experimental_entity_modifications");
+        ENABLE_WOLF_CARNIVORE = COMMON_BUILDER.comment("Enables wolfes consuming meat when killing an entity, similar to what the piranha does").define("Enable wolves consuming meat", false);
         COMMON_BUILDER.pop();
 
         COMMON_BUILDER.comment("Blocks").push("blocks");

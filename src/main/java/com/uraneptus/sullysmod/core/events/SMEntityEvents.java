@@ -5,12 +5,14 @@ import com.uraneptus.sullysmod.common.blocks.AmberBlockEntity;
 import com.uraneptus.sullysmod.common.blocks.FlingerTotem;
 import com.uraneptus.sullysmod.common.blocks.FlingerTotemBlockEntity;
 import com.uraneptus.sullysmod.common.blocks.SMDirectionalBlock;
+import com.uraneptus.sullysmod.common.entities.Piranha;
 import com.uraneptus.sullysmod.common.entities.Tortoise;
 import com.uraneptus.sullysmod.common.entities.goals.GenericMobAttackTortoiseEggGoal;
 import com.uraneptus.sullysmod.common.particletypes.DirectionParticleOptions;
 import com.uraneptus.sullysmod.core.SMConfig;
 import com.uraneptus.sullysmod.core.other.tags.SMBlockTags;
 import com.uraneptus.sullysmod.core.other.tags.SMEntityTags;
+import com.uraneptus.sullysmod.core.other.tags.SMItemTags;
 import com.uraneptus.sullysmod.core.registry.SMBlocks;
 import com.uraneptus.sullysmod.core.registry.SMItems;
 import com.uraneptus.sullysmod.core.registry.SMParticleTypes;
@@ -24,12 +26,14 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.TamableAnimal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.NonTameRandomTargetGoal;
 import net.minecraft.world.entity.animal.Ocelot;
 import net.minecraft.world.entity.animal.Turtle;
+import net.minecraft.world.entity.animal.Wolf;
 import net.minecraft.world.entity.animal.horse.Horse;
 import net.minecraft.world.entity.monster.Zombie;
 import net.minecraft.world.entity.player.Player;
@@ -44,6 +48,7 @@ import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.event.entity.EntityJoinLevelEvent;
 import net.minecraftforge.event.entity.ProjectileImpactEvent;
+import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -226,6 +231,18 @@ public class SMEntityEvents {
                     level.addParticle(ParticleTypes.SOUL_FIRE_FLAME, entity.getX(), (double)(blockPos.getY() + 1), entity.getZ(), (double)(Mth.randomBetween(randomsource, -1.0F, 1.0F) * 0.083333336F), (double)0.05F, (double)(Mth.randomBetween(randomsource, -1.0F, 1.0F) * 0.083333336F));
                 }
             }
+        }
+    }
+
+    @SubscribeEvent
+    public static void onLivingDropEvent(LivingDropsEvent event) {
+        LivingEntity livingEntity = event.getEntity();
+        Entity killer = event.getSource().getEntity();
+
+        if (livingEntity instanceof Player) return;
+
+        if (killer instanceof Piranha || (SMConfig.ENABLE_WOLF_CARNIVORE.get() && killer instanceof Wolf)) {
+            event.getDrops().removeIf(itemEntity -> itemEntity.getItem().is(SMItemTags.CARNIVORE_CONSUMABLES));
         }
     }
 }
