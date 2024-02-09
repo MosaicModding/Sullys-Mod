@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "stage=0": {
+      "model": "sullysmod:block/petrified_sapling"
+    },
+    "stage=1": {
+      "model": "sullysmod:block/petrified_sapling"
+    }
+  }
+}

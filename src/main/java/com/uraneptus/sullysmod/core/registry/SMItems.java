@@ -94,6 +94,8 @@ public class SMItems {
                 .addItemsAfter(of(Items.DEEPSLATE_COPPER_ORE), DEEPSLATE_JADE_ORE)
                 .addItemsAfter(of(Items.RAW_COPPER_BLOCK), ROUGH_JADE_BLOCK)
                 .addItemsAfter(of(Items.TURTLE_EGG), TORTOISE_EGG)
+                .addItemsAfter(of(Items.WARPED_STEM), PETRIFIED_LOG)
+                .addItemsAfter(of(Items.CHERRY_SAPLING), PETRIFIED_SAPLING)
 
                 .tab(CreativeModeTabs.BUILDING_BLOCKS)
                 .addItemsAfter(of(Items.WAXED_OXIDIZED_CUT_COPPER_SLAB),
@@ -117,8 +119,6 @@ public class SMItems {
                 .tab(CreativeModeTabs.FUNCTIONAL_BLOCKS)
                 .addItemsAfter(of(Items.WARPED_HANGING_SIGN), PETRIFIED_SIGN.getFirst(), PETRIFIED_HANGING_SIGN.getFirst())
 
-                .tab(CreativeModeTabs.NATURAL_BLOCKS)
-                .addItemsAfter(of(Items.WARPED_STEM), PETRIFIED_LOG)
         ;
     }
 }

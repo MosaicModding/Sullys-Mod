@@ -114,6 +114,7 @@ public class SMItemTagsProvider extends ItemTagsProvider {
         tag(ItemTags.WOODEN_BUTTONS).add(SMBlocks.PETRIFIED_BUTTON.get().asItem());
         tag(ItemTags.WOODEN_PRESSURE_PLATES).add(SMBlocks.PETRIFIED_PRESSURE_PLATE.get().asItem());
         tag(ItemTags.LOGS).addTag(SMItemTags.PETRIFIED_LOGS);
+        tag(ItemTags.SAPLINGS).add(SMBlocks.PETRIFIED_SAPLING.get().asItem());
         tag(ItemTags.STONE_TOOL_MATERIALS).addTag(SMItemTags.PETRIFIED_LOGS);
 
 

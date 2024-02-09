@@ -30,6 +30,7 @@ public class SMProperties {
         public static final BlockBehaviour.Properties PETRIFIED_TRAPDOOR = petrified().requiresCorrectToolForDrops().noOcclusion().isValidSpawn(PropertyUtil::never).strength(3.0F);
         public static final BlockBehaviour.Properties PETRIFIED_PRESSURE_PLATE = petrified().forceSolidOn().noCollission().pushReaction(PushReaction.DESTROY).strength(0.5F);
         public static final BlockBehaviour.Properties PETRIFIED_BUTTON = petrified().noCollission().strength(0.5F).pushReaction(PushReaction.DESTROY);
+        public static final BlockBehaviour.Properties PETRIFIED_SAPLING = BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_BROWN).noCollission().instabreak().sound(SoundType.GRASS).pushReaction(PushReaction.DESTROY);
     }
 
     public static final class Items {

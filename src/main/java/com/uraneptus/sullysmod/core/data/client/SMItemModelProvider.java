@@ -108,6 +108,7 @@ public class SMItemModelProvider extends ItemModelProvider {
         blockItemWithItemTexture(SMBlocks.PETRIFIED_SIGN.getFirst());
         blockItemWithItemTexture(SMBlocks.PETRIFIED_HANGING_SIGN.getFirst());
         blockItemWithItemTexture(SMBlocks.PETRIFIED_DOOR);
+        itemFromBlockTexture(SMBlocks.PETRIFIED_SAPLING);
     }
 
     private void basicBlockItem(Supplier<? extends Block> blockForItem) {
@@ -125,6 +126,10 @@ public class SMItemModelProvider extends ItemModelProvider {
 
     private void blockItemWithItemTexture(Supplier<? extends Block> blockForItem) {
         basicItem(blockForItem.get().asItem());
+    }
+
+    private void itemFromBlockTexture(Supplier<? extends Block> block) {
+        withExistingParent(name(block.get()), GENERATED).texture(LAYER0, modBlockLocation(name(block.get())));
     }
 
     private void modButtonBlockItem(Supplier<? extends Block> blockForItem, Supplier<? extends Block> blockForTexture) {

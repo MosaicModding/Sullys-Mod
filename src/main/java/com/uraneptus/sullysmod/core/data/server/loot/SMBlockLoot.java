@@ -103,6 +103,8 @@ public class SMBlockLoot extends BlockLootSubProvider {
         this.dropSelf(SMBlocks.PETRIFIED_HANGING_SIGN.getFirst().get());
         this.dropSelf(SMBlocks.PETRIFIED_HANGING_SIGN.getSecond().get());
         createDoor(SMBlocks.PETRIFIED_DOOR.get());
+        this.dropSelf(SMBlocks.PETRIFIED_SAPLING.get());
+        dropPottedContents(SMBlocks.POTTED_PETRIFIED_SAPLING.get());
     }
 
     protected LootTable.Builder createJadeOreDrops(Block block) {

@@ -139,6 +139,8 @@ public class SMBlockTagsProvider extends BlockTagsProvider {
         tag(BlockTags.WOODEN_SLABS).add(SMBlocks.PETRIFIED_SLAB.get());
         tag(BlockTags.WOODEN_STAIRS).add(SMBlocks.PETRIFIED_STAIRS.get());
         tag(BlockTags.PLANKS).add(SMBlocks.PETRIFIED_PLANKS.get());
+        tag(BlockTags.SAPLINGS).add(SMBlocks.PETRIFIED_SAPLING.get());
+        tag(BlockTags.FLOWER_POTS).add(SMBlocks.POTTED_PETRIFIED_SAPLING.get());
 
         //Our Tags
         tag(SMBlockTags.PROJECTILES_BOUNCE_ON).add(

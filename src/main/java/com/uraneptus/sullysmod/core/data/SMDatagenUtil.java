@@ -21,6 +21,8 @@ import java.util.List;
 @SuppressWarnings("unused")
 public class SMDatagenUtil {
     public static final String LAYER0 = "layer0";
+    public static final String PLANT = "plant";
+    public static final ResourceLocation POTTED_CROSS  = vanillaBlockLocation("flower_pot_cross");
     public static final ResourceLocation GENERATED = vanillaItemLocation("generated");
     public static final ResourceLocation HANDHELD = vanillaItemLocation("handheld");
     public static final ResourceLocation SPAWN_EGG = vanillaItemLocation("template_spawn_egg");

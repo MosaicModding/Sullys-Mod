@@ -87,6 +87,7 @@ public class SMBlockStateProvider extends BlockStateProvider {
         modSignBlock(SMBlocks.PETRIFIED_SIGN, SMBlocks.PETRIFIED_PLANKS);
         modHangingSignBlock(SMBlocks.PETRIFIED_HANGING_SIGN, SMBlocks.PETRIFIED_PLANKS);
         modDoorBlockWithRenderType(SMBlocks.PETRIFIED_DOOR, "cutout");
+        plantWithPottedBlock(SMBlocks.PETRIFIED_SAPLING, SMBlocks.POTTED_PETRIFIED_SAPLING);
     }
 
     private void basicBlock(Supplier<? extends Block> block) {
@@ -96,6 +97,11 @@ public class SMBlockStateProvider extends BlockStateProvider {
     private void basicBlockWRenderType(Supplier<? extends Block> block, String renderType) {
         ModelFile modelFile = models().cubeAll(name(block.get()), blockTexture(block.get())).renderType(renderType);
         getVariantBuilder(block.get()).partialState().setModels(new ConfiguredModel(modelFile));
+    }
+
+    private void modCrossBlock(Supplier<? extends Block> block, String renderType) {
+        getVariantBuilder(block.get()).forAllStates(blockState -> ConfiguredModel.builder()
+                .modelFile(models().cross(name(block.get()), modBlockLocation(name(block.get()))).renderType(renderType)).build());
     }
 
     private void pillarBlock(Supplier<? extends Block> block, String topTexture) {
@@ -147,6 +153,12 @@ public class SMBlockStateProvider extends BlockStateProvider {
         ModelFile sign = models().sign(name(pair.getFirst().get()), modBlockLocation(name(blockForTexture.get())));
         simpleBlock(pair.getFirst().get(), sign);
         simpleBlock(pair.getSecond().get(), sign);
+    }
+
+    private void plantWithPottedBlock(Supplier<? extends Block> plant, Supplier<? extends Block> potted_plant) {
+        modCrossBlock(plant, "cutout");
+        simpleBlock(potted_plant.get(), models().withExistingParent(name(potted_plant.get()), POTTED_CROSS)
+                .texture(PLANT, modBlockLocation(name(plant.get()))).renderType("cutout"));
     }
 
     private void totemBlock(Supplier<? extends Block> block) {

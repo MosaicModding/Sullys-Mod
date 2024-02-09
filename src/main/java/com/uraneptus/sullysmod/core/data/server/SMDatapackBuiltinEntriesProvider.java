@@ -13,18 +13,26 @@ import net.minecraft.core.RegistrySetBuilder;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.worldgen.BootstapContext;
+import net.minecraft.data.worldgen.placement.PlacementUtils;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.TagKey;
+import net.minecraft.util.valueproviders.ConstantInt;
 import net.minecraft.world.damagesource.DamageType;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.MobSpawnSettings;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraft.world.level.levelgen.VerticalAnchor;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.configurations.OreConfiguration;
+import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration;
+import net.minecraft.world.level.levelgen.feature.featuresize.TwoLayersFeatureSize;
+import net.minecraft.world.level.levelgen.feature.foliageplacers.FancyFoliagePlacer;
+import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
+import net.minecraft.world.level.levelgen.feature.trunkplacers.FancyTrunkPlacer;
 import net.minecraft.world.level.levelgen.placement.*;
 import net.minecraft.world.level.levelgen.structure.templatesystem.RuleTest;
 import net.minecraft.world.level.levelgen.structure.templatesystem.TagMatchTest;
@@ -34,6 +42,7 @@ import net.minecraftforge.common.world.ForgeBiomeModifiers;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.List;
+import java.util.OptionalInt;
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Supplier;
@@ -51,6 +60,8 @@ public class SMDatapackBuiltinEntriesProvider extends DatapackBuiltinEntriesProv
 
     public static final ResourceKey<ConfiguredFeature<?, ?>> CONFIGURED_JADE_ORE = ResourceKey.create(Registries.CONFIGURED_FEATURE, SullysMod.modPrefix("jade_ore"));
     public static final ResourceKey<PlacedFeature> PLACED_JADE_ORE = ResourceKey.create(Registries.PLACED_FEATURE, SullysMod.modPrefix("jade_ore"));
+    public static final ResourceKey<ConfiguredFeature<?, ?>> CONFIGURED_PETRIFIED_TREE = ResourceKey.create(Registries.CONFIGURED_FEATURE, SullysMod.modPrefix("petrified_tree"));
+    public static final ResourceKey<PlacedFeature> PLACED_PETRIFIED_TREE = ResourceKey.create(Registries.PLACED_FEATURE, SullysMod.modPrefix("petrified_tree"));
 
     private static class ConfiguredFeatures {
         private static final RuleTest STONE_ORE_REPLACEABLES = new TagMatchTest(BlockTags.STONE_ORE_REPLACEABLES);
@@ -59,10 +70,15 @@ public class SMDatapackBuiltinEntriesProvider extends DatapackBuiltinEntriesProv
 
         public static void create(BootstapContext<ConfiguredFeature<?, ?>> context) {
             register(context, SMDatapackBuiltinEntriesProvider.CONFIGURED_JADE_ORE, () -> addOreConfig(JADE_ORE_TARGET_LIST, 10));
+            register(context, SMDatapackBuiltinEntriesProvider.CONFIGURED_PETRIFIED_TREE, () -> addTreeConfig(new TreeConfiguration.TreeConfigurationBuilder(BlockStateProvider.simple(SMBlocks.PETRIFIED_LOG.get()), new FancyTrunkPlacer(3, 11, 0), BlockStateProvider.simple(Blocks.AIR), new FancyFoliagePlacer(ConstantInt.of(2), ConstantInt.of(4), 4), new TwoLayersFeatureSize(0, 0, 0, OptionalInt.of(4)))));
         }
 
         private static ConfiguredFeature<?, ?> addOreConfig(List<OreConfiguration.TargetBlockState> targetList, int veinSize) {
             return new ConfiguredFeature<>(Feature.ORE, new OreConfiguration(targetList, veinSize));
+        }
+
+        private static ConfiguredFeature<?, ?> addTreeConfig(TreeConfiguration.TreeConfigurationBuilder treeBuilder) {
+            return new ConfiguredFeature<>(Feature.TREE, treeBuilder.build());
         }
 
         private static void register(BootstapContext<ConfiguredFeature<?, ?>> context, ResourceKey<ConfiguredFeature<?, ?>> featureKey, Supplier<? extends ConfiguredFeature<?, ?>> feature) {
@@ -73,6 +89,7 @@ public class SMDatapackBuiltinEntriesProvider extends DatapackBuiltinEntriesProv
     private static class PlacedFeatures {
         public static void create(BootstapContext<PlacedFeature> context) {
             register(context, SMDatapackBuiltinEntriesProvider.PLACED_JADE_ORE, addOreFeature(context.lookup(Registries.CONFIGURED_FEATURE).get(SMDatapackBuiltinEntriesProvider.CONFIGURED_JADE_ORE).orElseThrow(), -16, 112, 16));
+            register(context, SMDatapackBuiltinEntriesProvider.PLACED_PETRIFIED_TREE, addFeaturePlacement(context.lookup(Registries.CONFIGURED_FEATURE).get(SMDatapackBuiltinEntriesProvider.CONFIGURED_PETRIFIED_TREE).orElseThrow(), PlacementUtils.filteredByBlockSurvival(SMBlocks.PETRIFIED_SAPLING.get())));
         }
 
         private static PlacedFeature addOreFeature(Holder<ConfiguredFeature<?, ?>> configureFeature, int minHeight, int maxHeight, int count) {
