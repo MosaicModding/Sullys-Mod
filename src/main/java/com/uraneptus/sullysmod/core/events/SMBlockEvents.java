@@ -24,13 +24,11 @@ public class SMBlockEvents {
         BlockState blockState = event.getState();
         BlockPos blockPos = event.getPos();
 
-
-
         if (blockState == SMBlocks.AMBER.get().defaultBlockState()) {
             BlockEntity blockEntity = pLevel.getBlockEntity(new BlockPos(blockPos));
             assert blockEntity != null;
-            if (((AmberBlockEntity) blockEntity).isFull()) {
-                CompoundTag compoundtag = ((AmberBlockEntity) blockEntity).getEntityStuck(0);
+            if (((AmberBlockEntity) blockEntity).hasStuckEntity()) {
+                CompoundTag compoundtag = ((AmberBlockEntity) blockEntity).getEntityStuck();
                 AmberBlockEntity.removeIgnoredNBT(compoundtag);
                 LivingEntity livingEntity = (LivingEntity) EntityType.loadEntityRecursive(compoundtag, (Level) pLevel, entity -> entity);
                 livingEntity.moveTo(blockPos.getX() + 0.5, blockPos.getY(), blockPos.getZ() + 0.5);

@@ -1,30 +1,15 @@
 package com.uraneptus.sullysmod.common.blocks;
 
 import com.uraneptus.sullysmod.core.registry.SMBlockEntityTypes;
-import com.uraneptus.sullysmod.core.registry.SMBlocks;
-import com.uraneptus.sullysmod.core.registry.SMSounds;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.sounds.SoundSource;
-import net.minecraft.util.Mth;
-import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.Mob;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LightLayer;
 import net.minecraft.world.level.block.BaseEntityBlock;
-import net.minecraft.world.level.block.HalfTransparentBlock;
 import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.gameevent.GameEvent;
-import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.EntityCollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
@@ -52,7 +37,7 @@ public class AmberBlock extends BaseEntityBlock {
             if (entity != null) {
                 Level level = entity.level();
                 BlockEntity blockEntity = level.getBlockEntity(pPos);
-                if (level.getBrightness(LightLayer.BLOCK, blockPos) > 11 && blockEntity != null && !((AmberBlockEntity) blockEntity).isFull()) {
+                if (level.getBrightness(LightLayer.BLOCK, blockPos) > 11 && blockEntity != null && !((AmberBlockEntity) blockEntity).hasStuckEntity()) {
                     return MELTING_COLLISION_SHAPE;
                 }
             }

@@ -9,16 +9,14 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 
+import javax.annotation.Nullable;
 import java.util.Arrays;
 import java.util.List;
 
 public class AmberBlockEntity extends BlockEntity {
-
-    public final List<AmberBlockEntity.StuckEntityData> stored = new ObjectArrayList<>();
-
+    @Nullable
+    private AmberBlockEntity.StuckEntityData StuckEntityData;
     private static final List<String> IGNORED_NBT = Arrays.asList("UUID");
-
-
 
     public AmberBlockEntity(BlockPos pPos, BlockState pBlockState) {
         super(SMBlockEntityTypes.AMBER.get(), pPos, pBlockState);
@@ -29,14 +27,17 @@ public class AmberBlockEntity extends BlockEntity {
         }
 
     }
-    public boolean isFull() {
-        return this.stored.size() == 1;
+    public boolean hasStuckEntity() {
+        return this.StuckEntityData != null;
     }
-    public CompoundTag getEntityStuck(int value) {
-        return this.stored.get(value).entityData;
+
+    public CompoundTag getEntityStuck() {
+        CompoundTag tag = new CompoundTag();
+        return this.StuckEntityData != null ? this.StuckEntityData.entityData : tag;
     }
+
     public void makeEntityStuck(LivingEntity entity) {
-        if (this.stored.size() < 1) {
+        if (this.StuckEntityData == null) {
             CompoundTag compoundtag = new CompoundTag();
             entity.save(compoundtag);
             this.storeProjectile(compoundtag);
@@ -46,7 +47,7 @@ public class AmberBlockEntity extends BlockEntity {
     }
 
     public void storeProjectile(CompoundTag pEntityData) {
-        this.stored.add(new AmberBlockEntity.StuckEntityData(pEntityData));
+        this.StuckEntityData = new StuckEntityData(pEntityData);
     }
 
     @Override
@@ -56,8 +57,7 @@ public class AmberBlockEntity extends BlockEntity {
 
         for(int i = 0; i < listtag.size(); ++i) {
             CompoundTag compoundtag = listtag.getCompound(i);
-            AmberBlockEntity.StuckEntityData stuckEntityData = new AmberBlockEntity.StuckEntityData(compoundtag.getCompound("EntityData"));
-            this.stored.add(stuckEntityData);
+            this.StuckEntityData = new AmberBlockEntity.StuckEntityData(compoundtag.getCompound("EntityData"));
         }
     }
 
@@ -70,19 +70,20 @@ public class AmberBlockEntity extends BlockEntity {
     public ListTag writeProjectiles() {
         ListTag listtag = new ListTag();
 
-        for(AmberBlockEntity.StuckEntityData stuckEntityData : this.stored) {
-            CompoundTag compoundtag = stuckEntityData.entityData.copy();
+        if (this.StuckEntityData != null) {
+            CompoundTag compoundtag = this.StuckEntityData.entityData.copy();
             compoundtag.remove("UUID");
             CompoundTag compoundtag1 = new CompoundTag();
             compoundtag1.put("EntityData", compoundtag);
             listtag.add(compoundtag1);
         }
 
+
         return listtag;
     }
 
 
-    static class StuckEntityData {
+    public static class StuckEntityData {
         final CompoundTag entityData;
 
         StuckEntityData(CompoundTag pEntityData) {

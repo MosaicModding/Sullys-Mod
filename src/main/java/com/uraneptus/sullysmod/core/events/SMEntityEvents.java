@@ -217,7 +217,7 @@ public class SMEntityEvents {
             if (entity instanceof Mob mob) {
                 if (blockEntity instanceof AmberBlockEntity amber) {
                     mob.makeStuckInBlock(state, new Vec3((double) 0.0F, 0.1D, (double) 0.0F));
-                    if (!amber.isFull()) {
+                    if (!amber.hasStuckEntity()) {
                         if (mob.getBlockStateOn() != SMBlocks.AMBER.get().defaultBlockState()) {
                             amber.makeEntityStuck(mob);
                         }

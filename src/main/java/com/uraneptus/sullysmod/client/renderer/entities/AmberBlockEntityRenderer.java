@@ -17,21 +17,18 @@ import org.jetbrains.annotations.NotNull;
 
 @OnlyIn(Dist.CLIENT)
 public class AmberBlockEntityRenderer implements BlockEntityRenderer<AmberBlockEntity> {
-
     private final EntityRenderDispatcher entityRenderer;
 
     public AmberBlockEntityRenderer(BlockEntityRendererProvider.Context pContext) {
         this.entityRenderer = pContext.getEntityRenderer();
     }
 
-
-
     @Override
     public void render(AmberBlockEntity amberBlockEntity, float pPartialTick, @NotNull PoseStack pPoseStack, @NotNull MultiBufferSource pBuffer, int pPackedLight, int pPackedOverlay) {
         Level level = amberBlockEntity.getLevel();
         BlockPos pos = amberBlockEntity.getBlockPos();
-        if (amberBlockEntity.isFull()) {
-            CompoundTag compoundtag = amberBlockEntity.getEntityStuck(0);
+        if (amberBlockEntity.hasStuckEntity()) {
+            CompoundTag compoundtag = amberBlockEntity.getEntityStuck();
             AmberBlockEntity.removeIgnoredNBT(compoundtag);
             assert level != null;
             LivingEntity livingEntity = (LivingEntity) EntityType.loadEntityRecursive(compoundtag, level, entity -> entity);
