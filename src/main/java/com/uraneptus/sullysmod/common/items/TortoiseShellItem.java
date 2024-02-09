@@ -1,6 +1,7 @@
 package com.uraneptus.sullysmod.common.items;
 
 import com.uraneptus.sullysmod.common.entities.TortoiseShell;
+import com.uraneptus.sullysmod.core.other.SMItemUtil;
 import com.uraneptus.sullysmod.core.registry.SMEntityTypes;
 import com.uraneptus.sullysmod.core.registry.SMSounds;
 import net.minecraft.core.BlockPos;
@@ -35,12 +36,8 @@ public class TortoiseShellItem extends Item {
             level.addFreshEntity(shell);
             level.broadcastEntityEvent(shell, (byte) 3);
         }
-
         player.awardStat(Stats.ITEM_USED.get(this));
-        if (!player.getAbilities().instabuild) {
-            itemstack.shrink(1);
-        }
-
+        SMItemUtil.nonCreativeShrinkStack(player, itemstack);
 
         return InteractionResult.CONSUME;
     }

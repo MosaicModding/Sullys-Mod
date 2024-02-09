@@ -105,7 +105,6 @@ public class SMItems {
                         POLISHED_SMALL_JADE_BRICKS, POLISHED_SMALL_JADE_BRICK_STAIRS, POLISHED_SMALL_JADE_BRICK_SLAB,
                         POLISHED_JADE_SHINGLES, POLISHED_JADE_SHINGLE_STAIRS, POLISHED_JADE_SHINGLE_SLAB,
                         POLISHED_JADE_PILLAR, POLISHED_CHISELED_JADE, JADE_TOTEM)
-                //TODO add logs to natural blocks tab
                 .addItemsAfter(of(Items.WARPED_BUTTON), PETRIFIED_LOG, PETRIFIED_WOOD, STRIPPED_PETRIFIED_LOG, STRIPPED_PETRIFIED_WOOD,
                         PETRIFIED_PLANKS, PETRIFIED_STAIRS, PETRIFIED_SLAB, PETRIFIED_FENCE, PETRIFIED_FENCE_GATE, PETRIFIED_DOOR, PETRIFIED_TRAPDOOR,
                         PETRIFIED_PRESSURE_PLATE, PETRIFIED_BUTTON)
@@ -117,6 +116,9 @@ public class SMItems {
 
                 .tab(CreativeModeTabs.FUNCTIONAL_BLOCKS)
                 .addItemsAfter(of(Items.WARPED_HANGING_SIGN), PETRIFIED_SIGN.getFirst(), PETRIFIED_HANGING_SIGN.getFirst())
+
+                .tab(CreativeModeTabs.NATURAL_BLOCKS)
+                .addItemsAfter(of(Items.WARPED_STEM), PETRIFIED_LOG)
         ;
     }
 }

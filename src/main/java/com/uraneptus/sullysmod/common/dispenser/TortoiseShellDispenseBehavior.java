@@ -30,7 +30,6 @@ public class TortoiseShellDispenseBehavior {
                     level.playSound(null, source.x(), source.y(), source.z(), SMSounds.TORTOISE_SHELL_PLACE.get(), SoundSource.PLAYERS, 0.5F, 0.4F / (level.getRandom().nextFloat() * 0.4F + 0.8F));
                     shell.setSpinTimer();
                     level.addFreshEntity(shell);
-                    //level.broadcastEntityEvent(shell, (byte) 3);
                     stack.shrink(1);
                 } else {
                     this.setSuccess(false);

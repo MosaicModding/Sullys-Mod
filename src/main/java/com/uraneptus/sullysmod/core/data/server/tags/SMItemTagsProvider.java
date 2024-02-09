@@ -77,8 +77,7 @@ public class SMItemTagsProvider extends ItemTagsProvider {
                 SMBlocks.POLISHED_JADE_SHINGLE_STAIRS.get().asItem(),
                 SMBlocks.ROUGH_JADE_BRICK_STAIRS.get().asItem(),
                 SMBlocks.ROUGH_JADE_TILE_STAIRS.get().asItem(),
-                SMBlocks.SMOOTHED_ROUGH_JADE_STAIRS.get().asItem(),
-                SMBlocks.PETRIFIED_STAIRS.get().asItem()
+                SMBlocks.SMOOTHED_ROUGH_JADE_STAIRS.get().asItem()
         );
         tag(ItemTags.FISHES).add(
                 SMItems.LANTERNFISH.get(),
@@ -89,14 +88,34 @@ public class SMItemTagsProvider extends ItemTagsProvider {
         tag(ItemTags.MUSIC_DISCS).add(
                 SMItems.MUSIC_DISC_SCOUR.get()
         );
+        tag(ItemTags.NON_FLAMMABLE_WOOD)
+                .addTag(SMItemTags.PETRIFIED_LOGS)
+                .add(
+                        SMBlocks.PETRIFIED_FENCE.get().asItem(),
+                        SMBlocks.PETRIFIED_FENCE_GATE.get().asItem(),
+                        SMBlocks.PETRIFIED_SLAB.get().asItem(),
+                        SMBlocks.PETRIFIED_STAIRS.get().asItem(),
+                        SMBlocks.PETRIFIED_BUTTON.get().asItem(),
+                        SMBlocks.PETRIFIED_DOOR.get().asItem(),
+                        SMBlocks.PETRIFIED_PRESSURE_PLATE.get().asItem(),
+                        SMBlocks.PETRIFIED_TRAPDOOR.get().asItem(),
+                        SMBlocks.PETRIFIED_SIGN.getFirst().get().asItem(),
+                        SMBlocks.PETRIFIED_HANGING_SIGN.getFirst().get().asItem()
+                );
         tag(ItemTags.FENCE_GATES).add(SMBlocks.PETRIFIED_FENCE_GATE.get().asItem());
-        tag(ItemTags.FENCES).add(SMBlocks.PETRIFIED_FENCE.get().asItem());
+        tag(ItemTags.PLANKS).add(SMBlocks.PETRIFIED_PLANKS.get().asItem());
+        tag(ItemTags.WOODEN_FENCES).add(SMBlocks.PETRIFIED_FENCE.get().asItem());
+        tag(ItemTags.WOODEN_STAIRS).add(SMBlocks.PETRIFIED_STAIRS.get().asItem());
+        tag(ItemTags.WOODEN_SLABS).add(SMBlocks.PETRIFIED_SLAB.get().asItem());
         tag(ItemTags.SIGNS).add(SMBlocks.PETRIFIED_SIGN.getFirst().get().asItem());
         tag(ItemTags.HANGING_SIGNS).add(SMBlocks.PETRIFIED_SIGN.getFirst().get().asItem());
-        tag(ItemTags.DOORS).add(SMBlocks.PETRIFIED_DOOR.get().asItem());
-        tag(ItemTags.TRAPDOORS).add(SMBlocks.PETRIFIED_TRAPDOOR.get().asItem());
-        tag(ItemTags.STONE_BUTTONS).add(SMBlocks.PETRIFIED_BUTTON.get().asItem());
+        tag(ItemTags.WOODEN_DOORS).add(SMBlocks.PETRIFIED_DOOR.get().asItem());
+        tag(ItemTags.WOODEN_TRAPDOORS).add(SMBlocks.PETRIFIED_TRAPDOOR.get().asItem());
+        tag(ItemTags.WOODEN_BUTTONS).add(SMBlocks.PETRIFIED_BUTTON.get().asItem());
+        tag(ItemTags.WOODEN_PRESSURE_PLATES).add(SMBlocks.PETRIFIED_PRESSURE_PLATE.get().asItem());
+        tag(ItemTags.LOGS).addTag(SMItemTags.PETRIFIED_LOGS);
         tag(ItemTags.STONE_TOOL_MATERIALS).addTag(SMItemTags.PETRIFIED_LOGS);
+
 
         //Forge Tags
         tag(SMItemTags.RAW_LANTERNFISH).add(
@@ -139,8 +158,8 @@ public class SMItemTagsProvider extends ItemTagsProvider {
         tag(Tags.Items.TOOLS_SHIELDS).add(
                 SMItems.JADE_SHIELD.get()
         );
-        tag(Tags.Items.FENCES).add(SMBlocks.PETRIFIED_FENCE.get().asItem());
-        tag(Tags.Items.FENCE_GATES).add(SMBlocks.PETRIFIED_FENCE_GATE.get().asItem());
-        tag(Tags.Items.COBBLESTONE_NORMAL).addTag(SMItemTags.PETRIFIED_LOGS);
+        tag(Tags.Items.FENCES_WOODEN).add(SMBlocks.PETRIFIED_FENCE.get().asItem());
+        tag(Tags.Items.FENCE_GATES_WOODEN).add(SMBlocks.PETRIFIED_FENCE_GATE.get().asItem());
+        //tag(Tags.Items.COBBLESTONE_NORMAL).addTag(SMItemTags.PETRIFIED_LOGS);
     }
 }

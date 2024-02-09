@@ -113,8 +113,8 @@ public class SMBlockTagsProvider extends BlockTagsProvider {
                 SMBlocks.POLISHED_JADE_SHINGLE_SLAB.get(),
                 SMBlocks.ROUGH_JADE_BRICK_SLAB.get(),
                 SMBlocks.ROUGH_JADE_TILE_SLAB.get(),
-                SMBlocks.SMOOTHED_ROUGH_JADE_SLAB.get(),
-                SMBlocks.PETRIFIED_SLAB.get()
+                SMBlocks.SMOOTHED_ROUGH_JADE_SLAB.get()
+
         );
         tag(BlockTags.STAIRS).add(
                 SMBlocks.POLISHED_JADE_BRICK_STAIRS.get(),
@@ -124,19 +124,21 @@ public class SMBlockTagsProvider extends BlockTagsProvider {
                 SMBlocks.ROUGH_JADE_BRICK_STAIRS.get(),
                 SMBlocks.ROUGH_JADE_TILE_STAIRS.get(),
                 SMBlocks.SMOOTHED_ROUGH_JADE_STAIRS.get(),
-                SMBlocks.AMBER_BRICK_STAIRS.get(),
-                SMBlocks.PETRIFIED_STAIRS.get()
+                SMBlocks.AMBER_BRICK_STAIRS.get()
         );
         tag(BlockTags.FENCE_GATES).add(SMBlocks.PETRIFIED_FENCE_GATE.get());
-        tag(BlockTags.FENCES).add(SMBlocks.PETRIFIED_FENCE.get());
+        tag(BlockTags.WOODEN_FENCES).add(SMBlocks.PETRIFIED_FENCE.get());
         tag(BlockTags.STANDING_SIGNS).add(SMBlocks.PETRIFIED_SIGN.getFirst().get());
         tag(BlockTags.WALL_SIGNS).add(SMBlocks.PETRIFIED_SIGN.getSecond().get());
-        tag(BlockTags.DOORS).add(SMBlocks.PETRIFIED_DOOR.get());
-        tag(BlockTags.TRAPDOORS).add(SMBlocks.PETRIFIED_TRAPDOOR.get());
-        tag(BlockTags.STONE_BUTTONS).add(SMBlocks.PETRIFIED_BUTTON.get());
-        tag(BlockTags.STONE_PRESSURE_PLATES).add(SMBlocks.PETRIFIED_PRESSURE_PLATE.get());
+        tag(BlockTags.WOODEN_DOORS).add(SMBlocks.PETRIFIED_DOOR.get());
+        tag(BlockTags.WOODEN_TRAPDOORS).add(SMBlocks.PETRIFIED_TRAPDOOR.get());
+        tag(BlockTags.WOODEN_BUTTONS).add(SMBlocks.PETRIFIED_BUTTON.get());
+        tag(BlockTags.WOODEN_PRESSURE_PLATES).add(SMBlocks.PETRIFIED_PRESSURE_PLATE.get());
         tag(BlockTags.CEILING_HANGING_SIGNS).add(SMBlocks.PETRIFIED_HANGING_SIGN.getFirst().get());
         tag(BlockTags.WALL_HANGING_SIGNS).add(SMBlocks.PETRIFIED_HANGING_SIGN.getSecond().get());
+        tag(BlockTags.WOODEN_SLABS).add(SMBlocks.PETRIFIED_SLAB.get());
+        tag(BlockTags.WOODEN_STAIRS).add(SMBlocks.PETRIFIED_STAIRS.get());
+        tag(BlockTags.PLANKS).add(SMBlocks.PETRIFIED_PLANKS.get());
 
         //Our Tags
         tag(SMBlockTags.PROJECTILES_BOUNCE_ON).add(
@@ -195,8 +197,8 @@ public class SMBlockTagsProvider extends BlockTagsProvider {
         tag(Tags.Blocks.ORES_IN_GROUND_DEEPSLATE).add(
                 SMBlocks.DEEPSLATE_JADE_ORE.get()
         );
-        tag(Tags.Blocks.FENCES).add(SMBlocks.PETRIFIED_FENCE.get());
-        tag(Tags.Blocks.FENCE_GATES).add(SMBlocks.PETRIFIED_FENCE_GATE.get());
-        tag(Tags.Blocks.COBBLESTONE_NORMAL).addTag(SMBlockTags.PETRIFIED_LOGS);
+        tag(Tags.Blocks.FENCES_WOODEN).add(SMBlocks.PETRIFIED_FENCE.get());
+        tag(Tags.Blocks.FENCE_GATES_WOODEN).add(SMBlocks.PETRIFIED_FENCE_GATE.get());
+        //tag(Tags.Blocks.COBBLESTONE_NORMAL).addTag(SMBlockTags.PETRIFIED_LOGS);
     }
 }

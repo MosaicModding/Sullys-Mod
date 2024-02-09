@@ -1,6 +1,7 @@
 package com.uraneptus.sullysmod.common.items;
 
 import com.uraneptus.sullysmod.common.entities.JungleSpider;
+import com.uraneptus.sullysmod.core.other.SMItemUtil;
 import com.uraneptus.sullysmod.core.registry.SMItems;
 import com.uraneptus.sullysmod.core.registry.SMSounds;
 import net.minecraft.sounds.SoundSource;
@@ -43,7 +44,7 @@ public class VialItem extends Item {
                 if (!pPlayer.getInventory().add(pFilledStack)) {
                     pPlayer.drop(pFilledStack, false);
                 }
-                pEmptyStack.shrink(1);
+                SMItemUtil.nonCreativeShrinkStack(pPlayer, pEmptyStack);
                 pPlayer.level().playSound(soundTarget, soundTarget.getOnPos(), SMSounds.VIAL_FILLS.get(), SoundSource.NEUTRAL, 1.0F, 1.0F);
                 pPlayer.awardStat(Stats.ITEM_USED.get(this));
             }

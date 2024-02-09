@@ -1,12 +1,14 @@
 package com.uraneptus.sullysmod.common.blocks;
 
+import com.uraneptus.sullysmod.core.other.SMItemUtil;
 import com.uraneptus.sullysmod.core.registry.SMBlocks;
-import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.core.BlockPos;
-import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.util.ParticleUtils;
+import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -56,34 +58,32 @@ public class CopperButtonBlock extends ButtonBlock {
 
         if (stack.getItem() instanceof AxeItem) {
             if (WeatheringCopperButtonBlock.PREVIOUS_BY_BLOCK.get().containsKey(state.getBlock())) {
-                this.triggerItemUsed(player, stack, pos);
+                SMItemUtil.triggerItemUsedOnBlock(player, stack, pos);
                 level.setBlock(pos, WeatheringCopperButtonBlock.PREVIOUS_BY_BLOCK.get().get(state.getBlock()).withPropertiesOf(state), 11);
                 level.playSound(player, pos, SoundEvents.AXE_SCRAPE, SoundSource.BLOCKS, 1.0F, 1.0F);
                 level.levelEvent(player, 3005, pos, 0);
 
-                this.damageItem(player, stack, hand);
+                SMItemUtil.damageItem(player, stack, hand);
                 returnResult = InteractionResult.sidedSuccess(true);
             }
             else if (WAX_OFF_LIST.containsKey(state.getBlock())) {
-                this.triggerItemUsed(player, stack, pos);
+                SMItemUtil.triggerItemUsedOnBlock(player, stack, pos);
                 level.setBlock(pos, WAX_OFF_LIST.get(state.getBlock()).withPropertiesOf(state), 11);
                 level.playSound(player, pos, SoundEvents.AXE_WAX_OFF, SoundSource.BLOCKS, 1.0F, 1.0F);
                 level.levelEvent(player, 3004, pos, 0);
 
-                this.damageItem(player, stack, hand);
+                SMItemUtil.damageItem(player, stack, hand);
                 returnResult = InteractionResult.sidedSuccess(true);
             }
         }
         else if (stack.getItem().equals(Items.HONEYCOMB)) {
             if (WAX_ON_LIST.containsKey(state.getBlock())) {
-                this.triggerItemUsed(player, stack, pos);
+                SMItemUtil.triggerItemUsedOnBlock(player, stack, pos);
                 level.setBlock(pos, WAX_ON_LIST.get(state.getBlock()).withPropertiesOf(state), 11);
                 level.playSound(player, pos, SoundEvents.HONEYCOMB_WAX_ON, SoundSource.BLOCKS, 1.0F, 1.0F);
                 level.levelEvent(player, 3003, pos, 0);
 
-                if (!player.isCreative()) {
-                    stack.shrink(1);
-                }
+                SMItemUtil.nonCreativeShrinkStack(player, stack);
                 returnResult = InteractionResult.sidedSuccess(true);
             }
         }
@@ -91,17 +91,5 @@ public class CopperButtonBlock extends ButtonBlock {
             returnResult = super.use(state, level, pos, player, hand, result);
         }
         return returnResult;
-    }
-
-    public void damageItem(Player player, ItemStack stack, InteractionHand hand) {
-        if (!player.isCreative()) {
-            stack.hurtAndBreak(1, player, (player1) -> player1.broadcastBreakEvent(hand));
-        }
-    }
-
-    public void triggerItemUsed(Player player, ItemStack stack, BlockPos pos) {
-        if (player instanceof ServerPlayer serverPlayer) {
-            CriteriaTriggers.ITEM_USED_ON_BLOCK.trigger(serverPlayer, pos, stack);
-        }
     }
 }

@@ -1,14 +1,18 @@
 package com.uraneptus.sullysmod.core.events;
 
+import com.teamabnormals.blueprint.core.util.BlockUtil;
 import com.uraneptus.sullysmod.SullysMod;
+import com.uraneptus.sullysmod.common.blocks.PickaxeStrippable;
 import com.uraneptus.sullysmod.common.recipes.GrindstonePolishingRecipe;
 import com.uraneptus.sullysmod.core.SMConfig;
+import com.uraneptus.sullysmod.core.other.SMItemUtil;
 import com.uraneptus.sullysmod.core.other.SMTextDefinitions;
 import com.uraneptus.sullysmod.core.registry.SMItems;
 import com.uraneptus.sullysmod.core.registry.SMSounds;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ItemParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
 import net.minecraft.util.ParticleUtils;
@@ -19,6 +23,7 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.ExperienceOrb;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.PickaxeItem;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.GrindstoneBlock;
@@ -41,12 +46,12 @@ public class SMPlayerEvents {
         InteractionHand hand = event.getHand();
         Block block = level.getBlockState(pos).getBlock();
         RandomSource random = level.getRandom();
+        ItemStack itemInHand = player.getItemInHand(hand);
 
         if (block instanceof GrindstoneBlock) {
             ArrayList<GrindstonePolishingRecipe> recipes = new ArrayList<>(GrindstonePolishingRecipe.getRecipes(level));
             for (GrindstonePolishingRecipe polishingRecipe : recipes) {
                 for (ItemStack ingredient : polishingRecipe.getIngredients().iterator().next().getItems()) {
-                    ItemStack itemInHand = player.getItemInHand(hand);
                     ItemStack result = polishingRecipe.result;
                     int resultCount = polishingRecipe.getResultCount();
                     int xpAmount = polishingRecipe.getExperience();
@@ -87,6 +92,14 @@ public class SMPlayerEvents {
                     }
                 }
             }
+        }
+        if (block instanceof PickaxeStrippable pickaxeStrippableBlock) {
+            if (!(itemInHand.getItem() instanceof PickaxeItem)) return;
+            level.setBlock(pos, BlockUtil.transferAllBlockStates(block.defaultBlockState(), pickaxeStrippableBlock.getStrippedBlock().get().defaultBlockState()), 11);
+            SMItemUtil.triggerItemUsedOnBlock(player, itemInHand, pos);
+            SMItemUtil.damageItem(player, itemInHand, hand);
+            level.playSound(player, pos, SoundEvents.AXE_SCRAPE, SoundSource.BLOCKS, 1.0F, 1.0F);
+            player.swing(hand);
         }
     }
 

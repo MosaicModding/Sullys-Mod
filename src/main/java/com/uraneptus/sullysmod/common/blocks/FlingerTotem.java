@@ -1,5 +1,6 @@
 package com.uraneptus.sullysmod.common.blocks;
 
+import com.uraneptus.sullysmod.core.other.SMItemUtil;
 import com.uraneptus.sullysmod.core.registry.SMBlockEntityTypes;
 import com.uraneptus.sullysmod.core.registry.SMSounds;
 import net.minecraft.core.BlockPos;
@@ -41,15 +42,11 @@ public class FlingerTotem extends BaseEntityBlock {
         ItemStack itemInHand = pPlayer.getItemInHand(pHand);
         if (itemInHand.is(Items.HONEYCOMB) && pState.getValue(HONEY_AMOUNT) < 4) {
             increaseHoneyLevel(pPlayer, pLevel, pPos, pState);
-            if (!pPlayer.getAbilities().instabuild) {
-                itemInHand.shrink(1);
-            }
+            SMItemUtil.nonCreativeShrinkStack(pPlayer, itemInHand);
             return InteractionResult.sidedSuccess(pLevel.isClientSide);
         } else if (itemInHand.is(Items.SHEARS) && pState.getValue(HONEY_AMOUNT) != 0) {
             decreaseHoneyLevel(pPlayer, pLevel, pPos, pState);
-            if (!pPlayer.isCreative()) {
-                itemInHand.hurtAndBreak(1, pPlayer, (player1) -> player1.broadcastBreakEvent(pHand));
-            }
+            SMItemUtil.damageItem(pPlayer, itemInHand, pHand);
             return InteractionResult.sidedSuccess(pLevel.isClientSide);
         }
         return InteractionResult.PASS;
