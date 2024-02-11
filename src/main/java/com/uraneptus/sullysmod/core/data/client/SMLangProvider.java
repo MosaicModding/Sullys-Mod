@@ -1,10 +1,8 @@
 package com.uraneptus.sullysmod.core.data.client;
 
+import com.uraneptus.sullysmod.SullysMod;
 import com.uraneptus.sullysmod.core.other.SMTextUtil;
-import com.uraneptus.sullysmod.core.registry.SMBlocks;
-import com.uraneptus.sullysmod.core.registry.SMEntityTypes;
-import com.uraneptus.sullysmod.core.registry.SMItems;
-import com.uraneptus.sullysmod.core.registry.SMPotions;
+import com.uraneptus.sullysmod.core.registry.*;
 import net.minecraft.data.PackOutput;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.Item;
@@ -166,10 +164,16 @@ public class SMLangProvider extends LanguageProvider {
 
         //Other
         SMTextUtil.TRANSLATABLES.forEach(this::add);
+        SMPaintingVariants.PAINTING_TRANSLATIONS.forEach(this::addPainting);
         add("death.attack.tortoise_shell", "%1$s took a Tortoise Shell to the knees");
         add("death.attack.tortoise_shell.player", "%1$s got bonked to death");
         add("death.attack.throwing_knife", "%1$s got sliced and diced");
         add("death.attack.throwing_knife.player", "%1$s was turned into a dart board by %2$s");
+    }
+
+    protected void addPainting(String name, String author) {
+        add("painting." + SullysMod.MOD_ID + "." + name + ".title",  SMTextUtil.createTranslation(name));
+        add("painting." + SullysMod.MOD_ID + "." + name + ".author",  author);
     }
 
     protected void addMusicDisc(Supplier<? extends Item> item, String description) {
