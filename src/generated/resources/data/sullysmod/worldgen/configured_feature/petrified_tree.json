@@ -3,27 +3,7 @@
   "config": {
     "decorators": [
       {
-        "type": "minecraft:alter_ground",
-        "provider": {
-          "type": "minecraft:weighted_state_provider",
-          "entries": [
-            {
-              "data": {
-                "Name": "minecraft:gravel"
-              },
-              "weight": 5
-            },
-            {
-              "data": {
-                "Name": "minecraft:suspicious_gravel",
-                "Properties": {
-                  "dusted": "0"
-                }
-              },
-              "weight": 3
-            }
-          ]
-        }
+        "type": "sullysmod:petrified_gravel_decorator"
       }
     ],
     "dirt_provider": {

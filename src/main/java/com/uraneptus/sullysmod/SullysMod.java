@@ -13,10 +13,7 @@ import com.uraneptus.sullysmod.core.data.server.advancements.SMAdvancementProvid
 import com.uraneptus.sullysmod.core.data.server.loot.SMLootTableProvider;
 import com.uraneptus.sullysmod.core.data.server.modifiers.SMAdvancementModifiersProvider;
 import com.uraneptus.sullysmod.core.data.server.modifiers.SMLootModifierProvider;
-import com.uraneptus.sullysmod.core.data.server.tags.SMBiomeTagsProvider;
-import com.uraneptus.sullysmod.core.data.server.tags.SMBlockTagsProvider;
-import com.uraneptus.sullysmod.core.data.server.tags.SMEntityTagsProvider;
-import com.uraneptus.sullysmod.core.data.server.tags.SMItemTagsProvider;
+import com.uraneptus.sullysmod.core.data.server.tags.*;
 import com.uraneptus.sullysmod.core.other.SMTextDefinitions;
 import com.uraneptus.sullysmod.core.registry.*;
 import net.minecraft.core.HolderLookup;
@@ -63,6 +60,7 @@ public class SullysMod {
         SMRecipeTypes.RECIPE_TYPES.register(bus);
         SMRecipeSerializer.SERIALIZERS.register(bus);
         SMPaintingVariants.PAINTINGS.register(bus);
+        SMTreeDecoratorTypes.TREE_DECORATORS.register(bus);
 
         DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> SMItems::buildCreativeTabContents);
 
@@ -113,6 +111,7 @@ public class SullysMod {
         generator.addProvider(includeServer, blockTagProvider);
         generator.addProvider(includeServer, new SMItemTagsProvider(packOutput, lookupProvider, blockTagProvider.contentsGetter(), fileHelper));
         generator.addProvider(includeServer, new SMBiomeTagsProvider(packOutput, lookupProvider, fileHelper));
+        generator.addProvider(includeServer, new SMPaintingVariantTagsProvider(packOutput, lookupProvider, fileHelper));
         generator.addProvider(includeServer, new SMAdvancementModifiersProvider(packOutput, lookupProvider));
         generator.addProvider(includeServer, new SMLootTableProvider(packOutput));
         generator.addProvider(includeServer, new SMAdvancementProvider(packOutput, lookupProvider, fileHelper));

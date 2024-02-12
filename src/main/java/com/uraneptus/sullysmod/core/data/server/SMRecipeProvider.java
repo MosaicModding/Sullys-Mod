@@ -17,6 +17,7 @@ import java.util.function.Supplier;
 
 import static com.uraneptus.sullysmod.core.data.SMDatagenUtil.*;
 
+//TODO add wood recipes
 @SuppressWarnings("SameParameterValue")
 public class SMRecipeProvider extends RecipeProvider {
 
