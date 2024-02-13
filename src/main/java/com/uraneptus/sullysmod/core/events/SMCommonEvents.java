@@ -33,7 +33,7 @@ public class SMCommonEvents {
 
     @SubscribeEvent
     public static void registerSpawnPlacement(SpawnPlacementRegisterEvent event) {
-       event.register(SMEntityTypes.LANTERNFISH.get(), SpawnPlacements.Type.IN_WATER, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Lanternfish::checkLanternfishSpawnRules, SpawnPlacementRegisterEvent.Operation.REPLACE);
+       event.register(SMEntityTypes.LANTERNFISH.get(), SpawnPlacements.Type.IN_WATER, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Lanternfish::checkLanternfishSpawnRules, SpawnPlacementRegisterEvent.Operation.AND);
        event.register(SMEntityTypes.PIRANHA.get(), SpawnPlacements.Type.IN_WATER, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Piranha::checkPiranhaSpawnRules, SpawnPlacementRegisterEvent.Operation.AND);
        event.register(SMEntityTypes.TORTOISE.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules, SpawnPlacementRegisterEvent.Operation.AND);
        event.register(SMEntityTypes.BOULDERING_ZOMBIE.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, BoulderingZombie::checkBoulderingZombieSpawnRules, SpawnPlacementRegisterEvent.Operation.AND);
