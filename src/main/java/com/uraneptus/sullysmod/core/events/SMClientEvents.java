@@ -5,6 +5,7 @@ import com.uraneptus.sullysmod.client.model.JadeShieldModel;
 import com.uraneptus.sullysmod.client.model.JungleSpiderModel;
 import com.uraneptus.sullysmod.client.model.LanternfishModel;
 import com.uraneptus.sullysmod.client.model.TortoiseShellModel;
+import com.uraneptus.sullysmod.client.particles.BlotEyesParticle;
 import com.uraneptus.sullysmod.client.particles.RicochetParticle;
 import com.uraneptus.sullysmod.client.renderer.entities.*;
 import com.uraneptus.sullysmod.common.items.VenomVialItem;
@@ -47,6 +48,7 @@ public class SMClientEvents {
     @SubscribeEvent
     public static void registerParticleProvider(RegisterParticleProvidersEvent event) {
         event.registerSpriteSet(SMParticleTypes.RICOCHET.get(), RicochetParticle.RicochetParticleProvider::new);
+        event.registerSpriteSet(SMParticleTypes.BLOT_EYES.get(), BlotEyesParticle.Factory::new);
     }
 
     @SubscribeEvent

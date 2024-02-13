@@ -8,6 +8,7 @@ import com.uraneptus.sullysmod.core.SMConfig;
 import com.uraneptus.sullysmod.core.other.SMItemUtil;
 import com.uraneptus.sullysmod.core.other.SMTextDefinitions;
 import com.uraneptus.sullysmod.core.registry.SMItems;
+import com.uraneptus.sullysmod.core.registry.SMParticleTypes;
 import com.uraneptus.sullysmod.core.registry.SMSounds;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ItemParticleOption;
@@ -26,14 +27,19 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.PickaxeItem;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.GrindstoneBlock;
+import net.minecraft.world.level.dimension.BuiltinDimensionTypes;
+import net.minecraft.world.level.dimension.DimensionType;
 import net.minecraft.world.phys.Vec3;
+import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 @Mod.EventBusSubscriber(modid = SullysMod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class SMPlayerEvents {
@@ -132,5 +138,37 @@ public class SMPlayerEvents {
                 }
             }
         }
+    }
+
+    @SubscribeEvent
+    public static void onPlayerTick(TickEvent.PlayerTickEvent event) {
+        Player player = event.player;
+        Level level = player.level();
+        RandomSource random = player.getRandom();
+        if (level.dimensionTypeId() == BuiltinDimensionTypes.OVERWORLD) {
+            if (player.getBlockY() < -62) {
+                int randY = random.nextInt(5);
+                int randXAndZ = random.nextInt(30);
+                int chance = random.nextInt(500);
+                if (chance == 1) {
+                    player.level().addParticle(SMParticleTypes.BLOT_EYES.get(), player.getX() + randXAndZ, (player.getBlockY() - 3) - randY, player.getBlockZ() + randXAndZ, 0D, 0D, 0D);
+                }
+            }
+        }
+        if (level.dimensionTypeId() == BuiltinDimensionTypes.END) {
+            if (player.getBlockY() <= 60) {
+                int randY = random.nextInt(10);
+                int randXAndZ = random.nextInt(50);
+                int chance = random.nextInt(1000);
+                if (chance == 1) {
+                    BlockPos blockPos = new BlockPos(player.getBlockX() + randXAndZ, (player.getBlockY() - 20) - randY, player.getBlockZ() + randXAndZ);
+                    Block block = level.getBlockState(blockPos).getBlock();
+                    if (block == Blocks.AIR || block == Blocks.VOID_AIR) {
+                        player.level().addParticle(SMParticleTypes.BLOT_EYES.get(), blockPos.getX(), blockPos.getY(), blockPos.getZ(), 0D, 0D, 0D);
+                    }
+                }
+            }
+        }
+
     }
 }
