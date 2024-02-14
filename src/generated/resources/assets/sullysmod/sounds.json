@@ -326,5 +326,13 @@
         "stream": true
       }
     ]
+  },
+  "music_disc.sunken_past": {
+    "sounds": [
+      {
+        "name": "sullysmod:records/sunken_past",
+        "stream": true
+      }
+    ]
   }
 }

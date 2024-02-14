@@ -24,6 +24,7 @@ public class SMSoundDefinitionsProvider extends SoundDefinitionsProvider {
 
         //Music Discs
         addMusicDiscSound(SMSounds.MUSIC_DISC_SCOUR, "scour");
+        addMusicDiscSound(SMSounds.MUSIC_DISC_SUNKEN_PAST, "sunken_past");
 
         //Item Sounds
         addbasicSound(SMSounds.VIAL_SHATTERS,

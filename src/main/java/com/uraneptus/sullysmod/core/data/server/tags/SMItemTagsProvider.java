@@ -86,7 +86,8 @@ public class SMItemTagsProvider extends ItemTagsProvider {
                 SMItems.COOKED_PIRANHA.get()
         );
         tag(ItemTags.MUSIC_DISCS).add(
-                SMItems.MUSIC_DISC_SCOUR.get()
+                SMItems.MUSIC_DISC_SCOUR.get(),
+                SMItems.MUSIC_DISC_SUNKEN_PAST.get()
         );
         tag(ItemTags.NON_FLAMMABLE_WOOD)
                 .addTag(SMItemTags.PETRIFIED_LOGS)

@@ -12,6 +12,7 @@ public class SMSounds {
 
     //Music Discs
     public static final RegistryObject<SoundEvent> MUSIC_DISC_SCOUR = HELPER.createSoundEvent("music_disc.scour");
+    public static final RegistryObject<SoundEvent> MUSIC_DISC_SUNKEN_PAST = HELPER.createSoundEvent("music_disc.sunken_past");
 
     //Item Sounds
     public static final RegistryObject<SoundEvent> POLISH_JADE = HELPER.createSoundEvent("block.grindstone.polish_jade");

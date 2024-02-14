@@ -29,6 +29,7 @@ public class SMItems {
     public static final RegistryObject<Item> ROUGH_JADE = HELPER.createItem("rough_jade", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> POLISHED_JADE = HELPER.createItem("polished_jade", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> MUSIC_DISC_SCOUR = HELPER.createItem("music_disc_scour", () -> new BlueprintRecordItem(12, SMSounds.MUSIC_DISC_SCOUR, SMProperties.Items.MUSIC_DISCS, 4980));
+    public static final RegistryObject<Item> MUSIC_DISC_SUNKEN_PAST = HELPER.createItem("music_disc_sunken_past", () -> new BlueprintRecordItem(12, SMSounds.MUSIC_DISC_SUNKEN_PAST, SMProperties.Items.MUSIC_DISCS, 2700));
     public static final RegistryObject<Item> TORTOISE_SCUTE = HELPER.createItem("tortoise_scute", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> TORTOISE_SHELL = HELPER.createItem("tortoise_shell", () -> new TortoiseShellItem(PropertyUtil.stacksOnce()));
     public static final RegistryObject<Item> JADE_UPGRADE_SMITHING_TEMPLATE = HELPER.createItem("jade_upgrade_smithing_template", JadeSmithingTemplateItem::new);
@@ -71,7 +72,7 @@ public class SMItems {
                 .addItemsBefore(of(Items.BONE), PIRANHA_TOOTH)
 
                 .tab(CreativeModeTabs.TOOLS_AND_UTILITIES)
-                .addItemsAfter(of(Items.MUSIC_DISC_RELIC), MUSIC_DISC_SCOUR)
+                .addItemsAfter(of(Items.MUSIC_DISC_RELIC), MUSIC_DISC_SCOUR, MUSIC_DISC_SUNKEN_PAST)
                 .addItemsAfter(of(Items.COD_BUCKET), LANTERNFISH_BUCKET, PIRANHA_BUCKET)
                 .addItemsAfter(of(Items.SADDLE), TORTOISE_SHELL)
 

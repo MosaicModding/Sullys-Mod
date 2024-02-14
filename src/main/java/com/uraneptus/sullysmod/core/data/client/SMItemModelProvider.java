@@ -79,6 +79,7 @@ public class SMItemModelProvider extends ItemModelProvider {
         basicBlockItem(SMBlocks.SMOOTHED_ROUGH_JADE_SLAB);
         basicBlockItem(SMBlocks.ROUGH_JADE_TILE_SLAB);
         basicItem(SMItems.MUSIC_DISC_SCOUR);
+        basicItem(SMItems.MUSIC_DISC_SUNKEN_PAST);
         jadeShieldItem(SMItems.JADE_SHIELD);
         basicItem(SMItems.TORTOISE_SCUTE);
         basicItem(SMItems.TORTOISE_SHELL);

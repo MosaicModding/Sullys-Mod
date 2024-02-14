@@ -111,6 +111,7 @@ public class SMLangProvider extends LanguageProvider {
         add(SMItems.PIRANHA.get(), "Raw Piranha");
 
         addMusicDisc(SMItems.MUSIC_DISC_SCOUR, "LudoCrypt - scour");
+        addMusicDisc(SMItems.MUSIC_DISC_SUNKEN_PAST, "_TurtleFood_ - Sunken Past");
 
         //Entities
         forEntity(SMEntityTypes.LANTERNFISH);
