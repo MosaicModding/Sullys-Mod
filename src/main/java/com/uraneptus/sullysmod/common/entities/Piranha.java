@@ -1,5 +1,6 @@
 package com.uraneptus.sullysmod.common.entities;
 
+import com.uraneptus.sullysmod.core.other.tags.SMEntityTags;
 import com.uraneptus.sullysmod.core.registry.SMEntityTypes;
 import com.uraneptus.sullysmod.core.registry.SMItems;
 import com.uraneptus.sullysmod.core.registry.SMSounds;
@@ -24,6 +25,7 @@ import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.ResetUniversalAngerTargetGoal;
 import net.minecraft.world.entity.animal.AbstractFish;
 import net.minecraft.world.entity.animal.AbstractSchoolingFish;
+import net.minecraft.world.entity.animal.Bucketable;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.vehicle.Boat;
 import net.minecraft.world.item.ItemStack;
@@ -47,11 +49,12 @@ public class Piranha extends AbstractSchoolingFish implements GeoEntity, Neutral
     private final AnimatableInstanceCache instanceCache = GeckoLibUtil.createInstanceCache(this);
     protected static final RawAnimation SWIMMING_ANIM = RawAnimation.begin().thenLoop("animation.piranha.swim");
     protected static final RawAnimation SWIMMING_ANGRY_ANIM = RawAnimation.begin().thenLoop("animation.piranha.swim_angry");
-    //protected static final RawAnimation JUMPING_ANIM = RawAnimation.begin().thenPlay("animation.piranha.jump");
+    protected static final RawAnimation JUMPING_ANIM = RawAnimation.begin().thenPlay("animation.piranha.in_air");
     private static final EntityDataAccessor<Integer> DATA_REMAINING_ANGER_TIME = SynchedEntityData.defineId(Piranha.class, EntityDataSerializers.INT);
     private static final UniformInt PERSISTENT_ANGER_TIME = TimeUtil.rangeOfSeconds(5, 10);
     @Nullable
     private UUID persistentAngerTarget;
+    private boolean isBoatTarget;
 
     public Piranha(EntityType<? extends AbstractSchoolingFish> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
@@ -79,7 +82,15 @@ public class Piranha extends AbstractSchoolingFish implements GeoEntity, Neutral
     }
 
     public boolean isPiranhaAngry(LivingEntity pTarget) {
-        return (isAngryAt(pTarget) || pTarget.getHealth() < pTarget.getMaxHealth()) && !(pTarget instanceof Piranha);
+        return (isAngryAt(pTarget)
+                || pTarget.getHealth() < pTarget.getMaxHealth()
+                || pTarget.isBaby()
+                || pTarget.getType().is(SMEntityTags.PIRANHA_ALWAYS_ATTACKS)
+        ) && !(pTarget instanceof Piranha
+                || pTarget.getType().is(SMEntityTags.IS_LIVING_INORGANIC)
+                || pTarget.hasCustomName()
+                || (pTarget instanceof Bucketable bucketable && bucketable.fromBucket()))
+                ||isBoatTarget;
     }
 
     public static boolean checkPiranhaSpawnRules(EntityType<? extends LivingEntity> entityType, ServerLevelAccessor level, MobSpawnType spawnType, BlockPos pos, RandomSource random) {
@@ -106,8 +117,6 @@ public class Piranha extends AbstractSchoolingFish implements GeoEntity, Neutral
 
     public void tick() {
         super.tick();
-        if (level().isClientSide()) System.out.println("Client: " + this.getTarget());
-        if (!level().isClientSide()) System.out.println("Server: " + this.getTarget());
     }
 
     @Override
@@ -180,6 +189,12 @@ public class Piranha extends AbstractSchoolingFish implements GeoEntity, Neutral
 
     public void startPersistentAngerTimer() {
         this.setRemainingPersistentAngerTime(PERSISTENT_ANGER_TIME.sample(this.random));
+    }
+
+    @Nullable
+    @Override
+    public LivingEntity getTarget() {
+        return this.isBoatTarget ? null : super.getTarget();
     }
 
     static class PiranhaSwimGoal extends RandomSwimmingGoal {

@@ -159,6 +159,10 @@ public class SMLangProvider extends LanguageProvider {
         add("subtitles.entity.lanternfish.hurt", "Lanternfish hurts");
         add("subtitles.entity.lanternfish.death", "Lanternfish dies");
 
+        add("subtitles.entity.piranha.flop", "Piranha flops");
+        add("subtitles.entity.piranha.hurt", "Piranha hurts");
+        add("subtitles.entity.piranha.death", "Piranha dies");
+
         add("subtitles.entity.bouldering_zombie.ambient", "Bouldering Zombie groans");
         add("subtitles.entity.bouldering_zombie.hurt", "Bouldering Zombie hurts");
         add("subtitles.entity.bouldering_zombie.death", "Bouldering Zombie dies");

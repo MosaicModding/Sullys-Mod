@@ -8,6 +8,7 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.EntityTypeTagsProvider;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.EntityTypeTags;
 import net.minecraft.world.entity.EntityType;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import org.jetbrains.annotations.Nullable;
@@ -21,6 +22,8 @@ public class SMEntityTagsProvider extends EntityTypeTagsProvider {
 
     @Override
     protected void addTags(HolderLookup.Provider pProvider) {
+        tag(EntityTypeTags.IMPACT_PROJECTILES).add(SMEntityTypes.THROWN_THROWING_KNIFE.get());
+
         tag(BlueprintEntityTypeTags.FISHES).add(
                 SMEntityTypes.LANTERNFISH.get(),
                 SMEntityTypes.PIRANHA.get()
@@ -81,5 +84,29 @@ public class SMEntityTagsProvider extends EntityTypeTagsProvider {
                 EntityType.WITHER_SKULL,
                 EntityType.FISHING_BOBBER
         ).addOptional(new ResourceLocation("botania", "mana_burst"));
+
+        tag(SMEntityTags.IS_LIVING_INORGANIC).add(
+                EntityType.IRON_GOLEM,
+                EntityType.SKELETON,
+                EntityType.SKELETON_HORSE,
+                EntityType.ALLAY,
+                EntityType.STRAY,
+                EntityType.VEX,
+                EntityType.WITHER,
+                EntityType.WITHER_SKELETON
+        );
+        tag(SMEntityTags.PIRANHA_ALWAYS_ATTACKS).add(
+                EntityType.BAT,
+                EntityType.BEE,
+                EntityType.CHICKEN,
+                EntityType.COD,
+                EntityType.ENDERMITE,
+                EntityType.SALMON,
+                EntityType.PUFFERFISH,
+                EntityType.RABBIT,
+                EntityType.SILVERFISH,
+                EntityType.TADPOLE,
+                EntityType.TROPICAL_FISH
+        );
     }
 }
