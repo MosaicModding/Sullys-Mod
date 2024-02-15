@@ -33,6 +33,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.entity.vehicle.Boat;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.GameRules;
 import net.minecraft.world.level.Level;
@@ -65,6 +66,7 @@ public class Tortoise extends Animal implements GeoEntity {
     protected static final RawAnimation HIDING_ANIM = RawAnimation.begin().thenPlayAndHold("animation.tortoise.hide").thenLoop("animation.tortoise.hiding");
     protected static final RawAnimation REVEAL_ANIM = RawAnimation.begin().thenPlayAndHold("animation.tortoise.reveal");
     private final AnimatableInstanceCache instanceCache = GeckoLibUtil.createInstanceCache(this);
+    public boolean hasCraftingTable = false;
     int layEggCounter;
 
     public Tortoise(EntityType<? extends Animal> entityType, Level level) {
@@ -179,7 +181,13 @@ public class Tortoise extends Animal implements GeoEntity {
 
     public @NotNull InteractionResult mobInteract(Player pPlayer, @NotNull InteractionHand pHand) {
         boolean flag = this.isFood(pPlayer.getItemInHand(pHand)) || this.isBaby();
-        if (!flag && !this.isVehicle() && !pPlayer.isSecondaryUseActive()) {
+        if (!this.hasCraftingTable && pPlayer.getItemInHand(pHand).is(Items.CRAFTING_TABLE)) {
+            this.hasCraftingTable = true;
+            return InteractionResult.CONSUME;
+        }
+        return super.mobInteract(pPlayer, pHand);
+        /*
+        if (!flag && !this.isVehicle() && !pPlayer.isShiftKeyDown()) {
             if (!this.level().isClientSide) {
                 pPlayer.startRiding(this);
                 this.setHideTimerDuration(100);
@@ -187,6 +195,8 @@ public class Tortoise extends Animal implements GeoEntity {
             this.gameEvent(GameEvent.ENTITY_INTERACT, null);
             return InteractionResult.sidedSuccess(this.level().isClientSide);
         } else return super.mobInteract(pPlayer, pHand);
+
+         */
     }
 
     @Override
