@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:archaeology",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "sullysmod:amber"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "sullysmod:petrified_sapling"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:stick"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:coal"
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "sullysmod:archaeology/gravel_petrified_sapling_tree"
+}

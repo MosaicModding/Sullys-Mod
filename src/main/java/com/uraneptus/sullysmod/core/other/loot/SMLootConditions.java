@@ -1,4 +1,4 @@
-package com.uraneptus.sullysmod.core.other;
+package com.uraneptus.sullysmod.core.other.loot;
 
 import com.uraneptus.sullysmod.core.other.tags.SMBiomeTags;
 import net.minecraft.advancements.critereon.LocationPredicate;

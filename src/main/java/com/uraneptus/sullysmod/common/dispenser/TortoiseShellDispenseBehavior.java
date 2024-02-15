@@ -25,12 +25,15 @@ public class TortoiseShellDispenseBehavior {
 
                 if (level.getBlockState(blockPos).isAir()) {
                     TortoiseShell shell = SMEntityTypes.TORTOISE_SHELL.get().create(level);
-                    shell.moveTo(blockPos.getX() + 0.5F, blockPos.getY(), blockPos.getZ() + 0.5F , 0F, 0.0F);
-                    shell.shoot(direction.getStepX(), (float)direction.getStepY() + 0.1F, direction.getStepZ(), 0.65F, 0F);
-                    level.playSound(null, source.x(), source.y(), source.z(), SMSounds.TORTOISE_SHELL_PLACE.get(), SoundSource.PLAYERS, 0.5F, 0.4F / (level.getRandom().nextFloat() * 0.4F + 0.8F));
-                    shell.setSpinTimer();
-                    level.addFreshEntity(shell);
-                    stack.shrink(1);
+                    if (shell != null) {
+                        shell.moveTo(blockPos.getX() + 0.5F, blockPos.getY(), blockPos.getZ() + 0.5F , 0F, 0.0F);
+                        shell.shoot(direction.getStepX(), (float)direction.getStepY() + 0.1F, direction.getStepZ(), 0.65F, 0F);
+                        level.playSound(null, source.x(), source.y(), source.z(), SMSounds.TORTOISE_SHELL_PLACE.get(), SoundSource.PLAYERS, 0.5F, 0.4F / (level.getRandom().nextFloat() * 0.4F + 0.8F));
+                        shell.setSpinTimer();
+                        level.addFreshEntity(shell);
+                        stack.shrink(1);
+                    }
+
                 } else {
                     this.setSuccess(false);
                 }

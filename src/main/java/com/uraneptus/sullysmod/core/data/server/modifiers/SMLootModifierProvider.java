@@ -3,10 +3,11 @@ package com.uraneptus.sullysmod.core.data.server.modifiers;
 import com.teamabnormals.blueprint.common.loot.modification.LootModifierProvider;
 import com.teamabnormals.blueprint.common.loot.modification.modifiers.LootPoolEntriesModifier;
 import com.uraneptus.sullysmod.SullysMod;
-import com.uraneptus.sullysmod.core.other.SMLootConditions;
+import com.uraneptus.sullysmod.core.other.loot.SMLootConditions;
 import com.uraneptus.sullysmod.core.registry.SMItems;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
+import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.storage.loot.BuiltInLootTables;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
@@ -15,7 +16,6 @@ import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
 import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
 
-import java.util.Collections;
 import java.util.concurrent.CompletableFuture;
 
 @SuppressWarnings({"unused", "SameParameterValue"})
@@ -30,6 +30,7 @@ public class SMLootModifierProvider extends LootModifierProvider {
         this.entry("lanternfish_to_fishing").selects(BuiltInLootTables.FISHING_FISH).addModifier(basicModifier(createLootEntryWithCondition(SMItems.LANTERNFISH.get(), 55, 1, 1, SMLootConditions.ON_LANTERNFISH_HEIGHT)));
         this.entry("piranha_to_fishing").selects(BuiltInLootTables.FISHING_FISH).addModifier(basicModifier(createLootEntryWithCondition(SMItems.PIRANHA.get(), 40, 1, 1, SMLootConditions.getPiranhaBiomes())));
         this.entry("music_disc_scour_to_jungle_temple").selects(BuiltInLootTables.JUNGLE_TEMPLE).addModifier(basicModifier(createMusicDiscLootEntry(SMItems.MUSIC_DISC_SCOUR.get(), 4)));
+        this.entry("music_disc_sunken_past_to_elder_guardian").selects(EntityType.ELDER_GUARDIAN.getDefaultLootTable()).addModifier(basicModifier(1, createMusicDiscLootEntry(SMItems.MUSIC_DISC_SUNKEN_PAST.get(), 2)));
         this.entry("jade_smithing_template_to_jungle_temple").selects(BuiltInLootTables.JUNGLE_TEMPLE).addModifier(basicModifier(createLootEntry(SMItems.JADE_UPGRADE_SMITHING_TEMPLATE.get(), 4, 1, 2)));
         this.entry("throwing_knife_to_shipwreck_supply").selects(BuiltInLootTables.SHIPWRECK_SUPPLY).addModifier(basicModifier(createLootEntry(SMItems.THROWING_KNIFE.get(), 3, 2, 5)));
         this.entry("throwing_knife_to_simple_dungeon").selects(BuiltInLootTables.SIMPLE_DUNGEON).addModifier(basicModifier(createLootEntry(SMItems.THROWING_KNIFE.get(), 15, 3, 7)));
@@ -42,6 +43,10 @@ public class SMLootModifierProvider extends LootModifierProvider {
 
     private static LootPoolEntriesModifier basicModifier(LootPoolEntryContainer... containers) {
         return new LootPoolEntriesModifier(false, 0, containers);
+    }
+
+    private static LootPoolEntriesModifier basicModifier(int index, LootPoolEntryContainer... containers) {
+        return new LootPoolEntriesModifier(false, index, containers);
     }
 
     private static LootPoolEntryContainer createLootEntryWithCondition(ItemLike item, int weight, int min, int max, LootItemCondition.Builder condition) {
