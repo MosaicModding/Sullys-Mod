@@ -72,6 +72,10 @@ public class SMBlockStateProvider extends BlockStateProvider {
         modSlabBlock(SMBlocks.AMBER_BRICK_SLAB, SMBlocks.AMBER_BRICKS);
         modWallBlock(SMBlocks.AMBER_BRICK_WALL, SMBlocks.AMBER_BRICKS);
         modStairsBlock(SMBlocks.AMBER_BRICK_STAIRS, SMBlocks.AMBER_BRICKS);
+        basicBlock(SMBlocks.ROUGH_AMBER);
+        basicBlock(SMBlocks.CHISELED_AMBER);
+        basicBlock(SMBlocks.AMBER_LANTERN);
+        pillarBlock(SMBlocks.AMBER_PILLAR, "amber_pillar_topbottom");
         basicBlock(SMBlocks.PETRIFIED_PLANKS);
         modLogBlock(SMBlocks.PETRIFIED_LOG);
         modLogBlock(SMBlocks.STRIPPED_PETRIFIED_LOG);

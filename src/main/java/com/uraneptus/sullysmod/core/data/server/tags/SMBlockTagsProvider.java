@@ -63,7 +63,16 @@ public class SMBlockTagsProvider extends BlockTagsProvider {
                 SMBlocks.PETRIFIED_FENCE.get(),
                 SMBlocks.PETRIFIED_SIGN.getFirst().get(),
                 SMBlocks.PETRIFIED_HANGING_SIGN.getFirst().get(),
-                SMBlocks.PETRIFIED_DOOR.get()
+                SMBlocks.PETRIFIED_DOOR.get(),
+                SMBlocks.AMBER.get(),
+                SMBlocks.ROUGH_AMBER.get(),
+                SMBlocks.CHISELED_AMBER.get(),
+                SMBlocks.AMBER_PILLAR.get(),
+                SMBlocks.AMBER_LANTERN.get(),
+                SMBlocks.AMBER_BRICKS.get(),
+                SMBlocks.AMBER_BRICK_SLAB.get(),
+                SMBlocks.AMBER_BRICK_STAIRS.get(),
+                SMBlocks.AMBER_BRICK_WALL.get()
         );
         tag(BlockTags.NEEDS_IRON_TOOL).add(
                 SMBlocks.JADE_ORE.get(),
@@ -126,6 +135,7 @@ public class SMBlockTagsProvider extends BlockTagsProvider {
                 SMBlocks.SMOOTHED_ROUGH_JADE_STAIRS.get(),
                 SMBlocks.AMBER_BRICK_STAIRS.get()
         );
+        tag(BlockTags.WALLS).add(SMBlocks.AMBER_BRICK_WALL.get());
         tag(BlockTags.FENCE_GATES).add(SMBlocks.PETRIFIED_FENCE_GATE.get());
         tag(BlockTags.WOODEN_FENCES).add(SMBlocks.PETRIFIED_FENCE.get());
         tag(BlockTags.STANDING_SIGNS).add(SMBlocks.PETRIFIED_SIGN.getFirst().get());

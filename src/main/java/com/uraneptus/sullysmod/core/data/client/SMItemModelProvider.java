@@ -89,9 +89,13 @@ public class SMItemModelProvider extends ItemModelProvider {
         basicItem(SMItems.JADE_HORSE_ARMOR);
         basicItemHandheld(SMItems.THROWING_KNIFE);
         basicBlockItem(SMBlocks.AMBER);
+        basicBlockItem(SMBlocks.ROUGH_AMBER);
+        basicBlockItem(SMBlocks.CHISELED_AMBER);
+        basicBlockItem(SMBlocks.AMBER_PILLAR);
+        basicBlockItem(SMBlocks.AMBER_LANTERN);
         basicBlockItem(SMBlocks.AMBER_BRICKS);
         basicBlockItem(SMBlocks.AMBER_BRICK_SLAB);
-        //basicBlockItem(SMBlocks.AMBER_BRICK_WALL);
+        wallBlockItem(SMBlocks.AMBER_BRICK_WALL, SMBlocks.AMBER_BRICKS);
         basicBlockItem(SMBlocks.AMBER_BRICK_STAIRS);
         basicItem(SMItems.PIRANHA_TOOTH);
         basicBlockItem(SMBlocks.PETRIFIED_PLANKS);
@@ -143,6 +147,9 @@ public class SMItemModelProvider extends ItemModelProvider {
 
     private void fenceBlockItem(Supplier<? extends Block> block, Supplier<? extends Block> blockForTexture) {
         fenceInventory(name(block.get()), modBlockLocation(name(blockForTexture.get())));
+    }
+    private void wallBlockItem(Supplier<? extends Block> block, Supplier<? extends Block> blockForTexture) {
+        wallInventory(name(block.get()), modBlockLocation(name(blockForTexture.get())));
     }
 
     private void basicBlockItemWithSuffix(Supplier<? extends Block> block, String suffix) {

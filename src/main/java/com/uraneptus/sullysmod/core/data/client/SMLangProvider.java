@@ -62,6 +62,10 @@ public class SMLangProvider extends LanguageProvider {
         forBlock(SMBlocks.ROUGH_JADE_TILE_SLAB);
         forBlock(SMBlocks.TORTOISE_EGG);
         forBlock(SMBlocks.AMBER);
+        forBlock(SMBlocks.ROUGH_AMBER);
+        forBlock(SMBlocks.CHISELED_AMBER);
+        forBlock(SMBlocks.AMBER_PILLAR);
+        forBlock(SMBlocks.AMBER_LANTERN);
         forBlock(SMBlocks.AMBER_BRICKS);
         forBlock(SMBlocks.AMBER_BRICK_STAIRS);
         forBlock(SMBlocks.AMBER_BRICK_SLAB);

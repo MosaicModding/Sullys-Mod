@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "sullysmod:block/amber_pillar_topbottom",
+    "side": "sullysmod:block/amber_pillar"
+  }
+}

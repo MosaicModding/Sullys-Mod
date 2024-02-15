@@ -11,6 +11,7 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.animal.WaterAnimal;
 import net.minecraft.world.item.*;
+import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraftforge.common.ForgeSpawnEggItem;
 import net.minecraftforge.fml.common.Mod;
@@ -97,6 +98,7 @@ public class SMItems {
                 .addItemsAfter(of(Items.TURTLE_EGG), TORTOISE_EGG)
                 .addItemsAfter(of(Items.WARPED_STEM), PETRIFIED_LOG)
                 .addItemsAfter(of(Items.CHERRY_SAPLING), PETRIFIED_SAPLING)
+                .addItemsAfter(of(Items.COBWEB), AMBER, ROUGH_AMBER)
 
                 .tab(CreativeModeTabs.BUILDING_BLOCKS)
                 .addItemsAfter(of(Items.WAXED_OXIDIZED_CUT_COPPER_SLAB),
@@ -107,7 +109,7 @@ public class SMItems {
                         POLISHED_JADE_TILES, POLISHED_JADE_TILE_STAIRS, POLISHED_JADE_TILE_SLAB,
                         POLISHED_SMALL_JADE_BRICKS, POLISHED_SMALL_JADE_BRICK_STAIRS, POLISHED_SMALL_JADE_BRICK_SLAB,
                         POLISHED_JADE_SHINGLES, POLISHED_JADE_SHINGLE_STAIRS, POLISHED_JADE_SHINGLE_SLAB,
-                        POLISHED_JADE_PILLAR, POLISHED_CHISELED_JADE, JADE_TOTEM)
+                        POLISHED_JADE_PILLAR, POLISHED_CHISELED_JADE, JADE_TOTEM, ROUGH_AMBER, AMBER_LANTERN, CHISELED_AMBER, AMBER_PILLAR, AMBER_BRICKS, AMBER_BRICK_STAIRS, AMBER_BRICK_SLAB, AMBER_BRICK_WALL)
                 .addItemsAfter(of(Items.WARPED_BUTTON), PETRIFIED_LOG, PETRIFIED_WOOD, STRIPPED_PETRIFIED_LOG, STRIPPED_PETRIFIED_WOOD,
                         PETRIFIED_PLANKS, PETRIFIED_STAIRS, PETRIFIED_SLAB, PETRIFIED_FENCE, PETRIFIED_FENCE_GATE, PETRIFIED_DOOR, PETRIFIED_TRAPDOOR,
                         PETRIFIED_PRESSURE_PLATE, PETRIFIED_BUTTON)
@@ -119,6 +121,7 @@ public class SMItems {
 
                 .tab(CreativeModeTabs.FUNCTIONAL_BLOCKS)
                 .addItemsAfter(of(Items.WARPED_HANGING_SIGN), PETRIFIED_SIGN.getFirst(), PETRIFIED_HANGING_SIGN.getFirst())
+                .addItemsAfter(of(Items.INFESTED_DEEPSLATE), AMBER)
 
         ;
     }

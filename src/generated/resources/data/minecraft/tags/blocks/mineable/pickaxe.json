@@ -40,6 +40,15 @@
     "sullysmod:petrified_fence",
     "sullysmod:petrified_sign",
     "sullysmod:petrified_hanging_sign",
-    "sullysmod:petrified_door"
+    "sullysmod:petrified_door",
+    "sullysmod:amber",
+    "sullysmod:rough_amber",
+    "sullysmod:chiseled_amber",
+    "sullysmod:amber_pillar",
+    "sullysmod:amber_lantern",
+    "sullysmod:amber_bricks",
+    "sullysmod:amber_brick_slab",
+    "sullysmod:amber_brick_stairs",
+    "sullysmod:amber_brick_wall"
   ]
 }
