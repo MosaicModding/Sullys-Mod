@@ -25,10 +25,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.Mob;
-import net.minecraft.world.entity.TamableAnimal;
+import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.NonTameRandomTargetGoal;
 import net.minecraft.world.entity.animal.Ocelot;
@@ -48,6 +45,7 @@ import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.event.entity.EntityJoinLevelEvent;
 import net.minecraftforge.event.entity.ProjectileImpactEvent;
+import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -206,11 +204,28 @@ public class SMEntityEvents {
     public static void onLivingDropEvent(LivingDropsEvent event) {
         LivingEntity livingEntity = event.getEntity();
         Entity killer = event.getSource().getEntity();
-
         if (livingEntity instanceof Player) return;
 
         if (killer instanceof Piranha || (SMConfig.ENABLE_WOLF_CARNIVORE.get() && killer instanceof Wolf)) {
             event.getDrops().removeIf(itemEntity -> itemEntity.getItem().is(SMItemTags.CARNIVORE_CONSUMABLES));
+        }
+    }
+
+    @SubscribeEvent
+    public static void onLivingDeathEvent(LivingDeathEvent event) {
+        LivingEntity livingEntity = event.getEntity();
+        Entity killer = event.getSource().getEntity();
+        Level level = event.getEntity().level();
+
+        if (!(livingEntity instanceof Zombie zombie && !zombie.isBaby()) || !(killer instanceof Piranha)) return;
+
+        CompoundTag compoundtag = livingEntity.saveWithoutId(new CompoundTag());
+        compoundtag.remove("Health");
+        livingEntity.setRemoved(Entity.RemovalReason.DISCARDED);
+        livingEntity = EntityType.SKELETON.create(level);
+        if (livingEntity != null) {
+            livingEntity.load(compoundtag);
+            level.addFreshEntity(livingEntity);
         }
     }
 }
