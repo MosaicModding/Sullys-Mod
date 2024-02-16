@@ -23,10 +23,16 @@ public class TortoiseShellModel <T extends TortoiseShell> extends EntityModel<T>
         MeshDefinition meshdefinition = new MeshDefinition();
         PartDefinition partdefinition = meshdefinition.getRoot();
 
-        PartDefinition shell = partdefinition.addOrReplaceChild("shell", CubeListBuilder.create().texOffs(0, 0).addBox(-8.0F, -16.0F, -9.0F, 16.0F, 13.0F, 19.0F, new CubeDeformation(0.0F))
-                .texOffs(0, 32).addBox(-8.0F, -11.0F, -9.0F, 16.0F, 7.0F, 19.0F, new CubeDeformation(0.5F)), PartPose.offsetAndRotation(0.0F, 13.0F, 0.0F, 0.0F, 0.0F, -3.1416F));
+        PartDefinition shell = partdefinition.addOrReplaceChild("shell", CubeListBuilder.create().texOffs(0, 0).addBox(-8.0F, -17.0F, -8.0F, 16.0F, 14.0F, 18.0F, new CubeDeformation(0.0F))
+                .texOffs(0, 32).addBox(-8.0F, -17.0F, -8.0F, 16.0F, 14.0F, 18.0F, new CubeDeformation(0.5F)), PartPose.offsetAndRotation(0.0F, 13.0F, 0.0F, 0.0F, 0.0F, -3.1416F));
 
-        return LayerDefinition.create(meshdefinition, 96, 96);
+        /*
+        PartDefinition shell = root.addOrReplaceChild("shell", CubeListBuilder.create().texOffs(0, 0).addBox(-8.0F, -17.0F, -8.0F, 16.0F, 14.0F, 18.0F, new CubeDeformation(0.0F))
+		.texOffs(0, 32).addBox(-8.0F, -17.0F, -8.0F, 16.0F, 14.0F, 18.0F, new CubeDeformation(0.5F)), PartPose.offset(0.0F, 3.0F, -0.5F));
+         */
+
+
+        return LayerDefinition.create(meshdefinition, 128, 128);
     }
 
     @Override

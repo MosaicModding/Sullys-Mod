@@ -68,6 +68,8 @@ public class Tortoise extends Animal implements GeoEntity {
     private final AnimatableInstanceCache instanceCache = GeckoLibUtil.createInstanceCache(this);
     public boolean hasCraftingTable = false;
     int layEggCounter;
+    //TODO change bounding box when crafting table
+    //TODO redo mob interaction
 
     public Tortoise(EntityType<? extends Animal> entityType, Level level) {
         super(entityType, level);

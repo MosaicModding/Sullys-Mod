@@ -179,16 +179,6 @@ public class TortoiseShell extends Entity implements OwnableEntity {
     }
 
     @Override
-    protected AABB getBoundingBoxForPose(Pose pPose) {
-        return super.getBoundingBoxForPose(pPose);
-    }
-
-    @Override
-    public AABB getBoundingBoxForCulling() {
-        return super.getBoundingBoxForCulling();
-    }
-
-    @Override
     public boolean isPickable() {
         return !this.isRemoved();
     }

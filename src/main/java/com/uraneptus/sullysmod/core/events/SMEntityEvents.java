@@ -199,7 +199,6 @@ public class SMEntityEvents {
         }
     }
 
-
     @SubscribeEvent
     public static void onLivingDropEvent(LivingDropsEvent event) {
         LivingEntity livingEntity = event.getEntity();
