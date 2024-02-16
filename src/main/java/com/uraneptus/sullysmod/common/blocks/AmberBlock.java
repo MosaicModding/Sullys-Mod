@@ -1,15 +1,25 @@
 package com.uraneptus.sullysmod.common.blocks;
 
 import com.uraneptus.sullysmod.core.registry.SMBlockEntityTypes;
+import com.uraneptus.sullysmod.core.registry.SMBlocks;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.entity.Entity;
+import net.minecraft.core.Direction;
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.util.Mth;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LightLayer;
 import net.minecraft.world.level.block.BaseEntityBlock;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.EntityCollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
@@ -37,34 +47,42 @@ public class AmberBlock extends BaseEntityBlock {
             if (entity != null) {
                 Level level = entity.level();
                 BlockEntity blockEntity = level.getBlockEntity(pPos);
-                if (level.getBrightness(LightLayer.BLOCK, blockPos) > 11 && blockEntity != null && !((AmberBlockEntity) blockEntity).hasStuckEntity()) {
-                    return MELTING_COLLISION_SHAPE;
+                if (blockEntity instanceof AmberBlockEntity amber) {
+                    if (amber.hasStuckEntity()) {
+                        return Shapes.block();
+                    } else {
+                        if (level.getBrightness(LightLayer.BLOCK, blockPos) > 11) {
+                            if (entity instanceof Player player) {
+                                if (!player.jumping) {
+                                    return MELTING_COLLISION_SHAPE;
+                                }
+                            } else {
+                                return MELTING_COLLISION_SHAPE;
+                            }
+                        }
+                    }
                 }
             }
         }
         return Shapes.block();
     }
 
-    /*
-    public void onRemove(BlockState pState, Level pLevel, BlockPos pPos, BlockState pNewState, boolean pIsMoving) {
-        super.onRemove(pState, pLevel, pPos, pNewState, pIsMoving);
-        /*
-        BlockEntity blockEntity = pLevel.getBlockEntity(new BlockPos(pPos.getX(), pPos.getY(), pPos.getZ()));
-        assert blockEntity != null;
-        CompoundTag compoundtag = ((AmberBlockEntity) blockEntity).getEntityStuck(1).entityData;
-        FlingerTotemBlockEntity.removeIgnoredNBT(compoundtag);
-        if (((AmberBlockEntity) blockEntity).isFull()) {
-            LivingEntity livingEntity = (LivingEntity) EntityType.loadEntityRecursive(compoundtag, pLevel, entity -> entity);
-            livingEntity.moveTo(pPos.getX() + 0.5, pPos.getY(), pPos.getZ() + 0.5);
-            pLevel.addFreshEntity(livingEntity);
-            System.out.println("BROKE WORKED");
+
+    public void onRemove(BlockState blockState, Level pLevel, BlockPos blockPos, BlockState pNewState, boolean pIsMoving) {
+        if (blockState.getBlock() == SMBlocks.AMBER.get()) {
+            BlockEntity blockEntity = pLevel.getBlockEntity(blockPos);
+            if (blockEntity instanceof AmberBlockEntity amberBlockEntity) {
+                if (amberBlockEntity.hasStuckEntity()) {
+                    CompoundTag compoundtag = amberBlockEntity.getEntityStuck();
+                    AmberBlockEntity.removeIgnoredNBT(compoundtag);
+                    LivingEntity livingEntity = (LivingEntity) EntityType.loadEntityRecursive(compoundtag, (Level) pLevel, entity -> entity);
+                    livingEntity.moveTo(blockPos.getX() + 0.5, blockPos.getY(), blockPos.getZ() + 0.5);
+                    pLevel.addFreshEntity(livingEntity);
+                }
+            }
         }
-        System.out.println(blockEntity);
-        System.out.println("AMBER BROKE");
-
-
+        super.onRemove(blockState, pLevel, blockPos, pNewState, pIsMoving);
     }
-    */
 
     @Nullable
     @Override
@@ -73,19 +91,21 @@ public class AmberBlock extends BaseEntityBlock {
     }
 
 
-/*
+
+
     public void entityInside(BlockState pState, Level pLevel, BlockPos pPos, Entity pEntity) {
+        BlockEntity blockEntity = pLevel.getBlockEntity(pPos);
         if (!(pEntity instanceof LivingEntity) || pEntity.getFeetBlockState().is(this)) {
             if (pEntity instanceof Player) {
                 pEntity.makeStuckInBlock(pState, new Vec3((double) 0.8F, 0.1D, (double) 0.8F));
             } else if (pEntity instanceof Mob mob) {
-                pEntity.makeStuckInBlock(pState, new Vec3((double) 0.0F, 0.1D, (double) 0.0F));
-                if (mob.getBlockStateOn() != SMBlocks.AMBER.get().defaultBlockState()) {
-                    mob.setSilent(true);
-                    mob.setRemainingFireTicks(0);
-                    mob.setInvulnerable(true);
-                    mob.setNoAi(true);
-                    System.out.println("MOB STUCK IN AMBER");
+                if (blockEntity instanceof AmberBlockEntity amber) {
+                    mob.makeStuckInBlock(pState, new Vec3((double) 0.0F, 0.1D, (double) 0.0F));
+                    if (!amber.hasStuckEntity()) {
+                        if (mob.getBlockStateOn() != SMBlocks.AMBER.get().defaultBlockState()) {
+                            amber.makeEntityStuck(mob);
+                        }
+                    }
                 }
             }
             if (pLevel.isClientSide) {
@@ -97,7 +117,4 @@ public class AmberBlock extends BaseEntityBlock {
             }
         }
     }
-
- */
-
 }

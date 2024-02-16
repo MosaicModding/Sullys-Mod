@@ -201,38 +201,6 @@ public class SMEntityEvents {
         }
     }
 
-    //AMBER STUFF
-    @SubscribeEvent
-    public static void onLivingTick(LivingEvent.LivingTickEvent event) {
-        Entity entity = event.getEntity();
-        Level level = entity.level();
-        BlockState state = entity.getFeetBlockState();
-        BlockPos blockPos = new BlockPos(entity.getBlockX(), entity.getBlockY(), entity.getBlockZ());
-        BlockEntity blockEntity = level.getBlockEntity(blockPos);
-
-        if (state.is(SMBlocks.AMBER.get())) {
-            if (entity instanceof Player) {
-                entity.makeStuckInBlock(state, new Vec3((double) 0.8F, 0.1D, (double) 0.8F));
-            }
-            if (entity instanceof Mob mob) {
-                if (blockEntity instanceof AmberBlockEntity amber) {
-                    mob.makeStuckInBlock(state, new Vec3((double) 0.0F, 0.1D, (double) 0.0F));
-                    if (!amber.hasStuckEntity()) {
-                        if (mob.getBlockStateOn() != SMBlocks.AMBER.get().defaultBlockState()) {
-                            amber.makeEntityStuck(mob);
-                        }
-                    }
-                }
-            }
-            if (level.isClientSide) {
-                RandomSource randomsource = level.getRandom();
-                boolean flag = entity.xOld != entity.getX() || entity.zOld != entity.getZ();
-                if (flag && randomsource.nextBoolean()) {
-                    level.addParticle(ParticleTypes.SOUL_FIRE_FLAME, entity.getX(), (double)(blockPos.getY() + 1), entity.getZ(), (double)(Mth.randomBetween(randomsource, -1.0F, 1.0F) * 0.083333336F), (double)0.05F, (double)(Mth.randomBetween(randomsource, -1.0F, 1.0F) * 0.083333336F));
-                }
-            }
-        }
-    }
 
     @SubscribeEvent
     public static void onLivingDropEvent(LivingDropsEvent event) {
