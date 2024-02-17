@@ -70,7 +70,7 @@ public class AmberBlock extends BaseEntityBlock {
                         }
                     }
                     if (level.getBrightness(LightLayer.BLOCK, pPos.above()) >= 9) {
-                        if (blockStateXP.is(SMBlockTags.AMBER_MELTABLES) || blockStateXN.is(SMBlockTags.AMBER_MELTABLES) || blockStateZP.is(SMBlockTags.AMBER_MELTABLES) || blockStateZN.is(SMBlockTags.AMBER_MELTABLES) || blockStateYP.is(SMBlockTags.AMBER_MELTABLES) || blockStateYN.is(SMBlockTags.AMBER_MELTABLES)) {
+                        if (blockStateXP.is(SMBlockTags.MELTS_AMBER) || blockStateXN.is(SMBlockTags.MELTS_AMBER) || blockStateZP.is(SMBlockTags.MELTS_AMBER) || blockStateZN.is(SMBlockTags.MELTS_AMBER) || blockStateYP.is(SMBlockTags.MELTS_AMBER) || blockStateYN.is(SMBlockTags.MELTS_AMBER)) {
                             return MELTING_COLLISION_SHAPE;
                         } else if (blockStateXP.is(this) && blockStateXP.getCollisionShape(pLevel, pPos.relative(Direction.Axis.X, 1), pContext) == MELTING_COLLISION_SHAPE) {
                             return MELTING_COLLISION_SHAPE;

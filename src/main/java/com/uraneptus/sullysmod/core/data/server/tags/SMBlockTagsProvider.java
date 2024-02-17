@@ -179,8 +179,7 @@ public class SMBlockTagsProvider extends BlockTagsProvider {
                 SMBlocks.PETRIFIED_WOOD.get(),
                 SMBlocks.STRIPPED_PETRIFIED_WOOD.get()
         );
-        tag(SMBlockTags.AMBER_MELTABLES).add(
-                Blocks.LAVA,
+        tag(SMBlockTags.MELTS_AMBER).add(
                 Blocks.MAGMA_BLOCK,
                 Blocks.TORCH,
                 Blocks.SOUL_TORCH,
