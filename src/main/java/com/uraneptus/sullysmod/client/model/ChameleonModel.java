@@ -1,7 +1,7 @@
 package com.uraneptus.sullysmod.client.model;
 
 import com.uraneptus.sullysmod.SullysMod;
-import com.uraneptus.sullysmod.common.entities.chameleon.Chameleon;
+import com.uraneptus.sullysmod.common.entities.Chameleon;
 import net.minecraft.resources.ResourceLocation;
 import software.bernie.geckolib.model.DefaultedEntityGeoModel;
 

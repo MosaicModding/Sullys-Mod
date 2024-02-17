@@ -3,7 +3,7 @@ package com.uraneptus.sullysmod.core.registry;
 import com.teamabnormals.blueprint.core.util.registry.EntitySubRegistryHelper;
 import com.uraneptus.sullysmod.SullysMod;
 import com.uraneptus.sullysmod.common.entities.*;
-import com.uraneptus.sullysmod.common.entities.chameleon.Chameleon;
+import com.uraneptus.sullysmod.common.entities.Chameleon;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraftforge.fml.common.Mod;

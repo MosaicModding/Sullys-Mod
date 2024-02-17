@@ -5,7 +5,7 @@ import com.teamabnormals.blueprint.core.Blueprint;
 import com.teamabnormals.blueprint.core.util.registry.RegistryHelper;
 import com.uraneptus.sullysmod.common.dispenser.TortoiseShellDispenseBehavior;
 import com.uraneptus.sullysmod.common.entities.*;
-import com.uraneptus.sullysmod.common.entities.chameleon.Chameleon;
+import com.uraneptus.sullysmod.common.entities.Chameleon;
 import com.uraneptus.sullysmod.core.SMConfig;
 import com.uraneptus.sullysmod.core.data.client.*;
 import com.uraneptus.sullysmod.core.data.server.SMDatapackBuiltinEntriesProvider;
