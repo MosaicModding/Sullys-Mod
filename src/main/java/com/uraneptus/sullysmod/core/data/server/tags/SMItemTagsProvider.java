@@ -35,6 +35,9 @@ public class SMItemTagsProvider extends ItemTagsProvider {
                 Items.SWEET_BERRIES,
                 Items.APPLE
         );
+        tag(SMItemTags.CHAMELEON_FOOD).add(
+                Items.SLIME_BALL
+        );
 
         tag(SMItemTags.CARNIVORE_CONSUMABLES).add(
                 Items.MUTTON,

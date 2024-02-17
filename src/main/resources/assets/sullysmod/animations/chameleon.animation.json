@@ -1,7 +1,7 @@
 {
 	"format_version": "1.8.0",
 	"animations": {
-		"animation.model.doubt": {
+		"animation.chameleon.doubt": {
 			"loop": true,
 			"animation_length": 2.04,
 			"bones": {
@@ -38,7 +38,7 @@
 				}
 			}
 		},
-		"animation.model.walkcycle": {
+		"animation.chameleon.walking": {
 			"loop": true,
 			"animation_length": 1.83333,
 			"bones": {
@@ -256,7 +256,7 @@
 				}
 			}
 		},
-		"animation.model.sway": {
+		"animation.chameleon.sway": {
 			"loop": true,
 			"animation_length": 2.04167,
 			"bones": {
@@ -418,7 +418,7 @@
 				}
 			}
 		},
-		"animation.model.tongue": {
+		"animation.chameleon.tongue": {
 			"loop": true,
 			"animation_length": 1.33333,
 			"bones": {
