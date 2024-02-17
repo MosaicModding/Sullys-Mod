@@ -29,6 +29,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.GrindstoneBlock;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.dimension.BuiltinDimensionTypes;
 import net.minecraft.world.level.dimension.DimensionType;
 import net.minecraft.world.phys.Vec3;
@@ -50,7 +51,8 @@ public class SMPlayerEvents {
         Level level = event.getLevel();
         BlockPos pos = event.getPos();
         InteractionHand hand = event.getHand();
-        Block block = level.getBlockState(pos).getBlock();
+        BlockState blockState = level.getBlockState(pos);
+        Block block = blockState.getBlock();
         RandomSource random = level.getRandom();
         ItemStack itemInHand = player.getItemInHand(hand);
 
@@ -101,10 +103,10 @@ public class SMPlayerEvents {
         }
         if (block instanceof PickaxeStrippable pickaxeStrippableBlock) {
             if (!(itemInHand.getItem() instanceof PickaxeItem)) return;
-            level.setBlock(pos, BlockUtil.transferAllBlockStates(block.defaultBlockState(), pickaxeStrippableBlock.getStrippedBlock().get().defaultBlockState()), 11);
+            level.setBlock(pos, BlockUtil.transferAllBlockStates(blockState, pickaxeStrippableBlock.getStrippedBlock().get().defaultBlockState()), 11);
             SMItemUtil.triggerItemUsedOnBlock(player, itemInHand, pos);
             SMItemUtil.damageItem(player, itemInHand, hand);
-            level.playSound(player, pos, SoundEvents.AXE_SCRAPE, SoundSource.BLOCKS, 1.0F, 1.0F);
+            level.playSound(player, pos, SoundEvents.AXE_STRIP, SoundSource.BLOCKS, 1.0F, 1.0F);
             player.swing(hand);
         }
     }
