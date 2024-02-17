@@ -1,5 +1,6 @@
 package com.uraneptus.sullysmod.common.blocks;
 
+import com.uraneptus.sullysmod.core.other.tags.SMBlockTags;
 import com.uraneptus.sullysmod.core.registry.SMBlockEntityTypes;
 import com.uraneptus.sullysmod.core.registry.SMBlocks;
 import net.minecraft.core.BlockPos;
@@ -15,6 +16,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LightLayer;
 import net.minecraft.world.level.block.BaseEntityBlock;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockBehaviour;
@@ -41,26 +43,43 @@ public class AmberBlock extends BaseEntityBlock {
 
 
     public VoxelShape getCollisionShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
-        BlockPos blockPos = new BlockPos(pPos.getX(), pPos.getY() + 1, pPos.getZ());
+        BlockEntity blockEntity = pLevel.getBlockEntity(pPos);
+        BlockState blockStateXP = pLevel.getBlockState(pPos.relative(Direction.Axis.X, 1));
+        BlockState blockStateXN = pLevel.getBlockState(pPos.relative(Direction.Axis.X, -1));
+        BlockState blockStateZP = pLevel.getBlockState(pPos.relative(Direction.Axis.Z, 1));
+        BlockState blockStateZN = pLevel.getBlockState(pPos.relative(Direction.Axis.Z, -1));
+        BlockState blockStateYP = pLevel.getBlockState(pPos.relative(Direction.Axis.Y, 1));
+        BlockState blockStateYN = pLevel.getBlockState(pPos.relative(Direction.Axis.Y, -1));
+
         if (pContext instanceof EntityCollisionContext entitycollisioncontext) {
             Entity entity = entitycollisioncontext.getEntity();
-            if (entity != null) {
-                Level level = entity.level();
-                BlockEntity blockEntity = level.getBlockEntity(pPos);
-                if (blockEntity instanceof AmberBlockEntity amber) {
-                    if (amber.hasStuckEntity()) {
-                        return Shapes.block();
-                    } else {
-                        if (level.getBrightness(LightLayer.BLOCK, blockPos) > 11) {
+            if (blockEntity instanceof AmberBlockEntity amber) {
+                Level level = blockEntity.getLevel();
+                if (!amber.hasStuckEntity()) {
+                    if (entity != null) {
+                        if (level.getBrightness(LightLayer.BLOCK, pPos.above()) >= 9) {
                             if (entity instanceof Player player) {
-                                if (!player.jumping) {
-                                    return MELTING_COLLISION_SHAPE;
+                                if (player.jumping) {
+                                    return Shapes.block();
                                 }
                             } else {
                                 return MELTING_COLLISION_SHAPE;
                             }
+                        } else {
+                            return Shapes.block();
                         }
                     }
+                    if (level.getBrightness(LightLayer.BLOCK, pPos.above()) >= 9) {
+                        if (blockStateXP.is(SMBlockTags.AMBER_MELTABLES) || blockStateXN.is(SMBlockTags.AMBER_MELTABLES) || blockStateZP.is(SMBlockTags.AMBER_MELTABLES) || blockStateZN.is(SMBlockTags.AMBER_MELTABLES) || blockStateYP.is(SMBlockTags.AMBER_MELTABLES) || blockStateYN.is(SMBlockTags.AMBER_MELTABLES)) {
+                            return MELTING_COLLISION_SHAPE;
+                        } else if (blockStateXP.is(this) && blockStateXP.getCollisionShape(pLevel, pPos.relative(Direction.Axis.X, 1), pContext) == MELTING_COLLISION_SHAPE) {
+                            return MELTING_COLLISION_SHAPE;
+                        } else {
+                            return Shapes.block();
+                        }
+                    }
+                } else {
+                    return Shapes.block();
                 }
             }
         }
@@ -95,24 +114,24 @@ public class AmberBlock extends BaseEntityBlock {
 
     public void entityInside(BlockState pState, Level pLevel, BlockPos pPos, Entity pEntity) {
         BlockEntity blockEntity = pLevel.getBlockEntity(pPos);
-        if (!(pEntity instanceof LivingEntity) || pEntity.getFeetBlockState().is(this)) {
-            if (pEntity instanceof Player) {
-                pEntity.makeStuckInBlock(pState, new Vec3((double) 0.8F, 0.1D, (double) 0.8F));
-            } else if (pEntity instanceof Mob mob) {
-                if (blockEntity instanceof AmberBlockEntity amber) {
-                    mob.makeStuckInBlock(pState, new Vec3((double) 0.0F, 0.1D, (double) 0.0F));
-                    if (!amber.hasStuckEntity()) {
+        if (blockEntity instanceof AmberBlockEntity amber) {
+            if (!amber.hasStuckEntity()) {
+                if (!(pEntity instanceof LivingEntity) || pEntity.getFeetBlockState().is(this)) {
+                    if (pEntity instanceof Player) {
+                        pEntity.makeStuckInBlock(pState, new Vec3((double) 0.8F, 0.1D, (double) 0.8F));
+                    } else if (pEntity instanceof Mob mob) {
+                        mob.makeStuckInBlock(pState, new Vec3((double) 0.0F, 0.1D, (double) 0.0F));
                         if (mob.getBlockStateOn() != SMBlocks.AMBER.get().defaultBlockState()) {
                             amber.makeEntityStuck(mob);
                         }
                     }
-                }
-            }
-            if (pLevel.isClientSide) {
-                RandomSource randomsource = pLevel.getRandom();
-                boolean flag = pEntity.xOld != pEntity.getX() || pEntity.zOld != pEntity.getZ();
-                if (flag && randomsource.nextBoolean()) {
-                    pLevel.addParticle(ParticleTypes.SOUL_FIRE_FLAME, pEntity.getX(), (double)(pPos.getY() + 1), pEntity.getZ(), (double)(Mth.randomBetween(randomsource, -1.0F, 1.0F) * 0.083333336F), (double)0.05F, (double)(Mth.randomBetween(randomsource, -1.0F, 1.0F) * 0.083333336F));
+                    if (pLevel.isClientSide) {
+                        RandomSource randomsource = pLevel.getRandom();
+                        boolean flag = pEntity.xOld != pEntity.getX() || pEntity.zOld != pEntity.getZ();
+                        if (flag && randomsource.nextBoolean()) {
+                            pLevel.addParticle(ParticleTypes.SOUL_FIRE_FLAME, pEntity.getX(), (double) (pPos.getY() + 1), pEntity.getZ(), (double) (Mth.randomBetween(randomsource, -1.0F, 1.0F) * 0.083333336F), (double) 0.05F, (double) (Mth.randomBetween(randomsource, -1.0F, 1.0F) * 0.083333336F));
+                        }
+                    }
                 }
             }
         }

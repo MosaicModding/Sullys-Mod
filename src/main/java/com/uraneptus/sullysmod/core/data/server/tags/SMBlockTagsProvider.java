@@ -6,6 +6,7 @@ import com.uraneptus.sullysmod.core.registry.SMBlocks;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.data.BlockTagsProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
@@ -177,6 +178,17 @@ public class SMBlockTagsProvider extends BlockTagsProvider {
                 SMBlocks.STRIPPED_PETRIFIED_LOG.get(),
                 SMBlocks.PETRIFIED_WOOD.get(),
                 SMBlocks.STRIPPED_PETRIFIED_WOOD.get()
+        );
+        tag(SMBlockTags.AMBER_MELTABLES).add(
+                Blocks.LAVA,
+                Blocks.MAGMA_BLOCK,
+                Blocks.TORCH,
+                Blocks.SOUL_TORCH,
+                Blocks.WALL_TORCH,
+                Blocks.SOUL_WALL_TORCH,
+                Blocks.CAMPFIRE,
+                Blocks.SOUL_CAMPFIRE,
+                SMBlocks.AMBER_LANTERN.get()
         );
 
         //Forge Tags

@@ -1,0 +1,12 @@
+{
+  "values": [
+    "minecraft:magma_block",
+    "minecraft:torch",
+    "minecraft:soul_torch",
+    "minecraft:wall_torch",
+    "minecraft:soul_wall_torch",
+    "minecraft:campfire",
+    "minecraft:soul_campfire",
+    "sullysmod:amber_lantern"
+  ]
+}

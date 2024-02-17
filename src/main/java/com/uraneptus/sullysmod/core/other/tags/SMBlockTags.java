@@ -10,6 +10,8 @@ public class SMBlockTags {
     public static final TagKey<Block> PROJECTILES_BOUNCE_ON = TagUtil.blockTag(SullysMod.MOD_ID, "projectiles_bounce_on");
     public static final TagKey<Block> PETRIFIED_LOGS = TagUtil.blockTag(SullysMod.MOD_ID, "petrified_logs");
 
+    public static final TagKey<Block> AMBER_MELTABLES = TagUtil.blockTag(SullysMod.MOD_ID, "amber_meltables");
+
     //Forge Tags
     public static final TagKey<Block> WAXABLE_COPPER_BLOCKS = TagUtil.blockTag("forge", "waxable_copper_blocks");
     public static final TagKey<Block> WAXED_COPPER_BLOCKS = TagUtil.blockTag("forge", "waxed_copper_blocks");
