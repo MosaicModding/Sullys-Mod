@@ -5,6 +5,9 @@ import com.uraneptus.sullysmod.core.other.SMItemUtil;
 import com.uraneptus.sullysmod.core.registry.SMEntityTypes;
 import com.uraneptus.sullysmod.core.registry.SMSounds;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.BlockSource;
+import net.minecraft.core.Direction;
+import net.minecraft.core.dispenser.OptionalDispenseItemBehavior;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
@@ -14,11 +17,13 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.DispenserBlock;
 
 public class TortoiseShellItem extends Item {
 
     public TortoiseShellItem(Properties pProperties) {
         super(pProperties);
+        DispenserBlock.registerBehavior(this, new TortoiseShellItem.DispenseBehavior());
     }
 
     public InteractionResult useOn(UseOnContext pContext) {
@@ -40,5 +45,9 @@ public class TortoiseShellItem extends Item {
         SMItemUtil.nonCreativeShrinkStack(player, itemstack);
 
         return InteractionResult.CONSUME;
+    }
+
+    static class DispenseBehavior extends OptionalDispenseItemBehavior {
+
     }
 }

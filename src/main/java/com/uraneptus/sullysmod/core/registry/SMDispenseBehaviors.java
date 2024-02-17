@@ -1,5 +1,6 @@
-package com.uraneptus.sullysmod.common.dispenser;
+package com.uraneptus.sullysmod.core.registry;
 
+import com.uraneptus.sullysmod.common.entities.ThrownThrowingKnife;
 import com.uraneptus.sullysmod.common.entities.TortoiseShell;
 import com.uraneptus.sullysmod.core.registry.SMEntityTypes;
 import com.uraneptus.sullysmod.core.registry.SMItems;
@@ -7,16 +8,23 @@ import com.uraneptus.sullysmod.core.registry.SMSounds;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.BlockSource;
 import net.minecraft.core.Direction;
+import net.minecraft.core.Position;
+import net.minecraft.core.dispenser.AbstractProjectileDispenseBehavior;
 import net.minecraft.core.dispenser.OptionalDispenseItemBehavior;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.entity.projectile.AbstractArrow;
+import net.minecraft.world.entity.projectile.Arrow;
+import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.DispenserBlock;
+import org.jetbrains.annotations.NotNull;
 
-public class TortoiseShellDispenseBehavior {
+public class SMDispenseBehaviors {
 
     public static void register() {
         DispenserBlock.registerBehavior(SMItems.TORTOISE_SHELL.get(), new OptionalDispenseItemBehavior() {
+            @NotNull
             protected ItemStack execute(BlockSource source, ItemStack stack) {
                 this.setSuccess(true);
                 Level level = source.getLevel();
@@ -38,6 +46,15 @@ public class TortoiseShellDispenseBehavior {
                     this.setSuccess(false);
                 }
                 return stack;
+            }
+        });
+
+        DispenserBlock.registerBehavior(SMItems.THROWING_KNIFE.get(), new AbstractProjectileDispenseBehavior() {
+            @Override
+            protected Projectile getProjectile(Level pLevel, Position pPosition, ItemStack pStack) {
+                ThrownThrowingKnife thrownThrowingKnife = new ThrownThrowingKnife(pLevel, pPosition.x(), pPosition.y(), pPosition.z());
+                thrownThrowingKnife.pickup = AbstractArrow.Pickup.ALLOWED;
+                return thrownThrowingKnife;
             }
         });
     }
