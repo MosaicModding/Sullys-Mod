@@ -305,6 +305,7 @@ public class Tortoise extends Animal implements GeoEntity {
             if (this.getHideTimerDuration() == 0) {
                 level.playSound(null, this.blockPosition(), SMSounds.TORTOISE_HIDE.get(), SoundSource.AMBIENT, 1.0F, 1.0F);
             }
+            this.dropLeash(true, true);
             this.entityData.set(HIDE_TIMER, durationInTicks);
         }
     }
@@ -331,10 +332,12 @@ public class Tortoise extends Animal implements GeoEntity {
         return this.getHideTimerDuration() == 0 && !this.hasEgg() && super.canFallInLove();
     }
 
+
     @Override
     public boolean canBeLeashed(Player pPlayer) {
-        return false;
+        return this.getHideTimerDuration() == 0;
     }
+
 
     public void aiStep() {
         super.aiStep();
