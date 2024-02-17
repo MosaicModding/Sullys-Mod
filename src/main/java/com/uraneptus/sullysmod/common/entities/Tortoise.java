@@ -332,7 +332,6 @@ public class Tortoise extends Animal implements GeoEntity {
         return this.getHideTimerDuration() == 0 && !this.hasEgg() && super.canFallInLove();
     }
 
-
     @Override
     public boolean canBeLeashed(Player pPlayer) {
         return this.getHideTimerDuration() == 0;
