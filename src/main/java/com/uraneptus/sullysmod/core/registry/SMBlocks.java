@@ -99,7 +99,7 @@ public class SMBlocks {
     public static final RegistryObject<Block> PETRIFIED_BUTTON = HELPER.createBlock("petrified_button", () -> new ButtonBlock(SMProperties.Blocks.PETRIFIED_BUTTON, BlockSetType.STONE, 20, false));
     public static final RegistryObject<Block> PETRIFIED_FENCE_GATE = HELPER.createBlock("petrified_fence_gate", () -> new FenceGateBlock(SMProperties.Blocks.petrified().requiresCorrectToolForDrops().forceSolidOn(), PETRIFIED));
     public static final RegistryObject<Block> PETRIFIED_FENCE = HELPER.createBlock("petrified_fence", () -> new FenceBlock(SMProperties.Blocks.petrified().requiresCorrectToolForDrops()));
-    public static final RegistryObject<Block> PETRIFIED_DOOR = HELPER.createBlock("petrified_door", () -> new DoorBlock(SMProperties.Blocks.petrified().requiresCorrectToolForDrops().strength(0.35F), BlockSetType.STONE));
+    public static final RegistryObject<Block> PETRIFIED_DOOR = HELPER.createBlock("petrified_door", () -> new DoorBlock(SMProperties.Blocks.petrified().requiresCorrectToolForDrops().noOcclusion().strength(0.35F), BlockSetType.STONE));
     public static final RegistryObject<Block> PETRIFIED_SAPLING = HELPER.createBlock("petrified_sapling", () -> new PetrifiedSapling(SMProperties.Blocks.PETRIFIED_SAPLING));
     public static final RegistryObject<Block> POTTED_PETRIFIED_SAPLING = HELPER.createBlockNoItem("potted_petrified_sapling", () -> new FlowerPotBlock(PETRIFIED_SAPLING.get(), PropertyUtil.flowerPot()));
 
