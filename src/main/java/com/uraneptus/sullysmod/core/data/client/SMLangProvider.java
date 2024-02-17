@@ -101,6 +101,7 @@ public class SMLangProvider extends LanguageProvider {
         forItem(SMItems.JADE_SHIELD);
         forItem(SMItems.TORTOISE_SCUTE);
         forItem(SMItems.TORTOISE_SHELL);
+        forItem(SMItems.CHAMELEON_SPAWN_EGG);
         forItem(SMItems.BOULDERING_ZOMBIE_SPAWN_EGG);
         forItem(SMItems.JUNGLE_SPIDER_SPAWN_EGG);
         forItem(SMItems.GLASS_VIAL);

@@ -57,6 +57,7 @@ public class SMItems {
     public static final RegistryObject<ForgeSpawnEggItem> JUNGLE_SPIDER_SPAWN_EGG = HELPER.createSpawnEggItem("jungle_spider", SMEntityTypes.JUNGLE_SPIDER::get, 5597514, 11013646);
     public static final RegistryObject<Item> PIRANHA_BUCKET = HELPER.createItem("piranha_bucket", () -> SMItems.createMobBucketItem(SMEntityTypes.PIRANHA::get));
     public static final RegistryObject<ForgeSpawnEggItem> PIRANHA_SPAWN_EGG = HELPER.createSpawnEggItem("piranha", SMEntityTypes.PIRANHA::get, 15561472, 4240022);
+    public static final RegistryObject<ForgeSpawnEggItem> CHAMELEON_SPAWN_EGG = HELPER.createSpawnEggItem("chameleon", SMEntityTypes.CHAMELEON::get, 9804590, 6645808);
 
     public static Item createMobBucketItem(Supplier<EntityType<? extends WaterAnimal>> entityType) {
         return new MobBucketItem(entityType, () -> Fluids.WATER, () -> SoundEvents.BUCKET_EMPTY_FISH, PropertyUtil.stacksOnce());
