@@ -16,7 +16,7 @@ import java.util.List;
 public class AmberBlockEntity extends BlockEntity {
     @Nullable
     private AmberBlockEntity.StuckEntityData StuckEntityData;
-    private static final List<String> IGNORED_NBT = Arrays.asList("UUID");
+    private static final List<String> IGNORED_NBT = Arrays.asList("UUID", "Leash");
 
     public AmberBlockEntity(BlockPos pPos, BlockState pBlockState) {
         super(SMBlockEntityTypes.AMBER.get(), pPos, pBlockState);
