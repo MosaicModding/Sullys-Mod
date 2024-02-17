@@ -9,7 +9,7 @@ import net.minecraft.world.item.ItemStack;
 
 public class SMItemUtil {
     public static void damageItem(Player player, ItemStack stack, InteractionHand hand) {
-        if (!player.isCreative() && !player.getAbilities().instabuild) {
+        if (notCreative(player)) {
             stack.hurtAndBreak(1, player, (player1) -> player1.broadcastBreakEvent(hand));
         }
     }
@@ -21,8 +21,12 @@ public class SMItemUtil {
     }
 
     public static void nonCreativeShrinkStack(Player player, ItemStack stack) {
-        if (!player.isCreative() && !player.getAbilities().instabuild) {
+        if (notCreative(player)) {
             stack.shrink(1);
         }
+    }
+
+    public static boolean notCreative(Player player) {
+        return !player.isCreative() && !player.getAbilities().instabuild;
     }
 }

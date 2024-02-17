@@ -1,6 +1,9 @@
 package com.uraneptus.sullysmod.common.entities;
 
+import com.uraneptus.sullysmod.SullysMod;
 import com.uraneptus.sullysmod.common.blocks.TortoiseEggBlock;
+import com.uraneptus.sullysmod.common.network.CraftingMenuFromTortoiseMessage;
+import com.uraneptus.sullysmod.core.other.SMItemUtil;
 import com.uraneptus.sullysmod.core.other.tags.SMEntityTags;
 import com.uraneptus.sullysmod.core.other.tags.SMItemTags;
 import com.uraneptus.sullysmod.core.registry.SMBlocks;
@@ -10,6 +13,7 @@ import com.uraneptus.sullysmod.core.registry.SMSounds;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.Component;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
@@ -22,6 +26,7 @@ import net.minecraft.tags.BlockTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.SimpleMenuProvider;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
@@ -32,6 +37,8 @@ import net.minecraft.world.entity.npc.Villager;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.entity.vehicle.Boat;
+import net.minecraft.world.inventory.ContainerLevelAccess;
+import net.minecraft.world.inventory.CraftingMenu;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
@@ -43,6 +50,9 @@ import net.minecraft.world.level.block.TurtleEggBlock;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.entity.player.PlayerContainerEvent;
+import net.minecraftforge.network.PacketDistributor;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib.animatable.GeoEntity;
@@ -68,8 +78,6 @@ public class Tortoise extends Animal implements GeoEntity {
     private final AnimatableInstanceCache instanceCache = GeckoLibUtil.createInstanceCache(this);
     public boolean hasCraftingTable = false;
     int layEggCounter;
-    //TODO change bounding box when crafting table
-    //TODO redo mob interaction
 
     public Tortoise(EntityType<? extends Animal> entityType, Level level) {
         super(entityType, level);
@@ -90,6 +98,19 @@ public class Tortoise extends Animal implements GeoEntity {
     @Override
     public float getScale() {
         return this.isBaby() ? 0.15f : 1.0f;
+    }
+
+    @Override
+    public EntityDimensions getDimensions(Pose pPose) {
+        EntityDimensions dimensions;
+        float additionalHeight = this.hasCraftingTable ? 0.25F : 0.0F;
+
+        if (this.getHideTimerDuration() == 0) {
+            dimensions = super.getDimensions(pPose).scale(1.0F, 1.0F + additionalHeight);
+        } else {
+            dimensions = super.getDimensions(pPose).scale(1.0F, 0.8F + additionalHeight);
+        }
+        return dimensions;
     }
 
     @Override
@@ -181,24 +202,59 @@ public class Tortoise extends Animal implements GeoEntity {
         }
     }
 
+    //This could probably be written nicer
     public @NotNull InteractionResult mobInteract(Player pPlayer, @NotNull InteractionHand pHand) {
-        boolean flag = this.isFood(pPlayer.getItemInHand(pHand)) || this.isBaby();
-        if (!this.hasCraftingTable && pPlayer.getItemInHand(pHand).is(Items.CRAFTING_TABLE)) {
-            this.hasCraftingTable = true;
-            return InteractionResult.CONSUME;
+        ItemStack itemInHand = pPlayer.getItemInHand(pHand);
+        boolean flag = this.isFood(itemInHand) || this.isBaby();
+
+        if (!flag) {
+            if (!this.hasCraftingTable) {
+                if (itemInHand.is(Items.CRAFTING_TABLE)) {
+                    SMItemUtil.nonCreativeShrinkStack(pPlayer, itemInHand);
+                    this.hasCraftingTable = true;
+                    this.refreshDimensions();
+                    return InteractionResult.sidedSuccess(this.level().isClientSide);
+                }
+                if (!this.isVehicle() && !pPlayer.isShiftKeyDown()) {
+                    if (!this.level().isClientSide) {
+                        pPlayer.startRiding(this);
+                        this.setHideTimerDuration(100);
+                    }
+                    this.gameEvent(GameEvent.ENTITY_INTERACT, null);
+                    return InteractionResult.sidedSuccess(this.level().isClientSide);
+                }
+            } else {
+                if (itemInHand.isEmpty()) {
+                    if (pPlayer.isShiftKeyDown()) {
+                        this.hasCraftingTable = false;
+                        this.refreshDimensions();
+                        if (SMItemUtil.notCreative(pPlayer)) {
+                            pPlayer.getInventory().add(new ItemStack(Items.CRAFTING_TABLE));
+                        }
+                        return InteractionResult.sidedSuccess(this.level().isClientSide);
+                    } else {
+                        if (!this.level().isClientSide()) {
+                            this.openCraftingMenu((ServerPlayer)pPlayer);
+                            pPlayer.awardStat(Stats.INTERACT_WITH_CRAFTING_TABLE);
+                        }
+                        return InteractionResult.SUCCESS;
+                    }
+
+                }
+            }
         }
         return super.mobInteract(pPlayer, pHand);
-        /*
-        if (!flag && !this.isVehicle() && !pPlayer.isShiftKeyDown()) {
-            if (!this.level().isClientSide) {
-                pPlayer.startRiding(this);
-                this.setHideTimerDuration(100);
-            }
-            this.gameEvent(GameEvent.ENTITY_INTERACT, null);
-            return InteractionResult.sidedSuccess(this.level().isClientSide);
-        } else return super.mobInteract(pPlayer, pHand);
+    }
 
-         */
+    public void openCraftingMenu(ServerPlayer player) {
+        if (player.containerMenu != player.inventoryMenu) {
+            player.closeContainer();
+        }
+        player.nextContainerCounter();
+        SullysMod.PLAY_CHANNEL.send(PacketDistributor.PLAYER.with(() -> player), new CraftingMenuFromTortoiseMessage(this.getId(), player.containerCounter));
+        player.containerMenu = new CraftingMenu(player.containerCounter, player.getInventory());
+        player.initMenu(player.containerMenu);
+        MinecraftForge.EVENT_BUS.post(new PlayerContainerEvent.Open(player, player.containerMenu));
     }
 
     @Override
@@ -307,6 +363,7 @@ public class Tortoise extends Animal implements GeoEntity {
             }
             this.dropLeash(true, true);
             this.entityData.set(HIDE_TIMER, durationInTicks);
+            this.refreshDimensions();
         }
     }
 
