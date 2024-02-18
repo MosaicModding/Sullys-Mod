@@ -105,7 +105,7 @@ public class SullysMod {
     }
 
     private void setupPlayMessages() {
-        PLAY_CHANNEL.registerMessage(3, CraftingMenuFromTortoiseMessage.class, CraftingMenuFromTortoiseMessage::serialize, CraftingMenuFromTortoiseMessage::deserialize, CraftingMenuFromTortoiseMessage::handle, Optional.of(NetworkDirection.PLAY_TO_CLIENT));
+        PLAY_CHANNEL.registerMessage(0, CraftingMenuFromTortoiseMessage.class, CraftingMenuFromTortoiseMessage::serialize, CraftingMenuFromTortoiseMessage::deserialize, CraftingMenuFromTortoiseMessage::handle, Optional.of(NetworkDirection.PLAY_TO_CLIENT));
     }
 
     @SubscribeEvent

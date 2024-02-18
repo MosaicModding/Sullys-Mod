@@ -26,6 +26,15 @@ public class SMItemUtil {
         }
     }
 
+    public static void nonCreativeAddItems(Player player, ItemStack stack) {
+        if (notCreative(player)) {
+            if (!player.getInventory().add(stack)) {
+                player.drop(stack, false);
+            }
+        }
+
+    }
+
     public static boolean notCreative(Player player) {
         return !player.isCreative() && !player.getAbilities().instabuild;
     }

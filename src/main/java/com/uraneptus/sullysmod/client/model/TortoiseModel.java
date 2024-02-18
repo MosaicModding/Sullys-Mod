@@ -32,10 +32,6 @@ public class TortoiseModel <T extends Tortoise> extends DefaultedEntityGeoModel<
         super.setCustomAnimations(animatable, instanceId, animationState);
         CoreGeoBone craftingSaddle = getAnimationProcessor().getBone("CraftingSaddle");
 
-        if (!animatable.hasCraftingTable) {
-            craftingSaddle.setHidden(true);
-        } else {
-            craftingSaddle.setHidden(false);
-        }
+        craftingSaddle.setHidden(!animatable.hasCraftingTable());
     }
 }

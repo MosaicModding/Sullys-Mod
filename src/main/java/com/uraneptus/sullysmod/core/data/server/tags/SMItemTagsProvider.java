@@ -120,6 +120,7 @@ public class SMItemTagsProvider extends ItemTagsProvider {
 
 
         //Forge Tags
+        tag(SMItemTags.CRAFTING_TABLES).add(Items.CRAFTING_TABLE);
         tag(SMItemTags.RAW_LANTERNFISH).add(
                 SMItems.LANTERNFISH.get()
         );

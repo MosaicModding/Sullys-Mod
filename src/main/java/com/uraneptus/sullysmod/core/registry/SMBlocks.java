@@ -85,6 +85,7 @@ public class SMBlocks {
     public static final RegistryObject<Block> AMBER_LANTERN = HELPER.createBlock("amber_lantern", () -> new AmberBlock(SMProperties.Blocks.AMBER.lightLevel(state -> 15)));
 
     //Petrified Wood
+    //TODO add recipes
     public static final RegistryObject<Block> PETRIFIED_PLANKS = HELPER.createBlock("petrified_planks", () -> new Block(SMProperties.Blocks.petrified().requiresCorrectToolForDrops()));
     public static final RegistryObject<Block> STRIPPED_PETRIFIED_LOG = HELPER.createBlock("stripped_petrified_log", () -> strippedLog(MapColor.TERRACOTTA_ORANGE, MapColor.TERRACOTTA_ORANGE));
     public static final RegistryObject<Block> PETRIFIED_LOG = HELPER.createBlock("petrified_log", () -> log(STRIPPED_PETRIFIED_LOG, MapColor.TERRACOTTA_ORANGE, MapColor.COLOR_BROWN));

@@ -7,6 +7,7 @@ import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.ContainerLevelAccess;
 import net.minecraft.world.inventory.CraftingMenu;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
@@ -35,7 +36,12 @@ public record CraftingMenuFromTortoiseMessage(int entityId, int windowId) {
                 Entity entity = world.getEntity(message.entityId());
 
                 if (entity instanceof Tortoise) {
-                    CraftingMenu container = new CraftingMenu(message.windowId(), player.getInventory());
+                    CraftingMenu container = new CraftingMenu(message.windowId(), player.getInventory(), ContainerLevelAccess.create(entity.level(), entity.blockPosition())) {
+                        @Override
+                        public boolean stillValid(Player pPlayer) {
+                            return true;
+                        }
+                    };
                     player.containerMenu = container;
                     Minecraft.getInstance().setScreen(new CraftingScreen(container, player.getInventory(), Component.translatable("container.crafting")));
                 }
