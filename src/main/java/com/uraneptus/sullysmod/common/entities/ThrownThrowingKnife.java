@@ -79,9 +79,19 @@ public class ThrownThrowingKnife extends AbstractArrow {
 
                 this.doPostHurtEffects(livingEntity);
             }
-        }
+            this.discard();
+        } else {
+            this.setDeltaMovement(this.getDeltaMovement().scale(-0.1D));
+            this.setYRot(this.getYRot() + 180.0F);
+            this.yRotO += 180.0F;
+            if (!this.level().isClientSide && this.getDeltaMovement().lengthSqr() < 1.0E-7D) {
+                if (this.pickup == AbstractArrow.Pickup.ALLOWED) {
+                    this.spawnAtLocation(this.getPickupItem(), 0.1F);
+                }
 
-        this.discard();
+                this.discard();
+            }
+        }
         this.playSound(SMSounds.THROWING_KNIFE_HIT.get(), 1.0F, 1.0F);
     }
 
