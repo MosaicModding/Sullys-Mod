@@ -126,7 +126,7 @@ public class SMLangProvider extends LanguageProvider {
         forEntity(SMEntityTypes.PIRANHA);
 
         //Potions
-        addPotionsForEffect(SMPotions.UNLUCK, "Bad Luck");
+        SMPotions.POTION_TRANSLATIONS.forEach(this::addPotionsForEffect);
 
         //Subtitles
         add("subtitles.item.vial.shatter", "Vial shatters");

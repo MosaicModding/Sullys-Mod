@@ -204,11 +204,11 @@ public class Tortoise extends Animal implements GeoEntity {
         }
     }
 
-    public @NotNull InteractionResult mobInteract(Player pPlayer, @NotNull InteractionHand pHand) {
+    @NotNull
+    @Override
+    public InteractionResult mobInteract(Player pPlayer, @NotNull InteractionHand pHand) {
         ItemStack itemInHand = pPlayer.getItemInHand(pHand);
-        boolean flag = this.isFood(itemInHand) || this.isBaby();
-
-        if (flag) {
+        if (this.isFood(itemInHand) || this.isBaby()) {
             return super.mobInteract(pPlayer, pHand);
         }
 
