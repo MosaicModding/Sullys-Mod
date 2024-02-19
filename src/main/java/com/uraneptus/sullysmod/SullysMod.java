@@ -3,7 +3,6 @@ package com.uraneptus.sullysmod;
 import com.mojang.logging.LogUtils;
 import com.teamabnormals.blueprint.core.Blueprint;
 import com.teamabnormals.blueprint.core.util.registry.RegistryHelper;
-import com.uraneptus.sullysmod.common.network.CraftingMenuFromTortoiseMessage;
 import com.uraneptus.sullysmod.core.registry.SMDispenseBehaviors;
 import com.uraneptus.sullysmod.common.entities.*;
 import com.uraneptus.sullysmod.core.SMConfig;
@@ -48,13 +47,6 @@ public class SullysMod {
     public static final String MOD_ID = "sullysmod";
     public static final RegistryHelper REGISTRY_HELPER = new RegistryHelper(MOD_ID);
     public static final Logger LOGGER = LogUtils.getLogger();
-    public static final String NETWORK_PROTOCOL = "1";
-    public static final SimpleChannel PLAY_CHANNEL = NetworkRegistry.ChannelBuilder
-            .named(modPrefix("play_channel"))
-            .networkProtocolVersion(() -> NETWORK_PROTOCOL)
-            .clientAcceptedVersions(NETWORK_PROTOCOL::equals)
-            .serverAcceptedVersions(NETWORK_PROTOCOL::equals)
-            .simpleChannel();
 
     public SullysMod() {
         IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
@@ -65,7 +57,6 @@ public class SullysMod {
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, SMConfig.COMMON);
 
         SMTextDefinitions.init();
-        this.setupPlayMessages();
 
         REGISTRY_HELPER.register(bus);
         SMParticleTypes.PARTICLES.register(bus);
@@ -102,10 +93,6 @@ public class SullysMod {
             SMBrewingRecipes.register();
             SMDispenseBehaviors.register();
         });
-    }
-
-    private void setupPlayMessages() {
-        PLAY_CHANNEL.registerMessage(0, CraftingMenuFromTortoiseMessage.class, CraftingMenuFromTortoiseMessage::serialize, CraftingMenuFromTortoiseMessage::deserialize, CraftingMenuFromTortoiseMessage::handle, Optional.of(NetworkDirection.PLAY_TO_CLIENT));
     }
 
     @SubscribeEvent

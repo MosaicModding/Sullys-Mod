@@ -2,7 +2,6 @@ package com.uraneptus.sullysmod.common.entities;
 
 import com.uraneptus.sullysmod.SullysMod;
 import com.uraneptus.sullysmod.common.blocks.TortoiseEggBlock;
-import com.uraneptus.sullysmod.common.network.CraftingMenuFromTortoiseMessage;
 import com.uraneptus.sullysmod.core.other.SMItemUtil;
 import com.uraneptus.sullysmod.core.other.tags.SMEntityTags;
 import com.uraneptus.sullysmod.core.other.tags.SMItemTags;
@@ -47,12 +46,14 @@ import net.minecraft.world.level.GameRules;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.TurtleEggBlock;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.player.PlayerContainerEvent;
+import net.minecraftforge.network.NetworkHooks;
 import net.minecraftforge.network.PacketDistributor;
 import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.NotNull;
@@ -255,16 +256,12 @@ public class Tortoise extends Animal implements GeoEntity {
         if (player.containerMenu != player.inventoryMenu) {
             player.closeContainer();
         }
-        player.nextContainerCounter();
-        SullysMod.PLAY_CHANNEL.send(PacketDistributor.PLAYER.with(() -> player), new CraftingMenuFromTortoiseMessage(this.getId(), player.containerCounter));
-        player.containerMenu = new CraftingMenu(player.containerCounter, player.getInventory(), ContainerLevelAccess.create(this.level(), this.blockPosition())) {
+        NetworkHooks.openScreen(player, new SimpleMenuProvider((id, inventory, mPlayer) -> new CraftingMenu(id, inventory, ContainerLevelAccess.create(this.level(), this.blockPosition())) {
             @Override
             public boolean stillValid(Player pPlayer) {
                 return true;
             }
-        };
-        player.initMenu(player.containerMenu);
-        MinecraftForge.EVENT_BUS.post(new PlayerContainerEvent.Open(player, player.containerMenu));
+        }, this.getName()));
     }
 
     @Override
