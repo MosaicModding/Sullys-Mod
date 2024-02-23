@@ -42,6 +42,57 @@
     ],
     "subtitle": "subtitles.block.jade.ricochet"
   },
+  "block.petrified_wood.break": {
+    "sounds": [
+      "sullysmod:block/petrified_wood/break1",
+      "sullysmod:block/petrified_wood/break2",
+      "sullysmod:block/petrified_wood/break3",
+      "sullysmod:block/petrified_wood/break4"
+    ],
+    "subtitle": "subtitles.block.generic.break"
+  },
+  "block.petrified_wood.fall": {
+    "sounds": [
+      "sullysmod:block/petrified_wood/step1",
+      "sullysmod:block/petrified_wood/step2",
+      "sullysmod:block/petrified_wood/step3",
+      "sullysmod:block/petrified_wood/step4",
+      "sullysmod:block/petrified_wood/step5",
+      "sullysmod:block/petrified_wood/step6"
+    ],
+    "subtitle": "subtitles.block.generic.fall"
+  },
+  "block.petrified_wood.hit": {
+    "sounds": [
+      "sullysmod:block/petrified_wood/step1",
+      "sullysmod:block/petrified_wood/step2",
+      "sullysmod:block/petrified_wood/step3",
+      "sullysmod:block/petrified_wood/step4",
+      "sullysmod:block/petrified_wood/step5",
+      "sullysmod:block/petrified_wood/step6"
+    ],
+    "subtitle": "subtitles.block.generic.hit"
+  },
+  "block.petrified_wood.place": {
+    "sounds": [
+      "sullysmod:block/petrified_wood/place1",
+      "sullysmod:block/petrified_wood/place2",
+      "sullysmod:block/petrified_wood/place3",
+      "sullysmod:block/petrified_wood/place4"
+    ],
+    "subtitle": "subtitles.block.generic.place"
+  },
+  "block.petrified_wood.step": {
+    "sounds": [
+      "sullysmod:block/petrified_wood/step1",
+      "sullysmod:block/petrified_wood/step2",
+      "sullysmod:block/petrified_wood/step3",
+      "sullysmod:block/petrified_wood/step4",
+      "sullysmod:block/petrified_wood/step5",
+      "sullysmod:block/petrified_wood/step6"
+    ],
+    "subtitle": "subtitles.block.generic.footsteps"
+  },
   "entity.bouldering_zombie.ambient": {
     "sounds": [
       "mob/zombie/say1",

@@ -1,6 +1,7 @@
 package com.uraneptus.sullysmod.core.other;
 
 import com.teamabnormals.blueprint.core.util.PropertyUtil;
+import com.uraneptus.sullysmod.core.registry.SMSounds;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.food.FoodProperties;
@@ -25,7 +26,7 @@ public class SMProperties {
         public static final BlockBehaviour.Properties AMBER = BlockBehaviour.Properties.of().strength(1.3F, 3F).mapColor(MapColor.COLOR_ORANGE).requiresCorrectToolForDrops().randomTicks();
 
         public static BlockBehaviour.Properties petrified() {
-            return BlockBehaviour.Properties.of().instrument(NoteBlockInstrument.BASEDRUM).strength(2.0F, 6.0F).sound(SoundType.STONE).mapColor(MapColor.TERRACOTTA_ORANGE);
+            return BlockBehaviour.Properties.of().instrument(NoteBlockInstrument.BASEDRUM).strength(2.0F, 6.0F).sound(SMSounds.PETRIFIED_WOOD).mapColor(MapColor.TERRACOTTA_ORANGE);
         }
         public static final BlockBehaviour.Properties PETRIFIED_TRAPDOOR = petrified().requiresCorrectToolForDrops().noOcclusion().isValidSpawn(PropertyUtil::never).strength(3.0F);
         public static final BlockBehaviour.Properties PETRIFIED_PRESSURE_PLATE = petrified().forceSolidOn().noCollission().pushReaction(PushReaction.DESTROY).strength(0.5F);

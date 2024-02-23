@@ -27,78 +27,119 @@ public class SMSoundDefinitionsProvider extends SoundDefinitionsProvider {
         addMusicDiscSound(SMSounds.MUSIC_DISC_SUNKEN_PAST, "sunken_past");
 
         //Item Sounds
-        addbasicSound(SMSounds.VIAL_SHATTERS,
+        this.addBasicSound(SMSounds.VIAL_SHATTERS,
                 sound("random/glass1").pitch(1.3F),
                 sound("random/glass2").pitch(1.3F),
                 sound("random/glass3").pitch(1.3F)
         );
-        addbasicSound(SMSounds.VIAL_FILLS,
+        this.addBasicSound(SMSounds.VIAL_FILLS,
                 sound("item/bottle/fill1").pitch(1.3F),
                 sound("item/bottle/fill2").pitch(1.3F),
                 sound("item/bottle/fill3").pitch(1.3F),
                 sound("item/bottle/fill4").pitch(1.3F)
         );
-        addbasicSound(SMSounds.THROWING_KNIFE_HIT,
+        this.addBasicSound(SMSounds.THROWING_KNIFE_HIT,
                 sound(SullysMod.modPrefix("item/throwing_knife/hit1")),
                 sound(SullysMod.modPrefix("item/throwing_knife/hit2")),
                 sound(SullysMod.modPrefix("item/throwing_knife/hit3"))
         );
-        addbasicSound(SMSounds.THROWING_KNIFE_HIT_GROUND,
+        this.addBasicSound(SMSounds.THROWING_KNIFE_HIT_GROUND,
                 sound(SullysMod.modPrefix("item/throwing_knife/hit1")),
                 sound(SullysMod.modPrefix("item/throwing_knife/hit2")),
                 sound(SullysMod.modPrefix("item/throwing_knife/hit3"))
         );
-        addbasicSound(SMSounds.THROWING_KNIFE_THROW,
+        this.addBasicSound(SMSounds.THROWING_KNIFE_THROW,
                 sound(SullysMod.modPrefix("item/throwing_knife/throw1")),
                 sound(SullysMod.modPrefix("item/throwing_knife/throw2"))
         );
 
         //Block Sounds
-        addbasicSound(SMSounds.POLISH_JADE,
+        this.addBasicSound(SMSounds.POLISH_JADE,
                 sound(SullysMod.modPrefix("block/grindstone/jade_polish0")),
                 sound(SullysMod.modPrefix("block/grindstone/jade_polish1"))
         );
 
-        addbasicSound(SMSounds.JADE_RICOCHET,
+        this.addBasicSound(SMSounds.JADE_RICOCHET,
                 sound("block/end_portal/eyeplace1"),
                 sound("block/end_portal/eyeplace2"),
                 sound("block/end_portal/eyeplace3")
         );
 
-        addbasicSound(SMSounds.FLINGER_FLINGS,
+        this.addBasicSound(SMSounds.FLINGER_FLINGS,
                 sound(SullysMod.modPrefix("block/flinger_totem/flinger_fling1")),
                 sound(SullysMod.modPrefix("block/flinger_totem/flinger_fling3")),
                 sound(SullysMod.modPrefix("block/flinger_totem/flinger_fling3"))
         );
 
-        addbasicSound(SMSounds.FLINGER_INPUT_HONEY,
+        this.addBasicSound(SMSounds.FLINGER_INPUT_HONEY,
                 sound(SullysMod.modPrefix("block/flinger_totem/flinger_input_honey"))
         );
 
-        addbasicSound(SMSounds.FLINGER_ADD_HONEY,
+        this.addBasicSound(SMSounds.FLINGER_ADD_HONEY,
                 sound("item/honeycomb/wax_on1"),
                 sound("item/honeycomb/wax_on2"),
                 sound("item/honeycomb/wax_on3")
         );
 
-        addbasicSound(SMSounds.FLINGER_REDUCE_HONEY,
+        this.addBasicSound(SMSounds.FLINGER_REDUCE_HONEY,
                 sound("block/beehive/shear")
         );
 
+        this.addBasicSound(SMSounds.PETRIFIED_WOOD_BREAK, "block.generic.break",
+                sound(SullysMod.modPrefix("block/petrified_wood/break1")),
+                sound(SullysMod.modPrefix("block/petrified_wood/break2")),
+                sound(SullysMod.modPrefix("block/petrified_wood/break3")),
+                sound(SullysMod.modPrefix("block/petrified_wood/break4"))
+        );
+
+        this.addBasicSound(SMSounds.PETRIFIED_WOOD_FALL, "block.generic.fall",
+                sound(SullysMod.modPrefix("block/petrified_wood/step1")),
+                sound(SullysMod.modPrefix("block/petrified_wood/step2")),
+                sound(SullysMod.modPrefix("block/petrified_wood/step3")),
+                sound(SullysMod.modPrefix("block/petrified_wood/step4")),
+                sound(SullysMod.modPrefix("block/petrified_wood/step5")),
+                sound(SullysMod.modPrefix("block/petrified_wood/step6"))
+        );
+
+        this.addBasicSound(SMSounds.PETRIFIED_WOOD_HIT, "block.generic.hit",
+                sound(SullysMod.modPrefix("block/petrified_wood/step1")),
+                sound(SullysMod.modPrefix("block/petrified_wood/step2")),
+                sound(SullysMod.modPrefix("block/petrified_wood/step3")),
+                sound(SullysMod.modPrefix("block/petrified_wood/step4")),
+                sound(SullysMod.modPrefix("block/petrified_wood/step5")),
+                sound(SullysMod.modPrefix("block/petrified_wood/step6"))
+        );
+
+        this.addBasicSound(SMSounds.PETRIFIED_WOOD_PLACE, "block.generic.place",
+                sound(SullysMod.modPrefix("block/petrified_wood/place1")),
+                sound(SullysMod.modPrefix("block/petrified_wood/place2")),
+                sound(SullysMod.modPrefix("block/petrified_wood/place3")),
+                sound(SullysMod.modPrefix("block/petrified_wood/place4"))
+        );
+
+        this.addBasicSound(SMSounds.PETRIFIED_WOOD_STEP, "block.generic.footsteps",
+                sound(SullysMod.modPrefix("block/petrified_wood/step1")),
+                sound(SullysMod.modPrefix("block/petrified_wood/step2")),
+                sound(SullysMod.modPrefix("block/petrified_wood/step3")),
+                sound(SullysMod.modPrefix("block/petrified_wood/step4")),
+                sound(SullysMod.modPrefix("block/petrified_wood/step5")),
+                sound(SullysMod.modPrefix("block/petrified_wood/step6"))
+        );
+
         //Entity Sounds
-        addbasicSound(SMSounds.TORTOISE_AMBIENT,
+        this.addBasicSound(SMSounds.TORTOISE_AMBIENT,
                 sound("mob/turtle/idle1").volume(0.8F),
                 sound("mob/turtle/idle2").volume(0.7F),
                 sound("mob/turtle/idle3").volume(0.8F)
         );
 
-        addbasicSound(SMSounds.TORTOISE_DEATH,
+        this.addBasicSound(SMSounds.TORTOISE_DEATH,
                 sound("mob/turtle/death1"),
                 sound("mob/turtle/death2"),
                 sound("mob/turtle/death3")
         );
 
-        addbasicSound(SMSounds.TORTOISE_HURT,
+        this.addBasicSound(SMSounds.TORTOISE_HURT,
                 sound("mob/turtle/hurt1"),
                 sound("mob/turtle/hurt2"),
                 sound("mob/turtle/hurt3"),
@@ -106,7 +147,7 @@ public class SMSoundDefinitionsProvider extends SoundDefinitionsProvider {
                 sound("mob/turtle/hurt5")
         );
 
-        addbasicSound(SMSounds.TORTOISE_HIDE,
+        this.addBasicSound(SMSounds.TORTOISE_HIDE,
                 sound(new ResourceLocation("entity/shulker/close1")),
                 sound(new ResourceLocation("entity/shulker/close2")),
                 sound(new ResourceLocation("entity/shulker/close3")),
@@ -114,7 +155,7 @@ public class SMSoundDefinitionsProvider extends SoundDefinitionsProvider {
                 sound(new ResourceLocation("entity/shulker/close5"))
         );
 
-        addbasicSound(SMSounds.TORTOISE_EMERGE,
+        this.addBasicSound(SMSounds.TORTOISE_EMERGE,
                 sound(new ResourceLocation("entity/shulker/open1")),
                 sound(new ResourceLocation("entity/shulker/open2")),
                 sound(new ResourceLocation("entity/shulker/open3")),
@@ -122,7 +163,7 @@ public class SMSoundDefinitionsProvider extends SoundDefinitionsProvider {
                 sound(new ResourceLocation("entity/shulker/open5"))
         );
 
-        addbasicSound(SMSounds.TORTOISE_HURT_HIDDEN,
+        this.addBasicSound(SMSounds.TORTOISE_HURT_HIDDEN,
                 sound(new ResourceLocation("entity/shulker/hurt_closed1")),
                 sound(new ResourceLocation("entity/shulker/hurt_closed2")),
                 sound(new ResourceLocation("entity/shulker/hurt_closed3")),
@@ -130,27 +171,27 @@ public class SMSoundDefinitionsProvider extends SoundDefinitionsProvider {
                 sound(new ResourceLocation("entity/shulker/hurt_closed5"))
         );
 
-        addbasicSound(SMSounds.BABY_TORTOISE_HURT,
+        this.addBasicSound(SMSounds.BABY_TORTOISE_HURT,
                 sound(new ResourceLocation("mob/turtle/baby/hurt1")),
                 sound(new ResourceLocation("mob/turtle/baby/hurt2"))
         );
 
-        addbasicSound(SMSounds.BABY_TORTOISE_DEATH,
+        this.addBasicSound(SMSounds.BABY_TORTOISE_DEATH,
                 sound(new ResourceLocation("mob/turtle/baby/death1")),
                 sound(new ResourceLocation("mob/turtle/baby/death2"))
         );
 
-        addbasicSound(SMSounds.TORTOISE_LAY_EGG,
+        this.addBasicSound(SMSounds.TORTOISE_LAY_EGG,
                 sound(new ResourceLocation("mob/turtle/egg/drop_egg1")),
                 sound(new ResourceLocation("mob/turtle/egg/drop_egg2"))
         );
 
-        addbasicSound(SMSounds.TORTOISE_EGG_BREAK,
+        this.addBasicSound(SMSounds.TORTOISE_EGG_BREAK,
                 sound(new ResourceLocation("mob/turtle/egg/egg_break1")),
                 sound(new ResourceLocation("mob/turtle/egg/egg_break2"))
         );
 
-        addbasicSound(SMSounds.TORTOISE_EGG_CRACK,
+        this.addBasicSound(SMSounds.TORTOISE_EGG_CRACK,
                 sound(new ResourceLocation("mob/turtle/egg/egg_crack1")),
                 sound(new ResourceLocation("mob/turtle/egg/egg_crack2")),
                 sound(new ResourceLocation("mob/turtle/egg/egg_crack3")),
@@ -158,75 +199,79 @@ public class SMSoundDefinitionsProvider extends SoundDefinitionsProvider {
                 sound(new ResourceLocation("mob/turtle/egg/egg_crack5"))
         );
 
-        addbasicSound(SMSounds.TORTOISE_EGG_HATCH,
+        this.addBasicSound(SMSounds.TORTOISE_EGG_HATCH,
                 sound(new ResourceLocation("mob/turtle/baby/egg_hatched1")),
                 sound(new ResourceLocation("mob/turtle/baby/egg_hatched2")),
                 sound(new ResourceLocation("mob/turtle/baby/egg_hatched3"))
         );
 
-        addbasicSound(SMSounds.TORTOISE_SHELL_PLACE,
+        this.addBasicSound(SMSounds.TORTOISE_SHELL_PLACE,
                 sound(new ResourceLocation("random/bow")));
 
-        addbasicSound(SMSounds.LANTERNFISH_FLOP,
+        this.addBasicSound(SMSounds.LANTERNFISH_FLOP,
                 sound(new ResourceLocation("entity/fish/flop1")).volume(0.3),
                 sound(new ResourceLocation("entity/fish/flop2")).volume(0.3),
                 sound(new ResourceLocation("entity/fish/flop3")).volume(0.3),
                 sound(new ResourceLocation("entity/fish/flop4")).volume(0.3)
         );
 
-        addbasicSound(SMSounds.LANTERNFISH_DEATH,
+        this.addBasicSound(SMSounds.LANTERNFISH_DEATH,
                 sound(new ResourceLocation("entity/fish/hurt1")),
                 sound(new ResourceLocation("entity/fish/hurt2")),
                 sound(new ResourceLocation("entity/fish/hurt3")),
                 sound(new ResourceLocation("entity/fish/hurt4"))
         );
 
-        addbasicSound(SMSounds.LANTERNFISH_HURT,
+        this.addBasicSound(SMSounds.LANTERNFISH_HURT,
                 sound(new ResourceLocation("entity/fish/hurt1")),
                 sound(new ResourceLocation("entity/fish/hurt2")),
                 sound(new ResourceLocation("entity/fish/hurt3")),
                 sound(new ResourceLocation("entity/fish/hurt4"))
         );
 
-        addbasicSound(SMSounds.PIRANHA_FLOP,
+        this.addBasicSound(SMSounds.PIRANHA_FLOP,
                 sound(new ResourceLocation("entity/fish/flop1")).volume(0.3),
                 sound(new ResourceLocation("entity/fish/flop2")).volume(0.3),
                 sound(new ResourceLocation("entity/fish/flop3")).volume(0.3),
                 sound(new ResourceLocation("entity/fish/flop4")).volume(0.3)
         );
 
-        addbasicSound(SMSounds.PIRANHA_DEATH,
+        this.addBasicSound(SMSounds.PIRANHA_DEATH,
                 sound(new ResourceLocation("entity/fish/hurt1")),
                 sound(new ResourceLocation("entity/fish/hurt2")),
                 sound(new ResourceLocation("entity/fish/hurt3")),
                 sound(new ResourceLocation("entity/fish/hurt4"))
         );
 
-        addbasicSound(SMSounds.PIRANHA_HURT,
+        this.addBasicSound(SMSounds.PIRANHA_HURT,
                 sound(new ResourceLocation("entity/fish/hurt1")),
                 sound(new ResourceLocation("entity/fish/hurt2")),
                 sound(new ResourceLocation("entity/fish/hurt3")),
                 sound(new ResourceLocation("entity/fish/hurt4"))
         );
 
-        addbasicSound(SMSounds.BOULDERING_ZOMBIE_AMBIENT,
+        this.addBasicSound(SMSounds.BOULDERING_ZOMBIE_AMBIENT,
                 sound(new ResourceLocation("mob/zombie/say1")),
                 sound(new ResourceLocation("mob/zombie/say2")),
                 sound(new ResourceLocation("mob/zombie/say3"))
         );
 
-        addbasicSound(SMSounds.BOULDERING_ZOMBIE_HURT,
+        this.addBasicSound(SMSounds.BOULDERING_ZOMBIE_HURT,
                 sound(new ResourceLocation("mob/zombie/hurt1")),
                 sound(new ResourceLocation("mob/zombie/hurt2"))
         );
 
-        addbasicSound(SMSounds.BOULDERING_ZOMBIE_DEATH,
+        this.addBasicSound(SMSounds.BOULDERING_ZOMBIE_DEATH,
                 sound(new ResourceLocation("mob/zombie/death"))
         );
     }
 
-    private void addbasicSound(Supplier<SoundEvent> soundEvent, SoundDefinition.Sound... sounds) {
-        this.add(soundEvent.get(), SoundDefinition.definition().subtitle("subtitles." + soundEvent.get().getLocation().getPath()).with(sounds));
+    private void addBasicSound(Supplier<SoundEvent> soundEvent, String subtitle, SoundDefinition.Sound... sounds) {
+        this.add(soundEvent.get(), SoundDefinition.definition().subtitle("subtitles." + subtitle).with(sounds));
+    }
+
+    private void addBasicSound(Supplier<SoundEvent> soundEvent, SoundDefinition.Sound... sounds){
+        this.addBasicSound(soundEvent, soundEvent.get().getLocation().getPath(), sounds);
     }
 
     private void addMusicDiscSound(Supplier<SoundEvent> soundEvent, String name) {

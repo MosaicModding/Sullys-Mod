@@ -3,6 +3,9 @@ package com.uraneptus.sullysmod.core.registry;
 import com.teamabnormals.blueprint.core.util.registry.SoundSubRegistryHelper;
 import com.uraneptus.sullysmod.SullysMod;
 import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.world.level.block.SoundType;
+import net.minecraftforge.common.util.ForgeSoundType;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.RegistryObject;
 
@@ -28,6 +31,11 @@ public class SMSounds {
     public static final RegistryObject<SoundEvent> FLINGER_INPUT_HONEY = HELPER.createSoundEvent("block.flinger_totem.input_honey");
     public static final RegistryObject<SoundEvent> FLINGER_ADD_HONEY = HELPER.createSoundEvent("block.flinger_totem.add_honey");
     public static final RegistryObject<SoundEvent> FLINGER_REDUCE_HONEY = HELPER.createSoundEvent("block.flinger_totem.reduce_honey");
+    public static final RegistryObject<SoundEvent> PETRIFIED_WOOD_BREAK = HELPER.createSoundEvent("block.petrified_wood.break");
+    public static final RegistryObject<SoundEvent> PETRIFIED_WOOD_FALL = HELPER.createSoundEvent("block.petrified_wood.fall");
+    public static final RegistryObject<SoundEvent> PETRIFIED_WOOD_HIT = HELPER.createSoundEvent("block.petrified_wood.hit");
+    public static final RegistryObject<SoundEvent> PETRIFIED_WOOD_PLACE = HELPER.createSoundEvent("block.petrified_wood.place");
+    public static final RegistryObject<SoundEvent> PETRIFIED_WOOD_STEP = HELPER.createSoundEvent("block.petrified_wood.step");
 
     //Entity Sounds
     public static final RegistryObject<SoundEvent> TORTOISE_HURT = HELPER.createSoundEvent("entity.tortoise.hurt");
@@ -55,4 +63,9 @@ public class SMSounds {
     public static final RegistryObject<SoundEvent> BOULDERING_ZOMBIE_AMBIENT = HELPER.createSoundEvent("entity.bouldering_zombie.ambient");
     public static final RegistryObject<SoundEvent> BOULDERING_ZOMBIE_HURT = HELPER.createSoundEvent("entity.bouldering_zombie.hurt");
     public static final RegistryObject<SoundEvent> BOULDERING_ZOMBIE_DEATH = HELPER.createSoundEvent("entity.bouldering_zombie.death");
+
+
+    //SoundTypes
+
+    public static final SoundType PETRIFIED_WOOD = new ForgeSoundType(1.0F, 1.0F, PETRIFIED_WOOD_BREAK, PETRIFIED_WOOD_STEP, PETRIFIED_WOOD_PLACE, PETRIFIED_WOOD_HIT, PETRIFIED_WOOD_FALL);
 }
