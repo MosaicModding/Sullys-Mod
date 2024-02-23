@@ -16,6 +16,7 @@ import com.uraneptus.sullysmod.core.data.server.modifiers.SMLootModifierProvider
 import com.uraneptus.sullysmod.core.data.server.tags.*;
 import com.uraneptus.sullysmod.core.other.SMTextDefinitions;
 import com.uraneptus.sullysmod.core.registry.*;
+import com.uraneptus.sullysmod.core.registry.util.SMBlockSubRegistryHelper;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
@@ -36,6 +37,7 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.network.NetworkDirection;
 import net.minecraftforge.network.NetworkRegistry;
 import net.minecraftforge.network.simple.SimpleChannel;
+import net.minecraftforge.registries.ForgeRegistries;
 import org.slf4j.Logger;
 
 import java.util.Optional;
@@ -45,7 +47,9 @@ import java.util.concurrent.CompletableFuture;
 @Mod.EventBusSubscriber(modid = SullysMod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class SullysMod {
     public static final String MOD_ID = "sullysmod";
-    public static final RegistryHelper REGISTRY_HELPER = new RegistryHelper(MOD_ID);
+    public static final RegistryHelper REGISTRY_HELPER = RegistryHelper.create(MOD_ID, helper -> {
+        helper.putSubHelper(ForgeRegistries.BLOCKS, new SMBlockSubRegistryHelper(helper));
+    });
     public static final Logger LOGGER = LogUtils.getLogger();
 
     public SullysMod() {
