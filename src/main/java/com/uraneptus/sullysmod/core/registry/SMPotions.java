@@ -17,9 +17,9 @@ public class SMPotions {
     public static Map<Supplier<? extends Potion>, String> POTION_TRANSLATIONS = new HashMap<>();
 
     public static final RegistryObject<Potion> UNLUCK = register("unluck", "Bad Luck", new MobEffectInstance(MobEffects.UNLUCK, 6000));
-    public static final RegistryObject<Potion> RESISTANCE = register("resistance", "Resistance", new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 3600));
-    public static final RegistryObject<Potion> LONG_RESISTANCE = register("long_resistance", "Resistance", new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 9600));
-    public static final RegistryObject<Potion> STRONG_RESISTANCE = register("strong_resistance", "Resistance", new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 1800, 1));
+    public static final RegistryObject<Potion> RESISTANCE = register("resistance", "Resistance", new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 1800));
+    public static final RegistryObject<Potion> LONG_RESISTANCE = register("long_resistance", "Resistance", new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 3600));
+    public static final RegistryObject<Potion> STRONG_RESISTANCE = register("strong_resistance", "Resistance", new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 1000, 1));
 
     public static RegistryObject<Potion> register(String name, String translation, MobEffectInstance... instances) {
         RegistryObject<Potion> potion = POTIONS.register(name, () -> new Potion(name, instances));
