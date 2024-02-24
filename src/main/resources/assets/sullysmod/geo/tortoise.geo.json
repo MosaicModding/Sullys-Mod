@@ -61,7 +61,7 @@
 					]
 				},
 				{
-					"name": "CraftingSaddle",
+					"name": "WorkstationSaddle",
 					"parent": "shell",
 					"pivot": [0, 3, -0.5],
 					"cubes": [

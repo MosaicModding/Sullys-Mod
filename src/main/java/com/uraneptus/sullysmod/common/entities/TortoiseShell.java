@@ -1,6 +1,8 @@
 package com.uraneptus.sullysmod.common.entities;
 
+import com.uraneptus.sullysmod.core.other.SMItemUtil;
 import com.uraneptus.sullysmod.core.other.tags.SMBlockTags;
+import com.uraneptus.sullysmod.core.other.tags.SMItemTags;
 import com.uraneptus.sullysmod.core.registry.SMDamageTypes;
 import com.uraneptus.sullysmod.core.registry.SMEntityTypes;
 import com.uraneptus.sullysmod.core.registry.SMItems;
@@ -12,8 +14,11 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.server.players.OldUsersConverter;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.stats.Stats;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -41,13 +46,13 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.UUID;
 
-public class TortoiseShell extends Entity implements OwnableEntity {
+public class TortoiseShell extends Entity implements OwnableEntity, WorkstationAttachable {
     private static final EntityDataAccessor<Integer> DATA_ID_HURT = SynchedEntityData.defineId(TortoiseShell.class, EntityDataSerializers.INT);
     private static final EntityDataAccessor<Integer> DATA_ID_HURTDIR = SynchedEntityData.defineId(TortoiseShell.class, EntityDataSerializers.INT);
     private static final EntityDataAccessor<Float> DATA_ID_DAMAGE = SynchedEntityData.defineId(TortoiseShell.class, EntityDataSerializers.FLOAT);
     protected static final EntityDataAccessor<Optional<UUID>> DATA_OWNERUUID_ID = SynchedEntityData.defineId(TortoiseShell.class, EntityDataSerializers.OPTIONAL_UUID);
-
     public static final EntityDataAccessor<Integer> SPIN_TICKS = SynchedEntityData.defineId(TortoiseShell.class, EntityDataSerializers.INT);
+    private static final EntityDataAccessor<ItemStack> WORKSTATION = SynchedEntityData.defineId(TortoiseShell.class, EntityDataSerializers.ITEM_STACK);
 
     public TortoiseShell(EntityType<? extends TortoiseShell> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
@@ -78,12 +83,19 @@ public class TortoiseShell extends Entity implements OwnableEntity {
     }
 
     @Override
+    public EntityDimensions getDimensions(Pose pPose) {
+        float additionalHeight = this.hasAppliedWorkstation() ? 0.25F : 0.0F;
+        return super.getDimensions(pPose).scale(1.0F, 1.0F + additionalHeight);
+    }
+
+    @Override
     protected void defineSynchedData() {
         this.entityData.define(DATA_ID_HURT, 0);
         this.entityData.define(DATA_ID_HURTDIR, 1);
         this.entityData.define(DATA_ID_DAMAGE, 0.0F);
         this.entityData.define(SPIN_TICKS, 0);
         this.entityData.define(DATA_OWNERUUID_ID, Optional.empty());
+        this.entityData.define(WORKSTATION, ItemStack.EMPTY);
     }
 
     public Integer getSpinTicksEntityData() {
@@ -93,11 +105,6 @@ public class TortoiseShell extends Entity implements OwnableEntity {
     @Override
     public boolean canBeCollidedWith() {
         return this.isAlive();
-    }
-
-    @Override
-    public boolean isPushable() {
-        return false;
     }
 
     //This prevents the entity from moving when the player is sprinting and hits the entity
@@ -114,22 +121,27 @@ public class TortoiseShell extends Entity implements OwnableEntity {
     }
 
     @Override
-    public InteractionResult interact(Player pPlayer, InteractionHand pHand) {
-        double yLookAnglePlayer = pPlayer.getLookAngle().get(Direction.Axis.Y);
+    public InteractionResult customInteraction(Player player, InteractionHand hand) {
+        double yLookAnglePlayer = player.getLookAngle().get(Direction.Axis.Y);
         double y = this.getDeltaMovement().get(Direction.Axis.Y);
-        double x = this.getX() - pPlayer.getX();
-        double z = this.getZ() - pPlayer.getZ();
+        double x = this.getX() - player.getX();
+        double z = this.getZ() - player.getZ();
         if (y == -0.0 && !this.isInFluidType() && (yLookAnglePlayer > -0.6D && yLookAnglePlayer < 0.1) && getSpinTicksEntityData() == 0) {
             double d2 = Math.max(x * x + z * z, 0.001D);
             this.setDeltaMovement(x / d2 * 2.1D, 0.05D, z / d2 * 2.1D);
             setSpinTimer();
-            this.setOwner(pPlayer);
-            this.setYRot(pPlayer.getYRot());
+            this.setOwner(player);
+            this.setYRot(player.getYRot());
             this.yRotO = this.getYRot();
             return InteractionResult.SUCCESS;
         }
 
         return InteractionResult.PASS;
+    }
+
+    @Override
+    public InteractionResult interact(Player pPlayer, InteractionHand pHand) {
+        return this.workstationInteraction(pPlayer, pHand, this);
     }
 
     @Override
@@ -368,6 +380,7 @@ public class TortoiseShell extends Entity implements OwnableEntity {
         if (this.getOwnerUUID() != null) {
             pCompound.putUUID("Owner", this.getOwnerUUID());
         }
+        this.addWorkstationSaveData(pCompound);
     }
 
     @Override
@@ -383,6 +396,7 @@ public class TortoiseShell extends Entity implements OwnableEntity {
         if (uuid != null) {
             this.setOwnerUUID(uuid);
         }
+        this.readWorkstationSaveData(pCompound);
     }
 
     public float getDamage() {
@@ -412,5 +426,20 @@ public class TortoiseShell extends Entity implements OwnableEntity {
     @Override
     public ItemStack getPickResult() {
         return new ItemStack(this.getDropItem());
+    }
+
+    @Override
+    public ItemStack getAppliedWorkstation() {
+        return this.entityData.get(WORKSTATION);
+    }
+
+    @Override
+    public void setAppliedWorkstation(ItemStack itemStack) {
+        this.entityData.set(WORKSTATION, itemStack);
+    }
+
+    @Override
+    public boolean hasAppliedWorkstation() {
+        return !getAppliedWorkstation().isEmpty();
     }
 }

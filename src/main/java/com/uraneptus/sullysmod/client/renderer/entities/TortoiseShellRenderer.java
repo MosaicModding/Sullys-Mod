@@ -15,7 +15,8 @@ import net.minecraft.util.Mth;
 import org.joml.Quaternionf;
 
 public class TortoiseShellRenderer <E extends TortoiseShell> extends EntityRenderer<E> {
-    public static final ResourceLocation TEXTURE = SullysMod.modPrefix("textures/entity/tortoise/tortoise.png");
+    public static final ResourceLocation TEXTURE_CRAFTING = SullysMod.modPrefix("textures/entity/tortoise/tortoise_crafting.png");
+    public static final ResourceLocation TEXTURE_JUKEBOX = SullysMod.modPrefix("textures/entity/tortoise/tortoise_jukebox.png");
     protected final TortoiseShellModel<E> model;
 
     public TortoiseShellRenderer(EntityRendererProvider.Context context) {
@@ -45,12 +46,13 @@ public class TortoiseShellRenderer <E extends TortoiseShell> extends EntityRende
         }
 
         VertexConsumer vertexconsumer = pBuffer.getBuffer(this.model.renderType(this.getTextureLocation(pEntity)));
+        this.model.root().getChild("workstationSaddle").visible = pEntity.hasAppliedWorkstation();
         this.model.renderToBuffer(pMatrixStack, vertexconsumer, pPackedLight, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
         pMatrixStack.popPose();
     }
 
     @Override
     public ResourceLocation getTextureLocation(E pEntity) {
-        return TEXTURE;
+        return pEntity.isCraftingTable() ? TEXTURE_CRAFTING : TEXTURE_JUKEBOX;
     }
 }

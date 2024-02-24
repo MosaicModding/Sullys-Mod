@@ -1,6 +1,5 @@
 package com.uraneptus.sullysmod.common.entities;
 
-import com.uraneptus.sullysmod.SullysMod;
 import com.uraneptus.sullysmod.common.blocks.TortoiseEggBlock;
 import com.uraneptus.sullysmod.core.other.SMItemUtil;
 import com.uraneptus.sullysmod.core.other.tags.SMEntityTags;
@@ -11,8 +10,8 @@ import com.uraneptus.sullysmod.core.registry.SMItems;
 import com.uraneptus.sullysmod.core.registry.SMSounds;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.chat.Component;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
@@ -22,10 +21,10 @@ import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
-import net.minecraft.world.MenuProvider;
 import net.minecraft.world.SimpleMenuProvider;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.*;
@@ -40,22 +39,16 @@ import net.minecraft.world.entity.vehicle.Boat;
 import net.minecraft.world.inventory.ContainerLevelAccess;
 import net.minecraft.world.inventory.CraftingMenu;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.GameRules;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.TurtleEggBlock;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.entity.player.PlayerContainerEvent;
 import net.minecraftforge.network.NetworkHooks;
-import net.minecraftforge.network.PacketDistributor;
-import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib.animatable.GeoEntity;
@@ -70,11 +63,11 @@ import software.bernie.geckolib.util.GeckoLibUtil;
 
 import java.util.List;
 
-public class Tortoise extends Animal implements GeoEntity {
+public class Tortoise extends Animal implements GeoEntity, WorkstationAttachable {
     public static final EntityDataAccessor<Integer> HIDE_TIMER = SynchedEntityData.defineId(Tortoise.class, EntityDataSerializers.INT);
     private static final EntityDataAccessor<Boolean> HAS_EGG = SynchedEntityData.defineId(Tortoise.class, EntityDataSerializers.BOOLEAN);
     private static final EntityDataAccessor<Boolean> LAYING_EGG = SynchedEntityData.defineId(Tortoise.class, EntityDataSerializers.BOOLEAN);
-    private static final EntityDataAccessor<ItemStack> CRAFTING_TABLE = SynchedEntityData.defineId(Tortoise.class, EntityDataSerializers.ITEM_STACK);
+    private static final EntityDataAccessor<ItemStack> WORKSTATION = SynchedEntityData.defineId(Tortoise.class, EntityDataSerializers.ITEM_STACK);
     public static final Ingredient FOOD_ITEMS = Ingredient.of(SMItemTags.TORTOISE_FOOD);
     protected static final RawAnimation WALKING_ANIM = RawAnimation.begin().thenLoop("animation.tortoise.walking");
     protected static final RawAnimation HIDING_ANIM = RawAnimation.begin().thenPlayAndHold("animation.tortoise.hide").thenLoop("animation.tortoise.hiding");
@@ -106,7 +99,7 @@ public class Tortoise extends Animal implements GeoEntity {
     @Override
     public EntityDimensions getDimensions(Pose pPose) {
         EntityDimensions dimensions;
-        float additionalHeight = this.hasCraftingTable() ? 0.25F : 0.0F;
+        float additionalHeight = this.hasAppliedWorkstation() ? 0.25F : 0.0F;
 
         if (this.getHideTimerDuration() == 0) {
             dimensions = super.getDimensions(pPose).scale(1.0F, 1.0F + additionalHeight);
@@ -205,63 +198,28 @@ public class Tortoise extends Animal implements GeoEntity {
         }
     }
 
-    @NotNull
     @Override
-    public InteractionResult mobInteract(Player pPlayer, @NotNull InteractionHand pHand) {
-        ItemStack itemInHand = pPlayer.getItemInHand(pHand);
+    public InteractionResult customInteraction(Player player, InteractionHand hand) {
+        ItemStack itemInHand = player.getItemInHand(hand);
         if (this.isFood(itemInHand) || this.isBaby()) {
-            return super.mobInteract(pPlayer, pHand);
+            return super.mobInteract(player, hand);
         }
 
-        if (this.hasCraftingTable()) {
-            if (itemInHand.isEmpty()) {
-                if (pPlayer.isShiftKeyDown()) {
-                    SMItemUtil.nonCreativeAddItems(pPlayer, new ItemStack(this.getAppliedCraftingTable().getItem()));
-                    this.setAppliedCraftingTable(ItemStack.EMPTY);
-                    this.refreshDimensions();
-                    return InteractionResult.sidedSuccess(this.level().isClientSide());
-                } else {
-                    if (!this.level().isClientSide()) {
-                        this.openCraftingMenu((ServerPlayer)pPlayer);
-                        pPlayer.awardStat(Stats.INTERACT_WITH_CRAFTING_TABLE);
-                        return InteractionResult.CONSUME;
-                    }
-                    return InteractionResult.SUCCESS;
-                }
+        if (!this.isVehicle() && !player.isShiftKeyDown()) {
+            if (!this.level().isClientSide) {
+                player.startRiding(this);
+                this.setHideTimerDuration(100);
             }
-        } else {
-            if (itemInHand.is(SMItemTags.CRAFTING_TABLES)) {
-                this.setAppliedCraftingTable(itemInHand.copy());
-                this.refreshDimensions();
-
-                if (!pPlayer.isCreative()) {
-                    itemInHand.shrink(1);
-                    return InteractionResult.sidedSuccess(level().isClientSide());
-                }
-                return InteractionResult.SUCCESS;
-            }
-            if (!this.isVehicle() && !pPlayer.isShiftKeyDown()) {
-                if (!this.level().isClientSide) {
-                    pPlayer.startRiding(this);
-                    this.setHideTimerDuration(100);
-                }
-                this.gameEvent(GameEvent.ENTITY_INTERACT, null);
-                return InteractionResult.sidedSuccess(this.level().isClientSide);
-            }
+            this.gameEvent(GameEvent.ENTITY_INTERACT, null);
+            return InteractionResult.sidedSuccess(this.level().isClientSide);
         }
-        return super.mobInteract(pPlayer, pHand);
+        return super.mobInteract(player, hand);
     }
 
-    public void openCraftingMenu(ServerPlayer player) {
-        if (player.containerMenu != player.inventoryMenu) {
-            player.closeContainer();
-        }
-        NetworkHooks.openScreen(player, new SimpleMenuProvider((id, inventory, mPlayer) -> new CraftingMenu(id, inventory, ContainerLevelAccess.create(this.level(), this.blockPosition())) {
-            @Override
-            public boolean stillValid(Player pPlayer) {
-                return true;
-            }
-        }, this.getName()));
+    @NotNull
+    @Override
+    public InteractionResult mobInteract(Player pPlayer, InteractionHand pHand) {
+        return this.workstationInteraction(pPlayer, pHand, this);
     }
 
     @Override
@@ -391,16 +349,19 @@ public class Tortoise extends Animal implements GeoEntity {
         this.entityData.set(LAYING_EGG, pIsDigging);
     }
 
-    public ItemStack getAppliedCraftingTable() {
-        return this.entityData.get(CRAFTING_TABLE);
+    @Override
+    public ItemStack getAppliedWorkstation() {
+        return this.entityData.get(WORKSTATION);
     }
 
-    public void setAppliedCraftingTable(ItemStack itemStack) {
-        this.entityData.set(CRAFTING_TABLE, itemStack);
+    @Override
+    public void setAppliedWorkstation(ItemStack itemStack) {
+        this.entityData.set(WORKSTATION, itemStack);
     }
 
-    public boolean hasCraftingTable() {
-        return !getAppliedCraftingTable().isEmpty();
+    @Override
+    public boolean hasAppliedWorkstation() {
+        return !getAppliedWorkstation().isEmpty();
     }
 
     @Override
@@ -431,7 +392,7 @@ public class Tortoise extends Animal implements GeoEntity {
         this.entityData.define(HIDE_TIMER, 0);
         this.entityData.define(HAS_EGG, false);
         this.entityData.define(LAYING_EGG, false);
-        this.entityData.define(CRAFTING_TABLE, ItemStack.EMPTY);
+        this.entityData.define(WORKSTATION, ItemStack.EMPTY);
     }
 
     @Override
@@ -439,10 +400,7 @@ public class Tortoise extends Animal implements GeoEntity {
         super.addAdditionalSaveData(nbt);
         nbt.putInt("HideTimer", getHideTimerDuration());
         nbt.putBoolean("HasEgg", hasEgg());
-        CompoundTag compoundTag = new CompoundTag();
-        this.getAppliedCraftingTable().save(compoundTag);
-
-        nbt.put("AppliedCraftingTable", compoundTag);
+        this.addWorkstationSaveData(nbt);
     }
 
     @Override
@@ -450,7 +408,7 @@ public class Tortoise extends Animal implements GeoEntity {
         super.readAdditionalSaveData(nbt);
         this.setHideTimerDuration(nbt.getInt("HideTimer"));
         this.setHasEgg(nbt.getBoolean("HasEgg"));
-        this.setAppliedCraftingTable(ItemStack.of(nbt.getCompound("AppliedCraftingTable")));
+        this.readWorkstationSaveData(nbt);
     }
 
     public static class RiderAllowingRandomStrollGoal extends RandomStrollGoal {

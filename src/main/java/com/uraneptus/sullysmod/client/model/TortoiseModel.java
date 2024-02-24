@@ -19,7 +19,7 @@ public class TortoiseModel <T extends Tortoise> extends DefaultedEntityGeoModel<
 
     @Override
     public ResourceLocation getTextureResource(T object) {
-        return SullysMod.modPrefix("textures/entity/tortoise/tortoise.png");
+        return object.isCraftingTable() ? SullysMod.modPrefix("textures/entity/tortoise/tortoise_crafting.png") : SullysMod.modPrefix("textures/entity/tortoise/tortoise_jukebox.png");
     }
 
     @Override
@@ -30,8 +30,8 @@ public class TortoiseModel <T extends Tortoise> extends DefaultedEntityGeoModel<
     @Override
     public void setCustomAnimations(T animatable, long instanceId, AnimationState<T> animationState) {
         super.setCustomAnimations(animatable, instanceId, animationState);
-        CoreGeoBone craftingSaddle = getAnimationProcessor().getBone("CraftingSaddle");
+        CoreGeoBone saddle = getAnimationProcessor().getBone("WorkstationSaddle");
 
-        craftingSaddle.setHidden(!animatable.hasCraftingTable());
+        saddle.setHidden(!animatable.hasAppliedWorkstation());
     }
 }
