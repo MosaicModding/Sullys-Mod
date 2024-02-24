@@ -24,6 +24,7 @@ import net.minecraftforge.registries.RegistryObject;
 import java.util.function.Supplier;
 
 @Mod.EventBusSubscriber(modid = SullysMod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
+@SuppressWarnings({"deprecation"})
 public class SMBlocks {
     public static final SMBlockSubRegistryHelper HELPER = SullysMod.REGISTRY_HELPER.getBlockSubHelper();
     public static BlockSetType PETRIFIED_BLOCKSET = new BlockSetType(SullysMod.modPrefix("petrified").toString(), true, SMSounds.PETRIFIED_WOOD, SoundEvents.IRON_DOOR_CLOSE, SoundEvents.IRON_DOOR_OPEN, SoundEvents.IRON_TRAPDOOR_CLOSE, SoundEvents.IRON_TRAPDOOR_OPEN, SoundEvents.METAL_PRESSURE_PLATE_CLICK_OFF, SoundEvents.METAL_PRESSURE_PLATE_CLICK_ON, SoundEvents.STONE_BUTTON_CLICK_OFF, SoundEvents.STONE_BUTTON_CLICK_ON);
