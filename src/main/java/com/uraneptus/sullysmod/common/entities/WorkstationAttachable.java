@@ -65,7 +65,7 @@ public interface WorkstationAttachable {
                     }
                     return InteractionResult.SUCCESS;
                 } else if (isJukebox()) {
-                    //handle disc actions here
+                    //TODO handle jukebox behavior here
                     return InteractionResult.sidedSuccess(entity.level().isClientSide());
 
                 }

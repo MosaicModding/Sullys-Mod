@@ -1,6 +1,7 @@
 package com.uraneptus.sullysmod.core.data.server;
 
 import com.uraneptus.sullysmod.core.data.server.builder.GrindstonePolishingRecipeBuilder;
+import com.uraneptus.sullysmod.core.other.tags.SMItemTags;
 import com.uraneptus.sullysmod.core.registry.SMBlocks;
 import com.uraneptus.sullysmod.core.registry.SMItems;
 import net.minecraft.data.PackOutput;
@@ -68,26 +69,33 @@ public class SMRecipeProvider extends RecipeProvider {
 
         chiseledRecipes(SMBlocks.POLISHED_JADE_BRICK_SLAB, SMBlocks.POLISHED_CHISELED_JADE, consumer);
 
-        buttonRecipes(Blocks.CUT_COPPER, SMBlocks.COPPER_BUTTON, consumer);
-        buttonRecipes(Blocks.EXPOSED_CUT_COPPER, SMBlocks.EXPOSED_COPPER_BUTTON, consumer);
-        buttonRecipes(Blocks.WEATHERED_CUT_COPPER, SMBlocks.WEATHERED_COPPER_BUTTON, consumer);
-        buttonRecipes(Blocks.OXIDIZED_CUT_COPPER, SMBlocks.OXIDIZED_COPPER_BUTTON, consumer);
-        buttonRecipes(Blocks.WAXED_CUT_COPPER, SMBlocks.WAXED_COPPER_BUTTON, consumer);
-        buttonRecipes(Blocks.WAXED_EXPOSED_CUT_COPPER, SMBlocks.WAXED_EXPOSED_COPPER_BUTTON, consumer);
-        buttonRecipes(Blocks.WAXED_WEATHERED_CUT_COPPER, SMBlocks.WAXED_WEATHERED_COPPER_BUTTON, consumer);
-        buttonRecipes(Blocks.WAXED_OXIDIZED_CUT_COPPER, SMBlocks.WAXED_OXIDIZED_COPPER_BUTTON, consumer);
+        buttonRecipes(RecipeCategory.REDSTONE, Blocks.CUT_COPPER, SMBlocks.COPPER_BUTTON, consumer);
+        buttonRecipes(RecipeCategory.REDSTONE, Blocks.EXPOSED_CUT_COPPER, SMBlocks.EXPOSED_COPPER_BUTTON, consumer);
+        buttonRecipes(RecipeCategory.REDSTONE, Blocks.WEATHERED_CUT_COPPER, SMBlocks.WEATHERED_COPPER_BUTTON, consumer);
+        buttonRecipes(RecipeCategory.REDSTONE, Blocks.OXIDIZED_CUT_COPPER, SMBlocks.OXIDIZED_COPPER_BUTTON, consumer);
+        buttonRecipes(RecipeCategory.REDSTONE, Blocks.WAXED_CUT_COPPER, SMBlocks.WAXED_COPPER_BUTTON, consumer);
+        buttonRecipes(RecipeCategory.REDSTONE, Blocks.WAXED_EXPOSED_CUT_COPPER, SMBlocks.WAXED_EXPOSED_COPPER_BUTTON, consumer);
+        buttonRecipes(RecipeCategory.REDSTONE, Blocks.WAXED_WEATHERED_CUT_COPPER, SMBlocks.WAXED_WEATHERED_COPPER_BUTTON, consumer);
+        buttonRecipes(RecipeCategory.REDSTONE, Blocks.WAXED_OXIDIZED_CUT_COPPER, SMBlocks.WAXED_OXIDIZED_COPPER_BUTTON, consumer);
 
         waxButtonRecipes(SMBlocks.COPPER_BUTTON, SMBlocks.WAXED_COPPER_BUTTON, consumer);
         waxButtonRecipes(SMBlocks.EXPOSED_COPPER_BUTTON, SMBlocks.WAXED_EXPOSED_COPPER_BUTTON, consumer);
         waxButtonRecipes(SMBlocks.WEATHERED_COPPER_BUTTON, SMBlocks.WAXED_WEATHERED_COPPER_BUTTON, consumer);
         waxButtonRecipes(SMBlocks.OXIDIZED_COPPER_BUTTON, SMBlocks.WAXED_OXIDIZED_COPPER_BUTTON, consumer);
 
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, SMItems.GLASS_VIAL.get(), 3)
-                .define('#', Items.GLASS_PANE)
-                .pattern("# #")
-                .pattern(" # ")
-                .unlockedBy(getHasName(Items.GLASS_PANE), has(Items.GLASS_PANE))
-                .save(consumer, craftingPath(getItemName(SMItems.GLASS_VIAL.get())));
+        planksFromLogsRecipe(SMItemTags.PETRIFIED_LOGS, SMBlocks.PETRIFIED_PLANKS, consumer);
+        woodFromLogsRecipe(SMBlocks.PETRIFIED_LOG, SMBlocks.PETRIFIED_WOOD, consumer);
+        woodFromLogsRecipe(SMBlocks.STRIPPED_PETRIFIED_LOG, SMBlocks.STRIPPED_PETRIFIED_WOOD, consumer);
+        slabRecipes(SMBlocks.PETRIFIED_PLANKS, SMBlocks.PETRIFIED_SLAB, consumer);
+        fenceRecipe(SMBlocks.PETRIFIED_PLANKS, SMBlocks.PETRIFIED_FENCE, consumer);
+        stairRecipes(SMBlocks.PETRIFIED_PLANKS, SMBlocks.PETRIFIED_STAIRS, consumer);
+        buttonRecipes(RecipeCategory.BUILDING_BLOCKS, SMBlocks.PETRIFIED_PLANKS.get(), SMBlocks.PETRIFIED_BUTTON, consumer);
+        pressurePlateRecipe(SMBlocks.PETRIFIED_PLANKS, SMBlocks.PETRIFIED_PRESSURE_PLATE, consumer);
+        doorRecipe(SMBlocks.PETRIFIED_PLANKS, SMBlocks.PETRIFIED_DOOR, consumer);
+        trapdoorRecipe(SMBlocks.PETRIFIED_PLANKS, SMBlocks.PETRIFIED_TRAPDOOR, consumer);
+        fenceGateRecipe(SMBlocks.PETRIFIED_PLANKS, SMBlocks.PETRIFIED_FENCE_GATE, consumer);
+        signRecipe(SMBlocks.PETRIFIED_PLANKS, SMBlocks.PETRIFIED_SIGN.getFirst(), consumer);
+        hangingSignRecipe(SMBlocks.STRIPPED_PETRIFIED_LOG, SMBlocks.PETRIFIED_HANGING_SIGN.getFirst(), consumer);
 
         //Stonecutting
         stonecutterRecipes(RecipeCategory.BUILDING_BLOCKS, SMBlocks.ROUGH_JADE_BLOCK, SMBlocks.ROUGH_JADE_BRICKS, 1, consumer);
@@ -155,6 +163,7 @@ public class SMRecipeProvider extends RecipeProvider {
         ShapelessRecipeBuilder.shapeless(RecipeCategory.REDSTONE, SMBlocks.JADE_FLINGER_TOTEM.get()).requires(SMBlocks.JADE_TOTEM.get()).requires(Items.TRIPWIRE_HOOK).unlockedBy(getHasName(Items.TRIPWIRE_HOOK), has(Items.TRIPWIRE_HOOK)).unlockedBy(getHasName(SMBlocks.JADE_TOTEM.get()), has(SMBlocks.JADE_TOTEM.get())).save(consumer, craftingPath(getItemName(SMBlocks.JADE_FLINGER_TOTEM.get()) + "_from_jade_totem"));
         ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, SMItems.THROWING_KNIFE.get()).define('#', Items.STICK).define('X', SMItems.PIRANHA_TOOTH.get()).pattern(" X").pattern("# ").unlockedBy(getHasName(SMItems.PIRANHA_TOOTH.get()), has(SMItems.PIRANHA_TOOTH.get())).save(consumer, craftingPath(getItemName(SMItems.THROWING_KNIFE.get())));
         ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, Items.ARROW, 4).define('#', Items.STICK).define('X', SMItems.PIRANHA_TOOTH.get()).define('Y', Items.FEATHER).pattern("X").pattern("#").pattern("Y").unlockedBy("has_feather", has(Items.FEATHER)).unlockedBy(getHasName(SMItems.PIRANHA_TOOTH.get()), has(SMItems.PIRANHA_TOOTH.get())).save(consumer, craftingPath("arrow_from_piranha_tooth"));
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, SMItems.GLASS_VIAL.get(), 3).define('#', Items.GLASS_PANE).pattern("# #").pattern(" # ").unlockedBy(getHasName(Items.GLASS_PANE), has(Items.GLASS_PANE)).save(consumer, craftingPath(getItemName(SMItems.GLASS_VIAL.get())));
     }
 
     protected static void packableBlockRecipes(Supplier<? extends ItemLike> unpacked, Supplier<? extends ItemLike> packed, Consumer<FinishedRecipe> consumer) {
@@ -221,8 +230,8 @@ public class SMRecipeProvider extends RecipeProvider {
                 .unlockedBy(getHasName(ingredient.get()), has(ingredient.get())).save(consumer, craftingPath(getItemName(result.get())));
     }
 
-    protected static void buttonRecipes(ItemLike ingredient, Supplier<? extends ItemLike> result, Consumer<FinishedRecipe> consumer) {
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.REDSTONE, result.get()).requires(ingredient)
+    protected static void buttonRecipes(RecipeCategory category, ItemLike ingredient, Supplier<? extends ItemLike> result, Consumer<FinishedRecipe> consumer) {
+        ShapelessRecipeBuilder.shapeless(category, result.get()).requires(ingredient)
                 .unlockedBy(getHasName(ingredient), has(ingredient)).save(consumer, craftingPath(getItemName(result.get())));
     }
 
@@ -265,5 +274,50 @@ public class SMRecipeProvider extends RecipeProvider {
     protected static void smithingTemplateRecipes(RecipeCategory category, ItemLike templateItem, ItemLike baseItem, ItemLike addition, ItemLike result, ItemLike duplicationBase, Consumer<FinishedRecipe> consumer) {
         smithingRecipes(category, templateItem, baseItem, addition, result, consumer);
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, templateItem, 2).define('#', Items.DIAMOND).define('C', duplicationBase).define('S', templateItem).pattern("#S#").pattern("#C#").pattern("###").unlockedBy(getHasName(templateItem), has(templateItem)).save(consumer, craftingPath(getItemName(templateItem)));
+    }
+
+    private static void planksFromLogsRecipe(TagKey<Item> pLogs, Supplier<? extends ItemLike> result, Consumer<FinishedRecipe> consumer) {
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, result.get(), 4).requires(pLogs)
+                .unlockedBy("has_logs", has(pLogs)).save(consumer, craftingPath(getItemName(result.get())));
+    }
+
+    private static void woodFromLogsRecipe(Supplier<? extends ItemLike> pLog, Supplier<? extends ItemLike> result, Consumer<FinishedRecipe> consumer) {
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, result.get(), 3).define('#', pLog.get()).pattern("##").pattern("##")
+                .unlockedBy("has_log", has(pLog.get())).save(consumer, craftingPath(getItemName(result.get())));
+    }
+
+    private static void fenceRecipe(Supplier<? extends ItemLike> ingredient, Supplier<? extends ItemLike> result, Consumer<FinishedRecipe> consumer) {
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, result.get(), 3).define('W', ingredient.get()).define('#', Items.STICK).pattern("W#W").pattern("W#W")
+                .unlockedBy(getHasName(ingredient.get()), has(ingredient.get())).save(consumer, craftingPath(getItemName(result.get())));;
+    }
+    
+    private static void pressurePlateRecipe(Supplier<? extends ItemLike> ingredient, Supplier<? extends ItemLike> result, Consumer<FinishedRecipe> consumer) {
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, result.get()).define('#', ingredient.get()).pattern("##")
+                .unlockedBy(getHasName(ingredient.get()), has(ingredient.get())).save(consumer, craftingPath(getItemName(result.get())));
+    }
+
+    private static void doorRecipe(Supplier<? extends ItemLike> ingredient, Supplier<? extends ItemLike> result, Consumer<FinishedRecipe> consumer) {
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, result.get(), 3).define('#', ingredient.get()).pattern("##").pattern("##").pattern("##")
+                .unlockedBy(getHasName(ingredient.get()), has(ingredient.get())).save(consumer, craftingPath(getItemName(result.get())));
+    }
+
+    private static void trapdoorRecipe(Supplier<? extends ItemLike> ingredient, Supplier<? extends ItemLike> result, Consumer<FinishedRecipe> consumer) {
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, result.get(), 2).define('#', ingredient.get()).pattern("###").pattern("###")
+                .unlockedBy(getHasName(ingredient.get()), has(ingredient.get())).save(consumer, craftingPath(getItemName(result.get())));
+    }
+
+    private static void fenceGateRecipe(Supplier<? extends ItemLike> ingredient, Supplier<? extends ItemLike> result, Consumer<FinishedRecipe> consumer) {
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, result.get()).define('#', Items.STICK).define('W', ingredient.get()).pattern("#W#").pattern("#W#")
+                .unlockedBy(getHasName(ingredient.get()), has(ingredient.get())).save(consumer, craftingPath(getItemName(result.get())));
+    }
+
+    private static void signRecipe(Supplier<? extends ItemLike> ingredient, Supplier<? extends ItemLike> result, Consumer<FinishedRecipe> consumer) {
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, result.get(), 3).define('#', ingredient.get()).define('X', Items.STICK).pattern("###").pattern("###").pattern(" X ")
+                .unlockedBy(getHasName(ingredient.get()), has(ingredient.get())).save(consumer, craftingPath(getItemName(result.get())));
+    }
+
+    private static void hangingSignRecipe(Supplier<? extends ItemLike> ingredient, Supplier<? extends ItemLike> result, Consumer<FinishedRecipe> consumer) {
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, result.get(), 6).define('#', ingredient.get()).define('X', Items.CHAIN).pattern("X X").pattern("###").pattern("###")
+                .unlockedBy(getHasName(ingredient.get()), has(ingredient.get())).save(consumer, craftingPath(getItemName(result.get())));
     }
 }

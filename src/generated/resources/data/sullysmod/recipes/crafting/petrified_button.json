@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    {
+      "item": "sullysmod:petrified_planks"
+    }
+  ],
+  "result": {
+    "item": "sullysmod:petrified_button"
+  }
+}
