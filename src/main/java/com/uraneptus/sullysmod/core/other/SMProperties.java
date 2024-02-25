@@ -2,6 +2,7 @@ package com.uraneptus.sullysmod.core.other;
 
 import com.teamabnormals.blueprint.core.util.PropertyUtil;
 import com.uraneptus.sullysmod.core.registry.SMSounds;
+import net.minecraft.ChatFormatting;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.food.FoodProperties;
@@ -24,6 +25,7 @@ public class SMProperties {
         public static final BlockBehaviour.Properties COPPER_BUTTONS = BlockBehaviour.Properties.of().noCollission().strength(0.5F);
 
         public static final BlockBehaviour.Properties AMBER = BlockBehaviour.Properties.of().strength(1.3F, 3F).mapColor(MapColor.COLOR_ORANGE).requiresCorrectToolForDrops().randomTicks();
+        public static final BlockBehaviour.Properties ITEM_STAND = BlockBehaviour.Properties.of().strength(2.0F, 6.0F).requiresCorrectToolForDrops().noOcclusion();
 
         public static BlockBehaviour.Properties petrified() {
             return BlockBehaviour.Properties.of().instrument(NoteBlockInstrument.BASEDRUM).strength(2.0F, 6.0F).sound(SMSounds.PETRIFIED_WOOD).mapColor(MapColor.TERRACOTTA_ORANGE);
@@ -35,9 +37,13 @@ public class SMProperties {
     }
 
     public static final class Items {
+        //Rarity
+        public static final Rarity ANCIENT = Rarity.create("ancient", ChatFormatting.GOLD);
+
         //Item Specific
         public static final Item.Properties MUSIC_DISCS = PropertyUtil.stacksOnce().rarity(Rarity.RARE);
         public static final Item.Properties JADE_SHIELD = new Item.Properties().durability(400);
+        public static final Item.Properties ARTIFACT = PropertyUtil.stacksOnce().rarity(ANCIENT);
 
         public static Item.Properties sixteenStack() {
             return new Item.Properties().stacksTo(16);

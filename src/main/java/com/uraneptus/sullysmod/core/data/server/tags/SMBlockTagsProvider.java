@@ -73,7 +73,8 @@ public class SMBlockTagsProvider extends BlockTagsProvider {
                 SMBlocks.AMBER_BRICKS.get(),
                 SMBlocks.AMBER_BRICK_SLAB.get(),
                 SMBlocks.AMBER_BRICK_STAIRS.get(),
-                SMBlocks.AMBER_BRICK_WALL.get()
+                SMBlocks.AMBER_BRICK_WALL.get(),
+                SMBlocks.ITEM_STAND.get()
         );
         tag(BlockTags.NEEDS_IRON_TOOL).add(
                 SMBlocks.JADE_ORE.get(),

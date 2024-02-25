@@ -7,6 +7,9 @@ import com.teamabnormals.blueprint.core.util.registry.ItemSubRegistryHelper;
 import com.uraneptus.sullysmod.SullysMod;
 import com.uraneptus.sullysmod.common.items.*;
 import com.uraneptus.sullysmod.core.other.SMProperties;
+import com.uraneptus.sullysmod.core.other.SMTextDefinitions;
+import com.uraneptus.sullysmod.core.other.SMTextUtil;
+import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.animal.WaterAnimal;
@@ -17,6 +20,10 @@ import net.minecraftforge.common.ForgeSpawnEggItem;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.RegistryObject;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.function.Supplier;
 
 import static com.uraneptus.sullysmod.core.registry.SMBlocks.*;
@@ -25,6 +32,7 @@ import static net.minecraft.world.item.crafting.Ingredient.of;
 @Mod.EventBusSubscriber(modid = SullysMod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class SMItems {
     public static final ItemSubRegistryHelper HELPER = SullysMod.REGISTRY_HELPER.getItemSubHelper();
+    public static Map<RegistryObject<Item>, Component> ARTIFACTS = new HashMap<>();
 
     //Basic Items
     public static final RegistryObject<Item> ROUGH_JADE = HELPER.createItem("rough_jade", () -> new Item(new Item.Properties()));
@@ -57,6 +65,20 @@ public class SMItems {
     public static final RegistryObject<ForgeSpawnEggItem> JUNGLE_SPIDER_SPAWN_EGG = HELPER.createSpawnEggItem("jungle_spider", SMEntityTypes.JUNGLE_SPIDER::get, 5597514, 11013646);
     public static final RegistryObject<Item> PIRANHA_BUCKET = HELPER.createItem("piranha_bucket", () -> SMItems.createMobBucketItem(SMEntityTypes.PIRANHA::get));
     public static final RegistryObject<ForgeSpawnEggItem> PIRANHA_SPAWN_EGG = HELPER.createSpawnEggItem("piranha", SMEntityTypes.PIRANHA::get, 15561472, 4240022);
+
+    //Artifacts
+    public static final RegistryObject<Item> BROKEN_VASE = registerArtifact("broken_vase", "Broken vase from long ago");
+    public static final RegistryObject<Item> PRIMITIVE_KNIFE = registerArtifact("primitive_knife", "Old and simple knife");
+
+    public static RegistryObject<Item> registerArtifact(String name, String description) {
+        return registerArtifact(name, description, () -> new Item(SMProperties.Items.ARTIFACT));
+    }
+
+    public static RegistryObject<Item> registerArtifact(String name, String description, Supplier<? extends Item> item) {
+        RegistryObject<Item> object = HELPER.createItem(name, item);
+        ARTIFACTS.put(object, SMTextUtil.addSMTranslatable("artifact." + name + ".desc", description).withStyle(SMTextDefinitions.ARTIFACT_DESC_STYLE));
+        return object;
+    }
 
     public static Item createMobBucketItem(Supplier<EntityType<? extends WaterAnimal>> entityType) {
         return new MobBucketItem(entityType, () -> Fluids.WATER, () -> SoundEvents.BUCKET_EMPTY_FISH, PropertyUtil.stacksOnce());
@@ -122,6 +144,7 @@ public class SMItems {
                 .tab(CreativeModeTabs.FUNCTIONAL_BLOCKS)
                 .addItemsAfter(of(Items.CHERRY_HANGING_SIGN), PETRIFIED_SIGN.getFirst(), PETRIFIED_HANGING_SIGN.getFirst())
                 .addItemsAfter(of(Items.INFESTED_DEEPSLATE), AMBER)
+                .addItemsAfter(of(Items.ARMOR_STAND), ITEM_STAND)
 
         ;
     }

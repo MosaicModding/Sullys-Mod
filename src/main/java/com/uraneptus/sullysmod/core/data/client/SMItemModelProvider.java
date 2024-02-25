@@ -114,6 +114,9 @@ public class SMItemModelProvider extends ItemModelProvider {
         blockItemWithItemTexture(SMBlocks.PETRIFIED_HANGING_SIGN.getFirst());
         blockItemWithItemTexture(SMBlocks.PETRIFIED_DOOR);
         itemFromBlockTexture(SMBlocks.PETRIFIED_SAPLING);
+        basicItem(SMItems.BROKEN_VASE);
+        basicItemHandheld(SMItems.PRIMITIVE_KNIFE);
+        basicBlockItem(SMBlocks.ITEM_STAND);
     }
 
     private void basicBlockItem(Supplier<? extends Block> blockForItem) {

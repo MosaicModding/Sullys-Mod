@@ -8,6 +8,7 @@ import com.teamabnormals.blueprint.common.block.sign.BlueprintWallSignBlock;
 import com.uraneptus.sullysmod.SullysMod;
 import com.uraneptus.sullysmod.common.blocks.FlingerTotem;
 import com.uraneptus.sullysmod.core.registry.SMBlocks;
+import net.minecraft.core.Direction;
 import net.minecraft.data.PackOutput;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
@@ -75,7 +76,7 @@ public class SMBlockStateProvider extends BlockStateProvider {
         basicBlock(SMBlocks.ROUGH_AMBER);
         basicBlock(SMBlocks.CHISELED_AMBER);
         basicBlock(SMBlocks.AMBER_LANTERN);
-        pillarBlock(SMBlocks.AMBER_PILLAR, "amber_pillar_topbottom");
+        pillarBlock(SMBlocks.AMBER_PILLAR, name(SMBlocks.AMBER_PILLAR.get()) + "_top");
         basicBlock(SMBlocks.PETRIFIED_PLANKS);
         modLogBlock(SMBlocks.PETRIFIED_LOG);
         modLogBlock(SMBlocks.STRIPPED_PETRIFIED_LOG);
@@ -92,6 +93,7 @@ public class SMBlockStateProvider extends BlockStateProvider {
         modHangingSignBlock(SMBlocks.PETRIFIED_HANGING_SIGN, SMBlocks.PETRIFIED_PLANKS);
         modDoorBlockWithRenderType(SMBlocks.PETRIFIED_DOOR, "cutout");
         plantWithPottedBlock(SMBlocks.PETRIFIED_SAPLING, SMBlocks.POTTED_PETRIFIED_SAPLING);
+        itemStandBlock(SMBlocks.ITEM_STAND);
     }
 
     private void basicBlock(Supplier<? extends Block> block) {
@@ -247,5 +249,34 @@ public class SMBlockStateProvider extends BlockStateProvider {
                     .nextModel().modelFile(modelFile).rotationY(270)
                     .build();
         });
+    }
+
+    private void itemStandBlock(Supplier<? extends Block> block) {
+        ModelFile file = models().getBuilder(name(block.get()))
+                .parent(new ModelFile.UncheckedModelFile("block/block"))
+                .renderType("cutout")
+                .texture("stick", vanillaBlockLocation(name(Blocks.OAK_PLANKS)))
+                .texture("base", vanillaBlockLocation(name(Blocks.SMOOTH_STONE)))
+                .texture("particle", "#base")
+                .element().from(7, 1, 7).to(9, 10, 9)
+                .face(Direction.NORTH).texture("#stick").uvs(6, 1, 8, 10).end()
+                .face(Direction.EAST).texture("#stick").uvs(6, 1, 8, 10).end()
+                .face(Direction.SOUTH).texture("#stick").uvs(6, 1, 8, 10).end()
+                .face(Direction.WEST).texture("#stick").uvs(6, 1, 8, 10).end()
+                .face(Direction.UP).texture("#stick").uvs(6, 0, 8, 2).end()
+                .face(Direction.DOWN).texture("#stick").uvs(6, 0, 8, 2).end()
+                .end()
+                .element().from(2, 0, 2).to(14, 1, 14)
+                .face(Direction.NORTH).texture("#base").uvs(15, 2, 1, 1).end()
+                .face(Direction.EAST).texture("#base").uvs(15, 2, 1, 1).end()
+                .face(Direction.SOUTH).texture("#base").uvs(15, 2, 1, 1).end()
+                .face(Direction.WEST).texture("#base").uvs(15, 2, 1, 1).end()
+                .face(Direction.UP).texture("#base").uvs(16, 16, 0, 0).end()
+                .face(Direction.DOWN).texture("#base").uvs(16, 16, 0, 0).end()
+                .end();
+
+        getVariantBuilder(block.get()).forAllStates(blockState -> ConfiguredModel.builder()
+                .modelFile(file).rotationY(((int) blockState.getValue(BlockStateProperties.HORIZONTAL_FACING).toYRot() + 180) % 360)
+                .build());
     }
 }

@@ -48,6 +48,7 @@ public class SMItemTagsProvider extends ItemTagsProvider {
                 SMBlocks.PETRIFIED_WOOD.get().asItem(),
                 SMBlocks.STRIPPED_PETRIFIED_WOOD.get().asItem()
         );
+        SMItems.ARTIFACTS.forEach((item, desc) -> tag(SMItemTags.ARTIFACTS).add(item.get()));
 
         //Minecraft Tags
         tag(ItemTags.BUTTONS).add(

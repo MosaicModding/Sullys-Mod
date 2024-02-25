@@ -10,7 +10,8 @@ import net.minecraft.resources.ResourceLocation;
 import org.apache.commons.lang3.tuple.Pair;
 
 public class SMTextDefinitions {
-    private static final Style polishingStyle = Style.EMPTY.withColor(TextColor.fromRgb(8355711)).withItalic(true);
+    private static final Style POLISHING_STYLE = Style.EMPTY.withColor(TextColor.fromRgb(8355711)).withItalic(true);
+    public static final Style ARTIFACT_DESC_STYLE = Style.EMPTY.withColor(TextColor.fromRgb(6644320)).withItalic(true);
     public static final ChatFormatting TITLE_FORMAT = ChatFormatting.GRAY;
     public static final ChatFormatting DESCRIPTION_FORMAT = ChatFormatting.BLUE;
     public static final String ZOMBIE_PACK_NAME = "zombie_retextures";
@@ -23,6 +24,7 @@ public class SMTextDefinitions {
     public static Component JADE_UPGRADE_INGREDIENTS;
     public static Component JADE_UPGRADE_BASE_SLOT_DESCRIPTION;
     public static Component JADE_UPGRADE_ADDITIONS_SLOT_DESCRIPTION;
+    public static Component ARTIFACT_TAB_TITLE;
 
     //ADVANCEMENTS
     public static final String JADE_GRINDSET_ADV_NAME = "jade_grindset";
@@ -37,7 +39,7 @@ public class SMTextDefinitions {
     public static Pair<Component, Component> FILL_VIAL_JUNGLE_SPIDER_ADV;
 
     public static void init() {
-        POLISHABLE = SMTextUtil.addSMTranslatable("polishing.tooltip", "Polishable at grindstone").setStyle(polishingStyle);
+        POLISHABLE = SMTextUtil.addSMTranslatable("polishing.tooltip", "Polishable at grindstone").setStyle(POLISHING_STYLE);
         JEI_POLISHING_TITLE = SMTextUtil.addSMTranslatable("jei." + GrindstonePolishingRecipe.NAME, "Polishing");
         JEI_POLISHING_INFO = SMTextUtil.addSMTranslatable("jei." + GrindstonePolishingRecipe.NAME + ".info", "Right click to polish");
         JADE_UPGRADE = SMTextUtil.addTranslatable(Util.makeDescriptionId("upgrade", new ResourceLocation("jade_upgrade")), "Jade Upgrade").withStyle(TITLE_FORMAT);
@@ -50,6 +52,7 @@ public class SMTextDefinitions {
         SHELL_HIT_ADV = SMTextUtil.addAdvancementTranslatables("advancements.adventure." + SHELL_HIT_ADV_NAME, "Get Bonked!", "Hit an Entity with a Tortoise Shell");
         SHELL_HIT_RAVAGER_ADV = SMTextUtil.addAdvancementTranslatables("advancements.adventure." + SHELL_HIT_RAVAGER_ADV_NAME, "Bully the Bullies", "Hit a Ravager with a Tortoise Shell");
         FILL_VIAL_JUNGLE_SPIDER_ADV = SMTextUtil.addAdvancementTranslatables("advancements.adventure." + FILL_VIAL_JUNGLE_SPIDER_ADV_NAME, "Jungle Fever", "Harvest a Jungle Spider's venom using a Glass Vial");
+        ARTIFACT_TAB_TITLE = SMTextUtil.addSMTranslatable("itemGroup.artifacts", "Ancient Artifacts");
     }
 
     private static ResourceLocation jadeUpgradeString(String suffix) {

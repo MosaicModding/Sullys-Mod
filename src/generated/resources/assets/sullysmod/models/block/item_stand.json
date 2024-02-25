@@ -1,0 +1,147 @@
+{
+  "parent": "minecraft:block/block",
+  "elements": [
+    {
+      "faces": {
+        "down": {
+          "texture": "#stick",
+          "uv": [
+            6.0,
+            0.0,
+            8.0,
+            2.0
+          ]
+        },
+        "east": {
+          "texture": "#stick",
+          "uv": [
+            6.0,
+            1.0,
+            8.0,
+            10.0
+          ]
+        },
+        "north": {
+          "texture": "#stick",
+          "uv": [
+            6.0,
+            1.0,
+            8.0,
+            10.0
+          ]
+        },
+        "south": {
+          "texture": "#stick",
+          "uv": [
+            6.0,
+            1.0,
+            8.0,
+            10.0
+          ]
+        },
+        "up": {
+          "texture": "#stick",
+          "uv": [
+            6.0,
+            0.0,
+            8.0,
+            2.0
+          ]
+        },
+        "west": {
+          "texture": "#stick",
+          "uv": [
+            6.0,
+            1.0,
+            8.0,
+            10.0
+          ]
+        }
+      },
+      "from": [
+        7,
+        1,
+        7
+      ],
+      "to": [
+        9,
+        10,
+        9
+      ]
+    },
+    {
+      "faces": {
+        "down": {
+          "texture": "#base",
+          "uv": [
+            16.0,
+            16.0,
+            0.0,
+            0.0
+          ]
+        },
+        "east": {
+          "texture": "#base",
+          "uv": [
+            15.0,
+            2.0,
+            1.0,
+            1.0
+          ]
+        },
+        "north": {
+          "texture": "#base",
+          "uv": [
+            15.0,
+            2.0,
+            1.0,
+            1.0
+          ]
+        },
+        "south": {
+          "texture": "#base",
+          "uv": [
+            15.0,
+            2.0,
+            1.0,
+            1.0
+          ]
+        },
+        "up": {
+          "texture": "#base",
+          "uv": [
+            16.0,
+            16.0,
+            0.0,
+            0.0
+          ]
+        },
+        "west": {
+          "texture": "#base",
+          "uv": [
+            15.0,
+            2.0,
+            1.0,
+            1.0
+          ]
+        }
+      },
+      "from": [
+        2,
+        0,
+        2
+      ],
+      "to": [
+        14,
+        1,
+        14
+      ]
+    }
+  ],
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "base": "minecraft:block/smooth_stone",
+    "particle": "#base",
+    "stick": "minecraft:block/oak_planks"
+  }
+}

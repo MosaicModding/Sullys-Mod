@@ -49,6 +49,7 @@
     "sullysmod:amber_bricks",
     "sullysmod:amber_brick_slab",
     "sullysmod:amber_brick_stairs",
-    "sullysmod:amber_brick_wall"
+    "sullysmod:amber_brick_wall",
+    "sullysmod:item_stand"
   ]
 }

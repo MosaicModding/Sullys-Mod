@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "sullysmod:block/item_stand",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "sullysmod:block/item_stand"
+    },
+    "facing=south": {
+      "model": "sullysmod:block/item_stand",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "sullysmod:block/item_stand",
+      "y": 270
+    }
+  }
+}

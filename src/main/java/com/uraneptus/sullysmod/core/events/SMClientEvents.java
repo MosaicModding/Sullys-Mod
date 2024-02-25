@@ -35,6 +35,7 @@ public class SMClientEvents {
         event.registerEntityRenderer(SMEntityTypes.PIRANHA.get(), PiranhaRenderer::new);
         event.registerEntityRenderer(SMEntityTypes.THROWN_THROWING_KNIFE.get(), ThrownThrowingKnifeRenderer::new);
         event.registerBlockEntityRenderer(SMBlockEntityTypes.AMBER.get(), AmberBlockEntityRenderer::new);
+        event.registerBlockEntityRenderer(SMBlockEntityTypes.ITEM_STAND.get(), ItemStandBER::new);
     }
 
     @SubscribeEvent
