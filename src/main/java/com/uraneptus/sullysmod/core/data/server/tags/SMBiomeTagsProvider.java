@@ -22,6 +22,7 @@ public class SMBiomeTagsProvider extends BiomeTagsProvider {
     protected void addTags(HolderLookup.Provider pProvider) {
         //Our Tags
         tag(SMBiomeTags.JADE_GENERATES_IN).addTag(BiomeTags.IS_JUNGLE);
+        tag(SMBiomeTags.PETRIFIED_TREES_GENERATE_IN).addTag(BiomeTags.IS_OVERWORLD);
         tag(SMBiomeTags.TORTOISES_SPAWN_IN).addTag(BiomeTags.IS_SAVANNA).addTag(BiomeTags.IS_JUNGLE).add(
                 Biomes.BIRCH_FOREST,
                 Biomes.OLD_GROWTH_BIRCH_FOREST

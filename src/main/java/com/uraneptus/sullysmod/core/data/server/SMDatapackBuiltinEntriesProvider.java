@@ -2,16 +2,15 @@ package com.uraneptus.sullysmod.core.data.server;
 
 import com.google.common.collect.ImmutableList;
 import com.uraneptus.sullysmod.SullysMod;
+import com.uraneptus.sullysmod.common.levelgen.PetrifiedTreeConfig;
 import com.uraneptus.sullysmod.common.levelgen.PetrifiedTreeGravelDecorator;
 import com.uraneptus.sullysmod.core.data.SMDatagenUtil;
 import com.uraneptus.sullysmod.core.other.tags.SMBiomeTags;
 import com.uraneptus.sullysmod.core.registry.SMBlocks;
 import com.uraneptus.sullysmod.core.registry.SMDamageTypes;
 import com.uraneptus.sullysmod.core.registry.SMEntityTypes;
-import net.minecraft.core.Holder;
-import net.minecraft.core.HolderLookup;
-import net.minecraft.core.HolderSet;
-import net.minecraft.core.RegistrySetBuilder;
+import com.uraneptus.sullysmod.core.registry.SMFeatures;
+import net.minecraft.core.*;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.worldgen.BootstapContext;
@@ -19,16 +18,15 @@ import net.minecraft.data.worldgen.placement.PlacementUtils;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.TagKey;
-import net.minecraft.util.random.SimpleWeightedRandomList;
 import net.minecraft.util.valueproviders.ConstantInt;
 import net.minecraft.world.damagesource.DamageType;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.MobSpawnSettings;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraft.world.level.levelgen.VerticalAnchor;
+import net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.configurations.OreConfiguration;
@@ -36,8 +34,6 @@ import net.minecraft.world.level.levelgen.feature.configurations.TreeConfigurati
 import net.minecraft.world.level.levelgen.feature.featuresize.TwoLayersFeatureSize;
 import net.minecraft.world.level.levelgen.feature.foliageplacers.FancyFoliagePlacer;
 import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
-import net.minecraft.world.level.levelgen.feature.stateproviders.WeightedStateProvider;
-import net.minecraft.world.level.levelgen.feature.treedecorators.AlterGroundDecorator;
 import net.minecraft.world.level.levelgen.feature.trunkplacers.FancyTrunkPlacer;
 import net.minecraft.world.level.levelgen.placement.*;
 import net.minecraft.world.level.levelgen.structure.templatesystem.RuleTest;
@@ -66,6 +62,8 @@ public class SMDatapackBuiltinEntriesProvider extends DatapackBuiltinEntriesProv
 
     public static final ResourceKey<ConfiguredFeature<?, ?>> CONFIGURED_JADE_ORE = ResourceKey.create(Registries.CONFIGURED_FEATURE, SullysMod.modPrefix("jade_ore"));
     public static final ResourceKey<PlacedFeature> PLACED_JADE_ORE = ResourceKey.create(Registries.PLACED_FEATURE, SullysMod.modPrefix("jade_ore"));
+    public static final ResourceKey<ConfiguredFeature<?, ?>> CONFIGURED_PETRIFIED_TREE_SMALL = ResourceKey.create(Registries.CONFIGURED_FEATURE, SullysMod.modPrefix("petrified_tree_small"));
+    public static final ResourceKey<PlacedFeature> PLACED_PETRIFIED_TREE_SMALL = ResourceKey.create(Registries.PLACED_FEATURE, SullysMod.modPrefix("petrified_tree_small"));
     public static final ResourceKey<ConfiguredFeature<?, ?>> CONFIGURED_PETRIFIED_TREE = ResourceKey.create(Registries.CONFIGURED_FEATURE, SullysMod.modPrefix("petrified_tree"));
     public static final ResourceKey<PlacedFeature> PLACED_PETRIFIED_TREE = ResourceKey.create(Registries.PLACED_FEATURE, SullysMod.modPrefix("petrified_tree"));
 
@@ -76,7 +74,8 @@ public class SMDatapackBuiltinEntriesProvider extends DatapackBuiltinEntriesProv
 
         public static void create(BootstapContext<ConfiguredFeature<?, ?>> context) {
             register(context, SMDatapackBuiltinEntriesProvider.CONFIGURED_JADE_ORE, () -> addOreConfig(JADE_ORE_TARGET_LIST, 10));
-            register(context, SMDatapackBuiltinEntriesProvider.CONFIGURED_PETRIFIED_TREE, () -> addTreeConfig(new TreeConfiguration.TreeConfigurationBuilder(BlockStateProvider.simple(SMBlocks.PETRIFIED_LOG.get()), new FancyTrunkPlacer(3, 11, 0), BlockStateProvider.simple(Blocks.AIR), new FancyFoliagePlacer(ConstantInt.of(2), ConstantInt.of(4), 4), new TwoLayersFeatureSize(0, 0, 0, OptionalInt.of(4))).decorators(ImmutableList.of(new PetrifiedTreeGravelDecorator()))));
+            register(context, SMDatapackBuiltinEntriesProvider.CONFIGURED_PETRIFIED_TREE_SMALL, () -> addTreeConfig(new TreeConfiguration.TreeConfigurationBuilder(BlockStateProvider.simple(SMBlocks.PETRIFIED_LOG.get()), new FancyTrunkPlacer(3, 11, 0), BlockStateProvider.simple(Blocks.AIR), new FancyFoliagePlacer(ConstantInt.of(2), ConstantInt.of(4), 4), new TwoLayersFeatureSize(0, 0, 0, OptionalInt.of(4))).decorators(ImmutableList.of(new PetrifiedTreeGravelDecorator()))));
+            register(context, SMDatapackBuiltinEntriesProvider.CONFIGURED_PETRIFIED_TREE, () -> new ConfiguredFeature<>(SMFeatures.PETRIFIED_TREE.get(), new PetrifiedTreeConfig(List.of(SullysMod.modPrefix("petrified/petrified_tree_1"), SullysMod.modPrefix("petrified/petrified_tree_0"))))); //TODO add nbts for other variants
         }
 
         private static ConfiguredFeature<?, ?> addOreConfig(List<OreConfiguration.TargetBlockState> targetList, int veinSize) {
@@ -95,7 +94,15 @@ public class SMDatapackBuiltinEntriesProvider extends DatapackBuiltinEntriesProv
     private static class PlacedFeatures {
         public static void create(BootstapContext<PlacedFeature> context) {
             register(context, SMDatapackBuiltinEntriesProvider.PLACED_JADE_ORE, addOreFeature(context.lookup(Registries.CONFIGURED_FEATURE).get(SMDatapackBuiltinEntriesProvider.CONFIGURED_JADE_ORE).orElseThrow(), -16, 112, 16));
-            register(context, SMDatapackBuiltinEntriesProvider.PLACED_PETRIFIED_TREE, addFeaturePlacement(context.lookup(Registries.CONFIGURED_FEATURE).get(SMDatapackBuiltinEntriesProvider.CONFIGURED_PETRIFIED_TREE).orElseThrow(), PlacementUtils.filteredByBlockSurvival(SMBlocks.PETRIFIED_SAPLING.get())));
+            register(context, SMDatapackBuiltinEntriesProvider.PLACED_PETRIFIED_TREE_SMALL, addFeaturePlacement(context.lookup(Registries.CONFIGURED_FEATURE).get(SMDatapackBuiltinEntriesProvider.CONFIGURED_PETRIFIED_TREE_SMALL).orElseThrow(), PlacementUtils.filteredByBlockSurvival(SMBlocks.PETRIFIED_SAPLING.get())));
+            register(context, SMDatapackBuiltinEntriesProvider.PLACED_PETRIFIED_TREE, addFeaturePlacement(context.lookup(Registries.CONFIGURED_FEATURE).get(SMDatapackBuiltinEntriesProvider.CONFIGURED_PETRIFIED_TREE).orElseThrow(),
+                    RarityFilter.onAverageOnceEvery(25), //TODO adjust this when all variants are added
+                    InSquarePlacement.spread(),
+                    HeightRangePlacement.triangle(VerticalAnchor.bottom(), VerticalAnchor.absolute(0)),
+                    EnvironmentScanPlacement.scanningFor(Direction.DOWN, BlockPredicate.solid(),
+                            BlockPredicate.ONLY_IN_AIR_PREDICATE, 12),
+                    /*RandomOffsetPlacement.vertical(ConstantInt.of(1)),*/
+                    BiomeFilter.biome()));
         }
 
         private static PlacedFeature addOreFeature(Holder<ConfiguredFeature<?, ?>> configureFeature, int minHeight, int maxHeight, int count) {
@@ -119,6 +126,7 @@ public class SMDatapackBuiltinEntriesProvider extends DatapackBuiltinEntriesProv
             register(context, "bouldering_zombie", () -> addSingleSpawnModifier(context, SMBiomeTags.BOULDERING_ZOMBIE_SPAWN_IN, SMEntityTypes.BOULDERING_ZOMBIE.get(), 100, 4, 6));
             register(context, "jungle_spider", () -> addSingleSpawnModifier(context, SMBiomeTags.JUNGLE_SPIDER_SPAWN_IN, SMEntityTypes.JUNGLE_SPIDER.get(), 100, 3, 6));
             register(context, "jade_ore", () -> addFeatureModifier(context, SMDatagenUtil.getPlacedHolderSet(context, SMDatapackBuiltinEntriesProvider.PLACED_JADE_ORE), SMBiomeTags.JADE_GENERATES_IN, GenerationStep.Decoration.UNDERGROUND_ORES));
+            register(context, "petrified_tree", () -> addFeatureModifier(context, SMDatagenUtil.getPlacedHolderSet(context, SMDatapackBuiltinEntriesProvider.PLACED_PETRIFIED_TREE), SMBiomeTags.PETRIFIED_TREES_GENERATE_IN, GenerationStep.Decoration.UNDERGROUND_DECORATION));
 
         }
 

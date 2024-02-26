@@ -44,8 +44,9 @@ public class ItemStandBER implements BlockEntityRenderer<ItemStandBlockEntity> {
     @Override
     public void render(ItemStandBlockEntity pBlockEntity, float pPartialTick, PoseStack pPoseStack, MultiBufferSource pBuffer, int pPackedLight, int pPackedOverlay) {
         if (!pBlockEntity.getDisplayItem().isEmpty()) {
-            Component component = Component.translatable(pBlockEntity.getDisplayItem().getDescriptionId()).withStyle(Style.EMPTY);
+            Component component = Component.translatable(pBlockEntity.getDisplayItem().getHoverName().getString()).withStyle(Style.EMPTY);
             pPoseStack.pushPose();
+            //TODO add rendering for custom models once sully sends the file
             //This code is for item models only
             pPoseStack.translate(0.5F, 0.56F, 0.5F);
             this.renderNameTag(pBlockEntity, component, pPoseStack, pBuffer, pPackedLight);

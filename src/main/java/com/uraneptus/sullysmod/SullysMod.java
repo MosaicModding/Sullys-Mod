@@ -69,6 +69,7 @@ public class SullysMod {
         SMRecipeSerializer.SERIALIZERS.register(bus);
         SMPaintingVariants.PAINTINGS.register(bus);
         SMTreeDecoratorTypes.TREE_DECORATORS.register(bus);
+        SMFeatures.FEATURES.register(bus);
         SMCreativeModeTabs.TABS.register(bus);
 
         DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> SMItems::buildCreativeTabContents);

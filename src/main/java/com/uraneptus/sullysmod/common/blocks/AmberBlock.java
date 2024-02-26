@@ -57,7 +57,7 @@ public class AmberBlock extends BaseEntityBlock {
                 Level level = blockEntity.getLevel();
                 if (!amber.hasStuckEntity()) {
                     if (entity != null) {
-                        if (level.getBrightness(LightLayer.BLOCK, pPos.above()) >= 9) {
+                        if (level != null && level.getBrightness(LightLayer.BLOCK, pPos.above()) >= 9) {
                             if (entity instanceof Player player) {
                                 if (player.jumping) {
                                     return Shapes.block();
@@ -65,11 +65,9 @@ public class AmberBlock extends BaseEntityBlock {
                             } else {
                                 return MELTING_COLLISION_SHAPE;
                             }
-                        } else {
-                            return Shapes.block();
                         }
                     }
-                    if (level.getBrightness(LightLayer.BLOCK, pPos.above()) >= 9) {
+                    if (level != null && level.getBrightness(LightLayer.BLOCK, pPos.above()) >= 9) {
                         if (blockStateXP.is(SMBlockTags.MELTS_AMBER) || blockStateXN.is(SMBlockTags.MELTS_AMBER) || blockStateZP.is(SMBlockTags.MELTS_AMBER) || blockStateZN.is(SMBlockTags.MELTS_AMBER) || blockStateYP.is(SMBlockTags.MELTS_AMBER) || blockStateYN.is(SMBlockTags.MELTS_AMBER)) {
                             return MELTING_COLLISION_SHAPE;
                         } else if (blockStateXP.is(this) && blockStateXP.getCollisionShape(pLevel, pPos.relative(Direction.Axis.X, 1), pContext) == MELTING_COLLISION_SHAPE) {
