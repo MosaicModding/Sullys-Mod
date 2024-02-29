@@ -133,7 +133,7 @@ public class SMPlayerEvents {
             }
         });
 
-        if (itemstack.is(SMItems.JADE_SHIELD.get())) {
+        if (itemstack.is(SMItems.JADE_SHIELD.get()) || itemstack.is(SMItemTags.ARTIFACTS)) {
             itemstack.hideTooltipPart(ItemStack.TooltipPart.MODIFIERS);
         }
 

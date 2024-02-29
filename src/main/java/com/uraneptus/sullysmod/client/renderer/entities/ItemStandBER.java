@@ -1,17 +1,25 @@
 package com.uraneptus.sullysmod.client.renderer.entities;
 
 import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Axis;
+import com.uraneptus.sullysmod.SullysMod;
 import com.uraneptus.sullysmod.common.blocks.ItemStandBlockEntity;
+import com.uraneptus.sullysmod.common.items.ArtifactHelmetItem;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
+import net.minecraft.client.model.HumanoidArmorModel;
+import net.minecraft.client.model.Model;
+import net.minecraft.client.model.geom.ModelLayers;
 import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
 import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.client.renderer.entity.EntityRenderDispatcher;
 import net.minecraft.client.renderer.entity.ItemRenderer;
+import net.minecraft.client.renderer.entity.layers.HumanoidArmorLayer;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.client.resources.model.BakedModel;
 import net.minecraft.core.BlockPos;
@@ -20,14 +28,20 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.HoverEvent;
 import net.minecraft.network.chat.Style;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ItemDisplayContext;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.LecternBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.Shapes;
+import net.minecraftforge.client.ForgeHooksClient;
+import net.minecraftforge.client.extensions.common.IClientItemExtensions;
+import net.minecraftforge.registries.ForgeRegistries;
 import org.joml.Matrix4f;
 
 public class ItemStandBER implements BlockEntityRenderer<ItemStandBlockEntity> {
@@ -43,25 +57,41 @@ public class ItemStandBER implements BlockEntityRenderer<ItemStandBlockEntity> {
 
     @Override
     public void render(ItemStandBlockEntity pBlockEntity, float pPartialTick, PoseStack pPoseStack, MultiBufferSource pBuffer, int pPackedLight, int pPackedOverlay) {
-        if (!pBlockEntity.getDisplayItem().isEmpty()) {
+        ItemStack displayItem = pBlockEntity.getDisplayItem();
+
+        if (!displayItem.isEmpty()) {
             Component component = Component.translatable(pBlockEntity.getDisplayItem().getHoverName().getString()).withStyle(Style.EMPTY);
             pPoseStack.pushPose();
-            //TODO add rendering for custom models once sully sends the file
-            //This code is for item models only
             pPoseStack.translate(0.5F, 0.56F, 0.5F);
             this.renderNameTag(pBlockEntity, component, pPoseStack, pBuffer, pPackedLight);
-            float f = pBlockEntity.getBlockState().getValue(LecternBlock.FACING).getClockWise().toYRot();
-            pPoseStack.mulPose(Axis.YP.rotationDegrees(-f));
-            pPoseStack.mulPose(Axis.XP.rotationDegrees(90F));
-            pPoseStack.mulPose(Axis.ZP.rotationDegrees(90F));
-            pPoseStack.translate(0.0F, -0.130F, 0.0F);
-            pPoseStack.mulPose(Axis.XP.rotationDegrees(-55));
-            pPoseStack.mulPose(Axis.YP.rotationDegrees(-180));
-            pPoseStack.scale(1.3F, 1.3F, 1.3F);
-            //
-            this.itemRenderer.renderStatic(pBlockEntity.getDisplayItem(), ItemDisplayContext.GROUND, pPackedLight, OverlayTexture.NO_OVERLAY, pPoseStack, pBuffer, pBlockEntity.getLevel(), pBlockEntity.saveWithId().getId());
+
+            if (displayItem.getItem() instanceof ArtifactHelmetItem helmetItem) {
+                Minecraft mc = Minecraft.getInstance();
+                Player player = mc.player;
+                Model model = IClientItemExtensions.of(displayItem).getGenericArmorModel(player, displayItem, EquipmentSlot.HEAD, new HumanoidArmorModel<>(mc.getEntityModels().bakeLayer(ModelLayers.PLAYER_OUTER_ARMOR)));
+
+                pPoseStack.mulPose(Axis.XP.rotationDegrees(180F));
+                pPoseStack.translate(0.0, -0.5, 0.0);
+                this.renderModel(helmetItem.getDefaultInstance(), pPoseStack, pBuffer, pPackedLight, model, 1.0F, 1.0F, 1.0F);
+            } else {
+                float f = pBlockEntity.getBlockState().getValue(LecternBlock.FACING).getClockWise().toYRot();
+                pPoseStack.mulPose(Axis.YP.rotationDegrees(-f));
+                pPoseStack.mulPose(Axis.XP.rotationDegrees(90F));
+                pPoseStack.mulPose(Axis.ZP.rotationDegrees(90F));
+                pPoseStack.translate(0.0F, -0.130F, 0.0F);
+                pPoseStack.mulPose(Axis.XP.rotationDegrees(-55));
+                pPoseStack.mulPose(Axis.YP.rotationDegrees(-180));
+                pPoseStack.scale(1.3F, 1.3F, 1.3F);
+                this.itemRenderer.renderStatic(pBlockEntity.getDisplayItem(), ItemDisplayContext.GROUND, pPackedLight, OverlayTexture.NO_OVERLAY, pPoseStack, pBuffer, pBlockEntity.getLevel(), pBlockEntity.saveWithId().getId());
+            }
             pPoseStack.popPose();
         }
+    }
+
+    private void renderModel(ItemStack itemStack, PoseStack pPoseStack, MultiBufferSource pBuffer, int pPackedLight, Model pModel, float pRed, float pGreen, float pBlue) {
+        String name = ForgeRegistries.ITEMS.getKey(itemStack.getItem()).getPath();
+        VertexConsumer vertexconsumer = pBuffer.getBuffer(RenderType.armorCutoutNoCull(SullysMod.modPrefix("textures/models/armor/" + name + "_layer_1.png")));
+        pModel.renderToBuffer(pPoseStack, vertexconsumer, pPackedLight, OverlayTexture.NO_OVERLAY, pRed, pGreen, pBlue, 1.0F);
     }
 
     protected void renderNameTag(ItemStandBlockEntity pBlockEntity, Component pDisplayName, PoseStack pPoseStack, MultiBufferSource pBuffer, int pPackedLight) {

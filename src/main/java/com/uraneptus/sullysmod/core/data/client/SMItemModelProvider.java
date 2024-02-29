@@ -115,8 +115,46 @@ public class SMItemModelProvider extends ItemModelProvider {
         blockItemWithItemTexture(SMBlocks.PETRIFIED_DOOR);
         itemFromBlockTexture(SMBlocks.PETRIFIED_SAPLING);
         basicItem(SMItems.BROKEN_VASE);
+        basicItem(SMItems.MINERS_HELMET);
+        basicItem(SMItems.SMALL_DENTED_HELMET);
+        basicItem(SMItems.LOST_CROWN);
         basicItemHandheld(SMItems.PRIMITIVE_KNIFE);
         basicBlockItem(SMBlocks.ITEM_STAND);
+        basicItem(SMItems.JADE_AMULET);
+        basicItem(SMItems.PRIMITIVE_RING);
+        basicItem(SMItems.RUSTY_TOOLS);
+        basicItem(SMItems.BROKEN_BOWL);
+        basicItem(SMItems.COPPER_COG);
+        basicItem(SMItems.PETRIFIED_COOKIE);
+        basicItem(SMItems.ARROWHEAD);
+        basicItem(SMItems.DEATH_WHISTLE);
+        basicItem(SMItems.OMINOUS_TABLET);
+        basicItem(SMItems.MOON_TABLET);
+        basicItem(SMItems.STONE_IDOL);
+        basicItem(SMItems.RED_CAP);
+        basicItem(SMItems.DRIED_CYAN_FLOWER);
+        basicItem(SMItems.DRIED_RED_FLOWER);
+        basicItem(SMItems.METALLIC_SKULL);
+        basicItem(SMItems.LOST_BAG);
+        basicItem(SMItems.MYSTERIOUS_PLATE);
+        basicItem(SMItems.FAMILIAR_CUBE);
+        basicItem(SMItems.AMBER_ENCASED_BUG);
+        basicItem(SMItems.FOSSILISED_SHELLS);
+        basicItem(SMItems.FOSSILISED_BONE);
+        basicItem(SMItems.FOSSILISED_FOOTSTEP);
+        basicItem(SMItems.FOSSILISED_FISH);
+        basicItem(SMItems.TORN_MANUSCRIPT);
+        basicItem(SMItems.LOST_JOURNAL);
+        basicItem(SMItems.LOST_SKETCHBOOK);
+        basicItem(SMItems.LOST_RECIPE_BOOK);
+        basicItem(SMItems.GOLDEN_BELT_BUCKLE);
+        basicItem(SMItems.DEEPSLATE_VASE);
+        basicItem(SMItems.SMALL_GEODE);
+        basicItem(SMItems.TORN_CLOTH);
+        basicItem(SMItems.GOLDEN_GOBLET);
+        basicItem(SMItems.EMERALD_EARRING);
+        basicItem(SMItems.BROKEN_BOTTLE);
+        basicItem(SMItems.FROG_IDOL);
     }
 
     private void basicBlockItem(Supplier<? extends Block> blockForItem) {

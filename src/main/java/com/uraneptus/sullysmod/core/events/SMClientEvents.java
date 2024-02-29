@@ -1,17 +1,12 @@
 package com.uraneptus.sullysmod.core.events;
 
 import com.uraneptus.sullysmod.SullysMod;
-import com.uraneptus.sullysmod.client.model.JadeShieldModel;
-import com.uraneptus.sullysmod.client.model.JungleSpiderModel;
-import com.uraneptus.sullysmod.client.model.LanternfishModel;
-import com.uraneptus.sullysmod.client.model.TortoiseShellModel;
+import com.uraneptus.sullysmod.client.model.*;
 import com.uraneptus.sullysmod.client.particles.BlotEyesParticle;
 import com.uraneptus.sullysmod.client.particles.RicochetParticle;
 import com.uraneptus.sullysmod.client.renderer.entities.*;
 import com.uraneptus.sullysmod.common.items.VenomVialItem;
 import com.uraneptus.sullysmod.core.registry.*;
-import net.minecraft.client.renderer.ItemBlockRenderTypes;
-import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
@@ -44,6 +39,7 @@ public class SMClientEvents {
         event.registerLayerDefinition(JadeShieldModel.LAYER_LOCATION, JadeShieldModel::createLayer);
         event.registerLayerDefinition(TortoiseShellModel.LAYER_LOCATION, TortoiseShellModel::createBodyLayer);
         event.registerLayerDefinition(JungleSpiderModel.LAYER_LOCATION, JungleSpiderModel::createBodyLayer);
+        event.registerLayerDefinition(MinersHelmetModel.LAYER_LOCATION, MinersHelmetModel::createBodyLayer);
     }
 
     @SubscribeEvent
