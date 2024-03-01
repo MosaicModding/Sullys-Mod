@@ -16,6 +16,9 @@ import java.util.List;
 public class AmberBlockEntity extends BlockEntity {
     @Nullable
     private AmberBlockEntity.StuckEntityData StuckEntityData;
+
+    private boolean isBlockMelted = false;
+
     private static final List<String> IGNORED_NBT = Arrays.asList("UUID", "Leash");
 
     public AmberBlockEntity(BlockPos pPos, BlockState pBlockState) {
@@ -26,6 +29,12 @@ public class AmberBlockEntity extends BlockEntity {
             pTag.remove(s);
         }
 
+    }
+    public boolean isBlockMelted() {
+        return this.isBlockMelted;
+    }
+    public void setBlockMelted(boolean value) {
+        this.isBlockMelted = value;
     }
     public boolean hasStuckEntity() {
         return this.StuckEntityData != null;
@@ -59,12 +68,14 @@ public class AmberBlockEntity extends BlockEntity {
             CompoundTag compoundtag = listtag.getCompound(i);
             this.StuckEntityData = new AmberBlockEntity.StuckEntityData(compoundtag.getCompound("EntityData"));
         }
+        this.isBlockMelted = pTag.getBoolean("AmberMelted");
     }
 
     @Override
     protected void saveAdditional(CompoundTag pTag) {
         super.saveAdditional(pTag);
         pTag.put("StuckEntity", this.writeProjectiles());
+        pTag.putBoolean("AmberMelted", this.isBlockMelted);
     }
 
     public ListTag writeProjectiles() {

@@ -16,10 +16,8 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LightLayer;
 import net.minecraft.world.level.block.BaseEntityBlock;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
@@ -36,6 +34,7 @@ public class AmberBlock extends BaseEntityBlock {
         super(pProperties);
     }
 
+
     @Override
     public RenderShape getRenderShape(BlockState pState) {
         return RenderShape.MODEL;
@@ -43,13 +42,20 @@ public class AmberBlock extends BaseEntityBlock {
 
 
     public VoxelShape getCollisionShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
-        BlockEntity blockEntity = pLevel.getBlockEntity(pPos);
+        //GET BLOCK STATES
         BlockState blockStateXP = pLevel.getBlockState(pPos.relative(Direction.Axis.X, 1));
         BlockState blockStateXN = pLevel.getBlockState(pPos.relative(Direction.Axis.X, -1));
         BlockState blockStateZP = pLevel.getBlockState(pPos.relative(Direction.Axis.Z, 1));
         BlockState blockStateZN = pLevel.getBlockState(pPos.relative(Direction.Axis.Z, -1));
         BlockState blockStateYP = pLevel.getBlockState(pPos.relative(Direction.Axis.Y, 1));
         BlockState blockStateYN = pLevel.getBlockState(pPos.relative(Direction.Axis.Y, -1));
+
+        //GET BLOCK ENTITIES
+        BlockEntity blockEntity = pLevel.getBlockEntity(pPos);
+        BlockEntity blockEntityXP = pLevel.getBlockEntity(pPos.relative(Direction.Axis.X, 1));
+        BlockEntity blockEntityXN = pLevel.getBlockEntity(pPos.relative(Direction.Axis.X, -1));
+        BlockEntity blockEntityZP = pLevel.getBlockEntity(pPos.relative(Direction.Axis.X, 1));
+        BlockEntity blockEntityZN = pLevel.getBlockEntity(pPos.relative(Direction.Axis.X, -1));
 
         if (pContext instanceof EntityCollisionContext entitycollisioncontext) {
             Entity entity = entitycollisioncontext.getEntity();
@@ -60,26 +66,55 @@ public class AmberBlock extends BaseEntityBlock {
                         if (level != null && level.getBrightness(LightLayer.BLOCK, pPos.above()) >= 9) {
                             if (entity instanceof Player player) {
                                 if (player.jumping) {
+                                    amber.setBlockMelted(false);
                                     return Shapes.block();
                                 }
                             } else {
+                                amber.setBlockMelted(true);
                                 return MELTING_COLLISION_SHAPE;
                             }
                         }
                     }
                     if (level != null && level.getBrightness(LightLayer.BLOCK, pPos.above()) >= 9) {
                         if (blockStateXP.is(SMBlockTags.MELTS_AMBER) || blockStateXN.is(SMBlockTags.MELTS_AMBER) || blockStateZP.is(SMBlockTags.MELTS_AMBER) || blockStateZN.is(SMBlockTags.MELTS_AMBER) || blockStateYP.is(SMBlockTags.MELTS_AMBER) || blockStateYN.is(SMBlockTags.MELTS_AMBER)) {
+                            amber.setBlockMelted(true);
                             return MELTING_COLLISION_SHAPE;
-                        } else if (blockStateXP.is(this) && blockStateXP.getCollisionShape(pLevel, pPos.relative(Direction.Axis.X, 1), pContext) == MELTING_COLLISION_SHAPE) {
-                            return MELTING_COLLISION_SHAPE;
-                        } else {
-                            return Shapes.block();
                         }
+                        if (blockEntityXP instanceof AmberBlockEntity amberXP) {
+                            if (amberXP.isBlockMelted()) {
+                                amber.setBlockMelted(true);
+                                return MELTING_COLLISION_SHAPE;
+                            }
+                        }
+                        if (blockEntityXN instanceof AmberBlockEntity amberXN) {
+                            if (amberXN.isBlockMelted()) {
+                                amber.setBlockMelted(true);
+                                return MELTING_COLLISION_SHAPE;
+                            }
+                        }
+                        if (blockEntityZP instanceof AmberBlockEntity amberZP) {
+                            if (amberZP.isBlockMelted()) {
+                                amber.setBlockMelted(true);
+                                return MELTING_COLLISION_SHAPE;
+                            }
+                        }
+                        if (blockEntityZN instanceof AmberBlockEntity amberZN) {
+                            if (amberZN.isBlockMelted()) {
+                                amber.setBlockMelted(true);
+                                return MELTING_COLLISION_SHAPE;
+                            }
+                        }
+
                     }
                 } else {
+                    amber.setBlockMelted(false);
                     return Shapes.block();
                 }
             }
+
+        }
+        if (blockEntity != null) {
+            ((AmberBlockEntity) blockEntity).setBlockMelted(false);
         }
         return Shapes.block();
     }
