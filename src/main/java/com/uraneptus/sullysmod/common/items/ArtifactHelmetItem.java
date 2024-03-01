@@ -1,10 +1,12 @@
 package com.uraneptus.sullysmod.common.items;
 
+import com.uraneptus.sullysmod.SullysMod;
 import com.uraneptus.sullysmod.core.registry.SMBlocks;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.Gui;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.model.HumanoidModel;
-import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
-import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
@@ -12,15 +14,16 @@ import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ArmorMaterial;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.UseOnContext;
-import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.extensions.common.IClientItemExtensions;
+import net.minecraftforge.common.extensions.IForgeItem;
+import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
 import java.util.function.Consumer;
 
-public class ArtifactHelmetItem extends ArmorItem {
+public class ArtifactHelmetItem extends ArmorItem implements IForgeItem {
     @Nullable
     private HumanoidModel<?> customModel;
 
@@ -52,13 +55,22 @@ public class ArtifactHelmetItem extends ArmorItem {
         consumer.accept(new IClientItemExtensions() {
             HumanoidModel<?> model;
             @Override
-            public HumanoidModel<?> getHumanoidArmorModel(LivingEntity entity, ItemStack stack, EquipmentSlot slot, HumanoidModel<?> properties) {
+            public @NotNull HumanoidModel<?> getHumanoidArmorModel(LivingEntity entity, ItemStack stack, EquipmentSlot slot, HumanoidModel<?> properties) {
                 if (customModel != null && slot == EquipmentSlot.HEAD) {
                     model = customModel;
                     model.head.copyFrom(properties.head);
                     return model;
                 }
                 return properties;
+            }
+
+            @Override
+            public void renderHelmetOverlay(ItemStack stack, Player player, int width, int height, float partialTick) {
+                Minecraft minecraft = Minecraft.getInstance();
+                Gui gui = minecraft.gui;
+                GuiGraphics guiGraphics = new GuiGraphics(minecraft, minecraft.renderBuffers().bufferSource());
+
+                gui.renderTextureOverlay(guiGraphics, SullysMod.modPrefix("textures/misc/tinyhelmetblur.png"), 1.0F);
             }
         });
     }
