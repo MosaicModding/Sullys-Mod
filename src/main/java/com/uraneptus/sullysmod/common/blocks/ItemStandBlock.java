@@ -7,7 +7,10 @@ import net.minecraft.core.Direction;
 import net.minecraft.world.Containers;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ArmorItem;
+import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
@@ -39,7 +42,10 @@ public class ItemStandBlock extends BaseEntityBlock {
         ItemStack itemInHand = player.getItemInHand(hand);
         if (entity instanceof ItemStandBlockEntity itemStand) {
             if (itemStand.getDisplayItem().isEmpty()) {
-                if (itemInHand.is(SMItemTags.ARTIFACTS)) {
+                if (!(itemInHand.getItem() instanceof BlockItem)) {
+                    if (itemInHand.getItem() instanceof ArmorItem armorItem && armorItem.getType() != ArmorItem.Type.HELMET) {
+                        return super.use(blockState, level, pos, player, hand, hitResult);
+                    }
                     itemStand.setDisplayItem(itemInHand.copy());
                     SMItemUtil.nonCreativeShrinkStack(player, itemInHand);
                     return InteractionResult.sidedSuccess(level.isClientSide());

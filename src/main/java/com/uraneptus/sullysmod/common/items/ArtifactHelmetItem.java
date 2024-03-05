@@ -2,6 +2,7 @@ package com.uraneptus.sullysmod.common.items;
 
 import com.uraneptus.sullysmod.SullysMod;
 import com.uraneptus.sullysmod.core.registry.SMBlocks;
+import com.uraneptus.sullysmod.core.registry.SMItems;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.GuiGraphics;
@@ -66,6 +67,8 @@ public class ArtifactHelmetItem extends ArmorItem implements IForgeItem {
 
             @Override
             public void renderHelmetOverlay(ItemStack stack, Player player, int width, int height, float partialTick) {
+                if (!stack.is(SMItems.SMALL_DENTED_HELMET.get())) return;
+
                 Minecraft minecraft = Minecraft.getInstance();
                 Gui gui = minecraft.gui;
                 GuiGraphics guiGraphics = new GuiGraphics(minecraft, minecraft.renderBuffers().bufferSource());

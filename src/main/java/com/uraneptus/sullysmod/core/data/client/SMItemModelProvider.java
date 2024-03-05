@@ -1,6 +1,7 @@
 package com.uraneptus.sullysmod.core.data.client;
 
 import com.uraneptus.sullysmod.SullysMod;
+import com.uraneptus.sullysmod.core.registry.SMItems;
 import com.uraneptus.sullysmod.core.registry.SMBlocks;
 import com.uraneptus.sullysmod.core.registry.SMItems;
 import net.minecraft.client.renderer.block.model.BlockModel;
@@ -119,7 +120,7 @@ public class SMItemModelProvider extends ItemModelProvider {
         basicItem(SMItems.SMALL_DENTED_HELMET);
         basicItem(SMItems.LOST_CROWN);
         basicItemHandheld(SMItems.PRIMITIVE_KNIFE);
-        basicBlockItem(SMBlocks.ITEM_STAND);
+        blockItemWithItemTexture(SMBlocks.ITEM_STAND);
         basicItem(SMItems.JADE_AMULET);
         basicItem(SMItems.PRIMITIVE_RING);
         basicItem(SMItems.RUSTY_TOOLS);
