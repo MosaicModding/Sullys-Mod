@@ -29,7 +29,7 @@ import net.minecraftforge.forgespi.locating.IModFile;
 import net.minecraftforge.resource.PathPackResources;
 
 @Mod.EventBusSubscriber(modid = SullysMod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
-public class SMCommonEvents {
+public class SMCommonModEvents {
 
     @SubscribeEvent
     public static void registerSpawnPlacement(SpawnPlacementRegisterEvent event) {
@@ -39,8 +39,8 @@ public class SMCommonEvents {
        event.register(SMEntityTypes.BOULDERING_ZOMBIE.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, BoulderingZombie::checkBoulderingZombieSpawnRules, SpawnPlacementRegisterEvent.Operation.AND);
        event.register(SMEntityTypes.JUNGLE_SPIDER.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Monster::checkMonsterSpawnRules, SpawnPlacementRegisterEvent.Operation.AND);
 
-       event.register(EntityType.ZOMBIE, SMCommonEvents::zombieExtraRules, SpawnPlacementRegisterEvent.Operation.AND);
-       event.register(EntityType.SPIDER, SMCommonEvents::spiderExtraRules, SpawnPlacementRegisterEvent.Operation.AND);
+       event.register(EntityType.ZOMBIE, SMCommonModEvents::zombieExtraRules, SpawnPlacementRegisterEvent.Operation.AND);
+       event.register(EntityType.SPIDER, SMCommonModEvents::spiderExtraRules, SpawnPlacementRegisterEvent.Operation.AND);
     }
 
     public static boolean zombieExtraRules(EntityType<? extends Monster> pType, ServerLevelAccessor pLevel, MobSpawnType pSpawnType, BlockPos pPos, RandomSource pRandom) {
