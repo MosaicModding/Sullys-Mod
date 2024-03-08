@@ -6,7 +6,7 @@
   "refmap": "sullysmod.refmap.json",
   "mixins": [
     "MonsterRoomFeatureMixin",
-    "SMFlowingFluidMixin"
+    "FlowingFluidMixin"
   ],
   "injectors": {
     "defaultRequire": 1
