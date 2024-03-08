@@ -188,6 +188,7 @@ public class SMBlockTagsProvider extends BlockTagsProvider {
                 Blocks.SOUL_WALL_TORCH,
                 Blocks.CAMPFIRE,
                 Blocks.SOUL_CAMPFIRE,
+                Blocks.LAVA,
                 SMBlocks.AMBER_LANTERN.get()
         );
 

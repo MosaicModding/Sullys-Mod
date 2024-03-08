@@ -7,7 +7,7 @@
     "minecraft:soul_wall_torch",
     "minecraft:campfire",
     "minecraft:soul_campfire",
-    "sullysmod:amber_lantern",
-    "minecraft:lava"
+    "minecraft:lava",
+    "sullysmod:amber_lantern"
   ]
 }
