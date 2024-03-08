@@ -1,4 +1,14 @@
 {
+  "ambient.mountain.calls": {
+    "sounds": [
+      "sullysmod:ambient/mountain/call1",
+      "sullysmod:ambient/mountain/call2",
+      "sullysmod:ambient/mountain/call3",
+      "sullysmod:ambient/mountain/call4",
+      "sullysmod:ambient/mountain/call5"
+    ],
+    "subtitle": "subtitles.ambient.mountain.calls"
+  },
   "block.flinger_totem.add_honey": {
     "sounds": [
       "item/honeycomb/wax_on1",

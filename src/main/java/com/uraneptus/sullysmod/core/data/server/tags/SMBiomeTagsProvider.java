@@ -63,5 +63,9 @@ public class SMBiomeTagsProvider extends BiomeTagsProvider {
                 .add(Biomes.DRIPSTONE_CAVES);
         tag(SMBiomeTags.JUNGLE_SPIDER_SPAWN_IN).addTag(BiomeTags.IS_JUNGLE);
         tag(SMBiomeTags.PIRANHA_SPAWN_IN).addTag(BiomeTags.IS_JUNGLE).add(Biomes.MANGROVE_SWAMP);
+        tag(SMBiomeTags.SNOWY_MOUNTAINS)
+                .add(Biomes.SNOWY_SLOPES)
+                .add(Biomes.GROVE)
+                .add(Biomes.JAGGED_PEAKS);
     }
 }

@@ -264,6 +264,13 @@ public class SMSoundDefinitionsProvider extends SoundDefinitionsProvider {
         this.addBasicSound(SMSounds.BOULDERING_ZOMBIE_DEATH,
                 sound(new ResourceLocation("mob/zombie/death"))
         );
+        this.addBasicSound(SMSounds.MOUNTAIN_CALLS, "ambient.mountain.calls",
+                sound(SullysMod.modPrefix("ambient/mountain/call1")),
+                sound(SullysMod.modPrefix("ambient/mountain/call2")),
+                sound(SullysMod.modPrefix("ambient/mountain/call3")),
+                sound(SullysMod.modPrefix("ambient/mountain/call4")),
+                sound(SullysMod.modPrefix("ambient/mountain/call5"))
+        );
     }
 
     private void addBasicSound(Supplier<SoundEvent> soundEvent, String subtitle, SoundDefinition.Sound... sounds) {

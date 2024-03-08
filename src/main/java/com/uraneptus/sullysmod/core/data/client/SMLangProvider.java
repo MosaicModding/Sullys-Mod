@@ -172,6 +172,7 @@ public class SMLangProvider extends LanguageProvider {
         add("subtitles.item.throwing_knife.hit", "Knife hits entity");
         add("subtitles.item.throwing_knife.hit_ground", "Knife hits ground");
         add("subtitles.item.throwing_knife.throw", "Knife flies");
+        add("subtitles.ambient.mountain.calls", "Echoes in the distance");
 
         //Other
         SMTextUtil.TRANSLATABLES.forEach(this::add);
