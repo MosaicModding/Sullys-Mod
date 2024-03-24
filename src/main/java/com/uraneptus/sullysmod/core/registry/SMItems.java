@@ -11,6 +11,7 @@ import com.uraneptus.sullysmod.core.other.SMArmorMaterials;
 import com.uraneptus.sullysmod.core.other.SMProperties;
 import com.uraneptus.sullysmod.core.other.SMTextDefinitions;
 import com.uraneptus.sullysmod.core.other.SMTextUtil;
+import com.uraneptus.sullysmod.core.other.tags.SMInstrumentTags;
 import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.EntityType;
@@ -18,7 +19,6 @@ import net.minecraft.world.entity.animal.WaterAnimal;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraftforge.common.ForgeSpawnEggItem;
-import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.RegistryObject;
 
 import java.util.HashMap;
@@ -70,17 +70,17 @@ public class SMItems {
     public static final RegistryObject<Item> BROKEN_VASE = registerArtifact("broken_vase", "A large piece of the side is missing", 10);
     public static final RegistryObject<Item> PRIMITIVE_KNIFE = registerArtifact("primitive_knife", "A small knife made from obsidian", 15);
     public static final RegistryObject<Item> MINERS_HELMET = registerArtifact("miners_helmet", "Looks like it’s previous owner couldn’t get the candle lit anymore",
-            () -> new ArtifactHelmetItem(SMArmorMaterials.MINERS_HELMET, SMProperties.Items.ARTIFACT, MinersHelmetModel.INSTANCE), 15);
+            () -> new ArtifactHelmetItem(SMArmorMaterials.MINERS_HELMET, SMProperties.Items.artifacts(), MinersHelmetModel.INSTANCE), 15);
     public static final RegistryObject<Item> SMALL_DENTED_HELMET = registerArtifact("small_dented_helmet", "A small rusty helmet. Barely fits",
-            () -> new ArtifactHelmetItem(SMArmorMaterials.SMALL_DENTED_HELMET, SMProperties.Items.ARTIFACT), 22);
+            () -> new ArtifactHelmetItem(SMArmorMaterials.SMALL_DENTED_HELMET, SMProperties.Items.artifacts()), 22);
     public static final RegistryObject<Item> LOST_CROWN = registerArtifact("lost_crown", "Once belonged to the king of a now fallen kingdom",
-            () -> new ArtifactHelmetItem(SMArmorMaterials.LOST_CROWN, SMProperties.Items.ARTIFACT), 30);
+            () -> new ArtifactHelmetItem(SMArmorMaterials.LOST_CROWN, SMProperties.Items.artifacts()), 30);
     public static final RegistryObject<Item> JADE_AMULET = registerArtifact("jade_amulet", "A creature is carefully sculpted from the stone", 20);
     public static final RegistryObject<Item> PRIMITIVE_RING = registerArtifact("primitive_ring", "A roughly made metal ring", 10);
     public static final RegistryObject<Item> RUSTY_TOOLS = registerArtifact("rusty_tools", "Maybe their owners are still out there", 9);
     public static final RegistryObject<Item> BROKEN_BOWL = registerArtifact("broken_bowl", "A large crack runs down the edge", 9);
     public static final RegistryObject<Item> COPPER_COG = registerArtifact("copper_cog", "Said to have been part of living creatures", 23);
-    public static final RegistryObject<Item> PETRIFIED_COOKIE = registerArtifact("petrified_cookie", "Petrified food is still food, just extra crisp", 12);
+    public static final RegistryObject<Item> PETRIFIED_COOKIE = registerArtifact("petrified_cookie", "Petrified food is still food, just extra crisp", () -> new Item(SMProperties.Items.artifacts().food(SMProperties.Foods.PETRIFIED_COOKIE)), 12);
     public static final RegistryObject<Item> ARROWHEAD = registerArtifact("arrowhead", "The tip of an ancient arrow", 5);
     public static final RegistryObject<Item> DEATH_WHISTLE = registerArtifact("death_whistle", "Screeches horrible noises when blown into", 20);
     public static final RegistryObject<Item> OMINOUS_TABLET = registerArtifact("ominous_tablet", "A dark figure is carved into the stone", 25);
@@ -112,7 +112,7 @@ public class SMItems {
     public static final RegistryObject<Item> FROG_IDOL = registerArtifact("frog_idol", "Everybody likes frogs", 29);
 
     public static RegistryObject<Item> registerArtifact(String name, String description, int price) {
-        return registerArtifact(name, description, () -> new Item(SMProperties.Items.ARTIFACT), price);
+        return registerArtifact(name, description, () -> new Item(SMProperties.Items.artifacts()), price);
     }
 
     public static RegistryObject<Item> registerArtifact(String name, String description, Supplier<? extends Item> item, int price) {

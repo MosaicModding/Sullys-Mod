@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "sullysmod:small_geode"
+    }
+  ],
+  "result": {
+    "count": 3,
+    "item": "minecraft:amethyst_shard"
+  }
+}

@@ -34,6 +34,16 @@
             },
             "trigger": "minecraft:consume_item"
           },
+          "sullysmod:petrified_cookie": {
+            "conditions": {
+              "item": {
+                "items": [
+                  "sullysmod:petrified_cookie"
+                ]
+              }
+            },
+            "trigger": "minecraft:consume_item"
+          },
           "sullysmod:piranha": {
             "conditions": {
               "item": {
@@ -57,6 +67,9 @@
           ],
           [
             "sullysmod:cooked_piranha"
+          ],
+          [
+            "sullysmod:petrified_cookie"
           ]
         ],
         "should_replace_requirements": false

@@ -43,7 +43,9 @@ public class SMProperties {
         //Item Specific
         public static final Item.Properties MUSIC_DISCS = PropertyUtil.stacksOnce().rarity(Rarity.RARE);
         public static final Item.Properties JADE_SHIELD = new Item.Properties().durability(400);
-        public static final Item.Properties ARTIFACT = PropertyUtil.stacksOnce().rarity(ANCIENT);
+        public static Item.Properties artifacts() {
+            return PropertyUtil.stacksOnce().rarity(ANCIENT);
+        }
 
         public static Item.Properties sixteenStack() {
             return new Item.Properties().stacksTo(16);
@@ -55,5 +57,6 @@ public class SMProperties {
         public static final FoodProperties COOKED_LANTERNFISH_FOOD = new FoodProperties.Builder().nutrition(5).saturationMod(0.6F).effect(() -> new MobEffectInstance(MobEffects.GLOWING, 200), 1.0F).build();
         public static final FoodProperties PIRANHA_FOOD = new FoodProperties.Builder().nutrition(3).saturationMod(0.1F).build();
         public static final FoodProperties COOKED_PIRANHA_FOOD = new FoodProperties.Builder().nutrition(7).saturationMod(0.5F).build();
+        public static final FoodProperties PETRIFIED_COOKIE = new FoodProperties.Builder().build();
     }
 }
