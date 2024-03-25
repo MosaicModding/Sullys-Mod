@@ -1,6 +1,6 @@
 package com.uraneptus.sullysmod.common.blocks;
 
-import com.uraneptus.sullysmod.core.data.server.SMDatapackBuiltinEntriesProvider;
+import com.uraneptus.sullysmod.data.server.SMDatapackBuiltinEntriesProvider;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.util.RandomSource;

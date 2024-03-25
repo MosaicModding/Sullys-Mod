@@ -1,5 +1,6 @@
 package com.uraneptus.sullysmod.common.blocks;
 
+import com.uraneptus.sullysmod.common.blockentities.AmberBE;
 import com.uraneptus.sullysmod.core.other.tags.SMBlockTags;
 import com.uraneptus.sullysmod.core.registry.SMBlockEntityTypes;
 import com.uraneptus.sullysmod.core.registry.SMBlocks;
@@ -15,7 +16,6 @@ import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LightLayer;
 import net.minecraft.world.level.block.BaseEntityBlock;
-import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
@@ -59,7 +59,7 @@ public class AmberBlock extends BaseEntityBlock {
 
         if (pContext instanceof EntityCollisionContext entitycollisioncontext) {
             Entity entity = entitycollisioncontext.getEntity();
-            if (blockEntity instanceof AmberBlockEntity amber) {
+            if (blockEntity instanceof AmberBE amber) {
                 Level level = blockEntity.getLevel();
                 if (!amber.hasStuckEntity()) {
                     if (entity != null) {
@@ -80,25 +80,25 @@ public class AmberBlock extends BaseEntityBlock {
                             amber.setBlockMelted(true);
                             return MELTING_COLLISION_SHAPE;
                         }
-                        if (blockEntityXP instanceof AmberBlockEntity amberXP) {
+                        if (blockEntityXP instanceof AmberBE amberXP) {
                             if (amberXP.isBlockMelted()) {
                                 amber.setBlockMelted(true);
                                 return MELTING_COLLISION_SHAPE;
                             }
                         }
-                        if (blockEntityXN instanceof AmberBlockEntity amberXN) {
+                        if (blockEntityXN instanceof AmberBE amberXN) {
                             if (amberXN.isBlockMelted()) {
                                 amber.setBlockMelted(true);
                                 return MELTING_COLLISION_SHAPE;
                             }
                         }
-                        if (blockEntityZP instanceof AmberBlockEntity amberZP) {
+                        if (blockEntityZP instanceof AmberBE amberZP) {
                             if (amberZP.isBlockMelted()) {
                                 amber.setBlockMelted(true);
                                 return MELTING_COLLISION_SHAPE;
                             }
                         }
-                        if (blockEntityZN instanceof AmberBlockEntity amberZN) {
+                        if (blockEntityZN instanceof AmberBE amberZN) {
                             if (amberZN.isBlockMelted()) {
                                 amber.setBlockMelted(true);
                                 return MELTING_COLLISION_SHAPE;
@@ -114,7 +114,7 @@ public class AmberBlock extends BaseEntityBlock {
 
         }
         if (blockEntity != null) {
-            ((AmberBlockEntity) blockEntity).setBlockMelted(false);
+            ((AmberBE) blockEntity).setBlockMelted(false);
         }
         return Shapes.block();
     }
@@ -123,10 +123,10 @@ public class AmberBlock extends BaseEntityBlock {
     public void onRemove(BlockState blockState, Level pLevel, BlockPos blockPos, BlockState pNewState, boolean pIsMoving) {
         if (blockState.getBlock() == SMBlocks.AMBER.get()) {
             BlockEntity blockEntity = pLevel.getBlockEntity(blockPos);
-            if (blockEntity instanceof AmberBlockEntity amberBlockEntity) {
+            if (blockEntity instanceof AmberBE amberBlockEntity) {
                 if (amberBlockEntity.hasStuckEntity()) {
                     CompoundTag compoundtag = amberBlockEntity.getEntityStuck();
-                    AmberBlockEntity.removeIgnoredNBT(compoundtag);
+                    AmberBE.removeIgnoredNBT(compoundtag);
                     LivingEntity livingEntity = (LivingEntity) EntityType.loadEntityRecursive(compoundtag, (Level) pLevel, entity -> entity);
                     livingEntity.moveTo(blockPos.getX() + 0.5, blockPos.getY(), blockPos.getZ() + 0.5);
                     pLevel.addFreshEntity(livingEntity);
@@ -147,7 +147,7 @@ public class AmberBlock extends BaseEntityBlock {
 
     public void entityInside(BlockState pState, Level pLevel, BlockPos pPos, Entity pEntity) {
         BlockEntity blockEntity = pLevel.getBlockEntity(pPos);
-        if (blockEntity instanceof AmberBlockEntity amber) {
+        if (blockEntity instanceof AmberBE amber) {
             if (!amber.hasStuckEntity()) {
                 if (!(pEntity instanceof LivingEntity) || pEntity.getFeetBlockState().is(this)) {
                     if (pEntity instanceof Player) {

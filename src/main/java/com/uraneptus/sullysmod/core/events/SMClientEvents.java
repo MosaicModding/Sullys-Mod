@@ -4,6 +4,8 @@ import com.uraneptus.sullysmod.SullysMod;
 import com.uraneptus.sullysmod.client.model.*;
 import com.uraneptus.sullysmod.client.particles.BlotEyesParticle;
 import com.uraneptus.sullysmod.client.particles.RicochetParticle;
+import com.uraneptus.sullysmod.client.renderer.be.AmberBER;
+import com.uraneptus.sullysmod.client.renderer.be.ItemStandBER;
 import com.uraneptus.sullysmod.client.renderer.entities.*;
 import com.uraneptus.sullysmod.common.items.VenomVialItem;
 import com.uraneptus.sullysmod.core.registry.*;
@@ -29,7 +31,7 @@ public class SMClientEvents {
         event.registerEntityRenderer(SMEntityTypes.JUNGLE_SPIDER.get(), JungleSpiderRenderer::new);
         event.registerEntityRenderer(SMEntityTypes.PIRANHA.get(), PiranhaRenderer::new);
         event.registerEntityRenderer(SMEntityTypes.THROWN_THROWING_KNIFE.get(), ThrownThrowingKnifeRenderer::new);
-        event.registerBlockEntityRenderer(SMBlockEntityTypes.AMBER.get(), AmberBlockEntityRenderer::new);
+        event.registerBlockEntityRenderer(SMBlockEntityTypes.AMBER.get(), AmberBER::new);
         event.registerBlockEntityRenderer(SMBlockEntityTypes.ITEM_STAND.get(), ItemStandBER::new);
     }
 

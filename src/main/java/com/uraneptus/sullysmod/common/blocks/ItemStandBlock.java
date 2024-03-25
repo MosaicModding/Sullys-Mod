@@ -1,13 +1,12 @@
 package com.uraneptus.sullysmod.common.blocks;
 
+import com.uraneptus.sullysmod.common.blockentities.ItemStandBE;
 import com.uraneptus.sullysmod.core.other.SMItemUtil;
-import com.uraneptus.sullysmod.core.other.tags.SMItemTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.Containers;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
-import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.BlockItem;
@@ -40,7 +39,7 @@ public class ItemStandBlock extends BaseEntityBlock {
     public InteractionResult use(BlockState blockState, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
         BlockEntity entity = level.getBlockEntity(pos);
         ItemStack itemInHand = player.getItemInHand(hand);
-        if (entity instanceof ItemStandBlockEntity itemStand) {
+        if (entity instanceof ItemStandBE itemStand) {
             if (itemStand.getDisplayItem().isEmpty()) {
                 if (!(itemInHand.getItem() instanceof BlockItem)) {
                     if (itemInHand.getItem() instanceof ArmorItem armorItem && armorItem.getType() != ArmorItem.Type.HELMET) {
@@ -63,7 +62,7 @@ public class ItemStandBlock extends BaseEntityBlock {
     public void onRemove(BlockState blockState, Level level, BlockPos pos, BlockState pNewState, boolean pIsMoving) {
         if (!blockState.is(pNewState.getBlock())) {
             BlockEntity entity = level.getBlockEntity(pos);
-            if (entity instanceof ItemStandBlockEntity itemStand && !itemStand.getDisplayItem().isEmpty()) {
+            if (entity instanceof ItemStandBE itemStand && !itemStand.getDisplayItem().isEmpty()) {
                 Containers.dropItemStack(level, pos.getX(), pos.getY(), pos.getZ(), itemStand.getDisplayItem());
             }
             super.onRemove(blockState, level, pos, pNewState, pIsMoving);
@@ -116,7 +115,7 @@ public class ItemStandBlock extends BaseEntityBlock {
     @Nullable
     @Override
     public BlockEntity newBlockEntity(BlockPos pPos, BlockState pState) {
-        return new ItemStandBlockEntity(pPos, pState);
+        return new ItemStandBE(pPos, pState);
     }
 
     @Nullable
