@@ -5,10 +5,14 @@ import com.uraneptus.sullysmod.client.model.*;
 import com.uraneptus.sullysmod.client.particles.BlotEyesParticle;
 import com.uraneptus.sullysmod.client.particles.RicochetParticle;
 import com.uraneptus.sullysmod.client.renderer.be.AmberBER;
+import com.uraneptus.sullysmod.client.renderer.be.AncientSkullBER;
 import com.uraneptus.sullysmod.client.renderer.be.ItemStandBER;
 import com.uraneptus.sullysmod.client.renderer.entities.*;
+import com.uraneptus.sullysmod.common.blocks.AncientSkullBlock;
 import com.uraneptus.sullysmod.common.items.VenomVialItem;
 import com.uraneptus.sullysmod.core.registry.*;
+import net.minecraft.client.model.geom.EntityModelSet;
+import net.minecraft.client.renderer.blockentity.SkullBlockRenderer;
 import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
@@ -33,6 +37,7 @@ public class SMClientEvents {
         event.registerEntityRenderer(SMEntityTypes.THROWN_THROWING_KNIFE.get(), ThrownThrowingKnifeRenderer::new);
         event.registerBlockEntityRenderer(SMBlockEntityTypes.AMBER.get(), AmberBER::new);
         event.registerBlockEntityRenderer(SMBlockEntityTypes.ITEM_STAND.get(), ItemStandBER::new);
+        event.registerBlockEntityRenderer(SMBlockEntityTypes.ANCIENT_SKULL.get(), AncientSkullBER::new);
     }
 
     @SubscribeEvent
@@ -42,6 +47,7 @@ public class SMClientEvents {
         event.registerLayerDefinition(TortoiseShellModel.LAYER_LOCATION, TortoiseShellModel::createBodyLayer);
         event.registerLayerDefinition(JungleSpiderModel.LAYER_LOCATION, JungleSpiderModel::createBodyLayer);
         event.registerLayerDefinition(MinersHelmetModel.LAYER_LOCATION, MinersHelmetModel::createBodyLayer);
+        event.registerLayerDefinition(CrackedAncientSkullModel.LAYER_LOCATION, CrackedAncientSkullModel::createBodyLayer);
     }
 
     @SubscribeEvent
@@ -58,5 +64,12 @@ public class SMClientEvents {
     @SubscribeEvent
     public static void onItemColouring(RegisterColorHandlersEvent.Item event) {
         event.register(((stack, tint) -> tint == 0 ? -1 : VenomVialItem.getEffectColours(stack, tint)), SMItems.VENOM_VIAL.get());
+    }
+
+    @SubscribeEvent
+    public static void onCreateSkullModels(EntityRenderersEvent.CreateSkullModels event) {
+        EntityModelSet entityModelSet = event.getEntityModelSet();
+        event.registerSkullModel(AncientSkullBlock.Types.CRACKED, new CrackedAncientSkullModel(entityModelSet.bakeLayer(CrackedAncientSkullModel.LAYER_LOCATION)));
+
     }
 }

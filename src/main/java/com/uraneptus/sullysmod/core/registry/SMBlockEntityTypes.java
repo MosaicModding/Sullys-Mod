@@ -2,6 +2,7 @@ package com.uraneptus.sullysmod.core.registry;
 
 import com.teamabnormals.blueprint.core.util.registry.BlockEntitySubRegistryHelper;
 import com.uraneptus.sullysmod.SullysMod;
+import com.uraneptus.sullysmod.common.blockentities.AncientSkullBE;
 import com.uraneptus.sullysmod.common.blocks.*;
 import com.uraneptus.sullysmod.common.blockentities.AmberBE;
 import com.uraneptus.sullysmod.common.blockentities.FlingerTotemBE;
@@ -18,4 +19,5 @@ public class SMBlockEntityTypes {
     public static final RegistryObject<BlockEntityType<FlingerTotemBE>> FLINGER_TOTEM = HELPER.createBlockEntity("flinger_totem", FlingerTotemBE::new, FlingerTotem.class);
     public static final RegistryObject<BlockEntityType<AmberBE>> AMBER = HELPER.createBlockEntity("amber", AmberBE::new, AmberBlock.class);
     public static final RegistryObject<BlockEntityType<ItemStandBE>> ITEM_STAND = HELPER.createBlockEntity("item_stand", ItemStandBE::new, ItemStandBlock.class);
+    public static final RegistryObject<BlockEntityType<AncientSkullBE>> ANCIENT_SKULL = HELPER.createBlockEntity("ancient_skull", AncientSkullBE::new, AncientSkullBlock.class);
 }

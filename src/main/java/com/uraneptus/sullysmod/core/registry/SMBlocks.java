@@ -15,8 +15,10 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
+import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.block.state.properties.WoodType;
 import net.minecraft.world.level.material.MapColor;
+import net.minecraft.world.level.material.PushReaction;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.RegistryObject;
 
@@ -105,6 +107,8 @@ public class SMBlocks {
     public static final RegistryObject<Block> PETRIFIED_SAPLING = HELPER.createBlock("petrified_sapling", () -> new PetrifiedSapling(SMProperties.Blocks.PETRIFIED_SAPLING));
     public static final RegistryObject<Block> POTTED_PETRIFIED_SAPLING = HELPER.createBlockNoItem("potted_petrified_sapling", () -> new FlowerPotBlock(PETRIFIED_SAPLING.get(), PropertyUtil.flowerPot()));
 
+    //ANCIENT SKULLS
+    public static final RegistryObject<Block> CRACKED_ANCIENT_SKULL = HELPER.createBlock("cracked_ancient_skull", () -> new AncientSkullBlock(AncientSkullBlock.Types.CRACKED, BlockBehaviour.Properties.of().instrument(NoteBlockInstrument.ZOMBIE).strength(1.0F).pushReaction(PushReaction.DESTROY)));
     //Misc
     public static final RegistryObject<Block> TORTOISE_EGG = HELPER.createBlock("tortoise_egg", () -> new TortoiseEggBlock(BlockBehaviour.Properties.copy(Blocks.TURTLE_EGG)));
     public static final RegistryObject<Block> ITEM_STAND = HELPER.createBlock("item_stand", () -> new ItemStandBlock(SMProperties.Blocks.ITEM_STAND));
