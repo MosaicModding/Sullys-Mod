@@ -17,6 +17,8 @@ import net.minecraftforge.common.data.ExistingFileHelper;
 
 import java.util.function.Supplier;
 
+import static com.uraneptus.sullysmod.data.SMDatagenUtil.*;
+
 @SuppressWarnings({"unused", "SameParameterValue"})
 public class SMItemModelProvider extends ItemModelProvider {
 
@@ -154,10 +156,11 @@ public class SMItemModelProvider extends ItemModelProvider {
         basicItem(SMItems.EMERALD_EARRING);
         basicItem(SMItems.BROKEN_BOTTLE);
         basicItem(SMItems.FROG_IDOL);
+        ancientSkull(SMBlocks.CRACKED_ANCIENT_SKULL);
     }
 
     private void basicBlockItem(Supplier<? extends Block> blockForItem) {
-        withExistingParent(SMDatagenUtil.name(blockForItem.get()), SMDatagenUtil.modBlockLocation(SMDatagenUtil.name(blockForItem.get())));
+        withExistingParent(name(blockForItem.get()), modBlockLocation(name(blockForItem.get())));
     }
 
     private void basicItem(Supplier<? extends Item> item) {
@@ -165,8 +168,8 @@ public class SMItemModelProvider extends ItemModelProvider {
     }
 
     private void basicItemHandheld(Supplier<? extends Item> item) {
-        withExistingParent(SMDatagenUtil.name(item.get()), SMDatagenUtil.HANDHELD)
-                .texture(SMDatagenUtil.LAYER0, SMDatagenUtil.modItemLocation(SMDatagenUtil.name(item.get())));
+        withExistingParent(name(item.get()), HANDHELD)
+                .texture(LAYER0, modItemLocation(name(item.get())));
     }
 
     private void blockItemWithItemTexture(Supplier<? extends Block> blockForItem) {
@@ -174,26 +177,26 @@ public class SMItemModelProvider extends ItemModelProvider {
     }
 
     private void itemFromBlockTexture(Supplier<? extends Block> block) {
-        withExistingParent(SMDatagenUtil.name(block.get()), SMDatagenUtil.GENERATED).texture(SMDatagenUtil.LAYER0, SMDatagenUtil.modBlockLocation(SMDatagenUtil.name(block.get())));
+        withExistingParent(name(block.get()), GENERATED).texture(LAYER0, modBlockLocation(name(block.get())));
     }
 
     private void modButtonBlockItem(Supplier<? extends Block> blockForItem, Supplier<? extends Block> blockForTexture) {
-        buttonInventory(SMDatagenUtil.name(blockForItem.get()), SMDatagenUtil.modBlockLocation(SMDatagenUtil.name(blockForTexture.get())));
+        buttonInventory(name(blockForItem.get()), modBlockLocation(name(blockForTexture.get())));
     }
 
     private void copperButtonBlockItem(Supplier<? extends Block> blockForItem, Supplier<? extends Block> blockForTexture) {
-        buttonInventory(SMDatagenUtil.name(blockForItem.get()), SMDatagenUtil.vanillaBlockLocation(SMDatagenUtil.name(blockForTexture.get())));
+        buttonInventory(name(blockForItem.get()), vanillaBlockLocation(name(blockForTexture.get())));
     }
 
     private void fenceBlockItem(Supplier<? extends Block> block, Supplier<? extends Block> blockForTexture) {
-        fenceInventory(SMDatagenUtil.name(block.get()), SMDatagenUtil.modBlockLocation(SMDatagenUtil.name(blockForTexture.get())));
+        fenceInventory(name(block.get()), modBlockLocation(name(blockForTexture.get())));
     }
     private void wallBlockItem(Supplier<? extends Block> block, Supplier<? extends Block> blockForTexture) {
-        wallInventory(SMDatagenUtil.name(block.get()), SMDatagenUtil.modBlockLocation(SMDatagenUtil.name(blockForTexture.get())));
+        wallInventory(name(block.get()), modBlockLocation(name(blockForTexture.get())));
     }
 
     private void basicBlockItemWithSuffix(Supplier<? extends Block> block, String suffix) {
-        withExistingParent(SMDatagenUtil.name(block.get()), SMDatagenUtil.modBlockLocation(SMDatagenUtil.name(block.get()) + suffix));
+        withExistingParent(name(block.get()), modBlockLocation(name(block.get()) + suffix));
     }
 
     private void trapdoorBlockItem(Supplier<? extends Block> block) {
@@ -201,14 +204,14 @@ public class SMItemModelProvider extends ItemModelProvider {
     }
 
     private void basicSpawnEggItem(Supplier<? extends Item> item) {
-        withExistingParent(SMDatagenUtil.name(item.get()), SMDatagenUtil.SPAWN_EGG);
+        withExistingParent(name(item.get()), SPAWN_EGG);
     }
 
     private void jadeShieldItem(Supplier<? extends Item> item) {
-        getBuilder(SMDatagenUtil.name(item.get()) + "_blocking")
+        getBuilder(name(item.get()) + "_blocking")
                 .parent(new ModelFile.UncheckedModelFile("builtin/entity"))
                 .guiLight(BlockModel.GuiLight.FRONT)
-                .texture("particle", SMDatagenUtil.vanillaBlockLocation(SMDatagenUtil.DARK_OAK_PLANKS))
+                .texture("particle", vanillaBlockLocation(DARK_OAK_PLANKS))
                 .transforms()
                 .transform(ItemDisplayContext.THIRD_PERSON_RIGHT_HAND).rotation(45, 135, 0).translation(3.51F, 11, -2).end()
                 .transform(ItemDisplayContext.THIRD_PERSON_LEFT_HAND).rotation(45, 135, 0).translation(13.51F, 3, 5).end()
@@ -217,10 +220,10 @@ public class SMItemModelProvider extends ItemModelProvider {
                 .transform(ItemDisplayContext.GUI).rotation(15, -25, -5).translation(2, 2.5F, 0).scale(0.65F, 0.65F, 0.65F).end()
                 .end();
 
-        getBuilder(SMDatagenUtil.name(item.get()))
+        getBuilder(name(item.get()))
                 .parent(new ModelFile.UncheckedModelFile("builtin/entity"))
                 .guiLight(BlockModel.GuiLight.FRONT)
-                .texture("particle", SMDatagenUtil.vanillaBlockLocation(SMDatagenUtil.DARK_OAK_PLANKS))
+                .texture("particle", vanillaBlockLocation(DARK_OAK_PLANKS))
                 .transforms()
                 .transform(ItemDisplayContext.THIRD_PERSON_RIGHT_HAND).rotation(0, 90, 0).translation(10, 6, -4).end()
                 .transform(ItemDisplayContext.THIRD_PERSON_LEFT_HAND).rotation(0, 90, 0).translation(10, 6, 12).end()
@@ -230,13 +233,17 @@ public class SMItemModelProvider extends ItemModelProvider {
                 .transform(ItemDisplayContext.FIXED).rotation(0, 180, 0).translation(-4.5F, 4.5F, -5).scale(0.55F, 0.55F, 0.55F).end()
                 .transform(ItemDisplayContext.GROUND).rotation(0, 0, 0).translation(2, 4, 2).scale(0.25F, 0.25F, 0.25F).end()
                 .end()
-                .override().predicate(new ResourceLocation("blocking"), 1).model(new ModelFile.UncheckedModelFile(SMDatagenUtil.modItemLocation(SMDatagenUtil.name(item.get()) + "_blocking")));
+                .override().predicate(new ResourceLocation("blocking"), 1).model(new ModelFile.UncheckedModelFile(modItemLocation(name(item.get()) + "_blocking")));
     }
 
     private void venomVialItem(Supplier<? extends Item> item) {
-        withExistingParent(SMDatagenUtil.name(item.get()), SMDatagenUtil.GENERATED)
-                .texture("layer0", SMDatagenUtil.modItemLocation("glass_vial"))
-                .texture("layer1", SMDatagenUtil.modItemLocation("venom_vial_1"))
-                .texture("layer2", SMDatagenUtil.modItemLocation("venom_vial_2"));
+        withExistingParent(name(item.get()), GENERATED)
+                .texture("layer0", modItemLocation("glass_vial"))
+                .texture("layer1", modItemLocation("venom_vial_1"))
+                .texture("layer2", modItemLocation("venom_vial_2"));
+    }
+    
+    private void ancientSkull(Supplier<? extends Block> skull) {
+        withExistingParent(name(skull.get()), SKULL);
     }
 }

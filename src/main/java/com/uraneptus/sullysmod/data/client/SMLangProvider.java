@@ -87,6 +87,7 @@ public class SMLangProvider extends LanguageProvider {
         forBlock(SMBlocks.PETRIFIED_DOOR);
         forBlock(SMBlocks.PETRIFIED_SAPLING);
         forBlock(SMBlocks.ITEM_STAND);
+        //forBlock(SMBlocks.CRACKED_ANCIENT_SKULL);
 
         addBlock(SMBlocks.POLISHED_JADE_BLOCK, "Block of Polished Jade");
         addBlock(SMBlocks.ROUGH_JADE_BLOCK, "Block of Rough Jade");

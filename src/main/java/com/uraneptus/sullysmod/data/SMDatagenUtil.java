@@ -26,6 +26,7 @@ public class SMDatagenUtil {
     public static final ResourceLocation GENERATED = vanillaItemLocation("generated");
     public static final ResourceLocation HANDHELD = vanillaItemLocation("handheld");
     public static final ResourceLocation SPAWN_EGG = vanillaItemLocation("template_spawn_egg");
+    public static final ResourceLocation SKULL = vanillaItemLocation("template_skull");
     //Textures
     public static final String COPPER_BLOCK = name(Blocks.COPPER_BLOCK);
     public static final String EXPOSED_COPPER = name(Blocks.EXPOSED_COPPER);

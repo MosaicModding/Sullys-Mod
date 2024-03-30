@@ -64,7 +64,7 @@ public class SMItems {
 
     //Artifacts
     public static Map<Supplier<Item>, Component> ARTIFACTS = new HashMap<>();
-    public static Map<RegistryObject<Item>, Integer> TRADES = new HashMap<>();
+    public static Map<Supplier<Item>, Integer> TRADES = new HashMap<>();
 
     public static final RegistryObject<Item> BROKEN_VASE = registerArtifact("broken_vase", "A large piece of the side is missing", 10);
     public static final RegistryObject<Item> PRIMITIVE_KNIFE = registerArtifact("primitive_knife", "A small knife made from obsidian", 15);

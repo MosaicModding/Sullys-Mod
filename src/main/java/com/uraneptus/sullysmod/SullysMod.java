@@ -1,8 +1,10 @@
 package com.uraneptus.sullysmod;
 
+import com.google.common.collect.Maps;
 import com.mojang.logging.LogUtils;
 import com.teamabnormals.blueprint.core.Blueprint;
 import com.teamabnormals.blueprint.core.util.registry.RegistryHelper;
+import com.uraneptus.sullysmod.common.blocks.AncientSkullBlock;
 import com.uraneptus.sullysmod.core.registry.SMDispenseBehaviors;
 import com.uraneptus.sullysmod.common.entities.*;
 import com.uraneptus.sullysmod.core.SMConfig;
@@ -17,10 +19,14 @@ import com.uraneptus.sullysmod.core.other.SMTextDefinitions;
 import com.uraneptus.sullysmod.core.registry.*;
 import com.uraneptus.sullysmod.core.registry.util.SMBlockSubRegistryHelper;
 import com.uraneptus.sullysmod.data.server.tags.*;
+import net.minecraft.Util;
+import net.minecraft.client.renderer.blockentity.SkullBlockRenderer;
+import net.minecraft.client.resources.DefaultPlayerSkin;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.block.SkullBlock;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.data.ExistingFileHelper;
@@ -32,6 +38,7 @@ import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
+import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -51,6 +58,7 @@ public class SullysMod {
     public SullysMod() {
         IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
         bus.addListener(this::setup);
+        bus.addListener(this::clientSetup);
         bus.addListener(this::gatherData);
 
         ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, SMConfig.CLIENT);
@@ -88,6 +96,16 @@ public class SullysMod {
         event.put(SMEntityTypes.BOULDERING_ZOMBIE.get(), BoulderingZombie.createAttributes().build());
         event.put(SMEntityTypes.JUNGLE_SPIDER.get(), JungleSpider.createAttributes().build());
         event.put(SMEntityTypes.PIRANHA.get(), Piranha.createAttributes().build());
+    }
+
+    private void clientSetup(final FMLClientSetupEvent event) {
+        event.enqueueWork(() -> {
+            SkullBlockRenderer.SKIN_BY_TYPE.putAll(Util.make(Maps.newHashMap(), (map) -> {
+                map.put(AncientSkullBlock.Types.CRACKED, SullysMod.modPrefix("textures/entity/ancient_skulls/cracked.png"));
+                map.put(AncientSkullBlock.Types.CRESTED, SullysMod.modPrefix("textures/entity/ancient_skulls/crested.png") );
+            }));
+
+        });
     }
 
     private void setup(final FMLCommonSetupEvent event) {

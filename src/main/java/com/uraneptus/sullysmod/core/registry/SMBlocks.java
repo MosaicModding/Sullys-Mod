@@ -9,9 +9,12 @@ import com.teamabnormals.blueprint.core.util.PropertyUtil;
 import com.uraneptus.sullysmod.SullysMod;
 import com.uraneptus.sullysmod.common.blocks.*;
 import com.uraneptus.sullysmod.core.other.SMProperties;
+import com.uraneptus.sullysmod.core.other.SMTextDefinitions;
+import com.uraneptus.sullysmod.core.other.SMTextUtil;
 import com.uraneptus.sullysmod.core.registry.util.SMBlockSubRegistryHelper;
 import net.minecraft.core.Direction;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
@@ -107,13 +110,23 @@ public class SMBlocks {
     public static final RegistryObject<Block> PETRIFIED_SAPLING = HELPER.createBlock("petrified_sapling", () -> new PetrifiedSapling(SMProperties.Blocks.PETRIFIED_SAPLING));
     public static final RegistryObject<Block> POTTED_PETRIFIED_SAPLING = HELPER.createBlockNoItem("potted_petrified_sapling", () -> new FlowerPotBlock(PETRIFIED_SAPLING.get(), PropertyUtil.flowerPot()));
 
-    //ANCIENT SKULLS
-    public static final RegistryObject<Block> CRACKED_ANCIENT_SKULL = HELPER.createBlock("cracked_ancient_skull", () -> new AncientSkullBlock(AncientSkullBlock.Types.CRACKED, BlockBehaviour.Properties.of().instrument(NoteBlockInstrument.ZOMBIE).strength(1.0F).pushReaction(PushReaction.DESTROY)));
     //Misc
     public static final RegistryObject<Block> TORTOISE_EGG = HELPER.createBlock("tortoise_egg", () -> new TortoiseEggBlock(BlockBehaviour.Properties.copy(Blocks.TURTLE_EGG)));
     public static final RegistryObject<Block> ITEM_STAND = HELPER.createBlock("item_stand", () -> new ItemStandBlock(SMProperties.Blocks.ITEM_STAND));
 
     //Ancient Skulls
+    public static final RegistryObject<Block> CRACKED_ANCIENT_SKULL = HELPER.createBlock("cracked_ancient_skull", () -> new AncientSkullBlock(AncientSkullBlock.Types.CRACKED, SMProperties.Blocks.ancientSkulls(NoteBlockInstrument.ZOMBIE)), SMProperties.Items.artifacts()); //TODO add custom sounds
+    public static final RegistryObject<Block> CRACKED_ANCIENT_WALL_SKULL = HELPER.createBlock("cracked_ancient_wall_skull", () -> new AncientWallSkullBlock(AncientSkullBlock.Types.CRACKED, SMProperties.Blocks.ancientSkulls(NoteBlockInstrument.ZOMBIE)));
+
+    public static Pair<RegistryObject<Block>, RegistryObject<Block>> registerArtifact(AncientSkullBlock.Types type, String description, NoteBlockInstrument skullSound, int price) {
+        String name = SMTextUtil.convertSkullTypeToString(type);
+        RegistryObject<Block> skull = HELPER.createBlock(name + "_ancient_skull", () -> new AncientSkullBlock(type, SMProperties.Blocks.ancientSkulls(skullSound)));
+        RegistryObject<Block> wall_skull = HELPER.createBlock(name + "_ancient_wall_skull", () -> new AncientWallSkullBlock(type, SMProperties.Blocks.ancientSkulls(skullSound)));
+        SMItems.ARTIFACTS.put(() -> skull.get().asItem(), SMTextUtil.addSMTranslatable("artifact." + name + ".desc", description).withStyle(SMTextDefinitions.ARTIFACT_DESC_STYLE));
+        SMItems.ARTIFACTS.put(() -> wall_skull.get().asItem(), SMTextUtil.addSMTranslatable("artifact." + name + ".desc", description).withStyle(SMTextDefinitions.ARTIFACT_DESC_STYLE));
+        SMItems.TRADES.put(() -> skull.get().asItem(), price);
+        return Pair.of(skull, wall_skull);
+    }
 
     private static PetrifiedLog log(Supplier<Block> strippedBlock, MapColor pTopMapColor, MapColor pSideMapColor) {
         return new PetrifiedLog(strippedBlock, SMProperties.Blocks.petrified().requiresCorrectToolForDrops().mapColor((blockState) ->

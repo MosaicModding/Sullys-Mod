@@ -6,6 +6,7 @@ import com.teamabnormals.blueprint.common.block.sign.BlueprintStandingSignBlock;
 import com.teamabnormals.blueprint.common.block.sign.BlueprintWallHangingSignBlock;
 import com.teamabnormals.blueprint.common.block.sign.BlueprintWallSignBlock;
 import com.uraneptus.sullysmod.SullysMod;
+import com.uraneptus.sullysmod.common.blocks.AncientSkullBlock;
 import com.uraneptus.sullysmod.common.blocks.FlingerTotem;
 import com.uraneptus.sullysmod.core.registry.SMBlocks;
 import net.minecraft.core.Direction;
@@ -94,6 +95,7 @@ public class SMBlockStateProvider extends BlockStateProvider {
         modDoorBlockWithRenderType(SMBlocks.PETRIFIED_DOOR, "cutout");
         plantWithPottedBlock(SMBlocks.PETRIFIED_SAPLING, SMBlocks.POTTED_PETRIFIED_SAPLING);
         itemStandBlock(SMBlocks.ITEM_STAND);
+        ancientSkull(SMBlocks.CRACKED_ANCIENT_SKULL, SMBlocks.CRACKED_ANCIENT_WALL_SKULL);
     }
 
     private void basicBlock(Supplier<? extends Block> block) {
@@ -278,5 +280,10 @@ public class SMBlockStateProvider extends BlockStateProvider {
         getVariantBuilder(block.get()).forAllStates(blockState -> ConfiguredModel.builder()
                 .modelFile(file).rotationY(((int) blockState.getValue(BlockStateProperties.HORIZONTAL_FACING).toYRot() + 180) % 360)
                 .build());
+    }
+
+    private void ancientSkull(Supplier<? extends Block> skull, Supplier<? extends Block> wall_skull) {
+        getVariantBuilder(skull.get()).forAllStatesExcept(blockstate -> ConfiguredModel.builder().modelFile(models().getExistingFile(vanillaBlockLocation("skull"))).build(), SkullBlock.ROTATION);
+        getVariantBuilder(wall_skull.get()).forAllStatesExcept(blockstate -> ConfiguredModel.builder().modelFile(models().getExistingFile(vanillaBlockLocation("skull"))).build(), SkullBlock.ROTATION);
     }
 }
