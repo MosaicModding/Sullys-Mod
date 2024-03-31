@@ -1,7 +1,7 @@
 package com.uraneptus.sullysmod.common.entities;
 
+import com.uraneptus.sullysmod.client.sound.FollowJukeboxEntitySoundInstance;
 import com.uraneptus.sullysmod.common.blocks.TortoiseEggBlock;
-import com.uraneptus.sullysmod.core.other.SMItemUtil;
 import com.uraneptus.sullysmod.core.other.tags.SMEntityTags;
 import com.uraneptus.sullysmod.core.other.tags.SMItemTags;
 import com.uraneptus.sullysmod.core.registry.SMBlocks;
@@ -9,8 +9,8 @@ import com.uraneptus.sullysmod.core.registry.SMEntityTypes;
 import com.uraneptus.sullysmod.core.registry.SMItems;
 import com.uraneptus.sullysmod.core.registry.SMSounds;
 import net.minecraft.advancements.CriteriaTriggers;
+import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
@@ -21,11 +21,9 @@ import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
 import net.minecraft.tags.BlockTags;
-import net.minecraft.tags.ItemTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
-import net.minecraft.world.SimpleMenuProvider;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
@@ -36,8 +34,6 @@ import net.minecraft.world.entity.npc.Villager;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.entity.vehicle.Boat;
-import net.minecraft.world.inventory.ContainerLevelAccess;
-import net.minecraft.world.inventory.CraftingMenu;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.GameRules;
@@ -48,7 +44,6 @@ import net.minecraft.world.level.block.TurtleEggBlock;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.network.NetworkHooks;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib.animatable.GeoEntity;
@@ -68,12 +63,14 @@ public class Tortoise extends Animal implements GeoEntity, WorkstationAttachable
     private static final EntityDataAccessor<Boolean> HAS_EGG = SynchedEntityData.defineId(Tortoise.class, EntityDataSerializers.BOOLEAN);
     private static final EntityDataAccessor<Boolean> LAYING_EGG = SynchedEntityData.defineId(Tortoise.class, EntityDataSerializers.BOOLEAN);
     private static final EntityDataAccessor<ItemStack> WORKSTATION = SynchedEntityData.defineId(Tortoise.class, EntityDataSerializers.ITEM_STACK);
+    private static final EntityDataAccessor<ItemStack> RECORD_ITEM = SynchedEntityData.defineId(Tortoise.class, EntityDataSerializers.ITEM_STACK);
     public static final Ingredient FOOD_ITEMS = Ingredient.of(SMItemTags.TORTOISE_FOOD);
     protected static final RawAnimation WALKING_ANIM = RawAnimation.begin().thenLoop("animation.tortoise.walking");
     protected static final RawAnimation HIDING_ANIM = RawAnimation.begin().thenPlayAndHold("animation.tortoise.hide").thenLoop("animation.tortoise.hiding");
     protected static final RawAnimation REVEAL_ANIM = RawAnimation.begin().thenPlayAndHold("animation.tortoise.reveal");
     private final AnimatableInstanceCache instanceCache = GeckoLibUtil.createInstanceCache(this);
     int layEggCounter;
+    FollowJukeboxEntitySoundInstance soundInstance;
 
     public Tortoise(EntityType<? extends Animal> entityType, Level level) {
         super(entityType, level);
@@ -151,6 +148,20 @@ public class Tortoise extends Animal implements GeoEntity, WorkstationAttachable
     }
 
     @Override
+    public void remove(Entity.RemovalReason pReason) {
+        super.remove(pReason);
+        this.handleServerRemoval(this);
+    }
+
+    @Override
+    public void onClientRemoval() {
+        if (this.hasAppliedWorkstation() && !this.getRecordItem().isEmpty()) {
+            Minecraft.getInstance().getSoundManager().stop(getSoundInstance());
+        }
+        super.onClientRemoval();
+    }
+
+    @Override
     public void tick() {
         super.tick();
         Level level = this.level();
@@ -188,6 +199,8 @@ public class Tortoise extends Animal implements GeoEntity, WorkstationAttachable
                 } else this.setHideTimerDuration(200);
             }
         }
+
+
     }
 
     @Override
@@ -213,6 +226,7 @@ public class Tortoise extends Animal implements GeoEntity, WorkstationAttachable
             this.gameEvent(GameEvent.ENTITY_INTERACT, null);
             return InteractionResult.sidedSuccess(this.level().isClientSide);
         }
+
         return super.mobInteract(player, hand);
     }
 
@@ -350,6 +364,26 @@ public class Tortoise extends Animal implements GeoEntity, WorkstationAttachable
     }
 
     @Override
+    public FollowJukeboxEntitySoundInstance getSoundInstance() {
+        return this.soundInstance;
+    }
+
+    @Override
+    public void setSoundInstance(FollowJukeboxEntitySoundInstance soundInstance) {
+        this.soundInstance = soundInstance;
+    }
+
+    @Override
+    public ItemStack getRecordItem() {
+        return this.entityData.get(RECORD_ITEM);
+    }
+
+    @Override
+    public void setRecordItem(ItemStack itemStack) {
+        this.entityData.set(RECORD_ITEM, itemStack);
+    }
+
+    @Override
     public ItemStack getAppliedWorkstation() {
         return this.entityData.get(WORKSTATION);
     }
@@ -393,6 +427,7 @@ public class Tortoise extends Animal implements GeoEntity, WorkstationAttachable
         this.entityData.define(HAS_EGG, false);
         this.entityData.define(LAYING_EGG, false);
         this.entityData.define(WORKSTATION, ItemStack.EMPTY);
+        this.entityData.define(RECORD_ITEM, ItemStack.EMPTY);
     }
 
     @Override
@@ -400,7 +435,7 @@ public class Tortoise extends Animal implements GeoEntity, WorkstationAttachable
         super.addAdditionalSaveData(nbt);
         nbt.putInt("HideTimer", getHideTimerDuration());
         nbt.putBoolean("HasEgg", hasEgg());
-        this.addWorkstationSaveData(nbt);
+        this.addSaveData(nbt);
     }
 
     @Override
@@ -408,7 +443,7 @@ public class Tortoise extends Animal implements GeoEntity, WorkstationAttachable
         super.readAdditionalSaveData(nbt);
         this.setHideTimerDuration(nbt.getInt("HideTimer"));
         this.setHasEgg(nbt.getBoolean("HasEgg"));
-        this.readWorkstationSaveData(nbt);
+        this.readSaveData(nbt);
     }
 
     public static class RiderAllowingRandomStrollGoal extends RandomStrollGoal {

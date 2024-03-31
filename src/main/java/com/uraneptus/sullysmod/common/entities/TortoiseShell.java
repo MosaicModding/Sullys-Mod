@@ -1,24 +1,21 @@
 package com.uraneptus.sullysmod.common.entities;
 
-import com.uraneptus.sullysmod.core.other.SMItemUtil;
+import com.uraneptus.sullysmod.client.sound.FollowJukeboxEntitySoundInstance;
 import com.uraneptus.sullysmod.core.other.tags.SMBlockTags;
-import com.uraneptus.sullysmod.core.other.tags.SMItemTags;
 import com.uraneptus.sullysmod.core.registry.SMDamageTypes;
 import com.uraneptus.sullysmod.core.registry.SMEntityTypes;
 import com.uraneptus.sullysmod.core.registry.SMItems;
 import com.uraneptus.sullysmod.core.registry.SMSounds;
 import net.minecraft.BlockUtil;
+import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
-import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.server.players.OldUsersConverter;
 import net.minecraft.sounds.SoundEvents;
-import net.minecraft.stats.Stats;
-import net.minecraft.tags.ItemTags;
 import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -32,7 +29,6 @@ import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.GameRules;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.gameevent.GameEvent;
-import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
@@ -53,6 +49,8 @@ public class TortoiseShell extends Entity implements OwnableEntity, WorkstationA
     protected static final EntityDataAccessor<Optional<UUID>> DATA_OWNERUUID_ID = SynchedEntityData.defineId(TortoiseShell.class, EntityDataSerializers.OPTIONAL_UUID);
     public static final EntityDataAccessor<Integer> SPIN_TICKS = SynchedEntityData.defineId(TortoiseShell.class, EntityDataSerializers.INT);
     private static final EntityDataAccessor<ItemStack> WORKSTATION = SynchedEntityData.defineId(TortoiseShell.class, EntityDataSerializers.ITEM_STACK);
+    private static final EntityDataAccessor<ItemStack> RECORD_ITEM = SynchedEntityData.defineId(TortoiseShell.class, EntityDataSerializers.ITEM_STACK);
+    FollowJukeboxEntitySoundInstance soundInstance;
 
     public TortoiseShell(EntityType<? extends TortoiseShell> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
@@ -96,6 +94,7 @@ public class TortoiseShell extends Entity implements OwnableEntity, WorkstationA
         this.entityData.define(SPIN_TICKS, 0);
         this.entityData.define(DATA_OWNERUUID_ID, Optional.empty());
         this.entityData.define(WORKSTATION, ItemStack.EMPTY);
+        this.entityData.define(RECORD_ITEM, ItemStack.EMPTY);
     }
 
     public Integer getSpinTicksEntityData() {
@@ -375,12 +374,26 @@ public class TortoiseShell extends Entity implements OwnableEntity, WorkstationA
     }
 
     @Override
+    public void remove(Entity.RemovalReason pReason) {
+        super.remove(pReason);
+        this.handleServerRemoval(this);
+    }
+
+    @Override
+    public void onClientRemoval() {
+        if (this.hasAppliedWorkstation() && !this.getRecordItem().isEmpty()) {
+            Minecraft.getInstance().getSoundManager().stop(getSoundInstance());
+        }
+        super.onClientRemoval();
+    }
+
+    @Override
     protected void addAdditionalSaveData(CompoundTag pCompound) {
         pCompound.putInt("spinTicks", getSpinTicksEntityData());
         if (this.getOwnerUUID() != null) {
             pCompound.putUUID("Owner", this.getOwnerUUID());
         }
-        this.addWorkstationSaveData(pCompound);
+        this.addSaveData(pCompound);
     }
 
     @Override
@@ -396,7 +409,7 @@ public class TortoiseShell extends Entity implements OwnableEntity, WorkstationA
         if (uuid != null) {
             this.setOwnerUUID(uuid);
         }
-        this.readWorkstationSaveData(pCompound);
+        this.readSaveData(pCompound);
     }
 
     public float getDamage() {
@@ -441,5 +454,25 @@ public class TortoiseShell extends Entity implements OwnableEntity, WorkstationA
     @Override
     public boolean hasAppliedWorkstation() {
         return !getAppliedWorkstation().isEmpty();
+    }
+
+    @Override
+    public ItemStack getRecordItem() {
+        return this.entityData.get(RECORD_ITEM);
+    }
+
+    @Override
+    public void setRecordItem(ItemStack itemStack) {
+        this.entityData.set(RECORD_ITEM, itemStack);
+    }
+
+    @Override
+    public FollowJukeboxEntitySoundInstance getSoundInstance() {
+        return this.soundInstance;
+    }
+
+    @Override
+    public void setSoundInstance(FollowJukeboxEntitySoundInstance soundInstance) {
+        this.soundInstance = soundInstance;
     }
 }

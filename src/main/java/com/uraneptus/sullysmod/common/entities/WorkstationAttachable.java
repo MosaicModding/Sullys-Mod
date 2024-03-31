@@ -1,9 +1,10 @@
 package com.uraneptus.sullysmod.common.entities;
 
+import com.uraneptus.sullysmod.client.sound.FollowJukeboxEntitySoundInstance;
 import com.uraneptus.sullysmod.core.other.SMItemUtil;
 import com.uraneptus.sullysmod.core.other.tags.SMItemTags;
+import net.minecraft.client.Minecraft;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.stats.Stats;
 import net.minecraft.tags.ItemTags;
@@ -15,8 +16,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.ContainerLevelAccess;
 import net.minecraft.world.inventory.CraftingMenu;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
-import net.minecraft.world.level.Level;
+import net.minecraft.world.item.RecordItem;
 import net.minecraftforge.network.NetworkHooks;
 import org.jetbrains.annotations.NotNull;
 
@@ -30,15 +30,19 @@ public interface WorkstationAttachable {
     default boolean isJukebox() {
         return getAppliedWorkstation().is(SMItemTags.JUKEBOXES);
     }
+    ItemStack getRecordItem();
+    void setRecordItem(ItemStack itemStack);
+    FollowJukeboxEntitySoundInstance getSoundInstance();
+    void setSoundInstance(FollowJukeboxEntitySoundInstance itemStack);
 
-    default void addWorkstationSaveData(@NotNull CompoundTag nbt) {
-        CompoundTag compoundTag = new CompoundTag();
-        this.getAppliedWorkstation().save(compoundTag);
-        nbt.put("AppliedWorkstation", compoundTag);
+    default void addSaveData(@NotNull CompoundTag nbt) {
+        nbt.put("AppliedWorkstation", this.getAppliedWorkstation().save(new CompoundTag()));
+        nbt.put("RecordItem", this.getRecordItem().save(new CompoundTag()));
     }
 
-    default void readWorkstationSaveData(@NotNull CompoundTag nbt) {
+    default void readSaveData(@NotNull CompoundTag nbt) {
         this.setAppliedWorkstation(ItemStack.of(nbt.getCompound("AppliedWorkstation")));
+        this.setRecordItem(ItemStack.of(nbt.getCompound("RecordItem")));
     }
 
     InteractionResult customInteraction(Player pPlayer, @NotNull InteractionHand pHand);
@@ -50,6 +54,14 @@ public interface WorkstationAttachable {
         if (hasAppliedWorkstation()) {
             if (pPlayer.isShiftKeyDown()) {
                 if (itemInHand.is(ItemTags.AXES)) {
+                    if (isJukebox() && !getRecordItem().isEmpty()) {
+                        if (!entity.level().isClientSide()) {
+                            pPlayer.addItem(getRecordItem());
+                            setRecordItem(ItemStack.EMPTY);
+                        } else {
+                            Minecraft.getInstance().getSoundManager().stop(getSoundInstance());
+                        }
+                    }
                     SMItemUtil.nonCreativeAddItems(pPlayer, new ItemStack(this.getAppliedWorkstation().getItem()));
                     setAppliedWorkstation(ItemStack.EMPTY);
                     entity.refreshDimensions();
@@ -65,9 +77,31 @@ public interface WorkstationAttachable {
                     }
                     return InteractionResult.SUCCESS;
                 } else if (isJukebox()) {
-                    //TODO handle jukebox behavior here
-                    return InteractionResult.sidedSuccess(entity.level().isClientSide());
+                    if (itemInHand.isEmpty()) {
+                        if (!getRecordItem().isEmpty()) {
+                            if (!entity.level().isClientSide()) {
+                                pPlayer.addItem(getRecordItem());
+                                setRecordItem(ItemStack.EMPTY);
+                            } else {
+                                Minecraft.getInstance().getSoundManager().stop(getSoundInstance());
+                            }
+                            return InteractionResult.SUCCESS;
+                        }
+                    } else if (itemInHand.getItem() instanceof RecordItem recordItem) {
+                        if (getRecordItem().isEmpty()) {
+                            setRecordItem(recordItem.getDefaultInstance());
+                            SMItemUtil.nonCreativeShrinkStack(pPlayer, itemInHand);
+                            setSoundInstance(new FollowJukeboxEntitySoundInstance(entity, recordItem.getSound()));
 
+                            if (entity.level().isClientSide()) {
+                                Minecraft mc = Minecraft.getInstance();
+                                mc.gui.setNowPlaying(recordItem.getDisplayName());
+                                mc.getSoundManager().queueTickingSound(getSoundInstance());
+                            }
+                            return InteractionResult.sidedSuccess(entity.level().isClientSide());
+                        }
+                    }
+                    return InteractionResult.sidedSuccess(entity.level().isClientSide());
                 }
             }
         } else if (itemInHand.is(SMItemTags.CRAFTING_TABLES) || itemInHand.is(SMItemTags.JUKEBOXES)) {
@@ -99,5 +133,16 @@ public interface WorkstationAttachable {
                 return true;
             }
         }, entity.getName().copy().append(" Crafting")));
+    }
+
+    default void handleServerRemoval(Entity entity) {
+        if (this.hasAppliedWorkstation()) {
+            entity.spawnAtLocation(new ItemStack(getAppliedWorkstation().getItem()));
+
+            if (!this.getRecordItem().isEmpty()) {
+                entity.spawnAtLocation(new ItemStack(getRecordItem().getItem()));
+                setRecordItem(ItemStack.EMPTY);
+            }
+        }
     }
 }
