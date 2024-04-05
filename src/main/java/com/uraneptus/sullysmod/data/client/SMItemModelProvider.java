@@ -156,7 +156,7 @@ public class SMItemModelProvider extends ItemModelProvider {
         basicItem(SMItems.EMERALD_EARRING);
         basicItem(SMItems.BROKEN_BOTTLE);
         basicItem(SMItems.FROG_IDOL);
-        ancientSkull(SMBlocks.CRACKED_ANCIENT_SKULL);
+        ancientSkull(SMBlocks.CRACKED_ANCIENT_SKULL.getFirst());
     }
 
     private void basicBlockItem(Supplier<? extends Block> blockForItem) {
@@ -209,9 +209,9 @@ public class SMItemModelProvider extends ItemModelProvider {
 
     private void jadeShieldItem(Supplier<? extends Item> item) {
         getBuilder(name(item.get()) + "_blocking")
-                .parent(new ModelFile.UncheckedModelFile("builtin/entity"))
+                .parent(new ModelFile.UncheckedModelFile(ENTITY))
                 .guiLight(BlockModel.GuiLight.FRONT)
-                .texture("particle", vanillaBlockLocation(DARK_OAK_PLANKS))
+                .texture("particle", vanillaBlockLocation(name(Blocks.DARK_OAK_PLANKS)))
                 .transforms()
                 .transform(ItemDisplayContext.THIRD_PERSON_RIGHT_HAND).rotation(45, 135, 0).translation(3.51F, 11, -2).end()
                 .transform(ItemDisplayContext.THIRD_PERSON_LEFT_HAND).rotation(45, 135, 0).translation(13.51F, 3, 5).end()
@@ -221,9 +221,9 @@ public class SMItemModelProvider extends ItemModelProvider {
                 .end();
 
         getBuilder(name(item.get()))
-                .parent(new ModelFile.UncheckedModelFile("builtin/entity"))
+                .parent(new ModelFile.UncheckedModelFile(ENTITY))
                 .guiLight(BlockModel.GuiLight.FRONT)
-                .texture("particle", vanillaBlockLocation(DARK_OAK_PLANKS))
+                .texture("particle", vanillaBlockLocation(name(Blocks.DARK_OAK_PLANKS)))
                 .transforms()
                 .transform(ItemDisplayContext.THIRD_PERSON_RIGHT_HAND).rotation(0, 90, 0).translation(10, 6, -4).end()
                 .transform(ItemDisplayContext.THIRD_PERSON_LEFT_HAND).rotation(0, 90, 0).translation(10, 6, 12).end()
@@ -244,6 +244,15 @@ public class SMItemModelProvider extends ItemModelProvider {
     }
     
     private void ancientSkull(Supplier<? extends Block> skull) {
-        withExistingParent(name(skull.get()), SKULL);
+        getBuilder(name(skull.get()))
+                .parent(new ModelFile.UncheckedModelFile(ENTITY))
+                .texture("particle", vanillaBlockLocation(name(Blocks.SOUL_SAND)))
+                .transforms()
+                .transform(ItemDisplayContext.GUI).rotation(30, 45, 0).translation(0, 3, 0).scale(0.6F, 0.6F, 0.6F).end()
+                .transform(ItemDisplayContext.FIXED).rotation(0, 180, 0).translation(0, 4, 0).end()
+                .transform(ItemDisplayContext.GROUND).translation(0, 3, 0).scale(0.5F, 0.5F, 0.5F).end()
+                .transform(ItemDisplayContext.THIRD_PERSON_RIGHT_HAND).rotation(45, 45, 0).translation(0, 3, 0).scale(0.5F, 0.5F, 0.5F).end()
+                .end();
+
     }
 }

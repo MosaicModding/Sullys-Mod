@@ -1,5 +1,6 @@
 package com.uraneptus.sullysmod.data.server.tags;
 
+import com.teamabnormals.blueprint.core.other.tags.BlueprintBlockTags;
 import com.uraneptus.sullysmod.SullysMod;
 import com.uraneptus.sullysmod.core.other.tags.SMBlockTags;
 import com.uraneptus.sullysmod.core.registry.SMBlocks;
@@ -224,6 +225,5 @@ public class SMBlockTagsProvider extends BlockTagsProvider {
         );
         tag(Tags.Blocks.FENCES_WOODEN).add(SMBlocks.PETRIFIED_FENCE.get());
         tag(Tags.Blocks.FENCE_GATES_WOODEN).add(SMBlocks.PETRIFIED_FENCE_GATE.get());
-        //tag(Tags.Blocks.COBBLESTONE_NORMAL).addTag(SMBlockTags.PETRIFIED_LOGS);
     }
 }

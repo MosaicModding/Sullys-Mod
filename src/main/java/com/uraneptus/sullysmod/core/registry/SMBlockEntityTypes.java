@@ -12,6 +12,8 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.RegistryObject;
 
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Set;
 import java.util.function.Supplier;
 
@@ -19,11 +21,9 @@ import java.util.function.Supplier;
 public class SMBlockEntityTypes {
     public static final BlockEntitySubRegistryHelper HELPER = SullysMod.REGISTRY_HELPER.getBlockEntitySubHelper();
     private static final Supplier<Set<Block>> ANCIENT_SKULLS = () -> Set.of(
-            SMBlocks.CRACKED_ANCIENT_SKULL.get(),
-            SMBlocks.CRACKED_ANCIENT_WALL_SKULL.get()
+            SMBlocks.CRACKED_ANCIENT_SKULL.getFirst().get(),
+            SMBlocks.CRACKED_ANCIENT_SKULL.getSecond().get()
     );
-
-
 
     public static final RegistryObject<BlockEntityType<FlingerTotemBE>> FLINGER_TOTEM = HELPER.createBlockEntity("flinger_totem", FlingerTotemBE::new, FlingerTotem.class);
     public static final RegistryObject<BlockEntityType<AmberBE>> AMBER = HELPER.createBlockEntity("amber", AmberBE::new, AmberBlock.class);

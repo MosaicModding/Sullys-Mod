@@ -63,7 +63,7 @@ public class SMItems {
     public static final RegistryObject<ForgeSpawnEggItem> PIRANHA_SPAWN_EGG = HELPER.createSpawnEggItem("piranha", SMEntityTypes.PIRANHA::get, 15561472, 4240022);
 
     //Artifacts
-    public static Map<Supplier<Item>, Component> ARTIFACTS = new HashMap<>();
+    public static Map<RegistryObject<Item>, Component> ARTIFACTS = new HashMap<>();
     public static Map<Supplier<Item>, Integer> TRADES = new HashMap<>();
 
     public static final RegistryObject<Item> BROKEN_VASE = registerArtifact("broken_vase", "A large piece of the side is missing", 10);

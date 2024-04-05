@@ -13,18 +13,21 @@ import com.uraneptus.sullysmod.core.other.SMTextDefinitions;
 import com.uraneptus.sullysmod.core.other.SMTextUtil;
 import com.uraneptus.sullysmod.core.registry.util.SMBlockSubRegistryHelper;
 import net.minecraft.core.Direction;
+import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.StandingAndWallBlockItem;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.block.state.properties.WoodType;
 import net.minecraft.world.level.material.MapColor;
-import net.minecraft.world.level.material.PushReaction;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.RegistryObject;
 
+import java.util.*;
 import java.util.function.Supplier;
 
 @Mod.EventBusSubscriber(modid = SullysMod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
@@ -115,17 +118,20 @@ public class SMBlocks {
     public static final RegistryObject<Block> ITEM_STAND = HELPER.createBlock("item_stand", () -> new ItemStandBlock(SMProperties.Blocks.ITEM_STAND));
 
     //Ancient Skulls
-    public static final RegistryObject<Block> CRACKED_ANCIENT_SKULL = HELPER.createBlock("cracked_ancient_skull", () -> new AncientSkullBlock(AncientSkullBlock.Types.CRACKED, SMProperties.Blocks.ancientSkulls(NoteBlockInstrument.ZOMBIE)), SMProperties.Items.artifacts()); //TODO add custom sounds
-    public static final RegistryObject<Block> CRACKED_ANCIENT_WALL_SKULL = HELPER.createBlock("cracked_ancient_wall_skull", () -> new AncientWallSkullBlock(AncientSkullBlock.Types.CRACKED, SMProperties.Blocks.ancientSkulls(NoteBlockInstrument.ZOMBIE)));
+    public static List<Supplier<Block>> ANCIENT_SKULLS = new ArrayList<>();
+    public static final Pair<RegistryObject<Block>, RegistryObject<Block>> CRACKED_ANCIENT_SKULL = registerAncientSkull(AncientSkullBlock.Types.CRACKED, "The head of a giant ancient creature, it has a noticeable amount of cracks.", NoteBlockInstrument.ZOMBIE, 43); //TODO add custom sounds
 
-    public static Pair<RegistryObject<Block>, RegistryObject<Block>> registerArtifact(AncientSkullBlock.Types type, String description, NoteBlockInstrument skullSound, int price) {
-        String name = SMTextUtil.convertSkullTypeToString(type);
-        RegistryObject<Block> skull = HELPER.createBlock(name + "_ancient_skull", () -> new AncientSkullBlock(type, SMProperties.Blocks.ancientSkulls(skullSound)));
-        RegistryObject<Block> wall_skull = HELPER.createBlock(name + "_ancient_wall_skull", () -> new AncientWallSkullBlock(type, SMProperties.Blocks.ancientSkulls(skullSound)));
-        SMItems.ARTIFACTS.put(() -> skull.get().asItem(), SMTextUtil.addSMTranslatable("artifact." + name + ".desc", description).withStyle(SMTextDefinitions.ARTIFACT_DESC_STYLE));
-        SMItems.ARTIFACTS.put(() -> wall_skull.get().asItem(), SMTextUtil.addSMTranslatable("artifact." + name + ".desc", description).withStyle(SMTextDefinitions.ARTIFACT_DESC_STYLE));
-        SMItems.TRADES.put(() -> skull.get().asItem(), price);
-        return Pair.of(skull, wall_skull);
+    public static Pair<RegistryObject<Block>, RegistryObject<Block>> registerAncientSkull(AncientSkullBlock.Types type, String description, NoteBlockInstrument skullSound, int price) {
+        String typeName = SMTextUtil.convertSkullTypeToString(type);
+        String skullName = typeName + "_ancient_skull";
+        RegistryObject<Block> skull = HELPER.createBlockNoItem(skullName, () -> new AncientSkullBlock(type, SMProperties.Blocks.ancientSkulls(skullSound)));
+        RegistryObject<Block> wallSkull = HELPER.createBlockNoItem(typeName + "_ancient_wall_skull", () -> new AncientWallSkullBlock(type, SMProperties.Blocks.ancientSkulls(skullSound).lootFrom(skull)));
+        ANCIENT_SKULLS.add(skull);
+        RegistryObject<Item> skullItem = SMItems.HELPER.createItem(skullName, () -> new StandingAndWallBlockItem(skull.get(), wallSkull.get(), SMProperties.Items.artifacts(), Direction.DOWN));
+        SMItems.ARTIFACTS.put(skullItem, SMTextUtil.addSMTranslatable("artifact." + skullName + ".desc", description).withStyle(SMTextDefinitions.ARTIFACT_DESC_STYLE));
+        SMItems.TRADES.put(skullItem, price);
+
+        return Pair.of(skull, wallSkull);
     }
 
     private static PetrifiedLog log(Supplier<Block> strippedBlock, MapColor pTopMapColor, MapColor pSideMapColor) {

@@ -111,8 +111,7 @@ public class SMBlockLoot extends BlockLootSubProvider {
         dropPottedContents(SMBlocks.POTTED_PETRIFIED_SAPLING.get());
 
         this.dropSelf(SMBlocks.ITEM_STAND.get());
-        this.dropSelf(SMBlocks.CRACKED_ANCIENT_SKULL.get());
-        this.dropSelf(SMBlocks.CRACKED_ANCIENT_WALL_SKULL.get());
+        SMBlocks.ANCIENT_SKULLS.forEach(regObj -> dropSelf(regObj.get()));
     }
 
     protected LootTable.Builder createJadeOreDrops(Block block) {

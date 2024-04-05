@@ -163,6 +163,10 @@ public class SMItemTagsProvider extends ItemTagsProvider {
         );
         tag(Tags.Items.FENCES_WOODEN).add(SMBlocks.PETRIFIED_FENCE.get().asItem());
         tag(Tags.Items.FENCE_GATES_WOODEN).add(SMBlocks.PETRIFIED_FENCE_GATE.get().asItem());
-        //tag(Tags.Items.COBBLESTONE_NORMAL).addTag(SMItemTags.PETRIFIED_LOGS);
+        SMItems.ARTIFACTS.forEach((item, desc) -> {
+            if (item.getId().getPath().contains("ancient_skull")) {
+                tag(Tags.Items.HEADS).add(item.get());
+            }
+        });
     }
 }

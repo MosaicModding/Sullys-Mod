@@ -17,7 +17,7 @@ public class AncientSkullBE extends SkullBlockEntity {
     @Nonnull
     @Override
     public BlockEntityType<?> getType() {
-        return SMBlockEntityTypes.FLINGER_TOTEM.get();
+        return SMBlockEntityTypes.ANCIENT_SKULL.get();
     }
 
 }

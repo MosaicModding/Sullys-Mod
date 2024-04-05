@@ -95,7 +95,7 @@ public class SMBlockStateProvider extends BlockStateProvider {
         modDoorBlockWithRenderType(SMBlocks.PETRIFIED_DOOR, "cutout");
         plantWithPottedBlock(SMBlocks.PETRIFIED_SAPLING, SMBlocks.POTTED_PETRIFIED_SAPLING);
         itemStandBlock(SMBlocks.ITEM_STAND);
-        ancientSkull(SMBlocks.CRACKED_ANCIENT_SKULL, SMBlocks.CRACKED_ANCIENT_WALL_SKULL);
+        ancientSkull(SMBlocks.CRACKED_ANCIENT_SKULL);
     }
 
     private void basicBlock(Supplier<? extends Block> block) {
@@ -282,8 +282,8 @@ public class SMBlockStateProvider extends BlockStateProvider {
                 .build());
     }
 
-    private void ancientSkull(Supplier<? extends Block> skull, Supplier<? extends Block> wall_skull) {
-        getVariantBuilder(skull.get()).forAllStatesExcept(blockstate -> ConfiguredModel.builder().modelFile(models().getExistingFile(vanillaBlockLocation("skull"))).build(), SkullBlock.ROTATION);
-        getVariantBuilder(wall_skull.get()).forAllStatesExcept(blockstate -> ConfiguredModel.builder().modelFile(models().getExistingFile(vanillaBlockLocation("skull"))).build(), SkullBlock.ROTATION);
+    private void ancientSkull(Pair<RegistryObject<Block>, RegistryObject<Block>> skull) {
+        getVariantBuilder(skull.getFirst().get()).forAllStatesExcept(blockstate -> ConfiguredModel.builder().modelFile(models().getExistingFile(vanillaBlockLocation("skull"))).build(), SkullBlock.ROTATION);
+        getVariantBuilder(skull.getSecond().get()).forAllStatesExcept(blockstate -> ConfiguredModel.builder().modelFile(models().getExistingFile(vanillaBlockLocation("skull"))).build(), SkullBlock.ROTATION);
     }
 }
