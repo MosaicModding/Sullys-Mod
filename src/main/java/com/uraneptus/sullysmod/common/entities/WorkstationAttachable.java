@@ -4,7 +4,10 @@ import com.uraneptus.sullysmod.client.sound.FollowJukeboxEntitySoundInstance;
 import com.uraneptus.sullysmod.core.other.SMItemUtil;
 import com.uraneptus.sullysmod.core.other.tags.SMItemTags;
 import net.minecraft.client.Minecraft;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.stats.Stats;
 import net.minecraft.tags.ItemTags;
@@ -15,8 +18,12 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.ContainerLevelAccess;
 import net.minecraft.world.inventory.CraftingMenu;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.RecordItem;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.gameevent.GameEvent;
+import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.network.NetworkHooks;
 import org.jetbrains.annotations.NotNull;
 
@@ -34,15 +41,29 @@ public interface WorkstationAttachable {
     void setRecordItem(ItemStack itemStack);
     FollowJukeboxEntitySoundInstance getSoundInstance();
     void setSoundInstance(FollowJukeboxEntitySoundInstance itemStack);
+    long getRecordTickCount();
+    void setRecordTickCount(long tickCount);
+    long getRecordStartedTick();
+    void setRecordStartedTick(long startedTick);
+    boolean isRecordPlaying();
+    void setRecordPlaying(boolean isPlaying);
+    int getTicksSinceLastEvent();
+    void setTicksSinceLastEvent(int ticksSinceLastEvent);
 
     default void addSaveData(@NotNull CompoundTag nbt) {
         nbt.put("AppliedWorkstation", this.getAppliedWorkstation().save(new CompoundTag()));
         nbt.put("RecordItem", this.getRecordItem().save(new CompoundTag()));
+        nbt.putBoolean("IsPlaying", this.isRecordPlaying());
+        nbt.putLong("RecordStartTick", this.getRecordStartedTick());
+        nbt.putLong("TickCount", this.getRecordTickCount());
     }
 
     default void readSaveData(@NotNull CompoundTag nbt) {
         this.setAppliedWorkstation(ItemStack.of(nbt.getCompound("AppliedWorkstation")));
         this.setRecordItem(ItemStack.of(nbt.getCompound("RecordItem")));
+        this.setRecordPlaying(nbt.getBoolean("IsPlaying"));
+        this.setRecordStartedTick(nbt.getLong("RecordStartTick"));
+        this.setRecordTickCount(nbt.getLong("TickCount"));
     }
 
     InteractionResult customInteraction(Player pPlayer, @NotNull InteractionHand pHand);
@@ -58,6 +79,9 @@ public interface WorkstationAttachable {
                         if (!entity.level().isClientSide()) {
                             pPlayer.addItem(getRecordItem());
                             setRecordItem(ItemStack.EMPTY);
+                            this.setRecordPlaying(false);
+                            this.setRecordTickCount(0);
+                            this.setTicksSinceLastEvent(0);
                         } else {
                             Minecraft.getInstance().getSoundManager().stop(getSoundInstance());
                         }
@@ -82,6 +106,9 @@ public interface WorkstationAttachable {
                             if (!entity.level().isClientSide()) {
                                 pPlayer.addItem(getRecordItem());
                                 setRecordItem(ItemStack.EMPTY);
+                                this.setRecordPlaying(false);
+                                this.setRecordTickCount(0);
+                                this.setTicksSinceLastEvent(0);
                             } else {
                                 Minecraft.getInstance().getSoundManager().stop(getSoundInstance());
                             }
@@ -92,6 +119,8 @@ public interface WorkstationAttachable {
                             setRecordItem(recordItem.getDefaultInstance());
                             SMItemUtil.nonCreativeShrinkStack(pPlayer, itemInHand);
                             setSoundInstance(new FollowJukeboxEntitySoundInstance(entity, recordItem.getSound()));
+                            this.setRecordStartedTick(this.getRecordTickCount());
+                            this.setRecordPlaying(true);
 
                             if (entity.level().isClientSide()) {
                                 Minecraft mc = Minecraft.getInstance();
@@ -135,6 +164,30 @@ public interface WorkstationAttachable {
         }, entity.getName().copy().append(" Crafting")));
     }
 
+    default void handleJukeboxTick(Entity entity, Level level) {
+        if (!isJukebox()) return;
+        BlockPos pos = entity.blockPosition();
+        this.setTicksSinceLastEvent(1 + this.getTicksSinceLastEvent());
+        if (!this.getRecordItem().isEmpty() && this.isRecordPlaying()) {
+            if (this.getRecordItem().getItem() instanceof RecordItem recorditem) {
+                if (this.getRecordTickCount() >= this.getRecordStartedTick() + (long)recorditem.getLengthInTicks() + 20L) {
+                    this.setRecordPlaying(false);
+                    level.gameEvent(GameEvent.JUKEBOX_STOP_PLAY, pos, GameEvent.Context.of(entity));
+                    level.levelEvent(1011, pos, 0);
+                } else if (getTicksSinceLastEvent() >= 20) {
+                    this.setTicksSinceLastEvent(0);
+                    level.gameEvent(GameEvent.JUKEBOX_PLAY, pos, GameEvent.Context.of(entity));
+                    if (level instanceof ServerLevel serverlevel) {
+                        Vec3 vec3 = Vec3.atBottomCenterOf(pos).add(0.0D, 1.2F, 0.0D);
+                        float xOffset = (float)level.getRandom().nextInt(4) / 24.0F;
+                        serverlevel.sendParticles(ParticleTypes.NOTE, vec3.x(), vec3.y(), vec3.z(), 0, xOffset, 0.0D, 0.0D, 1.0D);
+                    }
+                }
+            }
+        }
+        this.setRecordTickCount(1 + getRecordTickCount());
+    }
+
     default void handleServerRemoval(Entity entity) {
         if (this.hasAppliedWorkstation()) {
             entity.spawnAtLocation(new ItemStack(getAppliedWorkstation().getItem()));
@@ -143,6 +196,9 @@ public interface WorkstationAttachable {
                 entity.spawnAtLocation(new ItemStack(getRecordItem().getItem()));
                 setRecordItem(ItemStack.EMPTY);
             }
+            this.setRecordPlaying(false);
+            this.setRecordTickCount(0);
+            this.setTicksSinceLastEvent(0);
         }
     }
 }

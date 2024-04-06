@@ -71,6 +71,10 @@ public class Tortoise extends Animal implements GeoEntity, WorkstationAttachable
     private final AnimatableInstanceCache instanceCache = GeckoLibUtil.createInstanceCache(this);
     int layEggCounter;
     FollowJukeboxEntitySoundInstance soundInstance;
+    long recordTickCount;
+    long recordStartedTick;
+    boolean isPlaying;
+    int ticksSinceLastEvent;
 
     public Tortoise(EntityType<? extends Animal> entityType, Level level) {
         super(entityType, level);
@@ -165,6 +169,8 @@ public class Tortoise extends Animal implements GeoEntity, WorkstationAttachable
     public void tick() {
         super.tick();
         Level level = this.level();
+
+        this.handleJukeboxTick(this, level);
 
         //Hiding core stuff
         if (this.getHideTimerDuration() > 0) {
@@ -371,6 +377,46 @@ public class Tortoise extends Animal implements GeoEntity, WorkstationAttachable
     @Override
     public void setSoundInstance(FollowJukeboxEntitySoundInstance soundInstance) {
         this.soundInstance = soundInstance;
+    }
+
+    @Override
+    public long getRecordTickCount() {
+        return this.recordTickCount;
+    }
+
+    @Override
+    public void setRecordTickCount(long tickCount) {
+        this.recordTickCount = tickCount;
+    }
+
+    @Override
+    public long getRecordStartedTick() {
+        return this.recordStartedTick;
+    }
+
+    @Override
+    public void setRecordStartedTick(long startedTick) {
+        this.recordStartedTick = startedTick;
+    }
+
+    @Override
+    public boolean isRecordPlaying() {
+        return this.isPlaying;
+    }
+
+    @Override
+    public void setRecordPlaying(boolean isPlaying) {
+        this.isPlaying = isPlaying;
+    }
+
+    @Override
+    public int getTicksSinceLastEvent() {
+        return this.ticksSinceLastEvent;
+    }
+
+    @Override
+    public void setTicksSinceLastEvent(int ticksSinceLastEvent) {
+        this.ticksSinceLastEvent = ticksSinceLastEvent;
     }
 
     @Override

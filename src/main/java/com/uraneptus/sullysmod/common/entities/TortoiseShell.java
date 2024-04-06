@@ -51,6 +51,10 @@ public class TortoiseShell extends Entity implements OwnableEntity, WorkstationA
     private static final EntityDataAccessor<ItemStack> WORKSTATION = SynchedEntityData.defineId(TortoiseShell.class, EntityDataSerializers.ITEM_STACK);
     private static final EntityDataAccessor<ItemStack> RECORD_ITEM = SynchedEntityData.defineId(TortoiseShell.class, EntityDataSerializers.ITEM_STACK);
     FollowJukeboxEntitySoundInstance soundInstance;
+    long recordTickCount;
+    long recordStartedTick;
+    boolean isPlaying;
+    int ticksSinceLastEvent;
 
     public TortoiseShell(EntityType<? extends TortoiseShell> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
@@ -315,10 +319,11 @@ public class TortoiseShell extends Entity implements OwnableEntity, WorkstationA
 
     @Override
     public void tick() {
+        Level level = this.level();
         if (this.getSpinTicksEntityData() > 0) {
-            this.hitShield(this.level().getEntities(this, this.getBoundingBox().inflate(0.50D), EntitySelector.NO_CREATIVE_OR_SPECTATOR));
-            this.hurtEntity(this.level().getEntities(this, this.getBoundingBox().inflate(0.10D), EntitySelector.NO_CREATIVE_OR_SPECTATOR));
-            this.knockBack(this.level().getEntities(this, this.getBoundingBox().inflate(0.10D), EntitySelector.NO_CREATIVE_OR_SPECTATOR));
+            this.hitShield(level.getEntities(this, this.getBoundingBox().inflate(0.50D), EntitySelector.NO_CREATIVE_OR_SPECTATOR));
+            this.hurtEntity(level.getEntities(this, this.getBoundingBox().inflate(0.10D), EntitySelector.NO_CREATIVE_OR_SPECTATOR));
+            this.knockBack(level.getEntities(this, this.getBoundingBox().inflate(0.10D), EntitySelector.NO_CREATIVE_OR_SPECTATOR));
             blockKnockBack();
             this.entityData.set(SPIN_TICKS, this.getSpinTicksEntityData() - 1);
             while (this.getDeltaMovement().x() < -0.7 || this.getDeltaMovement().z() < -0.7) {
@@ -338,6 +343,9 @@ public class TortoiseShell extends Entity implements OwnableEntity, WorkstationA
 
         super.tick();
 
+
+        this.handleJukeboxTick(this, level);
+
         if (!this.isNoGravity()) {
             double yVelocity = -0.04D;
             FluidType fluidType = this.getEyeInFluidType();
@@ -349,7 +357,7 @@ public class TortoiseShell extends Entity implements OwnableEntity, WorkstationA
             this.setDeltaMovement(this.getDeltaMovement().add(0.0D, yVelocity, 0.0D));
         }
 
-        Level level = this.level();
+
         BlockPos bottomPosition = this.getBlockPosBelowThatAffectsMyMovement();
         float friction = this.onGround() ? level.getBlockState(bottomPosition).getFriction(level, bottomPosition, this) * 1.55F : 1.55F;
         float defaultFriction = this.level().getBlockState(bottomPosition).getFriction(level, bottomPosition, this);
@@ -415,64 +423,83 @@ public class TortoiseShell extends Entity implements OwnableEntity, WorkstationA
     public float getDamage() {
         return this.entityData.get(DATA_ID_DAMAGE);
     }
-
     public void setDamage(float pDamageTaken) {
         this.entityData.set(DATA_ID_DAMAGE, pDamageTaken);
     }
-
     public int getHurtTime() {
         return this.entityData.get(DATA_ID_HURT);
     }
-
     public void setHurtTime(int pHurtTime) {
         this.entityData.set(DATA_ID_HURT, pHurtTime);
     }
-
     public int getHurtDir() {
         return this.entityData.get(DATA_ID_HURTDIR);
     }
-
     public void setHurtDir(int pHurtDirection) {
         this.entityData.set(DATA_ID_HURTDIR, pHurtDirection);
     }
-
     @Override
     public ItemStack getPickResult() {
         return new ItemStack(this.getDropItem());
     }
-
     @Override
     public ItemStack getAppliedWorkstation() {
         return this.entityData.get(WORKSTATION);
     }
-
     @Override
     public void setAppliedWorkstation(ItemStack itemStack) {
         this.entityData.set(WORKSTATION, itemStack);
     }
-
     @Override
     public boolean hasAppliedWorkstation() {
         return !getAppliedWorkstation().isEmpty();
     }
-
     @Override
     public ItemStack getRecordItem() {
         return this.entityData.get(RECORD_ITEM);
     }
-
     @Override
     public void setRecordItem(ItemStack itemStack) {
         this.entityData.set(RECORD_ITEM, itemStack);
     }
-
     @Override
     public FollowJukeboxEntitySoundInstance getSoundInstance() {
         return this.soundInstance;
     }
-
     @Override
     public void setSoundInstance(FollowJukeboxEntitySoundInstance soundInstance) {
         this.soundInstance = soundInstance;
+    }
+    @Override
+    public long getRecordTickCount() {
+        return this.tickCount;
+    }
+    @Override
+    public void setRecordTickCount(long tickCount) {
+        this.recordTickCount = tickCount;
+    }
+    @Override
+    public long getRecordStartedTick() {
+        return this.recordStartedTick;
+    }
+    @Override
+    public void setRecordStartedTick(long startedTick) {
+        this.recordStartedTick = startedTick;
+    }
+    @Override
+    public boolean isRecordPlaying() {
+        return this.isPlaying;
+    }
+    @Override
+    public void setRecordPlaying(boolean isPlaying) {
+        this.isPlaying = isPlaying;
+    }
+    @Override
+    public int getTicksSinceLastEvent() {
+        return this.ticksSinceLastEvent;
+    }
+    @Override
+    public void setTicksSinceLastEvent(int ticksSinceLastEvent) {
+        this.ticksSinceLastEvent = ticksSinceLastEvent;
     }
 }
