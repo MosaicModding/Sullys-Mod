@@ -48,6 +48,7 @@ public class SMItemTagsProvider extends ItemTagsProvider {
         );
         SMItems.ARTIFACTS.forEach((item, desc) -> tag(SMItemTags.ARTIFACTS).add(item.get()));
 
+
         //Minecraft Tags
         tag(ItemTags.BUTTONS).add(
                 SMBlocks.COPPER_BUTTON.get().asItem(),
@@ -166,6 +167,7 @@ public class SMItemTagsProvider extends ItemTagsProvider {
         SMItems.ARTIFACTS.forEach((item, desc) -> {
             if (item.getId().getPath().contains("ancient_skull")) {
                 tag(Tags.Items.HEADS).add(item.get());
+                tag(SMItemTags.ANCIENT_SKULLS).add(item.get());
             }
         });
     }

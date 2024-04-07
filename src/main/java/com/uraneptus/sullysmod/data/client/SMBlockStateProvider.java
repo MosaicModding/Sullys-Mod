@@ -284,6 +284,6 @@ public class SMBlockStateProvider extends BlockStateProvider {
 
     private void ancientSkull(Pair<RegistryObject<Block>, RegistryObject<Block>> skull) {
         getVariantBuilder(skull.getFirst().get()).forAllStatesExcept(blockstate -> ConfiguredModel.builder().modelFile(models().getExistingFile(vanillaBlockLocation("skull"))).build(), SkullBlock.ROTATION);
-        getVariantBuilder(skull.getSecond().get()).forAllStatesExcept(blockstate -> ConfiguredModel.builder().modelFile(models().getExistingFile(vanillaBlockLocation("skull"))).build(), SkullBlock.ROTATION);
+        getVariantBuilder(skull.getSecond().get()).forAllStatesExcept(blockstate -> ConfiguredModel.builder().modelFile(models().getExistingFile(vanillaBlockLocation("skull"))).build(), WallSkullBlock.FACING);
     }
 }

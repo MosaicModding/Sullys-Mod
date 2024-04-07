@@ -1,6 +1,7 @@
 package com.uraneptus.sullysmod.core.events;
 
 import com.uraneptus.sullysmod.SullysMod;
+import com.uraneptus.sullysmod.common.blocks.AncientSkullBlock;
 import com.uraneptus.sullysmod.common.blocks.FlingerTotem;
 import com.uraneptus.sullysmod.common.blockentities.FlingerTotemBE;
 import com.uraneptus.sullysmod.common.blocks.SMDirectionalBlock;
@@ -30,6 +31,8 @@ import net.minecraft.world.entity.animal.horse.Horse;
 import net.minecraft.world.entity.monster.Zombie;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.Projectile;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.GameEvent;
@@ -41,6 +44,7 @@ import net.minecraftforge.event.entity.EntityJoinLevelEvent;
 import net.minecraftforge.event.entity.ProjectileImpactEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
+import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.loading.FMLLoader;
@@ -218,6 +222,15 @@ public class SMEntityEvents {
         if (livingEntity != null) {
             livingEntity.load(compoundtag);
             level.addFreshEntity(livingEntity);
+        }
+    }
+
+    @SubscribeEvent
+    public static void onGetVisibilityPercent(LivingEvent.LivingVisibilityEvent event) {
+        Entity lookingEntity = event.getLookingEntity();
+        if (lookingEntity == null) return;
+        if (lookingEntity.getType() == EntityType.SKELETON && event.getEntity().getItemBySlot(EquipmentSlot.HEAD).is(SMItemTags.ANCIENT_SKULLS)) {
+            event.modifyVisibility(0.5D);
         }
     }
 }
