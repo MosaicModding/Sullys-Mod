@@ -41,7 +41,7 @@ public class ItemStandBlock extends BaseEntityBlock {
         ItemStack itemInHand = player.getItemInHand(hand);
         if (entity instanceof ItemStandBE itemStand) {
             if (itemStand.getDisplayItem().isEmpty()) {
-                if (!(itemInHand.getItem() instanceof BlockItem)) {
+                if (!(itemInHand.getItem() instanceof BlockItem) || (itemInHand.getItem() instanceof BlockItem blockItem && blockItem.getBlock() instanceof SkullBlock)) {
                     if (itemInHand.getItem() instanceof ArmorItem armorItem && armorItem.getType() != ArmorItem.Type.HELMET) {
                         return super.use(blockState, level, pos, player, hand, hitResult);
                     }
