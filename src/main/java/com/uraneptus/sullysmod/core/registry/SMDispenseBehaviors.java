@@ -15,6 +15,7 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.entity.projectile.Arrow;
 import net.minecraft.world.entity.projectile.Projectile;
+import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.DispenserBlock;
@@ -57,5 +58,13 @@ public class SMDispenseBehaviors {
                 return thrownThrowingKnife;
             }
         });
+
+        SMBlocks.ANCIENT_SKULLS.forEach(block -> DispenserBlock.registerBehavior(block.get().asItem(), new OptionalDispenseItemBehavior() {
+            @Override
+            protected ItemStack execute(BlockSource pSource, ItemStack pStack) {
+                this.setSuccess(ArmorItem.dispenseArmor(pSource, pStack));
+                return pStack;
+            }
+        }));
     }
 }
