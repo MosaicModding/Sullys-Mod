@@ -58,7 +58,6 @@ public class SullysMod {
     public SullysMod() {
         IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
         bus.addListener(this::setup);
-        bus.addListener(this::clientSetup);
         bus.addListener(this::gatherData);
 
         ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, SMConfig.CLIENT);
@@ -96,16 +95,6 @@ public class SullysMod {
         event.put(SMEntityTypes.BOULDERING_ZOMBIE.get(), BoulderingZombie.createAttributes().build());
         event.put(SMEntityTypes.JUNGLE_SPIDER.get(), JungleSpider.createAttributes().build());
         event.put(SMEntityTypes.PIRANHA.get(), Piranha.createAttributes().build());
-    }
-
-    private void clientSetup(final FMLClientSetupEvent event) {
-        event.enqueueWork(() -> {
-            SkullBlockRenderer.SKIN_BY_TYPE.putAll(Util.make(Maps.newHashMap(), (map) -> {
-                map.put(AncientSkullBlock.Types.CRACKED, SullysMod.modPrefix("textures/entity/ancient_skulls/cracked.png"));
-                map.put(AncientSkullBlock.Types.CRESTED, SullysMod.modPrefix("textures/entity/ancient_skulls/crested.png") );
-            }));
-
-        });
     }
 
     private void setup(final FMLCommonSetupEvent event) {

@@ -4,16 +4,17 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.uraneptus.sullysmod.SullysMod;
 import net.minecraft.client.model.SkullModel;
+import net.minecraft.client.model.SkullModelBase;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
 
-public class CrestedAncientSkullModel extends SkullModel {
-	public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(SullysMod.modPrefix("crested_ancient_skull"), "main");
+public class CrestedAncientSkullModel extends BaseAncientSkullModel {
+	public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(SullysMod.modPrefix("crested"), "main");
 
 	public CrestedAncientSkullModel(ModelPart root) {
-        super(root);
+		super(root, 0.8F);
 	}
 
 	public static LayerDefinition createBodyLayer() {
@@ -27,16 +28,13 @@ public class CrestedAncientSkullModel extends SkullModel {
 		return LayerDefinition.create(meshdefinition, 64, 64);
 	}
 
-
 	@Override
-	public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
-		float scale = 0.8F;
-		//poseStack.scale(scale, scale, scale);
-		super.renderToBuffer(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
+	public float headRenderScale() {
+		return 0.8F;
 	}
 
 	@Override
-	public void setupAnim(float pMouthAnimation, float pYRot, float pXRot) {
-		super.setupAnim(pMouthAnimation, pYRot, pXRot);
+	public float headRenderHeight() {
+		return 0.1F;
 	}
 }

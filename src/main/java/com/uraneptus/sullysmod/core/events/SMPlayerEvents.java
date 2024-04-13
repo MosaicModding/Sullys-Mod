@@ -18,7 +18,6 @@ import net.minecraft.core.particles.ItemParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
-import net.minecraft.tags.BiomeTags;
 import net.minecraft.util.Mth;
 import net.minecraft.util.ParticleUtils;
 import net.minecraft.util.RandomSource;
@@ -30,7 +29,6 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.PickaxeItem;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.biome.Biomes;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.GrindstoneBlock;
@@ -127,7 +125,7 @@ public class SMPlayerEvents {
     public static void onItemTooltip(ItemTooltipEvent event) {
         Player player = event.getEntity();
         ItemStack itemstack = event.getItemStack();
-        SMItems.ARTIFACTS.forEach((item, desc) -> {
+        SMItems.ARTIFACT_DESC_MAP.forEach((item, desc) -> {
             if (itemstack.is(item.get())) {
                 event.getToolTip().add(desc);
             }

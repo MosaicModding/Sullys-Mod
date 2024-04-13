@@ -63,7 +63,7 @@ public class SMItems {
     public static final RegistryObject<ForgeSpawnEggItem> PIRANHA_SPAWN_EGG = HELPER.createSpawnEggItem("piranha", SMEntityTypes.PIRANHA::get, 15561472, 4240022);
 
     //Artifacts
-    public static Map<RegistryObject<Item>, Component> ARTIFACTS = new HashMap<>();
+    public static Map<RegistryObject<Item>, Component> ARTIFACT_DESC_MAP = new HashMap<>();
     public static Map<Supplier<Item>, Integer> TRADES = new HashMap<>();
 
     public static final RegistryObject<Item> BROKEN_VASE = registerArtifact("broken_vase", "A large piece of the side is missing", 10);
@@ -116,7 +116,7 @@ public class SMItems {
 
     public static RegistryObject<Item> registerArtifact(String name, String description, Supplier<? extends Item> item, int price) {
         RegistryObject<Item> object = HELPER.createItem(name, item);
-        ARTIFACTS.put(object, SMTextUtil.addSMTranslatable("artifact." + name + ".desc", description).withStyle(SMTextDefinitions.ARTIFACT_DESC_STYLE));
+        ARTIFACT_DESC_MAP.put(object, SMTextUtil.addSMTranslatable("artifact." + name + ".desc", description).withStyle(SMTextDefinitions.ARTIFACT_DESC_STYLE));
         TRADES.put(object, price);
         return object;
     }

@@ -157,6 +157,13 @@ public class SMItemModelProvider extends ItemModelProvider {
         basicItem(SMItems.BROKEN_BOTTLE);
         basicItem(SMItems.FROG_IDOL);
         ancientSkull(SMBlocks.CRACKED_ANCIENT_SKULL.getFirst());
+        ancientSkull(SMBlocks.CRESTED_ANCIENT_SKULL.getFirst());
+        ancientSkull(SMBlocks.FLATBILLED_ANCIENT_SKULL.getFirst());
+        ancientSkull(SMBlocks.GIGANTIC_ANCIENT_SKULL.getFirst());
+        ancientSkull(SMBlocks.HORNED_ANCIENT_SKULL.getFirst());
+        ancientSkull(SMBlocks.LONG_ANCIENT_SKULL.getFirst());
+        ancientSkull(SMBlocks.TINY_ANCIENT_SKULL.getFirst());
+        ancientSkull(SMBlocks.WIDE_ANCIENT_SKULL.getFirst());
     }
 
     private void basicBlockItem(Supplier<? extends Block> blockForItem) {

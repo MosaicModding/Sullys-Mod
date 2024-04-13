@@ -4,6 +4,7 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Axis;
 import com.uraneptus.sullysmod.SullysMod;
+import com.uraneptus.sullysmod.common.blocks.AncientSkullBlock;
 import com.uraneptus.sullysmod.common.blocks.ItemStandBlock;
 import com.uraneptus.sullysmod.common.blockentities.ItemStandBE;
 import net.minecraft.client.Minecraft;
@@ -82,10 +83,17 @@ public class ItemStandBER implements BlockEntityRenderer<ItemStandBE> {
             this.renderModel(armorItem, pPoseStack, pBuffer, pPackedLight, model, 1.0F, 1.0F, 1.0F, "1");
             pPoseStack.popPose();
         } else {
-            pPoseStack.translate(0.0F, -0.130F, 0.0F);
-            pPoseStack.mulPose(Axis.XP.rotationDegrees(-55));
+            boolean ancientSkullFlag = displayItem.getItem() instanceof BlockItem blockItem && blockItem.getBlock() instanceof AncientSkullBlock;
+            int xRotDegrees = ancientSkullFlag ? -90 : -55;
+            ItemDisplayContext displayContext = ancientSkullFlag ? ItemDisplayContext.HEAD : ItemDisplayContext.GROUND;
+            if (ancientSkullFlag) {
+                pPoseStack.translate(0.0F, 0.0F, -0.4F);
+            } else {
+                pPoseStack.translate(0.0F, -0.130F, 0.0F);
+            }
+            pPoseStack.mulPose(Axis.XP.rotationDegrees(xRotDegrees));
             pPoseStack.mulPose(Axis.YP.rotationDegrees(-180));
-            this.itemRenderer.renderStatic(pBlockEntity.getDisplayItem(), ItemDisplayContext.GROUND, pPackedLight, OverlayTexture.NO_OVERLAY, pPoseStack, pBuffer, pBlockEntity.getLevel(), pBlockEntity.saveWithId().getId());
+            this.itemRenderer.renderStatic(pBlockEntity.getDisplayItem(), displayContext, pPackedLight, OverlayTexture.NO_OVERLAY, pPoseStack, pBuffer, pBlockEntity.getLevel(), pBlockEntity.saveWithId().getId());
         }
         pPoseStack.popPose();
     }

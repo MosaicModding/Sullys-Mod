@@ -93,7 +93,7 @@ public class SMLangProvider extends LanguageProvider {
         addBlock(SMBlocks.ROUGH_JADE_BLOCK, "Block of Rough Jade");
 
         //Items
-        SMItems.ARTIFACTS.forEach((item, desc) -> forItem(item));
+        SMItems.ARTIFACT_DESC_MAP.forEach((item, desc) -> forItem(item));
         forItem(SMItems.ROUGH_JADE);
         forItem(SMItems.POLISHED_JADE);
         forItem(SMItems.LANTERNFISH_SPAWN_EGG);

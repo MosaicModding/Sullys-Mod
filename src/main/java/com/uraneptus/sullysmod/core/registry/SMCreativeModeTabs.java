@@ -2,13 +2,10 @@ package com.uraneptus.sullysmod.core.registry;
 
 import com.uraneptus.sullysmod.SullysMod;
 import com.uraneptus.sullysmod.core.other.SMTextDefinitions;
-import net.minecraft.core.particles.ParticleType;
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
 public class SMCreativeModeTabs {
@@ -18,6 +15,6 @@ public class SMCreativeModeTabs {
             .title(SMTextDefinitions.ARTIFACT_TAB_TITLE)
             .withTabsBefore(CreativeModeTabs.COMBAT)
             .icon(() -> SMItems.BROKEN_VASE.get().getDefaultInstance())
-            .displayItems((parameters, output) -> SMItems.ARTIFACTS.forEach((item, desc) -> output.accept(item.get())))
+            .displayItems((parameters, output) -> SMItems.ARTIFACT_DESC_MAP.forEach((item, desc) -> output.accept(item.get())))
             .build());
 }
