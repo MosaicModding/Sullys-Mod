@@ -8,8 +8,8 @@ import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.client.renderer.entity.EntityRenderDispatcher;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -25,15 +25,19 @@ public class AmberBER implements BlockEntityRenderer<AmberBE> {
 
     @Override
     public void render(AmberBE amberBlockEntity, float pPartialTick, @NotNull PoseStack pPoseStack, @NotNull MultiBufferSource pBuffer, int pPackedLight, int pPackedOverlay) {
+        pPoseStack.pushPose();
         Level level = amberBlockEntity.getLevel();
         BlockPos pos = amberBlockEntity.getBlockPos();
-        if (amberBlockEntity.hasStuckEntity()) {
+        if (level != null) {
             CompoundTag compoundtag = amberBlockEntity.getEntityStuck();
             AmberBE.removeIgnoredNBT(compoundtag);
-            assert level != null;
-            LivingEntity livingEntity = (LivingEntity) EntityType.loadEntityRecursive(compoundtag, level, entity -> entity);
-            assert livingEntity != null;
-            this.entityRenderer.render(livingEntity, pos.getX(), pos.getY(), pos.getZ(), 0.0F, pPartialTick, pPoseStack, pBuffer, pPackedLight);
+            Entity renderEntity = EntityType.loadEntityRecursive(compoundtag, level, entity -> entity);
+            System.out.println(renderEntity);
+            if (renderEntity != null) {
+                this.entityRenderer.render(renderEntity, pos.getX(), pos.getY(), pos.getZ(), 0.0F, pPartialTick, pPoseStack, pBuffer, pPackedLight);
+                System.out.println(" amber if entity renderer?");
+            }
         }
+        pPoseStack.popPose();
     }
 }
