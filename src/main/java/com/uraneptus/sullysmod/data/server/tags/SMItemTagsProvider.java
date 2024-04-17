@@ -118,7 +118,6 @@ public class SMItemTagsProvider extends ItemTagsProvider {
         tag(ItemTags.SAPLINGS).add(SMBlocks.PETRIFIED_SAPLING.get().asItem());
         tag(ItemTags.STONE_TOOL_MATERIALS).addTag(SMItemTags.PETRIFIED_LOGS);
 
-
         //Forge Tags
         tag(SMItemTags.CRAFTING_TABLES).add(Items.CRAFTING_TABLE);
         tag(SMItemTags.JUKEBOXES).add(Items.JUKEBOX);
@@ -168,6 +167,7 @@ public class SMItemTagsProvider extends ItemTagsProvider {
             if (item.getId().getPath().contains("ancient_skull")) {
                 tag(Tags.Items.HEADS).add(item.get());
                 tag(SMItemTags.ANCIENT_SKULLS).add(item.get());
+                tag(ItemTags.NOTE_BLOCK_TOP_INSTRUMENTS).add(item.get());
             }
         });
     }

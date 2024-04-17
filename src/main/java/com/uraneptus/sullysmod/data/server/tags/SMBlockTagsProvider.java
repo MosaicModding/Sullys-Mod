@@ -225,5 +225,8 @@ public class SMBlockTagsProvider extends BlockTagsProvider {
         );
         tag(Tags.Blocks.FENCES_WOODEN).add(SMBlocks.PETRIFIED_FENCE.get());
         tag(Tags.Blocks.FENCE_GATES_WOODEN).add(SMBlocks.PETRIFIED_FENCE_GATE.get());
+        SMBlocks.ANCIENT_SKULLS.forEach(blockSupplier -> {
+            tag(BlueprintBlockTags.NOTE_BLOCK_TOP_INSTRUMENTS).add(blockSupplier.get());
+        });
     }
 }

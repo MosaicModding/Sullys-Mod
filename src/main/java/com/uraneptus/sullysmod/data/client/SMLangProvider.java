@@ -141,6 +141,14 @@ public class SMLangProvider extends LanguageProvider {
         add("subtitles.block.flinger_totem.input_honey", "Projectile absorbed");
         add("subtitles.block.flinger_totem.add_honey", "Honey applied");
         add("subtitles.block.flinger_totem.reduce_honey", "Honey removed");
+        add("subtitles.block.ancient_skull.crested", "Crested Skull echoes");
+        add("subtitles.block.ancient_skull.cracked", "Proper Sound soon...");
+        add("subtitles.block.ancient_skull.flatbilled", "Proper Sound soon...");
+        add("subtitles.block.ancient_skull.gigantic", "Proper Sound soon...");
+        add("subtitles.block.ancient_skull.horned", "Proper Sound soon...");
+        add("subtitles.block.ancient_skull.long", "Proper Sound soon...");
+        add("subtitles.block.ancient_skull.tiny", "Proper Sound soon...");
+        add("subtitles.block.ancient_skull.wide", "Proper Sound soon...");
 
         add("subtitles.entity.tortoise.ambient", "Tortoise chirps");
         add("subtitles.entity.tortoise.death", "Tortoise dies");

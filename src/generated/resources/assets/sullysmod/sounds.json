@@ -52,6 +52,77 @@
     ],
     "subtitle": "subtitles.block.jade.ricochet"
   },
+  "block.note_block.ancient_skull.cracked": {
+    "sounds": [
+      {
+        "type": "event",
+        "name": "entity.skeleton.ambient"
+      }
+    ],
+    "subtitle": "subtitles.block.ancient_skull.cracked"
+  },
+  "block.note_block.ancient_skull.crested": {
+    "sounds": [
+      "sullysmod:block/note_block/ancient_skull/crested1",
+      "sullysmod:block/note_block/ancient_skull/crested2",
+      "sullysmod:block/note_block/ancient_skull/crested3"
+    ],
+    "subtitle": "subtitles.block.ancient_skull.crested"
+  },
+  "block.note_block.ancient_skull.flatbilled": {
+    "sounds": [
+      {
+        "type": "event",
+        "name": "entity.skeleton.ambient"
+      }
+    ],
+    "subtitle": "subtitles.block.ancient_skull.flatbilled"
+  },
+  "block.note_block.ancient_skull.gigantic": {
+    "sounds": [
+      {
+        "type": "event",
+        "name": "entity.skeleton.ambient"
+      }
+    ],
+    "subtitle": "subtitles.block.ancient_skull.gigantic"
+  },
+  "block.note_block.ancient_skull.horned": {
+    "sounds": [
+      {
+        "type": "event",
+        "name": "entity.skeleton.ambient"
+      }
+    ],
+    "subtitle": "subtitles.block.ancient_skull.horned"
+  },
+  "block.note_block.ancient_skull.long": {
+    "sounds": [
+      {
+        "type": "event",
+        "name": "entity.skeleton.ambient"
+      }
+    ],
+    "subtitle": "subtitles.block.ancient_skull.long"
+  },
+  "block.note_block.ancient_skull.tiny": {
+    "sounds": [
+      {
+        "type": "event",
+        "name": "entity.skeleton.ambient"
+      }
+    ],
+    "subtitle": "subtitles.block.ancient_skull.tiny"
+  },
+  "block.note_block.ancient_skull.wide": {
+    "sounds": [
+      {
+        "type": "event",
+        "name": "entity.skeleton.ambient"
+      }
+    ],
+    "subtitle": "subtitles.block.ancient_skull.wide"
+  },
   "block.petrified_wood.break": {
     "sounds": [
       "sullysmod:block/petrified_wood/break1",

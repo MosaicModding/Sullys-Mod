@@ -1,9 +1,8 @@
 package com.uraneptus.sullysmod.core.events;
 
 import com.uraneptus.sullysmod.SullysMod;
-import com.uraneptus.sullysmod.common.blocks.AncientSkullBlock;
-import com.uraneptus.sullysmod.common.blocks.FlingerTotem;
 import com.uraneptus.sullysmod.common.blockentities.FlingerTotemBE;
+import com.uraneptus.sullysmod.common.blocks.FlingerTotem;
 import com.uraneptus.sullysmod.common.blocks.SMDirectionalBlock;
 import com.uraneptus.sullysmod.common.entities.Piranha;
 import com.uraneptus.sullysmod.common.entities.Tortoise;
@@ -31,8 +30,6 @@ import net.minecraft.world.entity.animal.horse.Horse;
 import net.minecraft.world.entity.monster.Zombie;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.Projectile;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.GameEvent;

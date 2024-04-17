@@ -2,24 +2,18 @@ package com.uraneptus.sullysmod.common.levelgen;
 
 import com.google.common.collect.Lists;
 import com.mojang.serialization.Codec;
-import com.uraneptus.sullysmod.SullysMod;
 import com.uraneptus.sullysmod.core.other.loot.SMBuiltInLootTables;
 import com.uraneptus.sullysmod.core.registry.SMTreeDecoratorTypes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.random.SimpleWeightedRandomList;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.BrushableBlock;
 import net.minecraft.world.level.block.entity.BlockEntityType;
-import net.minecraft.world.level.block.entity.BrushableBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
 import net.minecraft.world.level.levelgen.feature.stateproviders.WeightedStateProvider;
-import net.minecraft.world.level.levelgen.feature.treedecorators.AlterGroundDecorator;
 import net.minecraft.world.level.levelgen.feature.treedecorators.TreeDecorator;
 import net.minecraft.world.level.levelgen.feature.treedecorators.TreeDecoratorType;
-import net.minecraft.world.level.levelgen.feature.treedecorators.TrunkVineDecorator;
-import net.minecraft.world.level.storage.loot.BuiltInLootTables;
 import net.minecraftforge.event.ForgeEventFactory;
 
 import java.util.List;

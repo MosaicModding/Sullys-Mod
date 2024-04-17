@@ -1,9 +1,8 @@
 package com.uraneptus.sullysmod.data.client;
 
 import com.uraneptus.sullysmod.SullysMod;
-import com.uraneptus.sullysmod.core.registry.SMItems;
 import com.uraneptus.sullysmod.core.registry.SMBlocks;
-import com.uraneptus.sullysmod.data.SMDatagenUtil;
+import com.uraneptus.sullysmod.core.registry.SMItems;
 import net.minecraft.client.renderer.block.model.BlockModel;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;

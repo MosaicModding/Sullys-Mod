@@ -1,13 +1,12 @@
 package com.uraneptus.sullysmod;
 
-import com.google.common.collect.Maps;
 import com.mojang.logging.LogUtils;
 import com.teamabnormals.blueprint.core.Blueprint;
 import com.teamabnormals.blueprint.core.util.registry.RegistryHelper;
-import com.uraneptus.sullysmod.common.blocks.AncientSkullBlock;
-import com.uraneptus.sullysmod.core.registry.SMDispenseBehaviors;
 import com.uraneptus.sullysmod.common.entities.*;
 import com.uraneptus.sullysmod.core.SMConfig;
+import com.uraneptus.sullysmod.core.other.SMTextDefinitions;
+import com.uraneptus.sullysmod.core.registry.*;
 import com.uraneptus.sullysmod.data.client.*;
 import com.uraneptus.sullysmod.data.server.SMDatapackBuiltinEntriesProvider;
 import com.uraneptus.sullysmod.data.server.SMRecipeProvider;
@@ -15,18 +14,11 @@ import com.uraneptus.sullysmod.data.server.advancements.SMAdvancementProvider;
 import com.uraneptus.sullysmod.data.server.loot.SMLootTableProvider;
 import com.uraneptus.sullysmod.data.server.modifiers.SMAdvancementModifiersProvider;
 import com.uraneptus.sullysmod.data.server.modifiers.SMLootModifierProvider;
-import com.uraneptus.sullysmod.core.other.SMTextDefinitions;
-import com.uraneptus.sullysmod.core.registry.*;
-import com.uraneptus.sullysmod.core.registry.util.SMBlockSubRegistryHelper;
 import com.uraneptus.sullysmod.data.server.tags.*;
-import net.minecraft.Util;
-import net.minecraft.client.renderer.blockentity.SkullBlockRenderer;
-import net.minecraft.client.resources.DefaultPlayerSkin;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.level.block.SkullBlock;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.data.ExistingFileHelper;
@@ -38,10 +30,8 @@ import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
-import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import net.minecraftforge.registries.ForgeRegistries;
 import org.slf4j.Logger;
 
 import java.util.concurrent.CompletableFuture;
@@ -50,9 +40,7 @@ import java.util.concurrent.CompletableFuture;
 @Mod.EventBusSubscriber(modid = SullysMod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class SullysMod {
     public static final String MOD_ID = "sullysmod";
-    public static final RegistryHelper REGISTRY_HELPER = RegistryHelper.create(MOD_ID, helper -> {
-        helper.putSubHelper(ForgeRegistries.BLOCKS, new SMBlockSubRegistryHelper(helper));
-    });
+    public static final RegistryHelper REGISTRY_HELPER = new RegistryHelper(MOD_ID);
     public static final Logger LOGGER = LogUtils.getLogger();
 
     public SullysMod() {
@@ -101,6 +89,7 @@ public class SullysMod {
         event.enqueueWork(() -> {
             SMBrewingRecipes.register();
             SMDispenseBehaviors.register();
+            SMNoteBlockInstruments.register();
         });
     }
 

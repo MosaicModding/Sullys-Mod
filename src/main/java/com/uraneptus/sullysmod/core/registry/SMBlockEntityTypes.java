@@ -2,18 +2,18 @@ package com.uraneptus.sullysmod.core.registry;
 
 import com.teamabnormals.blueprint.core.util.registry.BlockEntitySubRegistryHelper;
 import com.uraneptus.sullysmod.SullysMod;
-import com.uraneptus.sullysmod.common.blockentities.AncientSkullBE;
-import com.uraneptus.sullysmod.common.blocks.*;
 import com.uraneptus.sullysmod.common.blockentities.AmberBE;
+import com.uraneptus.sullysmod.common.blockentities.AncientSkullBE;
 import com.uraneptus.sullysmod.common.blockentities.FlingerTotemBE;
 import com.uraneptus.sullysmod.common.blockentities.ItemStandBE;
+import com.uraneptus.sullysmod.common.blocks.AmberBlock;
+import com.uraneptus.sullysmod.common.blocks.FlingerTotem;
+import com.uraneptus.sullysmod.common.blocks.ItemStandBlock;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.RegistryObject;
 
-import java.util.Collection;
-import java.util.Collections;
 import java.util.Set;
 import java.util.function.Supplier;
 

@@ -4,7 +4,6 @@ import com.uraneptus.sullysmod.SullysMod;
 import com.uraneptus.sullysmod.common.levelgen.PetrifiedTreeConfig;
 import com.uraneptus.sullysmod.common.levelgen.PetrifiedTreeFeature;
 import net.minecraft.world.level.levelgen.feature.Feature;
-import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;

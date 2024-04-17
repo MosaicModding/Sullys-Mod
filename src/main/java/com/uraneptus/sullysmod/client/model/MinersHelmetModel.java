@@ -1,7 +1,6 @@
 package com.uraneptus.sullysmod.client.model;
 
 import com.uraneptus.sullysmod.SullysMod;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.model.geom.LayerDefinitions;
 import net.minecraft.client.model.geom.ModelLayerLocation;

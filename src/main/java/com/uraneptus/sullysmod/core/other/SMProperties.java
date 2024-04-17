@@ -8,7 +8,6 @@ import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Rarity;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
@@ -27,8 +26,8 @@ public class SMProperties {
 
         public static final BlockBehaviour.Properties AMBER = BlockBehaviour.Properties.of().strength(1.3F, 3F).mapColor(MapColor.COLOR_ORANGE).requiresCorrectToolForDrops().randomTicks();
         public static final BlockBehaviour.Properties ITEM_STAND = BlockBehaviour.Properties.of().strength(2.0F, 6.0F).requiresCorrectToolForDrops().noOcclusion();
-        public static BlockBehaviour.Properties ancientSkulls(NoteBlockInstrument instrument) {
-            return BlockBehaviour.Properties.of().instrument(instrument).strength(1.0F).pushReaction(PushReaction.DESTROY);
+        public static BlockBehaviour.Properties ancientSkulls() {
+            return BlockBehaviour.Properties.of().strength(1.0F).pushReaction(PushReaction.DESTROY);
         }
 
         public static BlockBehaviour.Properties petrified() {
@@ -37,6 +36,7 @@ public class SMProperties {
         public static final BlockBehaviour.Properties PETRIFIED_TRAPDOOR = petrified().requiresCorrectToolForDrops().noOcclusion().isValidSpawn(PropertyUtil::never).strength(3.0F);
         public static final BlockBehaviour.Properties PETRIFIED_PRESSURE_PLATE = petrified().forceSolidOn().noCollission().pushReaction(PushReaction.DESTROY).strength(0.5F);
         public static final BlockBehaviour.Properties PETRIFIED_BUTTON = petrified().noCollission().strength(0.5F).pushReaction(PushReaction.DESTROY);
+        public static final BlockBehaviour.Properties PETRIFIED_SIGNS = petrified().forceSolidOn().noCollission().strength(1.0F);
         public static final BlockBehaviour.Properties PETRIFIED_SAPLING = BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_BROWN).noCollission().instabreak().sound(SoundType.GRASS).pushReaction(PushReaction.DESTROY);
     }
 

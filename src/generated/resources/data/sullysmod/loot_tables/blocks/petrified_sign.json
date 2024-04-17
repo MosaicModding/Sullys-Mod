@@ -11,7 +11,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "sullysmod:petrified_sign"
+          "name": "sullysmod:petrified_hanging_sign"
         }
       ],
       "rolls": 1.0

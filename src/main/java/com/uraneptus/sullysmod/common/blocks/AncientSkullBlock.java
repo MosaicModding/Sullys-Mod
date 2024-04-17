@@ -17,6 +17,10 @@ public class AncientSkullBlock extends SkullBlock {
         return new AncientSkullBE(pPos, pState);
     }
 
+    public AncientSkullBlock.Types getAncientType() {
+        return (Types) this.getType();
+    }
+
     public enum Types implements SkullBlock.Type {
         CRACKED,
         CRESTED,

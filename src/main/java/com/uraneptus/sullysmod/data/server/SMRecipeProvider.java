@@ -1,9 +1,9 @@
 package com.uraneptus.sullysmod.data.server;
 
-import com.uraneptus.sullysmod.data.server.builder.GrindstonePolishingRecipeBuilder;
 import com.uraneptus.sullysmod.core.other.tags.SMItemTags;
 import com.uraneptus.sullysmod.core.registry.SMBlocks;
 import com.uraneptus.sullysmod.core.registry.SMItems;
+import com.uraneptus.sullysmod.data.server.builder.GrindstonePolishingRecipeBuilder;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
 import net.minecraft.tags.TagKey;

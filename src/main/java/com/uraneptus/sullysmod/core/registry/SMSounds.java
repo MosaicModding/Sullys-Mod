@@ -3,7 +3,6 @@ package com.uraneptus.sullysmod.core.registry;
 import com.teamabnormals.blueprint.core.util.registry.SoundSubRegistryHelper;
 import com.uraneptus.sullysmod.SullysMod;
 import net.minecraft.sounds.SoundEvent;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraftforge.common.util.ForgeSoundType;
 import net.minecraftforge.fml.common.Mod;
@@ -37,6 +36,16 @@ public class SMSounds {
     public static final RegistryObject<SoundEvent> PETRIFIED_WOOD_PLACE = HELPER.createSoundEvent("block.petrified_wood.place");
     public static final RegistryObject<SoundEvent> PETRIFIED_WOOD_STEP = HELPER.createSoundEvent("block.petrified_wood.step");
 
+    //Note Block Instruments
+    public static final RegistryObject<SoundEvent> NOTE_BLOCK_CRESTED_SKULL = HELPER.createSoundEvent("block.note_block.ancient_skull.crested");
+    public static final RegistryObject<SoundEvent> NOTE_BLOCK_CRACKED_SKULL = HELPER.createSoundEvent("block.note_block.ancient_skull.cracked");
+    public static final RegistryObject<SoundEvent> NOTE_BLOCK_FLATBILLED_SKULL = HELPER.createSoundEvent("block.note_block.ancient_skull.flatbilled");
+    public static final RegistryObject<SoundEvent> NOTE_BLOCK_GIGANTIC_SKULL = HELPER.createSoundEvent("block.note_block.ancient_skull.gigantic");
+    public static final RegistryObject<SoundEvent> NOTE_BLOCK_HORNED_SKULL = HELPER.createSoundEvent("block.note_block.ancient_skull.horned");
+    public static final RegistryObject<SoundEvent> NOTE_BLOCK_LONG_SKULL = HELPER.createSoundEvent("block.note_block.ancient_skull.long");
+    public static final RegistryObject<SoundEvent> NOTE_BLOCK_TINY_SKULL = HELPER.createSoundEvent("block.note_block.ancient_skull.tiny");
+    public static final RegistryObject<SoundEvent> NOTE_BLOCK_WIDE_SKULL = HELPER.createSoundEvent("block.note_block.ancient_skull.wide");
+
     //Entity Sounds
     public static final RegistryObject<SoundEvent> TORTOISE_HURT = HELPER.createSoundEvent("entity.tortoise.hurt");
     public static final RegistryObject<SoundEvent> BABY_TORTOISE_HURT = HELPER.createSoundEvent("entity.tortoise.hurt_baby");
@@ -67,10 +76,6 @@ public class SMSounds {
     //Ambient sounds
     public static final RegistryObject<SoundEvent> MOUNTAIN_CALLS = HELPER.createSoundEvent("ambient.mountain.calls");
 
-
-
-
     //SoundTypes
-
     public static final SoundType PETRIFIED_WOOD = new ForgeSoundType(1.0F, 1.0F, PETRIFIED_WOOD_BREAK, PETRIFIED_WOOD_STEP, PETRIFIED_WOOD_PLACE, PETRIFIED_WOOD_HIT, PETRIFIED_WOOD_FALL);
 }

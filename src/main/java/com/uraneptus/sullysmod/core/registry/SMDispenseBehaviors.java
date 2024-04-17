@@ -2,9 +2,6 @@ package com.uraneptus.sullysmod.core.registry;
 
 import com.uraneptus.sullysmod.common.entities.ThrownThrowingKnife;
 import com.uraneptus.sullysmod.common.entities.TortoiseShell;
-import com.uraneptus.sullysmod.core.registry.SMEntityTypes;
-import com.uraneptus.sullysmod.core.registry.SMItems;
-import com.uraneptus.sullysmod.core.registry.SMSounds;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.BlockSource;
 import net.minecraft.core.Direction;
@@ -13,7 +10,6 @@ import net.minecraft.core.dispenser.AbstractProjectileDispenseBehavior;
 import net.minecraft.core.dispenser.OptionalDispenseItemBehavior;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.projectile.AbstractArrow;
-import net.minecraft.world.entity.projectile.Arrow;
 import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ItemStack;

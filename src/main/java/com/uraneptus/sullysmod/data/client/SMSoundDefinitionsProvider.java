@@ -126,6 +126,41 @@ public class SMSoundDefinitionsProvider extends SoundDefinitionsProvider {
                 sound(SullysMod.modPrefix("block/petrified_wood/step6"))
         );
 
+        //Note Block Instruments
+        this.addBasicSound(SMSounds.NOTE_BLOCK_CRESTED_SKULL, "block.ancient_skull.crested",
+                sound(SullysMod.modPrefix("block/note_block/ancient_skull/crested1")),
+                sound(SullysMod.modPrefix("block/note_block/ancient_skull/crested2")),
+                sound(SullysMod.modPrefix("block/note_block/ancient_skull/crested3"))
+        );
+
+        this.addBasicSound(SMSounds.NOTE_BLOCK_CRACKED_SKULL, "block.ancient_skull.cracked",
+                sound("entity.skeleton.ambient", SoundDefinition.SoundType.EVENT)
+        );
+
+        this.addBasicSound(SMSounds.NOTE_BLOCK_FLATBILLED_SKULL, "block.ancient_skull.flatbilled",
+                sound("entity.skeleton.ambient", SoundDefinition.SoundType.EVENT)
+        );
+
+        this.addBasicSound(SMSounds.NOTE_BLOCK_GIGANTIC_SKULL, "block.ancient_skull.gigantic",
+                sound("entity.skeleton.ambient", SoundDefinition.SoundType.EVENT)
+        );
+
+        this.addBasicSound(SMSounds.NOTE_BLOCK_HORNED_SKULL, "block.ancient_skull.horned",
+                sound("entity.skeleton.ambient", SoundDefinition.SoundType.EVENT)
+        );
+
+        this.addBasicSound(SMSounds.NOTE_BLOCK_LONG_SKULL, "block.ancient_skull.long",
+                sound("entity.skeleton.ambient", SoundDefinition.SoundType.EVENT)
+        );
+
+        this.addBasicSound(SMSounds.NOTE_BLOCK_TINY_SKULL, "block.ancient_skull.tiny",
+                sound("entity.skeleton.ambient", SoundDefinition.SoundType.EVENT)
+        );
+
+        this.addBasicSound(SMSounds.NOTE_BLOCK_WIDE_SKULL, "block.ancient_skull.wide",
+                sound("entity.skeleton.ambient", SoundDefinition.SoundType.EVENT)
+        );
+
         //Entity Sounds
         this.addBasicSound(SMSounds.TORTOISE_AMBIENT,
                 sound("mob/turtle/idle1").volume(0.8F),

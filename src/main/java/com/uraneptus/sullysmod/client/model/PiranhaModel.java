@@ -2,7 +2,6 @@ package com.uraneptus.sullysmod.client.model;
 
 import com.uraneptus.sullysmod.SullysMod;
 import com.uraneptus.sullysmod.common.entities.Piranha;
-import com.uraneptus.sullysmod.common.entities.Tortoise;
 import net.minecraft.resources.ResourceLocation;
 import software.bernie.geckolib.model.DefaultedEntityGeoModel;
 

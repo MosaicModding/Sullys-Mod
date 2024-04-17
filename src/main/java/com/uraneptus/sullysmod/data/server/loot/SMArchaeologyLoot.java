@@ -1,6 +1,5 @@
 package com.uraneptus.sullysmod.data.server.loot;
 
-import com.uraneptus.sullysmod.SullysMod;
 import com.uraneptus.sullysmod.core.other.loot.SMBuiltInLootTables;
 import com.uraneptus.sullysmod.core.registry.SMBlocks;
 import com.uraneptus.sullysmod.core.registry.SMItems;
