@@ -19,6 +19,8 @@ import java.util.List;
 
 public class SMLootConditions {
     public static final LootItemCondition.Builder ON_LANTERNFISH_HEIGHT = LocationCheck.checkLocation(LocationPredicate.Builder.location().setY(MinMaxBounds.Doubles.between(-57.0D, 16.0D)));
+    public static final LootItemCondition.Builder IS_DEEPSLATE_CAVE = LocationCheck.checkLocation(LocationPredicate.Builder.location().setY(MinMaxBounds.Doubles.between(-59.0D, 0.0D)));
+    public static final LootItemCondition.Builder IS_NORMAL_CAVE = LocationCheck.checkLocation(LocationPredicate.Builder.location().setY(MinMaxBounds.Doubles.between(1.0D, 140.0D)));
 
     public static LootItemCondition.Builder getPiranhaBiomes() {
         return biomeConditionCheck(Biomes.MANGROVE_SWAMP)

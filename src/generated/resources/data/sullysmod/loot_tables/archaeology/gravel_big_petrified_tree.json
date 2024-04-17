@@ -27,6 +27,14 @@
         {
           "type": "minecraft:item",
           "name": "minecraft:emerald"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:music_disc_relic"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "sullysmod:amber_encased_bug"
         }
       ],
       "rolls": 1.0
