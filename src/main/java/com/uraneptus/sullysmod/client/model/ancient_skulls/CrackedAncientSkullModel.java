@@ -15,12 +15,11 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
-public class CrackedAncientSkullModel extends SkullModelBase {
-	public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(SullysMod.modPrefix("cracked_ancient_skull"), "main");
-	private final ModelPart head;
+public class CrackedAncientSkullModel extends BaseAncientSkullModel {
+	public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(SullysMod.modPrefix("cracked"), "main");
 
 	public CrackedAncientSkullModel(ModelPart root) {
-		this.head = root.getChild("head");
+		super(root, 0.8F);
 	}
 
 	public static LayerDefinition createBodyLayer() {
@@ -39,19 +38,12 @@ public class CrackedAncientSkullModel extends SkullModelBase {
 	}
 
 	@Override
-	public void setupAnim(float pMouthAnimation, float pYRot, float pXRot) {
-		this.head.yRot = pYRot * ((float)Math.PI / 180F);
-		this.head.xRot = pXRot * ((float)Math.PI / 180F);
+	public float headRenderScale() {
+		return 0.8F;
 	}
 
 	@Override
-	public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
-		poseStack.pushPose();
-		float scale = 0.8F;
-		poseStack.scale(scale, scale, scale);
-		this.head.render(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
-		poseStack.popPose();
+	public float headRenderHeight() {
+		return 0;
 	}
-
-
 }

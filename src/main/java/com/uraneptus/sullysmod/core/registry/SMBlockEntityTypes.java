@@ -22,7 +22,21 @@ public class SMBlockEntityTypes {
     public static final BlockEntitySubRegistryHelper HELPER = SullysMod.REGISTRY_HELPER.getBlockEntitySubHelper();
     private static final Supplier<Set<Block>> ANCIENT_SKULLS = () -> Set.of(
             SMBlocks.CRACKED_ANCIENT_SKULL.getFirst().get(),
-            SMBlocks.CRACKED_ANCIENT_SKULL.getSecond().get()
+            SMBlocks.CRACKED_ANCIENT_SKULL.getSecond().get(),
+            SMBlocks.CRESTED_ANCIENT_SKULL.getFirst().get(),
+            SMBlocks.CRESTED_ANCIENT_SKULL.getSecond().get(),
+            SMBlocks.FLATBILLED_ANCIENT_SKULL.getFirst().get(),
+            SMBlocks.FLATBILLED_ANCIENT_SKULL.getSecond().get(),
+            SMBlocks.GIGANTIC_ANCIENT_SKULL.getFirst().get(),
+            SMBlocks.GIGANTIC_ANCIENT_SKULL.getSecond().get(),
+            SMBlocks.HORNED_ANCIENT_SKULL.getFirst().get(),
+            SMBlocks.HORNED_ANCIENT_SKULL.getSecond().get(),
+            SMBlocks.LONG_ANCIENT_SKULL.getFirst().get(),
+            SMBlocks.LONG_ANCIENT_SKULL.getSecond().get(),
+            SMBlocks.TINY_ANCIENT_SKULL.getFirst().get(),
+            SMBlocks.TINY_ANCIENT_SKULL.getSecond().get(),
+            SMBlocks.WIDE_ANCIENT_SKULL.getFirst().get(),
+            SMBlocks.WIDE_ANCIENT_SKULL.getSecond().get()
     );
 
     public static final RegistryObject<BlockEntityType<FlingerTotemBE>> FLINGER_TOTEM = HELPER.createBlockEntity("flinger_totem", FlingerTotemBE::new, FlingerTotem.class);

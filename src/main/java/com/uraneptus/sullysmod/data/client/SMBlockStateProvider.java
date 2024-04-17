@@ -96,6 +96,13 @@ public class SMBlockStateProvider extends BlockStateProvider {
         plantWithPottedBlock(SMBlocks.PETRIFIED_SAPLING, SMBlocks.POTTED_PETRIFIED_SAPLING);
         itemStandBlock(SMBlocks.ITEM_STAND);
         ancientSkull(SMBlocks.CRACKED_ANCIENT_SKULL);
+        ancientSkull(SMBlocks.CRESTED_ANCIENT_SKULL);
+        ancientSkull(SMBlocks.FLATBILLED_ANCIENT_SKULL);
+        ancientSkull(SMBlocks.GIGANTIC_ANCIENT_SKULL);
+        ancientSkull(SMBlocks.HORNED_ANCIENT_SKULL);
+        ancientSkull(SMBlocks.LONG_ANCIENT_SKULL);
+        ancientSkull(SMBlocks.TINY_ANCIENT_SKULL);
+        ancientSkull(SMBlocks.WIDE_ANCIENT_SKULL);
     }
 
     private void basicBlock(Supplier<? extends Block> block) {

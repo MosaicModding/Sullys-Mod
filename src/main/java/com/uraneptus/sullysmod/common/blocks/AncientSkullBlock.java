@@ -19,6 +19,12 @@ public class AncientSkullBlock extends SkullBlock {
 
     public enum Types implements SkullBlock.Type {
         CRACKED,
-        CRESTED
+        CRESTED,
+        FLATBILLED,
+        GIGANTIC,
+        HORNED,
+        LONG,
+        TINY,
+        WIDE,
     }
 }

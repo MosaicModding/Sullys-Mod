@@ -6,8 +6,12 @@
     "sullysmod:fossilised_footstep",
     "sullysmod:broken_vase",
     "sullysmod:copper_cog",
+    "sullysmod:crested_ancient_skull",
+    "sullysmod:tiny_ancient_skull",
     "sullysmod:mysterious_plate",
+    "sullysmod:long_ancient_skull",
     "sullysmod:amber_encased_bug",
+    "sullysmod:wide_ancient_skull",
     "sullysmod:lost_crown",
     "sullysmod:golden_belt_buckle",
     "sullysmod:emerald_earring",
@@ -27,6 +31,7 @@
     "sullysmod:arrowhead",
     "sullysmod:fossilised_shells",
     "sullysmod:moon_tablet",
+    "sullysmod:gigantic_ancient_skull",
     "sullysmod:broken_bottle",
     "sullysmod:stone_idol",
     "sullysmod:rusty_tools",
@@ -39,7 +44,9 @@
     "sullysmod:lost_recipe_book",
     "sullysmod:small_geode",
     "sullysmod:familiar_cube",
+    "sullysmod:flatbilled_ancient_skull",
     "sullysmod:ominous_tablet",
-    "sullysmod:lost_sketchbook"
+    "sullysmod:lost_sketchbook",
+    "sullysmod:horned_ancient_skull"
   ]
 }
