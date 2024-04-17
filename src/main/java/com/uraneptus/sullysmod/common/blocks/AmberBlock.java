@@ -8,6 +8,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
@@ -83,40 +84,11 @@ public class AmberBlock extends BaseEntityBlock {
                             amber.setBlockMelted(true);
                             return MELTING_COLLISION_SHAPE;
                         }
-                        if (blockEntityXP instanceof AmberBE amberXP) {
-                            if (amberXP.isBlockMelted()) {
-                                amber.setBlockMelted(true);
-                                return MELTING_COLLISION_SHAPE;
-                            }
-                        }
-                        if (blockEntityXN instanceof AmberBE amberXN) {
-                            if (amberXN.isBlockMelted()) {
-                                amber.setBlockMelted(true);
-                                return MELTING_COLLISION_SHAPE;
-                            }
-                        }
-                        if (blockEntityZP instanceof AmberBE amberZP) {
-                            if (amberZP.isBlockMelted()) {
-                                amber.setBlockMelted(true);
-                                return MELTING_COLLISION_SHAPE;
-                            }
-                        }
-                        if (blockEntityZN instanceof AmberBE amberZN) {
-                            if (amberZN.isBlockMelted()) {
-                                amber.setBlockMelted(true);
-                                return MELTING_COLLISION_SHAPE;
-                            }
-                        }
-
                     }
-                } else {
-                    amber.setBlockMelted(false);
-                    return Shapes.block();
                 }
             }
-
         }
-        if (blockEntity != null) {
+        if (blockEntity != null ) {
             ((AmberBE) blockEntity).setBlockMelted(false);
         }
         return Shapes.block();
@@ -151,7 +123,7 @@ public class AmberBlock extends BaseEntityBlock {
     public void entityInside(BlockState pState, Level pLevel, BlockPos pPos, Entity pEntity) {
         BlockEntity blockEntity = pLevel.getBlockEntity(pPos);
         if (blockEntity instanceof AmberBE amber) {
-            if (!amber.hasStuckEntity()) {
+            if (!amber.hasStuckEntity() && this.getCollisionShape(pState, pLevel, pPos, CollisionContext.of(pEntity)) != Shapes.block()) {
                 if (!(pEntity instanceof LivingEntity) || pEntity.getFeetBlockState().is(this)) {
                     if (pEntity instanceof Player) {
                         pEntity.makeStuckInBlock(pState, new Vec3((double) 0.8F, 0.1D, (double) 0.8F));

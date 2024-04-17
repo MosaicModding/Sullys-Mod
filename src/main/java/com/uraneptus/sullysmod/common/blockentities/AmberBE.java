@@ -16,7 +16,7 @@ public class AmberBE extends BlockEntity {
     @Nullable
     private AmberBE.StuckEntityData StuckEntityData;
 
-    private boolean isBlockMelted = false;
+    private boolean isBlockMelted;
 
     private static final List<String> IGNORED_NBT = Arrays.asList("UUID", "Leash");
 
