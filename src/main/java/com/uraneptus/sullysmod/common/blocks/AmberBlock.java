@@ -1,6 +1,7 @@
 package com.uraneptus.sullysmod.common.blocks;
 
 import com.uraneptus.sullysmod.common.blockentities.AmberBE;
+import com.uraneptus.sullysmod.common.blockentities.FlingerTotemBE;
 import com.uraneptus.sullysmod.core.other.tags.SMBlockTags;
 import com.uraneptus.sullysmod.core.registry.SMBlockEntityTypes;
 import com.uraneptus.sullysmod.core.registry.SMBlocks;
@@ -22,6 +23,8 @@ import net.minecraft.world.level.LightLayer;
 import net.minecraft.world.level.block.BaseEntityBlock;
 import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityTicker;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
@@ -94,7 +97,6 @@ public class AmberBlock extends BaseEntityBlock {
         return Shapes.block();
     }
 
-
     public void onRemove(BlockState blockState, Level pLevel, BlockPos blockPos, BlockState pNewState, boolean pIsMoving) {
         if (blockState.getBlock() == SMBlocks.AMBER.get()) {
             BlockEntity blockEntity = pLevel.getBlockEntity(blockPos);
@@ -111,24 +113,16 @@ public class AmberBlock extends BaseEntityBlock {
         super.onRemove(blockState, pLevel, blockPos, pNewState, pIsMoving);
     }
 
-    @Nullable
     @Override
-    public BlockEntity newBlockEntity(BlockPos pPos, BlockState pState) {
-        return SMBlockEntityTypes.AMBER.get().create(pPos, pState);
-    }
-
-
-
-
     public void entityInside(BlockState pState, Level pLevel, BlockPos pPos, Entity pEntity) {
         BlockEntity blockEntity = pLevel.getBlockEntity(pPos);
         if (blockEntity instanceof AmberBE amber) {
             if (!amber.hasStuckEntity() && this.getCollisionShape(pState, pLevel, pPos, CollisionContext.of(pEntity)) != Shapes.block()) {
                 if (!(pEntity instanceof LivingEntity) || pEntity.getFeetBlockState().is(this)) {
                     if (pEntity instanceof Player) {
-                        pEntity.makeStuckInBlock(pState, new Vec3((double) 0.8F, 0.1D, (double) 0.8F));
+                        pEntity.makeStuckInBlock(pState, new Vec3(0.8F, 0.1D, 0.8F));
                     } else if (pEntity instanceof Mob mob) {
-                        mob.makeStuckInBlock(pState, new Vec3((double) 0.0F, 0.1D, (double) 0.0F));
+                        mob.makeStuckInBlock(pState, new Vec3(0.0F, 0.1D, 0.0F));
                         if (mob.getBlockStateOn() != SMBlocks.AMBER.get().defaultBlockState()) {
                             amber.makeEntityStuck(mob);
                         }
@@ -143,5 +137,17 @@ public class AmberBlock extends BaseEntityBlock {
                 }
             }
         }
+    }
+
+    @Nullable
+    @Override
+    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level pLevel, BlockState pState, BlockEntityType<T> pBlockEntityType) {
+        return (level1, pos, state1, tile) -> ((AmberBE) tile).tick();
+    }
+
+    @Nullable
+    @Override
+    public BlockEntity newBlockEntity(BlockPos pPos, BlockState pState) {
+        return new AmberBE(pPos, pState);
     }
 }

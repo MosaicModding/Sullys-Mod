@@ -1,20 +1,28 @@
 package com.uraneptus.sullysmod.common.blockentities;
 
 import com.uraneptus.sullysmod.core.registry.SMBlockEntityTypes;
+import it.unimi.dsi.fastutil.objects.ObjectArrayList;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
+import net.minecraft.network.protocol.Packet;
+import net.minecraft.network.protocol.game.ClientGamePacketListener;
+import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.Arrays;
 import java.util.List;
 
 public class AmberBE extends BlockEntity {
     @Nullable
-    private AmberBE.StuckEntityData StuckEntityData;
+    private AmberBE.StuckEntityData stuckEntityData;
 
     private boolean isBlockMelted;
 
@@ -23,39 +31,60 @@ public class AmberBE extends BlockEntity {
     public AmberBE(BlockPos pPos, BlockState pBlockState) {
         super(SMBlockEntityTypes.AMBER.get(), pPos, pBlockState);
     }
+
     public static void removeIgnoredNBT(CompoundTag pTag) {
         for(String s : IGNORED_NBT) {
             pTag.remove(s);
         }
 
     }
+
     public boolean isBlockMelted() {
         return this.isBlockMelted;
     }
+
     public void setBlockMelted(boolean value) {
         this.isBlockMelted = value;
     }
+
     public boolean hasStuckEntity() {
-        return this.StuckEntityData != null;
+        return this.stuckEntityData != null;
     }
 
     public CompoundTag getEntityStuck() {
         CompoundTag tag = new CompoundTag();
-        return this.StuckEntityData != null ? this.StuckEntityData.entityData : tag;
+        return this.stuckEntityData != null ? this.stuckEntityData.entityData : tag;
     }
 
     public void makeEntityStuck(LivingEntity entity) {
-        if (this.StuckEntityData == null) {
+        if (this.stuckEntityData == null) {
             CompoundTag compoundtag = new CompoundTag();
             entity.save(compoundtag);
-            this.storeProjectile(compoundtag);
+            this.storeEntity(compoundtag);
+            this.update();
             entity.discard();
-            super.setChanged();
         }
     }
 
-    public void storeProjectile(CompoundTag pEntityData) {
-        this.StuckEntityData = new StuckEntityData(pEntityData);
+    public void storeEntity(CompoundTag pEntityData) {
+        this.stuckEntityData = new StuckEntityData(pEntityData);
+    }
+
+    public void tick() {
+
+    }
+
+    private void update() {
+        setChanged();
+        if (this.level != null) {
+            this.level.sendBlockUpdated(this.worldPosition, getBlockState(), getBlockState(), Block.UPDATE_ALL);
+        }
+    }
+
+    @Nonnull
+    @Override
+    public BlockEntityType<?> getType() {
+        return SMBlockEntityTypes.AMBER.get();
     }
 
     @Override
@@ -65,7 +94,7 @@ public class AmberBE extends BlockEntity {
 
         for(int i = 0; i < listtag.size(); ++i) {
             CompoundTag compoundtag = listtag.getCompound(i);
-            this.StuckEntityData = new AmberBE.StuckEntityData(compoundtag.getCompound("EntityData"));
+            this.stuckEntityData = new AmberBE.StuckEntityData(compoundtag.getCompound("EntityData"));
         }
         this.isBlockMelted = pTag.getBoolean("AmberMelted");
     }
@@ -77,27 +106,37 @@ public class AmberBE extends BlockEntity {
         pTag.putBoolean("AmberMelted", this.isBlockMelted);
     }
 
+    @Override
+    public CompoundTag getUpdateTag() {
+        CompoundTag tag = new CompoundTag();
+        tag.put("StuckEntity", this.writeProjectiles());
+        return tag;
+    }
+
+    @Override
+    public Packet<ClientGamePacketListener> getUpdatePacket() {
+        return ClientboundBlockEntityDataPacket.create(this);
+    }
+
     public ListTag writeProjectiles() {
         ListTag listtag = new ListTag();
 
-        if (this.StuckEntityData != null) {
-            CompoundTag compoundtag = this.StuckEntityData.entityData.copy();
+        if (this.stuckEntityData != null) {
+            CompoundTag compoundtag = this.stuckEntityData.entityData.copy();
             compoundtag.remove("UUID");
             CompoundTag compoundtag1 = new CompoundTag();
             compoundtag1.put("EntityData", compoundtag);
             listtag.add(compoundtag1);
         }
 
-
         return listtag;
     }
 
-
-    public static class StuckEntityData {
+    static class StuckEntityData {
         final CompoundTag entityData;
 
         StuckEntityData(CompoundTag pEntityData) {
-            FlingerTotemBE.removeIgnoredNBT(pEntityData);
+            AmberBE.removeIgnoredNBT(pEntityData);
             this.entityData = pEntityData;
         }
     }
