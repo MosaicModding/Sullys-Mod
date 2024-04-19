@@ -18,6 +18,9 @@ public class SMPaintingVariants {
     public static final RegistryObject<PaintingVariant> INFESTATION = registerPainting("infestation", "Ninni", 32, 32);
     public static final RegistryObject<PaintingVariant> LAKE = registerPainting("lake", "Farcr", 16, 48);
     public static final RegistryObject<PaintingVariant> CAVERNS = registerPainting("caverns", "SennaHN", 16, 32);
+    public static final RegistryObject<PaintingVariant> RIVER_TERROR = registerPainting("river_terror", "Graus", 32, 32);
+    public static final RegistryObject<PaintingVariant> MESMURRIZING = registerPainting("mesmurrizing", "Graus", 32, 32);
+    public static final RegistryObject<PaintingVariant> JADE_DRAGON = registerPainting("jade_dragon", "Shable", 64, 64);
 
     public static RegistryObject<PaintingVariant> registerPainting(String name, String author, int width, int height) {
         PAINTING_TRANSLATIONS.put(name, author);

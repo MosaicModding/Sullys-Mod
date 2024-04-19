@@ -1,15 +1,6 @@
 {
   "variants": {
-    "facing=east": {
-      "model": "minecraft:block/skull"
-    },
-    "facing=north": {
-      "model": "minecraft:block/skull"
-    },
-    "facing=south": {
-      "model": "minecraft:block/skull"
-    },
-    "facing=west": {
+    "": {
       "model": "minecraft:block/skull"
     }
   }
