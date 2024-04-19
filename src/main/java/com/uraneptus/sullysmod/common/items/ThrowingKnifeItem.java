@@ -25,7 +25,6 @@ import net.minecraftforge.client.extensions.common.IClientItemExtensions;
 import java.util.function.Consumer;
 
 public class ThrowingKnifeItem extends Item {
-    //TODO add dispense behavior
 
     public ThrowingKnifeItem(Properties pProperties) {
         super(pProperties);

@@ -34,11 +34,11 @@ public class AmberBER implements BlockEntityRenderer<AmberBE> {
             if (!compoundtag.isEmpty()) {
                 AmberBE.removeIgnoredNBT(compoundtag);
                 Entity renderEntity = EntityType.loadEntityRecursive(compoundtag, level, entity -> entity);
-                System.out.println(renderEntity);
+                //System.out.println(renderEntity);
                 if (renderEntity != null) {
                     pPoseStack.pushPose();
                     this.entityRenderer.render(renderEntity, pos.getX(), pos.getY(), pos.getZ(), 0.0F, pPartialTick, pPoseStack, pBuffer, pPackedLight);
-                    System.out.println(" amber if entity renderer?");
+                    //System.out.println(" amber if entity renderer?");
                     pPoseStack.popPose();
                 }
             }

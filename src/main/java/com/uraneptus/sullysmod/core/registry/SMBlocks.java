@@ -34,7 +34,6 @@ import java.util.function.Supplier;
 @SuppressWarnings({"deprecation"})
 public class SMBlocks {
     public static final BlockSubRegistryHelper HELPER = SullysMod.REGISTRY_HELPER.getBlockSubHelper();
-    //TODO use Blueprint regHelpers
     public static BlockSetType PETRIFIED_BLOCKSET = BlockSetTypeRegistryHelper.register(new BlockSetType(SullysMod.modPrefix("petrified").toString(), true, SMSounds.PETRIFIED_WOOD, SoundEvents.IRON_DOOR_CLOSE, SoundEvents.IRON_DOOR_OPEN, SoundEvents.IRON_TRAPDOOR_CLOSE, SoundEvents.IRON_TRAPDOOR_OPEN, SoundEvents.METAL_PRESSURE_PLATE_CLICK_OFF, SoundEvents.METAL_PRESSURE_PLATE_CLICK_ON, SoundEvents.STONE_BUTTON_CLICK_OFF, SoundEvents.STONE_BUTTON_CLICK_ON));
     public static WoodType PETRIFIED_WOODSET = WoodTypeRegistryHelper.registerWoodType(new WoodType("sullysmod:petrified", PETRIFIED_BLOCKSET, SMSounds.PETRIFIED_WOOD, SoundType.HANGING_SIGN, SoundEvents.FENCE_GATE_CLOSE, SoundEvents.FENCE_GATE_OPEN));
 

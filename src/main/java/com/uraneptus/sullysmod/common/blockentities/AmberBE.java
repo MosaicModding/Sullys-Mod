@@ -25,6 +25,7 @@ public class AmberBE extends BlockEntity {
     private AmberBE.StuckEntityData stuckEntityData;
 
     private boolean isBlockMelted;
+    public boolean canWalkOnAmber = false;
 
     private static final List<String> IGNORED_NBT = Arrays.asList("UUID", "Leash");
 
@@ -60,7 +61,9 @@ public class AmberBE extends BlockEntity {
         if (this.stuckEntityData == null) {
             CompoundTag compoundtag = new CompoundTag();
             entity.save(compoundtag);
-            this.storeEntity(compoundtag);
+            if (!compoundtag.isEmpty()) {
+                this.storeEntity(compoundtag);
+            }
             this.update();
             entity.discard();
         }
@@ -74,7 +77,7 @@ public class AmberBE extends BlockEntity {
 
     }
 
-    private void update() {
+    public void update() {
         setChanged();
         if (this.level != null) {
             this.level.sendBlockUpdated(this.worldPosition, getBlockState(), getBlockState(), Block.UPDATE_ALL);
@@ -110,6 +113,7 @@ public class AmberBE extends BlockEntity {
     public CompoundTag getUpdateTag() {
         CompoundTag tag = new CompoundTag();
         tag.put("StuckEntity", this.writeProjectiles());
+        tag.putBoolean("AmberMelted", this.isBlockMelted);
         return tag;
     }
 

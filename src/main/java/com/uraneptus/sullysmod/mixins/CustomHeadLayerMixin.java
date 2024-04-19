@@ -21,7 +21,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import java.util.Map;
 
 @Mixin(CustomHeadLayer.class)
-public abstract class CustomHeadLayerMixin {
+public class CustomHeadLayerMixin {
 
     @Final
     @Shadow
