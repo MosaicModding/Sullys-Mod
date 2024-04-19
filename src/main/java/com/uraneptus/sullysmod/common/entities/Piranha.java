@@ -10,6 +10,7 @@ import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
+import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.util.TimeUtil;
 import net.minecraft.util.valueproviders.UniformInt;
@@ -21,17 +22,16 @@ import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.ResetUniversalAngerTargetGoal;
-import net.minecraft.world.entity.animal.AbstractFish;
-import net.minecraft.world.entity.animal.AbstractSchoolingFish;
-import net.minecraft.world.entity.animal.Bucketable;
-import net.minecraft.world.entity.animal.WaterAnimal;
+import net.minecraft.world.entity.animal.*;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.vehicle.Boat;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.pathfinder.Path;
 import net.minecraft.world.phys.AABB;
+import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.core.animatable.GeoAnimatable;
@@ -45,6 +45,7 @@ import software.bernie.geckolib.util.GeckoLibUtil;
 
 import java.util.EnumSet;
 import java.util.List;
+import java.util.Objects;
 import java.util.UUID;
 
 public class Piranha extends AbstractSchoolingFish implements GeoEntity, NeutralMob {
@@ -71,6 +72,7 @@ public class Piranha extends AbstractSchoolingFish implements GeoEntity, Neutral
     @Override
     protected void registerGoals() {
         //NOTE: Never call the super method! We don't want the panic goal in AbstractFish
+        this.goalSelector.addGoal(1, new PiranhaJumpOnLandGoal(this));
         this.goalSelector.addGoal(0, new PiranhaAttackGoal(this));
         this.goalSelector.addGoal(0, new PiranhaAttackBoatGoal(this));
         this.goalSelector.addGoal(2, new AvoidEntityGoal<>(this, Player.class, 8.0F, 1.6D, 1.4D, EntitySelector.NO_SPECTATORS::test));
@@ -253,9 +255,19 @@ public class Piranha extends AbstractSchoolingFish implements GeoEntity, Neutral
     static class PiranhaAttackGoal extends MeleeAttackGoal {
         Piranha piranha;
 
-        PiranhaAttackGoal(PathfinderMob pMob) {
+        PiranhaAttackGoal(Piranha pMob) {
             super(pMob, 1.5F, true);
-            piranha = (Piranha) pMob;
+            piranha = pMob;
+        }
+
+        @Override
+        public boolean canUse() {
+            return super.canUse() && piranha.isInWater() && Objects.requireNonNull(piranha.getTarget()).isInWater();
+        }
+
+        @Override
+        public boolean canContinueToUse() {
+            return super.canContinueToUse() && piranha.isInWater() && Objects.requireNonNull(piranha.getTarget()).isInWater();
         }
 
         @Override
@@ -278,20 +290,17 @@ public class Piranha extends AbstractSchoolingFish implements GeoEntity, Neutral
         private int unseenTicks;
         protected int unseenMemoryTicks = 60;
 
-        public PiranhaTargetBoatGoal(PathfinderMob pMob) {
-            this.piranha = (Piranha) pMob;
+        public PiranhaTargetBoatGoal(Piranha pMob) {
+            this.piranha = pMob;
             this.randomInterval = reducedTickDelay(10);
             this.setFlags(EnumSet.of(Goal.Flag.TARGET));
         }
 
         @Override
         public boolean canUse() {
-            if (piranha.getTarget() != null && this.randomInterval > 0 && this.piranha.getRandom().nextInt(this.randomInterval) != 0) {
-                return false;
-            } else {
-                this.findTarget();
-                return true;
-            }
+            if (piranha.getTarget() != null && this.randomInterval > 0 && this.piranha.getRandom().nextInt(this.randomInterval) != 0) return false;
+            this.findTarget();
+            return true;
         }
 
         @Override
@@ -303,7 +312,7 @@ public class Piranha extends AbstractSchoolingFish implements GeoEntity, Neutral
 
             if (boatTarget == null) {
                 return false;
-            } else if (boatTarget.isRemoved() || boatTarget.isInvulnerable()) {
+            } else if (boatTarget.isRemoved() || boatTarget.isInvulnerable() || !boatTarget.isInWater()) {
                 return false;
             } else {
                 double d0 = this.getFollowDistance();
@@ -341,8 +350,10 @@ public class Piranha extends AbstractSchoolingFish implements GeoEntity, Neutral
             for(T possibleTarget : pEntities) {
                 double distanceToTarget = possibleTarget.distanceToSqr(pX, pY, pZ);
                 if (d0 == -1.0D || distanceToTarget < d0) {
-                    d0 = distanceToTarget;
-                    target = possibleTarget;
+                    if (possibleTarget.isInWater()) {
+                        d0 = distanceToTarget;
+                        target = possibleTarget;
+                    }
                 }
             }
 
@@ -377,43 +388,34 @@ public class Piranha extends AbstractSchoolingFish implements GeoEntity, Neutral
         private int ticksUntilNextAttack;
         private long lastCanUseCheck;
 
-        public PiranhaAttackBoatGoal(PathfinderMob pMob) {
-            this.piranha = (Piranha) pMob;
+        public PiranhaAttackBoatGoal(Piranha pMob) {
+            this.piranha = pMob;
             this.speedModifier = 1.5F;
             this.setFlags(EnumSet.of(Goal.Flag.MOVE, Goal.Flag.LOOK));
         }
 
         @Override
         public boolean canUse() {
-            long i = this.piranha.level().getGameTime();
-            if (i - this.lastCanUseCheck < 20L) {
-                return false;
+            long gameTime = this.piranha.level().getGameTime();
+            Boat boatTarget = this.piranha.getBoatTarget();
+            if (gameTime - this.lastCanUseCheck < 20L) return false;
+            this.lastCanUseCheck = gameTime;
+
+            if (boatTarget == null || !boatTarget.isAlive() || !boatTarget.isInWater()) return false;
+            this.path = this.piranha.getNavigation().createPath(boatTarget, 0);
+            if (this.path != null) {
+                return true;
             } else {
-                this.lastCanUseCheck = i;
-                Boat boatTarget = this.piranha.getBoatTarget();
-                if (boatTarget == null) {
-                    return false;
-                } else if (!boatTarget.isAlive()) {
-                    return false;
-                } else {
-                    this.path = this.piranha.getNavigation().createPath(boatTarget, 0);
-                    if (this.path != null) {
-                        return true;
-                    } else {
-                        return this.getAttackReachSqr(boatTarget) >= this.piranha.distanceToSqr(boatTarget.getX(), boatTarget.getY(), boatTarget.getZ());
-                    }
-                }
+                return this.getAttackReachSqr(boatTarget) >= this.piranha.distanceToSqr(boatTarget.getX(), boatTarget.getY(), boatTarget.getZ());
             }
         }
 
         @Override
         public boolean canContinueToUse() {
             Boat boat = this.piranha.getBoatTarget();
-            if (boat == null) {
-                return false;
-            } else if (!boat.isAlive()) {
-                return false;
-            } else return this.piranha.isWithinRestriction(boat.blockPosition());
+            if (boat == null || !boat.isAlive()) return false;
+
+            return this.piranha.isWithinRestriction(boat.blockPosition());
         }
 
         @Override
@@ -481,6 +483,108 @@ public class Piranha extends AbstractSchoolingFish implements GeoEntity, Neutral
 
         protected double getAttackReachSqr(Boat pAttackTarget) {
             return this.piranha.getBbWidth() * 2.0F * this.piranha.getBbWidth() * 2.0F + pAttackTarget.getBbWidth();
+        }
+    }
+
+    static class PiranhaJumpOnLandGoal extends JumpGoal {
+        Piranha piranha;
+        boolean didAttack;
+
+        public PiranhaJumpOnLandGoal(Piranha pMob) {
+            this.piranha = pMob;
+        }
+        
+        @Override
+        public boolean canUse() {
+            LivingEntity target = piranha.getTarget();
+            if (target == null || !target.isAlive()) return false;
+            if (target.isInWater() || !piranha.isInWater()) return false;
+            if (target.getMotionDirection() != target.getDirection()) return false;
+
+            boolean pathClear = isPathClear(piranha, target);
+            if (!pathClear) {
+                piranha.getNavigation().createPath(target, 0);
+            }
+            return pathClear;
+        }
+
+        protected boolean isPathClear(Piranha piranha, LivingEntity pLivingEntity) {
+            double d0 = pLivingEntity.getZ() - piranha.getZ();
+            double d1 = pLivingEntity.getX() - piranha.getX();
+            double d2 = d0 / d1;
+            int i = 6;
+
+            for(int j = 0; j < 6; ++j) {
+                double d3 = d2 == 0.0D ? 0.0D : d0 * (double)((float)j / 6.0F);
+                double d4 = d2 == 0.0D ? d1 * (double)((float)j / 6.0F) : d3 / d2;
+
+                for(int k = 1; k < 4; ++k) {
+                    if (!piranha.level().getBlockState(BlockPos.containing(piranha.getX() + d4, piranha.getY() + (double)k, piranha.getZ() + d3)).canBeReplaced()) {
+                        return false;
+                    }
+                }
+            }
+
+            return true;
+        }
+        
+        @Override
+        public boolean canContinueToUse() {
+            LivingEntity target = piranha.getTarget();
+            if (target == null || !target.isAlive()) return false;
+            if (target.isInWater() || !piranha.isInWater()) return false;
+
+            double yMovement = piranha.getDeltaMovement().y;
+            return (!(yMovement * yMovement < (double)0.05F) || !(Math.abs(piranha.getXRot()) < 15.0F) || !piranha.onGround());
+        }
+
+        @Override
+        public boolean isInterruptable() {
+            return false;
+        }
+        
+        @Override
+        public void start() {
+            piranha.setJumping(true);
+            //piranha.setIsPouncing(true);
+            //piranha.setIsInterested(false);
+            LivingEntity target = piranha.getTarget();
+            if (target != null) {
+                piranha.getLookControl().setLookAt(target, 60.0F, 30.0F);
+                Vec3 vec3 = (new Vec3(target.getX() - piranha.getX(), target.getY() - piranha.getY(), target.getZ() - piranha.getZ())).normalize();
+                piranha.setDeltaMovement(piranha.getDeltaMovement().add(vec3.x, 0.9D, vec3.z ));
+            }
+
+            piranha.getNavigation().stop();
+        }
+
+        @Override
+        public void stop() {
+            //TODO
+        }
+
+        @Override
+        public void tick() {
+            LivingEntity target = piranha.getTarget();
+            if (target != null) {
+                piranha.getLookControl().setLookAt(target, 60.0F, 30.0F);
+            }
+
+            Vec3 vec3 = piranha.getDeltaMovement();
+            if (vec3.y * vec3.y < (double)0.03F && piranha.getXRot() != 0.0F) {
+                piranha.setXRot(Mth.rotLerp(0.2F, piranha.getXRot(), 0.0F));
+            } else {
+                double d0 = vec3.horizontalDistance();
+                double d1 = Math.signum(-vec3.y) * Math.acos(d0 / vec3.length()) * (double)(180F / (float)Math.PI);
+                piranha.setXRot((float)d1);
+            }
+            if (target != null && piranha.distanceTo(target) <= 2.0F) {
+                piranha.doHurtTarget(target);
+            } else if (piranha.getXRot() > 0.0F && piranha.onGround() && (float)piranha.getDeltaMovement().y != 0.0F) {
+                piranha.setXRot(60.0F);
+                piranha.setTarget(null);
+            }
+
         }
     }
 }
