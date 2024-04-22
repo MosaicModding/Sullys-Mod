@@ -1,15 +1,11 @@
 package com.uraneptus.sullysmod.common.blocks;
 
 import com.uraneptus.sullysmod.common.blockentities.AmberBE;
-import com.uraneptus.sullysmod.common.blockentities.FlingerTotemBE;
 import com.uraneptus.sullysmod.core.other.tags.SMBlockTags;
-import com.uraneptus.sullysmod.core.registry.SMBlockEntityTypes;
 import com.uraneptus.sullysmod.core.registry.SMBlocks;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
@@ -21,7 +17,6 @@ import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LightLayer;
 import net.minecraft.world.level.block.BaseEntityBlock;
-import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
@@ -33,10 +28,6 @@ import net.minecraft.world.phys.shapes.EntityCollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
-
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 public class AmberBlock extends BaseEntityBlock {
 
@@ -52,7 +43,6 @@ public class AmberBlock extends BaseEntityBlock {
         return RenderShape.MODEL;
     }
 
-
     public VoxelShape getCollisionShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
         BlockEntity blockEntity = pLevel.getBlockEntity(pPos);
 
@@ -62,27 +52,29 @@ public class AmberBlock extends BaseEntityBlock {
                 Level level = blockEntity.getLevel();
                 if (!amber.hasStuckEntity()) {
                     if (entity != null) {
-                        boolean flag = false;
+                        boolean shouldMeltFlag = false;
 
                         for (BlockPos pos : BlockPos.betweenClosed(pPos.offset(-1, -1, -1), pPos.offset(1, 1, 1))) {
                             BlockState state = pLevel.getBlockState(pos);
                             BlockEntity be = pLevel.getBlockEntity(pos);
                             if (state.is(SMBlockTags.MELTS_AMBER)) {
-                                flag = true;
+                                shouldMeltFlag = true;
                             }
                             if (state.getBlock() instanceof AmberBlock && be instanceof AmberBE amberBE) {
                                 if (amberBE.isBlockMelted() && level != null && level.getBrightness(LightLayer.BLOCK, pPos.above()) >= 9) {
-                                    flag = true;
+                                    shouldMeltFlag = true;
                                 }
 
                             }
                         }
-                        if (flag) {
+                        if (shouldMeltFlag) {
                             if (entity instanceof Player player) {
-                                //return MELTING_COLLISION_SHAPE;
-
-
+                                if (player.jumping) {
+                                    amber.setBlockMelted(false);
+                                    return Shapes.block();
+                                }
                             }
+
                             amber.setBlockMelted(true);
                             amber.update();
                             return MELTING_COLLISION_SHAPE;

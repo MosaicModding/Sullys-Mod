@@ -198,7 +198,6 @@ public class TortoiseShell extends Entity implements OwnableEntity, WorkstationA
         return !this.isRemoved();
     }
 
-
     private void hurtEntity(List<Entity> pEntities) {
         for (Entity entity : pEntities) {
             if (entity instanceof LivingEntity livingEntity) {
