@@ -31,7 +31,7 @@ import org.jetbrains.annotations.Nullable;
 
 public class AmberBlock extends BaseEntityBlock {
 
-    private static final VoxelShape MELTING_COLLISION_SHAPE = Shapes.box(0.0D, 0.0D, 0.0D, 1.0D, (double)0.0F, 1.0D);
+    private static final VoxelShape MELTING_COLLISION_SHAPE = Shapes.box(0.0D, 0.0D, 0.0D, 1.0D, 0.0F, 1.0D);
 
     public AmberBlock(Properties pProperties) {
         super(pProperties);
