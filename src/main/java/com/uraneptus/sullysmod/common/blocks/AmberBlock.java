@@ -53,6 +53,7 @@ public class AmberBlock extends BaseEntityBlock {
                 if (!amber.hasStuckEntity()) {
                     if (entity != null) {
                         boolean shouldMeltFlag = false;
+                        amber.setBlockMelted(false);
 
                         for (BlockPos pos : BlockPos.betweenClosed(pPos.offset(-1, -1, -1), pPos.offset(1, 1, 1))) {
                             BlockState state = pLevel.getBlockState(pos);
@@ -64,7 +65,6 @@ public class AmberBlock extends BaseEntityBlock {
                                 if (amberBE.isBlockMelted() && level != null && level.getBrightness(LightLayer.BLOCK, pPos.above()) >= 9) {
                                     shouldMeltFlag = true;
                                 }
-
                             }
                         }
                         if (shouldMeltFlag) {
@@ -108,7 +108,7 @@ public class AmberBlock extends BaseEntityBlock {
     public void entityInside(BlockState pState, Level pLevel, BlockPos pPos, Entity pEntity) {
         BlockEntity blockEntity = pLevel.getBlockEntity(pPos);
         if (blockEntity instanceof AmberBE amber) {
-            if (!amber.hasStuckEntity() && this.getCollisionShape(pState, pLevel, pPos, CollisionContext.of(pEntity)) != Shapes.block()) {
+            if (!amber.hasStuckEntity() && amber.isBlockMelted()) {
                 if (!(pEntity instanceof LivingEntity) || pEntity.getFeetBlockState().is(this)) {
                     if (pEntity instanceof Player) {
                         pEntity.makeStuckInBlock(pState, new Vec3(0.8F, 0.1D, 0.8F));

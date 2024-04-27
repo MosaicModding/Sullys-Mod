@@ -15,6 +15,8 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.function.Function;
+
 @OnlyIn(Dist.CLIENT)
 public class AmberBER implements BlockEntityRenderer<AmberBE> {
     private final EntityRenderDispatcher entityRenderer;
@@ -33,11 +35,11 @@ public class AmberBER implements BlockEntityRenderer<AmberBE> {
             CompoundTag compoundtag = amberBlockEntity.getEntityStuck();
             if (!compoundtag.isEmpty()) {
                 AmberBE.removeIgnoredNBT(compoundtag);
-                Entity renderEntity = EntityType.loadEntityRecursive(compoundtag, level, entity -> entity);
-                //System.out.println(renderEntity);
+                Entity renderEntity = EntityType.loadEntityRecursive(compoundtag, level, Function.identity());
+                System.out.println(renderEntity);
                 if (renderEntity != null) {
                     pPoseStack.pushPose();
-                    this.entityRenderer.render(renderEntity, pos.getX(), pos.getY(), pos.getZ(), 0.0F, pPartialTick, pPoseStack, pBuffer, pPackedLight);
+                    this.entityRenderer.render(renderEntity, renderEntity.getX(), renderEntity.getY(), renderEntity.getZ(), 0.0F, pPartialTick, pPoseStack, pBuffer, pPackedLight);
                     //System.out.println(" amber if entity renderer?");
                     pPoseStack.popPose();
                 }

@@ -7,7 +7,14 @@ import net.minecraft.nbt.ListTag;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
+import net.minecraft.util.RandomSource;
+import net.minecraft.util.random.WeightedEntry;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.Mob;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.SpawnData;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -17,15 +24,16 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.Function;
 
 public class AmberBE extends BlockEntity {
     @Nullable
     private AmberBE.StuckEntityData stuckEntityData;
 
     private boolean isBlockMelted;
-    public boolean canWalkOnAmber = false;
 
     private static final List<String> IGNORED_NBT = Arrays.asList("UUID", "Leash");
+
 
     public AmberBE(BlockPos pPos, BlockState pBlockState) {
         super(SMBlockEntityTypes.AMBER.get(), pPos, pBlockState);
