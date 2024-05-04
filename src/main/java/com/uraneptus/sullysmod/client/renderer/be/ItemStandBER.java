@@ -93,7 +93,7 @@ public class ItemStandBER implements BlockEntityRenderer<ItemStandBE> {
             }
             pPoseStack.mulPose(Axis.XP.rotationDegrees(xRotDegrees));
             pPoseStack.mulPose(Axis.YP.rotationDegrees(-180));
-            this.itemRenderer.renderStatic(pBlockEntity.getDisplayItem(), displayContext, pPackedLight, OverlayTexture.NO_OVERLAY, pPoseStack, pBuffer, pBlockEntity.getLevel(), pBlockEntity.saveWithId().getId());
+            this.itemRenderer.renderStatic(displayItem, displayContext, pPackedLight, OverlayTexture.NO_OVERLAY, pPoseStack, pBuffer, pBlockEntity.getLevel(), pBlockEntity.saveWithId().getId());
         }
         pPoseStack.popPose();
     }

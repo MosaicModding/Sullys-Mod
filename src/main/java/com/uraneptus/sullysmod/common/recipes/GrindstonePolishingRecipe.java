@@ -110,7 +110,7 @@ public class GrindstonePolishingRecipe implements Recipe<Container> {
 
             NonNullList<Ingredient> nonnulllist = itemsFromJson(GsonHelper.getAsJsonArray(jsonObject, "ingredients"));
             if (nonnulllist.isEmpty()) {
-                throw new JsonParseException("No ingredients for shapeless recipe");
+                throw new JsonParseException("No ingredients for polishing recipe");
             }
             if (!jsonObject.has("result")) throw new com.google.gson.JsonSyntaxException("Missing result, expected to find a string or object");
             ItemStack result;

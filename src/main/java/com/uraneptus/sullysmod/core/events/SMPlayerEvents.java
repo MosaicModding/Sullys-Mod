@@ -1,5 +1,6 @@
 package com.uraneptus.sullysmod.core.events;
 
+import com.google.common.collect.Lists;
 import com.teamabnormals.blueprint.core.util.BlockUtil;
 import com.uraneptus.sullysmod.SullysMod;
 import com.uraneptus.sullysmod.common.blocks.PickaxeStrippable;
@@ -12,10 +13,12 @@ import com.uraneptus.sullysmod.core.other.tags.SMItemTags;
 import com.uraneptus.sullysmod.core.registry.SMItems;
 import com.uraneptus.sullysmod.core.registry.SMParticleTypes;
 import com.uraneptus.sullysmod.core.registry.SMSounds;
+import net.minecraft.client.multiplayer.chat.report.ReportEnvironment;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ItemParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
@@ -28,6 +31,8 @@ import net.minecraft.world.entity.ExperienceOrb;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.PickaxeItem;
+import net.minecraft.world.item.crafting.Recipe;
+import net.minecraft.world.item.crafting.RecipeManager;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -42,6 +47,10 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Mod.EventBusSubscriber(modid = SullysMod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class SMPlayerEvents {
@@ -118,6 +127,29 @@ public class SMPlayerEvents {
         }
         if (!player.getInventory().add(new ItemStack(resultItem.getItem(), resultCount * ingredientCount))) {
             player.drop(new ItemStack(resultItem.getItem(), resultCount * ingredientCount), false);
+        }
+    }
+
+    @SubscribeEvent
+    public static void onRightClickBlock(PlayerInteractEvent.RightClickItem event) {
+        ItemStack itemInHand = event.getItemStack();
+        Player player = event.getEntity();
+        Level level = event.getLevel();
+        if (itemInHand.is(SMItems.LOST_RECIPE_BOOK.get()) && level.getServer() != null && player instanceof ServerPlayer serverPlayer) {
+            List<Recipe<?>> unknownRecipes = new ArrayList<>();
+
+            for (Recipe<?> recipe : level.getServer().getRecipeManager().getRecipes()) {
+                if (!serverPlayer.getRecipeBook().contains(recipe)) {
+                    unknownRecipes.add(recipe);
+                }
+            }
+
+            Recipe<?> recipe = unknownRecipes.get(player.getRandom().nextInt(unknownRecipes.size()));
+            serverPlayer.awardRecipes(List.of(recipe));
+            level.playSound(null, player.blockPosition(), SoundEvents.BOOK_PAGE_TURN, SoundSource.PLAYERS);
+            if (!player.getAbilities().instabuild) {
+                player.setItemInHand(event.getHand(), ItemStack.EMPTY);
+            }
         }
     }
 
