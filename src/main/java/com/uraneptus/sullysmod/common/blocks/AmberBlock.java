@@ -107,7 +107,6 @@ public class AmberBlock extends BaseEntityBlock {
     @Override
     public void entityInside(BlockState pState, Level pLevel, BlockPos pPos, Entity pEntity) {
         BlockEntity blockEntity = pLevel.getBlockEntity(pPos);
-        BlockEntity blockEntityBelow = pLevel.getBlockEntity(pPos.below());
         if (blockEntity instanceof AmberBE amber) {
             if (!amber.hasStuckEntity() && amber.isBlockMelted()) {
                 if (!(pEntity instanceof LivingEntity) || pEntity.getFeetBlockState().is(this)) {
@@ -115,7 +114,7 @@ public class AmberBlock extends BaseEntityBlock {
                         pEntity.makeStuckInBlock(pState, new Vec3(0.8F, 0.1D, 0.8F));
                     } else if (pEntity instanceof Mob mob) {
                         mob.makeStuckInBlock(pState, new Vec3(0.0F, 0.1D, 0.0F));
-                        if (!mob.getBlockStateOn().is(SMBlocks.AMBER.get()) || (blockEntityBelow instanceof AmberBE amberBE && amberBE.hasStuckEntity())) {
+                        if (mob.onGround()) {
                             amber.makeEntityStuck(mob);
                         }
                     }
