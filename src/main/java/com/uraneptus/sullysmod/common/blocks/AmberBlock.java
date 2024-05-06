@@ -113,9 +113,34 @@ public class AmberBlock extends BaseEntityBlock {
                     if (pEntity instanceof Player) {
                         pEntity.makeStuckInBlock(pState, new Vec3(0.8F, 0.1D, 0.8F));
                     } else if (pEntity instanceof Mob mob) {
-                        mob.makeStuckInBlock(pState, new Vec3(0.0F, 0.1D, 0.0F));
-                        if (mob.onGround()) {
-                            amber.makeEntityStuck(mob);
+                        if (mob.getBoundingBox().getYsize() < 1.5F) {
+                            mob.makeStuckInBlock(pState, new Vec3(0F, 0.1D, 0F));
+                            if (mob.onGround()) {
+                                amber.makeEntityStuck(mob);
+                            }
+                        }
+                        else if (mob.getBoundingBox().getYsize() < 2F) {
+                            if (pLevel.getBlockState(new BlockPos(mob.getBlockX(), mob.getBlockY() + 1, mob.getBlockZ())).is(SMBlocks.AMBER.get())) {
+                                mob.makeStuckInBlock(pState, new Vec3(0F, 0.1D, 0F));
+                                if (mob.onGround()) {
+                                    amber.makeEntityStuck(mob);
+                                }
+                            } else {
+                                mob.makeStuckInBlock(pState, new Vec3(0.8F, 0.1D, 0.8F));
+                            }
+                        }
+                        else if (mob.getBoundingBox().getYsize() < 3.5F) {
+                            if (pLevel.getBlockState(new BlockPos(mob.getBlockX(), mob.getBlockY() + 1, mob.getBlockZ())).is(SMBlocks.AMBER.get()) && pLevel.getBlockState(new BlockPos(mob.getBlockX(), mob.getBlockY() + 2, mob.getBlockZ())).is(SMBlocks.AMBER.get())) {
+                                mob.makeStuckInBlock(pState, new Vec3(0F, 0.1D, 0F));
+                                if (mob.onGround()) {
+                                    amber.makeEntityStuck(mob);
+                                }
+                            } else {
+                                mob.makeStuckInBlock(pState, new Vec3(0.8F, 0.1D, 0.8F));
+                            }
+                        }
+                        else {
+                            mob.makeStuckInBlock(pState, new Vec3(0.8F, 0.1D, 0.8F));
                         }
                     }
                     if (pLevel.isClientSide) {
