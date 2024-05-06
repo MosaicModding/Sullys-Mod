@@ -1,12 +1,12 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_polished_jade_shingles": {
+    "has_jade_bricks": {
       "conditions": {
         "items": [
           {
             "items": [
-              "sullysmod:polished_jade_shingles"
+              "sullysmod:jade_bricks"
             ]
           }
         ]
@@ -35,7 +35,7 @@
   "requirements": [
     [
       "has_tripwire_hook",
-      "has_polished_jade_shingles",
+      "has_jade_bricks",
       "has_the_recipe"
     ]
   ],

@@ -1,12 +1,12 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_polished_jade": {
+    "has_jade": {
       "conditions": {
         "items": [
           {
             "items": [
-              "sullysmod:polished_jade"
+              "sullysmod:jade"
             ]
           }
         ]
@@ -22,7 +22,7 @@
   },
   "requirements": [
     [
-      "has_polished_jade",
+      "has_jade",
       "has_the_recipe"
     ]
   ],

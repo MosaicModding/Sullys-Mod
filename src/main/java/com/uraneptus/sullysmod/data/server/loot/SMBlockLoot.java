@@ -6,15 +6,19 @@ import net.minecraft.data.loot.BlockLootSubProvider;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.enchantment.Enchantments;
+import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.functions.ApplyBonusCount;
 import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
+import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
 import net.minecraftforge.registries.RegistryObject;
 
 import java.util.Set;
+import java.util.function.Supplier;
 
 public class SMBlockLoot extends BlockLootSubProvider {
     private static final Set<Item> EXPLOSION_RESISTANT = Set.of();
@@ -37,33 +41,20 @@ public class SMBlockLoot extends BlockLootSubProvider {
         //Raw Jade
         this.dropSelf(SMBlocks.ROUGH_JADE_BLOCK.get());
         this.dropSelf(SMBlocks.ROUGH_JADE_BRICKS.get());
-        this.dropSelf(SMBlocks.ROUGH_JADE_TILES.get());
-        this.dropSelf(SMBlocks.SMOOTHED_ROUGH_JADE.get());
         this.dropSelf(SMBlocks.ROUGH_JADE_BRICK_STAIRS.get());
-        this.dropSelf(SMBlocks.ROUGH_JADE_TILE_STAIRS.get());
-        this.dropSelf(SMBlocks.SMOOTHED_ROUGH_JADE_STAIRS.get());
         createSlab(SMBlocks.ROUGH_JADE_BRICK_SLAB.get());
-        createSlab(SMBlocks.ROUGH_JADE_TILE_SLAB.get());
-        createSlab(SMBlocks.SMOOTHED_ROUGH_JADE_SLAB.get());
 
         //Jade
-        this.dropSelf(SMBlocks.POLISHED_JADE_BLOCK.get());
-        this.dropSelf(SMBlocks.POLISHED_JADE_BRICKS.get());
-        this.dropSelf(SMBlocks.POLISHED_SMALL_JADE_BRICKS.get());
-        this.dropSelf(SMBlocks.POLISHED_JADE_TILES.get());
-        this.dropSelf(SMBlocks.POLISHED_JADE_SHINGLES.get());
-        this.dropSelf(SMBlocks.POLISHED_CHISELED_JADE.get());
-        this.dropSelf(SMBlocks.POLISHED_JADE_PILLAR.get());
+        this.dropSelf(SMBlocks.JADE_BLOCK.get());
+        this.dropSelf(SMBlocks.JADE_BRICKS.get());
+        this.dropSelf(SMBlocks.CHISELED_JADE.get());
+        this.dropSelf(SMBlocks.JADE_PILLAR.get());
         this.dropSelf(SMBlocks.JADE_TOTEM.get());
         this.dropSelf(SMBlocks.JADE_FLINGER_TOTEM.get());
-        this.dropSelf(SMBlocks.POLISHED_JADE_BRICK_STAIRS.get());
-        this.dropSelf(SMBlocks.POLISHED_SMALL_JADE_BRICK_STAIRS.get());
-        this.dropSelf(SMBlocks.POLISHED_JADE_TILE_STAIRS.get());
-        this.dropSelf(SMBlocks.POLISHED_JADE_SHINGLE_STAIRS.get());
-        createSlab(SMBlocks.POLISHED_JADE_BRICK_SLAB.get());
-        createSlab(SMBlocks.POLISHED_SMALL_JADE_BRICK_SLAB.get());
-        createSlab(SMBlocks.POLISHED_JADE_TILE_SLAB.get());
-        createSlab(SMBlocks.POLISHED_JADE_SHINGLE_SLAB.get());
+        this.dropSelf(SMBlocks.JADE_BRICK_STAIRS.get());
+        this.dropSelf(SMBlocks.ROUGH_JADE_BRICK_WALL.get());
+        this.dropSelf(SMBlocks.JADE_BRICK_WALL.get());
+        createSlab(SMBlocks.JADE_BRICK_SLAB.get());
 
         //Copper Buttons
         this.dropSelf(SMBlocks.COPPER_BUTTON.get());

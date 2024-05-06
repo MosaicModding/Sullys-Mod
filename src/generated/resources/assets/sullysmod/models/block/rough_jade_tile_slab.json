@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/slab",
-  "textures": {
-    "bottom": "sullysmod:block/rough_jade_tiles",
-    "side": "sullysmod:block/rough_jade_tiles",
-    "top": "sullysmod:block/rough_jade_tiles"
-  }
-}

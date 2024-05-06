@@ -3,7 +3,7 @@
   "category": "redstone",
   "key": {
     "#": {
-      "item": "sullysmod:polished_jade_shingles"
+      "item": "sullysmod:jade_bricks"
     },
     "-": {
       "item": "minecraft:tripwire_hook"

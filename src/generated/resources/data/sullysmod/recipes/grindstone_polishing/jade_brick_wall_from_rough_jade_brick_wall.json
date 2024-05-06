@@ -1,0 +1,12 @@
+{
+  "type": "sullysmod:grindstone_polishing",
+  "experience": 0,
+  "ingredients": [
+    {
+      "item": "sullysmod:rough_jade_brick_wall"
+    }
+  ],
+  "result": {
+    "item": "sullysmod:jade_brick_wall"
+  }
+}

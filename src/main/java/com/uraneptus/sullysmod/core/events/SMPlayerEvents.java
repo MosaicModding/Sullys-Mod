@@ -10,14 +10,19 @@ import com.uraneptus.sullysmod.core.other.SMItemUtil;
 import com.uraneptus.sullysmod.core.other.SMTextDefinitions;
 import com.uraneptus.sullysmod.core.other.tags.SMBiomeTags;
 import com.uraneptus.sullysmod.core.other.tags.SMItemTags;
+import com.uraneptus.sullysmod.core.registry.SMBlocks;
 import com.uraneptus.sullysmod.core.registry.SMItems;
 import com.uraneptus.sullysmod.core.registry.SMParticleTypes;
 import com.uraneptus.sullysmod.core.registry.SMSounds;
+import net.minecraft.ChatFormatting;
 import net.minecraft.client.multiplayer.chat.report.ReportEnvironment;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ItemParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.Style;
+import net.minecraft.network.chat.TextColor;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -42,6 +47,7 @@ import net.minecraft.world.level.dimension.BuiltinDimensionTypes;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
+import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -171,8 +177,8 @@ public class SMPlayerEvents {
             if (SMConfig.ENABLE_POLISHABLE_TOOLTIP.get()) {
                 ArrayList<GrindstonePolishingRecipe> recipes = new ArrayList<>(GrindstonePolishingRecipe.getRecipes(player.level()));
                 for (GrindstonePolishingRecipe polishingRecipe : recipes) {
-                    for (ItemStack itemStack : polishingRecipe.getIngredients().iterator().next().getItems()) {
-                        if (itemstack.is(itemStack.getItem())) {
+                    for (ItemStack polishableItems : polishingRecipe.getIngredients().iterator().next().getItems()) {
+                        if (itemstack.is(polishableItems.getItem())) {
                             event.getToolTip().add(SMTextDefinitions.POLISHABLE);
                         }
                     }
@@ -226,6 +232,16 @@ public class SMPlayerEvents {
                 }
             }
 
+        }
+    }
+
+    @SubscribeEvent
+    public static void onPlayerLoggedIn(PlayerEvent.PlayerLoggedInEvent event) {
+        Player player = event.getEntity();
+        if (player instanceof ServerPlayer serverPlayer && SMCommonForgeEvents.SEND_BLOCK_REMOVAL_NOTIFY) {
+            Component component = Component.literal("Important: Sully's Mod removed some jade blocks!\nTo not break things we replaced them with other jade blocks.")
+                    .setStyle(Style.EMPTY.withColor(ChatFormatting.RED));
+            serverPlayer.sendSystemMessage(component);
         }
     }
 }

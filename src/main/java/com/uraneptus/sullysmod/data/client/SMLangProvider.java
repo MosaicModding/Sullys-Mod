@@ -28,14 +28,9 @@ public class SMLangProvider extends LanguageProvider {
         forBlock(SMBlocks.JADE_ORE);
         forBlock(SMBlocks.DEEPSLATE_JADE_ORE);
         forBlock(SMBlocks.ROUGH_JADE_BRICKS);
-        forBlock(SMBlocks.SMOOTHED_ROUGH_JADE);
-        forBlock(SMBlocks.ROUGH_JADE_TILES);
-        forBlock(SMBlocks.POLISHED_JADE_BRICKS);
-        forBlock(SMBlocks.POLISHED_SMALL_JADE_BRICKS);
-        forBlock(SMBlocks.POLISHED_JADE_SHINGLES);
-        forBlock(SMBlocks.POLISHED_JADE_TILES);
-        forBlock(SMBlocks.POLISHED_CHISELED_JADE);
-        forBlock(SMBlocks.POLISHED_JADE_PILLAR);
+        forBlock(SMBlocks.JADE_BRICKS);
+        forBlock(SMBlocks.CHISELED_JADE);
+        forBlock(SMBlocks.JADE_PILLAR);
         forBlock(SMBlocks.JADE_TOTEM);
         forBlock(SMBlocks.JADE_FLINGER_TOTEM);
         forBlock(SMBlocks.COPPER_BUTTON);
@@ -46,20 +41,12 @@ public class SMLangProvider extends LanguageProvider {
         forBlock(SMBlocks.WAXED_EXPOSED_COPPER_BUTTON);
         forBlock(SMBlocks.WAXED_WEATHERED_COPPER_BUTTON);
         forBlock(SMBlocks.WAXED_OXIDIZED_COPPER_BUTTON);
-        forBlock(SMBlocks.POLISHED_JADE_BRICK_STAIRS);
-        forBlock(SMBlocks.POLISHED_SMALL_JADE_BRICK_STAIRS);
-        forBlock(SMBlocks.POLISHED_JADE_SHINGLE_STAIRS);
-        forBlock(SMBlocks.POLISHED_JADE_TILE_STAIRS);
-        forBlock(SMBlocks.POLISHED_JADE_BRICK_SLAB);
-        forBlock(SMBlocks.POLISHED_SMALL_JADE_BRICK_SLAB);
-        forBlock(SMBlocks.POLISHED_JADE_SHINGLE_SLAB);
-        forBlock(SMBlocks.POLISHED_JADE_TILE_SLAB);
+        forBlock(SMBlocks.JADE_BRICK_STAIRS);
+        forBlock(SMBlocks.JADE_BRICK_SLAB);
+        forBlock(SMBlocks.JADE_BRICK_WALL);
         forBlock(SMBlocks.ROUGH_JADE_BRICK_STAIRS);
-        forBlock(SMBlocks.SMOOTHED_ROUGH_JADE_STAIRS);
-        forBlock(SMBlocks.ROUGH_JADE_TILE_STAIRS);
         forBlock(SMBlocks.ROUGH_JADE_BRICK_SLAB);
-        forBlock(SMBlocks.SMOOTHED_ROUGH_JADE_SLAB);
-        forBlock(SMBlocks.ROUGH_JADE_TILE_SLAB);
+        forBlock(SMBlocks.ROUGH_JADE_BRICK_WALL);
         forBlock(SMBlocks.TORTOISE_EGG);
         forBlock(SMBlocks.AMBER);
         forBlock(SMBlocks.ROUGH_AMBER);
@@ -87,15 +74,14 @@ public class SMLangProvider extends LanguageProvider {
         forBlock(SMBlocks.PETRIFIED_DOOR);
         forBlock(SMBlocks.PETRIFIED_SAPLING);
         forBlock(SMBlocks.ITEM_STAND);
-        //forBlock(SMBlocks.CRACKED_ANCIENT_SKULL);
 
-        addBlock(SMBlocks.POLISHED_JADE_BLOCK, "Block of Polished Jade");
+        addBlock(SMBlocks.JADE_BLOCK, "Block of Jade");
         addBlock(SMBlocks.ROUGH_JADE_BLOCK, "Block of Rough Jade");
 
         //Items
         SMItems.ARTIFACT_DESC_MAP.forEach((item, desc) -> forItem(item));
         forItem(SMItems.ROUGH_JADE);
-        forItem(SMItems.POLISHED_JADE);
+        forItem(SMItems.JADE);
         forItem(SMItems.LANTERNFISH_SPAWN_EGG);
         forItem(SMItems.PIRANHA_SPAWN_EGG);
         forItem(SMItems.COOKED_LANTERNFISH);

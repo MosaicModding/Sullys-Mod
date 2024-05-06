@@ -29,31 +29,18 @@ public class SMBlockTagsProvider extends BlockTagsProvider {
                 SMBlocks.DEEPSLATE_JADE_ORE.get(),
                 SMBlocks.ROUGH_JADE_BLOCK.get(),
                 SMBlocks.ROUGH_JADE_BRICKS.get(),
-                SMBlocks.SMOOTHED_ROUGH_JADE.get(),
-                SMBlocks.ROUGH_JADE_TILES.get(),
-                SMBlocks.POLISHED_JADE_BLOCK.get(),
-                SMBlocks.POLISHED_JADE_BRICKS.get(),
-                SMBlocks.POLISHED_SMALL_JADE_BRICKS.get(),
-                SMBlocks.POLISHED_JADE_SHINGLES.get(),
-                SMBlocks.POLISHED_JADE_TILES.get(),
-                SMBlocks.POLISHED_CHISELED_JADE.get(),
+                SMBlocks.JADE_BLOCK.get(),
+                SMBlocks.JADE_BRICKS.get(),
+                SMBlocks.CHISELED_JADE.get(),
                 SMBlocks.JADE_TOTEM.get(),
                 SMBlocks.JADE_FLINGER_TOTEM.get(),
-                SMBlocks.POLISHED_JADE_PILLAR.get(),
-                SMBlocks.POLISHED_JADE_BRICK_STAIRS.get(),
-                SMBlocks.POLISHED_SMALL_JADE_BRICK_STAIRS.get(),
-                SMBlocks.POLISHED_JADE_SHINGLE_STAIRS.get(),
-                SMBlocks.POLISHED_JADE_TILE_STAIRS.get(),
-                SMBlocks.POLISHED_JADE_BRICK_SLAB.get(),
-                SMBlocks.POLISHED_SMALL_JADE_BRICK_SLAB.get(),
-                SMBlocks.POLISHED_JADE_SHINGLE_SLAB.get(),
-                SMBlocks.POLISHED_JADE_TILE_SLAB.get(),
+                SMBlocks.JADE_PILLAR.get(),
+                SMBlocks.JADE_BRICK_STAIRS.get(),
+                SMBlocks.JADE_BRICK_SLAB.get(),
+                SMBlocks.ROUGH_JADE_BRICK_WALL.get(),
+                SMBlocks.JADE_BRICK_WALL.get(),
                 SMBlocks.ROUGH_JADE_BRICK_STAIRS.get(),
-                SMBlocks.SMOOTHED_ROUGH_JADE_STAIRS.get(),
-                SMBlocks.ROUGH_JADE_TILE_STAIRS.get(),
                 SMBlocks.ROUGH_JADE_BRICK_SLAB.get(),
-                SMBlocks.SMOOTHED_ROUGH_JADE_SLAB.get(),
-                SMBlocks.ROUGH_JADE_TILE_SLAB.get(),
                 SMBlocks.PETRIFIED_PLANKS.get(),
                 SMBlocks.PETRIFIED_LOG.get(),
                 SMBlocks.STRIPPED_PETRIFIED_LOG.get(),
@@ -82,31 +69,18 @@ public class SMBlockTagsProvider extends BlockTagsProvider {
                 SMBlocks.DEEPSLATE_JADE_ORE.get(),
                 SMBlocks.ROUGH_JADE_BLOCK.get(),
                 SMBlocks.ROUGH_JADE_BRICKS.get(),
-                SMBlocks.SMOOTHED_ROUGH_JADE.get(),
-                SMBlocks.ROUGH_JADE_TILES.get(),
-                SMBlocks.POLISHED_JADE_BLOCK.get(),
-                SMBlocks.POLISHED_JADE_BRICKS.get(),
-                SMBlocks.POLISHED_SMALL_JADE_BRICKS.get(),
-                SMBlocks.POLISHED_JADE_SHINGLES.get(),
-                SMBlocks.POLISHED_JADE_TILES.get(),
-                SMBlocks.POLISHED_CHISELED_JADE.get(),
+                SMBlocks.JADE_BLOCK.get(),
+                SMBlocks.JADE_BRICKS.get(),
+                SMBlocks.CHISELED_JADE.get(),
                 SMBlocks.JADE_TOTEM.get(),
                 SMBlocks.JADE_FLINGER_TOTEM.get(),
-                SMBlocks.POLISHED_JADE_PILLAR.get(),
-                SMBlocks.POLISHED_JADE_BRICK_STAIRS.get(),
-                SMBlocks.POLISHED_SMALL_JADE_BRICK_STAIRS.get(),
-                SMBlocks.POLISHED_JADE_SHINGLE_STAIRS.get(),
-                SMBlocks.POLISHED_JADE_TILE_STAIRS.get(),
-                SMBlocks.POLISHED_JADE_BRICK_SLAB.get(),
-                SMBlocks.POLISHED_SMALL_JADE_BRICK_SLAB.get(),
-                SMBlocks.POLISHED_JADE_SHINGLE_SLAB.get(),
-                SMBlocks.POLISHED_JADE_TILE_SLAB.get(),
+                SMBlocks.JADE_PILLAR.get(),
+                SMBlocks.JADE_BRICK_STAIRS.get(),
+                SMBlocks.JADE_BRICK_SLAB.get(),
                 SMBlocks.ROUGH_JADE_BRICK_STAIRS.get(),
-                SMBlocks.SMOOTHED_ROUGH_JADE_STAIRS.get(),
-                SMBlocks.ROUGH_JADE_TILE_STAIRS.get(),
                 SMBlocks.ROUGH_JADE_BRICK_SLAB.get(),
-                SMBlocks.SMOOTHED_ROUGH_JADE_SLAB.get(),
-                SMBlocks.ROUGH_JADE_TILE_SLAB.get()
+                SMBlocks.ROUGH_JADE_BRICK_WALL.get(),
+                SMBlocks.JADE_BRICK_WALL.get()
         );
         tag(BlockTags.BUTTONS).add(
                 SMBlocks.COPPER_BUTTON.get(),
@@ -119,26 +93,19 @@ public class SMBlockTagsProvider extends BlockTagsProvider {
                 SMBlocks.WAXED_OXIDIZED_COPPER_BUTTON.get()
         );
         tag(BlockTags.SLABS).add(
-                SMBlocks.POLISHED_JADE_BRICK_SLAB.get(),
-                SMBlocks.POLISHED_SMALL_JADE_BRICK_SLAB.get(),
-                SMBlocks.POLISHED_JADE_TILE_SLAB.get(),
-                SMBlocks.POLISHED_JADE_SHINGLE_SLAB.get(),
-                SMBlocks.ROUGH_JADE_BRICK_SLAB.get(),
-                SMBlocks.ROUGH_JADE_TILE_SLAB.get(),
-                SMBlocks.SMOOTHED_ROUGH_JADE_SLAB.get()
-
+                SMBlocks.JADE_BRICK_SLAB.get(),
+                SMBlocks.ROUGH_JADE_BRICK_SLAB.get()
         );
         tag(BlockTags.STAIRS).add(
-                SMBlocks.POLISHED_JADE_BRICK_STAIRS.get(),
-                SMBlocks.POLISHED_SMALL_JADE_BRICK_STAIRS.get(),
-                SMBlocks.POLISHED_JADE_TILE_STAIRS.get(),
-                SMBlocks.POLISHED_JADE_SHINGLE_STAIRS.get(),
+                SMBlocks.JADE_BRICK_STAIRS.get(),
                 SMBlocks.ROUGH_JADE_BRICK_STAIRS.get(),
-                SMBlocks.ROUGH_JADE_TILE_STAIRS.get(),
-                SMBlocks.SMOOTHED_ROUGH_JADE_STAIRS.get(),
                 SMBlocks.AMBER_BRICK_STAIRS.get()
         );
-        tag(BlockTags.WALLS).add(SMBlocks.AMBER_BRICK_WALL.get());
+        tag(BlockTags.WALLS).add(
+                SMBlocks.AMBER_BRICK_WALL.get(),
+                SMBlocks.ROUGH_JADE_BRICK_WALL.get(),
+                SMBlocks.JADE_BRICK_WALL.get()
+        );
         tag(BlockTags.FENCE_GATES).add(SMBlocks.PETRIFIED_FENCE_GATE.get());
         tag(BlockTags.WOODEN_FENCES).add(SMBlocks.PETRIFIED_FENCE.get());
         tag(BlockTags.STANDING_SIGNS).add(SMBlocks.PETRIFIED_SIGN.getFirst().get());
@@ -157,23 +124,15 @@ public class SMBlockTagsProvider extends BlockTagsProvider {
 
         //Our Tags
         tag(SMBlockTags.PROJECTILES_BOUNCE_ON).add(
-                SMBlocks.POLISHED_JADE_BLOCK.get(),
-                SMBlocks.POLISHED_JADE_BRICKS.get(),
-                SMBlocks.POLISHED_SMALL_JADE_BRICKS.get(),
-                SMBlocks.POLISHED_JADE_SHINGLES.get(),
-                SMBlocks.POLISHED_JADE_TILES.get(),
-                SMBlocks.POLISHED_CHISELED_JADE.get(),
+                SMBlocks.JADE_BLOCK.get(),
+                SMBlocks.JADE_BRICKS.get(),
+                SMBlocks.CHISELED_JADE.get(),
                 SMBlocks.JADE_TOTEM.get(),
-                SMBlocks.POLISHED_JADE_PILLAR.get(),
-                SMBlocks.POLISHED_JADE_BRICK_STAIRS.get(),
-                SMBlocks.POLISHED_SMALL_JADE_BRICK_STAIRS.get(),
-                SMBlocks.POLISHED_JADE_SHINGLE_STAIRS.get(),
-                SMBlocks.POLISHED_JADE_TILE_STAIRS.get(),
-                SMBlocks.POLISHED_JADE_BRICK_SLAB.get(),
-                SMBlocks.POLISHED_SMALL_JADE_BRICK_SLAB.get(),
-                SMBlocks.POLISHED_JADE_SHINGLE_SLAB.get(),
-                SMBlocks.POLISHED_JADE_TILE_SLAB.get(),
-                SMBlocks.JADE_FLINGER_TOTEM.get()
+                SMBlocks.JADE_PILLAR.get(),
+                SMBlocks.JADE_BRICK_STAIRS.get(),
+                SMBlocks.JADE_BRICK_SLAB.get(),
+                SMBlocks.JADE_FLINGER_TOTEM.get(),
+                SMBlocks.JADE_BRICK_WALL.get()
         );
         tag(SMBlockTags.PETRIFIED_LOGS).add(
                 SMBlocks.PETRIFIED_LOG.get(),
@@ -208,7 +167,7 @@ public class SMBlockTagsProvider extends BlockTagsProvider {
         );
         tag(Tags.Blocks.STORAGE_BLOCKS).add(
                 SMBlocks.ROUGH_JADE_BLOCK.get(),
-                SMBlocks.POLISHED_JADE_BLOCK.get()
+                SMBlocks.JADE_BLOCK.get()
         );
         tag(Tags.Blocks.ORES).addTag(
                 SMBlockTags.JADE_ORES

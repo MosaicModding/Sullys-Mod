@@ -65,7 +65,7 @@ public class JadeShieldItem extends Item {
 
     @Override
     public boolean isValidRepairItem(ItemStack pToRepair, ItemStack pRepair) {
-        return pToRepair.is(SMItems.POLISHED_JADE.get());
+        return pToRepair.is(SMItems.JADE.get());
     }
 
     @NotNull

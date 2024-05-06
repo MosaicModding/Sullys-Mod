@@ -61,23 +61,18 @@ public class SMItemTagsProvider extends ItemTagsProvider {
                 SMBlocks.WAXED_OXIDIZED_COPPER_BUTTON.get().asItem()
         );
         tag(ItemTags.SLABS).add(
-                SMBlocks.POLISHED_JADE_BRICK_SLAB.get().asItem(),
-                SMBlocks.POLISHED_SMALL_JADE_BRICK_SLAB.get().asItem(),
-                SMBlocks.POLISHED_JADE_TILE_SLAB.get().asItem(),
-                SMBlocks.POLISHED_JADE_SHINGLE_SLAB.get().asItem(),
+                SMBlocks.JADE_BRICK_SLAB.get().asItem(),
                 SMBlocks.ROUGH_JADE_BRICK_SLAB.get().asItem(),
-                SMBlocks.ROUGH_JADE_TILE_SLAB.get().asItem(),
-                SMBlocks.SMOOTHED_ROUGH_JADE_SLAB.get().asItem(),
                 SMBlocks.PETRIFIED_SLAB.get().asItem()
         );
         tag(ItemTags.STAIRS).add(
-                SMBlocks.POLISHED_JADE_BRICK_STAIRS.get().asItem(),
-                SMBlocks.POLISHED_SMALL_JADE_BRICK_STAIRS.get().asItem(),
-                SMBlocks.POLISHED_JADE_TILE_STAIRS.get().asItem(),
-                SMBlocks.POLISHED_JADE_SHINGLE_STAIRS.get().asItem(),
-                SMBlocks.ROUGH_JADE_BRICK_STAIRS.get().asItem(),
-                SMBlocks.ROUGH_JADE_TILE_STAIRS.get().asItem(),
-                SMBlocks.SMOOTHED_ROUGH_JADE_STAIRS.get().asItem()
+                SMBlocks.JADE_BRICK_STAIRS.get().asItem(),
+                SMBlocks.ROUGH_JADE_BRICK_STAIRS.get().asItem()
+        );
+        tag(ItemTags.WALLS).add(
+                SMBlocks.JADE_BRICK_WALL.get().asItem(),
+                SMBlocks.ROUGH_JADE_BRICK_WALL.get().asItem(),
+                SMBlocks.AMBER_BRICK_WALL.get().asItem()
         );
         tag(ItemTags.FISHES).add(
                 SMItems.LANTERNFISH.get(),
@@ -143,7 +138,7 @@ public class SMItemTagsProvider extends ItemTagsProvider {
         );
         tag(Tags.Items.STORAGE_BLOCKS).add(
                 SMBlocks.ROUGH_JADE_BLOCK.get().asItem(),
-                SMBlocks.POLISHED_JADE_BLOCK.get().asItem()
+                SMBlocks.JADE_BLOCK.get().asItem()
         );
         tag(Tags.Items.ORES).addTag(
                 SMItemTags.JADE_ORES

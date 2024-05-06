@@ -32,7 +32,7 @@ public class SMItems {
 
     //Basic Items
     public static final RegistryObject<Item> ROUGH_JADE = HELPER.createItem("rough_jade", () -> new Item(new Item.Properties()));
-    public static final RegistryObject<Item> POLISHED_JADE = HELPER.createItem("polished_jade", () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> JADE = HELPER.createItem("jade", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> MUSIC_DISC_SCOUR = HELPER.createItem("music_disc_scour", () -> new BlueprintRecordItem(12, SMSounds.MUSIC_DISC_SCOUR, SMProperties.Items.MUSIC_DISCS, 4980));
     public static final RegistryObject<Item> MUSIC_DISC_SUNKEN_PAST = HELPER.createItem("music_disc_sunken_past", () -> new BlueprintRecordItem(12, SMSounds.MUSIC_DISC_SUNKEN_PAST, SMProperties.Items.MUSIC_DISCS, 2700));
     public static final RegistryObject<Item> TORTOISE_SCUTE = HELPER.createItem("tortoise_scute", () -> new Item(new Item.Properties()));
@@ -128,7 +128,7 @@ public class SMItems {
     public static void buildCreativeTabContents() {
         CreativeModeTabContentsPopulator.mod(SullysMod.MOD_ID)
                 .tab(CreativeModeTabs.INGREDIENTS)
-                .addItemsAfter(of(Items.COPPER_INGOT), POLISHED_JADE)
+                .addItemsAfter(of(Items.COPPER_INGOT), JADE)
                 .addItemsAfter(of(Items.RAW_COPPER), ROUGH_JADE)
                 .addItemsAfter(of(Items.SCUTE), TORTOISE_SCUTE)
                 .addItemsAfter(of(Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE), JADE_UPGRADE_SMITHING_TEMPLATE)
@@ -165,14 +165,10 @@ public class SMItems {
 
                 .tab(CreativeModeTabs.BUILDING_BLOCKS)
                 .addItemsAfter(of(Items.WAXED_OXIDIZED_CUT_COPPER_SLAB),
-                        ROUGH_JADE_BLOCK, ROUGH_JADE_BRICKS, ROUGH_JADE_BRICK_STAIRS, ROUGH_JADE_BRICK_SLAB,
-                        ROUGH_JADE_TILES, ROUGH_JADE_TILE_STAIRS, ROUGH_JADE_TILE_SLAB,
-                        SMOOTHED_ROUGH_JADE, SMOOTHED_ROUGH_JADE_STAIRS, SMOOTHED_ROUGH_JADE_SLAB, POLISHED_JADE_BLOCK,
-                        POLISHED_JADE_BRICKS, POLISHED_JADE_BRICK_STAIRS, POLISHED_JADE_BRICK_SLAB,
-                        POLISHED_JADE_TILES, POLISHED_JADE_TILE_STAIRS, POLISHED_JADE_TILE_SLAB,
-                        POLISHED_SMALL_JADE_BRICKS, POLISHED_SMALL_JADE_BRICK_STAIRS, POLISHED_SMALL_JADE_BRICK_SLAB,
-                        POLISHED_JADE_SHINGLES, POLISHED_JADE_SHINGLE_STAIRS, POLISHED_JADE_SHINGLE_SLAB,
-                        POLISHED_JADE_PILLAR, POLISHED_CHISELED_JADE, JADE_TOTEM, ROUGH_AMBER, AMBER_LANTERN, CHISELED_AMBER, AMBER_PILLAR, AMBER_BRICKS, AMBER_BRICK_STAIRS, AMBER_BRICK_SLAB, AMBER_BRICK_WALL)
+                        ROUGH_JADE_BLOCK, ROUGH_JADE_BRICKS, ROUGH_JADE_BRICK_STAIRS, ROUGH_JADE_BRICK_SLAB, ROUGH_JADE_BRICK_WALL,
+                        JADE_BLOCK, JADE_BRICKS, JADE_BRICK_STAIRS, JADE_BRICK_SLAB, JADE_BRICK_WALL,
+                        JADE_PILLAR, CHISELED_JADE, JADE_TOTEM, ROUGH_AMBER, AMBER_LANTERN, CHISELED_AMBER, AMBER_PILLAR, AMBER_BRICKS,
+                        AMBER_BRICK_STAIRS, AMBER_BRICK_SLAB, AMBER_BRICK_WALL)
                 .addItemsAfter(of(Items.CHERRY_BUTTON), PETRIFIED_LOG, PETRIFIED_WOOD, STRIPPED_PETRIFIED_LOG, STRIPPED_PETRIFIED_WOOD,
                         PETRIFIED_PLANKS, PETRIFIED_STAIRS, PETRIFIED_SLAB, PETRIFIED_FENCE, PETRIFIED_FENCE_GATE, PETRIFIED_DOOR, PETRIFIED_TRAPDOOR,
                         PETRIFIED_PRESSURE_PLATE, PETRIFIED_BUTTON)

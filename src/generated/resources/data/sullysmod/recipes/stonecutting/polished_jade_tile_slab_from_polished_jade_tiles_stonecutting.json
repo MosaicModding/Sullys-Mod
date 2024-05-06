@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "count": 2,
-  "ingredient": {
-    "item": "sullysmod:polished_jade_tiles"
-  },
-  "result": "sullysmod:polished_jade_tile_slab"
-}

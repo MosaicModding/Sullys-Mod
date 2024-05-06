@@ -6,7 +6,7 @@
         "items": [
           {
             "items": [
-              "sullysmod:polished_jade"
+              "sullysmod:jade"
             ]
           }
         ]
@@ -22,7 +22,7 @@
     "frame": "task",
     "hidden": false,
     "icon": {
-      "item": "sullysmod:polished_jade"
+      "item": "sullysmod:jade"
     },
     "show_toast": true,
     "title": {

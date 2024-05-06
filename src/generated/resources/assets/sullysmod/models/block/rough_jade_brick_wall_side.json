@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/template_wall_side",
+  "textures": {
+    "wall": "sullysmod:block/rough_jade_bricks"
+  }
+}

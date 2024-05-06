@@ -1,0 +1,12 @@
+{
+  "type": "sullysmod:grindstone_polishing",
+  "experience": 0,
+  "ingredients": [
+    {
+      "item": "sullysmod:rough_jade_bricks"
+    }
+  ],
+  "result": {
+    "item": "sullysmod:jade_bricks"
+  }
+}

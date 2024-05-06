@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/wall_inventory",
+  "textures": {
+    "wall": "sullysmod:block/rough_jade_bricks"
+  }
+}

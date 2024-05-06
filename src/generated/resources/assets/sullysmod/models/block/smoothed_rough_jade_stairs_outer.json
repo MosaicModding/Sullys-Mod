@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/outer_stairs",
-  "textures": {
-    "bottom": "sullysmod:block/smoothed_rough_jade",
-    "side": "sullysmod:block/smoothed_rough_jade",
-    "top": "sullysmod:block/smoothed_rough_jade"
-  }
-}
