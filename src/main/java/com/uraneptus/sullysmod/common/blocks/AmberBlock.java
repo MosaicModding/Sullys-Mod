@@ -114,7 +114,7 @@ public class AmberBlock extends BaseEntityBlock {
                         pEntity.makeStuckInBlock(pState, new Vec3(0.8F, 0.1D, 0.8F));
                     } else if (pEntity instanceof Mob mob) {
                         mob.makeStuckInBlock(pState, new Vec3(0.0F, 0.1D, 0.0F));
-                        if (mob.getBlockStateOn() != SMBlocks.AMBER.get().defaultBlockState()) {
+                        if (!mob.getBlockStateOn().is(SMBlocks.AMBER.get())) {
                             amber.makeEntityStuck(mob);
                         }
                     }
