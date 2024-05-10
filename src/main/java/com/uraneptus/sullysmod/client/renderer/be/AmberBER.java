@@ -35,8 +35,7 @@ public class AmberBER implements BlockEntityRenderer<AmberBE> {
 
         pPoseStack.pushPose();
         if (level != null) {
-            if (amberBlockEntity.getStuckEntityData() != null) {
-                System.out.println(amberBlockEntity.getStuckEntityData());
+            if (amberBlockEntity.renderEntity) {
                 CompoundTag compoundtag = amberBlockEntity.getEntityStuck();
                 if (!compoundtag.isEmpty()) {
                     AmberBE.removeIgnoredNBT(compoundtag);
@@ -47,7 +46,6 @@ public class AmberBER implements BlockEntityRenderer<AmberBE> {
                         pPoseStack.mulPose(Axis.YP.rotationDegrees(-livingEntity.getRotationVector().y));
                         this.renderDispatcher.setRenderShadow(false);
                         this.renderDispatcher.render(renderEntity, 0.0, 0.0, 0.0, 0.0F, 0, pPoseStack, pBuffer, pPackedLight);
-
                     }
                 }
             }

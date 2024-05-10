@@ -21,11 +21,9 @@ import java.util.List;
 public class AmberBE extends BlockEntity {
     @Nullable
     private AmberBE.StuckEntityData stuckEntityData;
-
     private boolean isBlockMelted;
-
+    public boolean renderEntity;
     private static final List<String> IGNORED_NBT = Arrays.asList("UUID", "Leash");
-
 
     public AmberBE(BlockPos pPos, BlockState pBlockState) {
         super(SMBlockEntityTypes.AMBER.get(), pPos, pBlockState);
@@ -40,8 +38,12 @@ public class AmberBE extends BlockEntity {
     public @Nullable StuckEntityData getStuckEntityData() {
         return this.stuckEntityData;
     }
+
     public void setStuckEntityData(@Nullable StuckEntityData value) {
         this.stuckEntityData = value;
+        if (value == null) {
+            this.renderEntity = false;
+        }
         this.update();
     }
 
@@ -69,6 +71,7 @@ public class AmberBE extends BlockEntity {
             if (!compoundtag.isEmpty()) {
                 this.storeEntity(compoundtag);
             }
+            this.renderEntity = true;
             this.update();
             entity.discard();
         }
@@ -96,6 +99,14 @@ public class AmberBE extends BlockEntity {
     }
 
     @Override
+    protected void saveAdditional(CompoundTag pTag) {
+        super.saveAdditional(pTag);
+        pTag.put("StuckEntity", this.writeStuckEntity());
+        pTag.putBoolean("AmberMelted", this.isBlockMelted);
+        pTag.putBoolean("RenderEntity", this.renderEntity);
+    }
+
+    @Override
     public void load(CompoundTag pTag) {
         super.load(pTag);
         ListTag listtag = pTag.getList("StuckEntity", 10);
@@ -105,27 +116,22 @@ public class AmberBE extends BlockEntity {
             this.stuckEntityData = new AmberBE.StuckEntityData(compoundtag.getCompound("EntityData"));
         }
         this.isBlockMelted = pTag.getBoolean("AmberMelted");
-    }
-
-    @Override
-    protected void saveAdditional(CompoundTag pTag) {
-        super.saveAdditional(pTag);
-        pTag.put("StuckEntity", this.writeProjectiles());
-        pTag.putBoolean("AmberMelted", this.isBlockMelted);
+        this.renderEntity = pTag.getBoolean("RenderEntity");
     }
 
     @Override
     public CompoundTag getUpdateTag() {
         CompoundTag tag = new CompoundTag();
-        tag.put("StuckEntity", this.writeProjectiles());
+        tag.put("StuckEntity", this.writeStuckEntity());
         tag.putBoolean("AmberMelted", this.isBlockMelted);
+        tag.putBoolean("RenderEntity", this.renderEntity);
         return tag;
     }
 
     @Override
     public void handleUpdateTag(CompoundTag tag) {
-        this.load(tag);
         super.handleUpdateTag(tag);
+        this.load(tag);
     }
 
     @Override
@@ -133,7 +139,7 @@ public class AmberBE extends BlockEntity {
         return ClientboundBlockEntityDataPacket.create(this);
     }
 
-    public ListTag writeProjectiles() {
+    public ListTag writeStuckEntity() {
         ListTag listtag = new ListTag();
 
         if (this.stuckEntityData != null) {
@@ -147,7 +153,7 @@ public class AmberBE extends BlockEntity {
         return listtag;
     }
 
-    static class StuckEntityData {
+    public static class StuckEntityData {
         final CompoundTag entityData;
 
         StuckEntityData(CompoundTag pEntityData) {
