@@ -35,17 +35,20 @@ public class AmberBER implements BlockEntityRenderer<AmberBE> {
 
         pPoseStack.pushPose();
         if (level != null) {
-            CompoundTag compoundtag = amberBlockEntity.getEntityStuck();
-            if (!compoundtag.isEmpty()) {
-                AmberBE.removeIgnoredNBT(compoundtag);
-                Entity renderEntity = EntityType.loadEntityRecursive(compoundtag, level, Function.identity());
+            if (amberBlockEntity.getStuckEntityData() != null) {
+                System.out.println(amberBlockEntity.getStuckEntityData());
+                CompoundTag compoundtag = amberBlockEntity.getEntityStuck();
+                if (!compoundtag.isEmpty()) {
+                    AmberBE.removeIgnoredNBT(compoundtag);
+                    Entity renderEntity = EntityType.loadEntityRecursive(compoundtag, level, Function.identity());
 
-                if (renderEntity instanceof LivingEntity livingEntity) {
-                    pPoseStack.translate(0.5F, 0.0F, 0.5F);
-                    pPoseStack.mulPose(Axis.YP.rotationDegrees(-livingEntity.getRotationVector().y));
-                    this.renderDispatcher.setRenderShadow(false);
-                    this.renderDispatcher.render(renderEntity, 0.0,  0.0,  0.0, 0.0F, 0, pPoseStack, pBuffer, pPackedLight);
+                    if (renderEntity instanceof LivingEntity livingEntity) {
+                        pPoseStack.translate(0.5F, 0.0F, 0.5F);
+                        pPoseStack.mulPose(Axis.YP.rotationDegrees(-livingEntity.getRotationVector().y));
+                        this.renderDispatcher.setRenderShadow(false);
+                        this.renderDispatcher.render(renderEntity, 0.0, 0.0, 0.0, 0.0F, 0, pPoseStack, pBuffer, pPackedLight);
 
+                    }
                 }
             }
         }

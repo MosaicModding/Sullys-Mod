@@ -7,14 +7,7 @@ import net.minecraft.nbt.ListTag;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
-import net.minecraft.util.RandomSource;
-import net.minecraft.util.random.WeightedEntry;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.Mob;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.level.SpawnData;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -24,7 +17,6 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.Arrays;
 import java.util.List;
-import java.util.function.Function;
 
 public class AmberBE extends BlockEntity {
     @Nullable
@@ -44,6 +36,13 @@ public class AmberBE extends BlockEntity {
             pTag.remove(s);
         }
 
+    }
+    public @Nullable StuckEntityData getStuckEntityData() {
+        return this.stuckEntityData;
+    }
+    public void setStuckEntityData(@Nullable StuckEntityData value) {
+        this.stuckEntityData = value;
+        this.update();
     }
 
     public boolean isBlockMelted() {
@@ -121,6 +120,12 @@ public class AmberBE extends BlockEntity {
         tag.put("StuckEntity", this.writeProjectiles());
         tag.putBoolean("AmberMelted", this.isBlockMelted);
         return tag;
+    }
+
+    @Override
+    public void handleUpdateTag(CompoundTag tag) {
+        this.load(tag);
+        super.handleUpdateTag(tag);
     }
 
     @Override

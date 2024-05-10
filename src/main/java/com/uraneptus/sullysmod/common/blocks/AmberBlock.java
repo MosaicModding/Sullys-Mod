@@ -1,6 +1,7 @@
 package com.uraneptus.sullysmod.common.blocks;
 
 import com.uraneptus.sullysmod.common.blockentities.AmberBE;
+import com.uraneptus.sullysmod.common.blockentities.FlingerTotemBE;
 import com.uraneptus.sullysmod.core.other.tags.SMBlockTags;
 import com.uraneptus.sullysmod.core.registry.SMBlocks;
 import net.minecraft.core.BlockPos;
@@ -28,6 +29,8 @@ import net.minecraft.world.phys.shapes.EntityCollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.Iterator;
 
 public class AmberBlock extends BaseEntityBlock {
 
@@ -67,6 +70,26 @@ public class AmberBlock extends BaseEntityBlock {
                                 }
                             }
                         }
+                        for (BlockPos pos : BlockPos.betweenClosed(pPos.offset(0, -1, 0), pPos.offset(0, -2, 0))) {
+                            BlockState state = pLevel.getBlockState(pos);
+                            BlockEntity be = pLevel.getBlockEntity(pos);
+                            if (state.is(SMBlocks.AMBER.get())) {
+                                if (be instanceof AmberBE amberBE && amberBE.hasStuckEntity()) {
+                                    CompoundTag compoundtag = amberBE.getEntityStuck();
+                                    if (level != null) {
+                                        LivingEntity livingEntity = (LivingEntity) EntityType.loadEntityRecursive(compoundtag, level, entityStuck -> entityStuck);
+                                        if (livingEntity != null) {
+                                            if (livingEntity.getBoundingBox().getYsize() > 1.5F && livingEntity.getBoundingBox().getYsize() < 2F && pos.equals(pPos.offset(0, -1, 0))) {
+                                                shouldMeltFlag = false;
+                                            }
+                                            else if (livingEntity.getBoundingBox().getYsize() >= 2F && livingEntity.getBoundingBox().getYsize() < 3.5F && pos.equals(pPos.offset(0, -2, 0))) {
+                                                shouldMeltFlag = false;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
                         if (shouldMeltFlag) {
                             if (entity instanceof Player player) {
                                 if (player.jumping) {
@@ -80,6 +103,8 @@ public class AmberBlock extends BaseEntityBlock {
                             return MELTING_COLLISION_SHAPE;
                         }
                     }
+                } else {
+                    amber.setBlockMelted(false);
                 }
             }
         }
@@ -97,6 +122,29 @@ public class AmberBlock extends BaseEntityBlock {
                     if (livingEntity != null) {
                         livingEntity.moveTo(blockPos.getX() + 0.5, blockPos.getY(), blockPos.getZ() + 0.5);
                         pLevel.addFreshEntity(livingEntity);
+                    }
+                }
+                for (BlockPos pos : BlockPos.betweenClosed(blockPos.offset(0, -1, 0), blockPos.offset(0, -2, 0))) {
+                    BlockState state = pLevel.getBlockState(pos);
+                    BlockEntity be = pLevel.getBlockEntity(pos);
+                    if (state.is(SMBlocks.AMBER.get())) {
+                        if (be instanceof AmberBE amberBE && amberBE.hasStuckEntity()) {
+                            CompoundTag compoundtag = amberBE.getEntityStuck();
+                            AmberBE.removeIgnoredNBT(compoundtag);
+                            LivingEntity livingEntity = (LivingEntity) EntityType.loadEntityRecursive(compoundtag, pLevel, entityStuck -> entityStuck);
+                            if (livingEntity != null) {
+                                if (livingEntity.getBoundingBox().getYsize() > 1.5F && livingEntity.getBoundingBox().getYsize() < 2F && pos.equals(blockPos.offset(0, -1, 0))) {
+                                    livingEntity.moveTo(pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5);
+                                    pLevel.addFreshEntity(livingEntity);
+                                    amberBE.setStuckEntityData(null);
+                                }
+                                else if (livingEntity.getBoundingBox().getYsize() >= 2F && livingEntity.getBoundingBox().getYsize() < 3.5F) {
+                                    livingEntity.moveTo(pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5);
+                                    pLevel.addFreshEntity(livingEntity);
+                                    amberBE.setStuckEntityData(null);
+                                }
+                            }
+                        }
                     }
                 }
             }
