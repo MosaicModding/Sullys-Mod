@@ -1,7 +1,9 @@
 package com.uraneptus.sullysmod.common.blocks;
 
 import com.uraneptus.sullysmod.common.blockentities.AmberBE;
-import com.uraneptus.sullysmod.common.blockentities.FlingerTotemBE;
+import com.uraneptus.sullysmod.common.caps.SMEntityCap;
+import com.uraneptus.sullysmod.common.networking.MsgEntityAmberStuck;
+import com.uraneptus.sullysmod.common.networking.SMPacketHandler;
 import com.uraneptus.sullysmod.core.other.tags.SMBlockTags;
 import com.uraneptus.sullysmod.core.registry.SMBlocks;
 import net.minecraft.core.BlockPos;
@@ -28,9 +30,8 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.EntityCollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import net.minecraftforge.network.PacketDistributor;
 import org.jetbrains.annotations.Nullable;
-
-import java.util.Iterator;
 
 public class AmberBlock extends BaseEntityBlock {
 
@@ -137,12 +138,18 @@ public class AmberBlock extends BaseEntityBlock {
                                     livingEntity.moveTo(pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5);
                                     pLevel.addFreshEntity(livingEntity);
                                     amberBE.setStuckEntityData(null);
+                                    amberBE.setBlockMelted(false);
                                 }
                                 else if (livingEntity.getBoundingBox().getYsize() >= 2F && livingEntity.getBoundingBox().getYsize() < 3.5F) {
                                     livingEntity.moveTo(pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5);
                                     pLevel.addFreshEntity(livingEntity);
                                     amberBE.setStuckEntityData(null);
+                                    amberBE.setBlockMelted(false);
                                 }
+                                SMPacketHandler.sendMsg(PacketDistributor.TRACKING_ENTITY_AND_SELF.with(() -> livingEntity), new MsgEntityAmberStuck(livingEntity, false));
+                                SMEntityCap.getCapOptional(livingEntity).ifPresent(cap -> {
+                                    cap.stuckInAmber = false;
+                                });
                             }
                         }
                     }

@@ -1,5 +1,8 @@
 package com.uraneptus.sullysmod.common.blockentities;
 
+import com.uraneptus.sullysmod.common.caps.SMEntityCap;
+import com.uraneptus.sullysmod.common.networking.MsgEntityAmberStuck;
+import com.uraneptus.sullysmod.common.networking.SMPacketHandler;
 import com.uraneptus.sullysmod.core.registry.SMBlockEntityTypes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
@@ -12,6 +15,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraftforge.network.PacketDistributor;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -67,6 +71,10 @@ public class AmberBE extends BlockEntity {
     public void makeEntityStuck(LivingEntity entity) {
         if (this.stuckEntityData == null) {
             CompoundTag compoundtag = new CompoundTag();
+            SMPacketHandler.sendMsg(PacketDistributor.TRACKING_ENTITY_AND_SELF.with(() -> entity), new MsgEntityAmberStuck(entity, true));
+            SMEntityCap.getCapOptional(entity).ifPresent(cap -> {
+                cap.stuckInAmber = true;
+            });
             entity.save(compoundtag);
             if (!compoundtag.isEmpty()) {
                 this.storeEntity(compoundtag);
@@ -82,7 +90,6 @@ public class AmberBE extends BlockEntity {
     }
 
     public void tick() {
-
     }
 
     public void update() {
@@ -110,11 +117,15 @@ public class AmberBE extends BlockEntity {
     public void load(CompoundTag pTag) {
         super.load(pTag);
         ListTag listtag = pTag.getList("StuckEntity", 10);
-
-        for(int i = 0; i < listtag.size(); ++i) {
-            CompoundTag compoundtag = listtag.getCompound(i);
-            this.stuckEntityData = new AmberBE.StuckEntityData(compoundtag.getCompound("EntityData"));
+        if (!listtag.isEmpty()) {
+            for(int i = 0; i < listtag.size(); ++i) {
+                CompoundTag compoundtag = listtag.getCompound(i);
+                this.stuckEntityData = new AmberBE.StuckEntityData(compoundtag.getCompound("EntityData"));
+            }
+        } else {
+            this.stuckEntityData = null;
         }
+
         this.isBlockMelted = pTag.getBoolean("AmberMelted");
         this.renderEntity = pTag.getBoolean("RenderEntity");
     }

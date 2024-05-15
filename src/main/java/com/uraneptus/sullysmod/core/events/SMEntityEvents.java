@@ -4,6 +4,7 @@ import com.uraneptus.sullysmod.SullysMod;
 import com.uraneptus.sullysmod.common.blockentities.FlingerTotemBE;
 import com.uraneptus.sullysmod.common.blocks.FlingerTotem;
 import com.uraneptus.sullysmod.common.blocks.SMDirectionalBlock;
+import com.uraneptus.sullysmod.common.caps.SMEntityCap;
 import com.uraneptus.sullysmod.common.entities.Piranha;
 import com.uraneptus.sullysmod.common.entities.Tortoise;
 import com.uraneptus.sullysmod.common.entities.goals.GenericMobAttackTortoiseEggGoal;
@@ -50,6 +51,7 @@ import org.apache.maven.artifact.versioning.DefaultArtifactVersion;
 import org.jetbrains.annotations.Nullable;
 
 @Mod.EventBusSubscriber(modid = SullysMod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
+@SuppressWarnings("unused")
 public class SMEntityEvents {
 
     @SubscribeEvent
@@ -229,5 +231,15 @@ public class SMEntityEvents {
         if (lookingEntity.getType() == EntityType.SKELETON && event.getEntity().getItemBySlot(EquipmentSlot.HEAD).is(SMItemTags.ANCIENT_SKULLS)) {
             event.modifyVisibility(0.5D);
         }
+    }
+
+    @SubscribeEvent
+    public static void onLivingTick(LivingEvent.LivingTickEvent event) {
+        if (!(event.getEntity() instanceof Player)) {
+            SMEntityCap.getCapOptional(event.getEntity()).ifPresent(cap -> {
+                //System.out.println(cap.stuckInAmber);
+            });
+        }
+
     }
 }

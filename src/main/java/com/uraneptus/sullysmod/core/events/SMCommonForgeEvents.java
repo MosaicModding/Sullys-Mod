@@ -19,6 +19,7 @@ import java.util.Map;
 import java.util.function.Supplier;
 
 @Mod.EventBusSubscriber(modid = SullysMod.MOD_ID)
+@SuppressWarnings("unused")
 public class SMCommonForgeEvents {
     public static boolean SEND_BLOCK_REMOVAL_NOTIFY;
 

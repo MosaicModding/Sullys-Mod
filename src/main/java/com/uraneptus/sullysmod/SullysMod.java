@@ -3,7 +3,9 @@ package com.uraneptus.sullysmod;
 import com.mojang.logging.LogUtils;
 import com.teamabnormals.blueprint.core.Blueprint;
 import com.teamabnormals.blueprint.core.util.registry.RegistryHelper;
+import com.uraneptus.sullysmod.common.caps.SMEntityCap;
 import com.uraneptus.sullysmod.common.entities.*;
+import com.uraneptus.sullysmod.common.networking.SMPacketHandler;
 import com.uraneptus.sullysmod.core.SMConfig;
 import com.uraneptus.sullysmod.core.other.SMTextDefinitions;
 import com.uraneptus.sullysmod.core.registry.*;
@@ -21,6 +23,7 @@ import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.capabilities.RegisterCapabilitiesEvent;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.data.event.GatherDataEvent;
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
@@ -85,11 +88,17 @@ public class SullysMod {
         event.put(SMEntityTypes.PIRANHA.get(), Piranha.createAttributes().build());
     }
 
+    @SubscribeEvent
+    public static void registerCapabilities(RegisterCapabilitiesEvent event) {
+        event.register(SMEntityCap.class);
+    }
+
     private void setup(final FMLCommonSetupEvent event) {
         event.enqueueWork(() -> {
             SMBrewingRecipes.register();
             SMDispenseBehaviors.register();
             SMNoteBlockInstruments.register();
+            SMPacketHandler.register();
         });
     }
 

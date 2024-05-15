@@ -1,6 +1,5 @@
 package com.uraneptus.sullysmod.core.events;
 
-import com.google.common.collect.Lists;
 import com.teamabnormals.blueprint.core.util.BlockUtil;
 import com.uraneptus.sullysmod.SullysMod;
 import com.uraneptus.sullysmod.common.blocks.PickaxeStrippable;
@@ -10,19 +9,16 @@ import com.uraneptus.sullysmod.core.other.SMItemUtil;
 import com.uraneptus.sullysmod.core.other.SMTextDefinitions;
 import com.uraneptus.sullysmod.core.other.tags.SMBiomeTags;
 import com.uraneptus.sullysmod.core.other.tags.SMItemTags;
-import com.uraneptus.sullysmod.core.registry.SMBlocks;
 import com.uraneptus.sullysmod.core.registry.SMItems;
 import com.uraneptus.sullysmod.core.registry.SMParticleTypes;
 import com.uraneptus.sullysmod.core.registry.SMSounds;
 import net.minecraft.ChatFormatting;
-import net.minecraft.client.multiplayer.chat.report.ReportEnvironment;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ItemParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Style;
-import net.minecraft.network.chat.TextColor;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -37,7 +33,6 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.PickaxeItem;
 import net.minecraft.world.item.crafting.Recipe;
-import net.minecraft.world.item.crafting.RecipeManager;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -53,12 +48,10 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Mod.EventBusSubscriber(modid = SullysMod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
+@SuppressWarnings("unused")
 public class SMPlayerEvents {
 
     @SubscribeEvent
@@ -110,8 +103,11 @@ public class SMPlayerEvents {
                             }
                         }
                         player.swing(hand);
-                        ParticleUtils.spawnParticlesOnBlockFace(level, pos, ParticleTypes.CRIT, UniformInt.of(1, 4), event.getFace(), () -> new Vec3(player.getLookAngle().x() + Mth.nextDouble(random, -0.5, 0.5), 0.8D, player.getLookAngle().z() + Mth.nextDouble(random, -0.5, 0.5)), 0.55D);
-                        ParticleUtils.spawnParticlesOnBlockFace(level, pos, new ItemParticleOption(ParticleTypes.ITEM, itemInHand), UniformInt.of(1, 2), event.getFace(), () -> new Vec3(Mth.nextDouble(random, -0.05D, 0.05D), 0, Mth.nextDouble(random, -0.05D, 0.05D)), 0.55D);
+                        Direction face = event.getFace();
+                        if (face != null) {
+                            ParticleUtils.spawnParticlesOnBlockFace(level, pos, ParticleTypes.CRIT, UniformInt.of(1, 4), face, () -> new Vec3(player.getLookAngle().x() + Mth.nextDouble(random, -0.5, 0.5), 0.8D, player.getLookAngle().z() + Mth.nextDouble(random, -0.5, 0.5)), 0.55D);
+                            ParticleUtils.spawnParticlesOnBlockFace(level, pos, new ItemParticleOption(ParticleTypes.ITEM, itemInHand), UniformInt.of(1, 2), face, () -> new Vec3(Mth.nextDouble(random, -0.05D, 0.05D), 0, Mth.nextDouble(random, -0.05D, 0.05D)), 0.55D);
+                        }
                         level.playSound(player, pos, SMSounds.POLISH_JADE.get(), SoundSource.BLOCKS, 0.5F, 0.0F);
                     }
                 }

@@ -2,14 +2,12 @@ package com.uraneptus.sullysmod.common.blocks;
 
 import com.uraneptus.sullysmod.common.blockentities.AmberBE;
 import com.uraneptus.sullysmod.core.other.tags.SMBlockTags;
-import com.uraneptus.sullysmod.core.registry.SMBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;

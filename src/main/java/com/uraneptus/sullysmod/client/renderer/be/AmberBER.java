@@ -7,7 +7,6 @@ import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.client.renderer.entity.EntityRenderDispatcher;
-import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
@@ -29,9 +28,7 @@ public class AmberBER implements BlockEntityRenderer<AmberBE> {
 
     @Override
     public void render(AmberBE amberBlockEntity, float pPartialTick, @NotNull PoseStack pPoseStack, @NotNull MultiBufferSource pBuffer, int pPackedLight, int pPackedOverlay) {
-
         Level level = amberBlockEntity.getLevel();
-        BlockPos pos = amberBlockEntity.getBlockPos();
 
         pPoseStack.pushPose();
         if (level != null) {
@@ -43,7 +40,7 @@ public class AmberBER implements BlockEntityRenderer<AmberBE> {
 
                     if (renderEntity instanceof LivingEntity livingEntity) {
                         pPoseStack.translate(0.5F, 0.0F, 0.5F);
-                        pPoseStack.mulPose(Axis.YP.rotationDegrees(-livingEntity.getRotationVector().y));
+                        pPoseStack.mulPose(Axis.YN.rotationDegrees(livingEntity.getVisualRotationYInDegrees()));
                         this.renderDispatcher.setRenderShadow(false);
                         this.renderDispatcher.render(renderEntity, 0.0, 0.0, 0.0, 0.0F, 0, pPoseStack, pBuffer, pPackedLight);
                     }

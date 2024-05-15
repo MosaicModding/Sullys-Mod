@@ -29,6 +29,7 @@ import net.minecraftforge.forgespi.locating.IModFile;
 import net.minecraftforge.resource.PathPackResources;
 
 @Mod.EventBusSubscriber(modid = SullysMod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
+@SuppressWarnings("unused")
 public class SMCommonModEvents {
 
     @SubscribeEvent

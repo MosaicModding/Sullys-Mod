@@ -1,5 +1,6 @@
 package com.uraneptus.sullysmod.core.events;
 
+import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Maps;
 import com.uraneptus.sullysmod.SullysMod;
 import com.uraneptus.sullysmod.client.model.*;
@@ -9,6 +10,7 @@ import com.uraneptus.sullysmod.client.particles.RicochetParticle;
 import com.uraneptus.sullysmod.client.renderer.be.AmberBER;
 import com.uraneptus.sullysmod.client.renderer.be.ItemStandBER;
 import com.uraneptus.sullysmod.client.renderer.entities.*;
+import com.uraneptus.sullysmod.client.renderer.entities.layer.StuckInAmberLayer;
 import com.uraneptus.sullysmod.common.blocks.AncientSkullBlock;
 import com.uraneptus.sullysmod.common.items.VenomVialItem;
 import com.uraneptus.sullysmod.core.registry.SMBlockEntityTypes;
@@ -17,8 +19,12 @@ import com.uraneptus.sullysmod.core.registry.SMItems;
 import com.uraneptus.sullysmod.core.registry.SMParticleTypes;
 import net.minecraft.Util;
 import net.minecraft.client.renderer.blockentity.SkullBlockRenderer;
+import net.minecraft.client.renderer.entity.LivingEntityRenderer;
 import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.ai.attributes.DefaultAttributes;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.client.event.RegisterColorHandlersEvent;
@@ -26,8 +32,13 @@ import net.minecraftforge.client.event.RegisterParticleProvidersEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
+import net.minecraftforge.registries.ForgeRegistries;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Mod.EventBusSubscriber(modid = SullysMod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
+@SuppressWarnings("unused")
 public class SMClientEvents {
 
     @SubscribeEvent
@@ -97,5 +108,30 @@ public class SMClientEvents {
         event.registerSkullModel(AncientSkullBlock.Types.LONG, new LongAncientSkullModel(event.getEntityModelSet().bakeLayer(LongAncientSkullModel.LAYER_LOCATION)));
         event.registerSkullModel(AncientSkullBlock.Types.TINY, new TinyAncientSkullModel(event.getEntityModelSet().bakeLayer(TinyAncientSkullModel.LAYER_LOCATION)));
         event.registerSkullModel(AncientSkullBlock.Types.WIDE, new WideAncientSkullModel(event.getEntityModelSet().bakeLayer(WideAncientSkullModel.LAYER_LOCATION)));
+    }
+
+    @SuppressWarnings({"unchecked", "rawtypes"})
+    @SubscribeEvent
+    public static void addRenderLayers(EntityRenderersEvent.AddLayers event) {
+        List<EntityType<? extends LivingEntity>> entityTypes = ImmutableList.copyOf(
+                ForgeRegistries.ENTITY_TYPES.getValues().stream()
+                        .filter(DefaultAttributes::hasSupplier)
+                        .map(entityType -> (EntityType<? extends LivingEntity>) entityType)
+                        .collect(Collectors.toList())
+        );
+
+        entityTypes.forEach(entityType -> {
+            LivingEntityRenderer renderer = null;
+            if (entityType != EntityType.ENDER_DRAGON) {
+                try {
+                    renderer = event.getRenderer(entityType);
+                } catch (Exception ignored) {}
+
+                if (renderer != null) {
+                    renderer.addLayer(new StuckInAmberLayer(renderer));
+                    //TODO add a layer for Geckolib rendered entities too
+                }
+            }
+        });
     }
 }
