@@ -126,6 +126,14 @@ public class SMSoundDefinitionsProvider extends SoundDefinitionsProvider {
                 sound(SullysMod.modPrefix("block/petrified_wood/step6"))
         );
 
+        this.addBasicSound(SMSounds.COPPER_BUTTON_CLICK_OFF, "block.button.click",
+                sound(SullysMod.modPrefix("block/copper/copper_click")).pitch(0.5)
+        );
+
+        this.addBasicSound(SMSounds.COPPER_BUTTON_CLICK_ON, "block.button.click",
+                sound(SullysMod.modPrefix("block/copper/copper_click")).pitch(0.6)
+        );
+
         //Note Block Instruments
         this.addBasicSound(SMSounds.NOTE_BLOCK_CRESTED_SKULL, "block.ancient_skull.crested",
                 sound(SullysMod.modPrefix("block/note_block/ancient_skull/crested1")),

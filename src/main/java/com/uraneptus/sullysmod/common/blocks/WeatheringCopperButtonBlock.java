@@ -53,11 +53,6 @@ public class WeatheringCopperButtonBlock extends CopperButtonBlock implements We
     }
 
     @Override
-    protected SoundEvent getSound(boolean pushed) {
-        return pushed ? SoundEvents.STONE_BUTTON_CLICK_ON : SoundEvents.STONE_BUTTON_CLICK_OFF;
-    }
-
-    @Override
     public WeatherState getAge() {
         return weatherState;
     }

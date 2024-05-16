@@ -35,6 +35,8 @@ public class SMSounds {
     public static final RegistryObject<SoundEvent> PETRIFIED_WOOD_HIT = HELPER.createSoundEvent("block.petrified_wood.hit");
     public static final RegistryObject<SoundEvent> PETRIFIED_WOOD_PLACE = HELPER.createSoundEvent("block.petrified_wood.place");
     public static final RegistryObject<SoundEvent> PETRIFIED_WOOD_STEP = HELPER.createSoundEvent("block.petrified_wood.step");
+    public static final RegistryObject<SoundEvent> COPPER_BUTTON_CLICK_OFF = HELPER.createSoundEvent("block.copper_button.click_off");
+    public static final RegistryObject<SoundEvent> COPPER_BUTTON_CLICK_ON = HELPER.createSoundEvent("block.copper_button.click_on");
 
     //Note Block Instruments
     public static final RegistryObject<SoundEvent> NOTE_BLOCK_CRESTED_SKULL = HELPER.createSoundEvent("block.note_block.ancient_skull.crested");

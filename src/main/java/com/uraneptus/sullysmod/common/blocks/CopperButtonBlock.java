@@ -1,5 +1,6 @@
 package com.uraneptus.sullysmod.common.blocks;
 
+import com.uraneptus.sullysmod.SullysMod;
 import com.uraneptus.sullysmod.core.other.SMItemUtil;
 import com.uraneptus.sullysmod.core.registry.SMBlocks;
 import net.minecraft.core.BlockPos;
@@ -21,6 +22,7 @@ import net.minecraft.world.phys.BlockHitResult;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.function.Supplier;
 
 public class CopperButtonBlock extends ButtonBlock {
 
@@ -28,10 +30,13 @@ public class CopperButtonBlock extends ButtonBlock {
         super(pProperties, pType, pTicksToStayPressed, pArrowsCanPress);
     }
 
+    /*
     @Override
     protected SoundEvent getSound(boolean pushed) {
         return pushed ? SoundEvents.STONE_BUTTON_CLICK_ON : SoundEvents.STONE_BUTTON_CLICK_OFF;
     }
+
+     */
 
     @Override
     public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult result) {

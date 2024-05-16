@@ -9,6 +9,24 @@
     ],
     "subtitle": "subtitles.ambient.mountain.calls"
   },
+  "block.copper_button.click_off": {
+    "sounds": [
+      {
+        "name": "sullysmod:block/copper/copper_click",
+        "pitch": 0.5
+      }
+    ],
+    "subtitle": "subtitles.block.button.click"
+  },
+  "block.copper_button.click_on": {
+    "sounds": [
+      {
+        "name": "sullysmod:block/copper/copper_click",
+        "pitch": 0.6
+      }
+    ],
+    "subtitle": "subtitles.block.button.click"
+  },
   "block.flinger_totem.add_honey": {
     "sounds": [
       "item/honeycomb/wax_on1",
