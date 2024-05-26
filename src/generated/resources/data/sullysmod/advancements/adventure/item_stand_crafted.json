@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:adventure/root",
+  "criteria": {
+    "craft_item_stand": {
+      "conditions": {
+        "recipe_id": "sullysmod:crafting/item_stand"
+      },
+      "trigger": "minecraft:recipe_crafted"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.adventure.item_stand_crafted.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "sullysmod:item_stand"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.adventure.item_stand_crafted.title"
+    }
+  },
+  "requirements": [
+    [
+      "craft_item_stand"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

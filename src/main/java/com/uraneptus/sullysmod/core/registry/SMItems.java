@@ -21,6 +21,7 @@ import net.minecraftforge.common.ForgeSpawnEggItem;
 import net.minecraftforge.registries.RegistryObject;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.function.Supplier;
 

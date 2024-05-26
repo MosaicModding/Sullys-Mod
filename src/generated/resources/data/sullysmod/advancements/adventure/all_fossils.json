@@ -1,0 +1,83 @@
+{
+  "parent": "sullysmod:adventure/first_artifact",
+  "criteria": {
+    "fossilised_bone": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "sullysmod:fossilised_bone"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "fossilised_fish": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "sullysmod:fossilised_fish"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "fossilised_footstep": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "sullysmod:fossilised_footstep"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "fossilised_shells": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "sullysmod:fossilised_shells"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.adventure.all_fossils.description"
+    },
+    "frame": "challenge",
+    "hidden": false,
+    "icon": {
+      "item": "sullysmod:fossilised_bone"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.adventure.all_fossils.title"
+    }
+  },
+  "requirements": [
+    [
+      "fossilised_bone"
+    ],
+    [
+      "fossilised_fish"
+    ],
+    [
+      "fossilised_footstep"
+    ],
+    [
+      "fossilised_shells"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

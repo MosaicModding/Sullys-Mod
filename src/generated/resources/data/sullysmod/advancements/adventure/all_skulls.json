@@ -1,0 +1,143 @@
+{
+  "parent": "sullysmod:adventure/first_skull",
+  "criteria": {
+    "cracked_ancient_skull": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "sullysmod:cracked_ancient_skull"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "crested_ancient_skull": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "sullysmod:crested_ancient_skull"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "flatbilled_ancient_skull": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "sullysmod:flatbilled_ancient_skull"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "gigantic_ancient_skull": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "sullysmod:gigantic_ancient_skull"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "horned_ancient_skull": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "sullysmod:horned_ancient_skull"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "long_ancient_skull": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "sullysmod:long_ancient_skull"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "tiny_ancient_skull": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "sullysmod:tiny_ancient_skull"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "wide_ancient_skull": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "sullysmod:wide_ancient_skull"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.adventure.all_skulls.description"
+    },
+    "frame": "challenge",
+    "hidden": false,
+    "icon": {
+      "item": "sullysmod:crested_ancient_skull"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.adventure.all_skulls.title"
+    }
+  },
+  "requirements": [
+    [
+      "cracked_ancient_skull"
+    ],
+    [
+      "crested_ancient_skull"
+    ],
+    [
+      "flatbilled_ancient_skull"
+    ],
+    [
+      "gigantic_ancient_skull"
+    ],
+    [
+      "horned_ancient_skull"
+    ],
+    [
+      "long_ancient_skull"
+    ],
+    [
+      "tiny_ancient_skull"
+    ],
+    [
+      "wide_ancient_skull"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

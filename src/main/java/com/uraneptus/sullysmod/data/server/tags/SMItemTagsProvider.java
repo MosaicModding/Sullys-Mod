@@ -48,7 +48,6 @@ public class SMItemTagsProvider extends ItemTagsProvider {
         );
         SMItems.ARTIFACT_DESC_MAP.forEach((item, desc) -> tag(SMItemTags.ARTIFACTS).add(item.get()));
 
-
         //Minecraft Tags
         tag(ItemTags.BUTTONS).add(
                 SMBlocks.COPPER_BUTTON.get().asItem(),
@@ -165,5 +164,6 @@ public class SMItemTagsProvider extends ItemTagsProvider {
                 tag(ItemTags.NOTE_BLOCK_TOP_INSTRUMENTS).add(item.get());
             }
         });
+
     }
 }

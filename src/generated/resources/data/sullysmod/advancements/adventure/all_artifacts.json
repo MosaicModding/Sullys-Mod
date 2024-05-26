@@ -1,0 +1,743 @@
+{
+  "parent": "sullysmod:adventure/first_artifact",
+  "criteria": {
+    "amber_encased_bug": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "sullysmod:amber_encased_bug"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "arrowhead": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "sullysmod:arrowhead"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "broken_bottle": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "sullysmod:broken_bottle"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "broken_bowl": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "sullysmod:broken_bowl"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "broken_vase": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "sullysmod:broken_vase"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "copper_cog": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "sullysmod:copper_cog"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "cracked_ancient_skull": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "sullysmod:cracked_ancient_skull"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "crested_ancient_skull": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "sullysmod:crested_ancient_skull"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "death_whistle": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "sullysmod:death_whistle"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "deepslate_vase": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "sullysmod:deepslate_vase"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "dried_cyan_flower": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "sullysmod:dried_cyan_flower"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "dried_red_flower": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "sullysmod:dried_red_flower"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "emerald_earring": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "sullysmod:emerald_earring"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "familiar_cube": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "sullysmod:familiar_cube"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "flatbilled_ancient_skull": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "sullysmod:flatbilled_ancient_skull"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "fossilised_bone": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "sullysmod:fossilised_bone"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "fossilised_fish": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "sullysmod:fossilised_fish"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "fossilised_footstep": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "sullysmod:fossilised_footstep"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "fossilised_shells": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "sullysmod:fossilised_shells"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "frog_idol": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "sullysmod:frog_idol"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "gigantic_ancient_skull": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "sullysmod:gigantic_ancient_skull"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "golden_belt_buckle": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "sullysmod:golden_belt_buckle"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "golden_goblet": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "sullysmod:golden_goblet"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "horned_ancient_skull": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "sullysmod:horned_ancient_skull"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "jade_amulet": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "sullysmod:jade_amulet"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "long_ancient_skull": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "sullysmod:long_ancient_skull"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "lost_bag": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "sullysmod:lost_bag"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "lost_crown": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "sullysmod:lost_crown"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "lost_journal": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "sullysmod:lost_journal"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "lost_recipe_book": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "sullysmod:lost_recipe_book"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "lost_sketchbook": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "sullysmod:lost_sketchbook"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "metallic_skull": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "sullysmod:metallic_skull"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "miners_helmet": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "sullysmod:miners_helmet"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "moon_tablet": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "sullysmod:moon_tablet"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "mysterious_plate": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "sullysmod:mysterious_plate"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "ominous_tablet": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "sullysmod:ominous_tablet"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "petrified_cookie": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "sullysmod:petrified_cookie"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "primitive_knife": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "sullysmod:primitive_knife"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "primitive_ring": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "sullysmod:primitive_ring"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "red_cap": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "sullysmod:red_cap"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "rusty_tools": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "sullysmod:rusty_tools"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "small_dented_helmet": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "sullysmod:small_dented_helmet"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "small_geode": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "sullysmod:small_geode"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "stone_idol": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "sullysmod:stone_idol"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "tiny_ancient_skull": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "sullysmod:tiny_ancient_skull"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "torn_cloth": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "sullysmod:torn_cloth"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "torn_manuscript": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "sullysmod:torn_manuscript"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "wide_ancient_skull": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "sullysmod:wide_ancient_skull"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.adventure.all_artifacts.description"
+    },
+    "frame": "challenge",
+    "hidden": false,
+    "icon": {
+      "item": "sullysmod:broken_vase"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.adventure.all_artifacts.title"
+    }
+  },
+  "requirements": [
+    [
+      "cracked_ancient_skull"
+    ],
+    [
+      "torn_cloth"
+    ],
+    [
+      "primitive_knife"
+    ],
+    [
+      "fossilised_footstep"
+    ],
+    [
+      "broken_vase"
+    ],
+    [
+      "copper_cog"
+    ],
+    [
+      "crested_ancient_skull"
+    ],
+    [
+      "tiny_ancient_skull"
+    ],
+    [
+      "mysterious_plate"
+    ],
+    [
+      "long_ancient_skull"
+    ],
+    [
+      "amber_encased_bug"
+    ],
+    [
+      "wide_ancient_skull"
+    ],
+    [
+      "lost_crown"
+    ],
+    [
+      "golden_belt_buckle"
+    ],
+    [
+      "emerald_earring"
+    ],
+    [
+      "golden_goblet"
+    ],
+    [
+      "frog_idol"
+    ],
+    [
+      "lost_journal"
+    ],
+    [
+      "broken_bowl"
+    ],
+    [
+      "lost_bag"
+    ],
+    [
+      "fossilised_bone"
+    ],
+    [
+      "miners_helmet"
+    ],
+    [
+      "petrified_cookie"
+    ],
+    [
+      "deepslate_vase"
+    ],
+    [
+      "dried_cyan_flower"
+    ],
+    [
+      "primitive_ring"
+    ],
+    [
+      "red_cap"
+    ],
+    [
+      "small_dented_helmet"
+    ],
+    [
+      "arrowhead"
+    ],
+    [
+      "fossilised_shells"
+    ],
+    [
+      "moon_tablet"
+    ],
+    [
+      "gigantic_ancient_skull"
+    ],
+    [
+      "broken_bottle"
+    ],
+    [
+      "stone_idol"
+    ],
+    [
+      "rusty_tools"
+    ],
+    [
+      "fossilised_fish"
+    ],
+    [
+      "death_whistle"
+    ],
+    [
+      "torn_manuscript"
+    ],
+    [
+      "jade_amulet"
+    ],
+    [
+      "dried_red_flower"
+    ],
+    [
+      "metallic_skull"
+    ],
+    [
+      "lost_recipe_book"
+    ],
+    [
+      "small_geode"
+    ],
+    [
+      "familiar_cube"
+    ],
+    [
+      "flatbilled_ancient_skull"
+    ],
+    [
+      "ominous_tablet"
+    ],
+    [
+      "lost_sketchbook"
+    ],
+    [
+      "horned_ancient_skull"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

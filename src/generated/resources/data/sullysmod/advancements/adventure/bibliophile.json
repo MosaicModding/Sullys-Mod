@@ -1,0 +1,83 @@
+{
+  "parent": "sullysmod:adventure/first_artifact",
+  "criteria": {
+    "lost_journal": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "sullysmod:lost_journal"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "lost_recipe_book": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "sullysmod:lost_recipe_book"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "lost_sketchbook": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "sullysmod:lost_sketchbook"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "torn_manuscript": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "sullysmod:torn_manuscript"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.adventure.bibliophile.description"
+    },
+    "frame": "goal",
+    "hidden": false,
+    "icon": {
+      "item": "sullysmod:torn_manuscript"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.adventure.bibliophile.title"
+    }
+  },
+  "requirements": [
+    [
+      "torn_manuscript"
+    ],
+    [
+      "lost_journal"
+    ],
+    [
+      "lost_sketchbook"
+    ],
+    [
+      "lost_recipe_book"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

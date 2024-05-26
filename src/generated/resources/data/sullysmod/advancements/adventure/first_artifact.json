@@ -1,0 +1,36 @@
+{
+  "parent": "minecraft:adventure/root",
+  "criteria": {
+    "first_artifact": {
+      "conditions": {
+        "items": [
+          {
+            "tag": "sullysmod:artifacts"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.adventure.first_artifact.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "sullysmod:broken_vase"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.adventure.first_artifact.title"
+    }
+  },
+  "requirements": [
+    [
+      "first_artifact"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

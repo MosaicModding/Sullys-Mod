@@ -11,7 +11,7 @@ public class SMItemTags {
     public static final TagKey<Item> CARNIVORE_CONSUMABLES = TagUtil.itemTag(SullysMod.MOD_ID, "carnivore_consumables");
     public static final TagKey<Item> PETRIFIED_LOGS = TagUtil.itemTag(SullysMod.MOD_ID, "petrified_logs");
     public static final TagKey<Item> ARTIFACTS = TagUtil.itemTag(SullysMod.MOD_ID, "artifacts");
-    public static final TagKey<Item> ANCIENT_SKULLS = TagUtil.itemTag(SullysMod.MOD_ID, "ancient_skulls");
+    public static final TagKey<Item> ANCIENT_SKULLS = TagUtil.itemTag(SullysMod.MOD_ID, "artifacts/ancient_skulls");
 
     //Forge Tags
     public static final TagKey<Item> AXE_ITEMS = TagUtil.itemTag("forge", "tools/axes");

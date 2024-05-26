@@ -1,0 +1,53 @@
+{
+  "parent": "sullysmod:adventure/first_artifact",
+  "criteria": {
+    "dried_cyan_flower": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "sullysmod:dried_cyan_flower"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "dried_red_flower": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "sullysmod:dried_red_flower"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.adventure.dried_flowers.description"
+    },
+    "frame": "goal",
+    "hidden": false,
+    "icon": {
+      "item": "sullysmod:dried_cyan_flower"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.adventure.dried_flowers.title"
+    }
+  },
+  "requirements": [
+    [
+      "dried_cyan_flower"
+    ],
+    [
+      "dried_red_flower"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

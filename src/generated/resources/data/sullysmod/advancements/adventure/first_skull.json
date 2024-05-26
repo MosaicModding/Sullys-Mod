@@ -1,0 +1,36 @@
+{
+  "parent": "sullysmod:adventure/first_artifact",
+  "criteria": {
+    "first_skull": {
+      "conditions": {
+        "items": [
+          {
+            "tag": "sullysmod:artifacts/ancient_skulls"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.adventure.first_skull.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "sullysmod:crested_ancient_skull"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.adventure.first_skull.title"
+    }
+  },
+  "requirements": [
+    [
+      "first_skull"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

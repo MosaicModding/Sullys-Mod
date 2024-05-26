@@ -1,0 +1,53 @@
+{
+  "parent": "sullysmod:adventure/first_artifact",
+  "criteria": {
+    "moon_tablet": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "sullysmod:moon_tablet"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "ominous_tablet": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "sullysmod:ominous_tablet"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.adventure.find_tablets.description"
+    },
+    "frame": "goal",
+    "hidden": false,
+    "icon": {
+      "item": "sullysmod:moon_tablet"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.adventure.find_tablets.title"
+    }
+  },
+  "requirements": [
+    [
+      "moon_tablet"
+    ],
+    [
+      "ominous_tablet"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

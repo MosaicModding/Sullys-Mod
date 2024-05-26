@@ -1,0 +1,39 @@
+{
+  "parent": "sullysmod:adventure/first_artifact",
+  "criteria": {
+    "lost_crown": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "sullysmod:lost_crown"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.adventure.find_lost_crown.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "sullysmod:lost_crown",
+      "nbt": "{Damage:0}"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.adventure.find_lost_crown.title"
+    }
+  },
+  "requirements": [
+    [
+      "lost_crown"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

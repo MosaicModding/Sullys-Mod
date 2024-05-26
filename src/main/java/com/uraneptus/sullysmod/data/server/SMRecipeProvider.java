@@ -138,6 +138,7 @@ public class SMRecipeProvider extends RecipeProvider {
         ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, Items.ARROW, 4).define('#', Items.STICK).define('X', SMItems.ARROWHEAD.get()).define('Y', Items.FEATHER).pattern("X").pattern("#").pattern("Y").unlockedBy("has_feather", has(Items.FEATHER)).unlockedBy(getHasName(SMItems.ARROWHEAD.get()), has(SMItems.ARROWHEAD.get())).save(consumer, craftingPath("arrow_from_arrowhead"));
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, SMItems.GLASS_VIAL.get(), 3).define('#', Items.GLASS_PANE).pattern("# #").pattern(" # ").unlockedBy(getHasName(Items.GLASS_PANE), has(Items.GLASS_PANE)).save(consumer, craftingPath(getItemName(SMItems.GLASS_VIAL.get())));
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, Items.AMETHYST_SHARD, 3).requires(SMItems.SMALL_GEODE.get()).unlockedBy(getHasName(SMItems.SMALL_GEODE.get()), has(SMItems.SMALL_GEODE.get())).save(consumer, craftingPath("amethyst_shard_from_small_geode"));
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.DECORATIONS, SMBlocks.ITEM_STAND.get()).requires(Items.SMOOTH_STONE_SLAB).requires(Items.STICK).unlockedBy(getHasName(Items.SMOOTH_STONE_SLAB), has(Items.SMOOTH_STONE_SLAB)).unlockedBy(getHasName(Items.STICK), has(Items.STICK)).save(consumer, craftingPath(getItemName(SMBlocks.ITEM_STAND.get())));
     }
 
     protected static void packableBlockRecipes(Supplier<? extends ItemLike> unpacked, Supplier<? extends ItemLike> packed, Consumer<FinishedRecipe> consumer) {
