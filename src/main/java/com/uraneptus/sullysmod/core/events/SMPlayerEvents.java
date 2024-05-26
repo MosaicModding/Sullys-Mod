@@ -133,7 +133,7 @@ public class SMPlayerEvents {
     }
 
     @SubscribeEvent
-    public static void onRightClickBlock(PlayerInteractEvent.RightClickItem event) {
+    public static void onRightClickItem(PlayerInteractEvent.RightClickItem event) {
         ItemStack itemInHand = event.getItemStack();
         Player player = event.getEntity();
         Level level = event.getLevel();
