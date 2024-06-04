@@ -8,6 +8,7 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstapContext;
 import net.minecraft.data.worldgen.placement.PlacementUtils;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.levelgen.VerticalAnchor;
 import net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
@@ -25,7 +26,15 @@ public class SMPlacedFeaturesProvider {
                 HeightRangePlacement.triangle(VerticalAnchor.bottom(), VerticalAnchor.absolute(0)),
                 EnvironmentScanPlacement.scanningFor(Direction.DOWN, BlockPredicate.solid(), BlockPredicate.ONLY_IN_AIR_PREDICATE, 12),
                 /*RandomOffsetPlacement.vertical(ConstantInt.of(1)),*/
-                BiomeFilter.biome()));
+                BiomeFilter.biome()
+        ));
+        register(context, SMFeatureDefinitions.PLACED_ARTIFACT_GRAVEL, addFeaturePlacement(context, SMFeatureDefinitions.CONFIGURED_ARTIFACT_GRAVEL,
+                InSquarePlacement.spread(),
+                HeightRangePlacement.triangle(VerticalAnchor.bottom(), VerticalAnchor.absolute(62)),
+                BlockPredicateFilter.forPredicate(BlockPredicate.matchesBlocks(Blocks.GRAVEL)),
+                CountPlacement.of(40),
+                BiomeFilter.biome()
+        ));
     }
 
     private static PlacedFeature addOreFeature(BootstapContext<PlacedFeature> context, ResourceKey<ConfiguredFeature<?, ?>> resourceKey, int minHeight, int maxHeight, int count) {

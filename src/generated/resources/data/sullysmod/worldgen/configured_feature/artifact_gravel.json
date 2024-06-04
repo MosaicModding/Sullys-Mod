@@ -1,0 +1,14 @@
+{
+  "type": "sullysmod:artifact_gravel",
+  "config": {
+    "to_place": {
+      "type": "minecraft:simple_state_provider",
+      "state": {
+        "Name": "minecraft:suspicious_gravel",
+        "Properties": {
+          "dusted": "0"
+        }
+      }
+    }
+  }
+}

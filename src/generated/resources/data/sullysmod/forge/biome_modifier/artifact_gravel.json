@@ -1,0 +1,6 @@
+{
+  "type": "forge:add_features",
+  "biomes": "#minecraft:is_overworld",
+  "features": "sullysmod:artifact_gravel",
+  "step": "underground_decoration"
+}

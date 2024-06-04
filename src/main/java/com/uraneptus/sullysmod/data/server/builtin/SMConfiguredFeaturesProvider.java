@@ -2,6 +2,7 @@ package com.uraneptus.sullysmod.data.server.builtin;
 
 import com.google.common.collect.ImmutableList;
 import com.uraneptus.sullysmod.SullysMod;
+import com.uraneptus.sullysmod.common.levelgen.ArtifactGravelFeature;
 import com.uraneptus.sullysmod.common.levelgen.PetrifiedTreeConfig;
 import com.uraneptus.sullysmod.common.levelgen.PetrifiedTreeGravelDecorator;
 import com.uraneptus.sullysmod.core.other.SMFeatureDefinitions;
@@ -15,6 +16,7 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.configurations.OreConfiguration;
+import net.minecraft.world.level.levelgen.feature.configurations.SimpleBlockConfiguration;
 import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration;
 import net.minecraft.world.level.levelgen.feature.featuresize.TwoLayersFeatureSize;
 import net.minecraft.world.level.levelgen.feature.foliageplacers.FancyFoliagePlacer;
@@ -36,6 +38,7 @@ public class SMConfiguredFeaturesProvider {
         register(context, SMFeatureDefinitions.CONFIGURED_JADE_ORE, () -> addOreConfig(JADE_ORE_TARGET_LIST, 10));
         register(context, SMFeatureDefinitions.CONFIGURED_PETRIFIED_TREE_SMALL, () -> addTreeConfig(new TreeConfiguration.TreeConfigurationBuilder(BlockStateProvider.simple(SMBlocks.PETRIFIED_LOG.get()), new FancyTrunkPlacer(3, 11, 0), BlockStateProvider.simple(Blocks.AIR), new FancyFoliagePlacer(ConstantInt.of(2), ConstantInt.of(4), 4), new TwoLayersFeatureSize(0, 0, 0, OptionalInt.of(4))).decorators(ImmutableList.of(new PetrifiedTreeGravelDecorator()))));
         register(context, SMFeatureDefinitions.CONFIGURED_PETRIFIED_TREE, () -> new ConfiguredFeature<>(SMFeatures.PETRIFIED_TREE.get(), new PetrifiedTreeConfig(List.of(/*SullysMod.modPrefix("petrified/petrified_tree_0"), SullysMod.modPrefix("petrified/petrified_tree_1"), */SullysMod.modPrefix("petrified/petrified_tree_2")/*, SullysMod.modPrefix("petrified/petrified_tree_3")*/))));
+        register(context, SMFeatureDefinitions.CONFIGURED_ARTIFACT_GRAVEL, () -> new ConfiguredFeature<>(SMFeatures.ARTIFACT_GRAVEL.get(), new SimpleBlockConfiguration(BlockStateProvider.simple(Blocks.SUSPICIOUS_GRAVEL))));
     }
 
     private static ConfiguredFeature<?, ?> addOreConfig(List<OreConfiguration.TargetBlockState> targetList, int veinSize) {
