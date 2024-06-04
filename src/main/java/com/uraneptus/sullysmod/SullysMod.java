@@ -1,6 +1,5 @@
 package com.uraneptus.sullysmod;
 
-import com.google.common.base.Suppliers;
 import com.mojang.logging.LogUtils;
 import com.teamabnormals.blueprint.core.Blueprint;
 import com.teamabnormals.blueprint.core.util.registry.RegistryHelper;
@@ -11,9 +10,9 @@ import com.uraneptus.sullysmod.core.SMConfig;
 import com.uraneptus.sullysmod.core.other.SMTextDefinitions;
 import com.uraneptus.sullysmod.core.registry.*;
 import com.uraneptus.sullysmod.data.client.*;
-import com.uraneptus.sullysmod.data.server.SMDatapackBuiltinEntriesProvider;
 import com.uraneptus.sullysmod.data.server.SMRecipeProvider;
 import com.uraneptus.sullysmod.data.server.advancements.SMAdvancementProvider;
+import com.uraneptus.sullysmod.data.server.builtin.SMBuiltinEntriesProvider;
 import com.uraneptus.sullysmod.data.server.loot.SMLootTableProvider;
 import com.uraneptus.sullysmod.data.server.modifiers.SMAdvancementModifiersProvider;
 import com.uraneptus.sullysmod.data.server.modifiers.SMLootModifierProvider;
@@ -22,9 +21,6 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.sounds.SoundEvents;
-import net.minecraft.world.level.block.SoundType;
-import net.minecraft.world.level.block.state.properties.BlockSetType;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.RegisterCapabilitiesEvent;
@@ -42,7 +38,6 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.slf4j.Logger;
 
 import java.util.concurrent.CompletableFuture;
-import java.util.function.Supplier;
 
 @Mod(SullysMod.MOD_ID)
 @Mod.EventBusSubscriber(modid = SullysMod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
@@ -133,6 +128,6 @@ public class SullysMod {
         generator.addProvider(includeServer, new SMAdvancementProvider(packOutput, lookupProvider, fileHelper));
         generator.addProvider(includeServer, new SMRecipeProvider(packOutput));
         generator.addProvider(includeServer, new SMLootModifierProvider(packOutput, lookupProvider));
-        generator.addProvider(includeServer, new SMDatapackBuiltinEntriesProvider(packOutput, lookupProvider));
+        generator.addProvider(includeServer, new SMBuiltinEntriesProvider(packOutput, lookupProvider));
     }
 }

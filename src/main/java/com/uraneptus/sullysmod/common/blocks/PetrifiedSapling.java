@@ -1,6 +1,6 @@
 package com.uraneptus.sullysmod.common.blocks;
 
-import com.uraneptus.sullysmod.data.server.SMDatapackBuiltinEntriesProvider;
+import com.uraneptus.sullysmod.core.other.SMFeatureDefinitions;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.util.RandomSource;
@@ -18,7 +18,7 @@ public class PetrifiedSapling extends SaplingBlock {
         super(new AbstractTreeGrower() {
             @Override
             protected ResourceKey<ConfiguredFeature<?, ?>> getConfiguredFeature(RandomSource pRandom, boolean pHasFlowers) {
-                return SMDatapackBuiltinEntriesProvider.CONFIGURED_PETRIFIED_TREE_SMALL;
+                return SMFeatureDefinitions.CONFIGURED_PETRIFIED_TREE_SMALL;
             }
         }, pProperties);
     }
