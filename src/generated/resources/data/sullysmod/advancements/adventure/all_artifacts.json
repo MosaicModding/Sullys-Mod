@@ -739,5 +739,8 @@
       "horned_ancient_skull"
     ]
   ],
+  "rewards": {
+    "experience": 700
+  },
   "sends_telemetry_event": true
 }

@@ -139,5 +139,8 @@
       "wide_ancient_skull"
     ]
   ],
+  "rewards": {
+    "experience": 100
+  },
   "sends_telemetry_event": true
 }

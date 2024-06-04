@@ -55,7 +55,7 @@
     "description": {
       "translate": "advancements.adventure.all_fossils.description"
     },
-    "frame": "challenge",
+    "frame": "goal",
     "hidden": false,
     "icon": {
       "item": "sullysmod:fossilised_bone"
