@@ -29,10 +29,6 @@ public class AmberRotatedPillarBlock extends RotatedPillarBlock {
         super(pProperties);
     }
 
-    @Override
-    public RenderShape getRenderShape(BlockState pState) {
-        return RenderShape.MODEL;
-    }
 
     public VoxelShape getCollisionShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
         if (pContext instanceof EntityCollisionContext entitycollisioncontext) {
@@ -60,7 +56,7 @@ public class AmberRotatedPillarBlock extends RotatedPillarBlock {
                             return Shapes.block();
                         }
                     }
-                    return MELTING_COLLISION_SHAPE;
+                   return MELTING_COLLISION_SHAPE;
                 }
             }
         }

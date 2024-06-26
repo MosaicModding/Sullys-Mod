@@ -70,15 +70,15 @@ public class SMBlocks {
     public static final RegistryObject<Block> WAXED_OXIDIZED_COPPER_BUTTON = HELPER.createBlock("waxed_oxidized_copper_button", () -> new CopperButtonBlock(SMProperties.Blocks.COPPER_BUTTONS, SMBlocksetTypes.COPPER_BLOCKSET.get(), 40, true));
 
     //Amber
-    public static final RegistryObject<Block> AMBER = HELPER.createBlock("amber", () -> new AmberBlock(SMProperties.Blocks.AMBER.noOcclusion().dynamicShape()));
-    public static final RegistryObject<Block> AMBER_BRICKS = HELPER.createBlock("amber_bricks", () -> new AmberBlock(SMProperties.Blocks.AMBER));
-    public static final RegistryObject<Block> AMBER_BRICK_STAIRS = HELPER.createBlock("amber_brick_stairs", () -> new AmberStairBlock(AMBER_BRICKS.get().defaultBlockState(), SMProperties.Blocks.AMBER));
-    public static final RegistryObject<Block> AMBER_BRICK_SLAB = HELPER.createBlock("amber_brick_slab", () -> new AmberSlabBlock(SMProperties.Blocks.AMBER));
-    public static final RegistryObject<Block> AMBER_BRICK_WALL = HELPER.createBlock("amber_brick_wall", () -> new AmberWallBlock(SMProperties.Blocks.AMBER));
-    public static final RegistryObject<Block> ROUGH_AMBER = HELPER.createBlock("rough_amber", () -> new AmberBlock(SMProperties.Blocks.AMBER));
-    public static final RegistryObject<Block> CHISELED_AMBER = HELPER.createBlock("chiseled_amber", () -> new AmberBlock(SMProperties.Blocks.AMBER));
-    public static final RegistryObject<Block> AMBER_PILLAR = HELPER.createBlock("amber_pillar", () -> new AmberRotatedPillarBlock(SMProperties.Blocks.AMBER));
-    public static final RegistryObject<Block> AMBER_LANTERN = HELPER.createBlock("amber_lantern", () -> new AmberBlock(SMProperties.Blocks.AMBER.lightLevel(state -> 15)));
+    public static final RegistryObject<Block> AMBER = HELPER.createBlock("amber", () -> new AmberBlock(SMProperties.Blocks.AMBER));
+    public static final RegistryObject<Block> AMBER_BRICKS = HELPER.createBlock("amber_bricks", () -> new AmberBlock(SMProperties.Blocks.AMBER_BUILDING_BLOCKS));
+    public static final RegistryObject<Block> AMBER_BRICK_STAIRS = HELPER.createBlock("amber_brick_stairs", () -> new AmberStairBlock(AMBER_BRICKS.get().defaultBlockState(), SMProperties.Blocks.AMBER_BUILDING_BLOCKS));
+    public static final RegistryObject<Block> AMBER_BRICK_SLAB = HELPER.createBlock("amber_brick_slab", () -> new AmberSlabBlock(SMProperties.Blocks.AMBER_BUILDING_BLOCKS));
+    public static final RegistryObject<Block> AMBER_BRICK_WALL = HELPER.createBlock("amber_brick_wall", () -> new AmberWallBlock(SMProperties.Blocks.AMBER_BUILDING_BLOCKS));
+    public static final RegistryObject<Block> ROUGH_AMBER = HELPER.createBlock("rough_amber", () -> new AmberBlock(SMProperties.Blocks.AMBER_BUILDING_BLOCKS));
+    public static final RegistryObject<Block> CHISELED_AMBER = HELPER.createBlock("chiseled_amber", () -> new AmberBlock(SMProperties.Blocks.AMBER_BUILDING_BLOCKS));
+    public static final RegistryObject<Block> AMBER_PILLAR = HELPER.createBlock("amber_pillar", () -> new AmberRotatedPillarBlock(SMProperties.Blocks.AMBER_BUILDING_BLOCKS));
+    public static final RegistryObject<Block> AMBER_LANTERN = HELPER.createBlock("amber_lantern", () -> new AmberBlock(SMProperties.Blocks.AMBER_BUILDING_BLOCKS.lightLevel(state -> 15)));
 
     //Petrified Wood
     public static final RegistryObject<Block> PETRIFIED_PLANKS = HELPER.createBlock("petrified_planks", () -> new Block(SMProperties.Blocks.petrified().requiresCorrectToolForDrops()));

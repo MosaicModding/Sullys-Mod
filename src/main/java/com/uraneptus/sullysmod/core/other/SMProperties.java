@@ -24,7 +24,8 @@ public class SMProperties {
         public static final BlockBehaviour.Properties JADE_BLOCKS = BlockBehaviour.Properties.of().mapColor(MapColor.EMERALD).instrument(NoteBlockInstrument.IRON_XYLOPHONE).requiresCorrectToolForDrops().strength(5.0F, 6.0F);
         public static final BlockBehaviour.Properties COPPER_BUTTONS = BlockBehaviour.Properties.of().noCollission().strength(0.5F);
 
-        public static final BlockBehaviour.Properties AMBER = BlockBehaviour.Properties.of().strength(1.3F, 3F).mapColor(MapColor.COLOR_ORANGE).requiresCorrectToolForDrops().randomTicks();
+        public static final BlockBehaviour.Properties AMBER = BlockBehaviour.Properties.of().strength(1.3F, 3F).mapColor(MapColor.COLOR_ORANGE).requiresCorrectToolForDrops().randomTicks().noOcclusion().dynamicShape();
+        public static final BlockBehaviour.Properties AMBER_BUILDING_BLOCKS = BlockBehaviour.Properties.of().strength(1.3F, 3F).mapColor(MapColor.COLOR_ORANGE).requiresCorrectToolForDrops().randomTicks().dynamicShape().forceSolidOn();
         public static final BlockBehaviour.Properties ITEM_STAND = BlockBehaviour.Properties.of().strength(2.0F, 6.0F).requiresCorrectToolForDrops().noOcclusion();
         public static BlockBehaviour.Properties ancientSkulls() {
             return BlockBehaviour.Properties.of().strength(1.0F).pushReaction(PushReaction.DESTROY);
