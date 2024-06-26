@@ -65,6 +65,8 @@ public class SullysMod {
         SMTreeDecoratorTypes.TREE_DECORATORS.register(bus);
         SMFeatures.FEATURES.register(bus);
         SMCreativeModeTabs.TABS.register(bus);
+        SMFluids.FLUIDS.register(bus);
+        SMFluidTypes.FLUID_TYPES.register(bus);
 
         DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> SMItems::buildCreativeTabContents);
 
@@ -129,5 +131,6 @@ public class SullysMod {
         generator.addProvider(includeServer, new SMRecipeProvider(packOutput));
         generator.addProvider(includeServer, new SMLootModifierProvider(packOutput, lookupProvider));
         generator.addProvider(includeServer, new SMBuiltinEntriesProvider(packOutput, lookupProvider));
+        generator.addProvider(includeServer, new SMFluidTagsProvider(packOutput, lookupProvider, SullysMod.MOD_ID, fileHelper));
     }
 }

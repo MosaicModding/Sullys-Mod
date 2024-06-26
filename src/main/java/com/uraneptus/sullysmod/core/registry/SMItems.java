@@ -54,7 +54,8 @@ public class SMItems {
     public static final RegistryObject<Item> PIRANHA = HELPER.createItem("piranha", () -> new Item(PropertyUtil.food(SMProperties.Foods.PIRANHA_FOOD)));
     public static final RegistryObject<Item> COOKED_PIRANHA = HELPER.createItem("cooked_piranha", () -> new Item(PropertyUtil.food(SMProperties.Foods.COOKED_PIRANHA_FOOD)));
 
-    //Mob Buckets & Spawn Eggs
+    //Buckets & Spawn Eggs
+    public static final RegistryObject<Item> MOLTEN_AMBER_BUCKET = HELPER.createItem("molten_amber_bucket", () -> new BucketItem(SMFluids.SOURCE_MOLTEN_AMBER, new Item.Properties().stacksTo(1)));
     public static final RegistryObject<Item> LANTERNFISH_BUCKET = HELPER.createItem("lanternfish_bucket", () -> SMItems.createMobBucketItem(SMEntityTypes.LANTERNFISH::get));
     public static final RegistryObject<ForgeSpawnEggItem> LANTERNFISH_SPAWN_EGG = HELPER.createSpawnEggItem("lanternfish", SMEntityTypes.LANTERNFISH::get, 16316617, 9306085);
     public static final RegistryObject<ForgeSpawnEggItem> TORTOISE_SPAWN_EGG = HELPER.createSpawnEggItem("tortoise", SMEntityTypes.TORTOISE::get, 15198183, 10844478);

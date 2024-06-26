@@ -27,6 +27,7 @@ public class SMItemModelProvider extends ItemModelProvider {
 
     @Override
     protected void registerModels() {
+        basicItemHandheld(SMItems.MOLTEN_AMBER_BUCKET);
         basicBlockItem(SMBlocks.JADE_ORE);
         basicBlockItem(SMBlocks.DEEPSLATE_JADE_ORE);
         basicBlockItem(SMBlocks.ROUGH_JADE_BLOCK);

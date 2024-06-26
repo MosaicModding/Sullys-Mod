@@ -97,6 +97,7 @@ public class SMLangProvider extends LanguageProvider {
         forItem(SMItems.JADE_HORSE_ARMOR);
         forItem(SMItems.THROWING_KNIFE);
         forItem(SMItems.PIRANHA_TOOTH);
+        forItem(SMItems.MOLTEN_AMBER_BUCKET);
 
         add(SMItems.LANTERNFISH_BUCKET.get(), "Bucket of Lanternfish");
         add(SMItems.PIRANHA_BUCKET.get(), "Bucket of Piranha");

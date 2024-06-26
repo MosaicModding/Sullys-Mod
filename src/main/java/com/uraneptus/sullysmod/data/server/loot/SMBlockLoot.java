@@ -75,6 +75,7 @@ public class SMBlockLoot extends BlockLootSubProvider {
         createSlab(SMBlocks.AMBER_BRICK_SLAB.get());
         this.dropSelf(SMBlocks.AMBER_BRICK_STAIRS.get());
         this.dropSelf(SMBlocks.AMBER_BRICK_WALL.get());
+        add(SMBlocks.MOLTEN_AMBER_BLOCK.get(), noDrop());
 
         //Petrified Wood
         this.dropSelf(SMBlocks.PETRIFIED_PLANKS.get());

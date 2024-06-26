@@ -22,8 +22,10 @@ import net.minecraft.world.item.StandingAndWallBlockItem;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.WoodType;
 import net.minecraft.world.level.material.MapColor;
+import net.minecraftforge.fluids.IFluidBlock;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.RegistryObject;
 
@@ -79,6 +81,7 @@ public class SMBlocks {
     public static final RegistryObject<Block> CHISELED_AMBER = HELPER.createBlock("chiseled_amber", () -> new AmberBlock(SMProperties.Blocks.AMBER_BUILDING_BLOCKS));
     public static final RegistryObject<Block> AMBER_PILLAR = HELPER.createBlock("amber_pillar", () -> new AmberRotatedPillarBlock(SMProperties.Blocks.AMBER_BUILDING_BLOCKS));
     public static final RegistryObject<Block> AMBER_LANTERN = HELPER.createBlock("amber_lantern", () -> new AmberBlock(SMProperties.Blocks.AMBER_BUILDING_BLOCKS.lightLevel(state -> 15)));
+    public static final RegistryObject<LiquidBlock> MOLTEN_AMBER_BLOCK = HELPER.createBlockNoItem("molten_amber_block", () -> new LiquidBlock(SMFluids.SOURCE_MOLTEN_AMBER, BlockBehaviour.Properties.copy(Blocks.LAVA)));
 
     //Petrified Wood
     public static final RegistryObject<Block> PETRIFIED_PLANKS = HELPER.createBlock("petrified_planks", () -> new Block(SMProperties.Blocks.petrified().requiresCorrectToolForDrops()));
