@@ -21,6 +21,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.NonTameRandomTargetGoal;
@@ -106,23 +107,36 @@ public class SMEntityEvents {
                 Direction direction = projectile.getDirection();
                 handleCancellation(event);
 
-                if (projectile.yo < horse.getBoundingBox().maxY) {
-                    projectile = replaceProjectile(projectile, level);
-                    if (projectile == null) return;
+                projectile = replaceProjectile(projectile, level);
+                if (projectile == null) return;
 
-                    //TODO This should use the direction of the hit side of the bounding box of the horse, but idk where I'd get that from!
-                    // The issues are: Projectile bugging when shot from above (workaround is the yo < maxY check) & projectile bugging sometimes when shot weird at the side
+                if (projectile.yo < horse.getBoundingBox().maxY) {
                     switch (direction.getAxis()) {
-                        case X -> projectile.shoot(vec3.reverse().x, vec3.y, vec3.z, calculateBounceVelocity(velocity), 0.0F);
-                        case Y -> projectile.shoot(vec3.x, vec3.reverse().y + 1, vec3.z, calculateBounceVelocity(velocity), 0.0F);
-                        case Z -> projectile.shoot(vec3.x, vec3.y, vec3.reverse().z, calculateBounceVelocity(velocity), 0.0F);
+                        case X ->
+                                projectile.shoot(vec3.reverse().x, vec3.y, vec3.z, calculateBounceVelocity(velocity), 0.0F);
+                        case Y ->
+                                projectile.shoot(vec3.x, vec3.reverse().y + 1, vec3.z, calculateBounceVelocity(velocity), 0.0F);
+                        case Z ->
+                                projectile.shoot(vec3.x, vec3.y, vec3.reverse().z, calculateBounceVelocity(velocity), 0.0F);
                     }
-                    level.addFreshEntity(projectile);
                     if (direction == Direction.SOUTH || direction == Direction.NORTH) {
                         direction = direction.getOpposite();
                     }
                     handleParticleAndSound(level, entityHitResult, direction, projectile);
+                } else {
+                    projectile.setPos(projectile.getX(), projectile.getY() + 0.25D, projectile.getZ());
+                    RandomSource random = level.getRandom();
+                    switch (direction.getAxis()) {
+                        case X ->
+                                projectile.shoot(vec3.reverse().offsetRandom(random, 8F).x, vec3.y, vec3.z, calculateBounceVelocity(velocity), 0.0F);
+                        case Y ->
+                                projectile.shoot(vec3.x, vec3.reverse().y + 1, vec3.z, calculateBounceVelocity(velocity), 0.0F);
+                        case Z ->
+                                projectile.shoot(vec3.x, vec3.y, vec3.reverse().offsetRandom(random, 8F).z, calculateBounceVelocity(velocity), 0.0F);
+                    }
+                    handleParticleAndSound(level, entityHitResult, Direction.UP, projectile);
                 }
+                level.addFreshEntity(projectile);
             }
         }
     }
