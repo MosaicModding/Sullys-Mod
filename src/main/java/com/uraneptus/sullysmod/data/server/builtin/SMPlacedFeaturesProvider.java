@@ -4,6 +4,7 @@ import com.uraneptus.sullysmod.core.other.SMFeatureDefinitions;
 import com.uraneptus.sullysmod.core.registry.SMBlocks;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Holder;
+import net.minecraft.core.Vec3i;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstapContext;
 import net.minecraft.data.worldgen.placement.PlacementUtils;
@@ -30,8 +31,9 @@ public class SMPlacedFeaturesProvider {
         ));
         register(context, SMFeatureDefinitions.PLACED_ARTIFACT_GRAVEL, addFeaturePlacement(context, SMFeatureDefinitions.CONFIGURED_ARTIFACT_GRAVEL,
                 InSquarePlacement.spread(),
-                HeightRangePlacement.triangle(VerticalAnchor.bottom(), VerticalAnchor.absolute(62)),
+                HeightRangePlacement.uniform(VerticalAnchor.bottom(), VerticalAnchor.absolute(62)),
                 BlockPredicateFilter.forPredicate(BlockPredicate.matchesBlocks(Blocks.GRAVEL)),
+                BlockPredicateFilter.forPredicate(BlockPredicate.matchesBlocks(new Vec3i(0, 1, 0), Blocks.AIR)),
                 CountPlacement.of(40),
                 BiomeFilter.biome()
         ));

@@ -101,6 +101,7 @@ dependencies {
     //runtimeOnly fg.deobf("curse.maven:configured-457570:4011355")
     runtimeOnly fg.deobf("curse.maven:config-menus-forge-544048:4672356")
     runtimeOnly fg.deobf("curse.maven:neat-238372:4580940")
+    runtimeOnly fg.deobf("curse.maven:advanced-xray-256256:4840340")
 
 }
 

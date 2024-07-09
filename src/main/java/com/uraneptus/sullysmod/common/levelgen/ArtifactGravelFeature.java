@@ -29,6 +29,7 @@ public class ArtifactGravelFeature extends Feature<SimpleBlockConfiguration> {
                 context.level().getBlockEntity(blockpos, BlockEntityType.BRUSHABLE_BLOCK).ifPresent(brushableBlockEntity -> {
                     brushableBlockEntity.setLootTable(SMBuiltInLootTables.GRAVEL_PETRIFIED_SAPLING_TREE, blockpos.asLong());
                 });
+                worldgenlevel.setBlock(blockpos, blockstate, 2);
             }
             return true;
         } else {

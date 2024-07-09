@@ -2,14 +2,18 @@
   "feature": "sullysmod:artifact_gravel",
   "placement": [
     {
+      "type": "minecraft:count",
+      "count": 30
+    },
+    {
       "type": "minecraft:in_square"
     },
     {
       "type": "minecraft:height_range",
       "height": {
-        "type": "minecraft:trapezoid",
+        "type": "minecraft:uniform",
         "max_inclusive": {
-          "absolute": 62
+          "absolute": 50
         },
         "min_inclusive": {
           "above_bottom": 0
@@ -22,10 +26,6 @@
         "type": "minecraft:matching_blocks",
         "blocks": "minecraft:gravel"
       }
-    },
-    {
-      "type": "minecraft:count",
-      "count": 40
     },
     {
       "type": "minecraft:biome"
