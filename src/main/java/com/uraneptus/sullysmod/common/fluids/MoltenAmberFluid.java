@@ -1,5 +1,6 @@
 package com.uraneptus.sullysmod.common.fluids;
 
+import com.uraneptus.sullysmod.core.other.tags.SMBlockTags;
 import com.uraneptus.sullysmod.core.registry.SMBlocks;
 import com.uraneptus.sullysmod.core.registry.SMFluidTypes;
 import com.uraneptus.sullysmod.core.registry.SMFluids;
@@ -21,6 +22,7 @@ import net.minecraft.world.level.block.LiquidBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.Property;
+import net.minecraft.world.level.levelgen.WorldDimensions;
 import net.minecraft.world.level.material.*;
 import net.minecraftforge.event.ForgeEventFactory;
 import net.minecraftforge.fluids.FluidType;
@@ -53,22 +55,45 @@ public class MoltenAmberFluid extends ForgeFlowingFluid {
         return SMItems.MOLTEN_AMBER_BUCKET.get();
     }
 
+    @Override
+    public void tick(Level pLevel, BlockPos pPos, FluidState pState) {
+        super.tick(pLevel, pPos, pState);
+        RandomSource random = pLevel.getRandom();
+        if (random.nextInt(5) == 0) {
+            boolean cooldown = true;
+            if (pLevel.dimension() == Level.NETHER) {
+                cooldown = false;
+            } else {
+                for (BlockPos pos : BlockPos.betweenClosed(pPos.offset(-1, -1, -1), pPos.offset(1, 1, 1))) {
+                    if (pLevel.getBlockState(pos).is(SMBlockTags.MELTS_AMBER)) {
+                        cooldown = false;
+                        break;
+                    }
+                }
+            }
+            if (cooldown) {
+                if (pLevel.getBlockState(pPos).getBlock() instanceof LiquidBlock) {
+                    pLevel.setBlock(pPos, ForgeEventFactory.fireFluidPlaceBlockEvent(pLevel, pPos, pPos, SMBlocks.AMBER.get().defaultBlockState()), 3);
+                }
+            }
+        }
+    }
+
     public void animateTick(Level pLevel, BlockPos pPos, FluidState pState, RandomSource pRandom) {
         BlockPos blockpos = pPos.above();
         if (pLevel.getBlockState(blockpos).isAir() && !pLevel.getBlockState(blockpos).isSolidRender(pLevel, blockpos)) {
             if (pRandom.nextInt(100) == 0) {
-                double d0 = (double)pPos.getX() + pRandom.nextDouble();
-                double d1 = (double)pPos.getY() + 1.0;
-                double d2 = (double)pPos.getZ() + pRandom.nextDouble();
+                double d0 = (double) pPos.getX() + pRandom.nextDouble();
+                double d1 = (double) pPos.getY() + 1.0;
+                double d2 = (double) pPos.getZ() + pRandom.nextDouble();
                 pLevel.addParticle(ParticleTypes.LAVA, d0, d1, d2, 0.0, 0.0, 0.0);
                 pLevel.playLocalSound(d0, d1, d2, SoundEvents.LAVA_POP, SoundSource.BLOCKS, 0.2F + pRandom.nextFloat() * 0.2F, 0.9F + pRandom.nextFloat() * 0.15F, false);
             }
 
             if (pRandom.nextInt(200) == 0) {
-                pLevel.playLocalSound((double)pPos.getX(), (double)pPos.getY(), (double)pPos.getZ(), SoundEvents.LAVA_AMBIENT, SoundSource.BLOCKS, 0.2F + pRandom.nextFloat() * 0.2F, 0.9F + pRandom.nextFloat() * 0.15F, false);
+                pLevel.playLocalSound((double) pPos.getX(), (double) pPos.getY(), (double) pPos.getZ(), SoundEvents.LAVA_AMBIENT, SoundSource.BLOCKS, 0.2F + pRandom.nextFloat() * 0.2F, 0.9F + pRandom.nextFloat() * 0.15F, false);
             }
         }
-
     }
 
     public void randomTick(Level pLevel, BlockPos pPos, FluidState pState, RandomSource pRandom) {
@@ -193,12 +218,13 @@ public class MoltenAmberFluid extends ForgeFlowingFluid {
         return pLevel.getGameRules().getBoolean(GameRules.RULE_LAVA_SOURCE_CONVERSION);
     }
 
+    @Override
     protected void spreadTo(LevelAccessor pLevel, BlockPos pPos, BlockState pBlockState, Direction pDirection, FluidState pFluidState) {
         if (pDirection == Direction.DOWN) {
             FluidState fluidstate = pLevel.getFluidState(pPos);
-            if (this.is(FluidTags.LAVA) && fluidstate.is(FluidTags.WATER)) {
+            if (fluidstate.is(FluidTags.WATER)) {
                 if (pBlockState.getBlock() instanceof LiquidBlock) {
-                    pLevel.setBlock(pPos, ForgeEventFactory.fireFluidPlaceBlockEvent(pLevel, pPos, pPos, Blocks.STONE.defaultBlockState()), 3);
+                    pLevel.setBlock(pPos, ForgeEventFactory.fireFluidPlaceBlockEvent(pLevel, pPos, pPos, SMBlocks.AMBER.get().defaultBlockState()), 3);
                 }
 
                 this.fizz(pLevel, pPos);
