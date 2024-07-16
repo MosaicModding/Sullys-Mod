@@ -16,6 +16,4 @@ public class SMParticleTypes {
     public static final RegistryObject<ParticleWithDirectionType> RICOCHET = PARTICLES.register("ricochet", () -> new ParticleWithDirectionType(false));
 
     public static final RegistryObject<SimpleParticleType> BLOT_EYES = PARTICLES.register("blot_eyes", () -> new SimpleParticleType(false));
-
-
 }

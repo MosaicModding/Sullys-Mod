@@ -7,6 +7,7 @@ import com.uraneptus.sullysmod.common.networking.SMPacketHandler;
 import com.uraneptus.sullysmod.core.other.tags.SMBlockTags;
 import com.uraneptus.sullysmod.core.registry.SMBlocks;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.particles.BlockParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.util.Mth;
@@ -202,7 +203,7 @@ public class AmberBlock extends BaseEntityBlock {
                         RandomSource randomsource = pLevel.getRandom();
                         boolean flag = pEntity.xOld != pEntity.getX() || pEntity.zOld != pEntity.getZ();
                         if (flag && randomsource.nextBoolean()) {
-                            pLevel.addParticle(ParticleTypes.SOUL_FIRE_FLAME, pEntity.getX(), pPos.getY() + 1, pEntity.getZ(), Mth.randomBetween(randomsource, -1.0F, 1.0F) * 0.083333336F, 0.05F, Mth.randomBetween(randomsource, -1.0F, 1.0F) * 0.083333336F);
+                            pLevel.addParticle(new BlockParticleOption(ParticleTypes.BLOCK, SMBlocks.AMBER.get().defaultBlockState()), pEntity.getX(), pPos.getY() + 1, pEntity.getZ(), Mth.randomBetween(randomsource, -1.0F, 1.0F) * 0.083333336F, 0.05F, Mth.randomBetween(randomsource, -1.0F, 1.0F) * 0.083333336F);
                         }
                     }
                 }
