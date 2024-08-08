@@ -59,7 +59,11 @@ public class MoltenAmberFluid extends ForgeFlowingFluid {
     public void tick(Level pLevel, BlockPos pPos, FluidState pState) {
         super.tick(pLevel, pPos, pState);
         RandomSource random = pLevel.getRandom();
-        if (random.nextInt(5) == 0) {
+        int k = 5;
+        if (pState.isSource()) {
+            k = 15;
+        }
+        if (random.nextInt(k) == 0) {
             boolean cooldown = true;
             if (pLevel.dimension() == Level.NETHER) {
                 cooldown = false;
