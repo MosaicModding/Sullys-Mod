@@ -1,5 +1,6 @@
 package com.uraneptus.sullysmod.common.fluids;
 
+import com.uraneptus.sullysmod.SullysMod;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.client.extensions.common.IClientFluidTypeExtensions;
 import net.minecraftforge.fluids.FluidType;
@@ -7,21 +8,11 @@ import net.minecraftforge.fluids.FluidType;
 import java.util.function.Consumer;
 
 public class MoltenAmberFluidType extends FluidType {
-    private final ResourceLocation stillTexture;
-    private final ResourceLocation flowingTexture;
+    private final ResourceLocation stillTexture = new ResourceLocation(SullysMod.MOD_ID,"block/amber");;
+    private final ResourceLocation flowingTexture = new ResourceLocation(SullysMod.MOD_ID,"block/flowing_molten_amber");;
 
-    public MoltenAmberFluidType(final ResourceLocation stillTexture, final ResourceLocation flowingTexture, final Properties properties) {
+    public MoltenAmberFluidType(final Properties properties) {
         super(properties);
-        this.stillTexture = stillTexture;
-        this.flowingTexture = flowingTexture;
-    }
-
-    public ResourceLocation getStillTexture() {
-        return stillTexture;
-    }
-
-    public ResourceLocation getFlowingTexture() {
-        return flowingTexture;
     }
 
 
