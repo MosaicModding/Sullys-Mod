@@ -2,6 +2,7 @@ package com.uraneptus.sullysmod.core.registry;
 
 import com.uraneptus.sullysmod.SullysMod;
 import com.uraneptus.sullysmod.common.particletypes.ParticleWithDirectionType;
+import net.minecraft.client.particle.DripParticle;
 import net.minecraft.core.particles.ParticleType;
 import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraftforge.fml.common.Mod;
@@ -16,4 +17,6 @@ public class SMParticleTypes {
     public static final RegistryObject<ParticleWithDirectionType> RICOCHET = PARTICLES.register("ricochet", () -> new ParticleWithDirectionType(false));
 
     public static final RegistryObject<SimpleParticleType> BLOT_EYES = PARTICLES.register("blot_eyes", () -> new SimpleParticleType(false));
+
+    public static final RegistryObject<SimpleParticleType> AMBER_DRIP = PARTICLES.register("amber_drip", () -> new SimpleParticleType(false));
 }

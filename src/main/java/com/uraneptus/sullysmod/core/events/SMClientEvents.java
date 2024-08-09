@@ -7,6 +7,7 @@ import com.uraneptus.sullysmod.client.model.*;
 import com.uraneptus.sullysmod.client.model.ancient_skulls.*;
 import com.uraneptus.sullysmod.client.particles.BlotEyesParticle;
 import com.uraneptus.sullysmod.client.particles.RicochetParticle;
+import com.uraneptus.sullysmod.client.particles.SMDripParticle;
 import com.uraneptus.sullysmod.client.renderer.be.AmberBER;
 import com.uraneptus.sullysmod.client.renderer.be.ItemStandBER;
 import com.uraneptus.sullysmod.client.renderer.entities.*;
@@ -18,6 +19,7 @@ import com.uraneptus.sullysmod.core.registry.SMEntityTypes;
 import com.uraneptus.sullysmod.core.registry.SMItems;
 import com.uraneptus.sullysmod.core.registry.SMParticleTypes;
 import net.minecraft.Util;
+import net.minecraft.client.particle.DripParticle;
 import net.minecraft.client.renderer.blockentity.SkullBlockRenderer;
 import net.minecraft.client.renderer.entity.LivingEntityRenderer;
 import net.minecraft.client.renderer.item.ItemProperties;
@@ -76,6 +78,7 @@ public class SMClientEvents {
     public static void registerParticleProvider(RegisterParticleProvidersEvent event) {
         event.registerSpriteSet(SMParticleTypes.RICOCHET.get(), RicochetParticle.RicochetParticleProvider::new);
         event.registerSpriteSet(SMParticleTypes.BLOT_EYES.get(), BlotEyesParticle.Factory::new);
+        event.registerSpriteSet(SMParticleTypes.AMBER_DRIP.get(), SMDripParticle.Factory::new);
     }
 
     @SubscribeEvent
