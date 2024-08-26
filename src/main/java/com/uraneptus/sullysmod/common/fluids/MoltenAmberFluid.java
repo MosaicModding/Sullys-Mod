@@ -55,33 +55,6 @@ public class MoltenAmberFluid extends ForgeFlowingFluid {
         return SMItems.MOLTEN_AMBER_BUCKET.get();
     }
 
-    @Override
-    public void tick(Level pLevel, BlockPos pPos, FluidState pState) {
-        super.tick(pLevel, pPos, pState);
-        RandomSource random = pLevel.getRandom();
-        int k = 5;
-        if (pState.isSource()) {
-            k = 15;
-        }
-        if (random.nextInt(k) == 0) {
-            boolean cooldown = true;
-            if (pLevel.dimension() == Level.NETHER) {
-                cooldown = false;
-            } else {
-                for (BlockPos pos : BlockPos.betweenClosed(pPos.offset(-1, -1, -1), pPos.offset(1, 1, 1))) {
-                    if (pLevel.getBlockState(pos).is(SMBlockTags.MELTS_AMBER)) {
-                        cooldown = false;
-                        break;
-                    }
-                }
-            }
-            if (cooldown) {
-                if (pLevel.getBlockState(pPos).getBlock() instanceof LiquidBlock) {
-                    pLevel.setBlock(pPos, ForgeEventFactory.fireFluidPlaceBlockEvent(pLevel, pPos, pPos, SMBlocks.AMBER.get().defaultBlockState()), 3);
-                }
-            }
-        }
-    }
 
     public void animateTick(Level pLevel, BlockPos pPos, FluidState pState, RandomSource pRandom) {
         BlockPos blockpos = pPos.above();
@@ -135,7 +108,28 @@ public class MoltenAmberFluid extends ForgeFlowingFluid {
                 }
             }
         }
-
+        int k = 2;
+        if (pState.isSource()) {
+            k = 15;
+        }
+        if (pRandom.nextInt(k) == 0) {
+            boolean cooldown = true;
+            if (pLevel.dimension() == Level.NETHER) {
+                cooldown = false;
+            } else {
+                for (BlockPos pos : BlockPos.betweenClosed(pPos.offset(-1, -1, -1), pPos.offset(1, 1, 1))) {
+                    if (pLevel.getBlockState(pos).is(SMBlockTags.MELTS_AMBER) && !pLevel.getBlockState(pos).is(SMBlocks.MOLTEN_AMBER_BLOCK.get())) {
+                        cooldown = false;
+                        break;
+                    }
+                }
+            }
+            if (cooldown) {
+                if (pLevel.getBlockState(pPos).getBlock() instanceof LiquidBlock) {
+                    pLevel.setBlock(pPos, ForgeEventFactory.fireFluidPlaceBlockEvent(pLevel, pPos, pPos, SMBlocks.AMBER.get().defaultBlockState()), 3);
+                }
+            }
+        }
     }
 
     private boolean hasFlammableNeighbours(LevelReader pLevel, BlockPos pPos) {

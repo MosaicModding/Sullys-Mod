@@ -149,7 +149,7 @@ public class SMBlockTagsProvider extends BlockTagsProvider {
                 Blocks.CAMPFIRE,
                 Blocks.SOUL_CAMPFIRE,
                 Blocks.LAVA,
-                SMBlocks.AMBER_LANTERN.get()
+                SMBlocks.MOLTEN_AMBER_BLOCK.get()
         );
 
         //Forge Tags
