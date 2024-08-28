@@ -21,7 +21,6 @@ import net.minecraftforge.common.ForgeSpawnEggItem;
 import net.minecraftforge.registries.RegistryObject;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.function.Supplier;
 
@@ -69,7 +68,7 @@ public class SMItems {
     public static Map<Supplier<Item>, Integer> TRADES = new HashMap<>();
 
     public static final RegistryObject<Item> BROKEN_VASE = registerArtifact("broken_vase", "A large piece of the side is missing", 10);
-    public static final RegistryObject<Item> PRIMITIVE_KNIFE = registerArtifact("primitive_knife", "A small knife made from obsidian", 15);
+    public static final RegistryObject<Item> PRIMITIVE_KNIFE = registerArtifact("primitive_knife", "A small knife made from obsidian", () -> new ArtifactWeaponItem(5, -2.5F, null, SMProperties.Items.artifacts().durability(20)), 15);
     public static final RegistryObject<Item> MINERS_HELMET = registerArtifact("miners_helmet", "Looks like it’s previous owner couldn’t get the candle lit anymore",
             () -> new ArtifactHelmetItem(SMArmorMaterials.MINERS_HELMET, SMProperties.Items.artifacts(), MinersHelmetModel.INSTANCE), 15);
     public static final RegistryObject<Item> SMALL_DENTED_HELMET = registerArtifact("small_dented_helmet", "A small rusty helmet. Barely fits",
@@ -109,7 +108,7 @@ public class SMItems {
     public static final RegistryObject<Item> TORN_CLOTH = registerArtifact("torn_cloth", "A dirty torn off piece of clothing", 6);
     public static final RegistryObject<Item> GOLDEN_GOBLET = registerArtifact("golden_goblet", "An old but beautiful chalice made by a skilled goldsmith", 29);
     public static final RegistryObject<Item> EMERALD_EARRING = registerArtifact("emerald_earring", "Besides the beautiful emerald, it looks sloppily put together", 17);
-    public static final RegistryObject<Item> BROKEN_BOTTLE = registerArtifact("broken_bottle", "The top half of a bottle", 5);
+    public static final RegistryObject<Item> BROKEN_BOTTLE = registerArtifact("broken_bottle", "The top half of a bottle", () -> new ArtifactWeaponItem(4, -1.2F, SMSounds.BROKEN_BOTTLE_SHATTERS, SMProperties.Items.artifacts().durability(1)), 5);
     public static final RegistryObject<Item> FROG_IDOL = registerArtifact("frog_idol", "Everybody likes frogs", 29);
 
     public static RegistryObject<Item> registerArtifact(String name, String description, int price) {

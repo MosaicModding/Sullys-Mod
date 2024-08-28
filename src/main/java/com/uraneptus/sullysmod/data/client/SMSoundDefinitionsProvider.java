@@ -52,6 +52,11 @@ public class SMSoundDefinitionsProvider extends SoundDefinitionsProvider {
                 sound(SullysMod.modPrefix("item/throwing_knife/throw1")),
                 sound(SullysMod.modPrefix("item/throwing_knife/throw2"))
         );
+        this.addBasicSound(SMSounds.BROKEN_BOTTLE_SHATTERS,
+                sound("random/glass1").pitch(1.3F),
+                sound("random/glass2").pitch(1.3F),
+                sound("random/glass3").pitch(1.3F)
+        );
 
         //Block Sounds
         this.addBasicSound(SMSounds.POLISH_JADE,

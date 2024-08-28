@@ -408,6 +408,23 @@
     ],
     "subtitle": "subtitles.entity.tortoise_shell.place"
   },
+  "item.broken_bottle.shatter": {
+    "sounds": [
+      {
+        "name": "random/glass1",
+        "pitch": 1.3
+      },
+      {
+        "name": "random/glass2",
+        "pitch": 1.3
+      },
+      {
+        "name": "random/glass3",
+        "pitch": 1.3
+      }
+    ],
+    "subtitle": "subtitles.item.broken_bottle.shatter"
+  },
   "item.throwing_knife.hit": {
     "sounds": [
       "sullysmod:item/throwing_knife/hit1",

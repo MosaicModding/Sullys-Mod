@@ -8,6 +8,7 @@ import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemDisplayContext;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.client.model.generators.ItemModelProvider;
@@ -66,12 +67,10 @@ public class SMItemModelProvider extends ItemModelProvider {
         basicBlockItem(SMBlocks.ROUGH_JADE_BRICK_SLAB);
         basicItem(SMItems.MUSIC_DISC_SCOUR);
         basicItem(SMItems.MUSIC_DISC_SUNKEN_PAST);
-        jadeShieldItem(SMItems.JADE_SHIELD);
         basicItem(SMItems.TORTOISE_SCUTE);
         basicItem(SMItems.TORTOISE_SHELL);
         basicItem(SMItems.JADE_UPGRADE_SMITHING_TEMPLATE);
         basicItem(SMItems.GLASS_VIAL);
-        venomVialItem(SMItems.VENOM_VIAL);
         basicItem(SMItems.JADE_HORSE_ARMOR);
         basicItemHandheld(SMItems.THROWING_KNIFE);
         basicBlockItem(SMBlocks.AMBER);
@@ -141,7 +140,7 @@ public class SMItemModelProvider extends ItemModelProvider {
         basicItem(SMItems.TORN_CLOTH);
         basicItem(SMItems.GOLDEN_GOBLET);
         basicItem(SMItems.EMERALD_EARRING);
-        basicItem(SMItems.BROKEN_BOTTLE);
+        basicItemHandheld(SMItems.BROKEN_BOTTLE);
         basicItem(SMItems.FROG_IDOL);
         ancientSkull(SMBlocks.CRACKED_ANCIENT_SKULL.getFirst());
         ancientSkull(SMBlocks.CRESTED_ANCIENT_SKULL.getFirst());
@@ -151,6 +150,10 @@ public class SMItemModelProvider extends ItemModelProvider {
         ancientSkull(SMBlocks.LONG_ANCIENT_SKULL.getFirst());
         ancientSkull(SMBlocks.TINY_ANCIENT_SKULL.getFirst());
         ancientSkull(SMBlocks.WIDE_ANCIENT_SKULL.getFirst());
+        //Single use methods
+        brokenBottle();
+        venomVialItem();
+        jadeShieldItem();
     }
 
     private void basicBlockItem(Supplier<? extends Block> blockForItem) {
@@ -201,8 +204,9 @@ public class SMItemModelProvider extends ItemModelProvider {
         withExistingParent(name(item.get()), SPAWN_EGG);
     }
 
-    private void jadeShieldItem(Supplier<? extends Item> item) {
-        getBuilder(name(item.get()) + "_blocking")
+    private void jadeShieldItem() {
+        Item item = SMItems.JADE_SHIELD.get();
+        getBuilder(name(item) + "_blocking")
                 .parent(new ModelFile.UncheckedModelFile(ENTITY))
                 .guiLight(BlockModel.GuiLight.FRONT)
                 .texture("particle", vanillaBlockLocation(name(Blocks.DARK_OAK_PLANKS)))
@@ -214,7 +218,7 @@ public class SMItemModelProvider extends ItemModelProvider {
                 .transform(ItemDisplayContext.GUI).rotation(15, -25, -5).translation(2, 2.5F, 0).scale(0.65F, 0.65F, 0.65F).end()
                 .end();
 
-        getBuilder(name(item.get()))
+        getBuilder(name(item))
                 .parent(new ModelFile.UncheckedModelFile(ENTITY))
                 .guiLight(BlockModel.GuiLight.FRONT)
                 .texture("particle", vanillaBlockLocation(name(Blocks.DARK_OAK_PLANKS)))
@@ -227,11 +231,12 @@ public class SMItemModelProvider extends ItemModelProvider {
                 .transform(ItemDisplayContext.FIXED).rotation(0, 180, 0).translation(-4.5F, 4.5F, -5).scale(0.55F, 0.55F, 0.55F).end()
                 .transform(ItemDisplayContext.GROUND).rotation(0, 0, 0).translation(2, 4, 2).scale(0.25F, 0.25F, 0.25F).end()
                 .end()
-                .override().predicate(new ResourceLocation("blocking"), 1).model(new ModelFile.UncheckedModelFile(modItemLocation(name(item.get()) + "_blocking")));
+                .override().predicate(new ResourceLocation("blocking"), 1).model(new ModelFile.UncheckedModelFile(modItemLocation(name(item) + "_blocking")));
     }
 
-    private void venomVialItem(Supplier<? extends Item> item) {
-        withExistingParent(name(item.get()), GENERATED)
+    private void venomVialItem() {
+        Item vial = SMItems.VENOM_VIAL.get();
+        withExistingParent(name(vial), GENERATED)
                 .texture("layer0", modItemLocation("glass_vial"))
                 .texture("layer1", modItemLocation("venom_vial_1"))
                 .texture("layer2", modItemLocation("venom_vial_2"));
@@ -248,5 +253,18 @@ public class SMItemModelProvider extends ItemModelProvider {
                 .transform(ItemDisplayContext.THIRD_PERSON_RIGHT_HAND).rotation(45, 45, 0).translation(0, 3, 0).scale(0.5F, 0.5F, 0.5F).end()
                 .end();
 
+    }
+
+    private void brokenBottle() {
+        Item bottle = SMItems.BROKEN_BOTTLE.get();
+        getBuilder(name(bottle))
+                .parent(getExistingFile(HANDHELD))
+                .texture("layer0", modItemLocation(name(bottle)))
+                .transforms()
+                .transform(ItemDisplayContext.THIRD_PERSON_RIGHT_HAND).rotation(180, -90, 0).translation(0, 4, 0.5F).scale(0.85F, 0.85F, 0.85F).end()
+                .transform(ItemDisplayContext.THIRD_PERSON_LEFT_HAND).rotation(-180, 90, 0).translation(0, 4, 0.5F).scale(0.85F, 0.85F, 0.85F).end()
+                .transform(ItemDisplayContext.FIRST_PERSON_RIGHT_HAND).rotation(180, -90, 0).translation(1.13F, 3.2F, 1.13F).scale(0.68F, 0.68F, 0.68F).end()
+                .transform(ItemDisplayContext.FIRST_PERSON_LEFT_HAND).rotation(-180, 90, 0).translation(1.13F, 3.2F, 1.13F).scale(0.68F, 0.68F, 0.68F).end()
+                .end();
     }
 }

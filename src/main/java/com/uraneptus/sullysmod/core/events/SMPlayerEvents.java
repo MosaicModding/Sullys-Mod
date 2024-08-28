@@ -13,6 +13,7 @@ import com.uraneptus.sullysmod.core.registry.SMItems;
 import com.uraneptus.sullysmod.core.registry.SMParticleTypes;
 import com.uraneptus.sullysmod.core.registry.SMSounds;
 import net.minecraft.ChatFormatting;
+import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ItemParticleOption;
@@ -46,6 +47,7 @@ import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.loading.FMLEnvironment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -165,8 +167,10 @@ public class SMPlayerEvents {
             }
         });
 
-        if (itemstack.is(SMItems.JADE_SHIELD.get()) || itemstack.is(SMItemTags.ARTIFACTS)) {
-            itemstack.hideTooltipPart(ItemStack.TooltipPart.MODIFIERS);
+        if (itemstack.is(SMItems.JADE_SHIELD.get()) || (itemstack.is(SMItemTags.ARTIFACTS) && !itemstack.is(SMItems.BROKEN_BOTTLE.get()) && !itemstack.is(SMItems.PRIMITIVE_KNIFE.get()))) { //This also hides damage values of artifacts
+            if (FMLEnvironment.production) {
+                itemstack.hideTooltipPart(ItemStack.TooltipPart.MODIFIERS);
+            }
         }
 
         if (player != null) {

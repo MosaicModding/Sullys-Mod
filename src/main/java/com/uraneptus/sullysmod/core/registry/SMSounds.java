@@ -23,6 +23,7 @@ public class SMSounds {
     public static final RegistryObject<SoundEvent> THROWING_KNIFE_HIT = HELPER.createSoundEvent("item.throwing_knife.hit");
     public static final RegistryObject<SoundEvent> THROWING_KNIFE_HIT_GROUND = HELPER.createSoundEvent("item.throwing_knife.hit_ground");
     public static final RegistryObject<SoundEvent> THROWING_KNIFE_THROW = HELPER.createSoundEvent("item.throwing_knife.throw");
+    public static final RegistryObject<SoundEvent> BROKEN_BOTTLE_SHATTERS = HELPER.createSoundEvent("item.broken_bottle.shatter");
 
     //Block Sounds
     public static final RegistryObject<SoundEvent> JADE_RICOCHET = HELPER.createSoundEvent("block.jade.ricochet");

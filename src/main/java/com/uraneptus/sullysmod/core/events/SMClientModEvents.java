@@ -2,6 +2,8 @@ package com.uraneptus.sullysmod.core.events;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Maps;
+import com.mojang.blaze3d.platform.Window;
+import com.mojang.blaze3d.systems.RenderSystem;
 import com.uraneptus.sullysmod.SullysMod;
 import com.uraneptus.sullysmod.client.model.*;
 import com.uraneptus.sullysmod.client.model.ancient_skulls.*;
@@ -13,13 +15,15 @@ import com.uraneptus.sullysmod.client.renderer.be.ItemStandBER;
 import com.uraneptus.sullysmod.client.renderer.entities.*;
 import com.uraneptus.sullysmod.client.renderer.entities.layer.StuckInAmberLayer;
 import com.uraneptus.sullysmod.common.blocks.AncientSkullBlock;
+import com.uraneptus.sullysmod.common.caps.SMEntityCap;
 import com.uraneptus.sullysmod.common.items.VenomVialItem;
 import com.uraneptus.sullysmod.core.registry.SMBlockEntityTypes;
 import com.uraneptus.sullysmod.core.registry.SMEntityTypes;
 import com.uraneptus.sullysmod.core.registry.SMItems;
 import com.uraneptus.sullysmod.core.registry.SMParticleTypes;
 import net.minecraft.Util;
-import net.minecraft.client.particle.DripParticle;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.renderer.blockentity.SkullBlockRenderer;
 import net.minecraft.client.renderer.entity.LivingEntityRenderer;
 import net.minecraft.client.renderer.item.ItemProperties;
@@ -31,6 +35,7 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.client.event.RegisterColorHandlersEvent;
 import net.minecraftforge.client.event.RegisterParticleProvidersEvent;
+import net.minecraftforge.client.event.RenderGuiEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
@@ -41,7 +46,7 @@ import java.util.stream.Collectors;
 
 @Mod.EventBusSubscriber(modid = SullysMod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 @SuppressWarnings("unused")
-public class SMClientEvents {
+public class SMClientModEvents {
 
     @SubscribeEvent
     public static void registerEntityRenderer(EntityRenderersEvent.RegisterRenderers event) {
