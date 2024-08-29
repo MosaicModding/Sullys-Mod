@@ -18,6 +18,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ItemParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.network.chat.CommonComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Style;
 import net.minecraft.server.level.ServerPlayer;
@@ -183,6 +184,12 @@ public class SMPlayerEvents {
                         }
                     }
                 }
+            }
+            if (itemstack.is(SMItems.THROWING_KNIFE.get())) {
+                event.getToolTip().add(CommonComponents.EMPTY);
+                event.getToolTip().add(SMTextDefinitions.WHEN_THROWN_TOOLTIP);
+                event.getToolTip().add(SMTextDefinitions.THROWING_KNIFE_DAMAGE);
+                event.getToolTip().add(SMTextDefinitions.THROWING_KNIFE_AIR_DAMAGE);
             }
         }
     }

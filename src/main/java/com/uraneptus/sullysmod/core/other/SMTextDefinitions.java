@@ -25,6 +25,9 @@ public class SMTextDefinitions {
     public static Component JADE_UPGRADE_BASE_SLOT_DESCRIPTION;
     public static Component JADE_UPGRADE_ADDITIONS_SLOT_DESCRIPTION;
     public static Component ARTIFACT_TAB_TITLE;
+    public static Component WHEN_THROWN_TOOLTIP;
+    public static Component THROWING_KNIFE_DAMAGE;
+    public static Component THROWING_KNIFE_AIR_DAMAGE;
 
     //ADVANCEMENTS
     public static final String ADVENTURE_PATH = "advancements.adventure.";
@@ -84,6 +87,10 @@ public class SMTextDefinitions {
         FIND_TABLETS_ADV = SMTextUtil.addAdvancementTranslatables(ADVENTURE_PATH + FIND_TABLETS_ADV_NAME, "The boogeyman", "Find both ancient tablets");
         ALL_FOSSILS_ADV = SMTextUtil.addAdvancementTranslatables(ADVENTURE_PATH + ALL_FOSSILS_ADV_NAME, "Medusa's been busy", "Find all fossils");
         ALL_ARTIFACTS_ADV = SMTextUtil.addAdvancementTranslatables(ADVENTURE_PATH + ALL_ARTIFACTS_ADV_NAME, "A grand collection", "Find all artifacts");
+        WHEN_THROWN_TOOLTIP = SMTextUtil.addSMTranslatable("item.modifiers.thrown", "When Thrown:").withStyle(ChatFormatting.GRAY);
+        THROWING_KNIFE_DAMAGE = SMTextUtil.addSMTranslatable("item.throwing_knife.damage", " 2 Attack Damage").withStyle(ChatFormatting.DARK_GREEN);
+        THROWING_KNIFE_AIR_DAMAGE = SMTextUtil.addSMTranslatable("item.throwing_knife.damage.air", " 2 Airborne Bonus").withStyle(ChatFormatting.GOLD);
+
     }
 
     private static ResourceLocation jadeUpgradeString(String suffix) {
