@@ -9,6 +9,7 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.RenderPlayerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.loading.FMLEnvironment;
 
 import java.util.Map;
 import java.util.Set;
@@ -27,10 +28,10 @@ public class SMClientForgeEvents {
     public static void onEvent(RenderPlayerEvent.Post event) {
         Player player = event.getEntity();
         UUID uuid = player.getGameProfile().getId();
-        if (DEV_UUIDS.contains(uuid)) {
+        if (DEV_UUIDS.contains(uuid) || !FMLEnvironment.production) {
             ResourceLocation cape = SullysMod.modPrefix("textures/entity/mosaic_modding_cape.png");
             if (player instanceof AbstractClientPlayer clientPlayer && clientPlayer.playerInfo != null) {
-                if (clientPlayer.isCapeLoaded() && clientPlayer.getCloakTextureLocation() == null) {
+                if (clientPlayer.isCapeLoaded()) {
                     Map<MinecraftProfileTexture.Type, ResourceLocation> playerTextures = clientPlayer.playerInfo.textureLocations;
                     playerTextures.put(MinecraftProfileTexture.Type.CAPE, cape);
                     playerTextures.put(MinecraftProfileTexture.Type.ELYTRA, cape);
