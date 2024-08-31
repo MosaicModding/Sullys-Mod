@@ -2,7 +2,10 @@
   "type": "sullysmod:petrified_tree",
   "config": {
     "structure_variants": [
-      "sullysmod:petrified/petrified_tree_2"
+      "sullysmod:petrified/petrified_tree_0",
+      "sullysmod:petrified/petrified_tree_1",
+      "sullysmod:petrified/petrified_tree_2",
+      "sullysmod:petrified/petrified_tree_3"
     ]
   }
 }
