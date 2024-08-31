@@ -109,6 +109,10 @@ mixin {
     config "${mod_id}.mixins.json"
 }
 
+java {
+    withSourcesJar()
+}
+
 jar {
     manifest {
         attributes([
