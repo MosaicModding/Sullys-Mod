@@ -73,6 +73,18 @@
       },
       "trigger": "minecraft:inventory_changed"
     },
+    "ribbed_ancient_skull": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "sullysmod:ribbed_ancient_skull"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
     "tiny_ancient_skull": {
       "conditions": {
         "items": [
@@ -137,6 +149,9 @@
     ],
     [
       "wide_ancient_skull"
+    ],
+    [
+      "ribbed_ancient_skull"
     ]
   ],
   "rewards": {

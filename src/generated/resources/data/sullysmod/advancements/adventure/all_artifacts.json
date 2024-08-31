@@ -481,6 +481,18 @@
       },
       "trigger": "minecraft:inventory_changed"
     },
+    "ribbed_ancient_skull": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "sullysmod:ribbed_ancient_skull"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
     "rusty_tools": {
       "conditions": {
         "items": [
@@ -598,31 +610,13 @@
       "cracked_ancient_skull"
     ],
     [
-      "torn_cloth"
-    ],
-    [
       "primitive_knife"
     ],
     [
       "fossilised_footstep"
     ],
     [
-      "broken_vase"
-    ],
-    [
       "copper_cog"
-    ],
-    [
-      "crested_ancient_skull"
-    ],
-    [
-      "tiny_ancient_skull"
-    ],
-    [
-      "mysterious_plate"
-    ],
-    [
-      "long_ancient_skull"
     ],
     [
       "amber_encased_bug"
@@ -631,19 +625,10 @@
       "wide_ancient_skull"
     ],
     [
-      "lost_crown"
-    ],
-    [
       "golden_belt_buckle"
     ],
     [
-      "emerald_earring"
-    ],
-    [
       "golden_goblet"
-    ],
-    [
-      "frog_idol"
     ],
     [
       "lost_journal"
@@ -653,18 +638,6 @@
     ],
     [
       "lost_bag"
-    ],
-    [
-      "fossilised_bone"
-    ],
-    [
-      "miners_helmet"
-    ],
-    [
-      "petrified_cookie"
-    ],
-    [
-      "deepslate_vase"
     ],
     [
       "dried_cyan_flower"
@@ -679,10 +652,76 @@
       "small_dented_helmet"
     ],
     [
+      "stone_idol"
+    ],
+    [
+      "death_whistle"
+    ],
+    [
+      "jade_amulet"
+    ],
+    [
+      "dried_red_flower"
+    ],
+    [
+      "lost_recipe_book"
+    ],
+    [
+      "familiar_cube"
+    ],
+    [
+      "ominous_tablet"
+    ],
+    [
+      "lost_sketchbook"
+    ],
+    [
+      "torn_cloth"
+    ],
+    [
+      "broken_vase"
+    ],
+    [
+      "crested_ancient_skull"
+    ],
+    [
+      "tiny_ancient_skull"
+    ],
+    [
+      "mysterious_plate"
+    ],
+    [
+      "long_ancient_skull"
+    ],
+    [
+      "lost_crown"
+    ],
+    [
+      "emerald_earring"
+    ],
+    [
+      "frog_idol"
+    ],
+    [
+      "fossilised_bone"
+    ],
+    [
+      "miners_helmet"
+    ],
+    [
+      "petrified_cookie"
+    ],
+    [
+      "deepslate_vase"
+    ],
+    [
       "arrowhead"
     ],
     [
       "fossilised_shells"
+    ],
+    [
+      "ribbed_ancient_skull"
     ],
     [
       "moon_tablet"
@@ -694,46 +733,22 @@
       "broken_bottle"
     ],
     [
-      "stone_idol"
-    ],
-    [
       "rusty_tools"
     ],
     [
       "fossilised_fish"
     ],
     [
-      "death_whistle"
-    ],
-    [
       "torn_manuscript"
-    ],
-    [
-      "jade_amulet"
-    ],
-    [
-      "dried_red_flower"
     ],
     [
       "metallic_skull"
     ],
     [
-      "lost_recipe_book"
-    ],
-    [
       "small_geode"
     ],
     [
-      "familiar_cube"
-    ],
-    [
       "flatbilled_ancient_skull"
-    ],
-    [
-      "ominous_tablet"
-    ],
-    [
-      "lost_sketchbook"
     ],
     [
       "horned_ancient_skull"

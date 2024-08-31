@@ -36,7 +36,9 @@ public class SMBlockEntityTypes {
             SMBlocks.TINY_ANCIENT_SKULL.getFirst().get(),
             SMBlocks.TINY_ANCIENT_SKULL.getSecond().get(),
             SMBlocks.WIDE_ANCIENT_SKULL.getFirst().get(),
-            SMBlocks.WIDE_ANCIENT_SKULL.getSecond().get()
+            SMBlocks.WIDE_ANCIENT_SKULL.getSecond().get(),
+            SMBlocks.RIBBED_ANCIENT_SKULL.getFirst().get(),
+            SMBlocks.RIBBED_ANCIENT_SKULL.getSecond().get()
     );
 
     public static final RegistryObject<BlockEntityType<FlingerTotemBE>> FLINGER_TOTEM = HELPER.createBlockEntity("flinger_totem", FlingerTotemBE::new, FlingerTotem.class);

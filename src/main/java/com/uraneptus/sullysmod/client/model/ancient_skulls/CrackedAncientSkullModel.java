@@ -13,7 +13,7 @@ public class CrackedAncientSkullModel extends BaseAncientSkullModel {
 	public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(SullysMod.modPrefix("cracked"), "main");
 
 	public CrackedAncientSkullModel(ModelPart root) {
-		super(root, 0.8F);
+		super(root);
 	}
 
 	public static LayerDefinition createBodyLayer() {

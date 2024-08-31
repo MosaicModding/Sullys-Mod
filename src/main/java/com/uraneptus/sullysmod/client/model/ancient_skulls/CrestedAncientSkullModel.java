@@ -10,7 +10,7 @@ public class CrestedAncientSkullModel extends BaseAncientSkullModel {
 	public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(SullysMod.modPrefix("crested"), "main");
 
 	public CrestedAncientSkullModel(ModelPart root) {
-		super(root, 0.8F);
+		super(root);
 	}
 
 	public static LayerDefinition createBodyLayer() {

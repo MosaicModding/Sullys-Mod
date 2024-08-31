@@ -11,7 +11,7 @@ public class GiganticAncientSkullModel extends BaseAncientSkullModel {
 
 
 	public GiganticAncientSkullModel(ModelPart root) {
-		super(root, 0.8F);
+		super(root);
 	}
 
 	public static LayerDefinition createBodyLayer() {

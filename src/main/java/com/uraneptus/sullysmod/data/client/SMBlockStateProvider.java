@@ -89,6 +89,7 @@ public class SMBlockStateProvider extends BlockStateProvider {
         ancientSkull(SMBlocks.LONG_ANCIENT_SKULL);
         ancientSkull(SMBlocks.TINY_ANCIENT_SKULL);
         ancientSkull(SMBlocks.WIDE_ANCIENT_SKULL);
+        ancientSkull(SMBlocks.RIBBED_ANCIENT_SKULL);
     }
 
     private void basicBlock(Supplier<? extends Block> block) {

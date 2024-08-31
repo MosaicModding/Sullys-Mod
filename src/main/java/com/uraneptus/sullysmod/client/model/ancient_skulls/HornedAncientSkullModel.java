@@ -11,7 +11,7 @@ public class HornedAncientSkullModel extends BaseAncientSkullModel {
 
 
 	public HornedAncientSkullModel(ModelPart root) {
-		super(root, 0.8F);
+		super(root);
 	}
 
 	public static LayerDefinition createBodyLayer() {

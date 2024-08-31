@@ -150,6 +150,7 @@ public class SMItemModelProvider extends ItemModelProvider {
         ancientSkull(SMBlocks.LONG_ANCIENT_SKULL.getFirst());
         ancientSkull(SMBlocks.TINY_ANCIENT_SKULL.getFirst());
         ancientSkull(SMBlocks.WIDE_ANCIENT_SKULL.getFirst());
+        ancientSkull(SMBlocks.RIBBED_ANCIENT_SKULL.getFirst());
         //Single use methods
         brokenBottle();
         venomVialItem();

@@ -7,11 +7,9 @@ import net.minecraft.client.model.geom.ModelPart;
 
 public abstract class BaseAncientSkullModel extends SkullModelBase {
     private final ModelPart head;
-    private final float scale;
 
-    public BaseAncientSkullModel(ModelPart root, float scale) {
+    public BaseAncientSkullModel(ModelPart root) {
         this.head = root.getChild("head");
-        this.scale = scale;
     }
 
     @Override
@@ -23,7 +21,6 @@ public abstract class BaseAncientSkullModel extends SkullModelBase {
     @Override
     public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
         poseStack.pushPose();
-        //poseStack.scale(this.scale, this.scale, this.scale);
         this.head.render(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
         poseStack.popPose();
     }

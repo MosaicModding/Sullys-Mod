@@ -2,8 +2,6 @@ package com.uraneptus.sullysmod.core.events;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Maps;
-import com.mojang.blaze3d.platform.Window;
-import com.mojang.blaze3d.systems.RenderSystem;
 import com.uraneptus.sullysmod.SullysMod;
 import com.uraneptus.sullysmod.client.model.*;
 import com.uraneptus.sullysmod.client.model.ancient_skulls.*;
@@ -15,15 +13,12 @@ import com.uraneptus.sullysmod.client.renderer.be.ItemStandBER;
 import com.uraneptus.sullysmod.client.renderer.entities.*;
 import com.uraneptus.sullysmod.client.renderer.entities.layer.StuckInAmberLayer;
 import com.uraneptus.sullysmod.common.blocks.AncientSkullBlock;
-import com.uraneptus.sullysmod.common.caps.SMEntityCap;
 import com.uraneptus.sullysmod.common.items.VenomVialItem;
 import com.uraneptus.sullysmod.core.registry.SMBlockEntityTypes;
 import com.uraneptus.sullysmod.core.registry.SMEntityTypes;
 import com.uraneptus.sullysmod.core.registry.SMItems;
 import com.uraneptus.sullysmod.core.registry.SMParticleTypes;
 import net.minecraft.Util;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.renderer.blockentity.SkullBlockRenderer;
 import net.minecraft.client.renderer.entity.LivingEntityRenderer;
 import net.minecraft.client.renderer.item.ItemProperties;
@@ -31,17 +26,18 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.DefaultAttributes;
+import net.minecraft.world.level.block.SkullBlock;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.client.event.RegisterColorHandlersEvent;
 import net.minecraftforge.client.event.RegisterParticleProvidersEvent;
-import net.minecraftforge.client.event.RenderGuiEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @Mod.EventBusSubscriber(modid = SullysMod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
@@ -77,6 +73,7 @@ public class SMClientModEvents {
         event.registerLayerDefinition(LongAncientSkullModel.LAYER_LOCATION, LongAncientSkullModel::createBodyLayer);
         event.registerLayerDefinition(TinyAncientSkullModel.LAYER_LOCATION, TinyAncientSkullModel::createBodyLayer);
         event.registerLayerDefinition(WideAncientSkullModel.LAYER_LOCATION, WideAncientSkullModel::createBodyLayer);
+        event.registerLayerDefinition(RibbedAncientSkullModel.LAYER_LOCATION, RibbedAncientSkullModel::createBodyLayer);
     }
 
     @SubscribeEvent
@@ -89,16 +86,13 @@ public class SMClientModEvents {
     @SubscribeEvent
     public static void onClientSetup(FMLClientSetupEvent event) {
         ItemProperties.register(SMItems.JADE_SHIELD.get(), new ResourceLocation("blocking"), (itemStack, clientWorld, livingEntity, useTime) -> livingEntity != null && livingEntity.isUsingItem() && livingEntity.getUseItem() == itemStack ? 1.0F : 0.0F);
-        SkullBlockRenderer.SKIN_BY_TYPE.putAll(Util.make(Maps.newHashMap(), (map) -> {
-            map.put(AncientSkullBlock.Types.CRACKED, SullysMod.modPrefix("textures/entity/ancient_skulls/cracked.png"));
-            map.put(AncientSkullBlock.Types.CRESTED, SullysMod.modPrefix("textures/entity/ancient_skulls/crested.png"));
-            map.put(AncientSkullBlock.Types.FLATBILLED, SullysMod.modPrefix("textures/entity/ancient_skulls/flatbilled.png"));
-            map.put(AncientSkullBlock.Types.GIGANTIC, SullysMod.modPrefix("textures/entity/ancient_skulls/gigantic.png"));
-            map.put(AncientSkullBlock.Types.HORNED, SullysMod.modPrefix("textures/entity/ancient_skulls/horned.png"));
-            map.put(AncientSkullBlock.Types.LONG, SullysMod.modPrefix("textures/entity/ancient_skulls/long.png"));
-            map.put(AncientSkullBlock.Types.TINY, SullysMod.modPrefix("textures/entity/ancient_skulls/tiny.png"));
-            map.put(AncientSkullBlock.Types.WIDE, SullysMod.modPrefix("textures/entity/ancient_skulls/wide.png"));
-        }));
+        SkullBlockRenderer.SKIN_BY_TYPE.putAll(Util.make(Maps.newHashMap(), SMClientModEvents::addSkull));
+    }
+
+    public static void addSkull(Map<SkullBlock.Type, ResourceLocation> map) {
+        for (AncientSkullBlock.Type type : AncientSkullBlock.Types.values()) {
+            map.put(type, SullysMod.modPrefix("textures/entity/ancient_skulls/" + type.toString().toLowerCase() + ".png"));
+        }
     }
 
     @SubscribeEvent
@@ -116,6 +110,7 @@ public class SMClientModEvents {
         event.registerSkullModel(AncientSkullBlock.Types.LONG, new LongAncientSkullModel(event.getEntityModelSet().bakeLayer(LongAncientSkullModel.LAYER_LOCATION)));
         event.registerSkullModel(AncientSkullBlock.Types.TINY, new TinyAncientSkullModel(event.getEntityModelSet().bakeLayer(TinyAncientSkullModel.LAYER_LOCATION)));
         event.registerSkullModel(AncientSkullBlock.Types.WIDE, new WideAncientSkullModel(event.getEntityModelSet().bakeLayer(WideAncientSkullModel.LAYER_LOCATION)));
+        event.registerSkullModel(AncientSkullBlock.Types.RIBBED, new RibbedAncientSkullModel(event.getEntityModelSet().bakeLayer(RibbedAncientSkullModel.LAYER_LOCATION)));
     }
 
     @SuppressWarnings({"unchecked", "rawtypes"})

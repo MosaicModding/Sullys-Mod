@@ -11,7 +11,7 @@ public class FlatbilledAncientSkullModel extends BaseAncientSkullModel {
 
 
 	public FlatbilledAncientSkullModel(ModelPart root) {
-		super(root, 0.8F);
+		super(root);
 	}
 
 	public static LayerDefinition createBodyLayer() {
