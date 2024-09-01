@@ -123,6 +123,15 @@
     ],
     "subtitle": "subtitles.block.ancient_skull.long"
   },
+  "block.note_block.ancient_skull.ribbed": {
+    "sounds": [
+      {
+        "type": "event",
+        "name": "entity.skeleton.ambient"
+      }
+    ],
+    "subtitle": "subtitles.block.ancient_skull.ribbed"
+  },
   "block.note_block.ancient_skull.tiny": {
     "sounds": [
       {
@@ -131,6 +140,15 @@
       }
     ],
     "subtitle": "subtitles.block.ancient_skull.tiny"
+  },
+  "block.note_block.ancient_skull.unicorn": {
+    "sounds": [
+      {
+        "type": "event",
+        "name": "entity.skeleton.ambient"
+      }
+    ],
+    "subtitle": "subtitles.block.ancient_skull.unicorn"
   },
   "block.note_block.ancient_skull.wide": {
     "sounds": [

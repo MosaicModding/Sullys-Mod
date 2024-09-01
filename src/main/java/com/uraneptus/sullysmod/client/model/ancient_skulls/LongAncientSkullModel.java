@@ -6,7 +6,7 @@ import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
 
-public class LongAncientSkullModel extends BaseAncientSkullModel {
+public class LongAncientSkullModel extends AbstractAncientSkullModel {
 	public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(SullysMod.modPrefix("long"), "main");
 
 

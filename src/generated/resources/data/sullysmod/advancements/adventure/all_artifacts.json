@@ -577,6 +577,18 @@
       },
       "trigger": "minecraft:inventory_changed"
     },
+    "unicorn_ancient_skull": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "sullysmod:unicorn_ancient_skull"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
     "wide_ancient_skull": {
       "conditions": {
         "items": [
@@ -731,6 +743,9 @@
     ],
     [
       "broken_bottle"
+    ],
+    [
+      "unicorn_ancient_skull"
     ],
     [
       "rusty_tools"

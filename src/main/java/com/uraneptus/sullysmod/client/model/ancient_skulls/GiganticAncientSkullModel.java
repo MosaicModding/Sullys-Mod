@@ -6,7 +6,7 @@ import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
 
-public class GiganticAncientSkullModel extends BaseAncientSkullModel {
+public class GiganticAncientSkullModel extends AbstractAncientSkullModel {
 	public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(SullysMod.modPrefix("gigantic"), "main");
 
 

@@ -9,7 +9,7 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
-public class CrackedAncientSkullModel extends BaseAncientSkullModel {
+public class CrackedAncientSkullModel extends AbstractAncientSkullModel {
 	public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(SullysMod.modPrefix("cracked"), "main");
 
 	public CrackedAncientSkullModel(ModelPart root) {

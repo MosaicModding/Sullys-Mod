@@ -5,10 +5,10 @@ import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.model.SkullModelBase;
 import net.minecraft.client.model.geom.ModelPart;
 
-public abstract class BaseAncientSkullModel extends SkullModelBase {
+public abstract class AbstractAncientSkullModel extends SkullModelBase {
     private final ModelPart head;
 
-    public BaseAncientSkullModel(ModelPart root) {
+    public AbstractAncientSkullModel(ModelPart root) {
         this.head = root.getChild("head");
     }
 

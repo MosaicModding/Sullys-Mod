@@ -142,19 +142,11 @@ public class SMItemModelProvider extends ItemModelProvider {
         basicItem(SMItems.EMERALD_EARRING);
         basicItemHandheld(SMItems.BROKEN_BOTTLE);
         basicItem(SMItems.FROG_IDOL);
-        ancientSkull(SMBlocks.CRACKED_ANCIENT_SKULL.getFirst());
-        ancientSkull(SMBlocks.CRESTED_ANCIENT_SKULL.getFirst());
-        ancientSkull(SMBlocks.FLATBILLED_ANCIENT_SKULL.getFirst());
-        ancientSkull(SMBlocks.GIGANTIC_ANCIENT_SKULL.getFirst());
-        ancientSkull(SMBlocks.HORNED_ANCIENT_SKULL.getFirst());
-        ancientSkull(SMBlocks.LONG_ANCIENT_SKULL.getFirst());
-        ancientSkull(SMBlocks.TINY_ANCIENT_SKULL.getFirst());
-        ancientSkull(SMBlocks.WIDE_ANCIENT_SKULL.getFirst());
-        ancientSkull(SMBlocks.RIBBED_ANCIENT_SKULL.getFirst());
         //Single use methods
         brokenBottle();
         venomVialItem();
         jadeShieldItem();
+        SMBlocks.ANCIENT_SKULLS.forEach(this::ancientSkull);
     }
 
     private void basicBlockItem(Supplier<? extends Block> blockForItem) {

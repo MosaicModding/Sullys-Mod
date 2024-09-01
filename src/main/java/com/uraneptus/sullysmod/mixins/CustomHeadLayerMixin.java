@@ -1,7 +1,7 @@
 package com.uraneptus.sullysmod.mixins;
 
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.uraneptus.sullysmod.client.model.ancient_skulls.BaseAncientSkullModel;
+import com.uraneptus.sullysmod.client.model.ancient_skulls.AbstractAncientSkullModel;
 import com.uraneptus.sullysmod.common.blocks.AncientSkullBlock;
 import net.minecraft.client.model.SkullModelBase;
 import net.minecraft.client.renderer.MultiBufferSource;
@@ -35,7 +35,7 @@ public class CustomHeadLayerMixin {
         Item item = pLivingEntity.getItemBySlot(EquipmentSlot.HEAD).getItem();
         if (item instanceof BlockItem blockItem && blockItem.getBlock() instanceof AncientSkullBlock ancientSkullBlock) {
             SkullBlock.Type skullblock$type = ancientSkullBlock.getType();
-            if (this.skullModels.get(skullblock$type) instanceof BaseAncientSkullModel ancientSkullModel) {
+            if (this.skullModels.get(skullblock$type) instanceof AbstractAncientSkullModel ancientSkullModel) {
                 pPoseStack.scale(ancientSkullModel.headRenderScale(), ancientSkullModel.headRenderScale(), ancientSkullModel.headRenderScale());
                 pPoseStack.translate(0, ancientSkullModel.headRenderHeight(), 0);
             }
