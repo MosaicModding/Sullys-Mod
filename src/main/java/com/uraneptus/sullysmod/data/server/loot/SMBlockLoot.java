@@ -71,6 +71,12 @@ public class SMBlockLoot extends BlockLootSubProvider {
         this.dropSelf(SMBlocks.CHISELED_AMBER.get());
         this.dropSelf(SMBlocks.AMBER_PILLAR.get());
         this.dropSelf(SMBlocks.AMBER_LANTERN.get());
+        this.dropSelf(SMBlocks.JADE_LANTERN.get());
+        this.dropSelf(SMBlocks.DIAMOND_LANTERN.get());
+        this.dropSelf(SMBlocks.EMERALD_LANTERN.get());
+        this.dropSelf(SMBlocks.LAPIS_LANTERN.get());
+        this.dropSelf(SMBlocks.AMETHYST_LANTERN.get());
+        this.dropSelf(SMBlocks.QUARTZ_LANTERN.get());
         this.dropSelf(SMBlocks.AMBER_BRICKS.get());
         createSlab(SMBlocks.AMBER_BRICK_SLAB.get());
         this.dropSelf(SMBlocks.AMBER_BRICK_STAIRS.get());

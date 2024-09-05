@@ -38,6 +38,7 @@ public class SMBlockTagsProvider extends BlockTagsProvider {
                 SMBlocks.JADE_PILLAR.get(),
                 SMBlocks.JADE_BRICK_STAIRS.get(),
                 SMBlocks.JADE_BRICK_SLAB.get(),
+                SMBlocks.JADE_LANTERN.get(),
                 SMBlocks.ROUGH_JADE_BRICK_WALL.get(),
                 SMBlocks.JADE_BRICK_WALL.get(),
                 SMBlocks.ROUGH_JADE_BRICK_STAIRS.get(),
@@ -63,7 +64,12 @@ public class SMBlockTagsProvider extends BlockTagsProvider {
                 SMBlocks.AMBER_BRICK_SLAB.get(),
                 SMBlocks.AMBER_BRICK_STAIRS.get(),
                 SMBlocks.AMBER_BRICK_WALL.get(),
-                SMBlocks.ITEM_STAND.get()
+                SMBlocks.ITEM_STAND.get(),
+                SMBlocks.DIAMOND_LANTERN.get(),
+                SMBlocks.EMERALD_LANTERN.get(),
+                SMBlocks.LAPIS_LANTERN.get(),
+                SMBlocks.AMETHYST_LANTERN.get(),
+                SMBlocks.QUARTZ_LANTERN.get()
         );
         tag(BlockTags.NEEDS_IRON_TOOL).add(
                 SMBlocks.JADE_ORE.get(),
@@ -81,7 +87,10 @@ public class SMBlockTagsProvider extends BlockTagsProvider {
                 SMBlocks.ROUGH_JADE_BRICK_STAIRS.get(),
                 SMBlocks.ROUGH_JADE_BRICK_SLAB.get(),
                 SMBlocks.ROUGH_JADE_BRICK_WALL.get(),
-                SMBlocks.JADE_BRICK_WALL.get()
+                SMBlocks.JADE_BRICK_WALL.get(),
+                SMBlocks.DIAMOND_LANTERN.get(),
+                SMBlocks.EMERALD_LANTERN.get(),
+                SMBlocks.LAPIS_LANTERN.get()
         );
         tag(BlockTags.BUTTONS).add(
                 SMBlocks.COPPER_BUTTON.get(),
@@ -133,7 +142,8 @@ public class SMBlockTagsProvider extends BlockTagsProvider {
                 SMBlocks.JADE_BRICK_STAIRS.get(),
                 SMBlocks.JADE_BRICK_SLAB.get(),
                 SMBlocks.JADE_FLINGER_TOTEM.get(),
-                SMBlocks.JADE_BRICK_WALL.get()
+                SMBlocks.JADE_BRICK_WALL.get(),
+                SMBlocks.JADE_LANTERN.get()
         );
         tag(SMBlockTags.PETRIFIED_LOGS).add(
                 SMBlocks.PETRIFIED_LOG.get(),

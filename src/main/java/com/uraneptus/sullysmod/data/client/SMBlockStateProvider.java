@@ -91,6 +91,12 @@ public class SMBlockStateProvider extends BlockStateProvider {
         ancientSkull(SMBlocks.WIDE_ANCIENT_SKULL);
         ancientSkull(SMBlocks.RIBBED_ANCIENT_SKULL);
         ancientSkull(SMBlocks.UNICORN_ANCIENT_SKULL);
+        basicBlock(SMBlocks.JADE_LANTERN);
+        basicBlock(SMBlocks.DIAMOND_LANTERN);
+        basicBlock(SMBlocks.EMERALD_LANTERN);
+        basicBlock(SMBlocks.LAPIS_LANTERN);
+        basicBlock(SMBlocks.AMETHYST_LANTERN);
+        basicBlock(SMBlocks.QUARTZ_LANTERN);
     }
 
     private void basicBlock(Supplier<? extends Block> block) {

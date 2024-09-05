@@ -12,6 +12,7 @@
     "sullysmod:jade_pillar",
     "sullysmod:jade_brick_stairs",
     "sullysmod:jade_brick_slab",
+    "sullysmod:jade_lantern",
     "sullysmod:rough_jade_brick_wall",
     "sullysmod:jade_brick_wall",
     "sullysmod:rough_jade_brick_stairs",
@@ -37,6 +38,11 @@
     "sullysmod:amber_brick_slab",
     "sullysmod:amber_brick_stairs",
     "sullysmod:amber_brick_wall",
-    "sullysmod:item_stand"
+    "sullysmod:item_stand",
+    "sullysmod:diamond_lantern",
+    "sullysmod:emerald_lantern",
+    "sullysmod:lapis_lantern",
+    "sullysmod:amethyst_lantern",
+    "sullysmod:quartz_lantern"
   ]
 }

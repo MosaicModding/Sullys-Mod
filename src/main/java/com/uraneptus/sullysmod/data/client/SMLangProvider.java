@@ -25,55 +25,7 @@ public class SMLangProvider extends LanguageProvider {
     @Override
     protected void addTranslations() {
         //Blocks
-        forBlock(SMBlocks.JADE_ORE);
-        forBlock(SMBlocks.DEEPSLATE_JADE_ORE);
-        forBlock(SMBlocks.ROUGH_JADE_BRICKS);
-        forBlock(SMBlocks.JADE_BRICKS);
-        forBlock(SMBlocks.CHISELED_JADE);
-        forBlock(SMBlocks.JADE_PILLAR);
-        forBlock(SMBlocks.JADE_TOTEM);
-        forBlock(SMBlocks.JADE_FLINGER_TOTEM);
-        forBlock(SMBlocks.COPPER_BUTTON);
-        forBlock(SMBlocks.EXPOSED_COPPER_BUTTON);
-        forBlock(SMBlocks.WEATHERED_COPPER_BUTTON);
-        forBlock(SMBlocks.OXIDIZED_COPPER_BUTTON);
-        forBlock(SMBlocks.WAXED_COPPER_BUTTON);
-        forBlock(SMBlocks.WAXED_EXPOSED_COPPER_BUTTON);
-        forBlock(SMBlocks.WAXED_WEATHERED_COPPER_BUTTON);
-        forBlock(SMBlocks.WAXED_OXIDIZED_COPPER_BUTTON);
-        forBlock(SMBlocks.JADE_BRICK_STAIRS);
-        forBlock(SMBlocks.JADE_BRICK_SLAB);
-        forBlock(SMBlocks.JADE_BRICK_WALL);
-        forBlock(SMBlocks.ROUGH_JADE_BRICK_STAIRS);
-        forBlock(SMBlocks.ROUGH_JADE_BRICK_SLAB);
-        forBlock(SMBlocks.ROUGH_JADE_BRICK_WALL);
-        forBlock(SMBlocks.TORTOISE_EGG);
-        forBlock(SMBlocks.AMBER);
-        forBlock(SMBlocks.ROUGH_AMBER);
-        forBlock(SMBlocks.CHISELED_AMBER);
-        forBlock(SMBlocks.AMBER_PILLAR);
-        forBlock(SMBlocks.AMBER_LANTERN);
-        forBlock(SMBlocks.AMBER_BRICKS);
-        forBlock(SMBlocks.AMBER_BRICK_STAIRS);
-        forBlock(SMBlocks.AMBER_BRICK_SLAB);
-        forBlock(SMBlocks.AMBER_BRICK_WALL);
-        forBlock(SMBlocks.PETRIFIED_PLANKS);
-        forBlock(SMBlocks.PETRIFIED_LOG);
-        forBlock(SMBlocks.STRIPPED_PETRIFIED_LOG);
-        forBlock(SMBlocks.PETRIFIED_WOOD);
-        forBlock(SMBlocks.STRIPPED_PETRIFIED_WOOD);
-        forBlock(SMBlocks.PETRIFIED_PRESSURE_PLATE);
-        forBlock(SMBlocks.PETRIFIED_TRAPDOOR);
-        forBlock(SMBlocks.PETRIFIED_STAIRS);
-        forBlock(SMBlocks.PETRIFIED_SLAB);
-        forBlock(SMBlocks.PETRIFIED_BUTTON);
-        forBlock(SMBlocks.PETRIFIED_FENCE_GATE);
-        forBlock(SMBlocks.PETRIFIED_FENCE);
-        forBlock(SMBlocks.PETRIFIED_SIGN.getFirst());
-        forBlock(SMBlocks.PETRIFIED_HANGING_SIGN.getFirst());
-        forBlock(SMBlocks.PETRIFIED_DOOR);
-        forBlock(SMBlocks.PETRIFIED_SAPLING);
-        forBlock(SMBlocks.ITEM_STAND);
+        SMBlocks.AUTO_TRANSLATE.forEach(this::forBlock);
 
         addBlock(SMBlocks.JADE_BLOCK, "Block of Jade");
         addBlock(SMBlocks.ROUGH_JADE_BLOCK, "Block of Rough Jade");
