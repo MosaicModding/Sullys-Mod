@@ -22,6 +22,7 @@ import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LightLayer;
 import net.minecraft.world.level.block.BaseEntityBlock;
+import net.minecraft.world.level.block.CampfireBlock;
 import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
@@ -35,9 +36,11 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.network.PacketDistributor;
 import org.jetbrains.annotations.Nullable;
 
-public class AmberBlock extends BaseEntityBlock {
+import java.util.function.Predicate;
 
+public class AmberBlock extends BaseEntityBlock {
     private static final VoxelShape MELTING_COLLISION_SHAPE = Shapes.box(0.0D, 0.0D, 0.0D, 1.0D, 0.0F, 1.0D);
+    private final Predicate<BlockState> AMBER_MELTING_BLOCKS = (blockstate) -> blockstate.is(SMBlockTags.MELTS_AMBER) && blockstate.getLightEmission() >= 3;
 
     public AmberBlock(Properties pProperties) {
         super(pProperties);
@@ -79,7 +82,7 @@ public class AmberBlock extends BaseEntityBlock {
                         for (BlockPos pos : BlockPos.betweenClosed(pPos.offset(-1, -1, -1), pPos.offset(1, 1, 1))) {
                             BlockState state = pLevel.getBlockState(pos);
                             BlockEntity be = pLevel.getBlockEntity(pos);
-                            if (state.is(SMBlockTags.MELTS_AMBER)) {
+                            if (AMBER_MELTING_BLOCKS.test(state)) {
                                 shouldMeltFlag = true;
                             }
                             if (state.getBlock() instanceof AmberBlock && be instanceof AmberBE amberBE) {

@@ -1,13 +1,26 @@
 {
   "values": [
-    "minecraft:magma_block",
     "minecraft:torch",
-    "minecraft:soul_torch",
     "minecraft:wall_torch",
+    "minecraft:soul_torch",
     "minecraft:soul_wall_torch",
+    "minecraft:fire",
+    "minecraft:soul_fire",
+    "minecraft:lantern",
+    "minecraft:soul_lantern",
+    "minecraft:lava",
+    "minecraft:lava_cauldron",
     "minecraft:campfire",
     "minecraft:soul_campfire",
-    "minecraft:lava",
-    "sullysmod:molten_amber_block"
+    "minecraft:furnace",
+    "minecraft:blast_furnace",
+    "minecraft:magma_block",
+    "minecraft:ochre_froglight",
+    "minecraft:pearlescent_froglight",
+    "minecraft:verdant_froglight",
+    "minecraft:jack_o_lantern",
+    "sullysmod:molten_amber_block",
+    "#minecraft:candles",
+    "#minecraft:candle_cakes"
   ]
 }

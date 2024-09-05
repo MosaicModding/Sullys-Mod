@@ -15,6 +15,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.concurrent.CompletableFuture;
 
+@SuppressWarnings("unchecked")
 public class SMBlockTagsProvider extends BlockTagsProvider {
 
     public SMBlockTagsProvider(PackOutput packOutput, CompletableFuture<HolderLookup.Provider> pProvider, @Nullable ExistingFileHelper existingFileHelper) {
@@ -141,16 +142,29 @@ public class SMBlockTagsProvider extends BlockTagsProvider {
                 SMBlocks.STRIPPED_PETRIFIED_WOOD.get()
         );
         tag(SMBlockTags.MELTS_AMBER).add(
-                Blocks.MAGMA_BLOCK,
                 Blocks.TORCH,
-                Blocks.SOUL_TORCH,
                 Blocks.WALL_TORCH,
+                Blocks.SOUL_TORCH,
                 Blocks.SOUL_WALL_TORCH,
+                Blocks.FIRE,
+                Blocks.SOUL_FIRE,
+                Blocks.LANTERN,
+                Blocks.SOUL_LANTERN,
+                Blocks.LAVA,
+                Blocks.LAVA_CAULDRON,
                 Blocks.CAMPFIRE,
                 Blocks.SOUL_CAMPFIRE,
-                Blocks.LAVA,
+                //COPPER BULB
+                Blocks.FURNACE,
+                Blocks.BLAST_FURNACE,
+                Blocks.SMOKER,
+                Blocks.MAGMA_BLOCK,
+                Blocks.OCHRE_FROGLIGHT,
+                Blocks.PEARLESCENT_FROGLIGHT,
+                Blocks.VERDANT_FROGLIGHT,
+                Blocks.JACK_O_LANTERN,
                 SMBlocks.MOLTEN_AMBER_BLOCK.get()
-        );
+        ).addTags(BlockTags.CANDLES, BlockTags.CANDLE_CAKES);
 
         //Forge Tags
         tag(SMBlockTags.WAXABLE_COPPER_BLOCKS).add(
