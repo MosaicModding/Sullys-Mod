@@ -292,7 +292,7 @@ public class TortoiseShell extends Entity implements OwnableEntity, WorkstationA
         float f7 = f2 * f4;
         double range = 1.15;
         Vec3 vec31 = vec3.add((double)f6 * range, (double)f5 * range, (double)f7 * range);
-        return pLevel.clip(new ClipContext(vec3, vec31, ClipContext.Block.OUTLINE, pFluidMode, entity));
+        return pLevel.clip(new ClipContext(vec3, vec31, ClipContext.Block.COLLIDER, pFluidMode, entity));
     }
 
     private void blockKnockBack() {
