@@ -113,7 +113,7 @@ public class ThrowingKnifeItem extends Item {
                         thrownThrowingKnife.pickup = AbstractArrow.Pickup.CREATIVE_ONLY;
                     }
                     pLevel.addFreshEntity(thrownThrowingKnife);
-                    pLevel.playSound(null, thrownThrowingKnife, SMSounds.THROWING_KNIFE_THROW.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
+                    pLevel.playSound(null, thrownThrowingKnife, SMSounds.THROWING_KNIFE_THROW.get(), SoundSource.PLAYERS, 0.5F, 1.0F);
                     SMItemUtil.nonCreativeShrinkStack(player, pStack);
                 }
 
