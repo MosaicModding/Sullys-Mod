@@ -12,6 +12,7 @@ public class SMConfig {
     public static final ForgeConfigSpec.ConfigValue<Boolean> DISABLE_SPIDER_IN_JUNGLE_SPAWNS;
     public static final ForgeConfigSpec.ConfigValue<Boolean> ENABLE_POLISHABLE_TOOLTIP;
     public static final ForgeConfigSpec.ConfigValue<Boolean> ENABLE_WOLF_CARNIVORE;
+    public static final ForgeConfigSpec.ConfigValue<Boolean> ENABLE_CONTRIBUTOR_CAPE;
 
     public static final ForgeConfigSpec CLIENT;
     public static final ForgeConfigSpec COMMON;
@@ -22,6 +23,7 @@ public class SMConfig {
 
         //Client
         ENABLE_POLISHABLE_TOOLTIP = CLIENT_BUILDER.comment("Enables the 'Polishable' tooltip on polishable items").define("Enable Polishable Tooltip", true);
+        ENABLE_CONTRIBUTOR_CAPE = CLIENT_BUILDER.comment("Enables the contributor or dev cape. If you're not a contributor or dev, you can ignore this").define("Enable Cape", true);
 
         //COMMON
         /*
