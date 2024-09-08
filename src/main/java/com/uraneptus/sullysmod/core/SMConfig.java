@@ -1,5 +1,6 @@
 package com.uraneptus.sullysmod.core;
 
+import com.teamabnormals.blueprint.core.annotations.ConfigKey;
 import com.uraneptus.sullysmod.SullysMod;
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.fml.common.Mod;
@@ -13,6 +14,7 @@ public class SMConfig {
     public static final ForgeConfigSpec.ConfigValue<Boolean> ENABLE_POLISHABLE_TOOLTIP;
     public static final ForgeConfigSpec.ConfigValue<Boolean> ENABLE_WOLF_CARNIVORE;
     public static final ForgeConfigSpec.ConfigValue<Boolean> ENABLE_CONTRIBUTOR_CAPE;
+    public static final ForgeConfigSpec.ConfigValue<Boolean> ENABLE_GEM_LANTERNS;
 
     public static final ForgeConfigSpec CLIENT;
     public static final ForgeConfigSpec COMMON;
@@ -37,8 +39,6 @@ public class SMConfig {
 
          */
 
-
-
         COMMON_BUILDER.comment("Vanilla Spawn Modifications").push("vanilla_spawn_modifications");
         DISABLE_DEEPSLATE_ZOMBIE_SPAWNS = COMMON_BUILDER.comment("Disables zombie spawning in deepslate levels. This is done to prevent too many zombies spawning in this area, since the Bouldering Zombie spawns there exclusively").define("Disable deepslate zombie spawning", true);
         DISABLE_SPIDER_IN_JUNGLE_SPAWNS = COMMON_BUILDER.comment("Disables spider spawning in jungle biomes. This is done to prevent too many spiders spawning in this area, since the Jungle Spider spawns there exclusively").define("Disable spider spawning in jungles", false);
@@ -49,6 +49,7 @@ public class SMConfig {
         COMMON_BUILDER.pop();
 
         COMMON_BUILDER.comment("Blocks").push("blocks");
+        ENABLE_GEM_LANTERNS = COMMON_BUILDER.comment("Enables gem lanterns").define("gem_lanterns", false);
         COMMON_BUILDER.comment("Jade").push("jade");
         ENABLE_DYNAMIC_VELOCITY = COMMON_BUILDER.comment("If the velocity of projectiles bounced off of a Jade block should be based on its previous velocity instead of a static value. [Warning: Experimental] (default = false)").define("Dynamic ricochet velocity", false);
         COMMON_BUILDER.pop();

@@ -6,7 +6,9 @@ import com.teamabnormals.blueprint.core.util.registry.RegistryHelper;
 import com.uraneptus.sullysmod.common.caps.SMEntityCap;
 import com.uraneptus.sullysmod.common.entities.*;
 import com.uraneptus.sullysmod.common.networking.SMPacketHandler;
+import com.uraneptus.sullysmod.common.recipes.conditions.SMFeatureFlagCondition;
 import com.uraneptus.sullysmod.core.SMConfig;
+import com.uraneptus.sullysmod.core.SMFeatureSelection;
 import com.uraneptus.sullysmod.core.other.SMTextDefinitions;
 import com.uraneptus.sullysmod.core.registry.*;
 import com.uraneptus.sullysmod.data.client.*;
@@ -24,6 +26,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.RegisterCapabilitiesEvent;
+import net.minecraftforge.common.crafting.CraftingHelper;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.data.event.GatherDataEvent;
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
@@ -67,6 +70,8 @@ public class SullysMod {
         SMCreativeModeTabs.TABS.register(bus);
         SMFluids.FLUIDS.register(bus);
         SMFluidTypes.FLUID_TYPES.register(bus);
+
+        CraftingHelper.register(new SMFeatureFlagCondition.Serializer(SMFeatureSelection::isEnabled));
 
         DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> SMItems::buildCreativeTabContents);
 

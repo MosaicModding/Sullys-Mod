@@ -1,17 +1,23 @@
 package com.uraneptus.sullysmod.data.server;
 
+import com.uraneptus.sullysmod.SullysMod;
+import com.uraneptus.sullysmod.common.recipes.conditions.SMFeatureFlagCondition;
+import com.uraneptus.sullysmod.core.SMFeatureSelection;
 import com.uraneptus.sullysmod.core.other.tags.SMItemTags;
 import com.uraneptus.sullysmod.core.registry.SMBlocks;
 import com.uraneptus.sullysmod.core.registry.SMItems;
 import com.uraneptus.sullysmod.data.server.builder.GrindstonePolishingRecipeBuilder;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraftforge.common.crafting.ConditionalRecipe;
+import net.minecraftforge.common.crafting.conditions.ICondition;
 
 import java.util.function.Consumer;
 import java.util.function.Supplier;
@@ -83,6 +89,13 @@ public class SMRecipeProvider extends RecipeProvider {
         signRecipe(SMBlocks.PETRIFIED_PLANKS, SMBlocks.PETRIFIED_SIGN.getFirst(), consumer);
         hangingSignRecipe(SMBlocks.STRIPPED_PETRIFIED_LOG, SMBlocks.PETRIFIED_HANGING_SIGN.getFirst(), consumer);
 
+        gemLanterns(() -> Items.DIAMOND_BLOCK, SMBlocks.DIAMOND_LANTERN, consumer);
+        gemLanterns(() -> Items.EMERALD_BLOCK, SMBlocks.EMERALD_LANTERN, consumer);
+        gemLanterns(() -> Items.QUARTZ_BLOCK, SMBlocks.QUARTZ_LANTERN, consumer);
+        gemLanterns(() -> Items.LAPIS_BLOCK, SMBlocks.LAPIS_LANTERN, consumer);
+        gemLanterns(() -> Items.AMETHYST_BLOCK, SMBlocks.AMETHYST_LANTERN, consumer);
+        gemLanterns(SMBlocks.JADE_BLOCK, SMBlocks.JADE_LANTERN, consumer);
+
         //Stonecutting
         stonecutterRecipes(RecipeCategory.BUILDING_BLOCKS, SMBlocks.ROUGH_JADE_BLOCK, SMBlocks.ROUGH_JADE_BRICKS, 1, consumer);
         stonecutterRecipes(RecipeCategory.BUILDING_BLOCKS, SMBlocks.ROUGH_JADE_BRICKS, SMBlocks.ROUGH_JADE_BRICK_SLAB, 2, consumer);
@@ -139,6 +152,7 @@ public class SMRecipeProvider extends RecipeProvider {
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, SMItems.GLASS_VIAL.get(), 3).define('#', Items.GLASS_PANE).pattern("# #").pattern(" # ").unlockedBy(getHasName(Items.GLASS_PANE), has(Items.GLASS_PANE)).save(consumer, craftingPath(getItemName(SMItems.GLASS_VIAL.get())));
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, Items.AMETHYST_SHARD, 3).requires(SMItems.SMALL_GEODE.get()).unlockedBy(getHasName(SMItems.SMALL_GEODE.get()), has(SMItems.SMALL_GEODE.get())).save(consumer, craftingPath("amethyst_shard_from_small_geode"));
         ShapelessRecipeBuilder.shapeless(RecipeCategory.DECORATIONS, SMBlocks.ITEM_STAND.get()).requires(Items.SMOOTH_STONE_SLAB).requires(Items.STICK).unlockedBy(getHasName(Items.SMOOTH_STONE_SLAB), has(Items.SMOOTH_STONE_SLAB)).unlockedBy(getHasName(Items.STICK), has(Items.STICK)).save(consumer, craftingPath(getItemName(SMBlocks.ITEM_STAND.get())));
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, SMBlocks.AMBER_LANTERN.get(), 4).define('#', SMBlocks.AMBER.get()).define('X', Items.GLOWSTONE_DUST).pattern(" # ").pattern("#X#").pattern(" # ").unlockedBy(getHasName(SMBlocks.AMBER.get()), has(SMBlocks.AMBER.get())).save(consumer, craftingPath(getItemName(SMBlocks.AMBER_LANTERN.get())));
     }
 
     protected static void packableBlockRecipes(Supplier<? extends ItemLike> unpacked, Supplier<? extends ItemLike> packed, Consumer<FinishedRecipe> consumer) {
@@ -299,5 +313,26 @@ public class SMRecipeProvider extends RecipeProvider {
     private static void hangingSignRecipe(Supplier<? extends ItemLike> ingredient, Supplier<? extends ItemLike> result, Consumer<FinishedRecipe> consumer) {
         ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, result.get(), 6).define('#', ingredient.get()).define('X', Items.CHAIN).pattern("X X").pattern("###").pattern("###")
                 .unlockedBy(getHasName(ingredient.get()), has(ingredient.get())).save(consumer, craftingPath(getItemName(result.get())));
+    }
+
+    private static void gemLanterns(Supplier<? extends ItemLike> ingredient, Supplier<? extends ItemLike> result, Consumer<FinishedRecipe> consumer) {
+        featureConditionRecipe(SMFeatureSelection.GEM_LANTERNS, RecipeCategory.BUILDING_BLOCKS,
+                ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, result.get(), 4)
+                        .define('#', ingredient.get()).define('X', Items.GLOWSTONE_DUST)
+                        .pattern(" # ")
+                        .pattern("#X#")
+                        .pattern(" # ")
+                        .unlockedBy(getHasName(ingredient.get()), has(ingredient.get())), craftingPath(getItemName(result.get())), consumer);
+    }
+
+    private static void featureConditionRecipe(String key, RecipeCategory category, RecipeBuilder recipe, ResourceLocation customPath, Consumer<FinishedRecipe> consumer) {
+        conditionalRecipe(new SMFeatureFlagCondition(key), category, recipe, customPath, consumer);
+    }
+
+    private static void conditionalRecipe(ICondition condition, RecipeCategory category, RecipeBuilder recipe, ResourceLocation customPath, Consumer<FinishedRecipe> consumer) {
+        ConditionalRecipe.builder().addCondition(condition)
+                .addRecipe(consumer1 -> recipe.save(consumer1, SullysMod.modPrefix(RecipeBuilder.getDefaultRecipeId(recipe.getResult()).getPath())))
+                .generateAdvancement(new ResourceLocation(RecipeBuilder.getDefaultRecipeId(recipe.getResult()).getNamespace(), "recipes/" + category.getFolderName() + "/" + RecipeBuilder.getDefaultRecipeId(recipe.getResult()).getPath()))
+                .build(consumer, customPath);
     }
 }
