@@ -11,6 +11,7 @@ group = "com.uraneptus.${mod_id}"
 archivesBaseName = "${mod_id}"
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(17)
+jarJar.enable()
 
 println('Java: ' + System.getProperty('java.version') + ' JVM: ' + System.getProperty('java.vm.version') + '(' + System.getProperty('java.vendor') + ') Arch: ' + System.getProperty('os.arch'))
 minecraft {
@@ -87,6 +88,9 @@ repositories {
     maven {
         url = "https://maven.jaackson.me"
     }
+    flatDir {
+        dirs 'libs'
+    }
 }
 
 dependencies {
@@ -94,6 +98,9 @@ dependencies {
     implementation fg.deobf("software.bernie.geckolib:geckolib-forge-1.20.1:${geckolib_version}")
     implementation fg.deobf("com.teamabnormals:${blueprint_id}:1.20.1-${blueprint_version}")
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
+    //For capes
+    implementation fg.deobf("mosaicmodding:MosaicCosmetics:1.20.1-1.0.0-forge")
+    jarJar(group: 'mosaicmodding', name: 'MosaicCosmetics', version: '[1.20.1-1.0.0-forge,)')
 
     compileOnly fg.deobf("mezz.jei:jei-${mc_version}-forge-api:${jei_version}")
     implementation fg.deobf("mezz.jei:jei-${mc_version}-forge:${jei_version}")
@@ -143,5 +150,5 @@ publishing {
 }
 
 tasks.withType(JavaCompile).configureEach {
-    options.encoding = 'UTF-8' // Use the UTF-8 charset for Java compilation
+    options.encoding = 'UTF-8'
 }
