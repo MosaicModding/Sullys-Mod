@@ -7,6 +7,7 @@ import com.uraneptus.sullysmod.client.model.*;
 import com.uraneptus.sullysmod.client.model.ancient_skulls.*;
 import com.uraneptus.sullysmod.client.particles.BlotEyesParticle;
 import com.uraneptus.sullysmod.client.particles.RicochetParticle;
+import com.uraneptus.sullysmod.client.particles.AmberParticle;
 import com.uraneptus.sullysmod.client.particles.SMDripParticle;
 import com.uraneptus.sullysmod.client.renderer.be.AmberBER;
 import com.uraneptus.sullysmod.client.renderer.be.ItemStandBER;
@@ -81,7 +82,9 @@ public class SMClientModEvents {
     public static void registerParticleProvider(RegisterParticleProvidersEvent event) {
         event.registerSpriteSet(SMParticleTypes.RICOCHET.get(), RicochetParticle.RicochetParticleProvider::new);
         event.registerSpriteSet(SMParticleTypes.BLOT_EYES.get(), BlotEyesParticle.Factory::new);
-        event.registerSpriteSet(SMParticleTypes.AMBER_DRIP.get(), SMDripParticle.Factory::new);
+        event.registerSprite(SMParticleTypes.AMBER_DRIPPING.get(), AmberParticle::createAmberHangParticle);
+        event.registerSprite(SMParticleTypes.AMBER_FALL.get(), AmberParticle::createAmberFallParticle);
+        event.registerSprite(SMParticleTypes.AMBER_LAND.get(), AmberParticle::createAmberLandParticle);
     }
 
     @SubscribeEvent
