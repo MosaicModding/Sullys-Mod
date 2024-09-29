@@ -2,6 +2,7 @@ package com.uraneptus.sullysmod.client.particles;
 
 import com.uraneptus.sullysmod.core.registry.SMFluids;
 import com.uraneptus.sullysmod.core.registry.SMParticleTypes;
+import com.uraneptus.sullysmod.core.registry.SMSounds;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.ParticleRenderType;
 import net.minecraft.client.particle.TextureSheetParticle;
@@ -126,7 +127,7 @@ public class AmberParticle extends TextureSheetParticle {
                 this.remove();
                 this.level.addParticle(this.landParticle, this.x, this.y + 0.14, this.z, 0.0D, 0.0D, 0.0D);
                 float f = Mth.randomBetween(this.random, 0.3F, 1.0F);
-                this.level.playLocalSound(this.x, this.y, this.z, SoundEvents.BEEHIVE_DRIP, SoundSource.BLOCKS, f, 1.0F, false); //TODO change sound
+                this.level.playLocalSound(this.x, this.y, this.z, SMSounds.AMBER_DRIP.get(), SoundSource.BLOCKS, f, 1.0F, false);
             }
         }
     }

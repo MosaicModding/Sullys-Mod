@@ -139,6 +139,12 @@ public class SMSoundDefinitionsProvider extends SoundDefinitionsProvider {
                 sound(SullysMod.modPrefix("block/copper/copper_click")).pitch(0.6)
         );
 
+        this.addBasicSound(SMSounds.AMBER_DRIP, "block.amber.drip",
+                sound("block/beehive/drip1"),
+                sound("block/beehive/drip2"),
+                sound("block/beehive/drip3")
+        );
+
         //Note Block Instruments
         this.addBasicSound(SMSounds.NOTE_BLOCK_CRESTED_SKULL, "block.ancient_skull.crested",
                 sound(SullysMod.modPrefix("block/note_block/ancient_skull/crested1")),

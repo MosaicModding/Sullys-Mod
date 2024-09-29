@@ -9,6 +9,14 @@
     ],
     "subtitle": "subtitles.ambient.mountain.calls"
   },
+  "block.amber.drip": {
+    "sounds": [
+      "block/beehive/drip1",
+      "block/beehive/drip2",
+      "block/beehive/drip3"
+    ],
+    "subtitle": "subtitles.block.amber.drip"
+  },
   "block.copper_button.click_off": {
     "sounds": [
       {

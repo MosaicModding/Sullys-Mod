@@ -8,7 +8,6 @@ import com.uraneptus.sullysmod.client.model.ancient_skulls.*;
 import com.uraneptus.sullysmod.client.particles.BlotEyesParticle;
 import com.uraneptus.sullysmod.client.particles.RicochetParticle;
 import com.uraneptus.sullysmod.client.particles.AmberParticle;
-import com.uraneptus.sullysmod.client.particles.SMDripParticle;
 import com.uraneptus.sullysmod.client.renderer.be.AmberBER;
 import com.uraneptus.sullysmod.client.renderer.be.ItemStandBER;
 import com.uraneptus.sullysmod.client.renderer.entities.*;

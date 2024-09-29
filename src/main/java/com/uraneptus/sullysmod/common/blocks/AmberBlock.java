@@ -10,11 +10,14 @@ import com.uraneptus.sullysmod.core.registry.SMParticleTypes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.BlockParticleOption;
+import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.util.Mth;
 import net.minecraft.util.ParticleUtils;
 import net.minecraft.util.RandomSource;
+import net.minecraft.util.valueproviders.IntProvider;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
@@ -72,7 +75,27 @@ public class AmberBlock extends BaseEntityBlock {
 
     @Override
     public void animateTick(BlockState pState, Level pLevel, BlockPos pPos, RandomSource pRandom) {
-        //TODO spawn particles here
+        BlockEntity blockEntity = pLevel.getBlockEntity(pPos);
+        if (blockEntity instanceof AmberBE amberBE && amberBE.isBlockMelted()) {
+            for(int i = 0; i < pRandom.nextInt(1) + 1; ++i) {
+                if (pRandom.nextInt(3) == 0) {
+                    spawnParticlesOnBlockFaces(pLevel, pPos, SMParticleTypes.AMBER_DRIPPING.get(), UniformInt.of(0, 1));
+                }
+            }
+        }
+
+    }
+
+    public static void spawnParticlesOnBlockFaces(Level pLevel, BlockPos pPos, ParticleOptions pParticle, IntProvider pCount) {
+        for(Direction direction : Direction.values()) {
+            if (direction != Direction.UP) {
+                if (pLevel.getBlockState(pPos.relative(direction)).isAir()) {
+                    ParticleUtils.spawnParticlesOnBlockFace(pLevel, pPos, pParticle, pCount, direction, () -> {
+                        return new Vec3(Mth.nextDouble(pLevel.random, -0.5D, 0.5D), Mth.nextDouble(pLevel.random, -0.5D, 0.5D), Mth.nextDouble(pLevel.random, -0.5D, 0.5D));
+                    }, 0.55D);
+                }
+            }
+        }
     }
 
     public VoxelShape getCollisionShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
