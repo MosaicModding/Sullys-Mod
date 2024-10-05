@@ -2,8 +2,7 @@ package com.uraneptus.sullysmod.core.events;
 
 import com.teamabnormals.blueprint.core.util.BlockUtil;
 import com.uraneptus.sullysmod.SullysMod;
-import com.uraneptus.sullysmod.common.blocks.AmberBlock;
-import com.uraneptus.sullysmod.common.blocks.AmberLayeredCauldronBlock;
+import com.uraneptus.sullysmod.common.blockentities.AmberBE;
 import com.uraneptus.sullysmod.common.blocks.PickaxeStrippable;
 import com.uraneptus.sullysmod.common.recipes.GrindstonePolishingRecipe;
 import com.uraneptus.sullysmod.core.SMConfig;
@@ -16,7 +15,6 @@ import com.uraneptus.sullysmod.core.registry.SMItems;
 import com.uraneptus.sullysmod.core.registry.SMParticleTypes;
 import com.uraneptus.sullysmod.core.registry.SMSounds;
 import net.minecraft.ChatFormatting;
-import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.cauldron.CauldronInteraction;
@@ -262,10 +260,9 @@ public class SMPlayerEvents {
     @SubscribeEvent
     public static void onPlayerBreakSpeed(PlayerEvent.BreakSpeed event) {
         Level level = event.getEntity().level();
-        BlockState state = event.getState();
-        if (state.is(SMBlocks.AMBER.get())) {
-            System.out.println(event.getOriginalSpeed());
-            float breakSpeed = state.getValue(AmberBlock.IS_MELTING) ? 2F : 6F;
+        if (event.getPosition().isEmpty()) return;
+        if (level.getBlockEntity(event.getPosition().get()) instanceof AmberBE be) {
+            float breakSpeed = be.isBlockMelted() ? 2F : 6F;
             event.setNewSpeed(breakSpeed);
         }
     }

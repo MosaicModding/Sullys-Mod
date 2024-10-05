@@ -279,7 +279,9 @@ public class AmberBlock extends BaseEntityBlock {
                     if (pEntity instanceof Player) {
                         pEntity.makeStuckInBlock(pState, new Vec3(0.8F, 0.1D, 0.8F));
                     } else if (pEntity instanceof Mob mob) {
-                        if (mob.getBoundingBox().getYsize() < 1.5F) {
+                        if (mob.isVehicle()) {
+                            mob.makeStuckInBlock(pState, new Vec3(0.5F, 0.1D, 0.5F));
+                        } else if (mob.getBoundingBox().getYsize() < 1.5F) {
                             mob.makeStuckInBlock(pState, new Vec3(0F, 0.1D, 0F));
                             if (mob.onGround()) {
                                 amber.makeEntityStuck(mob);
