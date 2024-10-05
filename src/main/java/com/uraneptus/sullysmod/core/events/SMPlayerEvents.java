@@ -2,6 +2,7 @@ package com.uraneptus.sullysmod.core.events;
 
 import com.teamabnormals.blueprint.core.util.BlockUtil;
 import com.uraneptus.sullysmod.SullysMod;
+import com.uraneptus.sullysmod.common.blocks.AmberBlock;
 import com.uraneptus.sullysmod.common.blocks.AmberLayeredCauldronBlock;
 import com.uraneptus.sullysmod.common.blocks.PickaxeStrippable;
 import com.uraneptus.sullysmod.common.recipes.GrindstonePolishingRecipe;
@@ -54,7 +55,7 @@ import net.minecraftforge.fml.loading.FMLEnvironment;
 import java.util.ArrayList;
 import java.util.List;
 
-@Mod.EventBusSubscriber(modid = SullysMod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
+@Mod.EventBusSubscriber(modid = SullysMod.MOD_ID)
 @SuppressWarnings("unused")
 public class SMPlayerEvents {
 
@@ -255,6 +256,17 @@ public class SMPlayerEvents {
             Component component = Component.literal("Important: Sully's Mod removed some jade blocks!\nTo not break things we replaced them with other jade blocks.")
                     .setStyle(Style.EMPTY.withColor(ChatFormatting.RED));
             serverPlayer.sendSystemMessage(component);
+        }
+    }
+
+    @SubscribeEvent
+    public static void onPlayerBreakSpeed(PlayerEvent.BreakSpeed event) {
+        Level level = event.getEntity().level();
+        BlockState state = event.getState();
+        if (state.is(SMBlocks.AMBER.get())) {
+            System.out.println(event.getOriginalSpeed());
+            float breakSpeed = state.getValue(AmberBlock.IS_MELTING) ? 2F : 6F;
+            event.setNewSpeed(breakSpeed);
         }
     }
 }
