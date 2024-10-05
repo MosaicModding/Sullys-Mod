@@ -51,11 +51,6 @@ public class AmberRotatedPillarBlock extends RotatedPillarBlock {
                     }
                 }
                 if (shouldMeltFlag) {
-                    if (entity instanceof Player player) {
-                        if (player.jumping) {
-                            return Shapes.block();
-                        }
-                    }
                    return MELTING_COLLISION_SHAPE;
                 }
             }

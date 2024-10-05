@@ -50,11 +50,6 @@ public class AmberStairBlock extends StairBlock {
                     }
                 }
                 if (shouldMeltFlag) {
-                    if (entity instanceof Player player) {
-                        if (player.jumping) {
-                            return this.getShape(pState, pLevel, pPos, pContext);
-                        }
-                    }
                     return MELTING_COLLISION_SHAPE;
                 }
             }

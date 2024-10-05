@@ -210,13 +210,6 @@ public class AmberBlock extends BaseEntityBlock {
                             }
                         }
                         if (shouldMeltFlag) {
-                            if (entity instanceof Player player) {
-                                if (player.jumping) {
-                                    amber.setBlockMelted(false);
-                                    return Shapes.block();
-                                }
-                            }
-
                             amber.setBlockMelted(true);
                             amber.update();
                             return MELTING_COLLISION_SHAPE;

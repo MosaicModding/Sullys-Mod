@@ -50,11 +50,6 @@ public class AmberWallBlock extends WallBlock {
                     }
                 }
                 if (shouldMeltFlag) {
-                    if (entity instanceof Player player) {
-                        if (player.jumping) {
-                            return getShape(pState, pLevel, pPos, pContext);
-                        }
-                    }
                     return MELTING_COLLISION_SHAPE;
                 }
             }
