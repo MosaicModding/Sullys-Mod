@@ -140,6 +140,7 @@ public class SMItems {
                 .addItemsAfter(of(Items.MUSIC_DISC_RELIC), MUSIC_DISC_SCOUR, MUSIC_DISC_SUNKEN_PAST)
                 .addItemsAfter(of(Items.COD_BUCKET), LANTERNFISH_BUCKET, PIRANHA_BUCKET)
                 .addItemsAfter(of(Items.SADDLE), TORTOISE_SHELL)
+                .addItemsAfter(of(Items.MILK_BUCKET), MOLTEN_AMBER_BUCKET)
 
                 .tab(CreativeModeTabs.FOOD_AND_DRINKS)
                 .addItemsAfter(of(Items.COOKED_COD), LANTERNFISH, COOKED_LANTERNFISH, PIRANHA, COOKED_PIRANHA)
