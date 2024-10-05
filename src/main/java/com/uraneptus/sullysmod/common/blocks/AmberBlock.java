@@ -24,6 +24,7 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
@@ -169,6 +170,7 @@ public class AmberBlock extends BaseEntityBlock {
         if (blockEntity instanceof AmberBE amber) {
             if (pContext instanceof EntityCollisionContext entitycollisioncontext) {
                 Entity entity = entitycollisioncontext.getEntity();
+                if (entity instanceof Projectile) return Shapes.block();
                 Level level = blockEntity.getLevel();
                 if (!amber.hasStuckEntity()) {
                     if (entity != null) {
