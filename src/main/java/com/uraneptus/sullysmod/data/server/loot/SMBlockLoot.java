@@ -7,6 +7,7 @@ import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.functions.ApplyBonusCount;
@@ -82,6 +83,7 @@ public class SMBlockLoot extends BlockLootSubProvider {
         this.dropSelf(SMBlocks.AMBER_BRICK_STAIRS.get());
         this.dropSelf(SMBlocks.AMBER_BRICK_WALL.get());
         add(SMBlocks.MOLTEN_AMBER_BLOCK.get(), noDrop());
+        this.dropOther(SMBlocks.AMBER_CAULDRON.get(), Blocks.CAULDRON);
 
         //Petrified Wood
         this.dropSelf(SMBlocks.PETRIFIED_PLANKS.get());

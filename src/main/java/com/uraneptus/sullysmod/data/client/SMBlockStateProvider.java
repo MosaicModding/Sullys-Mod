@@ -6,10 +6,12 @@ import com.teamabnormals.blueprint.common.block.sign.BlueprintStandingSignBlock;
 import com.teamabnormals.blueprint.common.block.sign.BlueprintWallHangingSignBlock;
 import com.teamabnormals.blueprint.common.block.sign.BlueprintWallSignBlock;
 import com.uraneptus.sullysmod.SullysMod;
+import com.uraneptus.sullysmod.common.blocks.AmberLayeredCauldronBlock;
 import com.uraneptus.sullysmod.common.blocks.FlingerTotem;
 import com.uraneptus.sullysmod.core.registry.SMBlocks;
 import net.minecraft.core.Direction;
 import net.minecraft.data.PackOutput;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraftforge.client.model.generators.BlockStateProvider;
@@ -97,6 +99,7 @@ public class SMBlockStateProvider extends BlockStateProvider {
         basicBlock(SMBlocks.LAPIS_LANTERN);
         basicBlock(SMBlocks.AMETHYST_LANTERN);
         basicBlock(SMBlocks.QUARTZ_LANTERN);
+        amberCauldron();
     }
 
     private void basicBlock(Supplier<? extends Block> block) {
@@ -286,5 +289,34 @@ public class SMBlockStateProvider extends BlockStateProvider {
     private void ancientSkull(Pair<RegistryObject<Block>, RegistryObject<Block>> skull) {
         getVariantBuilder(skull.getFirst().get()).forAllStatesExcept(blockstate -> ConfiguredModel.builder().modelFile(models().getExistingFile(vanillaBlockLocation("skull"))).build(), SkullBlock.ROTATION);
         getVariantBuilder(skull.getSecond().get()).forAllStatesExcept(blockstate -> ConfiguredModel.builder().modelFile(models().getExistingFile(vanillaBlockLocation("skull"))).build(), WallSkullBlock.FACING);
+    }
+
+    public void amberCauldron() {
+        Supplier<Block> block = SMBlocks.AMBER_CAULDRON;
+        getVariantBuilder(block.get()).forAllStates(blockState -> {
+            int level = blockState.getValue(AmberLayeredCauldronBlock.LEVEL);
+
+            String levelSuffix = switch (level) {
+                case 1 -> "_level1";
+                case 2 -> "_level2";
+                case 3 -> "_full";
+                default -> "";
+            };
+
+            ResourceLocation templateLoc = vanillaBlockLocation("template_cauldron" + levelSuffix);
+            String modelName = name(block.get()) + levelSuffix;
+            ResourceLocation cauldronLoc = vanillaBlockLocation(name(Blocks.CAULDRON));
+            ResourceLocation contentTexture = modBlockLocation("amber");
+
+            ModelFile file = models().withExistingParent(modelName, templateLoc)
+                    .texture("bottom", cauldronLoc + "_bottom")
+                    .texture("content", contentTexture)
+                    .texture("inside", cauldronLoc + "_inner")
+                    .texture("particle", cauldronLoc + "_side")
+                    .texture("side", cauldronLoc + "_side")
+                    .texture("top", cauldronLoc + "_top");
+
+            return ConfiguredModel.builder().modelFile(file).build();
+        });
     }
 }

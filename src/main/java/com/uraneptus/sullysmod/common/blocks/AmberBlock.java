@@ -13,7 +13,7 @@ import net.minecraft.core.particles.BlockParticleOption;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.tags.BlockTags;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.Mth;
 import net.minecraft.util.ParticleUtils;
 import net.minecraft.util.RandomSource;
@@ -26,22 +26,22 @@ import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LightLayer;
-import net.minecraft.world.level.block.BaseEntityBlock;
-import net.minecraft.world.level.block.CampfireBlock;
-import net.minecraft.world.level.block.RenderShape;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.gameevent.GameEvent;
+import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.phys.Vec3;
-import net.minecraft.world.phys.shapes.CollisionContext;
-import net.minecraft.world.phys.shapes.EntityCollisionContext;
-import net.minecraft.world.phys.shapes.Shapes;
-import net.minecraft.world.phys.shapes.VoxelShape;
+import net.minecraft.world.phys.shapes.*;
 import net.minecraftforge.network.PacketDistributor;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.Optional;
+import java.util.function.BiPredicate;
 import java.util.function.Predicate;
 
 public class AmberBlock extends BaseEntityBlock {
@@ -51,7 +51,6 @@ public class AmberBlock extends BaseEntityBlock {
     public AmberBlock(Properties pProperties) {
         super(pProperties);
     }
-
 
     @Override
     public RenderShape getRenderShape(BlockState pState) {
@@ -83,7 +82,73 @@ public class AmberBlock extends BaseEntityBlock {
                 }
             }
         }
+    }
 
+    @Override
+    public void tick(BlockState pState, ServerLevel pLevel, BlockPos pPos, RandomSource pRandom) {
+        if (canDrip(pLevel, pPos)) {
+            BlockPos cauldronPos = findFillableCauldronBelow(pLevel, pPos);
+            if (cauldronPos != null) {
+                BlockState cauldronState = pLevel.getBlockState(cauldronPos);
+                if (cauldronState.is(Blocks.CAULDRON)) {
+                    BlockState blockstate = SMBlocks.AMBER_CAULDRON.get().defaultBlockState();
+                    pLevel.setBlockAndUpdate(cauldronPos, blockstate);
+                    pLevel.gameEvent(GameEvent.BLOCK_CHANGE, cauldronPos, GameEvent.Context.of(blockstate));
+                    pLevel.levelEvent(1047, cauldronPos, 0);
+                }
+                if (cauldronState.getBlock() instanceof AmberLayeredCauldronBlock amberCauldron) {
+                    if (!amberCauldron.isFull(cauldronState)) {
+                        BlockState blockstate = cauldronState.setValue(AmberLayeredCauldronBlock.LEVEL, cauldronState.getValue(AmberLayeredCauldronBlock.LEVEL) + 1);
+                        pLevel.setBlockAndUpdate(cauldronPos, blockstate);
+                        pLevel.gameEvent(GameEvent.BLOCK_CHANGE, cauldronPos, GameEvent.Context.of(blockstate));
+                        pLevel.levelEvent(1047, cauldronPos, 0);
+                    }
+                }
+            }
+        }
+    }
+
+    @Nullable
+    private static BlockPos findFillableCauldronBelow(Level pLevel, BlockPos pPos) {
+        Predicate<BlockState> predicate = state -> state.is(Blocks.CAULDRON) || state.is(SMBlocks.AMBER_CAULDRON.get());
+        BiPredicate<BlockPos, BlockState> bipredicate = (p_202034_, p_202035_) -> canDripThrough(pLevel, p_202034_, p_202035_);
+        return findBlockVertical(pLevel, pPos, Direction.DOWN.getAxisDirection(), bipredicate, predicate, 11).orElse(null);
+    }
+
+    public static boolean canDrip(Level level, BlockPos pos) {
+        return level.getBlockEntity(pos) instanceof AmberBE amberBE && amberBE.isBlockMelted();
+    }
+
+    private static boolean canDripThrough(BlockGetter pLevel, BlockPos pPos, BlockState pState) {
+        if (pState.isAir()) {
+            return true;
+        } else if (pState.isSolidRender(pLevel, pPos)) {
+            return false;
+        } else if (!pState.getFluidState().isEmpty()) {
+            return false;
+        } else {
+            VoxelShape voxelshape = pState.getCollisionShape(pLevel, pPos);
+            return !Shapes.joinIsNotEmpty(Block.box(6.0D, 0.0D, 6.0D, 10.0D, 16.0D, 10.0D), voxelshape, BooleanOp.AND);
+        }
+    }
+
+    private static Optional<BlockPos> findBlockVertical(LevelAccessor pLevel, BlockPos pPos, Direction.AxisDirection pAxis, BiPredicate<BlockPos, BlockState> pPositionalStatePredicate, Predicate<BlockState> pStatePredicate, int pMaxIterations) {
+        Direction direction = Direction.get(pAxis, Direction.Axis.Y);
+        BlockPos.MutableBlockPos blockpos$mutableblockpos = pPos.mutable();
+
+        for(int i = 1; i < pMaxIterations; ++i) {
+            blockpos$mutableblockpos.move(direction);
+            BlockState blockstate = pLevel.getBlockState(blockpos$mutableblockpos);
+            if (pStatePredicate.test(blockstate)) {
+                return Optional.of(blockpos$mutableblockpos.immutable());
+            }
+
+            if (pLevel.isOutsideBuildHeight(blockpos$mutableblockpos.getY()) || !pPositionalStatePredicate.test(blockpos$mutableblockpos, blockstate)) {
+                return Optional.empty();
+            }
+        }
+
+        return Optional.empty();
     }
 
     public static void spawnParticlesOnBlockFaces(Level pLevel, BlockPos pPos, ParticleOptions pParticle, IntProvider pCount) {

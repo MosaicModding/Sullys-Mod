@@ -172,8 +172,8 @@ public class SMBlockTagsProvider extends BlockTagsProvider {
                 Blocks.OCHRE_FROGLIGHT,
                 Blocks.PEARLESCENT_FROGLIGHT,
                 Blocks.VERDANT_FROGLIGHT,
-                Blocks.JACK_O_LANTERN,
-                SMBlocks.MOLTEN_AMBER_BLOCK.get()
+                Blocks.JACK_O_LANTERN/*,
+                SMBlocks.MOLTEN_AMBER_BLOCK.get()*/
         ).addTags(BlockTags.CANDLES, BlockTags.CANDLE_CAKES);
 
         //Forge Tags
