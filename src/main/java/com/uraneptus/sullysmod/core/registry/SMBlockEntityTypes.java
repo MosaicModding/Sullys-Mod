@@ -2,13 +2,11 @@ package com.uraneptus.sullysmod.core.registry;
 
 import com.teamabnormals.blueprint.core.util.registry.BlockEntitySubRegistryHelper;
 import com.uraneptus.sullysmod.SullysMod;
-import com.uraneptus.sullysmod.common.blockentities.AmberBE;
-import com.uraneptus.sullysmod.common.blockentities.AncientSkullBE;
-import com.uraneptus.sullysmod.common.blockentities.FlingerTotemBE;
-import com.uraneptus.sullysmod.common.blockentities.ItemStandBE;
+import com.uraneptus.sullysmod.common.blockentities.*;
 import com.uraneptus.sullysmod.common.blocks.AmberBlock;
 import com.uraneptus.sullysmod.common.blocks.FlingerTotem;
 import com.uraneptus.sullysmod.common.blocks.ItemStandBlock;
+import com.uraneptus.sullysmod.common.blocks.SolidAmberBlock;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraftforge.fml.common.Mod;
@@ -47,4 +45,5 @@ public class SMBlockEntityTypes {
     public static final RegistryObject<BlockEntityType<AmberBE>> AMBER = HELPER.createBlockEntity("amber", AmberBE::new, AmberBlock.class);
     public static final RegistryObject<BlockEntityType<ItemStandBE>> ITEM_STAND = HELPER.createBlockEntity("item_stand", ItemStandBE::new, ItemStandBlock.class);
     public static final RegistryObject<BlockEntityType<AncientSkullBE>> ANCIENT_SKULL = HELPER.createBlockEntity("ancient_skull", AncientSkullBE::new, ANCIENT_SKULLS);
+    public static final RegistryObject<BlockEntityType<SolidAmberBE>> SOLID_AMBER = HELPER.createBlockEntity("solid_amber", SolidAmberBE::new, SolidAmberBlock.class);
 }
