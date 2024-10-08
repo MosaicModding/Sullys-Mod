@@ -10,6 +10,7 @@ import net.minecraft.nbt.ListTag;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -68,7 +69,7 @@ public class AmberBE extends BlockEntity {
         return this.stuckEntityData != null ? this.stuckEntityData.entityData : tag;
     }
 
-    public void makeEntityStuck(LivingEntity entity) {
+    public void makeEntityStuck(Entity entity) {
         if (this.stuckEntityData == null) {
             CompoundTag compoundtag = new CompoundTag();
             SMPacketHandler.sendMsg(PacketDistributor.TRACKING_ENTITY_AND_SELF.with(() -> entity), new MsgEntityAmberStuck(entity, true));

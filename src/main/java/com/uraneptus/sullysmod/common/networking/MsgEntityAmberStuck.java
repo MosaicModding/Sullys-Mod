@@ -16,7 +16,7 @@ public class MsgEntityAmberStuck {
 
     public MsgEntityAmberStuck() {}
 
-    public MsgEntityAmberStuck(LivingEntity entity, boolean stuckInAmber) {
+    public MsgEntityAmberStuck(Entity entity, boolean stuckInAmber) {
         this.entityId = entity.getId();
         this.stuckInAmber = stuckInAmber;
     }

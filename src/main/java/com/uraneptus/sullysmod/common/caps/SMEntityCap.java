@@ -1,6 +1,7 @@
 package com.uraneptus.sullysmod.common.caps;
 
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.CapabilityManager;
@@ -24,7 +25,7 @@ public class SMEntityCap implements INBTSerializable<CompoundTag> {
         this.stuckInAmber = nbt.getBoolean("stuckInAmber");
     }
 
-    public static LazyOptional<SMEntityCap> getCapOptional(LivingEntity entity) {
+    public static LazyOptional<SMEntityCap> getCapOptional(Entity entity) {
         return entity.getCapability(ENTITY_CAPABILITY);
     }
 }

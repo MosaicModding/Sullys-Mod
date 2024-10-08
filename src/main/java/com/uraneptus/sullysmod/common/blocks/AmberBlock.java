@@ -23,6 +23,7 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.level.BlockGetter;
@@ -196,12 +197,12 @@ public class AmberBlock extends BaseEntityBlock {
                                 if (be instanceof AmberBE amberBE && amberBE.hasStuckEntity()) {
                                     CompoundTag compoundtag = amberBE.getEntityStuck();
                                     if (level != null) {
-                                        LivingEntity livingEntity = (LivingEntity) EntityType.loadEntityRecursive(compoundtag, level, entityStuck -> entityStuck);
-                                        if (livingEntity != null) {
-                                            if (livingEntity.getBoundingBox().getYsize() > 1.5F && livingEntity.getBoundingBox().getYsize() < 2F && pos.equals(pPos.offset(0, -1, 0))) {
+                                        Entity entityLoaded = EntityType.loadEntityRecursive(compoundtag, level, entityStuck -> entityStuck);
+                                        if (entityLoaded != null) {
+                                            if (entityLoaded.getBoundingBox().getYsize() > 1.5F && entityLoaded.getBoundingBox().getYsize() < 2F && pos.equals(pPos.offset(0, -1, 0))) {
                                                 shouldMeltFlag = false;
                                             }
-                                            else if (livingEntity.getBoundingBox().getYsize() >= 2F && livingEntity.getBoundingBox().getYsize() < 3.5F && pos.equals(pPos.offset(0, -2, 0))) {
+                                            else if (entityLoaded.getBoundingBox().getYsize() >= 2F && entityLoaded.getBoundingBox().getYsize() < 3.5F && pos.equals(pPos.offset(0, -2, 0))) {
                                                 shouldMeltFlag = false;
                                             }
                                         }
@@ -230,10 +231,13 @@ public class AmberBlock extends BaseEntityBlock {
                 if (amberBlockEntity.hasStuckEntity()) {
                     CompoundTag compoundtag = amberBlockEntity.getEntityStuck();
                     AmberBE.removeIgnoredNBT(compoundtag);
-                    LivingEntity livingEntity = (LivingEntity) EntityType.loadEntityRecursive(compoundtag, pLevel, entity -> entity);
-                    if (livingEntity != null) {
-                        livingEntity.moveTo(blockPos.getX() + 0.5, blockPos.getY(), blockPos.getZ() + 0.5);
-                        pLevel.addFreshEntity(livingEntity);
+                    Entity entity = EntityType.loadEntityRecursive(compoundtag, pLevel, entityLoaded -> entityLoaded);
+                    if (entity != null) {
+                        if (entity instanceof ItemEntity) {
+                            entity.setDeltaMovement(0, 0, 0);
+                        }
+                        entity.moveTo(blockPos.getX() + 0.5, blockPos.getY(), blockPos.getZ() + 0.5);
+                        pLevel.addFreshEntity(entity);
                     }
                 }
                 for (BlockPos pos : BlockPos.betweenClosed(blockPos.offset(0, -1, 0), blockPos.offset(0, -2, 0))) {
@@ -243,22 +247,22 @@ public class AmberBlock extends BaseEntityBlock {
                         if (be instanceof AmberBE amberBE && amberBE.hasStuckEntity()) {
                             CompoundTag compoundtag = amberBE.getEntityStuck();
                             AmberBE.removeIgnoredNBT(compoundtag);
-                            LivingEntity livingEntity = (LivingEntity) EntityType.loadEntityRecursive(compoundtag, pLevel, entityStuck -> entityStuck);
-                            if (livingEntity != null) {
-                                if (livingEntity.getBoundingBox().getYsize() > 1.5F && livingEntity.getBoundingBox().getYsize() < 2F && pos.equals(blockPos.offset(0, -1, 0))) {
-                                    livingEntity.moveTo(pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5);
-                                    pLevel.addFreshEntity(livingEntity);
+                            Entity entity = EntityType.loadEntityRecursive(compoundtag, pLevel, entityStuck -> entityStuck);
+                            if (entity != null) {
+                                if (entity.getBoundingBox().getYsize() > 1.5F && entity.getBoundingBox().getYsize() < 2F && pos.equals(blockPos.offset(0, -1, 0))) {
+                                    entity.moveTo(pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5);
+                                    pLevel.addFreshEntity(entity);
                                     amberBE.setStuckEntityData(null);
                                     amberBE.setBlockMelted(false);
                                 }
-                                else if (livingEntity.getBoundingBox().getYsize() >= 2F && livingEntity.getBoundingBox().getYsize() < 3.5F) {
-                                    livingEntity.moveTo(pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5);
-                                    pLevel.addFreshEntity(livingEntity);
+                                else if (entity.getBoundingBox().getYsize() >= 2F && entity.getBoundingBox().getYsize() < 3.5F) {
+                                    entity.moveTo(pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5);
+                                    pLevel.addFreshEntity(entity);
                                     amberBE.setStuckEntityData(null);
                                     amberBE.setBlockMelted(false);
                                 }
-                                SMPacketHandler.sendMsg(PacketDistributor.TRACKING_ENTITY_AND_SELF.with(() -> livingEntity), new MsgEntityAmberStuck(livingEntity, false));
-                                SMEntityCap.getCapOptional(livingEntity).ifPresent(cap -> {
+                                SMPacketHandler.sendMsg(PacketDistributor.TRACKING_ENTITY_AND_SELF.with(() -> entity), new MsgEntityAmberStuck(entity, false));
+                                SMEntityCap.getCapOptional(entity).ifPresent(cap -> {
                                     cap.stuckInAmber = false;
                                 });
                             }
@@ -278,6 +282,12 @@ public class AmberBlock extends BaseEntityBlock {
                 if (!(pEntity instanceof LivingEntity) || pEntity.getFeetBlockState().is(this)) {
                     if (pEntity instanceof Player) {
                         pEntity.makeStuckInBlock(pState, new Vec3(0.8F, 0.1D, 0.8F));
+                    }
+                    if (pEntity instanceof ItemEntity itemEntity) {
+                        itemEntity.makeStuckInBlock(pState, new Vec3(0F, 0.1D, 0F));
+                        if (itemEntity.onGround()) {
+                            amber.makeEntityStuck(itemEntity);
+                        }
                     } else if (pEntity instanceof Mob mob) {
                         if (mob.isVehicle()) {
                             mob.makeStuckInBlock(pState, new Vec3(0.5F, 0.1D, 0.5F));
