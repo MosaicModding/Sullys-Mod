@@ -2,10 +2,26 @@
   "type": "sullysmod:petrified_tree",
   "config": {
     "structure_variants": [
-      "sullysmod:petrified/petrified_tree_0",
-      "sullysmod:petrified/petrified_tree_1",
-      "sullysmod:petrified/petrified_tree_2",
-      "sullysmod:petrified/petrified_tree_3"
+      "sullysmod:petrified/big0",
+      "sullysmod:petrified/big1",
+      "sullysmod:petrified/ground0",
+      "sullysmod:petrified/ground1",
+      "sullysmod:petrified/ground2",
+      "sullysmod:petrified/ground_small0",
+      "sullysmod:petrified/ground_small1",
+      "sullysmod:petrified/ground_small2",
+      "sullysmod:petrified/ground_small3",
+      "sullysmod:petrified/hollow",
+      "sullysmod:petrified/middle0",
+      "sullysmod:petrified/middle1",
+      "sullysmod:petrified/side0",
+      "sullysmod:petrified/side1",
+      "sullysmod:petrified/side2",
+      "sullysmod:petrified/side3",
+      "sullysmod:petrified/small0",
+      "sullysmod:petrified/small1",
+      "sullysmod:petrified/small2",
+      "sullysmod:petrified/small3"
     ]
   }
 }
