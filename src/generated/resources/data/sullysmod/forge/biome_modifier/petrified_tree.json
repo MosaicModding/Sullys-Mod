@@ -2,5 +2,5 @@
   "type": "forge:add_features",
   "biomes": "#sullysmod:petrified_trees_generates_in",
   "features": "sullysmod:petrified_tree",
-  "step": "underground_decoration"
+  "step": "underground_structures"
 }

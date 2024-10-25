@@ -58,8 +58,6 @@ public class SMConfiguredFeaturesProvider {
                 SullysMod.modPrefix("petrified/small1"),
                 SullysMod.modPrefix("petrified/small2"),
                 SullysMod.modPrefix("petrified/small3")
-
-
                 ))));
         register(context, SMFeatureDefinitions.CONFIGURED_ARTIFACT_GRAVEL, () -> new ConfiguredFeature<>(SMFeatures.ARTIFACT_GRAVEL.get(), new SimpleBlockConfiguration(BlockStateProvider.simple(Blocks.SUSPICIOUS_GRAVEL))));
     }

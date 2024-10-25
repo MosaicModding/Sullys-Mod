@@ -50,7 +50,7 @@ public class PetrifiedTreeFeature extends Feature<PetrifiedTreeConfig> {
         if (level.getBlockState(centerPos.offset(0, size.getY() - 2, 0)).is(Blocks.AIR)) {
 
         }
-        return template.placeInWorld(level, offsetPos, offsetPos, placeSettings, random, Block.UPDATE_ALL);
+        return template.placeInWorld(level, new BlockPos(offsetPos.getX(), offsetPos.getY() - 2, offsetPos.getZ()), offsetPos, placeSettings, random, Block.UPDATE_ALL);
 
     }
 }

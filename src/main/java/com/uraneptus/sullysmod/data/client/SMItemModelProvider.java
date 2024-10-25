@@ -76,7 +76,7 @@ public class SMItemModelProvider extends ItemModelProvider {
         basicBlockItem(SMBlocks.AMBER);
         basicBlockItem(SMBlocks.ROUGH_AMBER);
         basicBlockItem(SMBlocks.CHISELED_AMBER);
-        basicBlockItem(SMBlocks.AMBER_PILLAR);
+        //basicBlockItem(SMBlocks.AMBER_PILLAR);
         basicBlockItem(SMBlocks.AMBER_LANTERN);
         basicBlockItem(SMBlocks.JADE_LANTERN);
         basicBlockItem(SMBlocks.DIAMOND_LANTERN);
