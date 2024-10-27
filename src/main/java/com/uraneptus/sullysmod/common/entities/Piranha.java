@@ -10,11 +10,14 @@ import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
+import net.minecraft.tags.EntityTypeTags;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.util.TimeUtil;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -31,6 +34,8 @@ import net.minecraft.world.entity.vehicle.Boat;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
+import net.minecraft.world.level.material.FluidState;
+import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.level.pathfinder.Path;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
@@ -68,7 +73,7 @@ public class Piranha extends AbstractSchoolingFish implements GeoEntity, Neutral
     }
 
     public static AttributeSupplier.Builder createAttributes() {
-        return AbstractFish.createAttributes().add(Attributes.ATTACK_DAMAGE, 2);
+        return AbstractFish.createAttributes().add(Attributes.ATTACK_DAMAGE, 2).add(Attributes.MAX_HEALTH, 8).add(Attributes.MOVEMENT_SPEED, 0.70);
     }
 
     @Override
@@ -148,7 +153,79 @@ public class Piranha extends AbstractSchoolingFish implements GeoEntity, Neutral
     }
 
     @Override
+    protected int calculateFallDamage(float pFallDistance, float pDamageMultiplier) {
+        if (this.getType().is(EntityTypeTags.FALL_DAMAGE_IMMUNE)) {
+            return 0;
+        } else {
+            MobEffectInstance mobeffectinstance = this.getEffect(MobEffects.JUMP);
+            float f = mobeffectinstance == null ? 0.0F : (float)(mobeffectinstance.getAmplifier() + 1);
+            return Mth.ceil((pFallDistance - 6.0F - f) * pDamageMultiplier);
+        }
+    }
+
+    @Nullable
+    public BlockPos findWater() {
+        for (BlockPos blockPos : BlockPos.randomBetweenClosed(this.getRandom(), 2, this.getBlockX() - 5, this.getBlockY() - 5, this.getBlockZ() - 5, this.getBlockX() + 5, this.getBlockY(), this.getBlockZ() + 5)) {
+            if (level().getFluidState(blockPos).is(Fluids.WATER)) {
+                return blockPos;
+            }
+        }
+        for (BlockPos blockPos : BlockPos.randomBetweenClosed(this.getRandom(), 2, this.getBlockX() - 20, this.getBlockY() - 5, this.getBlockZ() - 20, this.getBlockX() + 20, this.getBlockY(), this.getBlockZ() + 20)) {
+            if (level().getFluidState(blockPos).is(Fluids.WATER)) {
+                return blockPos;
+            }
+        }
+        return null;
+    }
+
+    public void leapTowardsWater(BlockPos blockPos) {
+        this.getLookControl().setLookAt(blockPos.getX(), blockPos.getY(), blockPos.getZ());
+        Vec3 vec3;
+        if (this.distanceToSqr(blockPos.getX(), blockPos.getY(), blockPos.getX()) < 5) {
+            vec3 = (new Vec3(blockPos.getX() - this.getX(), blockPos.getY() - this.getY(), blockPos.getZ() - this.getZ())).normalize();
+        } else {
+            vec3 = (new Vec3(blockPos.getX() - (this.getX() - 5), blockPos.getY() - this.getY(), blockPos.getZ() - (this.getZ() - 5))).normalize();
+        }
+        double yVelocity = 0.2D;
+        if (this.distanceToSqr(blockPos.getX(), blockPos.getY(), blockPos.getX()) < 4) {
+            yVelocity = 0.1D;
+        }
+        this.setDeltaMovement(this.getDeltaMovement().add(vec3.x, yVelocity, vec3.z));
+    }
+
+    @Override
     public void aiStep() {
+        if (!this.isInWater() && this.onGround() && this.verticalCollision) {
+            LivingEntity target = this.getTarget();
+            if (target != null) {
+                if (this.distanceTo(target) < 5) {
+                    if (this.getHealth() > (this.getMaxHealth() / 2) && this.getAirSupply() > (this.getMaxAirSupply() / 2)) {
+                        if (this.getRandom().nextInt(8) == 0) {
+                            this.getLookControl().setLookAt(target, 60.0F, 30.0F);
+                            Vec3 vec3 = (new Vec3(target.getX() - this.getX(), target.getY() - this.getY(), target.getZ() - this.getZ())).normalize();
+                            this.setDeltaMovement(this.getDeltaMovement().add(vec3.x, 0.45D, vec3.z));
+                            this.setOnGround(false);
+                            this.hasImpulse = true;
+                            this.playSound(this.getFlopSound(), this.getSoundVolume(), this.getVoicePitch());
+                            if (this.distanceTo(target) <= 4.0F) {
+                                this.doHurtTarget(target);
+                            }
+                        }
+                    }
+                } else {
+                    BlockPos blockPos = findWater();
+                    if (blockPos != null) {
+                        leapTowardsWater(blockPos);
+                    }
+                }
+            }
+            else {
+                BlockPos blockPos = findWater();
+                if (blockPos != null) {
+                    leapTowardsWater(blockPos);
+                }
+            }
+        }
         super.aiStep();
         if (!this.level().isClientSide) {
             this.updatePersistentAnger((ServerLevel)this.level(), true);
@@ -499,6 +576,7 @@ public class Piranha extends AbstractSchoolingFish implements GeoEntity, Neutral
         @Override
         public boolean canUse() {
             LivingEntity target = piranha.getTarget();
+            if (!piranha.level().getFluidState(piranha.getOnPos().above()).is(Fluids.WATER)) return false;
             if (target == null || !target.isAlive()) return false;
             if (target.isInWater() || !piranha.isInWater()) return false;
             if (target.getMotionDirection() != target.getDirection()) return false;
@@ -552,9 +630,13 @@ public class Piranha extends AbstractSchoolingFish implements GeoEntity, Neutral
             //piranha.setIsInterested(false);
             LivingEntity target = piranha.getTarget();
             if (target != null) {
+                double yVelocity = 0.5D;
+                if (piranha.distanceTo(target) < 5) {
+                    yVelocity = 0.4D;
+                }
                 piranha.getLookControl().setLookAt(target, 60.0F, 30.0F);
                 Vec3 vec3 = (new Vec3(target.getX() - piranha.getX(), target.getY() - piranha.getY(), target.getZ() - piranha.getZ())).normalize();
-                piranha.setDeltaMovement(piranha.getDeltaMovement().add(vec3.x, 0.9D, vec3.z ));
+                piranha.setDeltaMovement(piranha.getDeltaMovement().add(vec3.x, yVelocity, vec3.z));
             }
 
             piranha.getNavigation().stop();
