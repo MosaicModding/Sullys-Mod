@@ -1,6 +1,30 @@
 {
   "type": "sullysmod:petrified_tree",
   "config": {
+    "amberBlob": {
+      "feature": {
+        "type": "minecraft:forest_rock",
+        "config": {
+          "state": {
+            "Name": "sullysmod:amber"
+          }
+        }
+      },
+      "placement": [
+        {
+          "type": "minecraft:block_predicate_filter",
+          "predicate": {
+            "type": "minecraft:all_of",
+            "predicates": [
+              {
+                "type": "minecraft:matching_blocks",
+                "blocks": "minecraft:air"
+              }
+            ]
+          }
+        }
+      ]
+    },
     "structure_variants": [
       "sullysmod:petrified/big0",
       "sullysmod:petrified/big1",

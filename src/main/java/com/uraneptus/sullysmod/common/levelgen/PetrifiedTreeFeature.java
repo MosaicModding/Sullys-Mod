@@ -50,6 +50,16 @@ public class PetrifiedTreeFeature extends Feature<PetrifiedTreeConfig> {
         if (level.getBlockState(centerPos.offset(0, size.getY() - 2, 0)).is(Blocks.AIR)) {
 
         }
+        int tries = 15;
+        int blobAmount = random.nextInt(4);
+
+        for (int j = 0; j < tries; ++j) {
+            //TODO configure to only spawn with big trees
+            config.amberBlobs().get().place(level, context.chunkGenerator(), random, offsetPos.offset(1 + random.nextIntBetweenInclusive(-1, 2), 0, 1 + random.nextIntBetweenInclusive(-1, 2)));
+            //TODO blobs need to be bigger and be better spread out
+        }
+
+
         return template.placeInWorld(level, new BlockPos(offsetPos.getX(), offsetPos.getY() - 2, offsetPos.getZ()), offsetPos, placeSettings, random, Block.UPDATE_ALL);
 
     }

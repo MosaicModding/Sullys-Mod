@@ -30,11 +30,9 @@ public class SMPlacedFeaturesProvider {
                 BiomeFilter.biome()
         ));
         register(context, SMFeatureDefinitions.PLACED_ARTIFACT_GRAVEL, addFeaturePlacement(context, SMFeatureDefinitions.CONFIGURED_ARTIFACT_GRAVEL,
+                CountPlacement.of(40),
                 InSquarePlacement.spread(),
                 HeightRangePlacement.uniform(VerticalAnchor.bottom(), VerticalAnchor.absolute(62)),
-                BlockPredicateFilter.forPredicate(BlockPredicate.matchesBlocks(Blocks.GRAVEL)),
-                BlockPredicateFilter.forPredicate(BlockPredicate.matchesBlocks(new Vec3i(0, 1, 0), Blocks.AIR)),
-                CountPlacement.of(40),
                 BiomeFilter.biome()
         ));
     }

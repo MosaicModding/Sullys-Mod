@@ -30,7 +30,7 @@ public class SMBiomeModifiersProvider {
         register(context, "bouldering_zombie", () -> addSingleSpawnModifier(context, SMBiomeTags.BOULDERING_ZOMBIE_SPAWN_IN, SMEntityTypes.BOULDERING_ZOMBIE.get(), 100, 4, 6));
         register(context, "jungle_spider", () -> addSingleSpawnModifier(context, SMBiomeTags.JUNGLE_SPIDER_SPAWN_IN, SMEntityTypes.JUNGLE_SPIDER.get(), 100, 3, 6));
         register(context, "jade_ore", () -> addFeatureModifier(context, SMFeatureDefinitions.PLACED_JADE_ORE, SMBiomeTags.JADE_GENERATES_IN, GenerationStep.Decoration.UNDERGROUND_ORES));
-        register(context, "petrified_tree", () -> addFeatureModifier(context, SMFeatureDefinitions.PLACED_PETRIFIED_TREE, SMBiomeTags.PETRIFIED_TREES_GENERATE_IN, GenerationStep.Decoration.UNDERGROUND_DECORATION));
+        register(context, "petrified_tree", () -> addFeatureModifier(context, SMFeatureDefinitions.PLACED_PETRIFIED_TREE, SMBiomeTags.PETRIFIED_TREES_GENERATE_IN, GenerationStep.Decoration.UNDERGROUND_STRUCTURES));
         register(context, "artifact_gravel", () -> addFeatureModifier(context, SMFeatureDefinitions.PLACED_ARTIFACT_GRAVEL, BiomeTags.IS_OVERWORLD, GenerationStep.Decoration.UNDERGROUND_DECORATION));
     }
 

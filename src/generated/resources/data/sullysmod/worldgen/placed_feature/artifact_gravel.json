@@ -2,6 +2,10 @@
   "feature": "sullysmod:artifact_gravel",
   "placement": [
     {
+      "type": "minecraft:count",
+      "count": 40
+    },
+    {
       "type": "minecraft:in_square"
     },
     {
@@ -15,29 +19,6 @@
           "above_bottom": 0
         }
       }
-    },
-    {
-      "type": "minecraft:block_predicate_filter",
-      "predicate": {
-        "type": "minecraft:matching_blocks",
-        "blocks": "minecraft:gravel"
-      }
-    },
-    {
-      "type": "minecraft:block_predicate_filter",
-      "predicate": {
-        "type": "minecraft:matching_blocks",
-        "blocks": "minecraft:air",
-        "offset": [
-          0,
-          1,
-          0
-        ]
-      }
-    },
-    {
-      "type": "minecraft:count",
-      "count": 40
     },
     {
       "type": "minecraft:biome"
