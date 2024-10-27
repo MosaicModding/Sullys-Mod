@@ -24,13 +24,11 @@ public class ArtifactGravelFeature extends Feature<SimpleBlockConfiguration> {
         WorldGenLevel worldgenlevel = context.level();
         BlockPos blockpos = context.origin();
         BlockState blockstate = simpleblockconfiguration.toPlace().getState(context.random(), blockpos);
-        if (blockstate.canSurvive(worldgenlevel, blockpos)) {
-            if (blockstate.is(Blocks.SUSPICIOUS_GRAVEL)) {
-                context.level().getBlockEntity(blockpos, BlockEntityType.BRUSHABLE_BLOCK).ifPresent(brushableBlockEntity -> {
-                    brushableBlockEntity.setLootTable(SMBuiltInLootTables.GRAVEL_PETRIFIED_SAPLING_TREE, blockpos.asLong());
-                });
-                worldgenlevel.setBlock(blockpos, blockstate, 2);
-            }
+        if (blockstate.is(Blocks.SUSPICIOUS_GRAVEL)) {
+            worldgenlevel.setBlock(blockpos, blockstate, 2);
+            context.level().getBlockEntity(blockpos, BlockEntityType.BRUSHABLE_BLOCK).ifPresent(brushableBlockEntity -> {
+                brushableBlockEntity.setLootTable(SMBuiltInLootTables.OVERWORLD_ARTIFACTS, blockpos.asLong());
+            });
             return true;
         } else {
             return false;
