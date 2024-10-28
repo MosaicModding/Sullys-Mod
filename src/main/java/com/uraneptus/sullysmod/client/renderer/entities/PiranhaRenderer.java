@@ -20,7 +20,7 @@ public class PiranhaRenderer <E extends Piranha> extends GeoEntityRenderer<E> {
         super.applyRotations(animatable, poseStack, ageInTicks, rotationYaw, partialTick);
         float f = 4.3F * Mth.sin(0.6F * ageInTicks);
         poseStack.mulPose(Axis.YP.rotationDegrees(f));
-        if (!animatable.isInWater()) {
+        if (!animatable.isInWater() && !animatable.getLeaping()) {
             poseStack.translate(0.1F, 0.1F, -0.1F);
             poseStack.mulPose(Axis.ZP.rotationDegrees(90.0F));
         }

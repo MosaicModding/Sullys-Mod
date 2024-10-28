@@ -63,6 +63,7 @@ public class Piranha extends AbstractSchoolingFish implements GeoEntity, Neutral
     private static final EntityDataAccessor<Integer> DATA_REMAINING_ANGER_TIME = SynchedEntityData.defineId(Piranha.class, EntityDataSerializers.INT);
     private static final UniformInt PERSISTENT_ANGER_TIME = TimeUtil.rangeOfSeconds(5, 10);
     private static final EntityDataAccessor<Boolean> HAS_BOAT_TARGET = SynchedEntityData.defineId(Piranha.class, EntityDataSerializers.BOOLEAN);
+    private static final EntityDataAccessor<Boolean> IS_LEAPING = SynchedEntityData.defineId(Piranha.class, EntityDataSerializers.BOOLEAN);
     @Nullable
     private UUID persistentAngerTarget;
     @Nullable
@@ -76,9 +77,11 @@ public class Piranha extends AbstractSchoolingFish implements GeoEntity, Neutral
         return AbstractFish.createAttributes().add(Attributes.ATTACK_DAMAGE, 2).add(Attributes.MAX_HEALTH, 8).add(Attributes.MOVEMENT_SPEED, 0.70);
     }
 
+
     @Override
     protected void registerGoals() {
         //NOTE: Never call the super method! We don't want the panic goal in AbstractFish
+        this.goalSelector.addGoal(1, new PiranhaLeapTowardsPlayerGoal(this));
         this.goalSelector.addGoal(1, new PiranhaJumpOnLandGoal(this));
         this.goalSelector.addGoal(0, new PiranhaAttackGoal(this));
         this.goalSelector.addGoal(0, new PiranhaAttackBoatGoal(this));
@@ -121,6 +124,15 @@ public class Piranha extends AbstractSchoolingFish implements GeoEntity, Neutral
         super.defineSynchedData();
         this.entityData.define(DATA_REMAINING_ANGER_TIME, 0);
         this.entityData.define(HAS_BOAT_TARGET, false);
+        this.entityData.define(IS_LEAPING, false);
+    }
+
+    public boolean getLeaping() {
+        return this.getEntityData().get(IS_LEAPING);
+    }
+
+    public void setLeaping(boolean bool) {
+        this.getEntityData().set(IS_LEAPING, bool);
     }
 
     @Override
@@ -149,7 +161,7 @@ public class Piranha extends AbstractSchoolingFish implements GeoEntity, Neutral
         }
 
          */
-
+        System.out.println(this.getLeaping());
     }
 
     @Override
@@ -178,6 +190,7 @@ public class Piranha extends AbstractSchoolingFish implements GeoEntity, Neutral
         return null;
     }
 
+
     public void leapTowardsWater(BlockPos blockPos) {
         this.getLookControl().setLookAt(blockPos.getX(), blockPos.getY(), blockPos.getZ());
         Vec3 vec3;
@@ -191,42 +204,21 @@ public class Piranha extends AbstractSchoolingFish implements GeoEntity, Neutral
             yVelocity = 0.1D;
         }
         this.setDeltaMovement(this.getDeltaMovement().add(vec3.x, yVelocity, vec3.z));
+        this.playSound(this.getFlopSound(), this.getSoundVolume(), this.getVoicePitch());
     }
 
     @Override
     public void aiStep() {
+        super.aiStep();
+
         if (!this.isInWater() && this.onGround() && this.verticalCollision) {
-            LivingEntity target = this.getTarget();
-            if (target != null) {
-                if (this.distanceTo(target) < 5) {
-                    if (this.getHealth() > (this.getMaxHealth() / 2) && this.getAirSupply() > (this.getMaxAirSupply() / 2)) {
-                        if (this.getRandom().nextInt(8) == 0) {
-                            this.getLookControl().setLookAt(target, 60.0F, 30.0F);
-                            Vec3 vec3 = (new Vec3(target.getX() - this.getX(), target.getY() - this.getY(), target.getZ() - this.getZ())).normalize();
-                            this.setDeltaMovement(this.getDeltaMovement().add(vec3.x, 0.45D, vec3.z));
-                            this.setOnGround(false);
-                            this.hasImpulse = true;
-                            this.playSound(this.getFlopSound(), this.getSoundVolume(), this.getVoicePitch());
-                            if (this.distanceTo(target) <= 4.0F) {
-                                this.doHurtTarget(target);
-                            }
-                        }
-                    }
-                } else {
-                    BlockPos blockPos = findWater();
-                    if (blockPos != null) {
-                        leapTowardsWater(blockPos);
-                    }
-                }
-            }
-            else {
-                BlockPos blockPos = findWater();
-                if (blockPos != null) {
+            BlockPos blockPos = findWater();
+            if (blockPos != null) {
+                if (this.getHealth() < (this.getMaxHealth() / 2) || this.getAirSupply() < (this.getMaxAirSupply() / 2)) {
                     leapTowardsWater(blockPos);
                 }
             }
         }
-        super.aiStep();
         if (!this.level().isClientSide) {
             this.updatePersistentAnger((ServerLevel)this.level(), true);
             this.setHasBoatTarget(this.getBoatTarget() != null);
@@ -565,6 +557,116 @@ public class Piranha extends AbstractSchoolingFish implements GeoEntity, Neutral
         }
     }
 
+    static class PiranhaLeapTowardsPlayerGoal extends JumpGoal {
+        Piranha piranha;
+        boolean didAttack;
+
+        public PiranhaLeapTowardsPlayerGoal(Piranha pMob) {
+            this.piranha = pMob;
+        }
+
+        @Override
+        public boolean canUse() {
+            LivingEntity target = piranha.getTarget();
+            if (piranha.getRandom().nextInt(4) != 0) return false;
+            if (piranha.getHealth() < (piranha.getMaxHealth() / 2)) return false;
+            if (piranha.getAirSupply() < (piranha.getMaxAirSupply() / 2)) return false;
+            if (piranha.getBlockStateOn().getFluidState().is(Fluids.WATER) || piranha.getBlockStateOn().isAir()) return false;
+            if (target == null || !target.isAlive()) return false;
+            if (target.getMotionDirection() != target.getDirection()) return false;
+
+            boolean pathClear = isPathClear(piranha, target);
+            if (!pathClear) {
+                piranha.getNavigation().createPath(target, 0);
+            }
+            return pathClear;
+        }
+
+        protected boolean isPathClear(Piranha piranha, LivingEntity pLivingEntity) {
+            double d0 = pLivingEntity.getZ() - piranha.getZ();
+            double d1 = pLivingEntity.getX() - piranha.getX();
+            double d2 = d0 / d1;
+            int i = 6;
+
+            for(int j = 0; j < 6; ++j) {
+                double d3 = d2 == 0.0D ? 0.0D : d0 * (double)((float)j / 6.0F);
+                double d4 = d2 == 0.0D ? d1 * (double)((float)j / 6.0F) : d3 / d2;
+
+                for(int k = 1; k < 4; ++k) {
+                    if (!piranha.level().getBlockState(BlockPos.containing(piranha.getX() + d4, piranha.getY() + (double)k, piranha.getZ() + d3)).canBeReplaced()) {
+                        return false;
+                    }
+                }
+            }
+
+            return true;
+        }
+
+        @Override
+        public boolean canContinueToUse() {
+            LivingEntity target = piranha.getTarget();
+            if (piranha.getRandom().nextInt(4) != 0) return false;
+            if (target == null || !target.isAlive()) return false;
+            if (piranha.getBlockStateOn().getFluidState().is(Fluids.WATER) || piranha.getBlockStateOn().isAir()) return false;
+
+            double yMovement = piranha.getDeltaMovement().y;
+            return (!(yMovement * yMovement < (double)0.05F) || !(Math.abs(piranha.getXRot()) < 15.0F) || !piranha.onGround());
+        }
+
+        @Override
+        public boolean isInterruptable() {
+            return false;
+        }
+
+        @Override
+        public void start() {
+            piranha.setJumping(true);
+            piranha.setLeaping(true);
+            LivingEntity target = piranha.getTarget();
+            if (target != null) {
+                double yVelocity = 0.3D;
+                if (piranha.distanceTo(target) < 5) {
+                    yVelocity = 0.2D;
+                }
+                piranha.getLookControl().setLookAt(target, 60.0F, 30.0F);
+                Vec3 vec3 = (new Vec3(target.getX() - piranha.getX(), target.getY() - piranha.getY(), target.getZ() - piranha.getZ())).normalize();
+                piranha.setDeltaMovement(piranha.getDeltaMovement().add(vec3.x, yVelocity, vec3.z));
+            }
+
+           // piranha.getNavigation().stop();
+        }
+
+        @Override
+        public void stop() {
+            piranha.setJumping(false);
+            piranha.setLeaping(false);
+        }
+
+        @Override
+        public void tick() {
+            LivingEntity target = piranha.getTarget();
+            if (target != null) {
+                piranha.getLookControl().setLookAt(target, 60.0F, 30.0F);
+            }
+
+            Vec3 vec3 = piranha.getDeltaMovement();
+            if (vec3.y * vec3.y < (double)0.03F && piranha.getXRot() != 0.0F) {
+                piranha.setXRot(Mth.rotLerp(0.2F, piranha.getXRot(), 0.0F));
+            } else {
+                double d0 = vec3.horizontalDistance();
+                double d1 = Math.signum(-vec3.y) * Math.acos(d0 / vec3.length()) * (double)(180F / (float)Math.PI);
+                piranha.setXRot((float)d1);
+            }
+            if (target != null && piranha.distanceTo(target) <= 2.0F) {
+                piranha.doHurtTarget(target);
+            } else if (piranha.getXRot() > 0.0F && piranha.onGround() && (float)piranha.getDeltaMovement().y != 0.0F) {
+                piranha.setXRot(60.0F);
+                piranha.setTarget(null);
+            }
+
+        }
+    }
+
     static class PiranhaJumpOnLandGoal extends JumpGoal {
         Piranha piranha;
         boolean didAttack;
@@ -626,8 +728,7 @@ public class Piranha extends AbstractSchoolingFish implements GeoEntity, Neutral
         @Override
         public void start() {
             piranha.setJumping(true);
-            //piranha.setIsPouncing(true);
-            //piranha.setIsInterested(false);
+            piranha.setLeaping(true);
             LivingEntity target = piranha.getTarget();
             if (target != null) {
                 double yVelocity = 0.5D;
@@ -644,7 +745,8 @@ public class Piranha extends AbstractSchoolingFish implements GeoEntity, Neutral
 
         @Override
         public void stop() {
-            //TODO
+            piranha.setJumping(false);
+            piranha.setLeaping(false);
         }
 
         @Override
