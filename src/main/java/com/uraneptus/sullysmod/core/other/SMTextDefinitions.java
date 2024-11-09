@@ -14,8 +14,8 @@ public class SMTextDefinitions {
     public static final Style ARTIFACT_DESC_STYLE = Style.EMPTY.withColor(TextColor.fromRgb(6644320)).withItalic(true);
     public static final ChatFormatting TITLE_FORMAT = ChatFormatting.GRAY;
     public static final ChatFormatting DESCRIPTION_FORMAT = ChatFormatting.BLUE;
-    public static final String ZOMBIE_PACK_NAME = "zombie_retextures";
-    public static final Component ZOMBIE_PACK_DISPLAY_NAME = Component.literal("Sully's Mod " + SMTextUtil.createTranslation(ZOMBIE_PACK_NAME));
+    public static final String RETEXTURES_PACK_NAME = "mob_retextures";
+    public static final Component RETEXTURES_PACK_DISPLAY_NAME = Component.literal("Sully's Mod " + SMTextUtil.createTranslation(RETEXTURES_PACK_NAME));
     public static Component POLISHABLE;
     public static Component JEI_POLISHING_TITLE;
     public static Component JEI_POLISHING_INFO;

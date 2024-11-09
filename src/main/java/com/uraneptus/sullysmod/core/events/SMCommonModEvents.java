@@ -55,10 +55,10 @@ public class SMCommonModEvents {
     @SubscribeEvent
     public static void addPackFinders(AddPackFindersEvent event) {
         event.addRepositorySource(consumer -> {
-            String path = SullysMod.modPrefix(SMTextDefinitions.ZOMBIE_PACK_NAME).toString();
+            String path = SullysMod.modPrefix(SMTextDefinitions.RETEXTURES_PACK_NAME).toString();
             IModFile file = ModList.get().getModFileById(SullysMod.MOD_ID).getFile();
-            try (PathPackResources packResources = new PathPackResources(path, true, file.findResource("builtin/" + SMTextDefinitions.ZOMBIE_PACK_NAME))) {
-                consumer.accept(Pack.readMetaAndCreate(path, SMTextDefinitions.ZOMBIE_PACK_DISPLAY_NAME, false, (id) -> packResources, PackType.CLIENT_RESOURCES, Pack.Position.TOP, PackSource.BUILT_IN));
+            try (PathPackResources packResources = new PathPackResources(path, true, file.findResource("builtin/" + SMTextDefinitions.RETEXTURES_PACK_NAME))) {
+                consumer.accept(Pack.readMetaAndCreate(path, SMTextDefinitions.RETEXTURES_PACK_DISPLAY_NAME, false, (id) -> packResources, PackType.CLIENT_RESOURCES, Pack.Position.TOP, PackSource.BUILT_IN));
             }
         });
     }
