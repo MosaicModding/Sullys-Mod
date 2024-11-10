@@ -49,7 +49,7 @@ public class SMProperties {
         public static final Item.Properties MUSIC_DISCS = PropertyUtil.stacksOnce().rarity(Rarity.RARE);
         public static final Item.Properties JADE_SHIELD = new Item.Properties().durability(400);
         public static Item.Properties artifacts() {
-            return PropertyUtil.stacksOnce().rarity(ANCIENT);
+            return new Item.Properties().rarity(ANCIENT);
         }
 
         public static Item.Properties sixteenStack() {
