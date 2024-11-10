@@ -25,8 +25,7 @@ public class TortoiseShellModel <T extends TortoiseShell> extends EntityModel<T>
 
         PartDefinition shell = partdefinition.addOrReplaceChild("shell", CubeListBuilder.create().texOffs(0, 0).addBox(-8.0F, -17.0F, -8.0F, 16.0F, 14.0F, 18.0F, new CubeDeformation(0.0F))
                 .texOffs(0, 32).addBox(-8.0F, -17.0F, -8.0F, 16.0F, 14.0F, 18.0F, new CubeDeformation(0.5F)), PartPose.offsetAndRotation(0.0F, 13.0F, -0.5F, 0.0F, 0.0F, -3.1416F));
-
-        PartDefinition workstationSaddle = shell.addOrReplaceChild("workstationSaddle", CubeListBuilder.create().texOffs(0, 64).addBox(-8.0F, -18.0F, -7.0F, 16.0F, 16.0F, 16.0F, new CubeDeformation(0.01F)), PartPose.offset(0.0F, -3.0F, 0.0F));
+        shell.addOrReplaceChild("workstationSaddle", CubeListBuilder.create().texOffs(0, 64).addBox(-8.0F, -18.0F, -7.0F, 16.0F, 16.0F, 16.0F, new CubeDeformation(0.01F)), PartPose.offset(0.0F, -3.0F, 0.0F));
 
         return LayerDefinition.create(meshdefinition, 128, 128);
     }

@@ -1,7 +1,6 @@
 package com.uraneptus.sullysmod.data.server.advancements;
 
 import com.uraneptus.sullysmod.SullysMod;
-
 import com.uraneptus.sullysmod.core.other.tags.SMItemTags;
 import com.uraneptus.sullysmod.core.registry.SMBlocks;
 import com.uraneptus.sullysmod.core.registry.SMEntityTypes;
@@ -9,31 +8,27 @@ import com.uraneptus.sullysmod.core.registry.SMItems;
 import net.minecraft.advancements.*;
 import net.minecraft.advancements.critereon.*;
 import net.minecraft.core.HolderLookup;
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.common.data.ForgeAdvancementProvider;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
-import org.apache.commons.compress.compressors.lz77support.LZ77Compressor;
 import org.apache.commons.lang3.tuple.Pair;
 
 import javax.annotation.Nullable;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
-import static com.uraneptus.sullysmod.data.SMDatagenUtil.*;
 import static com.uraneptus.sullysmod.core.other.SMTextDefinitions.*;
+import static com.uraneptus.sullysmod.data.SMDatagenUtil.craftingPath;
+import static com.uraneptus.sullysmod.data.SMDatagenUtil.name;
 
 public class SMAdventureAdvancements implements ForgeAdvancementProvider.AdvancementGenerator {
     ResourceLocation adventureParent = new ResourceLocation("adventure/root");

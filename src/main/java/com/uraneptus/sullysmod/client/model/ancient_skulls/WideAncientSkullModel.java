@@ -18,7 +18,7 @@ public class WideAncientSkullModel extends AbstractAncientSkullModel {
 		MeshDefinition meshdefinition = new MeshDefinition();
 		PartDefinition partdefinition = meshdefinition.getRoot();
 
-		PartDefinition head = partdefinition.addOrReplaceChild("head", CubeListBuilder.create().texOffs(0, 17).addBox(-4.0F, -8.0F, -6.0F, 8.0F, 8.0F, 3.0F, new CubeDeformation(0.0F))
+		partdefinition.addOrReplaceChild("head", CubeListBuilder.create().texOffs(0, 17).addBox(-4.0F, -8.0F, -6.0F, 8.0F, 8.0F, 3.0F, new CubeDeformation(0.0F))
 				.texOffs(0, 0).addBox(-7.0F, -9.0F, -3.0F, 14.0F, 9.0F, 8.0F, new CubeDeformation(0.0F)),
 				PartPose.offset(0.0F, 0.0F, 0.0F));
 

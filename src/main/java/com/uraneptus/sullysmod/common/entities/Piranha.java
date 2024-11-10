@@ -34,36 +34,24 @@ import net.minecraft.world.entity.vehicle.Boat;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
-import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.level.pathfinder.Path;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
-import software.bernie.geckolib.animatable.GeoEntity;
-import software.bernie.geckolib.core.animatable.GeoAnimatable;
-import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
-import software.bernie.geckolib.core.animation.AnimatableManager;
-import software.bernie.geckolib.core.animation.AnimationController;
-import software.bernie.geckolib.core.animation.AnimationState;
-import software.bernie.geckolib.core.animation.RawAnimation;
-import software.bernie.geckolib.core.object.PlayState;
-import software.bernie.geckolib.util.GeckoLibUtil;
 
 import java.util.EnumSet;
 import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 
-public class Piranha extends AbstractSchoolingFish implements GeoEntity, NeutralMob {
-    private final AnimatableInstanceCache instanceCache = GeckoLibUtil.createInstanceCache(this);
-    protected static final RawAnimation SWIMMING_ANIM = RawAnimation.begin().thenLoop("animation.piranha.swim");
-    protected static final RawAnimation SWIMMING_ANGRY_ANIM = RawAnimation.begin().thenLoop("animation.piranha.swim_angry");
-    protected static final RawAnimation JUMPING_ANIM = RawAnimation.begin().thenPlay("animation.piranha.in_air");
+public class Piranha extends AbstractSchoolingFish implements NeutralMob {
     private static final EntityDataAccessor<Integer> DATA_REMAINING_ANGER_TIME = SynchedEntityData.defineId(Piranha.class, EntityDataSerializers.INT);
     private static final UniformInt PERSISTENT_ANGER_TIME = TimeUtil.rangeOfSeconds(5, 10);
     private static final EntityDataAccessor<Boolean> HAS_BOAT_TARGET = SynchedEntityData.defineId(Piranha.class, EntityDataSerializers.BOOLEAN);
     private static final EntityDataAccessor<Boolean> IS_LEAPING = SynchedEntityData.defineId(Piranha.class, EntityDataSerializers.BOOLEAN);
+    public final AnimationState swimState = new AnimationState();
+    public final AnimationState angrySwimState = new AnimationState();
     @Nullable
     private UUID persistentAngerTarget;
     @Nullable
@@ -151,17 +139,11 @@ public class Piranha extends AbstractSchoolingFish implements GeoEntity, Neutral
 
     public void tick() {
         super.tick();
-        /*
-        System.out.println("Regular Target: " + this.getTarget());
-        System.out.println(hasBoatTarget());
-
-        if (boatTarget != null) {
-            System.out.println(this.boatTarget.getDamage());
-            System.out.println("Boat Target: " + this.boatTarget);
+        if (level().isClientSide()) {
+            boolean angryFlag = this.getRemainingPersistentAngerTime() > 0 || this.hasBoatTarget();
+            this.swimState.animateWhen(this.isInWater() && !angryFlag, this.tickCount);
+            this.angrySwimState.animateWhen(this.isInWater() && angryFlag, this.tickCount);
         }
-
-         */
-        System.out.println(this.getLeaping());
     }
 
     @Override
@@ -245,25 +227,6 @@ public class Piranha extends AbstractSchoolingFish implements GeoEntity, Neutral
     @Override
     public ItemStack getBucketItemStack() {
         return new ItemStack(SMItems.PIRANHA_BUCKET.get());
-    }
-
-    @Override
-    public void registerControllers(AnimatableManager.ControllerRegistrar controllerRegistrar) {
-        controllerRegistrar.add(new AnimationController<>(this, "Animations", 3, this::setAnimation));
-    }
-
-    @Override
-    public AnimatableInstanceCache getAnimatableInstanceCache() {
-        return instanceCache;
-    }
-
-    public <E extends GeoAnimatable> PlayState setAnimation(final AnimationState<E> event) {
-        if ((event.isMoving() && this.getRemainingPersistentAngerTime() > 0) || this.hasBoatTarget()) {
-            return event.setAndContinue(SWIMMING_ANGRY_ANIM);
-        } else if (event.isMoving()) {
-            return event.setAndContinue(SWIMMING_ANIM);
-        }
-        return PlayState.STOP;
     }
 
     public int getRemainingPersistentAngerTime() {

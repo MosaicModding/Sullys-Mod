@@ -5,9 +5,9 @@ import com.google.common.collect.Maps;
 import com.uraneptus.sullysmod.SullysMod;
 import com.uraneptus.sullysmod.client.model.*;
 import com.uraneptus.sullysmod.client.model.ancient_skulls.*;
+import com.uraneptus.sullysmod.client.particles.AmberParticle;
 import com.uraneptus.sullysmod.client.particles.BlotEyesParticle;
 import com.uraneptus.sullysmod.client.particles.RicochetParticle;
-import com.uraneptus.sullysmod.client.particles.AmberParticle;
 import com.uraneptus.sullysmod.client.renderer.be.AmberBER;
 import com.uraneptus.sullysmod.client.renderer.be.ItemStandBER;
 import com.uraneptus.sullysmod.client.renderer.entities.*;
@@ -19,6 +19,9 @@ import com.uraneptus.sullysmod.core.registry.SMEntityTypes;
 import com.uraneptus.sullysmod.core.registry.SMItems;
 import com.uraneptus.sullysmod.core.registry.SMParticleTypes;
 import net.minecraft.Util;
+import net.minecraft.client.model.HumanoidArmorModel;
+import net.minecraft.client.model.geom.builders.CubeDeformation;
+import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.client.renderer.blockentity.SkullBlockRenderer;
 import net.minecraft.client.renderer.entity.LivingEntityRenderer;
 import net.minecraft.client.renderer.item.ItemProperties;
@@ -60,10 +63,18 @@ public class SMClientModEvents {
 
     @SubscribeEvent
     public static void registerLayerLocation(EntityRenderersEvent.RegisterLayerDefinitions event) {
+        LayerDefinition INNER_ARMOR_DEF = LayerDefinition.create(HumanoidArmorModel.createBodyLayer(new CubeDeformation(0.5F)), 64, 32);
+        LayerDefinition OUTER_ARMOR_DEF = LayerDefinition.create(HumanoidArmorModel.createBodyLayer(new CubeDeformation(1.0F)), 64, 32);
+
         event.registerLayerDefinition(LanternfishModel.LAYER_LOCATION, LanternfishModel::createBodyLayer);
         event.registerLayerDefinition(JadeShieldModel.LAYER_LOCATION, JadeShieldModel::createLayer);
         event.registerLayerDefinition(TortoiseShellModel.LAYER_LOCATION, TortoiseShellModel::createBodyLayer);
+        event.registerLayerDefinition(TortoiseModel.LAYER_LOCATION, TortoiseModel::createBodyLayer);
         event.registerLayerDefinition(JungleSpiderModel.LAYER_LOCATION, JungleSpiderModel::createBodyLayer);
+        event.registerLayerDefinition(BoulderingZombieModel.LAYER_LOCATION, BoulderingZombieModel::createBodyLayer);
+        event.registerLayerDefinition(BoulderingZombieModel.INNER_ARMOR, () -> INNER_ARMOR_DEF);
+        event.registerLayerDefinition(BoulderingZombieModel.OUTER_ARMOR, () -> OUTER_ARMOR_DEF);
+        event.registerLayerDefinition(PiranhaModel.LAYER_LOCATION, PiranhaModel::createBodyLayer);
         event.registerLayerDefinition(MinersHelmetModel.LAYER_LOCATION, MinersHelmetModel::createBodyLayer);
         event.registerLayerDefinition(CrackedAncientSkullModel.LAYER_LOCATION, CrackedAncientSkullModel::createBodyLayer);
         event.registerLayerDefinition(CrestedAncientSkullModel.LAYER_LOCATION, CrestedAncientSkullModel::createBodyLayer);
@@ -136,7 +147,6 @@ public class SMClientModEvents {
 
                 if (renderer != null) {
                     renderer.addLayer(new StuckInAmberLayer(renderer));
-                    //TODO add a layer for Geckolib rendered entities too
                 }
             }
         });

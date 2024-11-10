@@ -4,3 +4,4 @@
 - add mobs to amber blobs @Uraneptus
 - make Amber use BlockStateProperties for dripping calculation so the BE is only used for storing the entity @KeKe or @Uraneptus
 - Finish selection system @Uraneptus
+- Cleanup warnings @Uraneptus

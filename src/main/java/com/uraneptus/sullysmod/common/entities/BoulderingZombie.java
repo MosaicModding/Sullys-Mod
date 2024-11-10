@@ -9,6 +9,7 @@ import net.minecraft.sounds.SoundEvent;
 import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.AnimationState;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
@@ -20,22 +21,12 @@ import net.minecraft.world.entity.monster.Zombie;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
-import software.bernie.geckolib.animatable.GeoEntity;
-import software.bernie.geckolib.core.animatable.GeoAnimatable;
-import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
-import software.bernie.geckolib.core.animation.AnimatableManager;
-import software.bernie.geckolib.core.animation.AnimationController;
-import software.bernie.geckolib.core.animation.AnimationState;
-import software.bernie.geckolib.core.animation.RawAnimation;
-import software.bernie.geckolib.core.object.PlayState;
-import software.bernie.geckolib.util.GeckoLibUtil;
 
-public class BoulderingZombie extends Zombie implements GeoEntity {
-    private static final EntityDataAccessor<Byte> DATA_FLAGS_ID = SynchedEntityData.defineId(BoulderingZombie.class, EntityDataSerializers.BYTE);
-    private static final RawAnimation CLIMBING_ANIM = RawAnimation.begin().thenLoop("animation.bouldering_zombie.climb");
-    private final AnimatableInstanceCache instanceCache = GeckoLibUtil.createInstanceCache(this);
+public class BoulderingZombie extends Zombie {
+    private static final EntityDataAccessor<Byte> CLIMBING_DATA = SynchedEntityData.defineId(BoulderingZombie.class, EntityDataSerializers.BYTE);
     protected final WallClimberNavigation climberNavigation;
     protected final GroundPathNavigation groundNavigation;
+    public final AnimationState climbAnimationState = new AnimationState();
 
     public BoulderingZombie(EntityType<? extends BoulderingZombie> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
@@ -72,7 +63,18 @@ public class BoulderingZombie extends Zombie implements GeoEntity {
     @Override
     protected void defineSynchedData() {
         super.defineSynchedData();
-        this.entityData.define(DATA_FLAGS_ID, (byte)0);
+        this.entityData.define(CLIMBING_DATA, (byte)0);
+    }
+
+    @Override
+    public void onSyncedDataUpdated(EntityDataAccessor<?> pKey) {
+        if (CLIMBING_DATA.equals(pKey)) {
+            if (onClimbable()) {
+                this.climbAnimationState.start(this.tickCount);
+            } else {
+                this.climbAnimationState.stop();
+            }
+        }
     }
 
     @Override
@@ -99,40 +101,23 @@ public class BoulderingZombie extends Zombie implements GeoEntity {
 
     @Override
     public boolean onClimbable() {
-        return (this.entityData.get(DATA_FLAGS_ID) & 1) != 0;
+        return (this.entityData.get(CLIMBING_DATA) & 1) != 0;
     }
 
     public void setClimbing(boolean pClimbing) {
-        byte b0 = this.entityData.get(DATA_FLAGS_ID);
+        byte b0 = this.entityData.get(CLIMBING_DATA);
         if (pClimbing) {
             b0 = (byte)(b0 | 1);
         } else {
             b0 = (byte)(b0 & -2);
         }
 
-        this.entityData.set(DATA_FLAGS_ID, b0);
+        this.entityData.set(CLIMBING_DATA, b0);
     }
 
     @Override
     protected ItemStack getSkull() {
         return ItemStack.EMPTY;
-    }
-
-    @Override
-    public void registerControllers(AnimatableManager.ControllerRegistrar controllerRegistrar) {
-        controllerRegistrar.add(new AnimationController<>(this, "BoulderingZombieAnimations", 0, this::setAnimation));
-    }
-
-    @Override
-    public AnimatableInstanceCache getAnimatableInstanceCache() {
-        return this.instanceCache;
-    }
-
-    public <E extends GeoAnimatable> PlayState setAnimation(final AnimationState<E> event) {
-        if (this.onClimbable()) {
-            return event.setAndContinue(CLIMBING_ANIM);
-        }
-        return PlayState.STOP;
     }
 
     @Override

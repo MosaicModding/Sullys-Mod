@@ -17,7 +17,6 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Rotation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import org.jetbrains.annotations.NotNull;
@@ -54,7 +53,7 @@ public class AmberBER implements BlockEntityRenderer<AmberBE> {
                     }
                     if (renderEntity instanceof ItemEntity itemEntity) {
                         pPoseStack.translate(0.5F, 0.25F, 0.5F);
-                        BakedModel bakedmodel = this.itemRenderer.getModel(itemEntity.getItem(), renderEntity.level(), (LivingEntity)null, renderEntity.getId());
+                        BakedModel bakedmodel = this.itemRenderer.getModel(itemEntity.getItem(), renderEntity.level(), null, renderEntity.getId());
                         this.itemRenderer.render(itemEntity.getItem(), ItemDisplayContext.GROUND, false, pPoseStack, pBuffer, pPackedLight, OverlayTexture.NO_OVERLAY, bakedmodel);
                     }
                 }

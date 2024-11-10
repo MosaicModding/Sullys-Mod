@@ -1,33 +1,34 @@
 package com.uraneptus.sullysmod.client.renderer.entities;
 
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.blaze3d.vertex.VertexConsumer;
+import com.uraneptus.sullysmod.SullysMod;
 import com.uraneptus.sullysmod.client.model.TortoiseModel;
 import com.uraneptus.sullysmod.common.entities.Tortoise;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
-import software.bernie.geckolib.cache.object.BakedGeoModel;
-import software.bernie.geckolib.renderer.GeoEntityRenderer;
+import net.minecraft.client.renderer.entity.MobRenderer;
+import net.minecraft.resources.ResourceLocation;
 
-public class TortoiseRenderer <E extends Tortoise> extends GeoEntityRenderer<E> {
-    public TortoiseRenderer(EntityRendererProvider.Context renderManager) {
-        super(renderManager, new TortoiseModel<>());
-        this.shadowRadius = 0.75F;
-    }
+public class TortoiseRenderer<E extends Tortoise> extends MobRenderer<E, TortoiseModel<E>> {
+    private static final ResourceLocation TEXTURE_CRAFTING = SullysMod.modPrefix("textures/entity/tortoise/tortoise_crafting.png");
+    private static final ResourceLocation TEXTURE_JUKEBOX = SullysMod.modPrefix("textures/entity/tortoise/tortoise_jukebox.png");
 
-    //Reduced motionThreshold to detect entities that are moving slowly e.g. Tortoise
-    @Override
-    public float getMotionAnimThreshold(E animatable) {
-        return 0.005F;
+    public TortoiseRenderer(EntityRendererProvider.Context pContext) {
+        super(pContext, new TortoiseModel<>(pContext.bakeLayer(TortoiseModel.LAYER_LOCATION)), 0.75F);
     }
 
     @Override
-    public void preRender(PoseStack poseStack, E animatable, BakedGeoModel model, MultiBufferSource bufferSource, VertexConsumer buffer, boolean isReRender, float partialTick, int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
-        super.preRender(poseStack, animatable, model, bufferSource, buffer, isReRender, partialTick, packedLight, packedOverlay, red, green, blue, alpha);
+    public void render(E pEntity, float pEntityYaw, float pPartialTicks, PoseStack pPoseStack, MultiBufferSource pBuffer, int pPackedLight) {
+        super.render(pEntity, pEntityYaw, pPartialTicks, pPoseStack, pBuffer, pPackedLight);
 
-        if (animatable.isBaby()) {
-            poseStack.scale(0.15F, 0.15F, 0.15F);
+        if (pEntity.isBaby()) {
+            pPoseStack.scale(0.15F, 0.15F, 0.15F);
             this.shadowRadius *= 0.15F;
         }
+    }
+
+    @Override
+    public ResourceLocation getTextureLocation(E pEntity) {
+        return pEntity.isCraftingTable() ? TEXTURE_CRAFTING : TEXTURE_JUKEBOX;
     }
 }

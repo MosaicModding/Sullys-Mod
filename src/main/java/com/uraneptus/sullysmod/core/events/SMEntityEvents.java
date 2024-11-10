@@ -167,7 +167,7 @@ public class SMEntityEvents {
         Vec3 particlePos = Vec3.ZERO;
         if (hitResult instanceof BlockHitResult blockHitResult) {
             particlePos = new Vec3(blockHitResult.getLocation().x, blockHitResult.getLocation().y, blockHitResult.getLocation().z).relative(direction, 0.1D);
-        } else if (hitResult instanceof EntityHitResult entityHitResult) {
+        } else if (hitResult instanceof EntityHitResult) {
             particlePos = new Vec3(projectile.getX(), projectile.getY(), projectile.getZ()).relative(direction, 0.1D);
         }
         if (level instanceof ServerLevel serverLevel) {

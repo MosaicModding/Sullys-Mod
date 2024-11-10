@@ -37,13 +37,6 @@ displayTest = "MATCH_VERSION"
     ordering = "BEFORE"
     side = "BOTH"
 
-[[dependencies.sullysmod]]
-    modId = "geckolib"
-    mandatory = true
-    versionRange = "[4.2.2,)"
-    ordering = "BEFORE"
-    side = "BOTH"
-
 [modproperties.sullysmod]
     catalogueImageIcon = "sullysmod_icon.png"
     configuredBackground = "sullysmod:textures/block/polished_jade_bricks.png"

@@ -46,35 +46,25 @@ import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import software.bernie.geckolib.animatable.GeoEntity;
-import software.bernie.geckolib.core.animatable.GeoAnimatable;
-import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
-import software.bernie.geckolib.core.animation.AnimatableManager;
-import software.bernie.geckolib.core.animation.AnimationController;
-import software.bernie.geckolib.core.animation.AnimationState;
-import software.bernie.geckolib.core.animation.RawAnimation;
-import software.bernie.geckolib.core.object.PlayState;
-import software.bernie.geckolib.util.GeckoLibUtil;
 
 import java.util.List;
 
-public class Tortoise extends Animal implements GeoEntity, WorkstationAttachable {
+public class Tortoise extends Animal implements WorkstationAttachable {
     public static final EntityDataAccessor<Integer> HIDE_TIMER = SynchedEntityData.defineId(Tortoise.class, EntityDataSerializers.INT);
     private static final EntityDataAccessor<Boolean> HAS_EGG = SynchedEntityData.defineId(Tortoise.class, EntityDataSerializers.BOOLEAN);
     private static final EntityDataAccessor<Boolean> LAYING_EGG = SynchedEntityData.defineId(Tortoise.class, EntityDataSerializers.BOOLEAN);
     private static final EntityDataAccessor<ItemStack> WORKSTATION = SynchedEntityData.defineId(Tortoise.class, EntityDataSerializers.ITEM_STACK);
     private static final EntityDataAccessor<ItemStack> RECORD_ITEM = SynchedEntityData.defineId(Tortoise.class, EntityDataSerializers.ITEM_STACK);
     public static final Ingredient FOOD_ITEMS = Ingredient.of(SMItemTags.TORTOISE_FOOD);
-    protected static final RawAnimation WALKING_ANIM = RawAnimation.begin().thenLoop("animation.tortoise.walking");
-    protected static final RawAnimation HIDING_ANIM = RawAnimation.begin().thenPlayAndHold("animation.tortoise.hide").thenLoop("animation.tortoise.hiding");
-    protected static final RawAnimation REVEAL_ANIM = RawAnimation.begin().thenPlayAndHold("animation.tortoise.reveal");
-    private final AnimatableInstanceCache instanceCache = GeckoLibUtil.createInstanceCache(this);
-    int layEggCounter;
-    FollowJukeboxEntitySoundInstance soundInstance;
-    long recordTickCount;
-    long recordStartedTick;
-    boolean isPlaying;
-    int ticksSinceLastEvent;
+    public final AnimationState hideState = new AnimationState();
+    public final AnimationState hiddenState = new AnimationState();
+    public final AnimationState reveal_state = new AnimationState();
+    private int layEggCounter;
+    private FollowJukeboxEntitySoundInstance soundInstance;
+    private long recordTickCount;
+    private long recordStartedTick;
+    private boolean isPlaying;
+    private int ticksSinceLastEvent;
 
     public Tortoise(EntityType<? extends Animal> entityType, Level level) {
         super(entityType, level);
@@ -82,7 +72,7 @@ public class Tortoise extends Animal implements GeoEntity, WorkstationAttachable
 
     public static AttributeSupplier.Builder createAttributes() {
         return Mob.createMobAttributes()
-                .add(Attributes.MOVEMENT_SPEED, 0.275D)
+                .add(Attributes.MOVEMENT_SPEED, 0.25D)
                 .add(Attributes.MAX_HEALTH, 30.0D);
     }
 
@@ -206,7 +196,19 @@ public class Tortoise extends Animal implements GeoEntity, WorkstationAttachable
             }
         }
 
+        if (level().isClientSide()) {
+            this.hideState.animateWhen(this.getHideTimerDuration() > 1, this.tickCount);
 
+            this.hideState.ifStarted(a ->  {
+                this.hiddenState.start(this.tickCount);
+                this.hiddenState.stop();
+            });
+            if (this.getHideTimerDuration() == 2) {
+                this.hideState.stop();
+                this.hiddenState.stop();
+            }
+            this.reveal_state.animateWhen(!this.hiddenState.isStarted() && !this.hideState.isStarted(), this.tickCount);
+        }
     }
 
     @Override
@@ -270,27 +272,6 @@ public class Tortoise extends Animal implements GeoEntity, WorkstationAttachable
     @Override
     public LivingEntity getControllingPassenger() {
         return null;
-    }
-
-    @Override
-    public void registerControllers(AnimatableManager.ControllerRegistrar controllerRegistrar) {
-        controllerRegistrar.add(new AnimationController<>(this, "Animations", 3, this::setAnimation));
-    }
-
-    @Override
-    public AnimatableInstanceCache getAnimatableInstanceCache() {
-        return instanceCache;
-    }
-
-    public <E extends GeoAnimatable> PlayState setAnimation(final AnimationState<E> event) {
-        if (event.isMoving() && getHideTimerDuration() == 0 && onGround()) {
-            return event.setAndContinue(WALKING_ANIM);
-        } else if (getHideTimerDuration() > 1) {
-            return event.setAndContinue(HIDING_ANIM);
-        } else if (getHideTimerDuration() == 1) {
-            return event.setAndContinue(REVEAL_ANIM);
-        }
-        return PlayState.STOP;
     }
 
     @Override
