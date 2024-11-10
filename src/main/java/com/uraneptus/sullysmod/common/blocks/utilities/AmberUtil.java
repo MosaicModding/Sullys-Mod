@@ -1,5 +1,6 @@
-package com.uraneptus.sullysmod.common.blocks;
+package com.uraneptus.sullysmod.common.blocks.utilities;
 
+import com.uraneptus.sullysmod.common.blocks.AmberLayeredCauldronBlock;
 import com.uraneptus.sullysmod.core.other.tags.SMBlockTags;
 import com.uraneptus.sullysmod.core.registry.SMBlocks;
 import com.uraneptus.sullysmod.core.registry.SMParticleTypes;
@@ -154,6 +155,7 @@ public class AmberUtil {
         return Optional.empty();
     }
 
+    //TODO prevent particles if blocks are on the sides
     public static void spawnAmberParticles(BlockState pState, Level pLevel, BlockPos pPos, RandomSource pRandom) {
         if (pState.getValue(IS_MELTED)) {
             for(int i = 0; i < pRandom.nextInt(1) + 1; ++i) {

@@ -1,23 +1,19 @@
 package com.uraneptus.sullysmod.common.blocks;
 
 import com.uraneptus.sullysmod.common.blockentities.AmberBE;
+import com.uraneptus.sullysmod.common.blocks.utilities.AmberUtil;
 import com.uraneptus.sullysmod.common.caps.SMEntityCap;
 import com.uraneptus.sullysmod.common.networking.MsgEntityAmberStuck;
 import com.uraneptus.sullysmod.common.networking.SMPacketHandler;
 import com.uraneptus.sullysmod.core.registry.SMBlocks;
-import com.uraneptus.sullysmod.core.registry.SMParticleTypes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.BlockParticleOption;
-import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.Mth;
-import net.minecraft.util.ParticleUtils;
 import net.minecraft.util.RandomSource;
-import net.minecraft.util.valueproviders.IntProvider;
-import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
@@ -27,11 +23,9 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LightLayer;
 import net.minecraft.world.level.block.BaseEntityBlock;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
@@ -39,15 +33,10 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
-import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.*;
 import net.minecraftforge.network.PacketDistributor;
 import org.jetbrains.annotations.Nullable;
-
-import java.util.Optional;
-import java.util.function.BiPredicate;
-import java.util.function.Predicate;
 
 public class AmberBlock extends BaseEntityBlock {
     public static final BooleanProperty IS_MELTED = AmberUtil.IS_MELTED;
@@ -106,7 +95,7 @@ public class AmberBlock extends BaseEntityBlock {
                             if (AmberUtil.AMBER_MELTING_BLOCKS.test(state)) {
                                 shouldMeltFlag = true;
                             }
-                            if (pState.getValue(IS_MELTED) && level.getBrightness(LightLayer.BLOCK, pPos.above()) >= 9) {
+                            if (state.hasProperty(IS_MELTED) && state.getValue(IS_MELTED) && level.getBrightness(LightLayer.BLOCK, pPos.above()) >= 9) {
                                 shouldMeltFlag = true;
                             }
                         }
@@ -168,14 +157,14 @@ public class AmberBlock extends BaseEntityBlock {
                             Entity entity = EntityType.loadEntityRecursive(compoundtag, pLevel, entityStuck -> entityStuck);
                             if (entity != null) {
                                 if (entity.getBoundingBox().getYsize() > 1.5F && entity.getBoundingBox().getYsize() < 2F && pos.equals(blockPos.offset(0, -1, 0))) {
-                                    pLevel.setBlock(blockPos, blockState.setValue(IS_MELTED, false), Block.UPDATE_ALL);
+                                    pLevel.setBlock(pos, blockState.setValue(IS_MELTED, false), Block.UPDATE_ALL);
                                     entity.moveTo(pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5);
                                     pLevel.addFreshEntity(entity);
                                     amberBE.setStuckEntityData(null);
 
                                 }
                                 else if (entity.getBoundingBox().getYsize() >= 2F && entity.getBoundingBox().getYsize() < 3.5F) {
-                                    pLevel.setBlock(blockPos, blockState.setValue(IS_MELTED, false), Block.UPDATE_ALL);
+                                    pLevel.setBlock(pos, blockState.setValue(IS_MELTED, false), Block.UPDATE_ALL);
                                     entity.moveTo(pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5);
                                     pLevel.addFreshEntity(entity);
                                     amberBE.setStuckEntityData(null);
@@ -206,7 +195,6 @@ public class AmberBlock extends BaseEntityBlock {
                     if (pEntity instanceof ItemEntity itemEntity) {
                         itemEntity.makeStuckInBlock(pState, new Vec3(0F, 0.1D, 0F));
                         if (itemEntity.onGround()) {
-                            pLevel.setBlock(pPos, pState.setValue(IS_MELTED, false), Block.UPDATE_ALL);
                             amber.makeEntityStuck(itemEntity);
                         }
                     } else if (pEntity instanceof Mob mob) {
@@ -215,15 +203,15 @@ public class AmberBlock extends BaseEntityBlock {
                         } else if (mob.getBoundingBox().getYsize() < 1.5F) {
                             mob.makeStuckInBlock(pState, new Vec3(0F, 0.1D, 0F));
                             if (mob.onGround()) {
-                                pLevel.setBlock(pPos, pState.setValue(IS_MELTED, false), Block.UPDATE_ALL);
                                 amber.makeEntityStuck(mob);
                             }
-                        } //TODO broke for big entities
+                        }
                         else if (mob.getBoundingBox().getYsize() < 2F) {
-                            if (pLevel.getBlockState(new BlockPos(mob.getBlockX(), mob.getBlockY() + 1, mob.getBlockZ())).is(SMBlocks.AMBER.get())) {
+                            BlockPos extendedPos = new BlockPos(mob.getBlockX(), mob.getBlockY() + 1, mob.getBlockZ());
+                            if (pLevel.getBlockState(extendedPos).is(SMBlocks.AMBER.get())) {
                                 mob.makeStuckInBlock(pState, new Vec3(0F, 0.1D, 0F));
                                 if (mob.onGround()) {
-                                    pLevel.setBlock(pPos, pState.setValue(IS_MELTED, false), Block.UPDATE_ALL);
+                                    pLevel.setBlock(extendedPos, pState.setValue(IS_MELTED, false), Block.UPDATE_ALL);
                                     amber.makeEntityStuck(mob);
                                 }
                             } else {
@@ -231,10 +219,13 @@ public class AmberBlock extends BaseEntityBlock {
                             }
                         }
                         else if (mob.getBoundingBox().getYsize() < 3.5F) {
-                            if (pLevel.getBlockState(new BlockPos(mob.getBlockX(), mob.getBlockY() + 1, mob.getBlockZ())).is(SMBlocks.AMBER.get()) && pLevel.getBlockState(new BlockPos(mob.getBlockX(), mob.getBlockY() + 2, mob.getBlockZ())).is(SMBlocks.AMBER.get())) {
+                            BlockPos extendedPos = new BlockPos(mob.getBlockX(), mob.getBlockY() + 1, mob.getBlockZ());
+                            BlockPos extendedPos1 = new BlockPos(mob.getBlockX(), mob.getBlockY() + 2, mob.getBlockZ());
+                            if (pLevel.getBlockState(extendedPos).is(SMBlocks.AMBER.get()) && pLevel.getBlockState(extendedPos1).is(SMBlocks.AMBER.get())) {
                                 mob.makeStuckInBlock(pState, new Vec3(0F, 0.1D, 0F));
                                 if (mob.onGround()) {
-                                    pLevel.setBlock(pPos, pState.setValue(IS_MELTED, false), Block.UPDATE_ALL);
+                                    pLevel.setBlock(extendedPos, pState.setValue(IS_MELTED, false), Block.UPDATE_ALL);
+                                    pLevel.setBlock(extendedPos1, pState.setValue(IS_MELTED, false), Block.UPDATE_ALL);
                                     amber.makeEntityStuck(mob);
                                 }
                             } else {

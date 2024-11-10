@@ -1,4 +1,4 @@
-package com.uraneptus.sullysmod.common.blocks;
+package com.uraneptus.sullysmod.common.blocks.utilities;
 
 import net.minecraft.world.level.block.Block;
 

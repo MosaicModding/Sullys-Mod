@@ -2,7 +2,6 @@
 - fix: piranha also attack when the player is full health, they should only attack when provoked or when a mob is damaged @Keke
 - improve amber blobs @Uraneptus
 - add mobs to amber blobs @Uraneptus
-- make Amber use BlockStateProperties for dripping calculation so the BE is only used for storing the entity @KeKe or @Uraneptus
 - Finish selection system @Uraneptus
 - Cleanup warnings @Uraneptus
-- 
+- Clear most code TODO's @anyone

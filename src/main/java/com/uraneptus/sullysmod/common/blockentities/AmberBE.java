@@ -1,5 +1,6 @@
 package com.uraneptus.sullysmod.common.blockentities;
 
+import com.uraneptus.sullysmod.common.blocks.utilities.AmberUtil;
 import com.uraneptus.sullysmod.common.caps.SMEntityCap;
 import com.uraneptus.sullysmod.common.networking.MsgEntityAmberStuck;
 import com.uraneptus.sullysmod.common.networking.SMPacketHandler;
@@ -11,6 +12,7 @@ import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -56,18 +58,21 @@ public class AmberBE extends BlockEntity {
     }
 
     public void makeEntityStuck(Entity entity) {
-        if (this.stuckEntityData == null) {
-            CompoundTag compoundtag = new CompoundTag();
-            SMPacketHandler.sendMsg(PacketDistributor.TRACKING_ENTITY_AND_SELF.with(() -> entity), new MsgEntityAmberStuck(entity, true));
-            SMEntityCap.getCapOptional(entity).ifPresent(cap -> cap.stuckInAmber = true);
-            entity.save(compoundtag);
-            if (!compoundtag.isEmpty()) {
-                this.storeEntity(compoundtag);
-            }
-            this.renderEntity = true;
-            this.update();
-            entity.discard();
+        if (this.stuckEntityData != null) return;
+        Level level = this.getLevel();
+        if (level == null) return;
+        level.setBlock(this.getBlockPos(), this.getBlockState().setValue(AmberUtil.IS_MELTED, false), Block.UPDATE_ALL);
+
+        CompoundTag compoundtag = new CompoundTag();
+        SMPacketHandler.sendMsg(PacketDistributor.TRACKING_ENTITY_AND_SELF.with(() -> entity), new MsgEntityAmberStuck(entity, true));
+        SMEntityCap.getCapOptional(entity).ifPresent(cap -> cap.stuckInAmber = true);
+        entity.save(compoundtag);
+        if (!compoundtag.isEmpty()) {
+            this.storeEntity(compoundtag);
         }
+        this.renderEntity = true;
+        this.update();
+        entity.discard();
     }
 
     public void storeEntity(CompoundTag pEntityData) {

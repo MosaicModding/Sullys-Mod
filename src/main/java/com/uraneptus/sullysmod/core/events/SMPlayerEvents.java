@@ -2,9 +2,8 @@ package com.uraneptus.sullysmod.core.events;
 
 import com.teamabnormals.blueprint.core.util.BlockUtil;
 import com.uraneptus.sullysmod.SullysMod;
-import com.uraneptus.sullysmod.common.blockentities.AmberBE;
-import com.uraneptus.sullysmod.common.blocks.AmberUtil;
-import com.uraneptus.sullysmod.common.blocks.PickaxeStrippable;
+import com.uraneptus.sullysmod.common.blocks.utilities.AmberUtil;
+import com.uraneptus.sullysmod.common.blocks.utilities.PickaxeStrippable;
 import com.uraneptus.sullysmod.common.recipes.GrindstonePolishingRecipe;
 import com.uraneptus.sullysmod.core.SMConfig;
 import com.uraneptus.sullysmod.core.other.SMItemUtil;
