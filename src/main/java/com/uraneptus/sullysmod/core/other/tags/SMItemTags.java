@@ -22,6 +22,8 @@ public class SMItemTags {
     public static final TagKey<Item> COOKED_LANTERNFISH = TagUtil.itemTag("forge", "cooked_fishes/lanternfish");
     public static final TagKey<Item> COOKED_PIRANHA = TagUtil.itemTag("forge", "cooked_fishes/piranha");
     public static final TagKey<Item> JADE_ORES = TagUtil.itemTag("forge", "ores/jade");
+    public static final TagKey<Item> JADE_GEM = TagUtil.itemTag("forge", "gems/jade");
+    public static final TagKey<Item> RAW_MATERIALS_JADE = TagUtil.itemTag("forge", "raw_materials/jade");
     public static final TagKey<Item> CRAFTING_TABLES = TagUtil.itemTag("forge", "crafting_tables");
     public static final TagKey<Item> JUKEBOXES = TagUtil.itemTag("forge", "jukeboxes");
 

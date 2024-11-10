@@ -146,6 +146,14 @@ public class SMItemTagsProvider extends ItemTagsProvider {
                 SMBlocks.JADE_ORE.get().asItem(),
                 SMBlocks.DEEPSLATE_JADE_ORE.get().asItem()
         );
+        tag(SMItemTags.JADE_GEM).add(
+            SMItems.JADE.get()
+        );
+        tag(Tags.Items.GEMS).addTag(SMItemTags.JADE_GEM);
+        tag(SMItemTags.RAW_MATERIALS_JADE).add(
+                SMItems.ROUGH_JADE.get()
+        );
+        tag(Tags.Items.RAW_MATERIALS).addTag(SMItemTags.RAW_MATERIALS_JADE);
         tag(Tags.Items.ORES_IN_GROUND_STONE).add(
                 SMBlocks.JADE_ORE.get().asItem()
         );
