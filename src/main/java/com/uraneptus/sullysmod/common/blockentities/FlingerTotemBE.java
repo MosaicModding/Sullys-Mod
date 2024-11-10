@@ -18,13 +18,11 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.GameEvent;
 
 import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
 public class FlingerTotemBE extends BlockEntity {
-    private static final List<String> IGNORED_NBT = Arrays.asList("UUID");
+    private static final List<String> IGNORED_NBT = List.of("UUID");
     private final List<FlingerTotemBE.ProjectileData> stored = new ObjectArrayList<>();
 
     public FlingerTotemBE(BlockPos pPos, BlockState pBlockState) {
@@ -58,7 +56,7 @@ public class FlingerTotemBE extends BlockEntity {
         this.stored.add(new FlingerTotemBE.ProjectileData(pEntityData, delayTicks));
     }
 
-    private static boolean releaseOccupant(Level pLevel, BlockPos pPos, BlockState pState, FlingerTotemBE.ProjectileData pData, @Nullable List<Projectile> stored) {
+    private static boolean outputProjectile(Level pLevel, BlockPos pPos, BlockState pState, FlingerTotemBE.ProjectileData pData) {
         Direction front = pState.getValue(FlingerTotem.FACING);
         CompoundTag compoundtag = pData.entityData.copy();
         removeIgnoredNBT(compoundtag);
@@ -69,9 +67,6 @@ public class FlingerTotemBE extends BlockEntity {
         } else {
             Projectile projectile = (Projectile) EntityType.loadEntityRecursive(compoundtag, pLevel, entity -> entity);
             if (projectile != null) {
-                if (stored != null) {
-                    stored.add(projectile);
-                }
                 projectile.moveTo(pPos.getX() + 0.5 + front.getStepX(), pPos.getY() + 0.5F + front.getStepY(), pPos.getZ() + 0.5 + front.getStepZ());
                 projectile.shoot(front.getStepX(), front.getStepY(), front.getStepZ(), (float) projectile.getDeltaMovement().length(), 0.0F);
                 projectile.gameEvent(GameEvent.PROJECTILE_SHOOT);
@@ -89,7 +84,7 @@ public class FlingerTotemBE extends BlockEntity {
         for(Iterator<FlingerTotemBE.ProjectileData> iterator = pBlockEntity.stored.iterator(); iterator.hasNext(); projectileData.delayTicks--) {
             projectileData = iterator.next();
             if (projectileData.delayTicks <= 0) {
-                if (releaseOccupant(pLevel, pPos, pState, projectileData, null)) {
+                if (outputProjectile(pLevel, pPos, pState, projectileData)) {
                     flag = true;
                     iterator.remove();
                 }

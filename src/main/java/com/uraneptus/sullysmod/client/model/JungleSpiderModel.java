@@ -1,6 +1,5 @@
 package com.uraneptus.sullysmod.client.model;
 
-
 import com.uraneptus.sullysmod.SullysMod;
 import com.uraneptus.sullysmod.common.entities.JungleSpider;
 import net.minecraft.client.model.SpiderModel;
@@ -12,6 +11,7 @@ import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.client.model.geom.builders.MeshDefinition;
 import net.minecraft.client.model.geom.builders.PartDefinition;
 
+@SuppressWarnings({"FieldCanBeLocal", "unused"})
 public class JungleSpiderModel<T extends JungleSpider> extends SpiderModel<T> {
 	public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(SullysMod.modPrefix("jungle_spider"), "main");
 	private final ModelPart root;

@@ -8,7 +8,6 @@ import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemDisplayContext;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.client.model.generators.ItemModelProvider;
@@ -76,7 +75,7 @@ public class SMItemModelProvider extends ItemModelProvider {
         basicBlockItem(SMBlocks.AMBER);
         basicBlockItem(SMBlocks.ROUGH_AMBER);
         basicBlockItem(SMBlocks.CHISELED_AMBER);
-        //basicBlockItem(SMBlocks.AMBER_PILLAR);
+        basicBlockItem(SMBlocks.AMBER_PILLAR);
         basicBlockItem(SMBlocks.AMBER_LANTERN);
         basicBlockItem(SMBlocks.JADE_LANTERN);
         basicBlockItem(SMBlocks.DIAMOND_LANTERN);

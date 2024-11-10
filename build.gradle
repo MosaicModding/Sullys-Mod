@@ -26,7 +26,6 @@ minecraft {
             property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
             property 'forge.logging.markers', 'REGISTRIES'
             property 'forge.logging.console.level', 'debug'
-            jvmArg '-Dgeckolib.disable_examples=true'
 
             mods {
                 sullysmod {
@@ -41,7 +40,6 @@ minecraft {
             property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
             property 'forge.logging.markers', 'REGISTRIES'
             property 'forge.logging.console.level', 'debug'
-            jvmArg '-Dgeckolib.disable_examples=true'
 
             mods {
                 sullysmod {
@@ -82,10 +80,6 @@ repositories {
         url = "https://maven.blamejared.com/"
     }
     maven {
-        name = "GeckoLib Maven"
-        url = "https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/"
-    }
-    maven {
         url = "https://maven.jaackson.me"
     }
     flatDir {
@@ -95,7 +89,6 @@ repositories {
 
 dependencies {
     minecraft "net.minecraftforge:forge:${mc_version}-${forge_version}"
-    implementation fg.deobf("software.bernie.geckolib:geckolib-forge-1.20.1:${geckolib_version}")
     implementation fg.deobf("com.teamabnormals:${blueprint_id}:1.20.1-${blueprint_version}")
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
     //For capes

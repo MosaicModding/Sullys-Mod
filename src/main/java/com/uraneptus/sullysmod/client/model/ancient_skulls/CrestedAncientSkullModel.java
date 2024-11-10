@@ -17,7 +17,7 @@ public class CrestedAncientSkullModel extends AbstractAncientSkullModel {
 		MeshDefinition meshdefinition = new MeshDefinition();
 		PartDefinition partdefinition = meshdefinition.getRoot();
 
-		PartDefinition head = partdefinition.addOrReplaceChild("head", CubeListBuilder.create().texOffs(0, 0).addBox(-6.5F, -8.0F, -5.0F, 13.0F, 8.0F, 11.0F, new CubeDeformation(0.01F))
+		partdefinition.addOrReplaceChild("head", CubeListBuilder.create().texOffs(0, 0).addBox(-6.5F, -8.0F, -5.0F, 13.0F, 8.0F, 11.0F, new CubeDeformation(0.01F))
 				.texOffs(0, 19).addBox(-3.5F, -12.0F, -12.0F, 7.0F, 12.0F, 12.0F, new CubeDeformation(0.01F)),
 				PartPose.offset(0.0F, 0.0F, 0.0F));
 

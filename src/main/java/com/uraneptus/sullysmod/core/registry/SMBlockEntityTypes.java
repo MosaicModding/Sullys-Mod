@@ -45,5 +45,4 @@ public class SMBlockEntityTypes {
     public static final RegistryObject<BlockEntityType<AmberBE>> AMBER = HELPER.createBlockEntity("amber", AmberBE::new, AmberBlock.class);
     public static final RegistryObject<BlockEntityType<ItemStandBE>> ITEM_STAND = HELPER.createBlockEntity("item_stand", ItemStandBE::new, ItemStandBlock.class);
     public static final RegistryObject<BlockEntityType<AncientSkullBE>> ANCIENT_SKULL = HELPER.createBlockEntity("ancient_skull", AncientSkullBE::new, ANCIENT_SKULLS);
-    public static final RegistryObject<BlockEntityType<SolidAmberBE>> SOLID_AMBER = HELPER.createBlockEntity("solid_amber", SolidAmberBE::new, SolidAmberBlock.class);
 }

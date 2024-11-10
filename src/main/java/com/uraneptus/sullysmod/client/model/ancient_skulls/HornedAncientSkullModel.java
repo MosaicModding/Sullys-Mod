@@ -22,7 +22,7 @@ public class HornedAncientSkullModel extends AbstractAncientSkullModel {
 				.texOffs(0, 14).addBox(-2.0F, -6.0F, -6.0F, 4.0F, 4.0F, 2.0F, new CubeDeformation(0.01F)),
 				PartPose.offset(0.0F, 0.0F, 0.0F));
 
-		PartDefinition horn = head.addOrReplaceChild("horn", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -11.0F, -1.0F, 2.0F, 5.0F, 2.0F, new CubeDeformation(0.0F))
+		head.addOrReplaceChild("horn", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -11.0F, -1.0F, 2.0F, 5.0F, 2.0F, new CubeDeformation(0.0F))
 				.texOffs(22, 0).addBox(-1.0F, -10.0F, -1.0F, 2.0F, 0.0F, 2.0F, new CubeDeformation(0.0F)),
 				PartPose.offset(0.0F, 0.0F, -2.0F));
 

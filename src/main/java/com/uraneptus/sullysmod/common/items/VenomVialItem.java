@@ -18,9 +18,9 @@ import net.minecraft.world.item.alchemy.PotionUtils;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraftforge.registries.ForgeRegistries;
-import software.bernie.geckolib.core.object.Color;
 
 import javax.annotation.Nullable;
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -122,11 +122,11 @@ public class VenomVialItem extends Item {
     public static int getEffectColours(ItemStack stack, int tintIndex) {
         Color effectColor;
         if (tintIndex == 1) {
-            effectColor = Color.ofOpaque(getBeneficialEffect(stack).getColor()).brighter(1.3F);
+            effectColor = new Color(0xFF000000 | getBeneficialEffect(stack).getColor());
         }
         else {
-            effectColor = Color.ofOpaque(getHarmfulEffect(stack).getColor()).brighter(1.3F);
+            effectColor = new Color(0xFF000000 | getHarmfulEffect(stack).getColor()).brighter();
         }
-        return effectColor.getColor();
+        return effectColor.getRGB();
     }
 }

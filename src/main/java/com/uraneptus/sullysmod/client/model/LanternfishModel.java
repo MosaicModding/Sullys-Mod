@@ -11,8 +11,6 @@ import net.minecraft.client.model.geom.builders.*;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
 
-//Made by Sully using Blockbench
-@SuppressWarnings("unused")
 public class LanternfishModel <T extends Entity> extends HierarchicalModel<T> {
     public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(SullysMod.modPrefix("lanternfish"), "main");
     private final ModelPart root;
@@ -35,15 +33,14 @@ public class LanternfishModel <T extends Entity> extends HierarchicalModel<T> {
         MeshDefinition meshdefinition = new MeshDefinition();
         PartDefinition partdefinition = meshdefinition.getRoot();
 
-        PartDefinition body = partdefinition.addOrReplaceChild("body", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -4.0F, 1.0F, 2.0F, 3.0F, 6.0F, new CubeDeformation(0.0F))
+        partdefinition.addOrReplaceChild("body", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -4.0F, 1.0F, 2.0F, 3.0F, 6.0F, new CubeDeformation(0.0F))
                 .texOffs(17, 4).addBox(0.0F, -6.0F, 3.0F, 0.0F, 2.0F, 3.0F, new CubeDeformation(0.0F))
                 .texOffs(0, 2).addBox(0.0F, -1.0F, 4.0F, 0.0F, 1.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 24.0F, 0.0F));
-
-        PartDefinition head = partdefinition.addOrReplaceChild("head", CubeListBuilder.create().texOffs(6, 9).addBox(-1.0F, -2.0F, -3.0F, 2.0F, 3.0F, 4.0F, new CubeDeformation(0.0F))
+        partdefinition.addOrReplaceChild("head", CubeListBuilder.create().texOffs(6, 9).addBox(-1.0F, -2.0F, -3.0F, 2.0F, 3.0F, 4.0F, new CubeDeformation(0.0F))
                 .texOffs(18, 11).addBox(-1.0F, 1.0F, -2.0F, 2.0F, 2.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 22.0F, 0.0F));
-        PartDefinition leftFin = partdefinition.addOrReplaceChild("leftFin", CubeListBuilder.create().texOffs(10, 3).addBox(0.0F, 0.0F, 0.0F, 2.0F, 1.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(1.0F, 23.0F, 1.0F, 0.0F, 0.0F, 0.6109F));
-        PartDefinition rightFin = partdefinition.addOrReplaceChild("rightFin", CubeListBuilder.create().texOffs(10, 0).addBox(-2.0F, 0.0F, 0.0F, 2.0F, 1.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-1.0F, 23.0F, 1.0F, 0.0F, 0.0F, -0.6109F));
-        PartDefinition tailFin = partdefinition.addOrReplaceChild("tailFin", CubeListBuilder.create().texOffs(0, 4).addBox(0.0F, -5.0F, 0.0F, 0.0F, 4.0F, 5.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 24.0F, 7.0F));
+        partdefinition.addOrReplaceChild("leftFin", CubeListBuilder.create().texOffs(10, 3).addBox(0.0F, 0.0F, 0.0F, 2.0F, 1.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(1.0F, 23.0F, 1.0F, 0.0F, 0.0F, 0.6109F));
+        partdefinition.addOrReplaceChild("rightFin", CubeListBuilder.create().texOffs(10, 0).addBox(-2.0F, 0.0F, 0.0F, 2.0F, 1.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-1.0F, 23.0F, 1.0F, 0.0F, 0.0F, -0.6109F));
+        partdefinition.addOrReplaceChild("tailFin", CubeListBuilder.create().texOffs(0, 4).addBox(0.0F, -5.0F, 0.0F, 0.0F, 4.0F, 5.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 24.0F, 7.0F));
 
         return LayerDefinition.create(meshdefinition, 32, 32);
     }

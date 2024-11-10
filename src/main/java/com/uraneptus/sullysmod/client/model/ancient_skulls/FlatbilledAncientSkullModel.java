@@ -18,7 +18,7 @@ public class FlatbilledAncientSkullModel extends AbstractAncientSkullModel {
 		MeshDefinition meshdefinition = new MeshDefinition();
 		PartDefinition partdefinition = meshdefinition.getRoot();
 
-		PartDefinition head = partdefinition.addOrReplaceChild("head", CubeListBuilder.create().texOffs(0, 0).addBox(-5.0F, -8.0F, -6.0F, 10.0F, 8.0F, 11.0F, new CubeDeformation(0.01F))
+		partdefinition.addOrReplaceChild("head", CubeListBuilder.create().texOffs(0, 0).addBox(-5.0F, -8.0F, -6.0F, 10.0F, 8.0F, 11.0F, new CubeDeformation(0.01F))
 				.texOffs(0, 19).addBox(-5.0F, -8.0F, -10.0F, 10.0F, 5.0F, 4.0F, new CubeDeformation(0.01F)),
 				PartPose.offset(0.0F, 0.0F, 0.0F));
 

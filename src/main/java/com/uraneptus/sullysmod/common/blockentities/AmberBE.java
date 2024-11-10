@@ -11,7 +11,6 @@ import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -26,7 +25,6 @@ import java.util.List;
 public class AmberBE extends BlockEntity {
     @Nullable
     private AmberBE.StuckEntityData stuckEntityData;
-    private boolean isBlockMelted;
     public boolean renderEntity;
     private static final List<String> IGNORED_NBT = Arrays.asList("UUID", "Leash");
 
@@ -38,10 +36,6 @@ public class AmberBE extends BlockEntity {
         for(String s : IGNORED_NBT) {
             pTag.remove(s);
         }
-
-    }
-    public @Nullable StuckEntityData getStuckEntityData() {
-        return this.stuckEntityData;
     }
 
     public void setStuckEntityData(@Nullable StuckEntityData value) {
@@ -50,14 +44,6 @@ public class AmberBE extends BlockEntity {
             this.renderEntity = false;
         }
         this.update();
-    }
-
-    public boolean isBlockMelted() {
-        return this.isBlockMelted;
-    }
-
-    public void setBlockMelted(boolean value) {
-        this.isBlockMelted = value;
     }
 
     public boolean hasStuckEntity() {
@@ -73,9 +59,7 @@ public class AmberBE extends BlockEntity {
         if (this.stuckEntityData == null) {
             CompoundTag compoundtag = new CompoundTag();
             SMPacketHandler.sendMsg(PacketDistributor.TRACKING_ENTITY_AND_SELF.with(() -> entity), new MsgEntityAmberStuck(entity, true));
-            SMEntityCap.getCapOptional(entity).ifPresent(cap -> {
-                cap.stuckInAmber = true;
-            });
+            SMEntityCap.getCapOptional(entity).ifPresent(cap -> cap.stuckInAmber = true);
             entity.save(compoundtag);
             if (!compoundtag.isEmpty()) {
                 this.storeEntity(compoundtag);
@@ -110,7 +94,6 @@ public class AmberBE extends BlockEntity {
     protected void saveAdditional(CompoundTag pTag) {
         super.saveAdditional(pTag);
         pTag.put("StuckEntity", this.writeStuckEntity());
-        pTag.putBoolean("AmberMelted", this.isBlockMelted);
         pTag.putBoolean("RenderEntity", this.renderEntity);
     }
 
@@ -126,8 +109,6 @@ public class AmberBE extends BlockEntity {
         } else {
             this.stuckEntityData = null;
         }
-
-        this.isBlockMelted = pTag.getBoolean("AmberMelted");
         this.renderEntity = pTag.getBoolean("RenderEntity");
     }
 
@@ -135,7 +116,6 @@ public class AmberBE extends BlockEntity {
     public CompoundTag getUpdateTag() {
         CompoundTag tag = new CompoundTag();
         tag.put("StuckEntity", this.writeStuckEntity());
-        tag.putBoolean("AmberMelted", this.isBlockMelted);
         tag.putBoolean("RenderEntity", this.renderEntity);
         return tag;
     }

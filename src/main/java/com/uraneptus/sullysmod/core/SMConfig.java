@@ -1,6 +1,5 @@
 package com.uraneptus.sullysmod.core;
 
-import com.teamabnormals.blueprint.core.annotations.ConfigKey;
 import com.uraneptus.sullysmod.SullysMod;
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.fml.common.Mod;

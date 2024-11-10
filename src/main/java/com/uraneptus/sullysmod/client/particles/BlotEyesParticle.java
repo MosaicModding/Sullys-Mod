@@ -10,8 +10,8 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import org.jetbrains.annotations.NotNull;
 
+@SuppressWarnings("unused")
 public class BlotEyesParticle extends SimpleAnimatedParticle {
-
     private float fadeR;
     private float fadeG;
     private float fadeB;

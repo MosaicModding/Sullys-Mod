@@ -32,6 +32,7 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.client.extensions.common.IClientItemExtensions;
 import net.minecraftforge.registries.ForgeRegistries;
+import org.jetbrains.annotations.NotNull;
 import org.joml.Matrix4f;
 
 public class ItemStandBER implements BlockEntityRenderer<ItemStandBE> {
@@ -46,7 +47,7 @@ public class ItemStandBER implements BlockEntityRenderer<ItemStandBE> {
     }
 
     @Override
-    public void render(ItemStandBE pBlockEntity, float pPartialTick, PoseStack pPoseStack, MultiBufferSource pBuffer, int pPackedLight, int pPackedOverlay) {
+    public void render(ItemStandBE pBlockEntity, float pPartialTick, @NotNull PoseStack pPoseStack, @NotNull MultiBufferSource pBuffer, int pPackedLight, int pPackedOverlay) {
         ItemStack displayItem = pBlockEntity.getDisplayItem();
         if (displayItem.isEmpty()) return;
 
@@ -122,8 +123,10 @@ public class ItemStandBER implements BlockEntityRenderer<ItemStandBE> {
     }
 
     private void renderModel(ArmorItem armorItem, PoseStack pPoseStack, MultiBufferSource pBuffer, int pPackedLight, Model pModel, float pRed, float pGreen, float pBlue, String suffix) {
-        String name = ForgeRegistries.ITEMS.getKey(armorItem).getPath();
-        String namespace = ForgeRegistries.ITEMS.getKey(armorItem).getNamespace();
+        ResourceLocation rl = ForgeRegistries.ITEMS.getKey(armorItem);
+        if (rl == null) return;
+        String name = rl.getPath();
+        String namespace = rl.getNamespace();
         ResourceLocation armorLocation = "minecraft".equals(namespace) ? new ResourceLocation("textures/models/armor/" + armorItem.getMaterial().getName() + "_layer_" + suffix + ".png") : SullysMod.modPrefix("textures/models/armor/" + name + "_layer_" + suffix + ".png");
         VertexConsumer vertexconsumer = pBuffer.getBuffer(RenderType.armorCutoutNoCull(armorLocation));
         pModel.renderToBuffer(pPoseStack, vertexconsumer, pPackedLight, OverlayTexture.NO_OVERLAY, pRed, pGreen, pBlue, 1.0F);
