@@ -65,7 +65,7 @@ public class SMBlockStateProvider extends BlockStateProvider {
         basicBlock(SMBlocks.ROUGH_AMBER);
         basicBlock(SMBlocks.CHISELED_AMBER);
         basicBlock(SMBlocks.AMBER_LANTERN);
-        //pillarBlock(SMBlocks.AMBER_PILLAR, name(SMBlocks.AMBER_PILLAR.get()) + "_top");
+        pillarBlock(SMBlocks.AMBER_PILLAR, name(SMBlocks.AMBER_PILLAR.get()) + "_top");
         basicBlock(SMBlocks.PETRIFIED_PLANKS);
         modLogBlock(SMBlocks.PETRIFIED_LOG);
         modLogBlock(SMBlocks.STRIPPED_PETRIFIED_LOG);

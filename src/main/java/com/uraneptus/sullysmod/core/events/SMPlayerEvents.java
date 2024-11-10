@@ -3,6 +3,7 @@ package com.uraneptus.sullysmod.core.events;
 import com.teamabnormals.blueprint.core.util.BlockUtil;
 import com.uraneptus.sullysmod.SullysMod;
 import com.uraneptus.sullysmod.common.blockentities.AmberBE;
+import com.uraneptus.sullysmod.common.blocks.AmberUtil;
 import com.uraneptus.sullysmod.common.blocks.PickaxeStrippable;
 import com.uraneptus.sullysmod.common.recipes.GrindstonePolishingRecipe;
 import com.uraneptus.sullysmod.core.SMConfig;
@@ -260,9 +261,10 @@ public class SMPlayerEvents {
     @SubscribeEvent
     public static void onPlayerBreakSpeed(PlayerEvent.BreakSpeed event) {
         Level level = event.getEntity().level();
+        BlockState state = event.getState();
         if (event.getPosition().isEmpty()) return;
-        if (level.getBlockEntity(event.getPosition().get()) instanceof AmberBE be) {
-            float breakSpeed = be.isBlockMelted() ? 2F : 6F;
+        if (state.hasProperty(AmberUtil.IS_MELTED)) {
+            float breakSpeed = state.getValue(AmberUtil.IS_MELTED) ? 2F : 6F;
             event.setNewSpeed(breakSpeed);
         }
     }

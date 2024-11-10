@@ -6,7 +6,10 @@
         "type": "minecraft:forest_rock",
         "config": {
           "state": {
-            "Name": "sullysmod:amber"
+            "Name": "sullysmod:amber",
+            "Properties": {
+              "is_melted": "false"
+            }
           }
         }
       },
