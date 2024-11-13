@@ -79,6 +79,11 @@ public class SMSounds {
     public static final RegistryObject<SoundEvent> BOULDERING_ZOMBIE_HURT = HELPER.createSoundEvent("entity.bouldering_zombie.hurt");
     public static final RegistryObject<SoundEvent> BOULDERING_ZOMBIE_DEATH = HELPER.createSoundEvent("entity.bouldering_zombie.death");
 
+    //Equip sounds
+    public static final RegistryObject<SoundEvent> EQUIP_MINERS_HELMET = HELPER.createSoundEvent("item.armor.equip_miners_helmet");
+    public static final RegistryObject<SoundEvent> EQUIP_SMALL_DENTED_HELMET = HELPER.createSoundEvent("item.armor.equip_small_dented_helmet");
+    public static final RegistryObject<SoundEvent> EQUIP_LOST_CROWN = HELPER.createSoundEvent("item.armor.equip_lost_crown");
+
     //Ambient sounds
     public static final RegistryObject<SoundEvent> MOUNTAIN_CALLS = HELPER.createSoundEvent("ambient.mountain.calls");
 

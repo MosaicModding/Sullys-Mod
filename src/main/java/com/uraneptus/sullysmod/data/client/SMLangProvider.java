@@ -124,6 +124,9 @@ public class SMLangProvider extends LanguageProvider {
         add("subtitles.item.throwing_knife.hit_ground", "Knife hits ground");
         add("subtitles.item.throwing_knife.throw", "Knife flies");
         add("subtitles.ambient.mountain.calls", "Echoes in the distance");
+        add("subtitles.item.armor.equip_miners_helmet", "Miners Helmet clanks");
+        add("subtitles.item.armor.equip_small_dented_helmet", "Small Dented Helmet clangs");
+        add("subtitles.item.armor.equip_lost_crown", "Lost Crown clings");
 
         //Other
         SMTextUtil.TRANSLATABLES.forEach(this::add);

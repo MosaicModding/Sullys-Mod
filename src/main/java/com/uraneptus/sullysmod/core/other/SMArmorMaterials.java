@@ -2,6 +2,7 @@ package com.uraneptus.sullysmod.core.other;
 
 import com.teamabnormals.blueprint.core.api.BlueprintArmorMaterial;
 import com.uraneptus.sullysmod.SullysMod;
+import com.uraneptus.sullysmod.core.registry.SMSounds;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
@@ -12,7 +13,7 @@ public class SMArmorMaterials {
             9,
             new int[]{1, 0, 0, 0},
             0,
-            () -> SoundEvents.ARMOR_EQUIP_LEATHER, //TODO custom sound event
+            SMSounds.EQUIP_MINERS_HELMET,
             0.0F, 0.0F,
             () -> Ingredient.of(ItemStack.EMPTY)
     );
@@ -22,7 +23,7 @@ public class SMArmorMaterials {
             9,
             new int[]{1, 0, 0, 0},
             0,
-            () -> SoundEvents.ARMOR_EQUIP_IRON, //TODO custom sound event
+            SMSounds.EQUIP_SMALL_DENTED_HELMET,
             0.0F, 0.0F,
             () -> Ingredient.of(ItemStack.EMPTY)
     );
@@ -32,7 +33,7 @@ public class SMArmorMaterials {
             9,
             new int[]{1, 0, 0, 0},
             0,
-            () -> SoundEvents.ARMOR_EQUIP_GOLD, //TODO custom sound event
+            SMSounds.EQUIP_LOST_CROWN,
             0.0F, 0.0F,
             () -> Ingredient.of(ItemStack.EMPTY)
     );

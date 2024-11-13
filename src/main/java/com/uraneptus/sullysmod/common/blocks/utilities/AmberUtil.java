@@ -155,7 +155,6 @@ public class AmberUtil {
         return Optional.empty();
     }
 
-    //TODO prevent particles if blocks are on the sides
     public static void spawnAmberParticles(BlockState pState, Level pLevel, BlockPos pPos, RandomSource pRandom) {
         if (pState.getValue(IS_MELTED)) {
             for(int i = 0; i < pRandom.nextInt(1) + 1; ++i) {

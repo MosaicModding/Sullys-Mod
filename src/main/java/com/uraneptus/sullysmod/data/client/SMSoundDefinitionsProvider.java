@@ -333,6 +333,30 @@ public class SMSoundDefinitionsProvider extends SoundDefinitionsProvider {
                 sound(SullysMod.modPrefix("ambient/mountain/call4")),
                 sound(SullysMod.modPrefix("ambient/mountain/call5"))
         );
+        this.addBasicSound(SMSounds.EQUIP_MINERS_HELMET, "item.armor.equip_miners_helmet",
+                sound(new ResourceLocation("item/armor/equip_iron1")),
+                sound(new ResourceLocation("item/armor/equip_iron2")),
+                sound(new ResourceLocation("item/armor/equip_iron3")),
+                sound(new ResourceLocation("item/armor/equip_iron4")),
+                sound(new ResourceLocation("item/armor/equip_iron5")),
+                sound(new ResourceLocation("item/armor/equip_iron6"))
+        );
+        this.addBasicSound(SMSounds.EQUIP_SMALL_DENTED_HELMET, "item.armor.equip_small_dented_helmet",
+                sound(new ResourceLocation("item/armor/equip_iron1")),
+                sound(new ResourceLocation("item/armor/equip_iron2")),
+                sound(new ResourceLocation("item/armor/equip_iron3")),
+                sound(new ResourceLocation("item/armor/equip_iron4")),
+                sound(new ResourceLocation("item/armor/equip_iron5")),
+                sound(new ResourceLocation("item/armor/equip_iron6"))
+        );
+        this.addBasicSound(SMSounds.EQUIP_LOST_CROWN, "item.armor.equip_lost_crown",
+                sound(new ResourceLocation("item/armor/equip_gold1")),
+                sound(new ResourceLocation("item/armor/equip_gold2")),
+                sound(new ResourceLocation("item/armor/equip_gold3")),
+                sound(new ResourceLocation("item/armor/equip_gold4")),
+                sound(new ResourceLocation("item/armor/equip_gold5")),
+                sound(new ResourceLocation("item/armor/equip_gold6"))
+        );
     }
 
     private void addBasicSound(Supplier<SoundEvent> soundEvent, String subtitle, SoundDefinition.Sound... sounds) {
