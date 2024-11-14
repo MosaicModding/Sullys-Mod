@@ -7,7 +7,7 @@
         {
           "type": "minecraft:item",
           "name": "minecraft:coal",
-          "weight": 5
+          "weight": 50
         },
         {
           "type": "minecraft:item",
@@ -25,72 +25,72 @@
             }
           ],
           "name": "minecraft:stick",
-          "weight": 5
+          "weight": 50
         },
         {
           "type": "minecraft:item",
           "name": "minecraft:bone",
-          "weight": 5
+          "weight": 50
         },
         {
           "type": "minecraft:item",
           "name": "minecraft:string",
-          "weight": 5
+          "weight": 50
         },
         {
           "type": "minecraft:item",
           "name": "sullysmod:primitive_ring",
-          "weight": 5
+          "weight": 50
         },
         {
           "type": "minecraft:item",
           "name": "sullysmod:rusty_tools",
-          "weight": 5
+          "weight": 50
         },
         {
           "type": "minecraft:item",
           "name": "sullysmod:broken_vase",
-          "weight": 5
+          "weight": 50
         },
         {
           "type": "minecraft:item",
           "name": "sullysmod:broken_bowl",
-          "weight": 5
+          "weight": 50
         },
         {
           "type": "minecraft:item",
           "name": "sullysmod:primitive_knife",
-          "weight": 5
+          "weight": 50
         },
         {
           "type": "minecraft:item",
           "name": "sullysmod:petrified_cookie",
-          "weight": 5
+          "weight": 50
         },
         {
           "type": "minecraft:item",
           "name": "sullysmod:arrowhead",
-          "weight": 5
+          "weight": 50
         },
         {
           "type": "minecraft:item",
           "name": "sullysmod:lost_bag",
-          "weight": 5
+          "weight": 50
         },
         {
           "type": "minecraft:item",
           "name": "sullysmod:lost_journal",
-          "weight": 5
+          "weight": 50
         },
         {
           "type": "minecraft:item",
           "name": "sullysmod:torn_cloth",
-          "weight": 5
+          "weight": 50
         },
         {
           "type": "minecraft:item",
           "name": "sullysmod:broken_bottle",
-          "weight": 5
+          "weight": 50
         },
         {
           "type": "minecraft:item",
@@ -108,7 +108,7 @@
             }
           ],
           "name": "minecraft:rotten_flesh",
-          "weight": 4
+          "weight": 40
         },
         {
           "type": "minecraft:item",
@@ -126,17 +126,17 @@
             }
           ],
           "name": "minecraft:dead_bush",
-          "weight": 4
+          "weight": 40
         },
         {
           "type": "minecraft:item",
           "name": "minecraft:arrow",
-          "weight": 4
+          "weight": 40
         },
         {
           "type": "minecraft:item",
           "name": "minecraft:gunpowder",
-          "weight": 4
+          "weight": 40
         },
         {
           "type": "minecraft:item",
@@ -154,7 +154,7 @@
             }
           ],
           "name": "minecraft:stick",
-          "weight": 4
+          "weight": 40
         },
         {
           "type": "minecraft:item",
@@ -167,7 +167,7 @@
             }
           ],
           "name": "sullysmod:copper_cog",
-          "weight": 4
+          "weight": 40
         },
         {
           "type": "minecraft:item",
@@ -180,7 +180,7 @@
             }
           ],
           "name": "sullysmod:dried_cyan_flower",
-          "weight": 4
+          "weight": 40
         },
         {
           "type": "minecraft:item",
@@ -193,7 +193,7 @@
             }
           ],
           "name": "sullysmod:dried_red_flower",
-          "weight": 4
+          "weight": 40
         },
         {
           "type": "minecraft:item",
@@ -206,27 +206,27 @@
             }
           ],
           "name": "sullysmod:miners_helmet",
-          "weight": 4
+          "weight": 40
         },
         {
           "type": "minecraft:item",
           "name": "sullysmod:lost_recipe_book",
-          "weight": 4
+          "weight": 40
         },
         {
           "type": "minecraft:item",
           "name": "minecraft:iron_nugget",
-          "weight": 3
+          "weight": 30
         },
         {
           "type": "minecraft:item",
           "name": "minecraft:glow_berries",
-          "weight": 3
+          "weight": 30
         },
         {
           "type": "minecraft:item",
           "name": "minecraft:stone_pickaxe",
-          "weight": 3
+          "weight": 30
         },
         {
           "type": "minecraft:item",
@@ -244,7 +244,7 @@
             }
           ],
           "name": "minecraft:rotten_flesh",
-          "weight": 3
+          "weight": 30
         },
         {
           "type": "minecraft:item",
@@ -262,7 +262,7 @@
             }
           ],
           "name": "minecraft:gold_nugget",
-          "weight": 3
+          "weight": 30
         },
         {
           "type": "minecraft:item",
@@ -292,32 +292,32 @@
             }
           ],
           "name": "sullysmod:jade_amulet",
-          "weight": 3
+          "weight": 30
         },
         {
           "type": "minecraft:item",
           "name": "sullysmod:copper_cog",
-          "weight": 3
+          "weight": 30
         },
         {
           "type": "minecraft:item",
           "name": "sullysmod:death_whistle",
-          "weight": 3
+          "weight": 30
         },
         {
           "type": "minecraft:item",
           "name": "sullysmod:dried_red_flower",
-          "weight": 3
+          "weight": 30
         },
         {
           "type": "minecraft:item",
           "name": "sullysmod:dried_cyan_flower",
-          "weight": 3
+          "weight": 30
         },
         {
           "type": "minecraft:item",
           "name": "sullysmod:metallic_skull",
-          "weight": 3
+          "weight": 30
         },
         {
           "type": "minecraft:item",
@@ -330,7 +330,7 @@
             }
           ],
           "name": "sullysmod:fossilised_shells",
-          "weight": 3
+          "weight": 30
         },
         {
           "type": "minecraft:item",
@@ -343,27 +343,27 @@
             }
           ],
           "name": "sullysmod:fossilised_fish",
-          "weight": 3
+          "weight": 30
         },
         {
           "type": "minecraft:item",
           "name": "sullysmod:torn_manuscript",
-          "weight": 3
+          "weight": 30
         },
         {
           "type": "minecraft:item",
           "name": "sullysmod:small_geode",
-          "weight": 3
+          "weight": 30
         },
         {
           "type": "minecraft:item",
           "name": "sullysmod:miners_helmet",
-          "weight": 3
+          "weight": 30
         },
         {
           "type": "minecraft:item",
           "name": "sullysmod:emerald_earring",
-          "weight": 3
+          "weight": 30
         },
         {
           "type": "minecraft:item",
@@ -387,17 +387,17 @@
             }
           ],
           "name": "sullysmod:frog_idol",
-          "weight": 3
+          "weight": 30
         },
         {
           "type": "minecraft:item",
           "name": "minecraft:music_disc_relic",
-          "weight": 2
+          "weight": 20
         },
         {
           "type": "minecraft:item",
           "name": "minecraft:explorer_pottery_sherd",
-          "weight": 2
+          "weight": 20
         },
         {
           "type": "minecraft:item",
@@ -415,7 +415,7 @@
             }
           ],
           "name": "minecraft:iron_pickaxe",
-          "weight": 2
+          "weight": 20
         },
         {
           "type": "minecraft:item",
@@ -433,72 +433,72 @@
             }
           ],
           "name": "minecraft:skeleton_skull",
-          "weight": 2
+          "weight": 20
         },
         {
           "type": "minecraft:item",
           "name": "sullysmod:small_dented_helmet",
-          "weight": 2
+          "weight": 20
         },
         {
           "type": "minecraft:item",
           "name": "sullysmod:lost_crown",
-          "weight": 2
+          "weight": 20
         },
         {
           "type": "minecraft:item",
           "name": "sullysmod:ominous_tablet",
-          "weight": 2
+          "weight": 20
         },
         {
           "type": "minecraft:item",
           "name": "sullysmod:moon_tablet",
-          "weight": 2
+          "weight": 20
         },
         {
           "type": "minecraft:item",
           "name": "sullysmod:amber_encased_bug",
-          "weight": 2
+          "weight": 20
         },
         {
           "type": "minecraft:item",
           "name": "sullysmod:fossilised_shells",
-          "weight": 2
+          "weight": 20
         },
         {
           "type": "minecraft:item",
           "name": "sullysmod:fossilised_bone",
-          "weight": 2
+          "weight": 20
         },
         {
           "type": "minecraft:item",
           "name": "sullysmod:fossilised_footstep",
-          "weight": 2
+          "weight": 20
         },
         {
           "type": "minecraft:item",
           "name": "sullysmod:fossilised_fish",
-          "weight": 2
+          "weight": 20
         },
         {
           "type": "minecraft:item",
           "name": "sullysmod:lost_sketchbook",
-          "weight": 2
+          "weight": 20
         },
         {
           "type": "minecraft:item",
           "name": "sullysmod:golden_belt_buckle",
-          "weight": 2
+          "weight": 20
         },
         {
           "type": "minecraft:item",
           "name": "sullysmod:deepslate_vase",
-          "weight": 2
+          "weight": 20
         },
         {
           "type": "minecraft:item",
           "name": "sullysmod:golden_goblet",
-          "weight": 2
+          "weight": 20
         },
         {
           "type": "minecraft:item",
@@ -522,7 +522,7 @@
             }
           ],
           "name": "sullysmod:long_ancient_skull",
-          "weight": 2
+          "weight": 20
         },
         {
           "type": "minecraft:item",
@@ -635,7 +635,7 @@
             }
           ],
           "name": "sullysmod:wide_ancient_skull",
-          "weight": 2
+          "weight": 20
         },
         {
           "type": "minecraft:item",
@@ -648,7 +648,7 @@
             }
           ],
           "name": "sullysmod:horned_ancient_skull",
-          "weight": 2
+          "weight": 20
         },
         {
           "type": "minecraft:item",
@@ -661,7 +661,7 @@
             }
           ],
           "name": "sullysmod:tiny_ancient_skull",
-          "weight": 2
+          "weight": 20
         },
         {
           "type": "minecraft:item",
@@ -674,7 +674,7 @@
             }
           ],
           "name": "sullysmod:flatbilled_ancient_skull",
-          "weight": 2
+          "weight": 20
         },
         {
           "type": "minecraft:item",
@@ -722,7 +722,7 @@
             }
           ],
           "name": "sullysmod:crested_ancient_skull",
-          "weight": 2
+          "weight": 20
         },
         {
           "type": "minecraft:item",
@@ -735,7 +735,7 @@
             }
           ],
           "name": "sullysmod:gigantic_ancient_skull",
-          "weight": 2
+          "weight": 20
         },
         {
           "type": "minecraft:item",
@@ -759,55 +759,67 @@
             }
           ],
           "name": "sullysmod:cracked_ancient_skull",
-          "weight": 2
+          "weight": 20
         },
         {
           "type": "minecraft:item",
-          "name": "sullysmod:stone_idol"
+          "name": "sullysmod:stone_idol",
+          "weight": 10
         },
         {
           "type": "minecraft:item",
-          "name": "sullysmod:red_cap"
+          "name": "sullysmod:red_cap",
+          "weight": 10
         },
         {
           "type": "minecraft:item",
-          "name": "sullysmod:mysterious_plate"
+          "name": "sullysmod:mysterious_plate",
+          "weight": 10
         },
         {
           "type": "minecraft:item",
-          "name": "sullysmod:familiar_cube"
+          "name": "sullysmod:familiar_cube",
+          "weight": 10
         },
         {
           "type": "minecraft:item",
-          "name": "sullysmod:long_ancient_skull"
+          "name": "sullysmod:long_ancient_skull",
+          "weight": 10
         },
         {
           "type": "minecraft:item",
-          "name": "sullysmod:wide_ancient_skull"
+          "name": "sullysmod:wide_ancient_skull",
+          "weight": 10
         },
         {
           "type": "minecraft:item",
-          "name": "sullysmod:horned_ancient_skull"
+          "name": "sullysmod:horned_ancient_skull",
+          "weight": 10
         },
         {
           "type": "minecraft:item",
-          "name": "sullysmod:tiny_ancient_skull"
+          "name": "sullysmod:tiny_ancient_skull",
+          "weight": 10
         },
         {
           "type": "minecraft:item",
-          "name": "sullysmod:flatbilled_ancient_skull"
+          "name": "sullysmod:flatbilled_ancient_skull",
+          "weight": 10
         },
         {
           "type": "minecraft:item",
-          "name": "sullysmod:crested_ancient_skull"
+          "name": "sullysmod:crested_ancient_skull",
+          "weight": 10
         },
         {
           "type": "minecraft:item",
-          "name": "sullysmod:gigantic_ancient_skull"
+          "name": "sullysmod:gigantic_ancient_skull",
+          "weight": 10
         },
         {
           "type": "minecraft:item",
-          "name": "sullysmod:cracked_ancient_skull"
+          "name": "sullysmod:cracked_ancient_skull",
+          "weight": 10
         }
       ],
       "rolls": 1.0

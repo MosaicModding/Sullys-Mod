@@ -3,14 +3,11 @@
   "config": {
     "amberBlob": {
       "feature": {
-        "type": "minecraft:forest_rock",
+        "type": "sullysmod:amber_blob",
         "config": {
-          "state": {
-            "Name": "sullysmod:amber",
-            "Properties": {
-              "is_melted": "false"
-            }
-          }
+          "possibleEntities": [
+            "minecraft:pig"
+          ]
         }
       },
       "placement": [

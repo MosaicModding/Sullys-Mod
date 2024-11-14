@@ -12,7 +12,7 @@ public class SMFluidTypes {
     public static final DeferredRegister<FluidType> FLUID_TYPES = DeferredRegister.create(ForgeRegistries.Keys.FLUID_TYPES, SullysMod.MOD_ID);
 
     public static final RegistryObject<FluidType> MOLTEN_AMBER_FLUID_TYPE = register("molten_amber_fluid",
-            FluidType.Properties.create().lightLevel(10).density(10).viscosity(5).supportsBoating(false).canSwim(false).canPushEntity(true).temperature(1));
+            FluidType.Properties.create().density(10).viscosity(5).supportsBoating(false).canSwim(false).canPushEntity(true).temperature(1));
 
 
 

@@ -17,17 +17,19 @@ import java.util.function.BiConsumer;
 import static com.uraneptus.sullysmod.core.other.loot.SMLootConditions.*;
 
 public class SMArchaeologyLoot implements LootTableSubProvider {
-    public static final int ARTIFACT_COMMON_WEIGHT = 5;
-    public static final int ARTIFACT_UNCOMMON_WEIGHT = 4;
-    public static final int ARTIFACT_RARE_WEIGHT = 3;
-    public static final int ARTIFACT_VERY_RARE_WEIGHT = 2;
-    public static final int ARTIFACT_EXTREMELY_RARE_WEIGHT = 1;
+    public static final int ARTIFACT_TRASH_WEIGHT = 60;
+    public static final int ARTIFACT_COMMON_WEIGHT = 50;
+    public static final int ARTIFACT_UNCOMMON_WEIGHT = 40;
+    public static final int ARTIFACT_RARE_WEIGHT = 30;
+    public static final int ARTIFACT_VERY_RARE_WEIGHT = 20;
+    public static final int ARTIFACT_EXTREMELY_RARE_WEIGHT = 10;
 
     @Override
     public void generate(BiConsumer<ResourceLocation, LootTable.Builder> pOutput) {
         pOutput.accept(SMBuiltInLootTables.GRAVEL_PETRIFIED_SAPLING_TREE, LootTable.lootTable().withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F)).add(LootItem.lootTableItem(SMBlocks.AMBER.get())).add(LootItem.lootTableItem(SMBlocks.PETRIFIED_SAPLING.get())).add(LootItem.lootTableItem(Items.STICK)).add(LootItem.lootTableItem(Items.COAL))));
         pOutput.accept(SMBuiltInLootTables.GRAVEL_BIG_PETRIFIED_TREE, LootTable.lootTable().withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F)).add(LootItem.lootTableItem(Items.DIAMOND)).add(LootItem.lootTableItem(SMBlocks.PETRIFIED_SAPLING.get())).add(LootItem.lootTableItem(Items.STICK)).add(LootItem.lootTableItem(Items.COAL)).add(LootItem.lootTableItem(Items.BONE)).add(LootItem.lootTableItem(Items.EMERALD)).add(LootItem.lootTableItem(Items.MUSIC_DISC_RELIC)).add(LootItem.lootTableItem(SMItems.AMBER_ENCASED_BUG.get())))); //At some point ancient gliding pet egg
         pOutput.accept(SMBuiltInLootTables.OVERWORLD_ARTIFACTS, LootTable.lootTable().withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
+                //Common
                 .add(LootItem.lootTableItem(Items.COAL).setWeight(ARTIFACT_COMMON_WEIGHT))
                 .add(LootItem.lootTableItem(Items.STICK).setWeight(ARTIFACT_COMMON_WEIGHT).when(IS_NORMAL_CAVE))
                 .add(LootItem.lootTableItem(Items.BONE).setWeight(ARTIFACT_COMMON_WEIGHT))
@@ -43,6 +45,7 @@ public class SMArchaeologyLoot implements LootTableSubProvider {
                 .add(LootItem.lootTableItem(SMItems.LOST_JOURNAL.get()).setWeight(ARTIFACT_COMMON_WEIGHT))
                 .add(LootItem.lootTableItem(SMItems.TORN_CLOTH.get()).setWeight(ARTIFACT_COMMON_WEIGHT))
                 .add(LootItem.lootTableItem(SMItems.BROKEN_BOTTLE.get()).setWeight(ARTIFACT_COMMON_WEIGHT))
+                //Uncommon
                 .add(LootItem.lootTableItem(Items.ROTTEN_FLESH).setWeight(ARTIFACT_UNCOMMON_WEIGHT).when(IS_NORMAL_CAVE))
                 .add(LootItem.lootTableItem(Items.DEAD_BUSH).setWeight(ARTIFACT_UNCOMMON_WEIGHT).when(IS_NORMAL_CAVE))
                 .add(LootItem.lootTableItem(Items.ARROW).setWeight(ARTIFACT_UNCOMMON_WEIGHT))
@@ -53,6 +56,7 @@ public class SMArchaeologyLoot implements LootTableSubProvider {
                 .add(LootItem.lootTableItem(SMItems.DRIED_RED_FLOWER.get()).setWeight(ARTIFACT_UNCOMMON_WEIGHT).when(biomeConditionCheck(Biomes.FLOWER_FOREST)))
                 .add(LootItem.lootTableItem(SMItems.MINERS_HELMET.get()).setWeight(ARTIFACT_UNCOMMON_WEIGHT).when(biomeConditionCheck(Biomes.BADLANDS)))
                 .add(LootItem.lootTableItem(SMItems.LOST_RECIPE_BOOK.get()).setWeight(ARTIFACT_UNCOMMON_WEIGHT))
+                //Rare
                 .add(LootItem.lootTableItem(Items.IRON_NUGGET).setWeight(ARTIFACT_RARE_WEIGHT))
                 .add(LootItem.lootTableItem(Items.GLOW_BERRIES).setWeight(ARTIFACT_RARE_WEIGHT))
                 .add(LootItem.lootTableItem(Items.STONE_PICKAXE).setWeight(ARTIFACT_RARE_WEIGHT))
@@ -71,6 +75,7 @@ public class SMArchaeologyLoot implements LootTableSubProvider {
                 .add(LootItem.lootTableItem(SMItems.MINERS_HELMET.get()).setWeight(ARTIFACT_RARE_WEIGHT))
                 .add(LootItem.lootTableItem(SMItems.EMERALD_EARRING.get()).setWeight(ARTIFACT_RARE_WEIGHT))
                 .add(LootItem.lootTableItem(SMItems.FROG_IDOL.get()).setWeight(ARTIFACT_RARE_WEIGHT).when(isSwamp()))
+                //Very Rare
                 .add(LootItem.lootTableItem(Items.MUSIC_DISC_RELIC).setWeight(ARTIFACT_VERY_RARE_WEIGHT))
                 .add(LootItem.lootTableItem(Items.EXPLORER_POTTERY_SHERD).setWeight(ARTIFACT_VERY_RARE_WEIGHT))
                 .add(LootItem.lootTableItem(Items.IRON_PICKAXE).setWeight(ARTIFACT_VERY_RARE_WEIGHT).when(IS_DEEPSLATE_CAVE))
@@ -96,6 +101,7 @@ public class SMArchaeologyLoot implements LootTableSubProvider {
                 .add(LootItem.lootTableItem(SMBlocks.CRESTED_ANCIENT_SKULL.getFirst().get()).setWeight(ARTIFACT_VERY_RARE_WEIGHT).when(isMountain()))
                 .add(LootItem.lootTableItem(SMBlocks.GIGANTIC_ANCIENT_SKULL.getFirst().get()).setWeight(ARTIFACT_VERY_RARE_WEIGHT).when(biomeConditionCheck(Biomes.WARM_OCEAN)))
                 .add(LootItem.lootTableItem(SMBlocks.CRACKED_ANCIENT_SKULL.getFirst().get()).setWeight(ARTIFACT_VERY_RARE_WEIGHT).when(biomeConditionCheck(Biomes.COLD_OCEAN).or(biomeConditionCheck(Biomes.DEEP_COLD_OCEAN))))
+                //Extremely Rare
                 .add(LootItem.lootTableItem(SMItems.STONE_IDOL.get()).setWeight(ARTIFACT_EXTREMELY_RARE_WEIGHT))
                 .add(LootItem.lootTableItem(SMItems.RED_CAP.get()).setWeight(ARTIFACT_EXTREMELY_RARE_WEIGHT))
                 .add(LootItem.lootTableItem(SMItems.MYSTERIOUS_PLATE.get()).setWeight(ARTIFACT_EXTREMELY_RARE_WEIGHT))

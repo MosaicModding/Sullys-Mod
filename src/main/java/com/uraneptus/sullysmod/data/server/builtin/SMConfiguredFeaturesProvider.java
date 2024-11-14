@@ -2,7 +2,8 @@ package com.uraneptus.sullysmod.data.server.builtin;
 
 import com.google.common.collect.ImmutableList;
 import com.uraneptus.sullysmod.SullysMod;
-import com.uraneptus.sullysmod.common.levelgen.PetrifiedTreeConfig;
+import com.uraneptus.sullysmod.common.levelgen.configs.AmberBlobConfig;
+import com.uraneptus.sullysmod.common.levelgen.configs.PetrifiedTreeConfig;
 import com.uraneptus.sullysmod.common.levelgen.PetrifiedTreeGravelDecorator;
 import com.uraneptus.sullysmod.core.other.SMFeatureDefinitions;
 import com.uraneptus.sullysmod.core.registry.SMBlocks;
@@ -12,6 +13,7 @@ import net.minecraft.core.Holder;
 import net.minecraft.data.worldgen.BootstapContext;
 import net.minecraft.data.worldgen.placement.PlacementUtils;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.valueproviders.ConstantInt;
 import net.minecraft.world.level.block.Blocks;
@@ -37,7 +39,7 @@ public class SMConfiguredFeaturesProvider {
     private static final RuleTest DEEPSLATE_ORE_REPLACEABLES = new TagMatchTest(BlockTags.DEEPSLATE_ORE_REPLACEABLES);
     private static final List<OreConfiguration.TargetBlockState> JADE_ORE_TARGET_LIST = List.of(OreConfiguration.target(STONE_ORE_REPLACEABLES, SMBlocks.JADE_ORE.get().defaultBlockState()), OreConfiguration.target(DEEPSLATE_ORE_REPLACEABLES, SMBlocks.DEEPSLATE_JADE_ORE.get().defaultBlockState()));
 
-    static Holder<ConfiguredFeature<?, ?>> amberBlobConfig = Holder.direct(new ConfiguredFeature<>(Feature.FOREST_ROCK, new BlockStateConfiguration(SMBlocks.AMBER.get().defaultBlockState()))); //TODO add custom config to include entities
+    static Holder<ConfiguredFeature<?, ?>> amberBlobConfig = Holder.direct(new ConfiguredFeature<>(SMFeatures.AMBER_BLOB.get(), new AmberBlobConfig(List.of(new ResourceLocation("pig")))));
     static Holder<PlacedFeature> amberBlobPlacement = Holder.direct(new PlacedFeature(amberBlobConfig, List.of(BlockPredicateFilter.forPredicate(BlockPredicate.allOf(BlockPredicate.matchesBlocks(Blocks.AIR))))));
 
     public static void create(BootstapContext<ConfiguredFeature<?, ?>> context) {

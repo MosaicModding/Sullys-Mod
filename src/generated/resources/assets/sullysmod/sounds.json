@@ -434,6 +434,39 @@
     ],
     "subtitle": "subtitles.entity.tortoise_shell.place"
   },
+  "item.armor.equip_lost_crown": {
+    "sounds": [
+      "item/armor/equip_gold1",
+      "item/armor/equip_gold2",
+      "item/armor/equip_gold3",
+      "item/armor/equip_gold4",
+      "item/armor/equip_gold5",
+      "item/armor/equip_gold6"
+    ],
+    "subtitle": "subtitles.item.armor.equip_lost_crown"
+  },
+  "item.armor.equip_miners_helmet": {
+    "sounds": [
+      "item/armor/equip_iron1",
+      "item/armor/equip_iron2",
+      "item/armor/equip_iron3",
+      "item/armor/equip_iron4",
+      "item/armor/equip_iron5",
+      "item/armor/equip_iron6"
+    ],
+    "subtitle": "subtitles.item.armor.equip_miners_helmet"
+  },
+  "item.armor.equip_small_dented_helmet": {
+    "sounds": [
+      "item/armor/equip_iron1",
+      "item/armor/equip_iron2",
+      "item/armor/equip_iron3",
+      "item/armor/equip_iron4",
+      "item/armor/equip_iron5",
+      "item/armor/equip_iron6"
+    ],
+    "subtitle": "subtitles.item.armor.equip_small_dented_helmet"
+  },
   "item.broken_bottle.shatter": {
     "sounds": [
       {

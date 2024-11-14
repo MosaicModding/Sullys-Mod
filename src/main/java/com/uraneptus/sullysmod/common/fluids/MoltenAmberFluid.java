@@ -30,6 +30,7 @@ import net.minecraftforge.fluids.ForgeFlowingFluid;
 import javax.annotation.Nullable;
 import java.util.Optional;
 
+//TODO clean up
 public class MoltenAmberFluid extends ForgeFlowingFluid {
     public static final float MIN_LEVEL_CUTOFF = 0.44444445F;
 
@@ -52,24 +53,6 @@ public class MoltenAmberFluid extends ForgeFlowingFluid {
 
     public Item getBucket() {
         return SMItems.MOLTEN_AMBER_BUCKET.get();
-    }
-
-
-    public void animateTick(Level pLevel, BlockPos pPos, FluidState pState, RandomSource pRandom) {
-        BlockPos blockpos = pPos.above();
-        if (pLevel.getBlockState(blockpos).isAir() && !pLevel.getBlockState(blockpos).isSolidRender(pLevel, blockpos)) {
-            if (pRandom.nextInt(100) == 0) {
-                double d0 = (double) pPos.getX() + pRandom.nextDouble();
-                double d1 = (double) pPos.getY() + 1.0;
-                double d2 = (double) pPos.getZ() + pRandom.nextDouble();
-                pLevel.addParticle(ParticleTypes.LAVA, d0, d1, d2, 0.0, 0.0, 0.0);
-                pLevel.playLocalSound(d0, d1, d2, SoundEvents.LAVA_POP, SoundSource.BLOCKS, 0.2F + pRandom.nextFloat() * 0.2F, 0.9F + pRandom.nextFloat() * 0.15F, false);
-            }
-
-            if (pRandom.nextInt(200) == 0) {
-                pLevel.playLocalSound((double) pPos.getX(), (double) pPos.getY(), (double) pPos.getZ(), SoundEvents.LAVA_AMBIENT, SoundSource.BLOCKS, 0.2F + pRandom.nextFloat() * 0.2F, 0.9F + pRandom.nextFloat() * 0.15F, false);
-            }
-        }
     }
 
     public void randomTick(Level pLevel, BlockPos pPos, FluidState pState, RandomSource pRandom) {
@@ -133,10 +116,8 @@ public class MoltenAmberFluid extends ForgeFlowingFluid {
 
     private boolean hasFlammableNeighbours(LevelReader pLevel, BlockPos pPos) {
         Direction[] var3 = Direction.values();
-        int var4 = var3.length;
 
-        for(int var5 = 0; var5 < var4; ++var5) {
-            Direction direction = var3[var5];
+        for (Direction direction : var3) {
             if (this.isFlammable(pLevel, pPos.relative(direction), direction.getOpposite())) {
                 return true;
             }

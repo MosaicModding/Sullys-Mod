@@ -87,6 +87,10 @@ repositories {
     }
 }
 
+configurations {
+    runtimeClasspath.extendsFrom localRuntime
+}
+
 dependencies {
     minecraft "net.minecraftforge:forge:${mc_version}-${forge_version}"
     implementation fg.deobf("com.teamabnormals:${blueprint_id}:1.20.1-${blueprint_version}")
@@ -97,13 +101,13 @@ dependencies {
 
     compileOnly fg.deobf("mezz.jei:jei-${mc_version}-forge-api:${jei_version}")
     implementation fg.deobf("mezz.jei:jei-${mc_version}-forge:${jei_version}")
-    runtimeOnly fg.deobf("curse.maven:catalogue-459701:4590890")
-    //runtimeOnly fg.deobf("curse.maven:configured-457570:4011355")
-    runtimeOnly fg.deobf("curse.maven:config-menus-forge-544048:4672356")
-    runtimeOnly fg.deobf("curse.maven:neat-238372:4580940")
-    //runtimeOnly fg.deobf("curse.maven:advanced-xray-256256:4840340") //Use this for worldgen tests only
+    localRuntime fg.deobf("curse.maven:catalogue-459701:4590890")
+    //localRuntime fg.deobf("curse.maven:configured-457570:4011355")
+    localRuntime fg.deobf("curse.maven:config-menus-forge-544048:4672356")
+    localRuntime fg.deobf("curse.maven:neat-238372:4580940")
+    //localRuntime fg.deobf("curse.maven:advanced-xray-256256:4840340") //Use this for worldgen tests only
 
-    //implementation fg.deobf("curse.maven:no-falling-blocks-522715:5617563")
+    //localRuntime fg.deobf("curse.maven:no-falling-blocks-522715:5617563")
 }
 
 mixin {

@@ -7,13 +7,17 @@ import com.uraneptus.sullysmod.common.networking.SMPacketHandler;
 import com.uraneptus.sullysmod.core.registry.SMBlockEntityTypes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.FloatTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Rotation;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
@@ -23,11 +27,13 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.Function;
 
 public class AmberBE extends BlockEntity {
     @Nullable
     private AmberBE.StuckEntityData stuckEntityData;
     public boolean renderEntity;
+    private boolean entityUpdated = false;
     private static final List<String> IGNORED_NBT = Arrays.asList("UUID", "Leash");
 
     public AmberBE(BlockPos pPos, BlockState pBlockState) {
@@ -42,9 +48,7 @@ public class AmberBE extends BlockEntity {
 
     public void setStuckEntityData(@Nullable StuckEntityData value) {
         this.stuckEntityData = value;
-        if (value == null) {
-            this.renderEntity = false;
-        }
+        this.renderEntity = value != null;
         this.update();
     }
 
@@ -71,8 +75,22 @@ public class AmberBE extends BlockEntity {
             this.storeEntity(compoundtag);
         }
         this.renderEntity = true;
+        this.entityUpdated = true;
         this.update();
         entity.discard();
+    }
+
+    //This method only stores the entity id and is only used by Amber worldgen
+    //The actual saving process for the generated entities is later done in the tick method
+    public void storeTypeForGeneration(EntityType<?> entityType) {
+        if (this.stuckEntityData != null) return;
+        CompoundTag compoundtag = new CompoundTag();
+        ResourceLocation resourcelocation = EntityType.getKey(entityType);
+        String id = entityType.canSerialize() ? resourcelocation.toString() : null;
+        if (id == null) return;
+        compoundtag.putString("id", id);
+
+        this.storeEntity(compoundtag);
     }
 
     public void storeEntity(CompoundTag pEntityData) {
@@ -80,6 +98,16 @@ public class AmberBE extends BlockEntity {
     }
 
     public void tick() {
+        CompoundTag stuckEntity = getEntityStuck();
+        if (stuckEntity.isEmpty() || this.entityUpdated || this.level == null) return;
+        if (!this.level.isClientSide()) {
+            Entity entity = EntityType.loadEntityRecursive(stuckEntity, this.level, Function.identity());
+            if (entity != null) {
+                this.stuckEntityData = null;
+                this.makeEntityStuck(entity);
+            }
+        }
+
     }
 
     public void update() {
