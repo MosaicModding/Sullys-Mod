@@ -3,10 +3,11 @@ package com.uraneptus.sullysmod.core.registry;
 import com.uraneptus.sullysmod.SullysMod;
 import com.uraneptus.sullysmod.common.levelgen.AmberBlobFeature;
 import com.uraneptus.sullysmod.common.levelgen.ArtifactGravelFeature;
-import com.uraneptus.sullysmod.common.levelgen.configs.AmberBlobConfig;
 import com.uraneptus.sullysmod.common.levelgen.configs.PetrifiedTreeConfig;
 import com.uraneptus.sullysmod.common.levelgen.PetrifiedTreeFeature;
 import net.minecraft.world.level.levelgen.feature.Feature;
+import net.minecraft.world.level.levelgen.feature.configurations.FeatureConfiguration;
+import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 import net.minecraft.world.level.levelgen.feature.configurations.SimpleBlockConfiguration;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.DeferredRegister;
@@ -19,7 +20,7 @@ public class SMFeatures {
 
     public static final RegistryObject<Feature<PetrifiedTreeConfig>> PETRIFIED_TREE = FEATURES.register("petrified_tree", () -> new PetrifiedTreeFeature(PetrifiedTreeConfig.CODEC));
     public static final RegistryObject<ArtifactGravelFeature> ARTIFACT_GRAVEL = FEATURES.register("artifact_gravel", () -> new ArtifactGravelFeature(SimpleBlockConfiguration.CODEC));
-    public static final RegistryObject<AmberBlobFeature> AMBER_BLOB = FEATURES.register("amber_blob", () -> new AmberBlobFeature(AmberBlobConfig.CODEC));
+    public static final RegistryObject<AmberBlobFeature> AMBER_BLOB = FEATURES.register("amber_blob", () -> new AmberBlobFeature(NoneFeatureConfiguration.CODEC));
 
 
 }

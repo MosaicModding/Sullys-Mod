@@ -82,15 +82,16 @@ public class AmberBE extends BlockEntity {
 
     //This method only stores the entity id and is only used by Amber worldgen
     //The actual saving process for the generated entities is later done in the tick method
-    public void storeTypeForGeneration(EntityType<?> entityType) {
-        if (this.stuckEntityData != null) return;
+    public boolean storeTypeForGeneration(EntityType<?> entityType) {
+        if (this.stuckEntityData != null) return false;
         CompoundTag compoundtag = new CompoundTag();
         ResourceLocation resourcelocation = EntityType.getKey(entityType);
         String id = entityType.canSerialize() ? resourcelocation.toString() : null;
-        if (id == null) return;
+        if (id == null) return false;
         compoundtag.putString("id", id);
 
         this.storeEntity(compoundtag);
+        return true;
     }
 
     public void storeEntity(CompoundTag pEntityData) {
@@ -103,11 +104,11 @@ public class AmberBE extends BlockEntity {
         if (!this.level.isClientSide()) {
             Entity entity = EntityType.loadEntityRecursive(stuckEntity, this.level, Function.identity());
             if (entity != null) {
+                entity.setYRot(level.random.nextFloat());
                 this.stuckEntityData = null;
                 this.makeEntityStuck(entity);
             }
         }
-
     }
 
     public void update() {

@@ -13,4 +13,5 @@ public class SMEntityTags {
     public static final TagKey<EntityType<?>> ATTACKS_BABY_TORTOISES = TagUtil.entityTypeTag(SullysMod.MOD_ID, "attacks_baby_tortoises");
     public static final TagKey<EntityType<?>> IS_LIVING_INORGANIC = TagUtil.entityTypeTag(SullysMod.MOD_ID, "is_living_inorganic");
     public static final TagKey<EntityType<?>> PIRANHA_ALWAYS_ATTACKS = TagUtil.entityTypeTag(SullysMod.MOD_ID, "piranha_awlways_attacks");
+    public static final TagKey<EntityType<?>> SPAWN_IN_AMBER = TagUtil.entityTypeTag(SullysMod.MOD_ID, "spawn_in_amber");
 }

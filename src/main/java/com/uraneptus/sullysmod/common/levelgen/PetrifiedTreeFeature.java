@@ -21,6 +21,7 @@ import net.minecraft.world.level.levelgen.structure.templatesystem.*;
 import net.minecraft.world.level.levelgen.structure.templatesystem.rule.blockentity.AppendLoot;
 
 import java.util.List;
+import java.util.Vector;
 
 public class PetrifiedTreeFeature extends Feature<PetrifiedTreeConfig> {
 
@@ -30,7 +31,6 @@ public class PetrifiedTreeFeature extends Feature<PetrifiedTreeConfig> {
 
     @Override
     public boolean place(FeaturePlaceContext<PetrifiedTreeConfig> context) {
-        //TODO add amber entities in nbt
         PetrifiedTreeConfig config = context.config();
         RandomSource random = context.random();
         WorldGenLevel level = context.level();
@@ -38,38 +38,39 @@ public class PetrifiedTreeFeature extends Feature<PetrifiedTreeConfig> {
         BlockPos.MutableBlockPos blockPos = origin.mutable();
         Rotation rotation = Rotation.getRandom(random);
 
-        int amount = config.structures().size();
-        ResourceLocation structure = config.structures().get(amount <= 1 ? 0 : random.nextInt(amount - 1));
+        int amount = config.variants().size();
+        PetrifiedTreeVariant variant = config.variants().get(amount <= 1 ? 0 : random.nextInt(amount - 1));
+        ResourceLocation structure = variant.name();
         StructureTemplateManager templateManager = level.getLevel().getServer().getStructureManager();
         StructureTemplate template = templateManager.getOrCreate(structure);
         ChunkPos chunkPos = new ChunkPos(blockPos);
         BoundingBox boundingbox = new BoundingBox(chunkPos.getMinBlockX() - 16, level.getMinBuildHeight(), chunkPos.getMinBlockZ() - 16, chunkPos.getMaxBlockX() + 16, level.getMaxBuildHeight(), chunkPos.getMaxBlockZ() + 16);
-        boolean isSmall = structure.getPath().contains("small");
-        int processorLimit = isSmall ? 2 : 15;
+
         StructurePlaceSettings placeSettings = new StructurePlaceSettings()
                 .setBoundingBox(boundingbox).setRandom(random).setRotation(rotation)
-                .addProcessor(randomGravelProcessor(SMBuiltInLootTables.GRAVEL_BIG_PETRIFIED_TREE, processorLimit))
+                .addProcessor(randomGravelProcessor(SMBuiltInLootTables.GRAVEL_BIG_PETRIFIED_TREE, variant.susGravelLimit()))
                 .addProcessor(setLoottableProcessor(SMBuiltInLootTables.GRAVEL_BIG_PETRIFIED_TREE));
         Vec3i size = template.getSize();
         BlockPos centerPos = blockPos.offset(-size.getX() / 2, -5, -size.getZ() / 2);
         BlockPos offsetPos = template.getZeroPositionWithTransform(centerPos.atY(blockPos.getY()), Mirror.NONE, Rotation.NONE);
 
+        return place(context, template, level, offsetPos, placeSettings, random, variant, config);
+    }
 
-        int tries = 5;
-        int blobAmount = random.nextInt(4);
+    private static boolean place(FeaturePlaceContext<PetrifiedTreeConfig> context, StructureTemplate template, WorldGenLevel level, BlockPos offsetPos, StructurePlaceSettings placeSettings, RandomSource random, PetrifiedTreeVariant variant, PetrifiedTreeConfig config) {
+        if (template.placeInWorld(level, new BlockPos(offsetPos.getX(), offsetPos.getY() - 2, offsetPos.getZ()), offsetPos, placeSettings, random, Block.UPDATE_ALL)) {
+            if (variant.allowAmber()) {
+                int radius = 2;
+                int tries = 2;
 
-        if (!isSmall) {
-            //TODO fine tune | make it generate better around tree
-            config.amberBlobs().get().place(level, context.chunkGenerator(), random, offsetPos.offset(-1 + random.nextInt(4), 1 + random.nextInt(4), -1 + random.nextInt(4)));
-            config.amberBlobs().get().place(level, context.chunkGenerator(), random, offsetPos.offset(1 + -random.nextInt(4), 1 + random.nextInt(4), 1 + -random.nextInt(4)));
-
-            for (int j = 0; j < tries; ++j) {
-
+                for (int i = 0; i < tries; i++) {
+                    BlockPos amberPos = offsetPos.offset(random.nextInt(4) * radius - radius, 0, random.nextInt(4) * radius - radius);
+                    config.amberBlobs().get().place(level, context.chunkGenerator(), random, amberPos);
+                }
+                return true;
             }
         }
-
-
-        return template.placeInWorld(level, new BlockPos(offsetPos.getX(), offsetPos.getY() - 2, offsetPos.getZ()), offsetPos, placeSettings, random, Block.UPDATE_ALL);
+        return false;
     }
 
     //This method replaces some gravel with sus gravel and adds a loottable

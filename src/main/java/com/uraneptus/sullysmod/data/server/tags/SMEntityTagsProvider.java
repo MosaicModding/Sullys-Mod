@@ -108,5 +108,12 @@ public class SMEntityTagsProvider extends EntityTypeTagsProvider {
                 EntityType.TADPOLE,
                 EntityType.TROPICAL_FISH
         );
+        tag(SMEntityTags.SPAWN_IN_AMBER).add(
+                EntityType.BEE,
+                EntityType.SPIDER,
+                EntityType.CAVE_SPIDER,
+                EntityType.SILVERFISH,
+                SMEntityTypes.JUNGLE_SPIDER.get()
+        );
     }
 }

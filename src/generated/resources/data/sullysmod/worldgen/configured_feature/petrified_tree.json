@@ -4,11 +4,7 @@
     "amberBlob": {
       "feature": {
         "type": "sullysmod:amber_blob",
-        "config": {
-          "possibleEntities": [
-            "minecraft:pig"
-          ]
-        }
+        "config": {}
       },
       "placement": [
         {
@@ -25,27 +21,107 @@
         }
       ]
     },
-    "structure_variants": [
-      "sullysmod:petrified/big0",
-      "sullysmod:petrified/big1",
-      "sullysmod:petrified/ground0",
-      "sullysmod:petrified/ground1",
-      "sullysmod:petrified/ground2",
-      "sullysmod:petrified/ground_small0",
-      "sullysmod:petrified/ground_small1",
-      "sullysmod:petrified/ground_small2",
-      "sullysmod:petrified/ground_small3",
-      "sullysmod:petrified/hollow",
-      "sullysmod:petrified/middle0",
-      "sullysmod:petrified/middle1",
-      "sullysmod:petrified/side0",
-      "sullysmod:petrified/side1",
-      "sullysmod:petrified/side2",
-      "sullysmod:petrified/side3",
-      "sullysmod:petrified/small0",
-      "sullysmod:petrified/small1",
-      "sullysmod:petrified/small2",
-      "sullysmod:petrified/small3"
+    "variants": [
+      {
+        "allowAmber": false,
+        "name": "sullysmod:petrified/ground0",
+        "susGravelLimit": 2
+      },
+      {
+        "allowAmber": false,
+        "name": "sullysmod:petrified/ground1",
+        "susGravelLimit": 2
+      },
+      {
+        "allowAmber": false,
+        "name": "sullysmod:petrified/ground2",
+        "susGravelLimit": 2
+      },
+      {
+        "allowAmber": false,
+        "name": "sullysmod:petrified/ground_small0",
+        "susGravelLimit": 2
+      },
+      {
+        "allowAmber": false,
+        "name": "sullysmod:petrified/ground_small1",
+        "susGravelLimit": 2
+      },
+      {
+        "allowAmber": false,
+        "name": "sullysmod:petrified/ground_small2",
+        "susGravelLimit": 2
+      },
+      {
+        "allowAmber": false,
+        "name": "sullysmod:petrified/ground_small3",
+        "susGravelLimit": 2
+      },
+      {
+        "allowAmber": false,
+        "name": "sullysmod:petrified/small0",
+        "susGravelLimit": 2
+      },
+      {
+        "allowAmber": false,
+        "name": "sullysmod:petrified/small1",
+        "susGravelLimit": 2
+      },
+      {
+        "allowAmber": false,
+        "name": "sullysmod:petrified/small2",
+        "susGravelLimit": 2
+      },
+      {
+        "allowAmber": true,
+        "name": "sullysmod:petrified/small3",
+        "susGravelLimit": 2
+      },
+      {
+        "allowAmber": true,
+        "name": "sullysmod:petrified/middle0",
+        "susGravelLimit": 15
+      },
+      {
+        "allowAmber": true,
+        "name": "sullysmod:petrified/middle1",
+        "susGravelLimit": 15
+      },
+      {
+        "allowAmber": false,
+        "name": "sullysmod:petrified/side0",
+        "susGravelLimit": 2
+      },
+      {
+        "allowAmber": false,
+        "name": "sullysmod:petrified/side1",
+        "susGravelLimit": 2
+      },
+      {
+        "allowAmber": true,
+        "name": "sullysmod:petrified/side2",
+        "susGravelLimit": 15
+      },
+      {
+        "allowAmber": true,
+        "name": "sullysmod:petrified/side3",
+        "susGravelLimit": 15
+      },
+      {
+        "allowAmber": true,
+        "name": "sullysmod:petrified/hollow",
+        "susGravelLimit": 15
+      },
+      {
+        "allowAmber": true,
+        "name": "sullysmod:petrified/big0",
+        "susGravelLimit": 15
+      },
+      {
+        "allowAmber": true,
+        "name": "sullysmod:petrified/big1",
+        "susGravelLimit": 15
+      }
     ]
   }
 }

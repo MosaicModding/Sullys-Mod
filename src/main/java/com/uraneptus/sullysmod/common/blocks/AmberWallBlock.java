@@ -35,6 +35,7 @@ public class AmberWallBlock extends WallBlock {
 
     @Override
     public VoxelShape getCollisionShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
+        //TODO this crashes. fix it!
         return AmberUtil.basicCollisionShapeUpdate(this, pState, pLevel, pPos, pContext);
     }
 

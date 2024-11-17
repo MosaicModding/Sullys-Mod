@@ -58,6 +58,7 @@ public class SullysMod {
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, SMConfig.COMMON);
 
         SMTextDefinitions.init();
+        SMPetrifiedTreeVariants.init();
 
         REGISTRY_HELPER.register(bus);
         SMParticleTypes.PARTICLES.register(bus);

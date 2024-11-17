@@ -1,5 +1,5 @@
 - fix: piranha also attack when the player is full health, they should only attack when provoked or when a mob is damaged @Keke
-- improve amber blobs @Uraneptus
 - Finish selection system @Uraneptus
 - Cleanup warnings @Uraneptus
 - Clear most code TODO's @anyone
+- fix amber wall crash @Uraneptus
