@@ -19,7 +19,7 @@ public class SMPlacedFeaturesProvider {
         register(context, SMFeatureDefinitions.PLACED_JADE_ORE, addOreFeature(context, SMFeatureDefinitions.CONFIGURED_JADE_ORE, -16, 112, 16));
         register(context, SMFeatureDefinitions.PLACED_PETRIFIED_TREE_SMALL, addFeaturePlacement(context, SMFeatureDefinitions.CONFIGURED_PETRIFIED_TREE_SMALL, PlacementUtils.filteredByBlockSurvival(SMBlocks.PETRIFIED_SAPLING.get())));
         register(context, SMFeatureDefinitions.PLACED_PETRIFIED_TREE, addFeaturePlacement(context, SMFeatureDefinitions.CONFIGURED_PETRIFIED_TREE,
-                RarityFilter.onAverageOnceEvery(25),
+                RarityFilter.onAverageOnceEvery(7),
                 InSquarePlacement.spread(),
                 HeightRangePlacement.triangle(VerticalAnchor.bottom(), VerticalAnchor.absolute(0)),
                 EnvironmentScanPlacement.scanningFor(Direction.DOWN, BlockPredicate.solid(), BlockPredicate.ONLY_IN_AIR_PREDICATE, 12),

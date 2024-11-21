@@ -6,6 +6,7 @@ import com.uraneptus.sullysmod.common.networking.MsgEntityAmberStuck;
 import com.uraneptus.sullysmod.common.networking.SMPacketHandler;
 import com.uraneptus.sullysmod.core.registry.SMBlockEntityTypes;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.FloatTag;
 import net.minecraft.nbt.ListTag;
@@ -13,6 +14,7 @@ import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.level.Level;
@@ -94,6 +96,16 @@ public class AmberBE extends BlockEntity {
         return true;
     }
 
+    protected ListTag newFloatList(float... pNumbers) {
+        ListTag listtag = new ListTag();
+
+        for(float f : pNumbers) {
+            listtag.add(FloatTag.valueOf(f));
+        }
+
+        return listtag;
+    }
+
     public void storeEntity(CompoundTag pEntityData) {
         this.stuckEntityData = new StuckEntityData(pEntityData);
     }
@@ -104,7 +116,7 @@ public class AmberBE extends BlockEntity {
         if (!this.level.isClientSide()) {
             Entity entity = EntityType.loadEntityRecursive(stuckEntity, this.level, Function.identity());
             if (entity != null) {
-                entity.setYRot(level.random.nextFloat());
+                entity.setYBodyRot(Mth.randomBetween(level.random, 1, 270));
                 this.stuckEntityData = null;
                 this.makeEntityStuck(entity);
             }
