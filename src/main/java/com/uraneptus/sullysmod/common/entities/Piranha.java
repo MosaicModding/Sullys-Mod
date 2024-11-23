@@ -296,7 +296,8 @@ public class Piranha extends AbstractSchoolingFish implements NeutralMob {
 
         @Override
         public boolean canUse() {
-            return super.canUse() && piranha.isInWater() && Objects.requireNonNull(piranha.getTarget()).isInWater();
+            LivingEntity target = this.piranha.getTarget();
+            return super.canUse() && target != null && (target.getHealth() == target.getMaxHealth() || this.piranha.isPiranhaAngry(target)) && piranha.isInWater() && Objects.requireNonNull(piranha.getTarget()).isInWater();
         }
 
         @Override
@@ -522,7 +523,6 @@ public class Piranha extends AbstractSchoolingFish implements NeutralMob {
 
     static class PiranhaLeapTowardsPlayerGoal extends JumpGoal {
         Piranha piranha;
-        boolean didAttack;
 
         public PiranhaLeapTowardsPlayerGoal(Piranha pMob) {
             this.piranha = pMob;
@@ -537,6 +537,7 @@ public class Piranha extends AbstractSchoolingFish implements NeutralMob {
             if (piranha.getBlockStateOn().getFluidState().is(Fluids.WATER) || piranha.getBlockStateOn().isAir()) return false;
             if (target == null || !target.isAlive()) return false;
             if (target.getMotionDirection() != target.getDirection()) return false;
+            if (target.getHealth() == target.getMaxHealth() || !piranha.isPiranhaAngry(target)) return false;
 
             boolean pathClear = isPathClear(piranha, target);
             if (!pathClear) {
@@ -595,8 +596,6 @@ public class Piranha extends AbstractSchoolingFish implements NeutralMob {
                 Vec3 vec3 = (new Vec3(target.getX() - piranha.getX(), target.getY() - piranha.getY(), target.getZ() - piranha.getZ())).normalize();
                 piranha.setDeltaMovement(piranha.getDeltaMovement().add(vec3.x, yVelocity, vec3.z));
             }
-
-           // piranha.getNavigation().stop();
         }
 
         @Override
@@ -632,7 +631,6 @@ public class Piranha extends AbstractSchoolingFish implements NeutralMob {
 
     static class PiranhaJumpOnLandGoal extends JumpGoal {
         Piranha piranha;
-        boolean didAttack;
 
         public PiranhaJumpOnLandGoal(Piranha pMob) {
             this.piranha = pMob;
@@ -645,6 +643,7 @@ public class Piranha extends AbstractSchoolingFish implements NeutralMob {
             if (target == null || !target.isAlive()) return false;
             if (target.isInWater() || !piranha.isInWater()) return false;
             if (target.getMotionDirection() != target.getDirection()) return false;
+            if (target.getHealth() == target.getMaxHealth() || !piranha.isPiranhaAngry(target)) return false;
 
             boolean pathClear = isPathClear(piranha, target);
             if (!pathClear) {
