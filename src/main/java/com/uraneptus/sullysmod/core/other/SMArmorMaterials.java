@@ -3,7 +3,6 @@ package com.uraneptus.sullysmod.core.other;
 import com.teamabnormals.blueprint.core.api.BlueprintArmorMaterial;
 import com.uraneptus.sullysmod.SullysMod;
 import com.uraneptus.sullysmod.core.registry.SMSounds;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 

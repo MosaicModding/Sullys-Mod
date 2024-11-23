@@ -1,9 +1,8 @@
 package com.uraneptus.sullysmod.data.server.builtin;
 
 import com.google.common.collect.ImmutableList;
-import com.uraneptus.sullysmod.SullysMod;
-import com.uraneptus.sullysmod.common.levelgen.configs.PetrifiedTreeConfig;
 import com.uraneptus.sullysmod.common.levelgen.PetrifiedTreeGravelDecorator;
+import com.uraneptus.sullysmod.common.levelgen.configs.PetrifiedTreeConfig;
 import com.uraneptus.sullysmod.core.other.SMFeatureDefinitions;
 import com.uraneptus.sullysmod.core.registry.SMBlocks;
 import com.uraneptus.sullysmod.core.registry.SMFeatures;
@@ -13,7 +12,6 @@ import net.minecraft.core.Holder;
 import net.minecraft.data.worldgen.BootstapContext;
 import net.minecraft.data.worldgen.placement.PlacementUtils;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.valueproviders.ConstantInt;
 import net.minecraft.world.level.block.Blocks;

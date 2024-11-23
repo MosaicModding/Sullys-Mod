@@ -21,7 +21,6 @@ import net.minecraft.world.level.levelgen.structure.templatesystem.*;
 import net.minecraft.world.level.levelgen.structure.templatesystem.rule.blockentity.AppendLoot;
 
 import java.util.List;
-import java.util.Vector;
 
 public class PetrifiedTreeFeature extends Feature<PetrifiedTreeConfig> {
 
