@@ -34,7 +34,7 @@ public class SolidAmberBlock extends Block {
 
     @Override
     public VoxelShape getCollisionShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
-        return AmberUtil.basicCollisionShapeUpdate(this, pState, pLevel, pPos, pContext);
+        return AmberUtil.basicCollisionShapeUpdate(super.getCollisionShape(pState, pLevel, pPos, pContext), pState, pLevel, pPos, pContext);
     }
 
     @Override

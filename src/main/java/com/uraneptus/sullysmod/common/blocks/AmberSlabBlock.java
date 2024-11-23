@@ -35,7 +35,7 @@ public class AmberSlabBlock extends SlabBlock {
 
     @Override
     public VoxelShape getCollisionShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
-        return AmberUtil.basicCollisionShapeUpdate(this, pState, pLevel, pPos, pContext);
+        return AmberUtil.basicCollisionShapeUpdate(super.getCollisionShape(pState, pLevel, pPos, pContext), pState, pLevel, pPos, pContext);
     }
 
     @Override
@@ -45,6 +45,7 @@ public class AmberSlabBlock extends SlabBlock {
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> pBuilder) {
-        pBuilder.add(IS_MELTED, TYPE, WATERLOGGED);
+        super.createBlockStateDefinition(pBuilder);
+        pBuilder.add(IS_MELTED);
     }
 }

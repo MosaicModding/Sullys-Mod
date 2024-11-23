@@ -36,7 +36,7 @@ public class AmberStairBlock extends StairBlock {
     }
 
     public VoxelShape getCollisionShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
-        return AmberUtil.basicCollisionShapeUpdate(this, pState, pLevel, pPos, pContext);
+        return AmberUtil.basicCollisionShapeUpdate(super.getCollisionShape(pState, pLevel, pPos, pContext), pState, pLevel, pPos, pContext);
     }
 
     @Override
@@ -45,6 +45,7 @@ public class AmberStairBlock extends StairBlock {
     }
 
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> pBuilder) {
-        pBuilder.add(IS_MELTED, FACING, HALF, SHAPE, WATERLOGGED);
+        super.createBlockStateDefinition(pBuilder);
+        pBuilder.add(IS_MELTED);
     }
 }

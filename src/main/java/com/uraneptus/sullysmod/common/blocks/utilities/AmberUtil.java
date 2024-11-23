@@ -42,10 +42,10 @@ public class AmberUtil {
     public static final VoxelShape MELTING_COLLISION_SHAPE = Shapes.box(0.0D, 0.0D, 0.0D, 1.0D, 0.0F, 1.0D);
     public static final Predicate<BlockState> AMBER_MELTING_BLOCKS = (blockstate) -> blockstate.is(SMBlockTags.MELTS_AMBER) && blockstate.getLightEmission() >= 3;
 
-    public static VoxelShape basicCollisionShapeUpdate(Block instance, BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
+    public static VoxelShape basicCollisionShapeUpdate(VoxelShape parentShape, BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
         if (pContext instanceof EntityCollisionContext entitycollisioncontext) {
             Entity entity = entitycollisioncontext.getEntity();
-            if (entity instanceof Projectile) return instance.getShape(pState, pLevel, pPos, pContext);
+            if (entity instanceof Projectile) return parentShape;
             if (entity != null) {
                 Level level = entity.level();
                 boolean shouldMeltFlag = false;
@@ -67,7 +67,7 @@ public class AmberUtil {
                 }
             }
         }
-        return instance.getShape(pState, pLevel, pPos, pContext);
+        return parentShape;
     }
 
     public static void basicEntityInsideBehavior(Block instance, BlockState pState, Level pLevel, BlockPos pPos, Entity pEntity) {

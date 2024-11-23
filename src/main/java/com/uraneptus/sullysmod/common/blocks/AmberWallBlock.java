@@ -1,5 +1,6 @@
 package com.uraneptus.sullysmod.common.blocks;
 
+import com.google.common.collect.ImmutableMap;
 import com.uraneptus.sullysmod.common.blocks.utilities.AmberUtil;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
@@ -15,12 +16,19 @@ import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
+import java.util.Map;
+
 public class AmberWallBlock extends WallBlock {
     public static final BooleanProperty IS_MELTED = AmberUtil.IS_MELTED;
 
     public AmberWallBlock(Properties pProperties) {
         super(pProperties);
         this.registerDefaultState(this.defaultBlockState().setValue(IS_MELTED, false));
+
+        Map<BlockState, VoxelShape> shapeMap = this.shapeByIndex;
+        this.shapeByIndex = fixShapeMap(shapeMap);
+        Map<BlockState, VoxelShape> collisionMap = this.collisionShapeByIndex;
+        this.collisionShapeByIndex = fixShapeMap(collisionMap);
     }
 
     @Override
@@ -35,8 +43,7 @@ public class AmberWallBlock extends WallBlock {
 
     @Override
     public VoxelShape getCollisionShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
-        //TODO this crashes. fix it!
-        return AmberUtil.basicCollisionShapeUpdate(this, pState, pLevel, pPos, pContext);
+        return AmberUtil.basicCollisionShapeUpdate(super.getCollisionShape(pState, pLevel, pPos, pContext), pState, pLevel, pPos, pContext);
     }
 
     @Override
@@ -46,7 +53,16 @@ public class AmberWallBlock extends WallBlock {
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> pBuilder) {
-        pBuilder.add(IS_MELTED, UP, NORTH_WALL, EAST_WALL, WEST_WALL, SOUTH_WALL, WATERLOGGED);
+        super.createBlockStateDefinition(pBuilder);
+        pBuilder.add(IS_MELTED);
     }
 
+    private static Map<BlockState, VoxelShape> fixShapeMap(Map<BlockState, VoxelShape> map) {
+        ImmutableMap.Builder<BlockState, VoxelShape> builder = ImmutableMap.builder();
+        builder.putAll(map);
+        for (BlockState state : map.keySet()) {
+            builder.put(state.cycle(IS_MELTED), map.get(state));
+        }
+        return builder.build();
+    }
 }
