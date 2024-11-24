@@ -8,6 +8,7 @@ import com.uraneptus.sullysmod.data.SMDatagenUtil;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstapContext;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.tags.BiomeTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.level.biome.Biome;
@@ -29,7 +30,7 @@ public class SMBiomeModifiersProvider {
         register(context, "jungle_spider", () -> addSingleSpawnModifier(context, SMBiomeTags.JUNGLE_SPIDER_SPAWN_IN, SMEntityTypes.JUNGLE_SPIDER.get(), 100, 3, 6));
         register(context, "jade_ore", () -> addFeatureModifier(context, SMFeatureDefinitions.PLACED_JADE_ORE, SMBiomeTags.JADE_GENERATES_IN, GenerationStep.Decoration.UNDERGROUND_ORES));
         register(context, "petrified_tree", () -> addFeatureModifier(context, SMFeatureDefinitions.PLACED_PETRIFIED_TREE, SMBiomeTags.PETRIFIED_TREES_GENERATE_IN, GenerationStep.Decoration.UNDERGROUND_STRUCTURES));
-        //register(context, "artifact_gravel", () -> addFeatureModifier(context, SMFeatureDefinitions.PLACED_ARTIFACT_GRAVEL, BiomeTags.IS_OVERWORLD, GenerationStep.Decoration.UNDERGROUND_DECORATION));
+        register(context, "artifact_gravel", () -> addFeatureModifier(context, SMFeatureDefinitions.PLACED_ARTIFACT_GRAVEL, SMBiomeTags.ARTIFACT_GRAVEL_GENERATE_IN, GenerationStep.Decoration.UNDERGROUND_DECORATION));
     }
 
     private static ForgeBiomeModifiers.AddFeaturesBiomeModifier addFeatureModifier(BootstapContext<BiomeModifier> context, ResourceKey<PlacedFeature> placedSet, TagKey<Biome> biomeTag, GenerationStep.Decoration decoration) {

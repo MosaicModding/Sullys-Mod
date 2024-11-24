@@ -13,31 +13,8 @@
                   {
                     "condition": "minecraft:location_check",
                     "predicate": {
-                      "biome": "minecraft:mangrove_swamp"
+                      "biomes": "#minecraft:is_jungle"
                     }
-                  },
-                  {
-                    "condition": "minecraft:any_of",
-                    "terms": [
-                      {
-                        "condition": "minecraft:location_check",
-                        "predicate": {
-                          "biome": "minecraft:jungle"
-                        }
-                      },
-                      {
-                        "condition": "minecraft:location_check",
-                        "predicate": {
-                          "biome": "minecraft:sparse_jungle"
-                        }
-                      },
-                      {
-                        "condition": "minecraft:location_check",
-                        "predicate": {
-                          "biome": "minecraft:bamboo_jungle"
-                        }
-                      }
-                    ]
                   }
                 ]
               }

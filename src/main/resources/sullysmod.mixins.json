@@ -5,6 +5,7 @@
   "minVersion": "0.8",
   "refmap": "sullysmod.refmap.json",
   "mixins": [
+    "CreativeModeTabsMixin",
     "FlowingFluidMixin",
     "MonsterRoomFeatureMixin"
   ],

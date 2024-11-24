@@ -6,9 +6,7 @@ import com.teamabnormals.blueprint.core.util.registry.RegistryHelper;
 import com.uraneptus.sullysmod.common.caps.SMEntityCap;
 import com.uraneptus.sullysmod.common.entities.*;
 import com.uraneptus.sullysmod.common.networking.SMPacketHandler;
-import com.uraneptus.sullysmod.common.recipes.conditions.SMFeatureFlagCondition;
 import com.uraneptus.sullysmod.core.SMConfig;
-import com.uraneptus.sullysmod.core.SMFeatureSelection;
 import com.uraneptus.sullysmod.core.other.SMTextDefinitions;
 import com.uraneptus.sullysmod.core.registry.*;
 import com.uraneptus.sullysmod.data.client.*;
@@ -26,7 +24,6 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.RegisterCapabilitiesEvent;
-import net.minecraftforge.common.crafting.CraftingHelper;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.data.event.GatherDataEvent;
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
@@ -36,6 +33,7 @@ import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
+import net.minecraftforge.fml.event.config.ModConfigEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.slf4j.Logger;
@@ -49,10 +47,13 @@ public class SullysMod {
     public static final RegistryHelper REGISTRY_HELPER = new RegistryHelper(MOD_ID);
     public static final Logger LOGGER = LogUtils.getLogger();
 
+    public static boolean UPDATE_TABS = false;
+
     public SullysMod() {
         IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
         bus.addListener(this::setup);
         bus.addListener(this::gatherData);
+        bus.addListener(this::onConfigReload);
 
         ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, SMConfig.CLIENT);
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, SMConfig.COMMON);
@@ -61,18 +62,20 @@ public class SullysMod {
         SMPetrifiedTreeVariants.init();
 
         REGISTRY_HELPER.register(bus);
+        SMBlocks.BLOCKS.register(bus);
+        SMItems.ITEMS.register(bus);
         SMParticleTypes.PARTICLES.register(bus);
         SMPotions.POTIONS.register(bus);
         SMRecipeTypes.RECIPE_TYPES.register(bus);
         SMRecipeSerializer.SERIALIZERS.register(bus);
         SMPaintingVariants.PAINTINGS.register(bus);
         SMTreeDecoratorTypes.TREE_DECORATORS.register(bus);
-        SMFeatures.FEATURES.register(bus);
+        com.uraneptus.sullysmod.core.registry.SMFeatures.FEATURES.register(bus);
         SMCreativeModeTabs.TABS.register(bus);
         SMFluids.FLUIDS.register(bus);
         SMFluidTypes.FLUID_TYPES.register(bus);
 
-        CraftingHelper.register(new SMFeatureFlagCondition.Serializer(SMFeatureSelection::isEnabled));
+        //CraftingHelper.register(new SMFeatureFlagCondition.Serializer(SMFeatures::isEnabled));
 
         DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> SMItems::buildCreativeTabContents);
 
@@ -85,6 +88,12 @@ public class SullysMod {
 
     public static ResourceLocation blueprintPrefix(String path) {
         return new ResourceLocation(Blueprint.MOD_ID, path);
+    }
+
+    public void onConfigReload(ModConfigEvent.Reloading event) {
+        ModConfig config = event.getConfig();
+
+        //TODO soon
     }
 
     @SubscribeEvent

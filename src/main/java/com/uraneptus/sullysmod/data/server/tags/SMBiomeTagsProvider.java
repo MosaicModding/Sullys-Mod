@@ -5,6 +5,7 @@ import com.uraneptus.sullysmod.core.other.tags.SMBiomeTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.BiomeTagsProvider;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BiomeTags;
 import net.minecraft.world.level.biome.Biomes;
 import net.minecraftforge.common.Tags;
@@ -23,6 +24,9 @@ public class SMBiomeTagsProvider extends BiomeTagsProvider {
         //Our Tags
         tag(SMBiomeTags.JADE_GENERATES_IN).addTag(BiomeTags.IS_JUNGLE);
         tag(SMBiomeTags.PETRIFIED_TREES_GENERATE_IN).addTag(BiomeTags.IS_OVERWORLD);
+        tag(SMBiomeTags.ARTIFACT_GRAVEL_GENERATE_IN)
+                .addTag(BiomeTags.IS_OVERWORLD)
+                .addOptionalTag(new ResourceLocation("twilightforest", "in_twilight_forest"));
         tag(SMBiomeTags.TORTOISES_SPAWN_IN).addTag(BiomeTags.IS_SAVANNA).addTag(BiomeTags.IS_JUNGLE).add(
                 Biomes.BIRCH_FOREST,
                 Biomes.OLD_GROWTH_BIRCH_FOREST
