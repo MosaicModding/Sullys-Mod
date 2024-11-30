@@ -41,7 +41,7 @@ public class SMConfig {
         COMMON_BUILDER.comment("Mod Feature Selection").push("sm_feature_selection");
         ENABLE_JADE = COMMON_BUILDER.comment("Enables all Jade features").define("jade", true);
         ENABLE_PETRIFIED_WOOD = COMMON_BUILDER.comment("Enables all petrified wood features").define("petrified_wood", true);
-        ENABLE_AMBER = COMMON_BUILDER.comment("Enables all amber features").define("amber", true);
+        ENABLE_AMBER = COMMON_BUILDER.comment("Enables all amber features (if disabled, petrified trees will also be disabled)").define("amber", true);
         ENABLE_TORTOISE = COMMON_BUILDER.comment("Enables all tortoise features").define("tortoise", true);
         ENABLE_LANTERNFISH = COMMON_BUILDER.comment("Enables all lanternfish features").define("lanternfish", true);
         ENABLE_PIRANHA = COMMON_BUILDER.comment("Enables all piranha features").define("piranha", true);
