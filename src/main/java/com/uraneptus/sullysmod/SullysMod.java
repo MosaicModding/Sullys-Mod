@@ -33,7 +33,6 @@ import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
-import net.minecraftforge.fml.event.config.ModConfigEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.slf4j.Logger;
@@ -53,7 +52,6 @@ public class SullysMod {
         IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
         bus.addListener(this::setup);
         bus.addListener(this::gatherData);
-        bus.addListener(this::onConfigReload);
 
         ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, SMConfig.CLIENT);
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, SMConfig.COMMON);
@@ -88,12 +86,6 @@ public class SullysMod {
 
     public static ResourceLocation blueprintPrefix(String path) {
         return new ResourceLocation(Blueprint.MOD_ID, path);
-    }
-
-    public void onConfigReload(ModConfigEvent.Reloading event) {
-        ModConfig config = event.getConfig();
-
-        //TODO soon
     }
 
     @SubscribeEvent

@@ -26,7 +26,7 @@ public class SMBlockLoot extends BlockLootSubProvider {
 
     @Override
     protected Iterable<Block> getKnownBlocks() {
-        return SMBlocks.HELPER.getDeferredRegister().getEntries().stream().map(RegistryObject::get)::iterator;
+        return SMBlocks.BLOCKS.getEntries().stream().map(RegistryObject::get)::iterator;
     }
 
     @Override

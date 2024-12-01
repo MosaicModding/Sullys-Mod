@@ -9,6 +9,7 @@ public enum SMFeatures {
     PIRANHA,
     BOULDERING_ZOMBIE,
     JUNGLE_SPIDER,
+    ITEM_STAND,
     ARTIFACTS,
     UNLUCK_POTION,
     COPPER_BUTTONS,
@@ -30,6 +31,7 @@ public enum SMFeatures {
             case PIRANHA -> SMConfig.ENABLE_PIRANHA.get();
             case BOULDERING_ZOMBIE -> SMConfig.ENABLE_BOULDERING_ZOMBIE.get();
             case JUNGLE_SPIDER -> SMConfig.ENABLE_JUNGLE_SPIDER.get();
+            case ITEM_STAND -> SMConfig.ENABLE_ITEM_STAND.get();
             case ARTIFACTS -> SMConfig.ENABLE_ARTIFACTS.get();
             case UNLUCK_POTION -> SMConfig.ENABLE_UNLUCK_POTION.get();
             case COPPER_BUTTONS -> SMConfig.ENABLE_COPPER_BUTTONS.get();

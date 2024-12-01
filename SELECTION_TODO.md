@@ -1,9 +1,7 @@
-- add specific option for item stand
 - implement for all blocks
 - implement for all items
 - implement for all entities
 - implement for all worldgen feature
-- force tab update once config reloads
 - implement for potion
 - implement for events
 - remove recipe flag (unneeded cuz of featureflag system use)

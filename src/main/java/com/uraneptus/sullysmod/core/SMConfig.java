@@ -20,12 +20,12 @@ public class SMConfig {
     public static final ForgeConfigSpec.ConfigValue<Boolean> ENABLE_PIRANHA;
     public static final ForgeConfigSpec.ConfigValue<Boolean> ENABLE_BOULDERING_ZOMBIE;
     public static final ForgeConfigSpec.ConfigValue<Boolean> ENABLE_JUNGLE_SPIDER;
+    public static final ForgeConfigSpec.ConfigValue<Boolean> ENABLE_ITEM_STAND;
     public static final ForgeConfigSpec.ConfigValue<Boolean> ENABLE_ARTIFACTS;
     public static final ForgeConfigSpec.ConfigValue<Boolean> ENABLE_UNLUCK_POTION;
     public static final ForgeConfigSpec.ConfigValue<Boolean> ENABLE_COPPER_BUTTONS;
     public static final ForgeConfigSpec.ConfigValue<Boolean> ENABLE_GEM_LANTERNS;
     public static final ForgeConfigSpec.ConfigValue<Boolean> ENABLE_GRINDSTONE_POLISHING;
-
 
     public static final ForgeConfigSpec CLIENT;
     public static final ForgeConfigSpec COMMON;
@@ -47,6 +47,7 @@ public class SMConfig {
         ENABLE_PIRANHA = COMMON_BUILDER.comment("Enables all piranha features").define("piranha", true);
         ENABLE_BOULDERING_ZOMBIE = COMMON_BUILDER.comment("Enables all bouldering zombie features").define("bouldering_zombie", true);
         ENABLE_JUNGLE_SPIDER = COMMON_BUILDER.comment("Enables all jungle spider features").define("jungle_spider", true);
+        ENABLE_ITEM_STAND = COMMON_BUILDER.comment("Enables the item stand").define("item_stand", true);
         ENABLE_ARTIFACTS = COMMON_BUILDER.comment("Enables all artifact features").define("artifacts", true);
         ENABLE_UNLUCK_POTION = COMMON_BUILDER.comment("Enables unluck potion features").define("unluck_potion", true);
         ENABLE_COPPER_BUTTONS = COMMON_BUILDER.comment("Enables copper buttons").define("copper_buttons", true);
