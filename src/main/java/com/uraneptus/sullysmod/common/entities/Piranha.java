@@ -1,5 +1,6 @@
 package com.uraneptus.sullysmod.common.entities;
 
+import com.uraneptus.sullysmod.core.SMFeatures;
 import com.uraneptus.sullysmod.core.other.tags.SMEntityTags;
 import com.uraneptus.sullysmod.core.registry.SMItems;
 import com.uraneptus.sullysmod.core.registry.SMSounds;
@@ -104,7 +105,7 @@ public class Piranha extends AbstractSchoolingFish implements NeutralMob {
     }
 
     public static boolean checkPiranhaSpawnRules(EntityType<? extends WaterAnimal> entityType, ServerLevelAccessor level, MobSpawnType spawnType, BlockPos pos, RandomSource random) {
-        return WaterAnimal.checkSurfaceWaterAnimalSpawnRules(entityType, level, spawnType, pos, random);
+        return WaterAnimal.checkSurfaceWaterAnimalSpawnRules(entityType, level, spawnType, pos, random) && SMFeatures.isEnabled(SMFeatures.PIRANHA);
     }
 
     @Override

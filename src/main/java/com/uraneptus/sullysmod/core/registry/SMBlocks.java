@@ -9,8 +9,7 @@ import com.teamabnormals.blueprint.core.util.PropertyUtil;
 import com.teamabnormals.blueprint.core.util.registry.BlockSubRegistryHelper;
 import com.uraneptus.sullysmod.SullysMod;
 import com.uraneptus.sullysmod.common.blocks.*;
-import com.uraneptus.sullysmod.common.blocks.utilities.SMBlock;
-import com.uraneptus.sullysmod.common.blocks.utilities.SMDirectionalBlock;
+import com.uraneptus.sullysmod.common.blocks.utilities.*;
 import com.uraneptus.sullysmod.common.items.SMBlockItem;
 import com.uraneptus.sullysmod.common.items.SMHangingSignItem;
 import com.uraneptus.sullysmod.common.items.SMSignItem;
@@ -43,8 +42,8 @@ public class SMBlocks {
     public static List<RegistryObject<? extends Block>> AUTO_TRANSLATE = new ArrayList<>();
 
     //Jade
-    public static final RegistryObject<Block> JADE_ORE = createBlock("jade_ore", () -> new DropExperienceBlock(SMProperties.Blocks.JADE_ORE), SMFeatures.JADE);
-    public static final RegistryObject<Block> DEEPSLATE_JADE_ORE = createBlock("deepslate_jade_ore", () -> new DropExperienceBlock(SMProperties.Blocks.DEEPSLATE_JADE_ORE), SMFeatures.JADE);
+    public static final RegistryObject<Block> JADE_ORE = createBlock("jade_ore", () -> new SMDropExperienceBlock(SMProperties.Blocks.JADE_ORE), SMFeatures.JADE);
+    public static final RegistryObject<Block> DEEPSLATE_JADE_ORE = createBlock("deepslate_jade_ore", () -> new SMDropExperienceBlock(SMProperties.Blocks.DEEPSLATE_JADE_ORE), SMFeatures.JADE);
     public static final RegistryObject<Block> ROUGH_JADE_BLOCK = createBlock("rough_jade_block", () -> new SMBlock(SMProperties.Blocks.ROUGH_JADE_BLOCKS), true, SMFeatures.JADE);
     public static final RegistryObject<Block> ROUGH_JADE_BRICKS = createBlock("rough_jade_bricks", () -> new SMBlock(SMProperties.Blocks.ROUGH_JADE_BLOCKS), SMFeatures.JADE);
     public static final RegistryObject<Block> JADE_BLOCK = createBlock("jade_block", () -> new SMBlock(SMProperties.Blocks.JADE_BLOCKS), true, SMFeatures.JADE);
@@ -52,19 +51,19 @@ public class SMBlocks {
     public static final RegistryObject<Block> CHISELED_JADE = createBlock("chiseled_jade", () -> new SMBlock(SMProperties.Blocks.JADE_BLOCKS), SMFeatures.JADE);
     public static final RegistryObject<Block> JADE_TOTEM = createBlock("jade_totem", () -> new SMDirectionalBlock(SMProperties.Blocks.JADE_BLOCKS), SMFeatures.JADE);
     public static final RegistryObject<Block> JADE_FLINGER_TOTEM = createBlock("jade_flinger_totem", () -> new FlingerTotem(SMProperties.Blocks.JADE_BLOCKS), SMFeatures.JADE);
-    public static final RegistryObject<Block> JADE_PILLAR = createBlock("jade_pillar", () -> new RotatedPillarBlock(SMProperties.Blocks.JADE_BLOCKS), SMFeatures.JADE);
+    public static final RegistryObject<Block> JADE_PILLAR = createBlock("jade_pillar", () -> new SMRotatedPillarBlock(SMProperties.Blocks.JADE_BLOCKS), SMFeatures.JADE);
 
     //Jade Stairs
-    public static final RegistryObject<Block> ROUGH_JADE_BRICK_STAIRS = createBlock("rough_jade_brick_stairs", () -> new StairBlock(() -> ROUGH_JADE_BRICKS.get().defaultBlockState(), SMProperties.Blocks.ROUGH_JADE_BLOCKS), SMFeatures.JADE);
-    public static final RegistryObject<Block> JADE_BRICK_STAIRS = createBlock("jade_brick_stairs", () -> new StairBlock(() -> JADE_BRICKS.get().defaultBlockState(), SMProperties.Blocks.JADE_BLOCKS), SMFeatures.JADE);
+    public static final RegistryObject<Block> ROUGH_JADE_BRICK_STAIRS = createBlock("rough_jade_brick_stairs", () -> new SMStairBlock(() -> ROUGH_JADE_BRICKS.get().defaultBlockState(), SMProperties.Blocks.ROUGH_JADE_BLOCKS), SMFeatures.JADE);
+    public static final RegistryObject<Block> JADE_BRICK_STAIRS = createBlock("jade_brick_stairs", () -> new SMStairBlock(() -> JADE_BRICKS.get().defaultBlockState(), SMProperties.Blocks.JADE_BLOCKS), SMFeatures.JADE);
 
     //Jade Slabs
-    public static final RegistryObject<Block> ROUGH_JADE_BRICK_SLAB = createBlock("rough_jade_brick_slab", () -> new SlabBlock(SMProperties.Blocks.ROUGH_JADE_BLOCKS), SMFeatures.JADE);
-    public static final RegistryObject<Block> JADE_BRICK_SLAB = createBlock("jade_brick_slab", () -> new SlabBlock(SMProperties.Blocks.JADE_BLOCKS), SMFeatures.JADE);
+    public static final RegistryObject<Block> ROUGH_JADE_BRICK_SLAB = createBlock("rough_jade_brick_slab", () -> new SMSlabBlock(SMProperties.Blocks.ROUGH_JADE_BLOCKS), SMFeatures.JADE);
+    public static final RegistryObject<Block> JADE_BRICK_SLAB = createBlock("jade_brick_slab", () -> new SMSlabBlock(SMProperties.Blocks.JADE_BLOCKS), SMFeatures.JADE);
 
     //Jade Walls
-    public static final RegistryObject<Block> ROUGH_JADE_BRICK_WALL = createBlock("rough_jade_brick_wall", () -> new WallBlock(SMProperties.Blocks.ROUGH_JADE_BLOCKS), SMFeatures.JADE);
-    public static final RegistryObject<Block> JADE_BRICK_WALL = createBlock("jade_brick_wall", () -> new WallBlock(SMProperties.Blocks.JADE_BLOCKS), SMFeatures.JADE);
+    public static final RegistryObject<Block> ROUGH_JADE_BRICK_WALL = createBlock("rough_jade_brick_wall", () -> new SMWallBlock(SMProperties.Blocks.ROUGH_JADE_BLOCKS), SMFeatures.JADE);
+    public static final RegistryObject<Block> JADE_BRICK_WALL = createBlock("jade_brick_wall", () -> new SMWallBlock(SMProperties.Blocks.JADE_BLOCKS), SMFeatures.JADE);
 
     //Copper Buttons
     public static final RegistryObject<Block> COPPER_BUTTON = createBlock("copper_button", () -> new WeatheringCopperButtonBlock(SMProperties.Blocks.COPPER_BUTTONS, SMBlocksetTypes.COPPER_BLOCKSET.get(), 10, true, WeatheringCopper.WeatherState.UNAFFECTED), SMFeatures.COPPER_BUTTONS);
@@ -85,11 +84,11 @@ public class SMBlocks {
     public static final RegistryObject<Block> ROUGH_AMBER = createBlock("rough_amber", () -> new SolidAmberBlock(SMProperties.Blocks.AMBER_BUILDING_BLOCKS), SMFeatures.AMBER);
     public static final RegistryObject<Block> CHISELED_AMBER = createBlock("chiseled_amber", () -> new SolidAmberBlock(SMProperties.Blocks.AMBER_BUILDING_BLOCKS), SMFeatures.AMBER);
     public static final RegistryObject<Block> AMBER_PILLAR = createBlock("amber_pillar", () -> new AmberRotatedPillarBlock(SMProperties.Blocks.AMBER_BUILDING_BLOCKS), SMFeatures.AMBER);
-    public static final RegistryObject<LiquidBlock> MOLTEN_AMBER_BLOCK = createBlockNoItem("molten_amber_block", () -> new LiquidBlock(SMFluids.SOURCE_MOLTEN_AMBER, BlockBehaviour.Properties.copy(Blocks.LAVA).lightLevel(blockState -> 0)));
+    public static final RegistryObject<LiquidBlock> MOLTEN_AMBER_BLOCK = createBlockNoItem("molten_amber_block", () -> new SMLiquidBlock(SMFluids.SOURCE_MOLTEN_AMBER, BlockBehaviour.Properties.copy(Blocks.LAVA).lightLevel(blockState -> 0), SMFeatures.AMBER));
     public static final RegistryObject<Block> AMBER_CAULDRON = createBlockNoItem("amber_cauldron", () -> new AmberLayeredCauldronBlock(BlockBehaviour.Properties.copy(Blocks.CAULDRON)));
 
     //Gem Lanterns
-    public static final RegistryObject<Block> AMBER_LANTERN = createBlock("amber_lantern", () -> new AmberBlock(SMProperties.Blocks.AMBER_BUILDING_BLOCKS.lightLevel(state -> 15)), SMFeatures.GEM_LANTERNS, SMFeatures.AMBER);
+    public static final RegistryObject<Block> AMBER_LANTERN = createBlock("amber_lantern", () -> new SolidAmberBlock(SMProperties.Blocks.AMBER_BUILDING_BLOCKS.lightLevel(state -> 15)), SMFeatures.GEM_LANTERNS, SMFeatures.AMBER);
     public static final RegistryObject<Block> JADE_LANTERN = createBlock("jade_lantern", () -> new SMBlock(SMProperties.Blocks.JADE_BLOCKS.lightLevel(state -> 15)), SMFeatures.GEM_LANTERNS, SMFeatures.JADE);
     public static final RegistryObject<Block> DIAMOND_LANTERN = createBlock("diamond_lantern", () -> new SMBlock(BlockBehaviour.Properties.copy(Blocks.DIAMOND_BLOCK).lightLevel(state -> 15)), SMFeatures.GEM_LANTERNS);
     public static final RegistryObject<Block> EMERALD_LANTERN = createBlock("emerald_lantern", () -> new SMBlock(BlockBehaviour.Properties.copy(Blocks.EMERALD_BLOCK).lightLevel(state -> 15)), SMFeatures.GEM_LANTERNS);
@@ -101,20 +100,20 @@ public class SMBlocks {
     public static final RegistryObject<Block> PETRIFIED_PLANKS = createBlock("petrified_planks", () -> new SMBlock(SMProperties.Blocks.petrified().requiresCorrectToolForDrops()), SMFeatures.PETRIFIED_WOOD);
     public static final RegistryObject<Block> STRIPPED_PETRIFIED_LOG = createBlock("stripped_petrified_log", () -> strippedLog(MapColor.TERRACOTTA_ORANGE, MapColor.TERRACOTTA_ORANGE), SMFeatures.PETRIFIED_WOOD);
     public static final RegistryObject<Block> PETRIFIED_LOG = createBlock("petrified_log", () -> log(STRIPPED_PETRIFIED_LOG, MapColor.TERRACOTTA_ORANGE, MapColor.COLOR_BROWN), SMFeatures.PETRIFIED_WOOD);
-    public static final RegistryObject<Block> STRIPPED_PETRIFIED_WOOD = createBlock("stripped_petrified_wood", () -> new RotatedPillarBlock(SMProperties.Blocks.petrified().requiresCorrectToolForDrops().mapColor(MapColor.TERRACOTTA_ORANGE)), SMFeatures.PETRIFIED_WOOD);
+    public static final RegistryObject<Block> STRIPPED_PETRIFIED_WOOD = createBlock("stripped_petrified_wood", () -> new SMRotatedPillarBlock(SMProperties.Blocks.petrified().requiresCorrectToolForDrops().mapColor(MapColor.TERRACOTTA_ORANGE)), SMFeatures.PETRIFIED_WOOD);
     public static final RegistryObject<Block> PETRIFIED_WOOD = createBlock("petrified_wood", () -> new PetrifiedLog(STRIPPED_PETRIFIED_WOOD, SMProperties.Blocks.petrified().requiresCorrectToolForDrops().mapColor(MapColor.COLOR_BROWN)), SMFeatures.PETRIFIED_WOOD);
     public static final Pair<RegistryObject<BlueprintStandingSignBlock>, RegistryObject<BlueprintWallSignBlock>> PETRIFIED_SIGN = createSignBlock("petrified", SMBlocksetTypes.PETRIFIED_WOOD_TYPE.get(), SMProperties.Blocks.PETRIFIED_SIGNS, SMFeatures.PETRIFIED_WOOD);
     public static final Pair<RegistryObject<BlueprintCeilingHangingSignBlock>, RegistryObject<BlueprintWallHangingSignBlock>> PETRIFIED_HANGING_SIGN = createHangingSignBlock("petrified", SMBlocksetTypes.PETRIFIED_WOOD_TYPE.get(), SMProperties.Blocks.PETRIFIED_SIGNS, SMFeatures.PETRIFIED_WOOD);
-    public static final RegistryObject<Block> PETRIFIED_PRESSURE_PLATE = createBlock("petrified_pressure_plate", () -> new PressurePlateBlock(PressurePlateBlock.Sensitivity.MOBS, SMProperties.Blocks.PETRIFIED_PRESSURE_PLATE, SMBlocksetTypes.PETRIFIED_BLOCKSET.get()), SMFeatures.PETRIFIED_WOOD);
-    public static final RegistryObject<Block> PETRIFIED_TRAPDOOR = createBlock("petrified_trapdoor", () -> new TrapDoorBlock(SMProperties.Blocks.PETRIFIED_TRAPDOOR, SMBlocksetTypes.PETRIFIED_BLOCKSET.get()), SMFeatures.PETRIFIED_WOOD);
-    public static final RegistryObject<Block> PETRIFIED_STAIRS = createBlock("petrified_stairs", () -> new StairBlock(() -> PETRIFIED_PLANKS.get().defaultBlockState(), SMProperties.Blocks.petrified().requiresCorrectToolForDrops()), SMFeatures.PETRIFIED_WOOD);
-    public static final RegistryObject<Block> PETRIFIED_SLAB = createBlock("petrified_slab", () -> new SlabBlock(SMProperties.Blocks.petrified().requiresCorrectToolForDrops()), SMFeatures.PETRIFIED_WOOD);
-    public static final RegistryObject<Block> PETRIFIED_BUTTON = createBlock("petrified_button", () -> new ButtonBlock(SMProperties.Blocks.PETRIFIED_BUTTON, SMBlocksetTypes.PETRIFIED_BLOCKSET.get(), 20, false), SMFeatures.PETRIFIED_WOOD);
-    public static final RegistryObject<Block> PETRIFIED_FENCE_GATE = createBlock("petrified_fence_gate", () -> new FenceGateBlock(SMProperties.Blocks.petrified().requiresCorrectToolForDrops().forceSolidOn(), SMBlocksetTypes.PETRIFIED_WOOD_TYPE.get()), SMFeatures.PETRIFIED_WOOD);
-    public static final RegistryObject<Block> PETRIFIED_FENCE = createBlock("petrified_fence", () -> new FenceBlock(SMProperties.Blocks.petrified().requiresCorrectToolForDrops()), SMFeatures.PETRIFIED_WOOD);
-    public static final RegistryObject<Block> PETRIFIED_DOOR = createBlock("petrified_door", () -> new DoorBlock(SMProperties.Blocks.petrified().requiresCorrectToolForDrops().noOcclusion().strength(0.35F), SMBlocksetTypes.PETRIFIED_BLOCKSET.get()), SMFeatures.PETRIFIED_WOOD);
+    public static final RegistryObject<Block> PETRIFIED_PRESSURE_PLATE = createBlock("petrified_pressure_plate", () -> new SMPressurePlateBlock(PressurePlateBlock.Sensitivity.MOBS, SMProperties.Blocks.PETRIFIED_PRESSURE_PLATE, SMBlocksetTypes.PETRIFIED_BLOCKSET.get()), SMFeatures.PETRIFIED_WOOD);
+    public static final RegistryObject<Block> PETRIFIED_TRAPDOOR = createBlock("petrified_trapdoor", () -> new SMTrapDoorBlock(SMProperties.Blocks.PETRIFIED_TRAPDOOR, SMBlocksetTypes.PETRIFIED_BLOCKSET.get()), SMFeatures.PETRIFIED_WOOD);
+    public static final RegistryObject<Block> PETRIFIED_STAIRS = createBlock("petrified_stairs", () -> new SMStairBlock(() -> PETRIFIED_PLANKS.get().defaultBlockState(), SMProperties.Blocks.petrified().requiresCorrectToolForDrops()), SMFeatures.PETRIFIED_WOOD);
+    public static final RegistryObject<Block> PETRIFIED_SLAB = createBlock("petrified_slab", () -> new SMSlabBlock(SMProperties.Blocks.petrified().requiresCorrectToolForDrops()), SMFeatures.PETRIFIED_WOOD);
+    public static final RegistryObject<Block> PETRIFIED_BUTTON = createBlock("petrified_button", () -> new SMButtonBlock(SMProperties.Blocks.PETRIFIED_BUTTON, SMBlocksetTypes.PETRIFIED_BLOCKSET.get(), 20, false), SMFeatures.PETRIFIED_WOOD);
+    public static final RegistryObject<Block> PETRIFIED_FENCE_GATE = createBlock("petrified_fence_gate", () -> new SMFenceGateBlock(SMProperties.Blocks.petrified().requiresCorrectToolForDrops().forceSolidOn(), SMBlocksetTypes.PETRIFIED_WOOD_TYPE.get()), SMFeatures.PETRIFIED_WOOD);
+    public static final RegistryObject<Block> PETRIFIED_FENCE = createBlock("petrified_fence", () -> new SMFenceBlock(SMProperties.Blocks.petrified().requiresCorrectToolForDrops()), SMFeatures.PETRIFIED_WOOD);
+    public static final RegistryObject<Block> PETRIFIED_DOOR = createBlock("petrified_door", () -> new SMDoorBlock(SMProperties.Blocks.petrified().requiresCorrectToolForDrops().noOcclusion().strength(0.35F), SMBlocksetTypes.PETRIFIED_BLOCKSET.get()), SMFeatures.PETRIFIED_WOOD);
     public static final RegistryObject<Block> PETRIFIED_SAPLING = createBlock("petrified_sapling", () -> new PetrifiedSapling(SMProperties.Blocks.PETRIFIED_SAPLING), SMFeatures.PETRIFIED_WOOD);
-    public static final RegistryObject<Block> POTTED_PETRIFIED_SAPLING = createBlockNoItem("potted_petrified_sapling", () -> new FlowerPotBlock(null, PETRIFIED_SAPLING, PropertyUtil.flowerPot())); //TODO
+    public static final RegistryObject<Block> POTTED_PETRIFIED_SAPLING = createBlockNoItem("potted_petrified_sapling", () -> new SMFlowerPotBlock(null, PETRIFIED_SAPLING, PropertyUtil.flowerPot(), SMFeatures.PETRIFIED_WOOD));
 
     //Misc
     public static final RegistryObject<Block> TORTOISE_EGG = createBlock("tortoise_egg", () -> new TortoiseEggBlock(BlockBehaviour.Properties.copy(Blocks.TURTLE_EGG)), SMFeatures.TORTOISE);
@@ -151,8 +150,8 @@ public class SMBlocks {
                 blockState.getValue(RotatedPillarBlock.AXIS) == Direction.Axis.Y ? pTopMapColor : pSideMapColor));
     }
 
-    private static RotatedPillarBlock strippedLog(MapColor pTopMapColor, MapColor pSideMapColor) {
-        return new RotatedPillarBlock(SMProperties.Blocks.petrified().requiresCorrectToolForDrops().mapColor((blockState) ->
+    private static SMRotatedPillarBlock strippedLog(MapColor pTopMapColor, MapColor pSideMapColor) {
+        return new SMRotatedPillarBlock(SMProperties.Blocks.petrified().requiresCorrectToolForDrops().mapColor((blockState) ->
                 blockState.getValue(RotatedPillarBlock.AXIS) == Direction.Axis.Y ? pTopMapColor : pSideMapColor));
     }
 

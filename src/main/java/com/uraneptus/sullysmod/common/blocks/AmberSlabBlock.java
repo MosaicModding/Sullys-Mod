@@ -1,6 +1,7 @@
 package com.uraneptus.sullysmod.common.blocks;
 
 import com.uraneptus.sullysmod.common.blocks.utilities.AmberUtil;
+import com.uraneptus.sullysmod.common.blocks.utilities.SMSlabBlock;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
@@ -15,7 +16,7 @@ import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-public class AmberSlabBlock extends SlabBlock {
+public class AmberSlabBlock extends SMSlabBlock {
     public static final BooleanProperty IS_MELTED = AmberUtil.IS_MELTED;
 
     public AmberSlabBlock(Properties pProperties) {

@@ -11,6 +11,7 @@ public class AncientWallSkullBlock extends WallSkullBlock {
 
     public AncientWallSkullBlock(SkullBlock.Type pType, Properties pProperties) {
         super(pType, pProperties);
+        AncientSkullBE.SKULLS.add(this);
     }
 
     @Override

@@ -62,6 +62,7 @@ public class SullysMod {
         REGISTRY_HELPER.register(bus);
         SMBlocks.BLOCKS.register(bus);
         SMItems.ITEMS.register(bus);
+        SMBlockEntityTypes.BLOCK_ENTITY.register(bus);
         SMParticleTypes.PARTICLES.register(bus);
         SMPotions.POTIONS.register(bus);
         SMRecipeTypes.RECIPE_TYPES.register(bus);
@@ -72,8 +73,6 @@ public class SullysMod {
         SMCreativeModeTabs.TABS.register(bus);
         SMFluids.FLUIDS.register(bus);
         SMFluidTypes.FLUID_TYPES.register(bus);
-
-        //CraftingHelper.register(new SMFeatureFlagCondition.Serializer(SMFeatures::isEnabled));
 
         DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> SMItems::buildCreativeTabContents);
 

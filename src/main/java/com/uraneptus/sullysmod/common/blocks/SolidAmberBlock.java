@@ -1,6 +1,7 @@
 package com.uraneptus.sullysmod.common.blocks;
 
 import com.uraneptus.sullysmod.common.blocks.utilities.AmberUtil;
+import com.uraneptus.sullysmod.common.blocks.utilities.SMBlock;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
@@ -14,7 +15,7 @@ import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-public class SolidAmberBlock extends Block {
+public class SolidAmberBlock extends SMBlock {
     public static final BooleanProperty IS_MELTED = AmberUtil.IS_MELTED;
 
     public SolidAmberBlock(Properties pProperties) {

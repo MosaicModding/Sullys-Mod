@@ -15,8 +15,10 @@ public interface SMToggleable extends FeatureElement {
     default boolean isEnabled(FeatureFlagSet pEnabledFeatures) {
         if (getItem() instanceof SMBlockItem smBlockItem) {
             return smBlockItem.getFeatures().stream().allMatch(SMFeatures::isEnabled);
-        } else {
+        } else if (!getFeature().isEmpty()) {
             return getFeature().stream().allMatch(SMFeatures::isEnabled);
+        } else {
+            return this.requiredFeatures().isSubsetOf(pEnabledFeatures);
         }
     }
 }

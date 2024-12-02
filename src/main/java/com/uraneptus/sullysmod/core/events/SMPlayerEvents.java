@@ -6,6 +6,7 @@ import com.uraneptus.sullysmod.common.blocks.utilities.AmberUtil;
 import com.uraneptus.sullysmod.common.blocks.utilities.PickaxeStrippable;
 import com.uraneptus.sullysmod.common.recipes.GrindstonePolishingRecipe;
 import com.uraneptus.sullysmod.core.SMConfig;
+import com.uraneptus.sullysmod.core.SMFeatures;
 import com.uraneptus.sullysmod.core.other.SMItemUtil;
 import com.uraneptus.sullysmod.core.other.SMTextDefinitions;
 import com.uraneptus.sullysmod.core.other.tags.SMBiomeTags;
@@ -68,7 +69,7 @@ public class SMPlayerEvents {
         RandomSource random = level.getRandom();
         ItemStack itemInHand = player.getItemInHand(hand);
 
-        if (block instanceof GrindstoneBlock) {
+        if (SMFeatures.isEnabled(SMFeatures.GRINDSTONE_POLISHING) && block instanceof GrindstoneBlock) {
             ArrayList<GrindstonePolishingRecipe> recipes = new ArrayList<>(GrindstonePolishingRecipe.getRecipes(level));
             for (GrindstonePolishingRecipe polishingRecipe : recipes) {
                 for (ItemStack ingredient : polishingRecipe.getIngredients().iterator().next().getItems()) {
@@ -124,7 +125,7 @@ public class SMPlayerEvents {
             level.playSound(player, pos, SoundEvents.AXE_STRIP, SoundSource.BLOCKS, 1.0F, 1.0F);
             player.swing(hand);
         }
-        if (block instanceof CauldronBlock cauldron && itemInHand.is(SMItems.MOLTEN_AMBER_BUCKET.get())) {
+        if (block instanceof CauldronBlock cauldron && itemInHand.is(SMItems.MOLTEN_AMBER_BUCKET.get()) && SMFeatures.isEnabled(SMFeatures.AMBER)) {
             event.setCancellationResult(CauldronInteraction.emptyBucket(level, pos, player, hand, new ItemStack(SMItems.MOLTEN_AMBER_BUCKET.get()),
                     SMBlocks.AMBER_CAULDRON.get().defaultBlockState().setValue(LayeredCauldronBlock.LEVEL, 3), SoundEvents.BUCKET_EMPTY));
             event.setCanceled(true);
@@ -180,7 +181,7 @@ public class SMPlayerEvents {
         }
 
         if (player != null) {
-            if (SMConfig.ENABLE_POLISHABLE_TOOLTIP.get()) {
+            if (SMConfig.ENABLE_POLISHABLE_TOOLTIP.get() && SMFeatures.isEnabled(SMFeatures.GRINDSTONE_POLISHING)) {
                 ArrayList<GrindstonePolishingRecipe> recipes = new ArrayList<>(GrindstonePolishingRecipe.getRecipes(player.level()));
                 for (GrindstonePolishingRecipe polishingRecipe : recipes) {
                     for (ItemStack polishableItems : polishingRecipe.getIngredients().iterator().next().getItems()) {
@@ -204,46 +205,50 @@ public class SMPlayerEvents {
         Player player = event.player;
         Level level = player.level();
         RandomSource random = player.getRandom();
-        if (level.dimensionTypeId() == BuiltinDimensionTypes.OVERWORLD) {
-            if (player.getBlockY() < -62) {
-                int randY = random.nextInt(5);
-                int randX = random.nextInt(20);
-                int randZ = random.nextInt(20);
-                int chance = random.nextInt(750);
-                if (chance == 1) {
-                    player.level().addParticle(SMParticleTypes.BLOT_EYES.get(), player.getBlockX() + randX, (player.getBlockY() - 3) - randY, player.getBlockZ() + randZ, 0D, 0D, 0D);
+        if (SMConfig.ENABLE_MYSTERIOUS_EYES.get()) {
+            if (level.dimensionTypeId() == BuiltinDimensionTypes.OVERWORLD) {
+                if (player.getBlockY() < -62) {
+                    int randY = random.nextInt(5);
+                    int randX = random.nextInt(20);
+                    int randZ = random.nextInt(20);
+                    int chance = random.nextInt(750);
+                    if (chance == 1) {
+                        player.level().addParticle(SMParticleTypes.BLOT_EYES.get(), player.getBlockX() + randX, (player.getBlockY() - 3) - randY, player.getBlockZ() + randZ, 0D, 0D, 0D);
+                    }
                 }
             }
-        }
-        if (level.dimensionTypeId() == BuiltinDimensionTypes.END) {
-            if (player.getBlockY() <= 60) {
-                int randY = random.nextInt(5);
-                int randX = random.nextInt(20);
-                int randZ = random.nextInt(20);
-                int chance = random.nextInt(1500);
-                if (chance == 1) {
-                    BlockPos blockPos = new BlockPos(player.getBlockX() + randX, (player.getBlockY() - 3) - randY, player.getBlockZ() + randZ);
-                    Block block = level.getBlockState(blockPos).getBlock();
-                    if (block == Blocks.AIR || block == Blocks.VOID_AIR) {
-                        player.level().addParticle(SMParticleTypes.BLOT_EYES.get(), blockPos.getX(), blockPos.getY(), blockPos.getZ(), 0D, 0D, 0D);
+            if (level.dimensionTypeId() == BuiltinDimensionTypes.END) {
+                if (player.getBlockY() <= 60) {
+                    int randY = random.nextInt(5);
+                    int randX = random.nextInt(20);
+                    int randZ = random.nextInt(20);
+                    int chance = random.nextInt(1500);
+                    if (chance == 1) {
+                        BlockPos blockPos = new BlockPos(player.getBlockX() + randX, (player.getBlockY() - 3) - randY, player.getBlockZ() + randZ);
+                        Block block = level.getBlockState(blockPos).getBlock();
+                        if (block == Blocks.AIR || block == Blocks.VOID_AIR) {
+                            player.level().addParticle(SMParticleTypes.BLOT_EYES.get(), blockPos.getX(), blockPos.getY(), blockPos.getZ(), 0D, 0D, 0D);
+                        }
                     }
                 }
             }
         }
-        if (level.getBiome(new BlockPos(player.getBlockX(), player.getBlockY(), player.getBlockZ())).is(SMBiomeTags.SNOWY_MOUNTAINS)) {
-            if (player.getBlockY() > 100) {
-                int randX = random.nextInt(5);
-                int randZ = random.nextInt(5);
-                int chance = random.nextInt(25000);
-                if (chance == 1) {
-                    if (player.getDirection().getAxisDirection() == Direction.AxisDirection.POSITIVE) {
-                        level.playSound(player, new BlockPos((player.getBlockX() - 5) - randX, player.getBlockY(), (player.getBlockZ() - 5) - randZ), SMSounds.MOUNTAIN_CALLS.get(), SoundSource.AMBIENT, 0.1F, 1F);
-                    } else if (player.getDirection().getAxisDirection() == Direction.AxisDirection.NEGATIVE) {
-                        level.playSound(player, new BlockPos((player.getBlockX() + 5) + randX, player.getBlockY(), (player.getBlockZ() + 5) + randZ), SMSounds.MOUNTAIN_CALLS.get(), SoundSource.AMBIENT, 0.1F, 1F);
-                    }
-                }
-            }
 
+        if (SMConfig.ENABLE_MOUNTAIN_CALLS.get()) {
+            if (level.getBiome(new BlockPos(player.getBlockX(), player.getBlockY(), player.getBlockZ())).is(SMBiomeTags.SNOWY_MOUNTAINS)) {
+                if (player.getBlockY() > 100) {
+                    int randX = random.nextInt(5);
+                    int randZ = random.nextInt(5);
+                    int chance = random.nextInt(25000);
+                    if (chance == 1) {
+                        if (player.getDirection().getAxisDirection() == Direction.AxisDirection.POSITIVE) {
+                            level.playSound(player, new BlockPos((player.getBlockX() - 5) - randX, player.getBlockY(), (player.getBlockZ() - 5) - randZ), SMSounds.MOUNTAIN_CALLS.get(), SoundSource.AMBIENT, 0.1F, 1F);
+                        } else if (player.getDirection().getAxisDirection() == Direction.AxisDirection.NEGATIVE) {
+                            level.playSound(player, new BlockPos((player.getBlockX() + 5) + randX, player.getBlockY(), (player.getBlockZ() + 5) + randZ), SMSounds.MOUNTAIN_CALLS.get(), SoundSource.AMBIENT, 0.1F, 1F);
+                        }
+                    }
+                }
+            }
         }
     }
 

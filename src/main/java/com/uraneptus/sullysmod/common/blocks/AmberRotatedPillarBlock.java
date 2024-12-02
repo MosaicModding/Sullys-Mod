@@ -1,6 +1,7 @@
 package com.uraneptus.sullysmod.common.blocks;
 
 import com.uraneptus.sullysmod.common.blocks.utilities.AmberUtil;
+import com.uraneptus.sullysmod.common.blocks.utilities.SMRotatedPillarBlock;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
@@ -16,7 +17,7 @@ import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-public class AmberRotatedPillarBlock extends RotatedPillarBlock {
+public class AmberRotatedPillarBlock extends SMRotatedPillarBlock {
     public static final BooleanProperty IS_MELTED = AmberUtil.IS_MELTED;
 
     public AmberRotatedPillarBlock(Properties pProperties) {

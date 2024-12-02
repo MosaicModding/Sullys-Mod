@@ -1,7 +1,6 @@
 package com.uraneptus.sullysmod.data.server;
 
 import com.uraneptus.sullysmod.SullysMod;
-import com.uraneptus.sullysmod.common.recipes.conditions.SMFeatureFlagCondition;
 import com.uraneptus.sullysmod.core.other.tags.SMItemTags;
 import com.uraneptus.sullysmod.core.registry.SMBlocks;
 import com.uraneptus.sullysmod.core.registry.SMItems;
@@ -315,26 +314,11 @@ public class SMRecipeProvider extends RecipeProvider {
     }
 
     private static void gemLanterns(Supplier<? extends ItemLike> ingredient, Supplier<? extends ItemLike> result, Consumer<FinishedRecipe> consumer) {
-        /*
-        featureConditionRecipe(SMFeatures.GEM_LANTERNS, RecipeCategory.BUILDING_BLOCKS,
-                ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, result.get(), 4)
-                        .define('#', ingredient.get()).define('X', Items.GLOWSTONE_DUST)
-                        .pattern(" # ")
-                        .pattern("#X#")
-                        .pattern(" # ")
-                        .unlockedBy(getHasName(ingredient.get()), has(ingredient.get())), craftingPath(getItemName(result.get())), consumer);
-
-         */
-    }
-
-    private static void featureConditionRecipe(String key, RecipeCategory category, RecipeBuilder recipe, ResourceLocation customPath, Consumer<FinishedRecipe> consumer) {
-        conditionalRecipe(new SMFeatureFlagCondition(key), category, recipe, customPath, consumer);
-    }
-
-    private static void conditionalRecipe(ICondition condition, RecipeCategory category, RecipeBuilder recipe, ResourceLocation customPath, Consumer<FinishedRecipe> consumer) {
-        ConditionalRecipe.builder().addCondition(condition)
-                .addRecipe(consumer1 -> recipe.save(consumer1, SullysMod.modPrefix(RecipeBuilder.getDefaultRecipeId(recipe.getResult()).getPath())))
-                .generateAdvancement(new ResourceLocation(RecipeBuilder.getDefaultRecipeId(recipe.getResult()).getNamespace(), "recipes/" + category.getFolderName() + "/" + RecipeBuilder.getDefaultRecipeId(recipe.getResult()).getPath()))
-                .build(consumer, customPath);
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, result.get(), 4)
+                .define('#', ingredient.get()).define('X', Items.GLOWSTONE_DUST)
+                .pattern(" # ")
+                .pattern("#X#")
+                .pattern(" # ")
+                .unlockedBy(getHasName(ingredient.get()), has(ingredient.get())).save(consumer, craftingPath(getItemName(result.get())));
     }
 }

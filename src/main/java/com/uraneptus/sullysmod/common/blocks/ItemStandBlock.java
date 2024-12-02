@@ -1,6 +1,7 @@
 package com.uraneptus.sullysmod.common.blocks;
 
 import com.uraneptus.sullysmod.common.blockentities.ItemStandBE;
+import com.uraneptus.sullysmod.common.blocks.utilities.SMBlock;
 import com.uraneptus.sullysmod.core.other.SMItemUtil;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -28,7 +29,7 @@ import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
 
-public class ItemStandBlock extends BaseEntityBlock {
+public class ItemStandBlock extends SMBlock implements EntityBlock {
     public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
     public ItemStandBlock(Properties pProperties) {
         super(pProperties);
@@ -118,9 +119,4 @@ public class ItemStandBlock extends BaseEntityBlock {
         return new ItemStandBE(pPos, pState);
     }
 
-    @Nullable
-    @Override
-    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level pLevel, BlockState pState, BlockEntityType<T> pBlockEntityType) {
-        return super.getTicker(pLevel, pState, pBlockEntityType);
-    }
 }

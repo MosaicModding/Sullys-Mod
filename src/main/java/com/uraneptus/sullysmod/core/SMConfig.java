@@ -11,6 +11,8 @@ public class SMConfig {
     public static final ForgeConfigSpec.ConfigValue<Boolean> DISABLE_DEEPSLATE_ZOMBIE_SPAWNS;
     public static final ForgeConfigSpec.ConfigValue<Boolean> DISABLE_SPIDER_IN_JUNGLE_SPAWNS;
     public static final ForgeConfigSpec.ConfigValue<Boolean> ENABLE_POLISHABLE_TOOLTIP;
+    public static final ForgeConfigSpec.ConfigValue<Boolean> ENABLE_MOUNTAIN_CALLS;
+    public static final ForgeConfigSpec.ConfigValue<Boolean> ENABLE_MYSTERIOUS_EYES;
     public static final ForgeConfigSpec.ConfigValue<Boolean> ENABLE_WOLF_CARNIVORE;
     public static final ForgeConfigSpec.ConfigValue<Boolean> ENABLE_JADE;
     public static final ForgeConfigSpec.ConfigValue<Boolean> ENABLE_PETRIFIED_WOOD;
@@ -23,9 +25,11 @@ public class SMConfig {
     public static final ForgeConfigSpec.ConfigValue<Boolean> ENABLE_ITEM_STAND;
     public static final ForgeConfigSpec.ConfigValue<Boolean> ENABLE_ARTIFACTS;
     public static final ForgeConfigSpec.ConfigValue<Boolean> ENABLE_UNLUCK_POTION;
+    public static final ForgeConfigSpec.ConfigValue<Boolean> ENABLE_RESISTANCE_POTION;
     public static final ForgeConfigSpec.ConfigValue<Boolean> ENABLE_COPPER_BUTTONS;
     public static final ForgeConfigSpec.ConfigValue<Boolean> ENABLE_GEM_LANTERNS;
     public static final ForgeConfigSpec.ConfigValue<Boolean> ENABLE_GRINDSTONE_POLISHING;
+    public static final ForgeConfigSpec.ConfigValue<Boolean> ENABLE_PAINTINGS;
 
     public static final ForgeConfigSpec CLIENT;
     public static final ForgeConfigSpec COMMON;
@@ -36,9 +40,13 @@ public class SMConfig {
 
         //Client
         ENABLE_POLISHABLE_TOOLTIP = CLIENT_BUILDER.comment("Enables the 'Polishable' tooltip on polishable items").define("Enable Polishable Tooltip", true);
+        CLIENT_BUILDER.comment("Ambient effects").push("ambient");
+        ENABLE_MOUNTAIN_CALLS = CLIENT_BUILDER.comment("Enables the Mountain call ambient sounds").define("enable_mountain_calls", true);
+        ENABLE_MYSTERIOUS_EYES = CLIENT_BUILDER.comment("Enables the mysterious eyes in the void").define("enable_mysterious_eyes", true);
+        CLIENT_BUILDER.pop();
 
         //COMMON
-        COMMON_BUILDER.comment("Mod Feature Selection").push("sm_feature_selection");
+        COMMON_BUILDER.comment("Mod Feature Selection").push("feature_selection");
         ENABLE_JADE = COMMON_BUILDER.comment("Enables all Jade features").define("jade", true);
         ENABLE_PETRIFIED_WOOD = COMMON_BUILDER.comment("Enables all petrified wood features").define("petrified_wood", true);
         ENABLE_AMBER = COMMON_BUILDER.comment("Enables all amber features (if disabled, petrified trees will also be disabled)").define("amber", true);
@@ -49,7 +57,11 @@ public class SMConfig {
         ENABLE_JUNGLE_SPIDER = COMMON_BUILDER.comment("Enables all jungle spider features").define("jungle_spider", true);
         ENABLE_ITEM_STAND = COMMON_BUILDER.comment("Enables the item stand").define("item_stand", true);
         ENABLE_ARTIFACTS = COMMON_BUILDER.comment("Enables all artifact features").define("artifacts", true);
-        ENABLE_UNLUCK_POTION = COMMON_BUILDER.comment("Enables unluck potion features").define("unluck_potion", true);
+        ENABLE_PAINTINGS = COMMON_BUILDER.comment("Enables the mod's paintings").define("paintings", true);
+        COMMON_BUILDER.comment("Mod Potions").push("potions");
+        ENABLE_UNLUCK_POTION = COMMON_BUILDER.comment("Enables the bad luck potion").define("unluck_potion", false);
+        ENABLE_RESISTANCE_POTION = COMMON_BUILDER.comment("Enables the resistance potion").define("resistance_potion", false);
+        COMMON_BUILDER.pop();
         ENABLE_COPPER_BUTTONS = COMMON_BUILDER.comment("Enables copper buttons").define("copper_buttons", true);
         ENABLE_GEM_LANTERNS = COMMON_BUILDER.comment("Enables gem lanterns").define("gem_lanterns", false);
         ENABLE_GRINDSTONE_POLISHING = COMMON_BUILDER.comment("Enables grindstone polishing").define("grindstone_polishing", true);

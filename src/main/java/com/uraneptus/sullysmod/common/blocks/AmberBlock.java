@@ -2,6 +2,7 @@ package com.uraneptus.sullysmod.common.blocks;
 
 import com.uraneptus.sullysmod.common.blockentities.AmberBE;
 import com.uraneptus.sullysmod.common.blocks.utilities.AmberUtil;
+import com.uraneptus.sullysmod.common.blocks.utilities.SMBlock;
 import com.uraneptus.sullysmod.common.caps.SMEntityCap;
 import com.uraneptus.sullysmod.common.networking.MsgEntityAmberStuck;
 import com.uraneptus.sullysmod.common.networking.SMPacketHandler;
@@ -26,6 +27,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LightLayer;
 import net.minecraft.world.level.block.BaseEntityBlock;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.EntityBlock;
 import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
@@ -41,7 +43,7 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.network.PacketDistributor;
 import org.jetbrains.annotations.Nullable;
 
-public class AmberBlock extends BaseEntityBlock {
+public class AmberBlock extends SMBlock implements EntityBlock {
     public static final BooleanProperty IS_MELTED = AmberUtil.IS_MELTED;
 
     public AmberBlock(Properties pProperties) {

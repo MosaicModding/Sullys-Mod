@@ -1,9 +1,7 @@
 package com.uraneptus.sullysmod.core.events;
 
 import com.uraneptus.sullysmod.SullysMod;
-import com.uraneptus.sullysmod.common.entities.BoulderingZombie;
-import com.uraneptus.sullysmod.common.entities.Lanternfish;
-import com.uraneptus.sullysmod.common.entities.Piranha;
+import com.uraneptus.sullysmod.common.entities.*;
 import com.uraneptus.sullysmod.core.SMConfig;
 import com.uraneptus.sullysmod.core.other.SMTextDefinitions;
 import com.uraneptus.sullysmod.core.other.tags.SMBiomeTags;
@@ -16,7 +14,6 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.SpawnPlacements;
-import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.levelgen.Heightmap;
@@ -36,9 +33,9 @@ public class SMCommonModEvents {
     public static void registerSpawnPlacement(SpawnPlacementRegisterEvent event) {
        event.register(SMEntityTypes.LANTERNFISH.get(), SpawnPlacements.Type.IN_WATER, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Lanternfish::checkLanternfishSpawnRules, SpawnPlacementRegisterEvent.Operation.AND);
        event.register(SMEntityTypes.PIRANHA.get(), SpawnPlacements.Type.IN_WATER, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Piranha::checkPiranhaSpawnRules, SpawnPlacementRegisterEvent.Operation.AND);
-       event.register(SMEntityTypes.TORTOISE.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules, SpawnPlacementRegisterEvent.Operation.AND);
+       event.register(SMEntityTypes.TORTOISE.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Tortoise::checkTortoiseSpawnRules, SpawnPlacementRegisterEvent.Operation.AND);
        event.register(SMEntityTypes.BOULDERING_ZOMBIE.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, BoulderingZombie::checkBoulderingZombieSpawnRules, SpawnPlacementRegisterEvent.Operation.AND);
-       event.register(SMEntityTypes.JUNGLE_SPIDER.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Monster::checkMonsterSpawnRules, SpawnPlacementRegisterEvent.Operation.AND);
+       event.register(SMEntityTypes.JUNGLE_SPIDER.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, JungleSpider::checkJungleSpiderSpawnRules, SpawnPlacementRegisterEvent.Operation.AND);
 
        event.register(EntityType.ZOMBIE, SMCommonModEvents::zombieExtraRules, SpawnPlacementRegisterEvent.Operation.AND);
        event.register(EntityType.SPIDER, SMCommonModEvents::spiderExtraRules, SpawnPlacementRegisterEvent.Operation.AND);

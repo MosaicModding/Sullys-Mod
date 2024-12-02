@@ -10,6 +10,7 @@ public class AncientSkullBlock extends SkullBlock {
 
     public AncientSkullBlock(Type pType, Properties pProperties) {
         super(pType, pProperties);
+        AncientSkullBE.SKULLS.add(this);
     }
 
     @Override

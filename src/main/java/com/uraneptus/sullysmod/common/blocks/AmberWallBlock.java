@@ -2,6 +2,7 @@ package com.uraneptus.sullysmod.common.blocks;
 
 import com.google.common.collect.ImmutableMap;
 import com.uraneptus.sullysmod.common.blocks.utilities.AmberUtil;
+import com.uraneptus.sullysmod.common.blocks.utilities.SMWallBlock;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
@@ -18,7 +19,7 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 
 import java.util.Map;
 
-public class AmberWallBlock extends WallBlock {
+public class AmberWallBlock extends SMWallBlock {
     public static final BooleanProperty IS_MELTED = AmberUtil.IS_MELTED;
 
     public AmberWallBlock(Properties pProperties) {

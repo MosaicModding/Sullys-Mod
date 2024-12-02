@@ -1,5 +1,7 @@
 package com.uraneptus.sullysmod.common.blocks;
 
+import com.uraneptus.sullysmod.common.SMToggleable;
+import com.uraneptus.sullysmod.core.SMFeatures;
 import com.uraneptus.sullysmod.core.registry.SMItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.cauldron.CauldronInteraction;
@@ -8,6 +10,7 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
@@ -20,7 +23,9 @@ import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.phys.BlockHitResult;
 
-public class AmberLayeredCauldronBlock extends LayeredCauldronBlock {
+import java.util.List;
+
+public class AmberLayeredCauldronBlock extends LayeredCauldronBlock implements SMToggleable {
     public static final IntegerProperty LEVEL = LayeredCauldronBlock.LEVEL;
 
     public AmberLayeredCauldronBlock(Properties pProperties) {
@@ -49,9 +54,18 @@ public class AmberLayeredCauldronBlock extends LayeredCauldronBlock {
     @Override
     public void entityInside(BlockState pState, Level pLevel, BlockPos pPos, Entity pEntity) {
 
-
     }
 
     @Override
     public void handlePrecipitation(BlockState pState, Level pLevel, BlockPos pPos, Biome.Precipitation pPrecipitation) {}
+
+    @Override
+    public List<SMFeatures> getFeature() {
+        return List.of(SMFeatures.AMBER);
+    }
+
+    @Override
+    public Item getItem() {
+        return this.asItem();
+    }
 }

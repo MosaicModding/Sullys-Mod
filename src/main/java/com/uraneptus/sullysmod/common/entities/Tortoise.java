@@ -2,6 +2,7 @@ package com.uraneptus.sullysmod.common.entities;
 
 import com.uraneptus.sullysmod.client.sound.FollowJukeboxEntitySoundInstance;
 import com.uraneptus.sullysmod.common.blocks.TortoiseEggBlock;
+import com.uraneptus.sullysmod.core.SMFeatures;
 import com.uraneptus.sullysmod.core.other.tags.SMEntityTags;
 import com.uraneptus.sullysmod.core.other.tags.SMItemTags;
 import com.uraneptus.sullysmod.core.registry.SMBlocks;
@@ -38,6 +39,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.GameRules;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.TurtleEggBlock;
@@ -117,6 +119,10 @@ public class Tortoise extends Animal implements WorkstationAttachable {
         this.goalSelector.setControlFlag(Goal.Flag.MOVE, true);
         this.goalSelector.setControlFlag(Goal.Flag.JUMP, flag);
         this.goalSelector.setControlFlag(Goal.Flag.LOOK, true);
+    }
+
+    public static boolean checkTortoiseSpawnRules(EntityType<? extends Tortoise> entity, LevelAccessor pLevel, MobSpawnType pSpawnType, BlockPos pPos, RandomSource pRandom) {
+        return Animal.checkAnimalSpawnRules(entity, pLevel, pSpawnType, pPos, pRandom) && SMFeatures.isEnabled(SMFeatures.TORTOISE);
     }
 
     @Override

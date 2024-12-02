@@ -12,9 +12,11 @@ public enum SMFeatures {
     ITEM_STAND,
     ARTIFACTS,
     UNLUCK_POTION,
+    RESISTANCE_POTION,
     COPPER_BUTTONS,
     GEM_LANTERNS,
-    GRINDSTONE_POLISHING;
+    GRINDSTONE_POLISHING,
+    PAINTINGS;
 
     @Override
     public String toString() {
@@ -34,9 +36,11 @@ public enum SMFeatures {
             case ITEM_STAND -> SMConfig.ENABLE_ITEM_STAND.get();
             case ARTIFACTS -> SMConfig.ENABLE_ARTIFACTS.get();
             case UNLUCK_POTION -> SMConfig.ENABLE_UNLUCK_POTION.get();
+            case RESISTANCE_POTION -> SMConfig.ENABLE_RESISTANCE_POTION.get();
             case COPPER_BUTTONS -> SMConfig.ENABLE_COPPER_BUTTONS.get();
             case GEM_LANTERNS -> SMConfig.ENABLE_GEM_LANTERNS.get();
             case GRINDSTONE_POLISHING -> SMConfig.ENABLE_GRINDSTONE_POLISHING.get();
+            case PAINTINGS -> SMConfig.ENABLE_PAINTINGS.get();
         };
     }
 }

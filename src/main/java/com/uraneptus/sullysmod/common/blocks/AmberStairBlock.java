@@ -1,6 +1,7 @@
 package com.uraneptus.sullysmod.common.blocks;
 
 import com.uraneptus.sullysmod.common.blocks.utilities.AmberUtil;
+import com.uraneptus.sullysmod.common.blocks.utilities.SMStairBlock;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
@@ -17,7 +18,7 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 
 import java.util.function.Supplier;
 
-public class AmberStairBlock extends StairBlock {
+public class AmberStairBlock extends SMStairBlock {
     public static final BooleanProperty IS_MELTED = AmberUtil.IS_MELTED;
 
     public AmberStairBlock(Supplier<BlockState> pBaseState, Properties pProperties) {

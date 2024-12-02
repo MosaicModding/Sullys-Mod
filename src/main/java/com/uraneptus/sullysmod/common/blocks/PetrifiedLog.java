@@ -1,12 +1,13 @@
 package com.uraneptus.sullysmod.common.blocks;
 
 import com.uraneptus.sullysmod.common.blocks.utilities.PickaxeStrippable;
+import com.uraneptus.sullysmod.common.blocks.utilities.SMRotatedPillarBlock;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.RotatedPillarBlock;
 
 import java.util.function.Supplier;
 
-public class PetrifiedLog extends RotatedPillarBlock implements PickaxeStrippable {
+public class PetrifiedLog extends SMRotatedPillarBlock implements PickaxeStrippable {
     private final Supplier<Block> strippedBlock;
 
     public PetrifiedLog(Supplier<Block> strippedBlock, Properties pProperties) {
