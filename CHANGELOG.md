@@ -11,6 +11,8 @@
 > - Removed geckolib as a dependency
 >
 > ## Additions:
+> - **Added Selection System:**
+>   - _Almost all features can be enabled or disabled through our config now. Please reload the game after changing the config!_
 > - **Added Amber:** 
 >   - _Amber is found in Petrified Trees and can be used to trap entities or items inside when heated up._
 >   - _When amber is broken it drops rough amber, which can be used to craft several decoration blocks. These blocks can also be heated up, but you cannot freeze entities inside them._
