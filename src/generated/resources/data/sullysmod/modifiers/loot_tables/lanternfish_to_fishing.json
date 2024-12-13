@@ -8,6 +8,12 @@
             "type": "minecraft:item",
             "conditions": [
               {
+                "condition": "sullysmod:mod_feature_flag",
+                "values": [
+                  "lanternfish"
+                ]
+              },
+              {
                 "condition": "minecraft:location_check",
                 "predicate": {
                   "position": {

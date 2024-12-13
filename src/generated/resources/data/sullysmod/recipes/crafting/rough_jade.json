@@ -1,13 +1,28 @@
 {
-  "type": "minecraft:crafting_shapeless",
-  "category": "building",
-  "ingredients": [
+  "type": "forge:conditional",
+  "recipes": [
     {
-      "item": "sullysmod:rough_jade_block"
+      "conditions": [
+        {
+          "type": "sullysmod:mod_features",
+          "values": [
+            "jade"
+          ]
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:crafting_shapeless",
+        "category": "building",
+        "ingredients": [
+          {
+            "item": "sullysmod:rough_jade_block"
+          }
+        ],
+        "result": {
+          "count": 9,
+          "item": "sullysmod:rough_jade"
+        }
+      }
     }
-  ],
-  "result": {
-    "count": 9,
-    "item": "sullysmod:rough_jade"
-  }
+  ]
 }

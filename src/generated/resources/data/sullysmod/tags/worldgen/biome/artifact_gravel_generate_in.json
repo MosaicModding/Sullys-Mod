@@ -1,0 +1,9 @@
+{
+  "values": [
+    "#minecraft:is_overworld",
+    {
+      "id": "#twilightforest:in_twilight_forest",
+      "required": false
+    }
+  ]
+}

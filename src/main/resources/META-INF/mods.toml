@@ -39,4 +39,4 @@ displayTest = "MATCH_VERSION"
 
 [modproperties.sullysmod]
     catalogueImageIcon = "sullysmod_icon.png"
-    configuredBackground = "sullysmod:textures/block/polished_jade_bricks.png"
+    configuredBackground = "sullysmod:textures/block/jade_bricks.png"

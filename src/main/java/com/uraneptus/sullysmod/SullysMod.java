@@ -6,9 +6,8 @@ import com.teamabnormals.blueprint.core.util.registry.RegistryHelper;
 import com.uraneptus.sullysmod.common.caps.SMEntityCap;
 import com.uraneptus.sullysmod.common.entities.*;
 import com.uraneptus.sullysmod.common.networking.SMPacketHandler;
-import com.uraneptus.sullysmod.common.recipes.conditions.SMFeatureFlagCondition;
+import com.uraneptus.sullysmod.common.recipes.SMFeatureRecipeCondition;
 import com.uraneptus.sullysmod.core.SMConfig;
-import com.uraneptus.sullysmod.core.SMFeatureSelection;
 import com.uraneptus.sullysmod.core.other.SMTextDefinitions;
 import com.uraneptus.sullysmod.core.registry.*;
 import com.uraneptus.sullysmod.data.client.*;
@@ -23,7 +22,6 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.RegisterCapabilitiesEvent;
 import net.minecraftforge.common.crafting.CraftingHelper;
@@ -32,7 +30,6 @@ import net.minecraftforge.data.event.GatherDataEvent;
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
@@ -61,20 +58,23 @@ public class SullysMod {
         SMPetrifiedTreeVariants.init();
 
         REGISTRY_HELPER.register(bus);
+        SMBlocks.BLOCKS.register(bus);
+        SMItems.ITEMS.register(bus);
+        SMBlockEntityTypes.BLOCK_ENTITY.register(bus);
         SMParticleTypes.PARTICLES.register(bus);
         SMPotions.POTIONS.register(bus);
         SMRecipeTypes.RECIPE_TYPES.register(bus);
         SMRecipeSerializer.SERIALIZERS.register(bus);
+        SMLootItemConditions.ITEM_CONDITIONS.register(bus);
         SMPaintingVariants.PAINTINGS.register(bus);
+        SMBiomeModifiers.BIOME_MODIFIERS.register(bus);
         SMTreeDecoratorTypes.TREE_DECORATORS.register(bus);
-        SMFeatures.FEATURES.register(bus);
+        com.uraneptus.sullysmod.core.registry.SMFeatures.FEATURES.register(bus);
         SMCreativeModeTabs.TABS.register(bus);
         SMFluids.FLUIDS.register(bus);
         SMFluidTypes.FLUID_TYPES.register(bus);
 
-        CraftingHelper.register(new SMFeatureFlagCondition.Serializer(SMFeatureSelection::isEnabled));
-
-        DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> SMItems::buildCreativeTabContents);
+        CraftingHelper.register(new SMFeatureRecipeCondition.Serializer());
 
         MinecraftForge.EVENT_BUS.register(this);
     }

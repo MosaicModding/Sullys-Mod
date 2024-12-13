@@ -1,8 +1,23 @@
 {
-  "type": "minecraft:stonecutting",
-  "count": 1,
-  "ingredient": {
-    "item": "sullysmod:jade_block"
-  },
-  "result": "sullysmod:jade_bricks"
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "sullysmod:mod_features",
+          "values": [
+            "jade"
+          ]
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:stonecutting",
+        "count": 1,
+        "ingredient": {
+          "item": "sullysmod:jade_block"
+        },
+        "result": "sullysmod:jade_bricks"
+      }
+    }
+  ]
 }

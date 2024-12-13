@@ -49,7 +49,6 @@ public class AmberLayeredCauldronBlock extends LayeredCauldronBlock {
     @Override
     public void entityInside(BlockState pState, Level pLevel, BlockPos pPos, Entity pEntity) {
 
-
     }
 
     @Override

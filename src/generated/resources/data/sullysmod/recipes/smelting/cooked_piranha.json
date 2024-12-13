@@ -1,10 +1,25 @@
 {
-  "type": "minecraft:smelting",
-  "category": "food",
-  "cookingtime": 200,
-  "experience": 0.35,
-  "ingredient": {
-    "item": "sullysmod:piranha"
-  },
-  "result": "sullysmod:cooked_piranha"
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "sullysmod:mod_features",
+          "values": [
+            "piranha"
+          ]
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:smelting",
+        "category": "food",
+        "cookingtime": 200,
+        "experience": 0.35,
+        "ingredient": {
+          "item": "sullysmod:piranha"
+        },
+        "result": "sullysmod:cooked_piranha"
+      }
+    }
+  ]
 }

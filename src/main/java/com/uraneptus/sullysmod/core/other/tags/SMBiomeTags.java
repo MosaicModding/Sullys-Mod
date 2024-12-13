@@ -13,6 +13,7 @@ public class SMBiomeTags {
     public static final TagKey<Biome> PIRANHA_SPAWN_IN = TagUtil.biomeTag(SullysMod.MOD_ID, "piranha_spawn_in");
     public static final TagKey<Biome> BOULDERING_ZOMBIE_SPAWN_IN = TagUtil.biomeTag(SullysMod.MOD_ID, "bouldering_zombie_spawn_in");
     public static final TagKey<Biome> JUNGLE_SPIDER_SPAWN_IN = TagUtil.biomeTag(SullysMod.MOD_ID, "jungle_spider_spawn_in");
+    public static final TagKey<Biome> ARTIFACT_GRAVEL_GENERATE_IN = TagUtil.biomeTag(SullysMod.MOD_ID, "artifact_gravel_generate_in");
 
     public static final TagKey<Biome> SNOWY_MOUNTAINS = TagUtil.biomeTag(SullysMod.MOD_ID, "snowy_mountains");
 }

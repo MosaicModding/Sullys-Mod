@@ -6,20 +6,22 @@ import com.teamabnormals.blueprint.common.block.sign.BlueprintStandingSignBlock;
 import com.teamabnormals.blueprint.common.block.sign.BlueprintWallHangingSignBlock;
 import com.teamabnormals.blueprint.common.block.sign.BlueprintWallSignBlock;
 import com.teamabnormals.blueprint.core.util.PropertyUtil;
-import com.teamabnormals.blueprint.core.util.registry.BlockSubRegistryHelper;
 import com.uraneptus.sullysmod.SullysMod;
 import com.uraneptus.sullysmod.common.blocks.*;
 import com.uraneptus.sullysmod.common.blocks.utilities.SMDirectionalBlock;
+import com.uraneptus.sullysmod.core.SMFeatures;
 import com.uraneptus.sullysmod.core.other.SMProperties;
 import com.uraneptus.sullysmod.core.other.SMTextDefinitions;
 import com.uraneptus.sullysmod.core.other.SMTextUtil;
 import net.minecraft.core.Direction;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.StandingAndWallBlockItem;
+import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.properties.WoodType;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.registries.DeferredRegister;
+import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
 import java.util.ArrayList;
@@ -28,8 +30,9 @@ import java.util.function.Supplier;
 
 @Mod.EventBusSubscriber(modid = SullysMod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class SMBlocks {
-    public static final BlockSubRegistryHelper HELPER = SullysMod.REGISTRY_HELPER.getBlockSubHelper();
-    public static List<RegistryObject<Block>> AUTO_TRANSLATE = new ArrayList<>();
+    public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, SullysMod.MOD_ID);
+    //TODO implement this for items as well
+    public static List<RegistryObject<? extends Block>> AUTO_TRANSLATE = new ArrayList<>();
 
     //Jade
     public static final RegistryObject<Block> JADE_ORE = createBlock("jade_ore", () -> new DropExperienceBlock(SMProperties.Blocks.JADE_ORE));
@@ -74,11 +77,11 @@ public class SMBlocks {
     public static final RegistryObject<Block> ROUGH_AMBER = createBlock("rough_amber", () -> new SolidAmberBlock(SMProperties.Blocks.AMBER_BUILDING_BLOCKS));
     public static final RegistryObject<Block> CHISELED_AMBER = createBlock("chiseled_amber", () -> new SolidAmberBlock(SMProperties.Blocks.AMBER_BUILDING_BLOCKS));
     public static final RegistryObject<Block> AMBER_PILLAR = createBlock("amber_pillar", () -> new AmberRotatedPillarBlock(SMProperties.Blocks.AMBER_BUILDING_BLOCKS));
-    public static final RegistryObject<LiquidBlock> MOLTEN_AMBER_BLOCK = HELPER.createBlockNoItem("molten_amber_block", () -> new LiquidBlock(SMFluids.SOURCE_MOLTEN_AMBER, BlockBehaviour.Properties.copy(Blocks.LAVA)));
-    public static final RegistryObject<Block> AMBER_CAULDRON = HELPER.createBlockNoItem("amber_cauldron", () -> new AmberLayeredCauldronBlock(BlockBehaviour.Properties.copy(Blocks.CAULDRON)));
+    public static final RegistryObject<LiquidBlock> MOLTEN_AMBER_BLOCK = createBlockNoItem("molten_amber_block", () -> new LiquidBlock(SMFluids.SOURCE_MOLTEN_AMBER, BlockBehaviour.Properties.copy(Blocks.LAVA).lightLevel(blockState -> 0)));
+    public static final RegistryObject<Block> AMBER_CAULDRON = createBlockNoItem("amber_cauldron", () -> new AmberLayeredCauldronBlock(BlockBehaviour.Properties.copy(Blocks.CAULDRON)));
 
     //Gem Lanterns
-    public static final RegistryObject<Block> AMBER_LANTERN = createBlock("amber_lantern", () -> new AmberBlock(SMProperties.Blocks.AMBER_BUILDING_BLOCKS.lightLevel(state -> 15)));
+    public static final RegistryObject<Block> AMBER_LANTERN = createBlock("amber_lantern", () -> new SolidAmberBlock(SMProperties.Blocks.AMBER_BUILDING_BLOCKS.lightLevel(state -> 15)));
     public static final RegistryObject<Block> JADE_LANTERN = createBlock("jade_lantern", () -> new Block(SMProperties.Blocks.JADE_BLOCKS.lightLevel(state -> 15)));
     public static final RegistryObject<Block> DIAMOND_LANTERN = createBlock("diamond_lantern", () -> new Block(BlockBehaviour.Properties.copy(Blocks.DIAMOND_BLOCK).lightLevel(state -> 15)));
     public static final RegistryObject<Block> EMERALD_LANTERN = createBlock("emerald_lantern", () -> new Block(BlockBehaviour.Properties.copy(Blocks.EMERALD_BLOCK).lightLevel(state -> 15)));
@@ -92,8 +95,8 @@ public class SMBlocks {
     public static final RegistryObject<Block> PETRIFIED_LOG = createBlock("petrified_log", () -> log(STRIPPED_PETRIFIED_LOG, MapColor.TERRACOTTA_ORANGE, MapColor.COLOR_BROWN));
     public static final RegistryObject<Block> STRIPPED_PETRIFIED_WOOD = createBlock("stripped_petrified_wood", () -> new RotatedPillarBlock(SMProperties.Blocks.petrified().requiresCorrectToolForDrops().mapColor(MapColor.TERRACOTTA_ORANGE)));
     public static final RegistryObject<Block> PETRIFIED_WOOD = createBlock("petrified_wood", () -> new PetrifiedLog(STRIPPED_PETRIFIED_WOOD, SMProperties.Blocks.petrified().requiresCorrectToolForDrops().mapColor(MapColor.COLOR_BROWN)));
-    public static final Pair<RegistryObject<BlueprintStandingSignBlock>, RegistryObject<BlueprintWallSignBlock>> PETRIFIED_SIGN = HELPER.createSignBlock("petrified", SMBlocksetTypes.PETRIFIED_WOOD_TYPE.get(), SMProperties.Blocks.PETRIFIED_SIGNS);
-    public static final Pair<RegistryObject<BlueprintCeilingHangingSignBlock>, RegistryObject<BlueprintWallHangingSignBlock>> PETRIFIED_HANGING_SIGN = HELPER.createHangingSignBlock("petrified", SMBlocksetTypes.PETRIFIED_WOOD_TYPE.get(), SMProperties.Blocks.PETRIFIED_SIGNS);
+    public static final Pair<RegistryObject<BlueprintStandingSignBlock>, RegistryObject<BlueprintWallSignBlock>> PETRIFIED_SIGN = createSignBlock("petrified", SMBlocksetTypes.PETRIFIED_WOOD_TYPE.get(), SMProperties.Blocks.PETRIFIED_SIGNS);
+    public static final Pair<RegistryObject<BlueprintCeilingHangingSignBlock>, RegistryObject<BlueprintWallHangingSignBlock>> PETRIFIED_HANGING_SIGN = createHangingSignBlock("petrified", SMBlocksetTypes.PETRIFIED_WOOD_TYPE.get(), SMProperties.Blocks.PETRIFIED_SIGNS);
     public static final RegistryObject<Block> PETRIFIED_PRESSURE_PLATE = createBlock("petrified_pressure_plate", () -> new PressurePlateBlock(PressurePlateBlock.Sensitivity.MOBS, SMProperties.Blocks.PETRIFIED_PRESSURE_PLATE, SMBlocksetTypes.PETRIFIED_BLOCKSET.get()));
     public static final RegistryObject<Block> PETRIFIED_TRAPDOOR = createBlock("petrified_trapdoor", () -> new TrapDoorBlock(SMProperties.Blocks.PETRIFIED_TRAPDOOR, SMBlocksetTypes.PETRIFIED_BLOCKSET.get()));
     public static final RegistryObject<Block> PETRIFIED_STAIRS = createBlock("petrified_stairs", () -> new StairBlock(() -> PETRIFIED_PLANKS.get().defaultBlockState(), SMProperties.Blocks.petrified().requiresCorrectToolForDrops()));
@@ -103,7 +106,7 @@ public class SMBlocks {
     public static final RegistryObject<Block> PETRIFIED_FENCE = createBlock("petrified_fence", () -> new FenceBlock(SMProperties.Blocks.petrified().requiresCorrectToolForDrops()));
     public static final RegistryObject<Block> PETRIFIED_DOOR = createBlock("petrified_door", () -> new DoorBlock(SMProperties.Blocks.petrified().requiresCorrectToolForDrops().noOcclusion().strength(0.35F), SMBlocksetTypes.PETRIFIED_BLOCKSET.get()));
     public static final RegistryObject<Block> PETRIFIED_SAPLING = createBlock("petrified_sapling", () -> new PetrifiedSapling(SMProperties.Blocks.PETRIFIED_SAPLING));
-    public static final RegistryObject<Block> POTTED_PETRIFIED_SAPLING = HELPER.createBlockNoItem("potted_petrified_sapling", () -> new FlowerPotBlock(null, PETRIFIED_SAPLING, PropertyUtil.flowerPot()));
+    public static final RegistryObject<Block> POTTED_PETRIFIED_SAPLING = createBlockNoItem("potted_petrified_sapling", () -> new FlowerPotBlock(null, PETRIFIED_SAPLING, PropertyUtil.flowerPot()));
 
     //Misc
     public static final RegistryObject<Block> TORTOISE_EGG = createBlock("tortoise_egg", () -> new TortoiseEggBlock(BlockBehaviour.Properties.copy(Blocks.TURTLE_EGG)));
@@ -125,10 +128,10 @@ public class SMBlocks {
     public static Pair<RegistryObject<Block>, RegistryObject<Block>> registerAncientSkull(AncientSkullBlock.Types type, String description, int price) {
         String typeName = SMTextUtil.convertSkullTypeToString(type);
         String skullName = typeName + "_ancient_skull";
-        RegistryObject<Block> skull = HELPER.createBlockNoItem(skullName, () -> new AncientSkullBlock(type, SMProperties.Blocks.ancientSkulls()));
-        RegistryObject<Block> wallSkull = HELPER.createBlockNoItem(typeName + "_ancient_wall_skull", () -> new AncientWallSkullBlock(type, SMProperties.Blocks.ancientSkulls().lootFrom(skull)));
+        RegistryObject<Block> skull = createBlockNoItem(skullName, () -> new AncientSkullBlock(type, SMProperties.Blocks.ancientSkulls()), true);
+        RegistryObject<Block> wallSkull = createBlockNoItem(typeName + "_ancient_wall_skull", () -> new AncientWallSkullBlock(type, SMProperties.Blocks.ancientSkulls().lootFrom(skull)), true);
         ANCIENT_SKULLS.add(skull);
-        RegistryObject<Item> skullItem = SMItems.HELPER.createItem(skullName, () -> new StandingAndWallBlockItem(skull.get(), wallSkull.get(), SMProperties.Items.artifacts(), Direction.DOWN));
+        RegistryObject<Item> skullItem = SMItems.ITEMS.register(skullName, () -> new StandingAndWallBlockItem(skull.get(), wallSkull.get(), SMProperties.Items.artifacts(), Direction.DOWN));
         SMItems.ARTIFACT_DESC_MAP.put(skullItem, SMTextUtil.addSMTranslatable("artifact." + skullName + ".desc", description).withStyle(SMTextDefinitions.ARTIFACT_DESC_STYLE));
         SMItems.TRADES.put(skullItem, price);
 
@@ -144,15 +147,42 @@ public class SMBlocks {
         return new RotatedPillarBlock(SMProperties.Blocks.petrified().requiresCorrectToolForDrops().mapColor((blockState) ->
                 blockState.getValue(RotatedPillarBlock.AXIS) == Direction.Axis.Y ? pTopMapColor : pSideMapColor));
     }
-    
-    private static RegistryObject<Block> createBlock(String name, Supplier<? extends Block> supplier, boolean customTranslation) {
-        RegistryObject<Block> block = createBlock(name, supplier);
+
+    public static Pair<RegistryObject<BlueprintStandingSignBlock>, RegistryObject<BlueprintWallSignBlock>> createSignBlock(String name, WoodType woodType, Block.Properties properties) {
+        RegistryObject<BlueprintStandingSignBlock> standing = createBlockNoItem(name + "_sign", () -> new BlueprintStandingSignBlock(properties, woodType), true);
+        RegistryObject<BlueprintWallSignBlock> wall = createBlockNoItem(name + "_wall_sign", () -> new BlueprintWallSignBlock(properties.lootFrom(standing), woodType), true);
+        SMItems.ITEMS.register(name + "_sign", () -> new SignItem(new Item.Properties(), standing.get(), wall.get()));
+        return Pair.of(standing, wall);
+    }
+
+    public static Pair<RegistryObject<BlueprintCeilingHangingSignBlock>, RegistryObject<BlueprintWallHangingSignBlock>> createHangingSignBlock(String name, WoodType woodType, Block.Properties properties) {
+        RegistryObject<BlueprintCeilingHangingSignBlock> ceiling = createBlockNoItem(name + "_hanging_sign", () -> new BlueprintCeilingHangingSignBlock(properties, woodType), true);
+        RegistryObject<BlueprintWallHangingSignBlock> wall = createBlockNoItem(name + "_wall_hanging_sign", () -> new BlueprintWallHangingSignBlock(properties.lootFrom(ceiling), woodType), true);
+        SMItems.ITEMS.register(name + "_hanging_sign", () -> new HangingSignItem(ceiling.get(), wall.get(), new Item.Properties()));
+        return Pair.of(ceiling, wall);
+    }
+
+    private static <B extends Block> RegistryObject<B> createBlockNoItem(String name, Supplier<? extends B> supplier, boolean customTranslation) {
+        RegistryObject<B> block = createBlockNoItem(name, supplier);
         if (customTranslation) AUTO_TRANSLATE.remove(block);
         return block;
     }
 
-    private static RegistryObject<Block> createBlock(String name, Supplier<? extends Block> supplier) {
-        RegistryObject<Block> block = HELPER.createBlock(name, supplier);
+    private static <B extends Block> RegistryObject<B> createBlockNoItem(String name, Supplier<? extends B> supplier) {
+        RegistryObject<B> block = BLOCKS.register(name, supplier);
+        AUTO_TRANSLATE.add(block);
+        return block;
+    }
+    
+    private static <B extends Block> RegistryObject<B> createBlock(String name, Supplier<? extends B> supplier, boolean customTranslation) {
+        RegistryObject<B> block = createBlock(name, supplier);
+        if (customTranslation) AUTO_TRANSLATE.remove(block);
+        return block;
+    }
+
+    private static <B extends Block> RegistryObject<B> createBlock(String name, Supplier<? extends B> supplier) {
+        RegistryObject<B> block = BLOCKS.register(name, supplier);
+        SMItems.ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties()));
         AUTO_TRANSLATE.add(block);
         return block;
     }

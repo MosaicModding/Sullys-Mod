@@ -102,9 +102,9 @@ dependencies {
     compileOnly fg.deobf("mezz.jei:jei-${mc_version}-forge-api:${jei_version}")
     implementation fg.deobf("mezz.jei:jei-${mc_version}-forge:${jei_version}")
     localRuntime fg.deobf("curse.maven:catalogue-459701:4590890")
-    //localRuntime fg.deobf("curse.maven:configured-457570:4011355")
-    localRuntime fg.deobf("curse.maven:config-menus-forge-544048:4672356")
-    localRuntime fg.deobf("curse.maven:neat-238372:4580940")
+    localRuntime fg.deobf("curse.maven:configured-457570:5180900")
+    //localRuntime fg.deobf("curse.maven:config-menus-forge-544048:4672356")
+    localRuntime fg.deobf("curse.maven:neat-238372:5838485")
     //localRuntime fg.deobf("curse.maven:advanced-xray-256256:4840340") //Use this for worldgen tests only
 
     //localRuntime fg.deobf("curse.maven:no-falling-blocks-522715:5617563")

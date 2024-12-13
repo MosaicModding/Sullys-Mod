@@ -1,0 +1,49 @@
+{
+  "advancements": [
+    {
+      "advancement": {
+        "parent": "minecraft:recipes/root",
+        "criteria": {
+          "has_the_recipe": {
+            "conditions": {
+              "recipe": "sullysmod:tortoise_shell"
+            },
+            "trigger": "minecraft:recipe_unlocked"
+          },
+          "has_tortoise_scute": {
+            "conditions": {
+              "items": [
+                {
+                  "items": [
+                    "sullysmod:tortoise_scute"
+                  ]
+                }
+              ]
+            },
+            "trigger": "minecraft:inventory_changed"
+          }
+        },
+        "requirements": [
+          [
+            "has_tortoise_scute",
+            "has_the_recipe"
+          ]
+        ],
+        "rewards": {
+          "recipes": [
+            "sullysmod:tortoise_shell"
+          ]
+        },
+        "sends_telemetry_event": false
+      },
+      "conditions": [
+        {
+          "type": "sullysmod:mod_features",
+          "values": [
+            "tortoise"
+          ]
+        }
+      ]
+    }
+  ]
+}

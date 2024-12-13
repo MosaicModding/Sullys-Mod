@@ -29,7 +29,7 @@ import net.minecraft.world.phys.BlockHitResult;
 
 import javax.annotation.Nullable;
 
-public class FlingerTotem extends BaseEntityBlock {
+public class FlingerTotem extends Block implements EntityBlock {
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
     public static final IntegerProperty HONEY_AMOUNT = IntegerProperty.create("honey_amount", 0, 4);
 
@@ -102,5 +102,10 @@ public class FlingerTotem extends BaseEntityBlock {
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level pLevel, BlockState pState, BlockEntityType<T> pBlockEntityType) {
         return pLevel.isClientSide() ? null : createTickerHelper(pBlockEntityType, SMBlockEntityTypes.FLINGER_TOTEM.get(), FlingerTotemBE::serverTick);
+    }
+
+    @Nullable
+    protected static <E extends BlockEntity, A extends BlockEntity> BlockEntityTicker<A> createTickerHelper(BlockEntityType<A> pServerType, BlockEntityType<E> pClientType, BlockEntityTicker<? super E> pTicker) {
+        return pClientType == pServerType ? (BlockEntityTicker<A>)pTicker : null;
     }
 }

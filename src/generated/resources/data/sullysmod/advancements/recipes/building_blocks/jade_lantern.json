@@ -38,8 +38,11 @@
       },
       "conditions": [
         {
-          "type": "sullysmod:flag",
-          "flag": "gem_lanterns"
+          "type": "sullysmod:mod_features",
+          "values": [
+            "jade",
+            "gem_lanterns"
+          ]
         }
       ]
     }

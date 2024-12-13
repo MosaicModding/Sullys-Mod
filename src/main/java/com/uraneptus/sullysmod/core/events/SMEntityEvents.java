@@ -4,12 +4,12 @@ import com.uraneptus.sullysmod.SullysMod;
 import com.uraneptus.sullysmod.common.blockentities.FlingerTotemBE;
 import com.uraneptus.sullysmod.common.blocks.FlingerTotem;
 import com.uraneptus.sullysmod.common.blocks.utilities.SMDirectionalBlock;
-import com.uraneptus.sullysmod.common.caps.SMEntityCap;
 import com.uraneptus.sullysmod.common.entities.Piranha;
 import com.uraneptus.sullysmod.common.entities.Tortoise;
 import com.uraneptus.sullysmod.common.entities.goals.GenericMobAttackTortoiseEggGoal;
 import com.uraneptus.sullysmod.common.particletypes.DirectionParticleOptions;
 import com.uraneptus.sullysmod.core.SMConfig;
+import com.uraneptus.sullysmod.core.SMFeatures;
 import com.uraneptus.sullysmod.core.other.tags.SMBlockTags;
 import com.uraneptus.sullysmod.core.other.tags.SMEntityTags;
 import com.uraneptus.sullysmod.core.other.tags.SMItemTags;
@@ -55,14 +55,18 @@ import org.jetbrains.annotations.Nullable;
 @SuppressWarnings("unused")
 public class SMEntityEvents {
 
+    //TODO consider splitting event contents (all events) into feature classes and just call methods from each class in the event
     @SubscribeEvent
     public static void onProjectileHitsBlock(ProjectileImpactEvent event) {
+        if (!SMFeatures.isEnabled(SMFeatures.JADE)) return; //Only works cuz this event currently only handles jade
+
         Projectile projectile = event.getProjectile();
         Level level = event.getEntity().level();
         HitResult hitResult = event.getRayTraceResult();
         Vec3 vec3 = projectile.getDeltaMovement();
         float velocity = (float) vec3.length();
 
+        if (!SMFeatures.isEnabled(SMFeatures.JADE)) return;
         if (hitResult instanceof BlockHitResult blockHitResult && hitResult.getType() == HitResult.Type.BLOCK) {
             BlockPos pos = blockHitResult.getBlockPos();
             BlockState blockState = level.getBlockState(pos);
@@ -195,6 +199,7 @@ public class SMEntityEvents {
     public static void onEntityJoin(EntityJoinLevelEvent event) {
         Entity entity = event.getEntity();
 
+        //I won't add the Feature check here, in case the feature is re-enabled while previously loaded entities still exist
         if (entity.getType().is(SMEntityTags.ATTACKS_BABY_TORTOISES) && entity instanceof Mob mob) {
             if (mob instanceof Ocelot ocelot) {
                 ocelot.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(ocelot, Tortoise.class, 10, false, false, Turtle.BABY_ON_LAND_SELECTOR));
@@ -225,7 +230,7 @@ public class SMEntityEvents {
         LivingEntity livingEntity = event.getEntity();
         Entity killer = event.getSource().getEntity();
         Level level = event.getEntity().level();
-
+        if (!SMFeatures.isEnabled(SMFeatures.PIRANHA)) return;
         if (!(livingEntity instanceof Zombie zombie && !zombie.isBaby()) || !(killer instanceof Piranha)) return;
 
         CompoundTag compoundtag = livingEntity.saveWithoutId(new CompoundTag());
@@ -249,11 +254,6 @@ public class SMEntityEvents {
 
     @SubscribeEvent
     public static void onLivingTick(LivingEvent.LivingTickEvent event) {
-        if (!(event.getEntity() instanceof Player)) {
-            SMEntityCap.getCapOptional(event.getEntity()).ifPresent(cap -> {
-                //System.out.println(cap.stuckInAmber);
-            });
-        }
 
     }
 }

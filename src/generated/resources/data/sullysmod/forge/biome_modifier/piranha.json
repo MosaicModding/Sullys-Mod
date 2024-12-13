@@ -1,6 +1,9 @@
 {
-  "type": "forge:add_spawns",
+  "type": "sullysmod:add_optional_spawns",
   "biomes": "#sullysmod:piranha_spawn_in",
+  "mod_feature": [
+    "piranha"
+  ],
   "spawners": {
     "type": "sullysmod:piranha",
     "maxCount": 5,

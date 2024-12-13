@@ -1,18 +1,33 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "category": "misc",
-  "key": {
-    "#": {
-      "item": "sullysmod:tortoise_scute"
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "sullysmod:mod_features",
+          "values": [
+            "tortoise"
+          ]
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:crafting_shaped",
+        "category": "misc",
+        "key": {
+          "#": {
+            "item": "sullysmod:tortoise_scute"
+          }
+        },
+        "pattern": [
+          "## ",
+          "## ",
+          "   "
+        ],
+        "result": {
+          "item": "sullysmod:tortoise_shell"
+        },
+        "show_notification": true
+      }
     }
-  },
-  "pattern": [
-    "## ",
-    "## ",
-    "   "
-  ],
-  "result": {
-    "item": "sullysmod:tortoise_shell"
-  },
-  "show_notification": true
+  ]
 }

@@ -1,10 +1,25 @@
 {
-  "type": "minecraft:blasting",
-  "category": "misc",
-  "cookingtime": 100,
-  "experience": 0.7,
-  "ingredient": {
-    "item": "sullysmod:jade_ore"
-  },
-  "result": "sullysmod:rough_jade"
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "sullysmod:mod_features",
+          "values": [
+            "jade"
+          ]
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:blasting",
+        "category": "misc",
+        "cookingtime": 100,
+        "experience": 0.7,
+        "ingredient": {
+          "item": "sullysmod:jade_ore"
+        },
+        "result": "sullysmod:rough_jade"
+      }
+    }
+  ]
 }

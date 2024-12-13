@@ -1,8 +1,23 @@
 {
-  "type": "minecraft:stonecutting",
-  "count": 1,
-  "ingredient": {
-    "item": "sullysmod:rough_jade_bricks"
-  },
-  "result": "sullysmod:rough_jade_brick_stairs"
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "sullysmod:mod_features",
+          "values": [
+            "jade"
+          ]
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:stonecutting",
+        "count": 1,
+        "ingredient": {
+          "item": "sullysmod:rough_jade_bricks"
+        },
+        "result": "sullysmod:rough_jade_brick_stairs"
+      }
+    }
+  ]
 }

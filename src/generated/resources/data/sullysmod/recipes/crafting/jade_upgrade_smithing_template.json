@@ -1,25 +1,40 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "category": "misc",
-  "key": {
-    "#": {
-      "item": "minecraft:diamond"
-    },
-    "C": {
-      "item": "sullysmod:jade_block"
-    },
-    "S": {
-      "item": "sullysmod:jade_upgrade_smithing_template"
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "sullysmod:mod_features",
+          "values": [
+            "jade"
+          ]
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:crafting_shaped",
+        "category": "misc",
+        "key": {
+          "#": {
+            "item": "minecraft:diamond"
+          },
+          "C": {
+            "item": "sullysmod:jade_block"
+          },
+          "S": {
+            "item": "sullysmod:jade_upgrade_smithing_template"
+          }
+        },
+        "pattern": [
+          "#S#",
+          "#C#",
+          "###"
+        ],
+        "result": {
+          "count": 2,
+          "item": "sullysmod:jade_upgrade_smithing_template"
+        },
+        "show_notification": true
+      }
     }
-  },
-  "pattern": [
-    "#S#",
-    "#C#",
-    "###"
-  ],
-  "result": {
-    "count": 2,
-    "item": "sullysmod:jade_upgrade_smithing_template"
-  },
-  "show_notification": true
+  ]
 }

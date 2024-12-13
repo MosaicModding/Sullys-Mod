@@ -1,6 +1,9 @@
 {
-  "type": "forge:add_spawns",
+  "type": "sullysmod:add_optional_spawns",
   "biomes": "#sullysmod:tortoises_spawn_in",
+  "mod_feature": [
+    "tortoise"
+  ],
   "spawners": {
     "type": "sullysmod:tortoise",
     "maxCount": 3,

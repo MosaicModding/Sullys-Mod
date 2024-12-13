@@ -1,15 +1,30 @@
 {
-  "type": "minecraft:crafting_shapeless",
-  "category": "misc",
-  "ingredients": [
+  "type": "forge:conditional",
+  "recipes": [
     {
-      "item": "minecraft:smooth_stone_slab"
-    },
-    {
-      "item": "minecraft:stick"
+      "conditions": [
+        {
+          "type": "sullysmod:mod_features",
+          "values": [
+            "item_stand"
+          ]
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:crafting_shapeless",
+        "category": "misc",
+        "ingredients": [
+          {
+            "item": "minecraft:smooth_stone_slab"
+          },
+          {
+            "item": "minecraft:stick"
+          }
+        ],
+        "result": {
+          "item": "sullysmod:item_stand"
+        }
+      }
     }
-  ],
-  "result": {
-    "item": "sullysmod:item_stand"
-  }
+  ]
 }

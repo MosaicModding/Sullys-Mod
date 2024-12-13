@@ -30,7 +30,7 @@ public class SMAdvancementModifiersProvider extends AdvancementModifierProvider 
     protected void registerEntries(HolderLookup.Provider provider) {
         //Balanced Diet Setup
         CriteriaModifier.Builder constructBalancedDiet = CriteriaModifier.builder(this.modId);
-        Collection<RegistryObject<Item>> items = SMItems.HELPER.getDeferredRegister().getEntries();
+        Collection<RegistryObject<Item>> items = SMItems.ITEMS.getEntries();
 
         items.forEach((item) -> {
             if (item.get().isEdible()) {

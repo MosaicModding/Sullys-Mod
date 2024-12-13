@@ -6,6 +6,14 @@
         "entries": [
           {
             "type": "minecraft:item",
+            "conditions": [
+              {
+                "condition": "sullysmod:mod_feature_flag",
+                "values": [
+                  "jade"
+                ]
+              }
+            ],
             "functions": [
               {
                 "add": false,

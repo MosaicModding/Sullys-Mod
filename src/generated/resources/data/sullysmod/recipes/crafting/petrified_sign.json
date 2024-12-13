@@ -1,22 +1,38 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "category": "building",
-  "key": {
-    "#": {
-      "item": "sullysmod:petrified_planks"
-    },
-    "X": {
-      "item": "minecraft:stick"
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "sullysmod:mod_features",
+          "values": [
+            "petrified_wood",
+            "amber"
+          ]
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:crafting_shaped",
+        "category": "building",
+        "key": {
+          "#": {
+            "item": "sullysmod:petrified_planks"
+          },
+          "X": {
+            "item": "minecraft:stick"
+          }
+        },
+        "pattern": [
+          "###",
+          "###",
+          " X "
+        ],
+        "result": {
+          "count": 3,
+          "item": "sullysmod:petrified_sign"
+        },
+        "show_notification": true
+      }
     }
-  },
-  "pattern": [
-    "###",
-    "###",
-    " X "
-  ],
-  "result": {
-    "count": 3,
-    "item": "sullysmod:petrified_sign"
-  },
-  "show_notification": true
+  ]
 }

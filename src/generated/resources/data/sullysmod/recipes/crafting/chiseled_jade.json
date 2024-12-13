@@ -1,17 +1,32 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "category": "building",
-  "key": {
-    "#": {
-      "item": "sullysmod:jade_brick_slab"
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "sullysmod:mod_features",
+          "values": [
+            "jade"
+          ]
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:crafting_shaped",
+        "category": "building",
+        "key": {
+          "#": {
+            "item": "sullysmod:jade_brick_slab"
+          }
+        },
+        "pattern": [
+          "#",
+          "#"
+        ],
+        "result": {
+          "item": "sullysmod:chiseled_jade"
+        },
+        "show_notification": true
+      }
     }
-  },
-  "pattern": [
-    "#",
-    "#"
-  ],
-  "result": {
-    "item": "sullysmod:chiseled_jade"
-  },
-  "show_notification": true
+  ]
 }

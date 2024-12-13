@@ -1,0 +1,9 @@
+{
+  "type": "sullysmod:add_optional_features",
+  "biomes": "#sullysmod:artifact_gravel_generate_in",
+  "features": "sullysmod:artifact_gravel",
+  "mod_feature": [
+    "artifacts"
+  ],
+  "step": "underground_decoration"
+}
