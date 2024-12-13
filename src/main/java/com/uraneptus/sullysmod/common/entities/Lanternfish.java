@@ -1,6 +1,5 @@
 package com.uraneptus.sullysmod.common.entities;
 
-import com.uraneptus.sullysmod.core.SMFeatures;
 import com.uraneptus.sullysmod.core.registry.SMItems;
 import com.uraneptus.sullysmod.core.registry.SMSounds;
 import net.minecraft.core.BlockPos;
@@ -116,7 +115,7 @@ public class Lanternfish extends AbstractFish {
     public static boolean checkLanternfishSpawnRules(EntityType<? extends LivingEntity> entityType, ServerLevelAccessor level, MobSpawnType spawnType, BlockPos pos, RandomSource random) {
         int seaLevel = level.getSeaLevel();
         int maxLanternfishSeaLevel = seaLevel - 47;
-        return pos.getY() <= maxLanternfishSeaLevel && level.getFluidState(pos.below()).is(Fluids.WATER) && level.getFluidState(pos.above()).is(FluidTags.WATER) && level.getRawBrightness(pos, 0) == 0 && SMFeatures.isEnabled(SMFeatures.LANTERNFISH);
+        return pos.getY() <= maxLanternfishSeaLevel && level.getFluidState(pos.below()).is(Fluids.WATER) && level.getFluidState(pos.above()).is(FluidTags.WATER) && level.getRawBrightness(pos, 0) == 0;
     }
 
     static class LightAvoidingRandomSwimmingGoal extends Goal {

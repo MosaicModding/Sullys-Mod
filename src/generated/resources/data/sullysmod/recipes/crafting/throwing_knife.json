@@ -1,20 +1,35 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "category": "equipment",
-  "key": {
-    "#": {
-      "item": "minecraft:stick"
-    },
-    "X": {
-      "item": "sullysmod:piranha_tooth"
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "sullysmod:mod_features",
+          "values": [
+            "piranha"
+          ]
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:crafting_shaped",
+        "category": "equipment",
+        "key": {
+          "#": {
+            "item": "minecraft:stick"
+          },
+          "X": {
+            "item": "sullysmod:piranha_tooth"
+          }
+        },
+        "pattern": [
+          " X",
+          "# "
+        ],
+        "result": {
+          "item": "sullysmod:throwing_knife"
+        },
+        "show_notification": true
+      }
     }
-  },
-  "pattern": [
-    " X",
-    "# "
-  ],
-  "result": {
-    "item": "sullysmod:throwing_knife"
-  },
-  "show_notification": true
+  ]
 }

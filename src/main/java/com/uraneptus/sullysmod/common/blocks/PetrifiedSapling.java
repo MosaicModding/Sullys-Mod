@@ -1,6 +1,5 @@
 package com.uraneptus.sullysmod.common.blocks;
 
-import com.uraneptus.sullysmod.common.blocks.utilities.SMSaplingBlock;
 import com.uraneptus.sullysmod.core.other.SMFeatureDefinitions;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceKey;
@@ -13,7 +12,7 @@ import net.minecraft.world.level.block.grower.AbstractTreeGrower;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 
-public class PetrifiedSapling extends SMSaplingBlock {
+public class PetrifiedSapling extends SaplingBlock {
 
     public PetrifiedSapling(Properties pProperties) {
         super(new AbstractTreeGrower() {

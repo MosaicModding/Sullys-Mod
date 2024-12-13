@@ -1,6 +1,5 @@
 package com.uraneptus.sullysmod.common.entities;
 
-import com.uraneptus.sullysmod.core.SMFeatures;
 import com.uraneptus.sullysmod.core.other.tags.SMMobEffectTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
@@ -56,7 +55,7 @@ public class JungleSpider extends Spider implements IEntityAdditionalSpawnData {
     }
 
     public static boolean checkJungleSpiderSpawnRules(EntityType<? extends Monster> pType, ServerLevelAccessor pLevel, MobSpawnType pSpawnType, BlockPos pPos, RandomSource pRandom) {
-        return Monster.checkMonsterSpawnRules(pType, pLevel, pSpawnType, pPos, pRandom) && SMFeatures.isEnabled(SMFeatures.JUNGLE_SPIDER);
+        return Monster.checkMonsterSpawnRules(pType, pLevel, pSpawnType, pPos, pRandom);
     }
 
     public MobEffect getBeneficialVenomEffect() {

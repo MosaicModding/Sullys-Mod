@@ -1,18 +1,33 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "category": "misc",
-  "key": {
-    "#": {
-      "item": "minecraft:glass_pane"
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "sullysmod:mod_features",
+          "values": [
+            "jungle_spider"
+          ]
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:crafting_shaped",
+        "category": "misc",
+        "key": {
+          "#": {
+            "item": "minecraft:glass_pane"
+          }
+        },
+        "pattern": [
+          "# #",
+          " # "
+        ],
+        "result": {
+          "count": 3,
+          "item": "sullysmod:glass_vial"
+        },
+        "show_notification": true
+      }
     }
-  },
-  "pattern": [
-    "# #",
-    " # "
-  ],
-  "result": {
-    "count": 3,
-    "item": "sullysmod:glass_vial"
-  },
-  "show_notification": true
+  ]
 }

@@ -1,6 +1,9 @@
 {
-  "type": "forge:add_spawns",
+  "type": "sullysmod:add_optional_spawns",
   "biomes": "#sullysmod:lanternfish_spawn_in",
+  "mod_feature": [
+    "lanternfish"
+  ],
   "spawners": {
     "type": "sullysmod:lanternfish",
     "maxCount": 6,

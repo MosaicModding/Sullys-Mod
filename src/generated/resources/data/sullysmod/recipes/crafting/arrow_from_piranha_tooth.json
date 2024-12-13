@@ -1,25 +1,40 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "category": "equipment",
-  "key": {
-    "#": {
-      "item": "minecraft:stick"
-    },
-    "X": {
-      "item": "sullysmod:piranha_tooth"
-    },
-    "Y": {
-      "item": "minecraft:feather"
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "sullysmod:mod_features",
+          "values": [
+            "piranha"
+          ]
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:crafting_shaped",
+        "category": "equipment",
+        "key": {
+          "#": {
+            "item": "minecraft:stick"
+          },
+          "X": {
+            "item": "sullysmod:piranha_tooth"
+          },
+          "Y": {
+            "item": "minecraft:feather"
+          }
+        },
+        "pattern": [
+          "X",
+          "#",
+          "Y"
+        ],
+        "result": {
+          "count": 4,
+          "item": "minecraft:arrow"
+        },
+        "show_notification": true
+      }
     }
-  },
-  "pattern": [
-    "X",
-    "#",
-    "Y"
-  ],
-  "result": {
-    "count": 4,
-    "item": "minecraft:arrow"
-  },
-  "show_notification": true
+  ]
 }

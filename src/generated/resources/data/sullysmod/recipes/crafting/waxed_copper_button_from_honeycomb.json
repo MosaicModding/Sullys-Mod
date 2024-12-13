@@ -1,15 +1,30 @@
 {
-  "type": "minecraft:crafting_shapeless",
-  "category": "redstone",
-  "ingredients": [
+  "type": "forge:conditional",
+  "recipes": [
     {
-      "item": "sullysmod:copper_button"
-    },
-    {
-      "item": "minecraft:honeycomb"
+      "conditions": [
+        {
+          "type": "sullysmod:mod_features",
+          "values": [
+            "copper_buttons"
+          ]
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:crafting_shapeless",
+        "category": "redstone",
+        "ingredients": [
+          {
+            "item": "sullysmod:copper_button"
+          },
+          {
+            "item": "minecraft:honeycomb"
+          }
+        ],
+        "result": {
+          "item": "sullysmod:waxed_copper_button"
+        }
+      }
     }
-  ],
-  "result": {
-    "item": "sullysmod:waxed_copper_button"
-  }
+  ]
 }

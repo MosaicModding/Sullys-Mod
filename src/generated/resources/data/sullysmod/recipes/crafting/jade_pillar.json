@@ -1,18 +1,33 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "category": "building",
-  "key": {
-    "#": {
-      "item": "sullysmod:jade_block"
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "sullysmod:mod_features",
+          "values": [
+            "jade"
+          ]
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:crafting_shaped",
+        "category": "building",
+        "key": {
+          "#": {
+            "item": "sullysmod:jade_block"
+          }
+        },
+        "pattern": [
+          "#",
+          "#"
+        ],
+        "result": {
+          "count": 2,
+          "item": "sullysmod:jade_pillar"
+        },
+        "show_notification": true
+      }
     }
-  },
-  "pattern": [
-    "#",
-    "#"
-  ],
-  "result": {
-    "count": 2,
-    "item": "sullysmod:jade_pillar"
-  },
-  "show_notification": true
+  ]
 }

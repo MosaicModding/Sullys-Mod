@@ -29,7 +29,6 @@ public class SMConfig {
     public static final ForgeConfigSpec.ConfigValue<Boolean> ENABLE_COPPER_BUTTONS;
     public static final ForgeConfigSpec.ConfigValue<Boolean> ENABLE_GEM_LANTERNS;
     public static final ForgeConfigSpec.ConfigValue<Boolean> ENABLE_GRINDSTONE_POLISHING;
-    public static final ForgeConfigSpec.ConfigValue<Boolean> ENABLE_PAINTINGS;
 
     public static final ForgeConfigSpec CLIENT;
     public static final ForgeConfigSpec COMMON;
@@ -57,7 +56,6 @@ public class SMConfig {
         ENABLE_JUNGLE_SPIDER = COMMON_BUILDER.comment("Enables all jungle spider features").define("jungle_spider", true);
         ENABLE_ITEM_STAND = COMMON_BUILDER.comment("Enables the item stand").define("item_stand", true);
         ENABLE_ARTIFACTS = COMMON_BUILDER.comment("Enables all artifact features").define("artifacts", true);
-        ENABLE_PAINTINGS = COMMON_BUILDER.comment("Enables the mod's paintings").define("paintings", true);
         COMMON_BUILDER.comment("Mod Potions").push("potions");
         ENABLE_UNLUCK_POTION = COMMON_BUILDER.comment("Enables the bad luck potion").define("unluck_potion", false);
         ENABLE_RESISTANCE_POTION = COMMON_BUILDER.comment("Enables the resistance potion").define("resistance_potion", false);

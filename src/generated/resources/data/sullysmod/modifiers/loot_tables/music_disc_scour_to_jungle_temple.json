@@ -6,6 +6,14 @@
         "entries": [
           {
             "type": "minecraft:item",
+            "conditions": [
+              {
+                "condition": "sullysmod:mod_feature_flag",
+                "values": [
+                  "jade"
+                ]
+              }
+            ],
             "name": "sullysmod:music_disc_scour",
             "weight": 4
           }

@@ -2,7 +2,6 @@ package com.uraneptus.sullysmod.common.entities;
 
 import com.uraneptus.sullysmod.client.sound.FollowJukeboxEntitySoundInstance;
 import com.uraneptus.sullysmod.common.blocks.TortoiseEggBlock;
-import com.uraneptus.sullysmod.core.SMFeatures;
 import com.uraneptus.sullysmod.core.other.tags.SMEntityTags;
 import com.uraneptus.sullysmod.core.other.tags.SMItemTags;
 import com.uraneptus.sullysmod.core.registry.SMBlocks;
@@ -122,7 +121,7 @@ public class Tortoise extends Animal implements WorkstationAttachable {
     }
 
     public static boolean checkTortoiseSpawnRules(EntityType<? extends Tortoise> entity, LevelAccessor pLevel, MobSpawnType pSpawnType, BlockPos pPos, RandomSource pRandom) {
-        return Animal.checkAnimalSpawnRules(entity, pLevel, pSpawnType, pPos, pRandom) && SMFeatures.isEnabled(SMFeatures.TORTOISE);
+        return Animal.checkAnimalSpawnRules(entity, pLevel, pSpawnType, pPos, pRandom);
     }
 
     @Override

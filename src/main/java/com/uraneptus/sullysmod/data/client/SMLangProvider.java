@@ -32,25 +32,8 @@ public class SMLangProvider extends LanguageProvider {
 
         //Items
         SMItems.ARTIFACT_DESC_MAP.forEach((item, desc) -> forItem(item));
-        forItem(SMItems.ROUGH_JADE);
-        forItem(SMItems.JADE);
-        forItem(SMItems.LANTERNFISH_SPAWN_EGG);
-        forItem(SMItems.PIRANHA_SPAWN_EGG);
-        forItem(SMItems.COOKED_LANTERNFISH);
-        forItem(SMItems.COOKED_PIRANHA);
-        forItem(SMItems.TORTOISE_SPAWN_EGG);
-        forItem(SMItems.JADE_SHIELD);
-        forItem(SMItems.TORTOISE_SCUTE);
-        forItem(SMItems.TORTOISE_SHELL);
-        forItem(SMItems.BOULDERING_ZOMBIE_SPAWN_EGG);
-        forItem(SMItems.JUNGLE_SPIDER_SPAWN_EGG);
-        forItem(SMItems.GLASS_VIAL);
+        SMItems.AUTO_TRANSLATE.forEach(this::forItem);
         add(SMItems.VENOM_VIAL.get(), "Vial of Jungle Venom");
-        forItem(SMItems.JADE_HORSE_ARMOR);
-        forItem(SMItems.THROWING_KNIFE);
-        forItem(SMItems.PIRANHA_TOOTH);
-        forItem(SMItems.MOLTEN_AMBER_BUCKET);
-
         add(SMItems.LANTERNFISH_BUCKET.get(), "Bucket of Lanternfish");
         add(SMItems.PIRANHA_BUCKET.get(), "Bucket of Piranha");
         add(SMItems.LANTERNFISH.get(), "Raw Lanternfish");

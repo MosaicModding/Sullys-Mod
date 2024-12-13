@@ -1,12 +1,11 @@
 package com.uraneptus.sullysmod.core.registry;
 
-import com.teamabnormals.blueprint.common.item.BlueprintRecordItem;
 import com.teamabnormals.blueprint.core.util.PropertyUtil;
 import com.teamabnormals.blueprint.core.util.item.CreativeModeTabContentsPopulator;
-import com.teamabnormals.blueprint.core.util.registry.ItemSubRegistryHelper;
 import com.uraneptus.sullysmod.SullysMod;
 import com.uraneptus.sullysmod.client.model.MinersHelmetModel;
 import com.uraneptus.sullysmod.common.items.*;
+import com.uraneptus.sullysmod.core.SMFeatures;
 import com.uraneptus.sullysmod.core.other.SMArmorMaterials;
 import com.uraneptus.sullysmod.core.other.SMProperties;
 import com.uraneptus.sullysmod.core.other.SMTextDefinitions;
@@ -14,6 +13,7 @@ import com.uraneptus.sullysmod.core.other.SMTextUtil;
 import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.animal.WaterAnimal;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.material.Fluids;
@@ -22,7 +22,9 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.function.Supplier;
 
@@ -30,41 +32,42 @@ import static com.uraneptus.sullysmod.core.registry.SMBlocks.*;
 import static net.minecraft.world.item.crafting.Ingredient.of;
 
 public class SMItems {
-    public static final ItemSubRegistryHelper HELPER = SullysMod.REGISTRY_HELPER.getItemSubHelper();
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, SullysMod.MOD_ID);
 
+    public static List<RegistryObject<? extends Item>> AUTO_TRANSLATE = new ArrayList<>();
+
     //Basic Items
-    public static final RegistryObject<Item> ROUGH_JADE = HELPER.createItem("rough_jade", () -> new Item(new Item.Properties()));
-    public static final RegistryObject<Item> JADE = HELPER.createItem("jade", () -> new Item(new Item.Properties()));
-    public static final RegistryObject<Item> MUSIC_DISC_SCOUR = HELPER.createItem("music_disc_scour", () -> new BlueprintRecordItem(12, SMSounds.MUSIC_DISC_SCOUR, SMProperties.Items.MUSIC_DISCS, 4980));
-    public static final RegistryObject<Item> MUSIC_DISC_SUNKEN_PAST = HELPER.createItem("music_disc_sunken_past", () -> new BlueprintRecordItem(12, SMSounds.MUSIC_DISC_SUNKEN_PAST, SMProperties.Items.MUSIC_DISCS, 2700));
-    public static final RegistryObject<Item> TORTOISE_SCUTE = HELPER.createItem("tortoise_scute", () -> new Item(new Item.Properties()));
-    public static final RegistryObject<Item> TORTOISE_SHELL = HELPER.createItem("tortoise_shell", () -> new TortoiseShellItem(PropertyUtil.stacksOnce()));
-    public static final RegistryObject<Item> JADE_UPGRADE_SMITHING_TEMPLATE = HELPER.createItem("jade_upgrade_smithing_template", JadeSmithingTemplateItem::new);
-    public static final RegistryObject<Item> GLASS_VIAL = HELPER.createItem("glass_vial", () -> new VialItem(new Item.Properties()));
-    public static final RegistryObject<Item> VENOM_VIAL = HELPER.createItem("venom_vial", () -> new VenomVialItem(new Item.Properties().stacksTo(16)));
-    public static final RegistryObject<Item> JADE_HORSE_ARMOR = HELPER.createItem("jade_horse_armor", () -> new HorseArmorItem(9, "jade", PropertyUtil.stacksOnce()));
-    public static final RegistryObject<Item> PIRANHA_TOOTH = HELPER.createItem("piranha_tooth", () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> ROUGH_JADE = createItem("rough_jade");
+    public static final RegistryObject<Item> JADE = createItem("jade");
+    public static final RegistryObject<Item> MUSIC_DISC_SCOUR = createItem("music_disc_scour", () -> new SMRecordItem(12, SMSounds.MUSIC_DISC_SCOUR, SMProperties.Items.MUSIC_DISCS, 4980), true);
+    public static final RegistryObject<Item> MUSIC_DISC_SUNKEN_PAST = createItem("music_disc_sunken_past", () -> new SMRecordItem(12, SMSounds.MUSIC_DISC_SUNKEN_PAST, SMProperties.Items.MUSIC_DISCS, 2700), true); //Doesn't have a feature category yet
+    public static final RegistryObject<Item> TORTOISE_SCUTE = createItem("tortoise_scute");
+    public static final RegistryObject<Item> TORTOISE_SHELL = createItem("tortoise_shell", () -> new TortoiseShellItem(PropertyUtil.stacksOnce()));
+    public static final RegistryObject<Item> JADE_UPGRADE_SMITHING_TEMPLATE = createItem("jade_upgrade_smithing_template", JadeSmithingTemplateItem::new, true);
+    public static final RegistryObject<Item> GLASS_VIAL = createItem("glass_vial", () -> new VialItem(new Item.Properties()));
+    public static final RegistryObject<Item> VENOM_VIAL = createItem("venom_vial", () -> new VenomVialItem(new Item.Properties().stacksTo(16)), true);
+    public static final RegistryObject<Item> JADE_HORSE_ARMOR = createItem("jade_horse_armor", () -> new HorseArmorItem(9, "jade", PropertyUtil.stacksOnce()));
+    public static final RegistryObject<Item> PIRANHA_TOOTH = createItem("piranha_tooth");
 
     //Tools
-    public static final RegistryObject<Item> JADE_SHIELD = HELPER.createItem("jade_shield", () -> new JadeShieldItem(-2.0F, SMProperties.Items.JADE_SHIELD));
-    public static final RegistryObject<Item> THROWING_KNIFE = HELPER.createItem("throwing_knife", () -> new ThrowingKnifeItem(SMProperties.Items.sixteenStack()));
+    public static final RegistryObject<Item> JADE_SHIELD = createItem("jade_shield", () -> new JadeShieldItem(-2.0F, SMProperties.Items.JADE_SHIELD));
+    public static final RegistryObject<Item> THROWING_KNIFE = createItem("throwing_knife", () -> new ThrowingKnifeItem(SMProperties.Items.sixteenStack()));
 
     //Food
-    public static final RegistryObject<Item> LANTERNFISH = HELPER.createItem("lanternfish", () -> new Item(PropertyUtil.food(SMProperties.Foods.LANTERNFISH_FOOD)));
-    public static final RegistryObject<Item> COOKED_LANTERNFISH = HELPER.createItem("cooked_lanternfish", () -> new Item(PropertyUtil.food(SMProperties.Foods.COOKED_LANTERNFISH_FOOD)));
-    public static final RegistryObject<Item> PIRANHA = HELPER.createItem("piranha", () -> new Item(PropertyUtil.food(SMProperties.Foods.PIRANHA_FOOD)));
-    public static final RegistryObject<Item> COOKED_PIRANHA = HELPER.createItem("cooked_piranha", () -> new Item(PropertyUtil.food(SMProperties.Foods.COOKED_PIRANHA_FOOD)));
+    public static final RegistryObject<Item> LANTERNFISH = createItem("lanternfish", PropertyUtil.food(SMProperties.Foods.LANTERNFISH_FOOD), true);
+    public static final RegistryObject<Item> COOKED_LANTERNFISH = createItem("cooked_lanternfish", PropertyUtil.food(SMProperties.Foods.COOKED_LANTERNFISH_FOOD));
+    public static final RegistryObject<Item> PIRANHA = createItem("piranha", PropertyUtil.food(SMProperties.Foods.PIRANHA_FOOD), true);
+    public static final RegistryObject<Item> COOKED_PIRANHA = createItem("cooked_piranha", PropertyUtil.food(SMProperties.Foods.COOKED_PIRANHA_FOOD));
 
     //Buckets & Spawn Eggs
-    public static final RegistryObject<Item> MOLTEN_AMBER_BUCKET = HELPER.createItem("molten_amber_bucket", () -> new BucketItem(SMFluids.SOURCE_MOLTEN_AMBER, new Item.Properties().stacksTo(1)));
-    public static final RegistryObject<Item> LANTERNFISH_BUCKET = HELPER.createItem("lanternfish_bucket", () -> SMItems.createMobBucketItem(SMEntityTypes.LANTERNFISH::get));
-    public static final RegistryObject<ForgeSpawnEggItem> LANTERNFISH_SPAWN_EGG = HELPER.createSpawnEggItem("lanternfish", SMEntityTypes.LANTERNFISH::get, 0xFCE3D3, 9306085);
-    public static final RegistryObject<ForgeSpawnEggItem> TORTOISE_SPAWN_EGG = HELPER.createSpawnEggItem("tortoise", SMEntityTypes.TORTOISE::get, 15198183, 10844478);
-    public static final RegistryObject<ForgeSpawnEggItem> BOULDERING_ZOMBIE_SPAWN_EGG = HELPER.createSpawnEggItem("bouldering_zombie", SMEntityTypes.BOULDERING_ZOMBIE::get, 8142370, 4608338);
-    public static final RegistryObject<ForgeSpawnEggItem> JUNGLE_SPIDER_SPAWN_EGG = HELPER.createSpawnEggItem("jungle_spider", SMEntityTypes.JUNGLE_SPIDER::get, 5597514, 11013646);
-    public static final RegistryObject<Item> PIRANHA_BUCKET = HELPER.createItem("piranha_bucket", () -> SMItems.createMobBucketItem(SMEntityTypes.PIRANHA::get));
-    public static final RegistryObject<ForgeSpawnEggItem> PIRANHA_SPAWN_EGG = HELPER.createSpawnEggItem("piranha", SMEntityTypes.PIRANHA::get, 15561472, 4240022);
+    public static final RegistryObject<Item> MOLTEN_AMBER_BUCKET = createItem("molten_amber_bucket", () -> new BucketItem(SMFluids.SOURCE_MOLTEN_AMBER, new Item.Properties().stacksTo(1)));
+    public static final RegistryObject<Item> LANTERNFISH_BUCKET = createMobBucketItem("lanternfish_bucket", SMEntityTypes.LANTERNFISH::get);
+    public static final RegistryObject<Item> LANTERNFISH_SPAWN_EGG = createSpawnEggItem("lanternfish", SMEntityTypes.LANTERNFISH::get, 0xFCE3D3, 9306085);
+    public static final RegistryObject<Item> TORTOISE_SPAWN_EGG = createSpawnEggItem("tortoise", SMEntityTypes.TORTOISE::get, 15198183, 10844478);
+    public static final RegistryObject<Item> BOULDERING_ZOMBIE_SPAWN_EGG = createSpawnEggItem("bouldering_zombie", SMEntityTypes.BOULDERING_ZOMBIE::get, 8142370, 4608338);
+    public static final RegistryObject<Item> JUNGLE_SPIDER_SPAWN_EGG = createSpawnEggItem("jungle_spider", SMEntityTypes.JUNGLE_SPIDER::get, 5597514, 11013646);
+    public static final RegistryObject<Item> PIRANHA_BUCKET = createMobBucketItem("piranha_bucket", SMEntityTypes.PIRANHA::get);
+    public static final RegistryObject<Item> PIRANHA_SPAWN_EGG = createSpawnEggItem("piranha", SMEntityTypes.PIRANHA::get, 15561472, 4240022);
 
     //Artifacts
     public static Map<RegistryObject<Item>, Component> ARTIFACT_DESC_MAP = new HashMap<>();
@@ -114,86 +117,50 @@ public class SMItems {
     public static final RegistryObject<Item> BROKEN_BOTTLE = registerArtifact("broken_bottle", "The top half of a bottle", () -> new ArtifactWeaponItem(4, -1.2F, SMSounds.BROKEN_BOTTLE_SHATTERS, SMProperties.Items.artifacts().stacksTo(1).durability(1)), 5);
     public static final RegistryObject<Item> FROG_IDOL = registerArtifact("frog_idol", "Everybody likes frogs", 29);
 
-    public static RegistryObject<Item> registerArtifact(String name, String description, int price) {
+    private static RegistryObject<Item> registerArtifact(String name, String description, int price) {
         return registerArtifact(name, description, () -> new Item(SMProperties.Items.artifacts()), price);
     }
 
-    public static RegistryObject<Item> registerArtifact(String name, String description, Supplier<? extends Item> item, int price) {
-        RegistryObject<Item> object = HELPER.createItem(name, item);
+    private static RegistryObject<Item> registerArtifact(String name, String description, Supplier<? extends Item> item, int price) {
+        RegistryObject<Item> object = createItem(name, item, true);
         ARTIFACT_DESC_MAP.put(object, SMTextUtil.addSMTranslatable("artifact." + name + ".desc", description).withStyle(SMTextDefinitions.ARTIFACT_DESC_STYLE));
         TRADES.put(object, price);
         return object;
     }
 
-    public static Item createMobBucketItem(Supplier<EntityType<? extends WaterAnimal>> entityType) {
-        return new MobBucketItem(entityType, () -> Fluids.WATER, () -> SoundEvents.BUCKET_EMPTY_FISH, PropertyUtil.stacksOnce());
+    private static RegistryObject<Item> createSpawnEggItem(String name, Supplier<EntityType<? extends Mob>> supplier, int primaryColor, int secondaryColor) {
+        return createItem(name + "_spawn_egg", () -> new ForgeSpawnEggItem(supplier, primaryColor, secondaryColor, new Item.Properties()));
     }
 
-    public static void buildCreativeTabContents() {
-        CreativeModeTabContentsPopulator.mod(SullysMod.MOD_ID)
-                .tab(CreativeModeTabs.INGREDIENTS)
-                .addItemsAfter(of(Items.COPPER_INGOT), JADE)
-                .addItemsAfter(of(Items.RAW_COPPER), ROUGH_JADE)
-                .addItemsAfter(of(Items.SCUTE), TORTOISE_SCUTE)
-                .addItemsAfter(of(Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE), JADE_UPGRADE_SMITHING_TEMPLATE)
-                .addItemsAfter(of(Items.GLASS_BOTTLE), GLASS_VIAL)
-                .addItemsBefore(of(Items.BONE), PIRANHA_TOOTH)
+    private static RegistryObject<Item> createMobBucketItem(String name, Supplier<EntityType<? extends WaterAnimal>> entityType) {
+        return createItem(name, () -> new MobBucketItem(entityType, () -> Fluids.WATER, () -> SoundEvents.BUCKET_EMPTY_FISH, SMProperties.Items.singleStack()), true);
+    }
 
-                .tab(CreativeModeTabs.TOOLS_AND_UTILITIES)
-                .addItemsAfter(of(Items.MUSIC_DISC_RELIC), MUSIC_DISC_SCOUR, MUSIC_DISC_SUNKEN_PAST)
-                .addItemsAfter(of(Items.COD_BUCKET), LANTERNFISH_BUCKET, PIRANHA_BUCKET)
-                .addItemsAfter(of(Items.SADDLE), TORTOISE_SHELL)
-                .addItemsAfter(of(Items.MILK_BUCKET), MOLTEN_AMBER_BUCKET)
+    private static RegistryObject<Item> createItem(String name, boolean customTranslation) {
+        return createItem(name, new Item.Properties(), customTranslation);
+    }
 
-                .tab(CreativeModeTabs.FOOD_AND_DRINKS)
-                .addItemsAfter(of(Items.COOKED_COD), LANTERNFISH, COOKED_LANTERNFISH, PIRANHA, COOKED_PIRANHA)
+    private static RegistryObject<Item> createItem(String name) {
+        return createItem(name, new Item.Properties());
+    }
 
-                .tab(CreativeModeTabs.COMBAT)
-                .addItemsAfter(of(Items.SHIELD), JADE_SHIELD)
-                .addItemsAfter(of(Items.DIAMOND_HORSE_ARMOR), JADE_HORSE_ARMOR)
-                .addItemsAfter(of(Items.TRIDENT), THROWING_KNIFE)
+    private static RegistryObject<Item> createItem(String name, Item.Properties properties, boolean customTranslation) {
+        return createItem(name, () -> new Item(properties), customTranslation);
+    }
 
-                .tab(CreativeModeTabs.SPAWN_EGGS) //Sorted alphabetically
-                .addItemsAfter(of(Items.TADPOLE_SPAWN_EGG), TORTOISE_SPAWN_EGG)
-                .addItemsAfter(of(Items.BLAZE_SPAWN_EGG), BOULDERING_ZOMBIE_SPAWN_EGG)
-                .addItemsAfter(of(Items.IRON_GOLEM_SPAWN_EGG), JUNGLE_SPIDER_SPAWN_EGG, LANTERNFISH_SPAWN_EGG)
-                .addItemsAfter(of(Items.PILLAGER_SPAWN_EGG), PIRANHA_SPAWN_EGG)
+    private static RegistryObject<Item> createItem(String name, Item.Properties properties) {
+        return createItem(name, () -> new Item(properties));
+    }
 
-                .tab(CreativeModeTabs.NATURAL_BLOCKS)
-                .addItemsAfter(of(Items.COPPER_ORE), JADE_ORE)
-                .addItemsAfter(of(Items.DEEPSLATE_COPPER_ORE), DEEPSLATE_JADE_ORE)
-                .addItemsAfter(of(Items.RAW_COPPER_BLOCK), ROUGH_JADE_BLOCK)
-                .addItemsAfter(of(Items.TURTLE_EGG), TORTOISE_EGG)
-                .addItemsAfter(of(Items.CHERRY_LOG), PETRIFIED_LOG)
-                .addItemsAfter(of(Items.CHERRY_SAPLING), PETRIFIED_SAPLING)
-                .addItemsAfter(of(Items.COBWEB), AMBER, ROUGH_AMBER)
+    private static <I extends Item> RegistryObject<I> createItem(String name, Supplier<? extends I> supplier, boolean customTranslation) {
+        RegistryObject<I> item = createItem(name, supplier);
+        if (customTranslation) AUTO_TRANSLATE.remove(item);
+        return item;
+    }
 
-                .tab(CreativeModeTabs.BUILDING_BLOCKS)
-                .addItemsAfter(of(Items.WAXED_OXIDIZED_CUT_COPPER_SLAB),
-                        ROUGH_JADE_BLOCK, ROUGH_JADE_BRICKS, ROUGH_JADE_BRICK_STAIRS, ROUGH_JADE_BRICK_SLAB, ROUGH_JADE_BRICK_WALL,
-                        JADE_BLOCK, JADE_BRICKS, JADE_BRICK_STAIRS, JADE_BRICK_SLAB, JADE_BRICK_WALL,
-                        JADE_PILLAR, CHISELED_JADE, JADE_TOTEM, JADE_LANTERN, ROUGH_AMBER, AMBER_LANTERN, CHISELED_AMBER, AMBER_PILLAR, AMBER_BRICKS,
-                        AMBER_BRICK_STAIRS, AMBER_BRICK_SLAB, AMBER_BRICK_WALL)
-                .addItemsAfter(of(Items.CHERRY_BUTTON), PETRIFIED_LOG, PETRIFIED_WOOD, STRIPPED_PETRIFIED_LOG, STRIPPED_PETRIFIED_WOOD,
-                        PETRIFIED_PLANKS, PETRIFIED_STAIRS, PETRIFIED_SLAB, PETRIFIED_FENCE, PETRIFIED_FENCE_GATE, PETRIFIED_DOOR, PETRIFIED_TRAPDOOR,
-                        PETRIFIED_PRESSURE_PLATE, PETRIFIED_BUTTON)
-                .addItemsAfter(of(Items.DIAMOND_BLOCK), DIAMOND_LANTERN)
-                .addItemsAfter(of(Items.EMERALD_BLOCK), EMERALD_LANTERN)
-                .addItemsAfter(of(Items.LAPIS_BLOCK), LAPIS_LANTERN)
-                .addItemsAfter(of(Items.AMETHYST_BLOCK), AMETHYST_LANTERN)
-                .addItemsAfter(of(Items.QUARTZ_BLOCK), QUARTZ_LANTERN)
-
-                .tab(CreativeModeTabs.REDSTONE_BLOCKS)
-                .addItemsAfter(of(Items.DROPPER), JADE_FLINGER_TOTEM)
-                .addItemsAfter(of(Items.STONE_BUTTON), COPPER_BUTTON, EXPOSED_COPPER_BUTTON, WEATHERED_COPPER_BUTTON, OXIDIZED_COPPER_BUTTON,
-                        WAXED_COPPER_BUTTON, WAXED_EXPOSED_COPPER_BUTTON, WAXED_WEATHERED_COPPER_BUTTON, WAXED_OXIDIZED_COPPER_BUTTON)
-
-                .tab(CreativeModeTabs.FUNCTIONAL_BLOCKS)
-                .addItemsAfter(of(Items.CHERRY_HANGING_SIGN), PETRIFIED_SIGN.getFirst(), PETRIFIED_HANGING_SIGN.getFirst())
-                .addItemsAfter(of(Items.INFESTED_DEEPSLATE), AMBER)
-                .addItemsAfter(of(Items.ARMOR_STAND), ITEM_STAND)
-                .addItemsAfter(of(Items.PEARLESCENT_FROGLIGHT), AMBER_LANTERN, JADE_LANTERN, DIAMOND_LANTERN, EMERALD_LANTERN, LAPIS_LANTERN, AMETHYST_LANTERN, QUARTZ_LANTERN)
-
-        ;
+    private static <I extends Item> RegistryObject<I> createItem(String name, Supplier<? extends I> supplier) {
+        RegistryObject<I> item = ITEMS.register(name, supplier);
+        AUTO_TRANSLATE.add(item);
+        return item;
     }
 }

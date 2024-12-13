@@ -1,6 +1,5 @@
 package com.uraneptus.sullysmod.common.blocks;
 
-import com.uraneptus.sullysmod.common.blocks.utilities.SMBlock;
 import com.uraneptus.sullysmod.common.entities.Tortoise;
 import com.uraneptus.sullysmod.core.registry.SMBlocks;
 import com.uraneptus.sullysmod.core.registry.SMEntityTypes;
@@ -32,7 +31,7 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import javax.annotation.Nullable;
 
 @SuppressWarnings({"deprecation", "unused"})
-public class TortoiseEggBlock extends SMBlock {
+public class TortoiseEggBlock extends Block {
     public static final int MAX_HATCH_LEVEL = 2;
     public static final int MIN_EGGS = 1;
     public static final int MAX_EGGS = 4;

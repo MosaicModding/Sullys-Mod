@@ -1,6 +1,14 @@
 package com.uraneptus.sullysmod.core;
 
-public enum SMFeatures {
+import net.minecraft.util.StringRepresentable;
+import net.minecraft.world.entity.MobCategory;
+import org.jetbrains.annotations.NotNull;
+
+import java.util.Arrays;
+import java.util.Map;
+import java.util.stream.Collectors;
+
+public enum SMFeatures implements StringRepresentable {
     JADE,
     PETRIFIED_WOOD,
     AMBER,
@@ -15,13 +23,10 @@ public enum SMFeatures {
     RESISTANCE_POTION,
     COPPER_BUTTONS,
     GEM_LANTERNS,
-    GRINDSTONE_POLISHING,
-    PAINTINGS;
+    GRINDSTONE_POLISHING;
 
-    @Override
-    public String toString() {
-        return super.toString().toLowerCase();
-    }
+    public static final StringRepresentable.EnumCodec<SMFeatures> CODEC = StringRepresentable.fromEnum(SMFeatures::values);
+    private static final Map<String, SMFeatures> BY_NAME = Arrays.stream(values()).collect(Collectors.toMap(SMFeatures::getSerializedName, mobCategory -> mobCategory));
 
     public static boolean isEnabled(SMFeatures feature) {
         return switch (feature) {
@@ -40,7 +45,19 @@ public enum SMFeatures {
             case COPPER_BUTTONS -> SMConfig.ENABLE_COPPER_BUTTONS.get();
             case GEM_LANTERNS -> SMConfig.ENABLE_GEM_LANTERNS.get();
             case GRINDSTONE_POLISHING -> SMConfig.ENABLE_GRINDSTONE_POLISHING.get();
-            case PAINTINGS -> SMConfig.ENABLE_PAINTINGS.get();
         };
+    }
+
+    public static boolean isEnabled(String name) {
+        return isEnabled(SMFeatures.valueOf(name));
+    }
+
+    public static SMFeatures byName(String name) {
+        return BY_NAME.get(name);
+    }
+
+    @Override
+    public @NotNull String getSerializedName() {
+        return this.name().toLowerCase();
     }
 }

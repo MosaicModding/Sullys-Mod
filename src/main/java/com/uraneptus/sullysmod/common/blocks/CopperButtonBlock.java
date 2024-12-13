@@ -1,7 +1,5 @@
 package com.uraneptus.sullysmod.common.blocks;
 
-import com.uraneptus.sullysmod.common.SMToggleable;
-import com.uraneptus.sullysmod.core.SMFeatures;
 import com.uraneptus.sullysmod.core.other.SMItemUtil;
 import com.uraneptus.sullysmod.core.registry.SMBlocks;
 import net.minecraft.core.BlockPos;
@@ -11,7 +9,6 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.AxeItem;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
@@ -22,10 +19,9 @@ import net.minecraft.world.level.block.state.properties.BlockSetType;
 import net.minecraft.world.phys.BlockHitResult;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
-public class CopperButtonBlock extends ButtonBlock implements SMToggleable {
+public class CopperButtonBlock extends ButtonBlock {
 
     public CopperButtonBlock(Properties pProperties, BlockSetType pType, int pTicksToStayPressed, boolean pArrowsCanPress) {
         super(pProperties, pType, pTicksToStayPressed, pArrowsCanPress);
@@ -94,15 +90,5 @@ public class CopperButtonBlock extends ButtonBlock implements SMToggleable {
             returnResult = super.use(state, level, pos, player, hand, result);
         }
         return returnResult;
-    }
-
-    @Override
-    public List<SMFeatures> getFeature() {
-        return List.of();
-    }
-
-    @Override
-    public Item getItem() {
-        return this.asItem();
     }
 }

@@ -1,22 +1,38 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "category": "building",
-  "key": {
-    "#": {
-      "item": "sullysmod:amber"
-    },
-    "X": {
-      "item": "minecraft:glowstone_dust"
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "sullysmod:mod_features",
+          "values": [
+            "amber",
+            "gem_lanterns"
+          ]
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:crafting_shaped",
+        "category": "building",
+        "key": {
+          "#": {
+            "item": "sullysmod:amber"
+          },
+          "X": {
+            "item": "minecraft:glowstone_dust"
+          }
+        },
+        "pattern": [
+          " # ",
+          "#X#",
+          " # "
+        ],
+        "result": {
+          "count": 4,
+          "item": "sullysmod:amber_lantern"
+        },
+        "show_notification": true
+      }
     }
-  },
-  "pattern": [
-    " # ",
-    "#X#",
-    " # "
-  ],
-  "result": {
-    "count": 4,
-    "item": "sullysmod:amber_lantern"
-  },
-  "show_notification": true
+  ]
 }

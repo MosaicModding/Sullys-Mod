@@ -45,7 +45,7 @@ public class SMProperties {
         public static final Rarity ANCIENT = Rarity.create("ancient", ChatFormatting.GOLD);
 
         //Item Specific
-        public static final Item.Properties MUSIC_DISCS = PropertyUtil.stacksOnce().rarity(Rarity.RARE);
+        public static final Item.Properties MUSIC_DISCS = singleStack().rarity(Rarity.RARE);
         public static final Item.Properties JADE_SHIELD = new Item.Properties().durability(400);
         public static Item.Properties artifacts() {
             return new Item.Properties().rarity(ANCIENT);
@@ -53,6 +53,10 @@ public class SMProperties {
 
         public static Item.Properties sixteenStack() {
             return new Item.Properties().stacksTo(16);
+        }
+
+        public static Item.Properties singleStack() {
+            return new Item.Properties().stacksTo(1);
         }
     }
 

@@ -1,13 +1,29 @@
 {
-  "type": "minecraft:crafting_shapeless",
-  "category": "building",
-  "ingredients": [
+  "type": "forge:conditional",
+  "recipes": [
     {
-      "tag": "sullysmod:petrified_logs"
+      "conditions": [
+        {
+          "type": "sullysmod:mod_features",
+          "values": [
+            "petrified_wood",
+            "amber"
+          ]
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:crafting_shapeless",
+        "category": "building",
+        "ingredients": [
+          {
+            "tag": "sullysmod:petrified_logs"
+          }
+        ],
+        "result": {
+          "count": 4,
+          "item": "sullysmod:petrified_planks"
+        }
+      }
     }
-  ],
-  "result": {
-    "count": 4,
-    "item": "sullysmod:petrified_planks"
-  }
+  ]
 }

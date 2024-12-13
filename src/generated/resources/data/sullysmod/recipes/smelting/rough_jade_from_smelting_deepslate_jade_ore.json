@@ -1,10 +1,25 @@
 {
-  "type": "minecraft:smelting",
-  "category": "misc",
-  "cookingtime": 200,
-  "experience": 0.7,
-  "ingredient": {
-    "item": "sullysmod:deepslate_jade_ore"
-  },
-  "result": "sullysmod:rough_jade"
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "sullysmod:mod_features",
+          "values": [
+            "jade"
+          ]
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:smelting",
+        "category": "misc",
+        "cookingtime": 200,
+        "experience": 0.7,
+        "ingredient": {
+          "item": "sullysmod:deepslate_jade_ore"
+        },
+        "result": "sullysmod:rough_jade"
+      }
+    }
+  ]
 }

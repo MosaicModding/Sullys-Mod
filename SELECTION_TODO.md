@@ -1,4 +1,0 @@
-- implement for all items
-- implement for all entities
-- implement for all worldgen feature
-- add option for mod paintings (?)

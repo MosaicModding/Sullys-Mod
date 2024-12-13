@@ -3,6 +3,7 @@ package com.uraneptus.sullysmod.core.events;
 import com.uraneptus.sullysmod.SullysMod;
 import com.uraneptus.sullysmod.common.entities.*;
 import com.uraneptus.sullysmod.core.SMConfig;
+import com.uraneptus.sullysmod.core.SMFeatures;
 import com.uraneptus.sullysmod.core.other.SMTextDefinitions;
 import com.uraneptus.sullysmod.core.other.tags.SMBiomeTags;
 import com.uraneptus.sullysmod.core.registry.SMEntityTypes;
@@ -42,11 +43,11 @@ public class SMCommonModEvents {
     }
 
     public static boolean zombieExtraRules(EntityType<? extends Monster> pType, ServerLevelAccessor pLevel, MobSpawnType pSpawnType, BlockPos pPos, RandomSource pRandom) {
-        return !SMConfig.DISABLE_DEEPSLATE_ZOMBIE_SPAWNS.get() || pSpawnType.equals(MobSpawnType.SPAWNER) || pPos.getY() > 0;
+        return (!SMConfig.DISABLE_DEEPSLATE_ZOMBIE_SPAWNS.get() || !SMFeatures.isEnabled(SMFeatures.BOULDERING_ZOMBIE)) || pSpawnType.equals(MobSpawnType.SPAWNER) || pPos.getY() > 0;
     }
 
     public static boolean spiderExtraRules(EntityType<? extends Monster> pType, ServerLevelAccessor pLevel, MobSpawnType pSpawnType, BlockPos pPos, RandomSource pRandom) {
-        return !SMConfig.DISABLE_SPIDER_IN_JUNGLE_SPAWNS.get() || pSpawnType.equals(MobSpawnType.SPAWNER) || !pLevel.getBiome(pPos).is(SMBiomeTags.JUNGLE_SPIDER_SPAWN_IN);
+        return (!SMConfig.DISABLE_SPIDER_IN_JUNGLE_SPAWNS.get() || !SMFeatures.isEnabled(SMFeatures.JUNGLE_SPIDER)) || pSpawnType.equals(MobSpawnType.SPAWNER) || !pLevel.getBiome(pPos).is(SMBiomeTags.JUNGLE_SPIDER_SPAWN_IN);
     }
 
     @SubscribeEvent

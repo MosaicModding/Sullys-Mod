@@ -1,13 +1,11 @@
 package com.uraneptus.sullysmod.core.registry;
 
-import com.teamabnormals.blueprint.core.util.DataUtil;
 import com.uraneptus.sullysmod.core.SMFeatures;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.alchemy.Potion;
 import net.minecraft.world.item.alchemy.PotionBrewing;
 import net.minecraft.world.item.alchemy.Potions;
-import net.minecraftforge.common.brewing.BrewingRecipe;
 
 public class SMBrewingRecipes {
 
