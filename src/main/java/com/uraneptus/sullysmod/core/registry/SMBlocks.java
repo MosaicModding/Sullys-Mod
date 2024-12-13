@@ -31,7 +31,6 @@ import java.util.function.Supplier;
 @Mod.EventBusSubscriber(modid = SullysMod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class SMBlocks {
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, SullysMod.MOD_ID);
-    //TODO implement this for items as well
     public static List<RegistryObject<? extends Block>> AUTO_TRANSLATE = new ArrayList<>();
 
     //Jade
@@ -77,7 +76,7 @@ public class SMBlocks {
     public static final RegistryObject<Block> ROUGH_AMBER = createBlock("rough_amber", () -> new SolidAmberBlock(SMProperties.Blocks.AMBER_BUILDING_BLOCKS));
     public static final RegistryObject<Block> CHISELED_AMBER = createBlock("chiseled_amber", () -> new SolidAmberBlock(SMProperties.Blocks.AMBER_BUILDING_BLOCKS));
     public static final RegistryObject<Block> AMBER_PILLAR = createBlock("amber_pillar", () -> new AmberRotatedPillarBlock(SMProperties.Blocks.AMBER_BUILDING_BLOCKS));
-    public static final RegistryObject<LiquidBlock> MOLTEN_AMBER_BLOCK = createBlockNoItem("molten_amber_block", () -> new LiquidBlock(SMFluids.SOURCE_MOLTEN_AMBER, BlockBehaviour.Properties.copy(Blocks.LAVA).lightLevel(blockState -> 0)));
+    public static final RegistryObject<LiquidBlock> MOLTEN_AMBER_BLOCK = createBlockNoItem("molten_amber_block", () -> new LiquidBlock(SMFluids.SOURCE_MOLTEN_AMBER, BlockBehaviour.Properties.copy(Blocks.LAVA).speedFactor(0.5F).lightLevel(blockState -> 0)));
     public static final RegistryObject<Block> AMBER_CAULDRON = createBlockNoItem("amber_cauldron", () -> new AmberLayeredCauldronBlock(BlockBehaviour.Properties.copy(Blocks.CAULDRON)));
 
     //Gem Lanterns

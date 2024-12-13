@@ -4,12 +4,12 @@
       "advancement": {
         "parent": "minecraft:recipes/root",
         "criteria": {
-          "has_jade_bricks": {
+          "has_jade_brick_slab": {
             "conditions": {
               "items": [
                 {
                   "items": [
-                    "sullysmod:jade_bricks"
+                    "sullysmod:jade_brick_slab"
                   ]
                 }
               ]
@@ -25,7 +25,7 @@
         },
         "requirements": [
           [
-            "has_jade_bricks",
+            "has_jade_brick_slab",
             "has_the_recipe"
           ]
         ],

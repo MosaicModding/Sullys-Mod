@@ -27,10 +27,7 @@ public class SMFeatureRecipeCondition implements ICondition {
 
     @Override
     public boolean test(IContext context) {
-        return condition.stream().allMatch(o -> {
-            System.out.println(o.getSerializedName());
-            return SMFeatures.isEnabled(o);
-        });
+        return condition.stream().allMatch(SMFeatures::isEnabled);
     }
 
     public static class Serializer implements IConditionSerializer<SMFeatureRecipeCondition> {
@@ -45,7 +42,6 @@ public class SMFeatureRecipeCondition implements ICondition {
             JsonArray values = new JsonArray();
             for (SMFeatures feature : value.condition) {
                 values.add(feature.getSerializedName());
-                System.out.println(feature.getSerializedName());
             }
             json.add("values", values);
         }
@@ -55,7 +51,6 @@ public class SMFeatureRecipeCondition implements ICondition {
             List<SMFeatures> features = new ArrayList<>();
             for (JsonElement element : json.getAsJsonArray("values")) {
                 SMFeatures feature = SMFeatures.byName(element.getAsString());
-                System.out.println(feature.getSerializedName());
                 features.add(feature);
             }
             return new SMFeatureRecipeCondition(features);

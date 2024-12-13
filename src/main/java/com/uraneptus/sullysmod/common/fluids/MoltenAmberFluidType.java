@@ -4,6 +4,8 @@ import com.uraneptus.sullysmod.SullysMod;
 import net.minecraft.client.Camera;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.client.extensions.common.IClientFluidTypeExtensions;
 import net.minecraftforge.fluids.FluidType;
 import org.jetbrains.annotations.NotNull;
@@ -19,6 +21,11 @@ public class MoltenAmberFluidType extends FluidType {
         super(properties);
     }
 
+    @Override
+    public void setItemMovement(ItemEntity entity) {
+        Vec3 vec3 = entity.getDeltaMovement();
+        entity.setDeltaMovement(vec3.x * (double)0.95F, vec3.y + (double)(vec3.y < (double)0.06F ? 5.0E-4F : 0.0F), vec3.z * (double)0.95F);
+    }
 
     @Override
     public void initializeClient(Consumer<IClientFluidTypeExtensions> consumer) {

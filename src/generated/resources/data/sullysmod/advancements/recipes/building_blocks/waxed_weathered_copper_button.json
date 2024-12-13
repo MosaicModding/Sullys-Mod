@@ -10,12 +10,12 @@
             },
             "trigger": "minecraft:recipe_unlocked"
           },
-          "has_weathered_copper_button": {
+          "has_waxed_weathered_cut_copper": {
             "conditions": {
               "items": [
                 {
                   "items": [
-                    "sullysmod:weathered_copper_button"
+                    "minecraft:waxed_weathered_cut_copper"
                   ]
                 }
               ]
@@ -25,7 +25,7 @@
         },
         "requirements": [
           [
-            "has_weathered_copper_button",
+            "has_waxed_weathered_cut_copper",
             "has_the_recipe"
           ]
         ],

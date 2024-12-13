@@ -25,11 +25,12 @@ import net.minecraft.world.level.material.FluidState;
 import net.minecraftforge.event.ForgeEventFactory;
 import net.minecraftforge.fluids.FluidType;
 import net.minecraftforge.fluids.ForgeFlowingFluid;
+import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
 import java.util.Optional;
 
-//TODO clean up
+//TODO clean up more. I only did the bare minimum for now
 public class MoltenAmberFluid extends ForgeFlowingFluid {
     public static final float MIN_LEVEL_CUTOFF = 0.44444445F;
 
@@ -55,40 +56,6 @@ public class MoltenAmberFluid extends ForgeFlowingFluid {
     }
 
     public void randomTick(Level pLevel, BlockPos pPos, FluidState pState, RandomSource pRandom) {
-        if (pLevel.getGameRules().getBoolean(GameRules.RULE_DOFIRETICK)) {
-            int i = pRandom.nextInt(3);
-            if (i > 0) {
-                BlockPos blockpos = pPos;
-
-                for(int j = 0; j < i; ++j) {
-                    blockpos = blockpos.offset(pRandom.nextInt(3) - 1, 1, pRandom.nextInt(3) - 1);
-                    if (!pLevel.isLoaded(blockpos)) {
-                        return;
-                    }
-
-                    BlockState blockstate = pLevel.getBlockState(blockpos);
-                    if (blockstate.isAir()) {
-                        if (this.hasFlammableNeighbours(pLevel, blockpos)) {
-                            pLevel.setBlockAndUpdate(blockpos, ForgeEventFactory.fireFluidPlaceBlockEvent(pLevel, blockpos, pPos, Blocks.FIRE.defaultBlockState()));
-                            return;
-                        }
-                    } else if (blockstate.blocksMotion()) {
-                        return;
-                    }
-                }
-            } else {
-                for(int k = 0; k < 3; ++k) {
-                    BlockPos blockpos1 = pPos.offset(pRandom.nextInt(3) - 1, 0, pRandom.nextInt(3) - 1);
-                    if (!pLevel.isLoaded(blockpos1)) {
-                        return;
-                    }
-
-                    if (pLevel.isEmptyBlock(blockpos1.above()) && this.isFlammable(pLevel, blockpos1, Direction.UP)) {
-                        pLevel.setBlockAndUpdate(blockpos1.above(), ForgeEventFactory.fireFluidPlaceBlockEvent(pLevel, blockpos1.above(), pPos, Blocks.FIRE.defaultBlockState()));
-                    }
-                }
-            }
-        }
         int k = 2;
         if (pState.isSource()) {
             k = 15;
@@ -113,43 +80,13 @@ public class MoltenAmberFluid extends ForgeFlowingFluid {
         }
     }
 
-    private boolean hasFlammableNeighbours(LevelReader pLevel, BlockPos pPos) {
-        Direction[] var3 = Direction.values();
-
-        for (Direction direction : var3) {
-            if (this.isFlammable(pLevel, pPos.relative(direction), direction.getOpposite())) {
-                return true;
-            }
-        }
-
-        return false;
-    }
-
-    /** @deprecated */
-    @Deprecated
-    private boolean isFlammable(LevelReader pLevel, BlockPos pPos) {
-        return pPos.getY() >= pLevel.getMinBuildHeight() && pPos.getY() < pLevel.getMaxBuildHeight() && !pLevel.hasChunkAt(pPos) ? false : pLevel.getBlockState(pPos).ignitedByLava();
-    }
-
-    private boolean isFlammable(LevelReader level, BlockPos pos, Direction face) {
-        return pos.getY() >= level.getMinBuildHeight() && pos.getY() < level.getMaxBuildHeight() && !level.hasChunkAt(pos) ? false : level.getBlockState(pos).isFlammable(level, pos, face);
-    }
-
-    @Nullable
-    public ParticleOptions getDripParticle() {
-        return ParticleTypes.DRIPPING_LAVA;
-    }
-
-    protected void beforeDestroyingBlock(LevelAccessor pLevel, BlockPos pPos, BlockState pState) {
-        this.fizz(pLevel, pPos);
-    }
-
     public int getSlopeFindDistance(LevelReader pLevel) {
         return pLevel.dimensionType().ultraWarm() ? 4 : 2;
     }
 
-    public BlockState createLegacyBlock(FluidState pState) {
-        return (BlockState) SMBlocks.MOLTEN_AMBER_BLOCK.get().defaultBlockState().setValue(LiquidBlock.LEVEL, getLegacyLevel(pState));
+    @Override
+    public @NotNull BlockState createLegacyBlock(FluidState pState) {
+        return SMBlocks.MOLTEN_AMBER_BLOCK.get().defaultBlockState().setValue(LiquidBlock.LEVEL, getLegacyLevel(pState));
     }
 
     @Override
@@ -157,38 +94,38 @@ public class MoltenAmberFluid extends ForgeFlowingFluid {
         return false;
     }
 
+    @Override
     public boolean isSame(Fluid pFluid) {
         return pFluid == SMFluids.SOURCE_MOLTEN_AMBER.get() || pFluid == SMFluids.FLOWING_MOLTEN_AMBER.get();
     }
 
+    @Override
     public int getDropOff(LevelReader pLevel) {
         return pLevel.dimensionType().ultraWarm() ? 1 : 2;
     }
 
+    @Override
     public boolean canBeReplacedWith(FluidState pFluidState, BlockGetter pBlockReader, BlockPos pPos, Fluid pFluid, Direction pDirection) {
         return pFluidState.getHeight(pBlockReader, pPos) >= 0.44444445F && pFluid.is(FluidTags.WATER);
     }
 
+    @Override
     public int getTickDelay(LevelReader pLevel) {
         return pLevel.dimensionType().ultraWarm() ? 10 : 30;
     }
 
+    @Override
     public int getSpreadDelay(Level pLevel, BlockPos pPos, FluidState pCurrentState, FluidState pNewState) {
         int i = this.getTickDelay(pLevel);
         if (!pCurrentState.isEmpty() && !pNewState.isEmpty() && !(Boolean)pCurrentState.getValue(FALLING) && !(Boolean)pNewState.getValue(FALLING) && pNewState.getHeight(pLevel, pPos) > pCurrentState.getHeight(pLevel, pPos) && pLevel.getRandom().nextInt(4) != 0) {
             i *= 4;
         }
-
         return i;
     }
 
     @Override
     public int getAmount(FluidState fluidState) {
-        return (Integer)fluidState.getValue(LEVEL);
-    }
-
-    private void fizz(LevelAccessor pLevel, BlockPos pPos) {
-        pLevel.levelEvent(1501, pPos, 0);
+        return fluidState.getValue(LEVEL);
     }
 
     protected boolean canConvertToSource(Level pLevel) {
@@ -204,7 +141,6 @@ public class MoltenAmberFluid extends ForgeFlowingFluid {
                     pLevel.setBlock(pPos, ForgeEventFactory.fireFluidPlaceBlockEvent(pLevel, pPos, pPos, SMBlocks.AMBER.get().defaultBlockState()), 3);
                 }
 
-                this.fizz(pLevel, pPos);
                 return;
             }
         }
@@ -247,15 +183,12 @@ public class MoltenAmberFluid extends ForgeFlowingFluid {
 
         protected void createFluidStateDefinition(StateDefinition.Builder<Fluid, FluidState> pBuilder) {
             super.createFluidStateDefinition(pBuilder);
-            pBuilder.add(new Property[]{LEVEL});
+            pBuilder.add(LEVEL);
         }
 
         public int getAmount(FluidState pState) {
-            return (Integer)pState.getValue(LEVEL);
+            return pState.getValue(LEVEL);
         }
 
-        public boolean isSource(FluidState pState) {
-            return false;
-        }
     }
 }

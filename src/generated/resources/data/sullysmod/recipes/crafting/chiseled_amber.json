@@ -1,0 +1,32 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "sullysmod:mod_features",
+          "values": [
+            "amber"
+          ]
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:crafting_shaped",
+        "category": "building",
+        "key": {
+          "#": {
+            "item": "sullysmod:amber_brick_slab"
+          }
+        },
+        "pattern": [
+          "#",
+          "#"
+        ],
+        "result": {
+          "item": "sullysmod:chiseled_amber"
+        },
+        "show_notification": true
+      }
+    }
+  ]
+}

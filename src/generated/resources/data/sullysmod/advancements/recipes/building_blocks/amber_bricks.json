@@ -4,24 +4,12 @@
       "advancement": {
         "parent": "minecraft:recipes/root",
         "criteria": {
-          "has_feather": {
+          "has_rough_amber": {
             "conditions": {
               "items": [
                 {
                   "items": [
-                    "minecraft:feather"
-                  ]
-                }
-              ]
-            },
-            "trigger": "minecraft:inventory_changed"
-          },
-          "has_piranha_tooth": {
-            "conditions": {
-              "items": [
-                {
-                  "items": [
-                    "sullysmod:piranha_tooth"
+                    "sullysmod:rough_amber"
                   ]
                 }
               ]
@@ -30,21 +18,20 @@
           },
           "has_the_recipe": {
             "conditions": {
-              "recipe": "sullysmod:arrow"
+              "recipe": "sullysmod:amber_bricks"
             },
             "trigger": "minecraft:recipe_unlocked"
           }
         },
         "requirements": [
           [
-            "has_feather",
-            "has_piranha_tooth",
+            "has_rough_amber",
             "has_the_recipe"
           ]
         ],
         "rewards": {
           "recipes": [
-            "sullysmod:arrow"
+            "sullysmod:amber_bricks"
           ]
         },
         "sends_telemetry_event": false
@@ -53,7 +40,7 @@
         {
           "type": "sullysmod:mod_features",
           "values": [
-            "piranha"
+            "amber"
           ]
         }
       ]

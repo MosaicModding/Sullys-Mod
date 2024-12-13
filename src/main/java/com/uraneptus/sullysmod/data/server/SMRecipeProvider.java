@@ -50,19 +50,25 @@ public class SMRecipeProvider extends RecipeProvider {
 
         tilingBlockRecipes(SMBlocks.ROUGH_JADE_BLOCK, SMBlocks.ROUGH_JADE_BRICKS, consumer, SMFeatures.JADE);
         tilingBlockRecipes(SMBlocks.JADE_BLOCK, SMBlocks.JADE_BRICKS, consumer, SMFeatures.JADE);
+        tilingBlockRecipes(SMBlocks.ROUGH_AMBER, SMBlocks.AMBER_BRICKS, consumer, SMFeatures.AMBER);
 
         stairRecipes(SMBlocks.ROUGH_JADE_BRICKS, SMBlocks.ROUGH_JADE_BRICK_STAIRS, consumer, SMFeatures.JADE);
         stairRecipes(SMBlocks.JADE_BRICKS, SMBlocks.JADE_BRICK_STAIRS, consumer, SMFeatures.JADE);
+        stairRecipes(SMBlocks.AMBER_BRICKS, SMBlocks.AMBER_BRICK_STAIRS, consumer, SMFeatures.AMBER);
 
         slabRecipes(SMBlocks.ROUGH_JADE_BRICKS, SMBlocks.ROUGH_JADE_BRICK_SLAB, consumer, SMFeatures.JADE);
         slabRecipes(SMBlocks.JADE_BRICKS, SMBlocks.JADE_BRICK_SLAB, consumer, SMFeatures.JADE);
+        slabRecipes(SMBlocks.AMBER_BRICKS, SMBlocks.AMBER_BRICK_SLAB, consumer, SMFeatures.AMBER);
 
         wallRecipes(SMBlocks.ROUGH_JADE_BRICKS, SMBlocks.ROUGH_JADE_BRICK_WALL, consumer, SMFeatures.JADE);
         wallRecipes(SMBlocks.JADE_BRICKS, SMBlocks.JADE_BRICK_WALL, consumer, SMFeatures.JADE);
+        wallRecipes(SMBlocks.AMBER_BRICKS, SMBlocks.AMBER_BRICK_WALL, consumer, SMFeatures.AMBER);
 
         pillarRecipes(SMBlocks.JADE_BLOCK, SMBlocks.JADE_PILLAR, consumer, SMFeatures.JADE);
+        pillarRecipes(SMBlocks.AMBER_BRICKS, SMBlocks.AMBER_PILLAR, consumer, SMFeatures.AMBER);
 
         chiseledRecipes(SMBlocks.JADE_BRICK_SLAB, SMBlocks.CHISELED_JADE, consumer, SMFeatures.JADE);
+        chiseledRecipes(SMBlocks.AMBER_BRICK_SLAB, SMBlocks.CHISELED_AMBER, consumer, SMFeatures.AMBER);
 
         buttonRecipes(RecipeCategory.REDSTONE, Blocks.CUT_COPPER, SMBlocks.COPPER_BUTTON, consumer, SMFeatures.COPPER_BUTTONS);
         buttonRecipes(RecipeCategory.REDSTONE, Blocks.EXPOSED_CUT_COPPER, SMBlocks.EXPOSED_COPPER_BUTTON, consumer, SMFeatures.COPPER_BUTTONS);
@@ -111,6 +117,13 @@ public class SMRecipeProvider extends RecipeProvider {
         stonecutterRecipes(RecipeCategory.BUILDING_BLOCKS, SMBlocks.JADE_BRICKS, SMBlocks.JADE_BRICK_SLAB, 2, consumer, SMFeatures.JADE);
         stonecutterRecipes(RecipeCategory.BUILDING_BLOCKS, SMBlocks.JADE_BRICKS, SMBlocks.JADE_BRICK_STAIRS, 1, consumer, SMFeatures.JADE);
         stonecutterRecipes(RecipeCategory.BUILDING_BLOCKS, SMBlocks.JADE_BRICKS, SMBlocks.JADE_BRICK_WALL, 1, consumer, SMFeatures.JADE);
+
+        stonecutterRecipes(RecipeCategory.BUILDING_BLOCKS, SMBlocks.AMBER_BRICKS, SMBlocks.AMBER_PILLAR, 1, consumer, SMFeatures.AMBER);
+        stonecutterRecipes(RecipeCategory.BUILDING_BLOCKS, SMBlocks.AMBER_BRICKS, SMBlocks.CHISELED_AMBER, 1, consumer, SMFeatures.AMBER);
+        stonecutterRecipes(RecipeCategory.BUILDING_BLOCKS, SMBlocks.ROUGH_AMBER, SMBlocks.AMBER_BRICKS, 1, consumer, SMFeatures.AMBER);
+        stonecutterRecipes(RecipeCategory.BUILDING_BLOCKS, SMBlocks.AMBER_BRICKS, SMBlocks.AMBER_BRICK_SLAB, 2, consumer, SMFeatures.AMBER);
+        stonecutterRecipes(RecipeCategory.BUILDING_BLOCKS, SMBlocks.AMBER_BRICKS, SMBlocks.AMBER_BRICK_STAIRS, 1, consumer, SMFeatures.AMBER);
+        stonecutterRecipes(RecipeCategory.BUILDING_BLOCKS, SMBlocks.AMBER_BRICKS, SMBlocks.AMBER_BRICK_WALL, 1, consumer, SMFeatures.AMBER);
 
         //Grindstone Polishing
         grindstonePolishingRecipes(RecipeCategory.MISC, SMItems.ROUGH_JADE.get(), SMItems.JADE.get(), 1, consumer);
