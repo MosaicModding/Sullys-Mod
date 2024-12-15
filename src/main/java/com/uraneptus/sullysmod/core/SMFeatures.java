@@ -1,7 +1,6 @@
 package com.uraneptus.sullysmod.core;
 
 import net.minecraft.util.StringRepresentable;
-import net.minecraft.world.entity.MobCategory;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Arrays;

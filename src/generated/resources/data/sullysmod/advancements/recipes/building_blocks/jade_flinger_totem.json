@@ -4,12 +4,12 @@
       "advancement": {
         "parent": "minecraft:recipes/root",
         "criteria": {
-          "has_jade_bricks": {
+          "has_jade_totem": {
             "conditions": {
               "items": [
                 {
                   "items": [
-                    "sullysmod:jade_bricks"
+                    "sullysmod:jade_totem"
                   ]
                 }
               ]
@@ -38,7 +38,7 @@
         "requirements": [
           [
             "has_tripwire_hook",
-            "has_jade_bricks",
+            "has_jade_totem",
             "has_the_recipe"
           ]
         ],

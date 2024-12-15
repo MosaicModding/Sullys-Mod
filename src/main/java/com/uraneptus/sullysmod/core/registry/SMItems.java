@@ -1,11 +1,9 @@
 package com.uraneptus.sullysmod.core.registry;
 
 import com.teamabnormals.blueprint.core.util.PropertyUtil;
-import com.teamabnormals.blueprint.core.util.item.CreativeModeTabContentsPopulator;
 import com.uraneptus.sullysmod.SullysMod;
 import com.uraneptus.sullysmod.client.model.MinersHelmetModel;
 import com.uraneptus.sullysmod.common.items.*;
-import com.uraneptus.sullysmod.core.SMFeatures;
 import com.uraneptus.sullysmod.core.other.SMArmorMaterials;
 import com.uraneptus.sullysmod.core.other.SMProperties;
 import com.uraneptus.sullysmod.core.other.SMTextDefinitions;
@@ -15,7 +13,10 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.animal.WaterAnimal;
-import net.minecraft.world.item.*;
+import net.minecraft.world.item.BucketItem;
+import net.minecraft.world.item.HorseArmorItem;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.MobBucketItem;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraftforge.common.ForgeSpawnEggItem;
 import net.minecraftforge.registries.DeferredRegister;
@@ -27,9 +28,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Supplier;
-
-import static com.uraneptus.sullysmod.core.registry.SMBlocks.*;
-import static net.minecraft.world.item.crafting.Ingredient.of;
 
 public class SMItems {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, SullysMod.MOD_ID);
@@ -158,7 +156,7 @@ public class SMItems {
         return item;
     }
 
-    private static <I extends Item> RegistryObject<I> createItem(String name, Supplier<? extends I> supplier) {
+    public static <I extends Item> RegistryObject<I> createItem(String name, Supplier<? extends I> supplier) {
         RegistryObject<I> item = ITEMS.register(name, supplier);
         AUTO_TRANSLATE.add(item);
         return item;

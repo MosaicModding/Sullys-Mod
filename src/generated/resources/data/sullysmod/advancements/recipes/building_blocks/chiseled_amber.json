@@ -4,12 +4,12 @@
       "advancement": {
         "parent": "minecraft:recipes/root",
         "criteria": {
-          "has_amber_bricks": {
+          "has_amber_brick_slab": {
             "conditions": {
               "items": [
                 {
                   "items": [
-                    "sullysmod:amber_bricks"
+                    "sullysmod:amber_brick_slab"
                   ]
                 }
               ]
@@ -25,7 +25,7 @@
         },
         "requirements": [
           [
-            "has_amber_bricks",
+            "has_amber_brick_slab",
             "has_the_recipe"
           ]
         ],
