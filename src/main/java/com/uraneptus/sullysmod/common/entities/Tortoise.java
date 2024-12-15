@@ -61,6 +61,7 @@ public class Tortoise extends Animal implements WorkstationAttachable {
     public final AnimationState hiddenState = new AnimationState();
     public final AnimationState reveal_state = new AnimationState();
     private int layEggCounter;
+    //TODO make the soundinstance be played by a packet instead of being called here
     private FollowJukeboxEntitySoundInstance soundInstance;
     private long recordTickCount;
     private long recordStartedTick;
