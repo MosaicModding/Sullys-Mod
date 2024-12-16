@@ -23,6 +23,8 @@ import net.minecraft.world.item.RecordItem;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.Vec3;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.network.NetworkHooks;
 import org.jetbrains.annotations.NotNull;
 
@@ -38,12 +40,11 @@ public interface WorkstationAttachable {
     }
     ItemStack getRecordItem();
     void setRecordItem(ItemStack itemStack);
-    FollowJukeboxEntitySoundInstance getSoundInstance();
-    void setSoundInstance(FollowJukeboxEntitySoundInstance itemStack);
     long getRecordTickCount();
     void setRecordTickCount(long tickCount);
     long getRecordStartedTick();
     void setRecordStartedTick(long startedTick);
+    //TODO sync this
     boolean isRecordPlaying();
     void setRecordPlaying(boolean isPlaying);
     int getTicksSinceLastEvent();
@@ -81,8 +82,6 @@ public interface WorkstationAttachable {
                             this.setRecordPlaying(false);
                             this.setRecordTickCount(0);
                             this.setTicksSinceLastEvent(0);
-                        } else {
-                            Minecraft.getInstance().getSoundManager().stop(getSoundInstance());
                         }
                     }
                     SMItemUtil.nonCreativeAddItems(pPlayer, new ItemStack(this.getAppliedWorkstation().getItem()));
@@ -108,23 +107,17 @@ public interface WorkstationAttachable {
                                 this.setRecordPlaying(false);
                                 this.setRecordTickCount(0);
                                 this.setTicksSinceLastEvent(0);
-                            } else {
-                                Minecraft.getInstance().getSoundManager().stop(getSoundInstance());
                             }
-                            return InteractionResult.SUCCESS;
+                            return InteractionResult.sidedSuccess(entity.level().isClientSide());
                         }
                     } else if (itemInHand.getItem() instanceof RecordItem recordItem) {
                         if (getRecordItem().isEmpty()) {
                             setRecordItem(recordItem.getDefaultInstance());
                             SMItemUtil.nonCreativeShrinkStack(pPlayer, itemInHand);
-                            setSoundInstance(new FollowJukeboxEntitySoundInstance(entity, recordItem.getSound()));
                             this.setRecordStartedTick(this.getRecordTickCount());
                             this.setRecordPlaying(true);
-
                             if (entity.level().isClientSide()) {
-                                Minecraft mc = Minecraft.getInstance();
-                                mc.gui.setNowPlaying(recordItem.getDisplayName());
-                                mc.getSoundManager().queueTickingSound(getSoundInstance());
+                                startRecordPlaying(entity, recordItem);
                             }
                             return InteractionResult.sidedSuccess(entity.level().isClientSide());
                         }
@@ -149,6 +142,13 @@ public interface WorkstationAttachable {
         }
 
         return InteractionResult.PASS;
+    }
+
+    @OnlyIn(Dist.CLIENT)
+    default void startRecordPlaying(Entity entity, RecordItem recordItem) {
+        Minecraft mc = Minecraft.getInstance();
+        mc.getSoundManager().queueTickingSound(new FollowJukeboxEntitySoundInstance(entity, recordItem.getSound()));
+        mc.gui.setNowPlaying(recordItem.getDisplayName());
     }
 
     default void openCraftingMenu(ServerPlayer player, Entity entity) {

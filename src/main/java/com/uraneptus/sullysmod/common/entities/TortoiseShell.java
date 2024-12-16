@@ -1,13 +1,11 @@
 package com.uraneptus.sullysmod.common.entities;
 
-import com.uraneptus.sullysmod.client.sound.FollowJukeboxEntitySoundInstance;
 import com.uraneptus.sullysmod.core.other.tags.SMBlockTags;
 import com.uraneptus.sullysmod.core.registry.SMDamageTypes;
 import com.uraneptus.sullysmod.core.registry.SMEntityTypes;
 import com.uraneptus.sullysmod.core.registry.SMItems;
 import com.uraneptus.sullysmod.core.registry.SMSounds;
 import net.minecraft.BlockUtil;
-import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
@@ -50,10 +48,9 @@ public class TortoiseShell extends Entity implements OwnableEntity, WorkstationA
     public static final EntityDataAccessor<Integer> SPIN_TICKS = SynchedEntityData.defineId(TortoiseShell.class, EntityDataSerializers.INT);
     private static final EntityDataAccessor<ItemStack> WORKSTATION = SynchedEntityData.defineId(TortoiseShell.class, EntityDataSerializers.ITEM_STACK);
     private static final EntityDataAccessor<ItemStack> RECORD_ITEM = SynchedEntityData.defineId(TortoiseShell.class, EntityDataSerializers.ITEM_STACK);
-    FollowJukeboxEntitySoundInstance soundInstance;
+    private static final EntityDataAccessor<Boolean> IS_RECORD_PLAYING = SynchedEntityData.defineId(TortoiseShell.class, EntityDataSerializers.BOOLEAN);
     long recordTickCount;
     long recordStartedTick;
-    boolean isPlaying;
     int ticksSinceLastEvent;
 
     public TortoiseShell(EntityType<? extends TortoiseShell> pEntityType, Level pLevel) {
@@ -99,6 +96,7 @@ public class TortoiseShell extends Entity implements OwnableEntity, WorkstationA
         this.entityData.define(DATA_OWNERUUID_ID, Optional.empty());
         this.entityData.define(WORKSTATION, ItemStack.EMPTY);
         this.entityData.define(RECORD_ITEM, ItemStack.EMPTY);
+        this.entityData.define(IS_RECORD_PLAYING, false);
     }
 
     public Integer getSpinTicksEntityData() {
@@ -389,7 +387,7 @@ public class TortoiseShell extends Entity implements OwnableEntity, WorkstationA
     @Override
     public void onClientRemoval() {
         if (this.hasAppliedWorkstation() && !this.getRecordItem().isEmpty()) {
-            Minecraft.getInstance().getSoundManager().stop(getSoundInstance());
+
         }
         super.onClientRemoval();
     }
@@ -462,14 +460,6 @@ public class TortoiseShell extends Entity implements OwnableEntity, WorkstationA
         this.entityData.set(RECORD_ITEM, itemStack);
     }
     @Override
-    public FollowJukeboxEntitySoundInstance getSoundInstance() {
-        return this.soundInstance;
-    }
-    @Override
-    public void setSoundInstance(FollowJukeboxEntitySoundInstance soundInstance) {
-        this.soundInstance = soundInstance;
-    }
-    @Override
     public long getRecordTickCount() {
         return this.tickCount;
     }
@@ -487,11 +477,11 @@ public class TortoiseShell extends Entity implements OwnableEntity, WorkstationA
     }
     @Override
     public boolean isRecordPlaying() {
-        return this.isPlaying;
+        return this.entityData.get(IS_RECORD_PLAYING);
     }
     @Override
     public void setRecordPlaying(boolean isPlaying) {
-        this.isPlaying = isPlaying;
+        this.entityData.set(IS_RECORD_PLAYING, isPlaying);
     }
     @Override
     public int getTicksSinceLastEvent() {

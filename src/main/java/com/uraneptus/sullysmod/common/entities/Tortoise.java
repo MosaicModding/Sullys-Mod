@@ -1,6 +1,5 @@
 package com.uraneptus.sullysmod.common.entities;
 
-import com.uraneptus.sullysmod.client.sound.FollowJukeboxEntitySoundInstance;
 import com.uraneptus.sullysmod.common.blocks.TortoiseEggBlock;
 import com.uraneptus.sullysmod.core.other.tags.SMEntityTags;
 import com.uraneptus.sullysmod.core.other.tags.SMItemTags;
@@ -9,7 +8,6 @@ import com.uraneptus.sullysmod.core.registry.SMEntityTypes;
 import com.uraneptus.sullysmod.core.registry.SMItems;
 import com.uraneptus.sullysmod.core.registry.SMSounds;
 import net.minecraft.advancements.CriteriaTriggers;
-import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
@@ -56,16 +54,14 @@ public class Tortoise extends Animal implements WorkstationAttachable {
     private static final EntityDataAccessor<Boolean> LAYING_EGG = SynchedEntityData.defineId(Tortoise.class, EntityDataSerializers.BOOLEAN);
     private static final EntityDataAccessor<ItemStack> WORKSTATION = SynchedEntityData.defineId(Tortoise.class, EntityDataSerializers.ITEM_STACK);
     private static final EntityDataAccessor<ItemStack> RECORD_ITEM = SynchedEntityData.defineId(Tortoise.class, EntityDataSerializers.ITEM_STACK);
+    private static final EntityDataAccessor<Boolean> IS_RECORD_PLAYING = SynchedEntityData.defineId(Tortoise.class, EntityDataSerializers.BOOLEAN);
     public static final Ingredient FOOD_ITEMS = Ingredient.of(SMItemTags.TORTOISE_FOOD);
     public final AnimationState hideState = new AnimationState();
     public final AnimationState hiddenState = new AnimationState();
     public final AnimationState reveal_state = new AnimationState();
     private int layEggCounter;
-    //TODO make the soundinstance be played by a packet instead of being called here
-    private FollowJukeboxEntitySoundInstance soundInstance;
     private long recordTickCount;
     private long recordStartedTick;
-    private boolean isPlaying;
     private int ticksSinceLastEvent;
 
     public Tortoise(EntityType<? extends Animal> entityType, Level level) {
@@ -156,7 +152,7 @@ public class Tortoise extends Animal implements WorkstationAttachable {
     @Override
     public void onClientRemoval() {
         if (this.hasAppliedWorkstation() && !this.getRecordItem().isEmpty()) {
-            Minecraft.getInstance().getSoundManager().stop(getSoundInstance());
+
         }
         super.onClientRemoval();
     }
@@ -357,16 +353,6 @@ public class Tortoise extends Animal implements WorkstationAttachable {
     }
 
     @Override
-    public FollowJukeboxEntitySoundInstance getSoundInstance() {
-        return this.soundInstance;
-    }
-
-    @Override
-    public void setSoundInstance(FollowJukeboxEntitySoundInstance soundInstance) {
-        this.soundInstance = soundInstance;
-    }
-
-    @Override
     public long getRecordTickCount() {
         return this.recordTickCount;
     }
@@ -388,12 +374,12 @@ public class Tortoise extends Animal implements WorkstationAttachable {
 
     @Override
     public boolean isRecordPlaying() {
-        return this.isPlaying;
+        return this.entityData.get(IS_RECORD_PLAYING);
     }
 
     @Override
     public void setRecordPlaying(boolean isPlaying) {
-        this.isPlaying = isPlaying;
+        this.entityData.set(IS_RECORD_PLAYING, isPlaying);
     }
 
     @Override
@@ -461,6 +447,7 @@ public class Tortoise extends Animal implements WorkstationAttachable {
         this.entityData.define(LAYING_EGG, false);
         this.entityData.define(WORKSTATION, ItemStack.EMPTY);
         this.entityData.define(RECORD_ITEM, ItemStack.EMPTY);
+        this.entityData.define(IS_RECORD_PLAYING, false);
     }
 
     @Override
