@@ -69,7 +69,7 @@ public class MoltenAmberFluid extends ForgeFlowingFluid {
             }
             if (cooldown) {
                 if (pLevel.getBlockState(pPos).getBlock() instanceof LiquidBlock) {
-                    pLevel.setBlock(pPos, ForgeEventFactory.fireFluidPlaceBlockEvent(pLevel, pPos, pPos, SMBlocks.AMBER.get().defaultBlockState()), 3);
+                    pLevel.setBlock(pPos, ForgeEventFactory.fireFluidPlaceBlockEvent(pLevel, pPos, pPos, SMBlocks.AMBER.get().defaultBlockState()), LiquidBlock.UPDATE_ALL);
                 }
             }
         }

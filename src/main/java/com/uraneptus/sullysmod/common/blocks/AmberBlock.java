@@ -122,12 +122,12 @@ public class AmberBlock extends Block implements EntityBlock {
                         }
                         if (shouldMeltFlag) {
                             level.setBlock(pPos, pState.setValue(IS_MELTED, true), Block.UPDATE_ALL);
-                            amber.update();
+                            //amber.update();
                             return AmberUtil.MELTING_COLLISION_SHAPE;
                         }
                     }
                 } else {
-                    level.setBlock(pPos, pState.setValue(IS_MELTED, false), Block.UPDATE_ALL);
+                    //level.setBlock(pPos, pState.setValue(IS_MELTED, false), Block.UPDATE_ALL);
                 }
             }
         }
