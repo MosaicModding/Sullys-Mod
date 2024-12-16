@@ -7,15 +7,13 @@ import com.uraneptus.sullysmod.core.other.SMArmorMaterials;
 import com.uraneptus.sullysmod.core.other.SMProperties;
 import com.uraneptus.sullysmod.core.other.SMTextDefinitions;
 import com.uraneptus.sullysmod.core.other.SMTextUtil;
+import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.animal.WaterAnimal;
-import net.minecraft.world.item.BucketItem;
-import net.minecraft.world.item.HorseArmorItem;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.MobBucketItem;
+import net.minecraft.world.item.*;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraftforge.common.ForgeSpawnEggItem;
 import net.minecraftforge.registries.DeferredRegister;
@@ -32,6 +30,9 @@ public class SMItems {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, SullysMod.MOD_ID);
 
     public static List<RegistryObject<? extends Item>> AUTO_TRANSLATE = new ArrayList<>();
+
+    //We have this here so KubeJS can access it!
+    public static final Rarity ANCIENT = Rarity.create("sullysmod:ancient", ChatFormatting.GOLD);
 
     //Basic Items
     public static final RegistryObject<Item> ROUGH_JADE = createItem("rough_jade");

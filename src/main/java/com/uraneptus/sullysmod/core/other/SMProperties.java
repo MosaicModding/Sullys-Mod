@@ -1,8 +1,8 @@
 package com.uraneptus.sullysmod.core.other;
 
 import com.teamabnormals.blueprint.core.util.PropertyUtil;
+import com.uraneptus.sullysmod.core.registry.SMItems;
 import com.uraneptus.sullysmod.core.registry.SMSounds;
-import net.minecraft.ChatFormatting;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.food.FoodProperties;
@@ -42,13 +42,13 @@ public class SMProperties {
 
     public static final class Items {
         //Rarity
-        public static final Rarity ANCIENT = Rarity.create("ancient", ChatFormatting.GOLD);
+
 
         //Item Specific
         public static final Item.Properties MUSIC_DISCS = singleStack().rarity(Rarity.RARE);
         public static final Item.Properties JADE_SHIELD = new Item.Properties().durability(400);
         public static Item.Properties artifacts() {
-            return new Item.Properties().rarity(ANCIENT);
+            return new Item.Properties().rarity(SMItems.ANCIENT);
         }
 
         public static Item.Properties sixteenStack() {
