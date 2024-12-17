@@ -9,6 +9,7 @@ import com.uraneptus.sullysmod.core.other.SMTextDefinitions;
 import com.uraneptus.sullysmod.core.other.SMTextUtil;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
@@ -32,7 +33,7 @@ public class SMItems {
     public static List<RegistryObject<? extends Item>> AUTO_TRANSLATE = new ArrayList<>();
 
     //We have this here so KubeJS can access it!
-    public static final Rarity ANCIENT = Rarity.create("sullysmod:ancient", ChatFormatting.GOLD);
+    public static final Rarity ANCIENT = Rarity.create("sullysmod:ancient", style -> style.withColor(15107584));
 
     //Basic Items
     public static final RegistryObject<Item> ROUGH_JADE = createItem("rough_jade");

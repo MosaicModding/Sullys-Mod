@@ -79,6 +79,7 @@ public class AmberBlock extends Block implements EntityBlock {
         AmberUtil.fillCauldronBehavior(pState, pLevel, pPos);
     }
 
+    @Override
     public VoxelShape getCollisionShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
         BlockEntity blockEntity = pLevel.getBlockEntity(pPos);
 
@@ -122,12 +123,9 @@ public class AmberBlock extends Block implements EntityBlock {
                         }
                         if (shouldMeltFlag) {
                             level.setBlock(pPos, pState.setValue(IS_MELTED, true), Block.UPDATE_ALL);
-                            //amber.update();
                             return AmberUtil.MELTING_COLLISION_SHAPE;
                         }
                     }
-                } else {
-                    //level.setBlock(pPos, pState.setValue(IS_MELTED, false), Block.UPDATE_ALL);
                 }
             }
         }
