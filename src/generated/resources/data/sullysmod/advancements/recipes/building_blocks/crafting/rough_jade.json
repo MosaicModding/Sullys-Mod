@@ -1,0 +1,49 @@
+{
+  "advancements": [
+    {
+      "advancement": {
+        "parent": "minecraft:recipes/root",
+        "criteria": {
+          "has_rough_jade_block": {
+            "conditions": {
+              "items": [
+                {
+                  "items": [
+                    "sullysmod:rough_jade_block"
+                  ]
+                }
+              ]
+            },
+            "trigger": "minecraft:inventory_changed"
+          },
+          "has_the_recipe": {
+            "conditions": {
+              "recipe": "sullysmod:rough_jade"
+            },
+            "trigger": "minecraft:recipe_unlocked"
+          }
+        },
+        "requirements": [
+          [
+            "has_rough_jade_block",
+            "has_the_recipe"
+          ]
+        ],
+        "rewards": {
+          "recipes": [
+            "sullysmod:rough_jade"
+          ]
+        },
+        "sends_telemetry_event": false
+      },
+      "conditions": [
+        {
+          "type": "sullysmod:mod_features",
+          "values": [
+            "jade"
+          ]
+        }
+      ]
+    }
+  ]
+}
