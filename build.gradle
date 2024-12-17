@@ -99,6 +99,9 @@ dependencies {
     implementation fg.deobf("mosaicmodding:MosaicCosmetics:1.20.1-1.0.0-forge")
     jarJar(group: 'mosaicmodding', name: 'MosaicCosmetics', version: '[1.20.1-1.0.0-forge,)')
 
+    implementation fg.deobf("curse.maven:carry-on-274259:4882500")
+    implementation fg.deobf("curse.maven:zeta-968868:5597406")
+    implementation fg.deobf("curse.maven:quark-243121:5594847")
     compileOnly fg.deobf("mezz.jei:jei-${mc_version}-forge-api:${jei_version}")
     implementation fg.deobf("mezz.jei:jei-${mc_version}-forge:${jei_version}")
     localRuntime fg.deobf("curse.maven:catalogue-459701:4590890")
