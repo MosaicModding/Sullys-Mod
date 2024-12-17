@@ -8,8 +8,6 @@ import net.minecraft.world.Containers;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ArmorItem;
-import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
@@ -39,14 +37,9 @@ public class ItemStandBlock extends Block implements EntityBlock {
         ItemStack itemInHand = player.getItemInHand(hand);
         if (entity instanceof ItemStandBE itemStand) {
             if (itemStand.getDisplayItem().isEmpty()) {
-                if (!(itemInHand.getItem() instanceof BlockItem) || (itemInHand.getItem() instanceof BlockItem blockItem && blockItem.getBlock() instanceof SkullBlock)) {
-                    if (itemInHand.getItem() instanceof ArmorItem armorItem && armorItem.getType() != ArmorItem.Type.HELMET) {
-                        return super.use(blockState, level, pos, player, hand, hitResult);
-                    }
-                    itemStand.setDisplayItem(itemInHand.copy());
-                    SMItemUtil.nonCreativeShrinkStack(player, itemInHand);
-                    return InteractionResult.sidedSuccess(level.isClientSide());
-                }
+                itemStand.setDisplayItem(itemInHand.copy());
+                SMItemUtil.nonCreativeShrinkStack(player, itemInHand);
+                return InteractionResult.sidedSuccess(level.isClientSide());
             } else if (itemInHand.isEmpty()) {
                 SMItemUtil.nonCreativeAddItems(player, new ItemStack(itemStand.getDisplayItem().getItem()));
                 itemStand.setDisplayItem(ItemStack.EMPTY);
