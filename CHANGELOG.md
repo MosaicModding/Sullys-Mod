@@ -1,3 +1,26 @@
+# Changelog version 3.2.1-beta for 1.20.1:
+> ## Changes/Updates:
+> - update zh_cn translation thanks to @0Starocean0
+> - rarity for artifacts can now be accessed by kubejs. The identifier is `sullysmod:ancient`
+> - change color values for artifact rarity and artifact description
+> - change artifact spawn rates slightly
+> - item stands can now display block items
+> - item stands no longer display armor items as their models, and instead render the item model
+> - item stands now use the item's rarity color for rendering the item name
+>
+> ## Additions:
+> - add quark chest textures
+> 
+> ## Fixes:
+> - fix missing translation for petrified sign, hanging sign and amber fluid
+> - fix server crash on startup
+> - fix crash with amber
+> - fix entities flickering through all variant textures added by quark when the entity is in amber
+> - fix entities thinking they're in amber when picked up with carry on
+> - fix some recipe advancements
+> - fix potions being disabled by our selection system by default
+> - fix not all amber blocks being able to fill cauldron
+
 # Changelog version 3.2.0-beta for 1.20.1:
 ### IMPORTANT: This version removes the compat features we had and removes several jade blocks. Please back up your worlds.
 ### Also, this version is still not compatible with NeoForge!!! - NeoForge compat will come with 1.21

@@ -1,0 +1,49 @@
+{
+  "advancements": [
+    {
+      "advancement": {
+        "parent": "minecraft:recipes/root",
+        "criteria": {
+          "has_the_recipe": {
+            "conditions": {
+              "recipe": "sullysmod:waxed_weathered_copper_button"
+            },
+            "trigger": "minecraft:recipe_unlocked"
+          },
+          "has_weathered_copper_button": {
+            "conditions": {
+              "items": [
+                {
+                  "items": [
+                    "sullysmod:weathered_copper_button"
+                  ]
+                }
+              ]
+            },
+            "trigger": "minecraft:inventory_changed"
+          }
+        },
+        "requirements": [
+          [
+            "has_weathered_copper_button",
+            "has_the_recipe"
+          ]
+        ],
+        "rewards": {
+          "recipes": [
+            "sullysmod:waxed_weathered_copper_button"
+          ]
+        },
+        "sends_telemetry_event": false
+      },
+      "conditions": [
+        {
+          "type": "sullysmod:mod_features",
+          "values": [
+            "copper_buttons"
+          ]
+        }
+      ]
+    }
+  ]
+}

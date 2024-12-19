@@ -1,11 +1,8 @@
 package com.uraneptus.sullysmod.core.registry;
 
 import com.teamabnormals.blueprint.core.util.PropertyUtil;
-import com.teamabnormals.blueprint.core.util.item.CreativeModeTabContentsPopulator;
 import com.uraneptus.sullysmod.SullysMod;
-import com.uraneptus.sullysmod.client.model.MinersHelmetModel;
 import com.uraneptus.sullysmod.common.items.*;
-import com.uraneptus.sullysmod.core.SMFeatures;
 import com.uraneptus.sullysmod.core.other.SMArmorMaterials;
 import com.uraneptus.sullysmod.core.other.SMProperties;
 import com.uraneptus.sullysmod.core.other.SMTextDefinitions;
@@ -28,13 +25,13 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Supplier;
 
-import static com.uraneptus.sullysmod.core.registry.SMBlocks.*;
-import static net.minecraft.world.item.crafting.Ingredient.of;
-
 public class SMItems {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, SullysMod.MOD_ID);
 
     public static List<RegistryObject<? extends Item>> AUTO_TRANSLATE = new ArrayList<>();
+
+    //We have this here so KubeJS can access it!
+    public static final Rarity ANCIENT = Rarity.create("sullysmod:ancient", style -> style.withColor(15107584));
 
     //Basic Items
     public static final RegistryObject<Item> ROUGH_JADE = createItem("rough_jade");
@@ -76,7 +73,7 @@ public class SMItems {
     public static final RegistryObject<Item> BROKEN_VASE = registerArtifact("broken_vase", "A large piece of the side is missing", 10);
     public static final RegistryObject<Item> PRIMITIVE_KNIFE = registerArtifact("primitive_knife", "A small knife made from obsidian", () -> new ArtifactWeaponItem(5, -2.5F, null, SMProperties.Items.artifacts().stacksTo(1).durability(20)), 15);
     public static final RegistryObject<Item> MINERS_HELMET = registerArtifact("miners_helmet", "Looks like it’s previous owner couldn’t get the candle lit anymore",
-            () -> new ArtifactHelmetItem(SMArmorMaterials.MINERS_HELMET, SMProperties.Items.artifacts().stacksTo(1), MinersHelmetModel.INSTANCE), 15);
+            () -> new MinersHelmetItem(SMProperties.Items.artifacts().stacksTo(1)), 15);
     public static final RegistryObject<Item> SMALL_DENTED_HELMET = registerArtifact("small_dented_helmet", "A small rusty helmet. Barely fits",
             () -> new ArtifactHelmetItem(SMArmorMaterials.SMALL_DENTED_HELMET, SMProperties.Items.artifacts().stacksTo(1)), 22);
     public static final RegistryObject<Item> LOST_CROWN = registerArtifact("lost_crown", "Once belonged to the king of a now fallen kingdom",
@@ -158,7 +155,7 @@ public class SMItems {
         return item;
     }
 
-    private static <I extends Item> RegistryObject<I> createItem(String name, Supplier<? extends I> supplier) {
+    public static <I extends Item> RegistryObject<I> createItem(String name, Supplier<? extends I> supplier) {
         RegistryObject<I> item = ITEMS.register(name, supplier);
         AUTO_TRANSLATE.add(item);
         return item;

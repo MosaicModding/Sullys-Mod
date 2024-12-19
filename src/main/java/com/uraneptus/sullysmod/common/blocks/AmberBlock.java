@@ -79,6 +79,8 @@ public class AmberBlock extends Block implements EntityBlock {
         AmberUtil.fillCauldronBehavior(pState, pLevel, pPos);
     }
 
+    //TODO maybe stop handling this in collision shape
+    @Override
     public VoxelShape getCollisionShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
         BlockEntity blockEntity = pLevel.getBlockEntity(pPos);
 
@@ -122,12 +124,9 @@ public class AmberBlock extends Block implements EntityBlock {
                         }
                         if (shouldMeltFlag) {
                             level.setBlock(pPos, pState.setValue(IS_MELTED, true), Block.UPDATE_ALL);
-                            amber.update();
                             return AmberUtil.MELTING_COLLISION_SHAPE;
                         }
                     }
-                } else {
-                    level.setBlock(pPos, pState.setValue(IS_MELTED, false), Block.UPDATE_ALL);
                 }
             }
         }
@@ -143,6 +142,10 @@ public class AmberBlock extends Block implements EntityBlock {
                     AmberBE.removeIgnoredNBT(compoundtag);
                     Entity entity = EntityType.loadEntityRecursive(compoundtag, pLevel, entityLoaded -> entityLoaded);
                     if (entity != null) {
+                        SMEntityCap.getCapOptional(entity).ifPresent(cap -> {
+                            cap.stuckInAmber = false;
+                        });
+                        SMPacketHandler.sendMsg(PacketDistributor.TRACKING_ENTITY_AND_SELF.with(() -> entity), new MsgEntityAmberStuck(entity, false));
                         if (entity instanceof ItemEntity) {
                             entity.setDeltaMovement(0, 0, 0);
                         }
@@ -159,6 +162,10 @@ public class AmberBlock extends Block implements EntityBlock {
                             AmberBE.removeIgnoredNBT(compoundtag);
                             Entity entity = EntityType.loadEntityRecursive(compoundtag, pLevel, entityStuck -> entityStuck);
                             if (entity != null) {
+                                SMEntityCap.getCapOptional(entity).ifPresent(cap -> {
+                                    cap.stuckInAmber = false;
+                                });
+                                SMPacketHandler.sendMsg(PacketDistributor.TRACKING_ENTITY_AND_SELF.with(() -> entity), new MsgEntityAmberStuck(entity, false));
                                 if (entity.getBoundingBox().getYsize() > 1.5F && entity.getBoundingBox().getYsize() < 2F && pos.equals(blockPos.offset(0, -1, 0))) {
                                     pLevel.setBlock(pos, blockState.setValue(IS_MELTED, false), Block.UPDATE_ALL);
                                     entity.moveTo(pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5);
@@ -173,10 +180,7 @@ public class AmberBlock extends Block implements EntityBlock {
                                     amberBE.setStuckEntityData(null);
 
                                 }
-                                SMPacketHandler.sendMsg(PacketDistributor.TRACKING_ENTITY_AND_SELF.with(() -> entity), new MsgEntityAmberStuck(entity, false));
-                                SMEntityCap.getCapOptional(entity).ifPresent(cap -> {
-                                    cap.stuckInAmber = false;
-                                });
+
                             }
                         }
                     }

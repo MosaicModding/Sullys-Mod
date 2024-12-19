@@ -9,7 +9,6 @@ import com.teamabnormals.blueprint.core.util.PropertyUtil;
 import com.uraneptus.sullysmod.SullysMod;
 import com.uraneptus.sullysmod.common.blocks.*;
 import com.uraneptus.sullysmod.common.blocks.utilities.SMDirectionalBlock;
-import com.uraneptus.sullysmod.core.SMFeatures;
 import com.uraneptus.sullysmod.core.other.SMProperties;
 import com.uraneptus.sullysmod.core.other.SMTextDefinitions;
 import com.uraneptus.sullysmod.core.other.SMTextUtil;
@@ -36,9 +35,9 @@ public class SMBlocks {
     //Jade
     public static final RegistryObject<Block> JADE_ORE = createBlock("jade_ore", () -> new DropExperienceBlock(SMProperties.Blocks.JADE_ORE));
     public static final RegistryObject<Block> DEEPSLATE_JADE_ORE = createBlock("deepslate_jade_ore", () -> new DropExperienceBlock(SMProperties.Blocks.DEEPSLATE_JADE_ORE));
-    public static final RegistryObject<Block> ROUGH_JADE_BLOCK = createBlock("rough_jade_block", () -> new Block(SMProperties.Blocks.ROUGH_JADE_BLOCKS), true);
+    public static final RegistryObject<Block> ROUGH_JADE_BLOCK = createBlockNoLang("rough_jade_block", () -> new Block(SMProperties.Blocks.ROUGH_JADE_BLOCKS));
     public static final RegistryObject<Block> ROUGH_JADE_BRICKS = createBlock("rough_jade_bricks", () -> new Block(SMProperties.Blocks.ROUGH_JADE_BLOCKS));
-    public static final RegistryObject<Block> JADE_BLOCK = createBlock("jade_block", () -> new Block(SMProperties.Blocks.JADE_BLOCKS), true);
+    public static final RegistryObject<Block> JADE_BLOCK = createBlockNoLang("jade_block", () -> new Block(SMProperties.Blocks.JADE_BLOCKS));
     public static final RegistryObject<Block> JADE_BRICKS = createBlock("jade_bricks", () -> new Block(SMProperties.Blocks.JADE_BLOCKS));
     public static final RegistryObject<Block> CHISELED_JADE = createBlock("chiseled_jade", () -> new Block(SMProperties.Blocks.JADE_BLOCKS));
     public static final RegistryObject<Block> JADE_TOTEM = createBlock("jade_totem", () -> new SMDirectionalBlock(SMProperties.Blocks.JADE_BLOCKS));
@@ -127,8 +126,8 @@ public class SMBlocks {
     public static Pair<RegistryObject<Block>, RegistryObject<Block>> registerAncientSkull(AncientSkullBlock.Types type, String description, int price) {
         String typeName = SMTextUtil.convertSkullTypeToString(type);
         String skullName = typeName + "_ancient_skull";
-        RegistryObject<Block> skull = createBlockNoItem(skullName, () -> new AncientSkullBlock(type, SMProperties.Blocks.ancientSkulls()), true);
-        RegistryObject<Block> wallSkull = createBlockNoItem(typeName + "_ancient_wall_skull", () -> new AncientWallSkullBlock(type, SMProperties.Blocks.ancientSkulls().lootFrom(skull)), true);
+        RegistryObject<Block> skull = createBlockNoItemNoLang(skullName, () -> new AncientSkullBlock(type, SMProperties.Blocks.ancientSkulls()));
+        RegistryObject<Block> wallSkull = createBlockNoItemNoLang(typeName + "_ancient_wall_skull", () -> new AncientWallSkullBlock(type, SMProperties.Blocks.ancientSkulls().lootFrom(skull)));
         ANCIENT_SKULLS.add(skull);
         RegistryObject<Item> skullItem = SMItems.ITEMS.register(skullName, () -> new StandingAndWallBlockItem(skull.get(), wallSkull.get(), SMProperties.Items.artifacts(), Direction.DOWN));
         SMItems.ARTIFACT_DESC_MAP.put(skullItem, SMTextUtil.addSMTranslatable("artifact." + skullName + ".desc", description).withStyle(SMTextDefinitions.ARTIFACT_DESC_STYLE));
@@ -148,34 +147,33 @@ public class SMBlocks {
     }
 
     public static Pair<RegistryObject<BlueprintStandingSignBlock>, RegistryObject<BlueprintWallSignBlock>> createSignBlock(String name, WoodType woodType, Block.Properties properties) {
-        RegistryObject<BlueprintStandingSignBlock> standing = createBlockNoItem(name + "_sign", () -> new BlueprintStandingSignBlock(properties, woodType), true);
-        RegistryObject<BlueprintWallSignBlock> wall = createBlockNoItem(name + "_wall_sign", () -> new BlueprintWallSignBlock(properties.lootFrom(standing), woodType), true);
+        RegistryObject<BlueprintStandingSignBlock> standing = createBlockNoItem(name + "_sign", () -> new BlueprintStandingSignBlock(properties, woodType));
+        RegistryObject<BlueprintWallSignBlock> wall = createBlockNoItemNoLang(name + "_wall_sign", () -> new BlueprintWallSignBlock(properties.lootFrom(standing), woodType));
         SMItems.ITEMS.register(name + "_sign", () -> new SignItem(new Item.Properties(), standing.get(), wall.get()));
         return Pair.of(standing, wall);
     }
 
     public static Pair<RegistryObject<BlueprintCeilingHangingSignBlock>, RegistryObject<BlueprintWallHangingSignBlock>> createHangingSignBlock(String name, WoodType woodType, Block.Properties properties) {
-        RegistryObject<BlueprintCeilingHangingSignBlock> ceiling = createBlockNoItem(name + "_hanging_sign", () -> new BlueprintCeilingHangingSignBlock(properties, woodType), true);
-        RegistryObject<BlueprintWallHangingSignBlock> wall = createBlockNoItem(name + "_wall_hanging_sign", () -> new BlueprintWallHangingSignBlock(properties.lootFrom(ceiling), woodType), true);
+        RegistryObject<BlueprintCeilingHangingSignBlock> ceiling = createBlockNoItem(name + "_hanging_sign", () -> new BlueprintCeilingHangingSignBlock(properties, woodType));
+        RegistryObject<BlueprintWallHangingSignBlock> wall = createBlockNoItemNoLang(name + "_wall_hanging_sign", () -> new BlueprintWallHangingSignBlock(properties.lootFrom(ceiling), woodType));
         SMItems.ITEMS.register(name + "_hanging_sign", () -> new HangingSignItem(ceiling.get(), wall.get(), new Item.Properties()));
         return Pair.of(ceiling, wall);
     }
 
-    private static <B extends Block> RegistryObject<B> createBlockNoItem(String name, Supplier<? extends B> supplier, boolean customTranslation) {
-        RegistryObject<B> block = createBlockNoItem(name, supplier);
-        if (customTranslation) AUTO_TRANSLATE.remove(block);
-        return block;
+    private static <B extends Block> RegistryObject<B> createBlockNoItemNoLang(String name, Supplier<? extends B> supplier) {
+        return BLOCKS.register(name, supplier);
     }
 
     private static <B extends Block> RegistryObject<B> createBlockNoItem(String name, Supplier<? extends B> supplier) {
         RegistryObject<B> block = BLOCKS.register(name, supplier);
+        System.out.println(block.getId());
         AUTO_TRANSLATE.add(block);
         return block;
     }
     
-    private static <B extends Block> RegistryObject<B> createBlock(String name, Supplier<? extends B> supplier, boolean customTranslation) {
-        RegistryObject<B> block = createBlock(name, supplier);
-        if (customTranslation) AUTO_TRANSLATE.remove(block);
+    private static <B extends Block> RegistryObject<B> createBlockNoLang(String name, Supplier<? extends B> supplier) {
+        RegistryObject<B> block = BLOCKS.register(name, supplier);
+        SMItems.ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties()));
         return block;
     }
 

@@ -7,7 +7,7 @@
         {
           "type": "minecraft:item",
           "name": "minecraft:coal",
-          "weight": 50
+          "weight": 56
         },
         {
           "type": "minecraft:item",
@@ -25,17 +25,17 @@
             }
           ],
           "name": "minecraft:stick",
-          "weight": 50
+          "weight": 56
         },
         {
           "type": "minecraft:item",
           "name": "minecraft:bone",
-          "weight": 50
+          "weight": 56
         },
         {
           "type": "minecraft:item",
           "name": "minecraft:string",
-          "weight": 50
+          "weight": 56
         },
         {
           "type": "minecraft:item",
@@ -108,7 +108,7 @@
             }
           ],
           "name": "minecraft:rotten_flesh",
-          "weight": 40
+          "weight": 46
         },
         {
           "type": "minecraft:item",
@@ -126,17 +126,17 @@
             }
           ],
           "name": "minecraft:dead_bush",
-          "weight": 40
+          "weight": 46
         },
         {
           "type": "minecraft:item",
           "name": "minecraft:arrow",
-          "weight": 40
+          "weight": 46
         },
         {
           "type": "minecraft:item",
           "name": "minecraft:gunpowder",
-          "weight": 40
+          "weight": 46
         },
         {
           "type": "minecraft:item",
@@ -154,7 +154,7 @@
             }
           ],
           "name": "minecraft:stick",
-          "weight": 40
+          "weight": 46
         },
         {
           "type": "minecraft:item",
@@ -216,17 +216,17 @@
         {
           "type": "minecraft:item",
           "name": "minecraft:iron_nugget",
-          "weight": 30
+          "weight": 36
         },
         {
           "type": "minecraft:item",
           "name": "minecraft:glow_berries",
-          "weight": 30
+          "weight": 36
         },
         {
           "type": "minecraft:item",
           "name": "minecraft:stone_pickaxe",
-          "weight": 30
+          "weight": 36
         },
         {
           "type": "minecraft:item",
@@ -244,7 +244,7 @@
             }
           ],
           "name": "minecraft:rotten_flesh",
-          "weight": 30
+          "weight": 36
         },
         {
           "type": "minecraft:item",
@@ -262,7 +262,7 @@
             }
           ],
           "name": "minecraft:gold_nugget",
-          "weight": 30
+          "weight": 36
         },
         {
           "type": "minecraft:item",
@@ -392,12 +392,12 @@
         {
           "type": "minecraft:item",
           "name": "minecraft:music_disc_relic",
-          "weight": 20
+          "weight": 26
         },
         {
           "type": "minecraft:item",
           "name": "minecraft:explorer_pottery_sherd",
-          "weight": 20
+          "weight": 26
         },
         {
           "type": "minecraft:item",
@@ -415,7 +415,7 @@
             }
           ],
           "name": "minecraft:iron_pickaxe",
-          "weight": 20
+          "weight": 26
         },
         {
           "type": "minecraft:item",
@@ -433,7 +433,7 @@
             }
           ],
           "name": "minecraft:skeleton_skull",
-          "weight": 20
+          "weight": 26
         },
         {
           "type": "minecraft:item",

@@ -118,6 +118,8 @@ public class SMLangProvider extends LanguageProvider {
         add("death.attack.tortoise_shell.player", "%1$s got bonked to death");
         add("death.attack.throwing_knife", "%1$s got sliced and diced");
         add("death.attack.throwing_knife.player", "%1$s was turned into a dart board by %2$s");
+
+        add("fluid_type.sullysmod.molten_amber_fluid", "Molten Amber");
     }
 
     protected void addPainting(String name, String author) {

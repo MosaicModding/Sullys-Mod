@@ -7,7 +7,6 @@ import com.uraneptus.sullysmod.common.networking.SMPacketHandler;
 import com.uraneptus.sullysmod.core.registry.SMBlockEntityTypes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.nbt.FloatTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
@@ -34,7 +33,7 @@ public class AmberBE extends BlockEntity {
     private AmberBE.StuckEntityData stuckEntityData;
     public boolean renderEntity;
     private boolean entityUpdated = false;
-    private static final List<String> IGNORED_NBT = Arrays.asList("UUID", "Leash");
+    private static final List<String> IGNORED_NBT = Arrays.asList("Leash", "Fire");
 
     public AmberBE(BlockPos pPos, BlockState pBlockState) {
         super(SMBlockEntityTypes.AMBER.get(), pPos, pBlockState);
@@ -92,16 +91,6 @@ public class AmberBE extends BlockEntity {
 
         this.storeEntity(compoundtag);
         return true;
-    }
-
-    protected ListTag newFloatList(float... pNumbers) {
-        ListTag listtag = new ListTag();
-
-        for(float f : pNumbers) {
-            listtag.add(FloatTag.valueOf(f));
-        }
-
-        return listtag;
     }
 
     public void storeEntity(CompoundTag pEntityData) {
@@ -179,10 +168,9 @@ public class AmberBE extends BlockEntity {
         ListTag listtag = new ListTag();
 
         if (this.stuckEntityData != null) {
-            CompoundTag compoundtag = this.stuckEntityData.entityData.copy();
-            compoundtag.remove("UUID");
+            CompoundTag entityDataTag = this.stuckEntityData.entityData.copy();
             CompoundTag compoundtag1 = new CompoundTag();
-            compoundtag1.put("EntityData", compoundtag);
+            compoundtag1.put("EntityData", entityDataTag);
             listtag.add(compoundtag1);
         }
 

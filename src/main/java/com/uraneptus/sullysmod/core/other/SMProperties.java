@@ -1,8 +1,8 @@
 package com.uraneptus.sullysmod.core.other;
 
 import com.teamabnormals.blueprint.core.util.PropertyUtil;
+import com.uraneptus.sullysmod.core.registry.SMItems;
 import com.uraneptus.sullysmod.core.registry.SMSounds;
-import net.minecraft.ChatFormatting;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.food.FoodProperties;
@@ -24,7 +24,7 @@ public class SMProperties {
         public static final BlockBehaviour.Properties COPPER_BUTTONS = BlockBehaviour.Properties.of().noCollission().strength(0.5F);
 
         public static final BlockBehaviour.Properties AMBER = BlockBehaviour.Properties.of().strength(1.3F, 3F).mapColor(MapColor.COLOR_ORANGE).requiresCorrectToolForDrops().randomTicks().noOcclusion().dynamicShape().isViewBlocking((pState, pLevel, pPos) -> true);
-        public static final BlockBehaviour.Properties AMBER_BUILDING_BLOCKS = BlockBehaviour.Properties.of().strength(1.3F, 3F).mapColor(MapColor.COLOR_ORANGE).requiresCorrectToolForDrops().dynamicShape().forceSolidOn().isViewBlocking((pState, pLevel, pPos) -> true);
+        public static final BlockBehaviour.Properties AMBER_BUILDING_BLOCKS = BlockBehaviour.Properties.of().strength(1.3F, 3F).mapColor(MapColor.COLOR_ORANGE).requiresCorrectToolForDrops().randomTicks().dynamicShape().forceSolidOn().isViewBlocking((pState, pLevel, pPos) -> true);
         public static final BlockBehaviour.Properties ITEM_STAND = BlockBehaviour.Properties.of().strength(2.0F, 6.0F).requiresCorrectToolForDrops().noOcclusion();
         public static BlockBehaviour.Properties ancientSkulls() {
             return BlockBehaviour.Properties.of().strength(1.0F).pushReaction(PushReaction.DESTROY);
@@ -42,13 +42,13 @@ public class SMProperties {
 
     public static final class Items {
         //Rarity
-        public static final Rarity ANCIENT = Rarity.create("ancient", ChatFormatting.GOLD);
+
 
         //Item Specific
         public static final Item.Properties MUSIC_DISCS = singleStack().rarity(Rarity.RARE);
         public static final Item.Properties JADE_SHIELD = new Item.Properties().durability(400);
         public static Item.Properties artifacts() {
-            return new Item.Properties().rarity(ANCIENT);
+            return new Item.Properties().rarity(SMItems.ANCIENT);
         }
 
         public static Item.Properties sixteenStack() {

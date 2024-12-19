@@ -1,14 +1,11 @@
 package com.uraneptus.sullysmod.core.other.loot;
 
 import com.google.gson.*;
-import com.uraneptus.sullysmod.common.recipes.SMFeatureRecipeCondition;
 import com.uraneptus.sullysmod.core.SMFeatures;
 import com.uraneptus.sullysmod.core.registry.SMLootItemConditions;
-import net.minecraft.util.GsonHelper;
 import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
 import net.minecraft.world.level.storage.loot.predicates.LootItemConditionType;
-import net.minecraft.world.level.storage.loot.predicates.LootItemRandomChanceCondition;
 
 import java.util.ArrayList;
 import java.util.List;

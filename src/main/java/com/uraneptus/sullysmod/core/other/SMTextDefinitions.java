@@ -11,7 +11,7 @@ import org.apache.commons.lang3.tuple.Pair;
 
 public class SMTextDefinitions {
     private static final Style POLISHING_STYLE = Style.EMPTY.withColor(TextColor.fromRgb(8355711)).withItalic(true);
-    public static final Style ARTIFACT_DESC_STYLE = Style.EMPTY.withColor(TextColor.fromRgb(6644320)).withItalic(true);
+    public static final Style ARTIFACT_DESC_STYLE = Style.EMPTY.withColor(TextColor.fromRgb(13290210)).withItalic(true); // 6644320
     public static final ChatFormatting TITLE_FORMAT = ChatFormatting.GRAY;
     public static final ChatFormatting DESCRIPTION_FORMAT = ChatFormatting.BLUE;
     public static final String RETEXTURES_PACK_NAME = "mob_retextures";
@@ -89,7 +89,7 @@ public class SMTextDefinitions {
         ALL_ARTIFACTS_ADV = SMTextUtil.addAdvancementTranslatables(ADVENTURE_PATH + ALL_ARTIFACTS_ADV_NAME, "A grand collection", "Find all artifacts");
         WHEN_THROWN_TOOLTIP = SMTextUtil.addSMTranslatable("item.modifiers.thrown", "When Thrown:").withStyle(ChatFormatting.GRAY);
         THROWING_KNIFE_DAMAGE = SMTextUtil.addSMTranslatable("item.throwing_knife.damage", " 2 Attack Damage").withStyle(ChatFormatting.DARK_GREEN);
-        THROWING_KNIFE_AIR_DAMAGE = SMTextUtil.addSMTranslatable("item.throwing_knife.damage.air", " 2 Airborne Bonus").withStyle(ChatFormatting.GOLD);
+        THROWING_KNIFE_AIR_DAMAGE = SMTextUtil.addSMTranslatable("item.throwing_knife.damage.air", " 4 Airborne Bonus").withStyle(ChatFormatting.GOLD);
 
     }
 

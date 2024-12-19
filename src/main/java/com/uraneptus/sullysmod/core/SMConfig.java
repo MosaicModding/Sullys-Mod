@@ -39,10 +39,7 @@ public class SMConfig {
 
         //Client
         ENABLE_POLISHABLE_TOOLTIP = CLIENT_BUILDER.comment("Enables the 'Polishable' tooltip on polishable items").define("Enable Polishable Tooltip", true);
-        CLIENT_BUILDER.comment("Ambient effects").push("ambient");
-        ENABLE_MOUNTAIN_CALLS = CLIENT_BUILDER.comment("Enables the Mountain call ambient sounds").define("enable_mountain_calls", true);
-        ENABLE_MYSTERIOUS_EYES = CLIENT_BUILDER.comment("Enables the mysterious eyes in the void").define("enable_mysterious_eyes", true);
-        CLIENT_BUILDER.pop();
+
 
         //COMMON
         COMMON_BUILDER.comment("Mod Feature Selection").push("feature_selection");
@@ -57,12 +54,16 @@ public class SMConfig {
         ENABLE_ITEM_STAND = COMMON_BUILDER.comment("Enables the item stand").define("item_stand", true);
         ENABLE_ARTIFACTS = COMMON_BUILDER.comment("Enables all artifact features").define("artifacts", true);
         COMMON_BUILDER.comment("Mod Potions").push("potions");
-        ENABLE_UNLUCK_POTION = COMMON_BUILDER.comment("Enables the bad luck potion").define("unluck_potion", false);
-        ENABLE_RESISTANCE_POTION = COMMON_BUILDER.comment("Enables the resistance potion").define("resistance_potion", false);
+        ENABLE_UNLUCK_POTION = COMMON_BUILDER.comment("Enables the bad luck potion").define("unluck_potion", true);
+        ENABLE_RESISTANCE_POTION = COMMON_BUILDER.comment("Enables the resistance potion").define("resistance_potion", true);
         COMMON_BUILDER.pop();
         ENABLE_COPPER_BUTTONS = COMMON_BUILDER.comment("Enables copper buttons").define("copper_buttons", true);
         ENABLE_GEM_LANTERNS = COMMON_BUILDER.comment("Enables gem lanterns").define("gem_lanterns", false);
         ENABLE_GRINDSTONE_POLISHING = COMMON_BUILDER.comment("Enables grindstone polishing").define("grindstone_polishing", true);
+        COMMON_BUILDER.comment("Ambient effects").push("ambient");
+        ENABLE_MOUNTAIN_CALLS = COMMON_BUILDER.comment("Enables the Mountain call ambient sounds").define("enable_mountain_calls", true);
+        ENABLE_MYSTERIOUS_EYES = COMMON_BUILDER.comment("Enables the mysterious eyes in the void").define("enable_mysterious_eyes", true);
+        COMMON_BUILDER.pop();
 
         COMMON_BUILDER.pop();
 

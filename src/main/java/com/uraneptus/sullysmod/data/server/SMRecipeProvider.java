@@ -270,15 +270,15 @@ public class SMRecipeProvider extends RecipeProvider {
     protected static void cookingRecipes(Supplier<? extends ItemLike> ingredient, Supplier<? extends ItemLike> result, float experience, Consumer<FinishedRecipe> consumer, SMFeatures... features) {
         String resultName = getItemName(result.get());
 
-        featureConditionRecipe(List.of(features), RecipeCategory.BUILDING_BLOCKS,
+        featureConditionRecipe(List.of(features), RecipeCategory.FOOD,
                 SimpleCookingRecipeBuilder.smelting(Ingredient.of(ingredient.get()), RecipeCategory.FOOD, result.get(), experience, 200)
                         .unlockedBy(getHasName(ingredient.get()), has(ingredient.get())), smeltingPath(resultName), consumer);
 
-        featureConditionRecipe(List.of(features), RecipeCategory.BUILDING_BLOCKS,
+        featureConditionRecipe(List.of(features), RecipeCategory.FOOD,
                 SimpleCookingRecipeBuilder.campfireCooking(Ingredient.of(ingredient.get()), RecipeCategory.FOOD, result.get(), experience, 600)
                         .unlockedBy(getHasName(ingredient.get()), has(ingredient.get())), campfire_cookingPath(resultName + "_from_campfire_cooking"), consumer);
 
-        featureConditionRecipe(List.of(features), RecipeCategory.BUILDING_BLOCKS,
+        featureConditionRecipe(List.of(features), RecipeCategory.FOOD,
                 SimpleCookingRecipeBuilder.smoking(Ingredient.of(ingredient.get()), RecipeCategory.FOOD, result.get(), experience, 100)
                         .unlockedBy(getHasName(ingredient.get()), has(ingredient.get())), smokingPath(resultName + "_from_smoking"), consumer);
     }
@@ -468,7 +468,7 @@ public class SMRecipeProvider extends RecipeProvider {
     private static void conditionalRecipe(ICondition condition, RecipeCategory category, RecipeBuilder recipe, ResourceLocation customPath, Consumer<FinishedRecipe> consumer) {
         ConditionalRecipe.builder().addCondition(condition)
                 .addRecipe(consumer1 -> recipe.save(consumer1, SullysMod.modPrefix(RecipeBuilder.getDefaultRecipeId(recipe.getResult()).getPath())))
-                .generateAdvancement(new ResourceLocation(RecipeBuilder.getDefaultRecipeId(recipe.getResult()).getNamespace(), "recipes/" + category.getFolderName() + "/" + RecipeBuilder.getDefaultRecipeId(recipe.getResult()).getPath()))
+                .generateAdvancement(new ResourceLocation(RecipeBuilder.getDefaultRecipeId(recipe.getResult()).getNamespace(), "recipes/" + category.getFolderName() + "/" + customPath.getPath()))
                 .build(consumer, customPath);
     }
 }
