@@ -111,6 +111,7 @@ public class SMItemTagsProvider extends ItemTagsProvider {
         tag(ItemTags.LOGS).addTag(SMItemTags.PETRIFIED_LOGS);
         tag(ItemTags.SAPLINGS).add(SMBlocks.PETRIFIED_SAPLING.get().asItem());
         tag(ItemTags.STONE_TOOL_MATERIALS).addTag(SMItemTags.PETRIFIED_LOGS);
+        tag(ItemTags.PIGLIN_LOVED).add(SMItems.GOLDEN_BELT_BUCKLE.get(), SMItems.GOLDEN_GOBLET.get(), SMItems.LOST_CROWN.get());
 
         //Forge Tags
         tag(SMItemTags.CRAFTING_TABLES).add(Items.CRAFTING_TABLE);
