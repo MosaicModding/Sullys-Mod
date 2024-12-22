@@ -16,6 +16,7 @@ import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.common.data.ForgeAdvancementProvider;
+import net.minecraftforge.fml.ModList;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import org.apache.commons.lang3.tuple.Pair;
@@ -32,10 +33,10 @@ import static com.uraneptus.sullysmod.data.SMDatagenUtil.name;
 
 public class SMAdventureAdvancements implements ForgeAdvancementProvider.AdvancementGenerator {
     ResourceLocation adventureParent = new ResourceLocation("adventure/root");
-    public static List<Item> ARTIFACTS = SMItems.ARTIFACT_DESC_MAP.keySet().stream().map(RegistryObject::get).collect(Collectors.toList());
-    public static List<Item> BIBLIOPHILE_ITEMS = List.of(SMItems.TORN_MANUSCRIPT.get(), SMItems.LOST_JOURNAL.get(), SMItems.LOST_SKETCHBOOK.get(), SMItems.LOST_RECIPE_BOOK.get());
-    public static List<Item> ALL_SKULL_ITEMS = SMBlocks.ANCIENT_SKULLS.stream().map(Supplier::get).map(Block::asItem).collect(Collectors.toList());
-    public static List<Item> ALL_FOSSIL_ITEMS = List.of(SMItems.FOSSILISED_BONE.get(), SMItems.FOSSILISED_FISH.get(), SMItems.FOSSILISED_FOOTSTEP.get(), SMItems.FOSSILISED_SHELLS.get());
+    private static final List<Item> ARTIFACTS = SMItems.ARTIFACT_DESC_MAP.keySet().stream().map(RegistryObject::get).collect(Collectors.toList());
+    private static final List<Item> BIBLIOPHILE_ITEMS = List.of(SMItems.TORN_MANUSCRIPT.get(), SMItems.LOST_JOURNAL.get(), SMItems.LOST_SKETCHBOOK.get(), SMItems.LOST_RECIPE_BOOK.get());
+    private static final List<Item> ALL_SKULL_ITEMS = SMBlocks.ANCIENT_SKULLS.stream().map(Supplier::get).filter(block -> block != SMBlocks.UNICORN_ANCIENT_SKULL.getFirst().get()).map(Block::asItem).collect(Collectors.toList());
+    private static final List<Item> ALL_FOSSIL_ITEMS = List.of(SMItems.FOSSILISED_BONE.get(), SMItems.FOSSILISED_FISH.get(), SMItems.FOSSILISED_FOOTSTEP.get(), SMItems.FOSSILISED_SHELLS.get());
 
     @Override
     public void generate(HolderLookup.Provider registries, Consumer<Advancement> saver, ExistingFileHelper existingFileHelper) {

@@ -97,18 +97,6 @@
       },
       "trigger": "minecraft:inventory_changed"
     },
-    "unicorn_ancient_skull": {
-      "conditions": {
-        "items": [
-          {
-            "items": [
-              "sullysmod:unicorn_ancient_skull"
-            ]
-          }
-        ]
-      },
-      "trigger": "minecraft:inventory_changed"
-    },
     "wide_ancient_skull": {
       "conditions": {
         "items": [
@@ -164,9 +152,6 @@
     ],
     [
       "ribbed_ancient_skull"
-    ],
-    [
-      "unicorn_ancient_skull"
     ]
   ],
   "rewards": {

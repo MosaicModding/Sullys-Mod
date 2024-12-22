@@ -44,7 +44,6 @@ public interface WorkstationAttachable {
     void setRecordTickCount(long tickCount);
     long getRecordStartedTick();
     void setRecordStartedTick(long startedTick);
-    //TODO sync this
     boolean isRecordPlaying();
     void setRecordPlaying(boolean isPlaying);
     int getTicksSinceLastEvent();
