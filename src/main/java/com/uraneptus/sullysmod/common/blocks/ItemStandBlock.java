@@ -38,11 +38,13 @@ public class ItemStandBlock extends Block implements EntityBlock {
         if (entity instanceof ItemStandBE itemStand) {
             if (itemStand.getDisplayItem().isEmpty()) {
                 itemStand.setDisplayItem(itemInHand.copy());
+                itemStand.setChanged();
                 SMItemUtil.nonCreativeShrinkStack(player, itemInHand);
                 return InteractionResult.sidedSuccess(level.isClientSide());
             } else if (itemInHand.isEmpty()) {
                 SMItemUtil.nonCreativeAddItems(player, new ItemStack(itemStand.getDisplayItem().getItem()));
                 itemStand.setDisplayItem(ItemStack.EMPTY);
+                itemStand.setChanged();
                 return InteractionResult.sidedSuccess(level.isClientSide());
             }
         }
