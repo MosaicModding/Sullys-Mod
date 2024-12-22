@@ -6,35 +6,56 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "minecraft:diamond"
+          "name": "minecraft:diamond",
+          "weight": 50
         },
         {
           "type": "minecraft:item",
-          "name": "sullysmod:petrified_sapling"
+          "name": "sullysmod:petrified_sapling",
+          "weight": 50
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:stick"
+          "name": "minecraft:stick",
+          "weight": 50
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:coal"
+          "name": "minecraft:coal",
+          "weight": 50
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:bone"
+          "name": "minecraft:bone",
+          "weight": 50
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:emerald"
+          "name": "minecraft:emerald",
+          "weight": 50
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:music_disc_relic"
+          "name": "minecraft:music_disc_relic",
+          "weight": 50
         },
         {
           "type": "minecraft:item",
-          "name": "sullysmod:amber_encased_bug"
+          "conditions": [
+            {
+              "condition": "sullysmod:mod_feature_flag",
+              "values": [
+                "amber"
+              ]
+            }
+          ],
+          "name": "sullysmod:amber_encased_bug",
+          "weight": 50
+        },
+        {
+          "type": "minecraft:item",
+          "name": "sullysmod:ribbed_ancient_skull",
+          "weight": 20
         }
       ],
       "rolls": 1.0

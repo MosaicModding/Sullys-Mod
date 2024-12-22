@@ -820,6 +820,11 @@
           "type": "minecraft:item",
           "name": "sullysmod:cracked_ancient_skull",
           "weight": 10
+        },
+        {
+          "type": "minecraft:item",
+          "name": "sullysmod:ribbed_ancient_skull",
+          "weight": 10
         }
       ],
       "rolls": 1.0
