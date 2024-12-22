@@ -1,6 +1,8 @@
 package com.uraneptus.sullysmod.data.server.loot;
 
+import com.uraneptus.sullysmod.core.SMFeatures;
 import com.uraneptus.sullysmod.core.other.loot.SMBuiltInLootTables;
+import com.uraneptus.sullysmod.core.other.loot.SMFeatureLootItemCondition;
 import com.uraneptus.sullysmod.core.registry.SMBlocks;
 import com.uraneptus.sullysmod.core.registry.SMItems;
 import net.minecraft.data.loot.LootTableSubProvider;
@@ -12,6 +14,7 @@ import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 
+import java.util.List;
 import java.util.function.BiConsumer;
 
 import static com.uraneptus.sullysmod.core.other.loot.SMLootConditions.*;
@@ -27,7 +30,17 @@ public class SMArchaeologyLoot implements LootTableSubProvider {
     @Override
     public void generate(BiConsumer<ResourceLocation, LootTable.Builder> pOutput) {
         pOutput.accept(SMBuiltInLootTables.GRAVEL_PETRIFIED_SAPLING_TREE, LootTable.lootTable().withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F)).add(LootItem.lootTableItem(SMBlocks.AMBER.get())).add(LootItem.lootTableItem(SMBlocks.PETRIFIED_SAPLING.get())).add(LootItem.lootTableItem(Items.STICK)).add(LootItem.lootTableItem(Items.COAL))));
-        pOutput.accept(SMBuiltInLootTables.GRAVEL_BIG_PETRIFIED_TREE, LootTable.lootTable().withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F)).add(LootItem.lootTableItem(Items.DIAMOND)).add(LootItem.lootTableItem(SMBlocks.PETRIFIED_SAPLING.get())).add(LootItem.lootTableItem(Items.STICK)).add(LootItem.lootTableItem(Items.COAL)).add(LootItem.lootTableItem(Items.BONE)).add(LootItem.lootTableItem(Items.EMERALD)).add(LootItem.lootTableItem(Items.MUSIC_DISC_RELIC)).add(LootItem.lootTableItem(SMItems.AMBER_ENCASED_BUG.get())))); //At some point ancient gliding pet egg
+        pOutput.accept(SMBuiltInLootTables.GRAVEL_BIG_PETRIFIED_TREE, LootTable.lootTable().withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
+                .add(LootItem.lootTableItem(Items.DIAMOND).setWeight(ARTIFACT_COMMON_WEIGHT))
+                .add(LootItem.lootTableItem(SMBlocks.PETRIFIED_SAPLING.get()).setWeight(ARTIFACT_COMMON_WEIGHT))
+                .add(LootItem.lootTableItem(Items.STICK).setWeight(ARTIFACT_COMMON_WEIGHT))
+                .add(LootItem.lootTableItem(Items.COAL).setWeight(ARTIFACT_COMMON_WEIGHT))
+                .add(LootItem.lootTableItem(Items.BONE).setWeight(ARTIFACT_COMMON_WEIGHT))
+                .add(LootItem.lootTableItem(Items.EMERALD).setWeight(ARTIFACT_COMMON_WEIGHT))
+                .add(LootItem.lootTableItem(Items.MUSIC_DISC_RELIC).setWeight(ARTIFACT_COMMON_WEIGHT))
+                .add(LootItem.lootTableItem(SMItems.AMBER_ENCASED_BUG.get()).setWeight(ARTIFACT_COMMON_WEIGHT).when(SMFeatureLootItemCondition.modFeatureCondition(List.of(SMFeatures.AMBER))))
+                .add(LootItem.lootTableItem(SMBlocks.RIBBED_ANCIENT_SKULL.getFirst().get()).setWeight(ARTIFACT_VERY_RARE_WEIGHT))
+        )); //At some point ancient gliding pet egg
         pOutput.accept(SMBuiltInLootTables.OVERWORLD_ARTIFACTS, LootTable.lootTable().withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
                 //Common
                 .add(LootItem.lootTableItem(Items.COAL).setWeight(ARTIFACT_COMMON_WEIGHT + TRASH_WEIGHT_BONUS))
@@ -114,6 +127,7 @@ public class SMArchaeologyLoot implements LootTableSubProvider {
                 .add(LootItem.lootTableItem(SMBlocks.CRESTED_ANCIENT_SKULL.getFirst().get()).setWeight(ARTIFACT_EXTREMELY_RARE_WEIGHT))
                 .add(LootItem.lootTableItem(SMBlocks.GIGANTIC_ANCIENT_SKULL.getFirst().get()).setWeight(ARTIFACT_EXTREMELY_RARE_WEIGHT))
                 .add(LootItem.lootTableItem(SMBlocks.CRACKED_ANCIENT_SKULL.getFirst().get()).setWeight(ARTIFACT_EXTREMELY_RARE_WEIGHT))
+                .add(LootItem.lootTableItem(SMBlocks.RIBBED_ANCIENT_SKULL.getFirst().get()).setWeight(ARTIFACT_EXTREMELY_RARE_WEIGHT))
         ));
     }
 }
