@@ -11,4 +11,5 @@ public class SMLootItemConditions {
     public static final DeferredRegister<LootItemConditionType> ITEM_CONDITIONS = DeferredRegister.create(Registries.LOOT_CONDITION_TYPE, SullysMod.MOD_ID);
 
     public static final RegistryObject<LootItemConditionType> MOD_FEATURE_CONDITION_TYPE = ITEM_CONDITIONS.register("mod_feature_flag", () -> new LootItemConditionType(new SMFeatureLootItemCondition.Serializer()));
-    }
+
+}

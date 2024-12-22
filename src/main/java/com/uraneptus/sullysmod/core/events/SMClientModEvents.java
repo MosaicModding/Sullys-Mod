@@ -103,7 +103,7 @@ public class SMClientModEvents {
         SkullBlockRenderer.SKIN_BY_TYPE.putAll(Util.make(Maps.newHashMap(), SMClientModEvents::addSkull));
     }
 
-    public static void addSkull(Map<SkullBlock.Type, ResourceLocation> map) {
+    private static void addSkull(Map<SkullBlock.Type, ResourceLocation> map) {
         for (AncientSkullBlock.Type type : AncientSkullBlock.Types.values()) {
             map.put(type, SullysMod.modPrefix("textures/entity/ancient_skulls/" + type.toString().toLowerCase() + ".png"));
         }

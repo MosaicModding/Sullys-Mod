@@ -21,6 +21,7 @@ import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
+//BREAKING CHANGE find a new way to do this or write own system. (GLM could be used, but it's not as cool as this)
 @SuppressWarnings({"unused", "SameParameterValue"})
 public class SMLootModifierProvider extends LootModifierProvider {
 

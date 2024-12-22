@@ -33,6 +33,7 @@ public class AmberBE extends BlockEntity {
     private AmberBE.StuckEntityData stuckEntityData;
     public boolean renderEntity;
     private boolean entityUpdated = false;
+    //PERFORMANCE check for more data that can be deleted, so we don't store trash
     private static final List<String> IGNORED_NBT = Arrays.asList("Leash", "Fire");
 
     public AmberBE(BlockPos pPos, BlockState pBlockState) {

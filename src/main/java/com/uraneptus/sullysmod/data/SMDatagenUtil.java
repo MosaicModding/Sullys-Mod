@@ -26,6 +26,7 @@ public class SMDatagenUtil {
     public static final ResourceLocation HANDHELD = vanillaItemLocation("handheld");
     public static final ResourceLocation SPAWN_EGG = vanillaItemLocation("template_spawn_egg");
 
+    //TODO delete
     //Quark Flag (We're going to need this a fair amount once that wood gets added)
     public static ResourceLocation QUARK_FLAG = SullysMod.blueprintPrefix("quark_flag");
 

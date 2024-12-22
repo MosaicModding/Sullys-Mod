@@ -9,6 +9,7 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
+//TODO reformat
 public class SMFluids {
 
     public static final DeferredRegister<Fluid> FLUIDS =

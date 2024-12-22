@@ -39,7 +39,7 @@ public class FlingerTotemBE extends BlockEntity {
                 if (this.getBlockState().getValue(FlingerTotem.HONEY_AMOUNT) != 0) {
                     this.level.playSound(null, blockpos.getX(), blockpos.getY(), blockpos.getZ(), SMSounds.FLINGER_INPUT_HONEY.get(), SoundSource.BLOCKS, 1.0F, 1.0F);
                 }
-                this.level.gameEvent(GameEvent.BLOCK_CHANGE, blockpos, GameEvent.Context.of(projectile, this.getBlockState())); //DO we want this?
+                this.level.gameEvent(GameEvent.BLOCK_CHANGE, blockpos, GameEvent.Context.of(projectile, this.getBlockState()));
             }
 
             projectile.discard();

@@ -5,6 +5,7 @@ import com.uraneptus.sullysmod.SullysMod;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.block.Block;
 
+//BREAKING CHANGE implement custom Tag Helper methods!
 public class SMBlockTags {
     //Our Tags
     public static final TagKey<Block> PROJECTILES_BOUNCE_ON = TagUtil.blockTag(SullysMod.MOD_ID, "projectiles_bounce_on");

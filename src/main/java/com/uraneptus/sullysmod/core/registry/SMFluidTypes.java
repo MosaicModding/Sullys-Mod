@@ -9,6 +9,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
 //TODO all this is bullshit. Clean up needed!!
+//MOVE into SMFluids
 public class SMFluidTypes {
 
     public static final DeferredRegister<FluidType> FLUID_TYPES = DeferredRegister.create(ForgeRegistries.Keys.FLUID_TYPES, SullysMod.MOD_ID);

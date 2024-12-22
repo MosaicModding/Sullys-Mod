@@ -5,7 +5,8 @@ import com.uraneptus.sullysmod.SullysMod;
 import com.uraneptus.sullysmod.core.registry.SMSounds;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
-
+//MOVE to registry package
+//BREAKING CHANGE use vanilla's ArmorMaterial in 1.21
 public class SMArmorMaterials {
     public static final BlueprintArmorMaterial MINERS_HELMET = new BlueprintArmorMaterial(
             SullysMod.modPrefix("miners_helmet"),

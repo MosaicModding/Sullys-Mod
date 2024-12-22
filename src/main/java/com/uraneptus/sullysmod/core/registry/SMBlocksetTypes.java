@@ -18,6 +18,11 @@ public class SMBlocksetTypes {
 
     public static final Supplier<WoodType> PETRIFIED_WOOD_TYPE = Suppliers.memoize(() -> createDefaultWoodType(PETRIFIED_BLOCKSET));
 
+    /**
+     * BREAKING CHANGE use vanilla's method BlockSetType.register() instead
+     *  needs to be initialized during CommonSetupEvent
+     */
+
     public static BlockSetType createBlocksetType(String name, boolean canOpenByHand, SoundType soundType, SoundEvent doorClose, SoundEvent doorOpen, SoundEvent trapdoorClose, SoundEvent trapdoorOpen, SoundEvent pressurePlateClickOff, SoundEvent pressurePlateClickOn, SoundEvent buttonClickOff, SoundEvent buttonClickOn) {
         return BlockSetTypeRegistryHelper.register(new BlockSetType(SullysMod.modPrefix(name).toString(), canOpenByHand, soundType, doorClose, doorOpen, trapdoorClose, trapdoorOpen, pressurePlateClickOff, pressurePlateClickOn, buttonClickOff, buttonClickOn));
     }
@@ -26,6 +31,12 @@ public class SMBlocksetTypes {
         return createWoodType(blockSetType, SoundType.HANGING_SIGN, SoundEvents.FENCE_GATE_CLOSE, SoundEvents.FENCE_GATE_OPEN);
     }
 
+    /**BREAKING CHANGE implement own WoodType registry
+     *  simply use WoodType.register() (vanilla method)
+     *  [needs to be initialized during CommonStartupEvent]
+     *  and use Sheets.addWoodType() to add wood type to sign materials. This can only be on client side!!
+     *  [needs to be initialized during ClientSetupEvent]
+     */
     public static WoodType createWoodType(Supplier<BlockSetType> blockSetType, SoundType hangingSignSoundType, SoundEvent fenceGateClose, SoundEvent fenceGateOpen) {
         return WoodTypeRegistryHelper.registerWoodType(new WoodType(blockSetType.get().name(), blockSetType.get(), blockSetType.get().soundType(), hangingSignSoundType, fenceGateClose, fenceGateOpen));
     }

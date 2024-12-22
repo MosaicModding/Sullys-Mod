@@ -9,6 +9,7 @@ import org.apache.commons.lang3.tuple.Pair;
 import java.util.HashMap;
 import java.util.Map;
 
+//MOVE to util package
 public class SMTextUtil {
     public static Map<String, String> TRANSLATABLES = new HashMap<>();
 

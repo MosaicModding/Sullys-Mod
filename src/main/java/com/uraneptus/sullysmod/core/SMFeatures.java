@@ -7,6 +7,7 @@ import java.util.Arrays;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+//Rename to SMSelection
 public enum SMFeatures implements StringRepresentable {
     JADE,
     PETRIFIED_WOOD,

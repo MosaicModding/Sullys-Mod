@@ -9,6 +9,7 @@ import net.minecraft.network.chat.TextColor;
 import net.minecraft.resources.ResourceLocation;
 import org.apache.commons.lang3.tuple.Pair;
 
+//MOVE to registry maybe
 public class SMTextDefinitions {
     private static final Style POLISHING_STYLE = Style.EMPTY.withColor(TextColor.fromRgb(8355711)).withItalic(true);
     public static final Style ARTIFACT_DESC_STYLE = Style.EMPTY.withColor(TextColor.fromRgb(13290210)).withItalic(true); // 6644320

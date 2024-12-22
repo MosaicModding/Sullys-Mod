@@ -33,6 +33,7 @@ public class SMCommonForgeEvents {
 
     @SubscribeEvent
     public static void missingMappingsEvent(MissingMappingsEvent event) {
+        //TODO this can possibly all be removed in 1.21
         Map<ResourceLocation, Supplier<Block>> blocksMap = (new ImmutableMap.Builder<ResourceLocation, Supplier<Block>>())
                 .put(SullysMod.modPrefix("polished_jade_block"), SMBlocks.JADE_BLOCK)
                 .put(SullysMod.modPrefix("polished_small_jade_bricks"), SMBlocks.JADE_BRICKS)

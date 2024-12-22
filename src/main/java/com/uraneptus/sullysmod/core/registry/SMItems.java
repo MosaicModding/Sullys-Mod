@@ -31,6 +31,7 @@ public class SMItems {
     public static List<RegistryObject<? extends Item>> AUTO_TRANSLATE = new ArrayList<>();
 
     //We have this here so KubeJS can access it!
+    //MOVE maybe put this back into SMProperties inside a static method that is called in the main method.
     public static final Rarity ANCIENT = Rarity.create("sullysmod:ancient", style -> style.withColor(15107584));
 
     //Basic Items

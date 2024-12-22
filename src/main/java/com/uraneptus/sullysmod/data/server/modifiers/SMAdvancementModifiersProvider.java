@@ -21,6 +21,7 @@ import net.minecraftforge.registries.RegistryObject;
 import java.util.Collection;
 import java.util.concurrent.CompletableFuture;
 
+//BREAKING CHANGE find a new way to do this or write own system
 public class SMAdvancementModifiersProvider extends AdvancementModifierProvider {
     public SMAdvancementModifiersProvider(PackOutput packOutput, CompletableFuture<HolderLookup.Provider> lookupProvider) {
         super(SullysMod.MOD_ID, packOutput, lookupProvider);

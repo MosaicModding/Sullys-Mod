@@ -25,6 +25,7 @@ public class SMNoteBlockInstruments {
         registerAncientSkullInstrument(SMBlocks.UNICORN_ANCIENT_SKULL, SMSounds.NOTE_BLOCK_UNICORN_SKULL);
     }
 
+    //BREAKING CHANGE implement own way of registering this.
     public static void registerAncientSkullInstrument(Pair<RegistryObject<Block>, RegistryObject<Block>> skull, Supplier<SoundEvent> soundEvent) {
         Block block = skull.getFirst().get();
         String name = SMTextUtil.convertSkullTypeToString(((AncientSkullBlock)block).getAncientType());

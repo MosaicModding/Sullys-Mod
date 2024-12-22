@@ -7,6 +7,7 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 
+//MOVE to util package
 public class SMItemUtil {
     public static void damageItem(Player player, ItemStack stack, InteractionHand hand) {
         if (notCreative(player)) {

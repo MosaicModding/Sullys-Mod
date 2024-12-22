@@ -33,6 +33,7 @@ public class SMProperties {
         public static BlockBehaviour.Properties petrified() {
             return BlockBehaviour.Properties.of().instrument(NoteBlockInstrument.BASEDRUM).strength(2.0F, 6.0F).sound(SMSounds.PETRIFIED_WOOD).mapColor(MapColor.TERRACOTTA_ORANGE);
         }
+        //BREAKING CHANGE implement custom never & always methods
         public static final BlockBehaviour.Properties PETRIFIED_TRAPDOOR = petrified().requiresCorrectToolForDrops().noOcclusion().isValidSpawn(PropertyUtil::never).strength(3.0F);
         public static final BlockBehaviour.Properties PETRIFIED_PRESSURE_PLATE = petrified().forceSolidOn().noCollission().pushReaction(PushReaction.DESTROY).strength(0.5F);
         public static final BlockBehaviour.Properties PETRIFIED_BUTTON = petrified().noCollission().strength(0.5F).pushReaction(PushReaction.DESTROY);

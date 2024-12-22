@@ -9,6 +9,7 @@ import net.minecraftforge.registries.RegistryObject;
 import java.util.HashMap;
 import java.util.Map;
 
+//TODO this is data-driven in 1.21. Use ResourceKeys then! Similar to how DamageTypes are registered rn
 public class SMPaintingVariants {
     public static final DeferredRegister<PaintingVariant> PAINTINGS = DeferredRegister.create(ForgeRegistries.PAINTING_VARIANTS, SullysMod.MOD_ID);
     public static Map<String, String> PAINTING_TRANSLATIONS = new HashMap<>();
