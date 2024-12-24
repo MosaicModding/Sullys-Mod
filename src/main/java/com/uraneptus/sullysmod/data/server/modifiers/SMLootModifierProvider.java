@@ -9,6 +9,7 @@ import com.uraneptus.sullysmod.core.other.loot.SMLootConditions;
 import com.uraneptus.sullysmod.core.registry.SMItems;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.storage.loot.BuiltInLootTables;
@@ -16,6 +17,7 @@ import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.entries.LootPoolEntryContainer;
 import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
+import net.minecraft.world.level.storage.loot.predicates.LootItemRandomChanceWithLootingCondition;
 import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
 
 import java.util.List;
@@ -42,6 +44,14 @@ public class SMLootModifierProvider extends LootModifierProvider {
         this.entry("throwing_knife_to_underwater_ruin_small").selects(BuiltInLootTables.UNDERWATER_RUIN_SMALL).addModifier(basicModifier(createLootEntry(SMItems.THROWING_KNIFE.get(), 5, 1, 5, SMFeatures.PIRANHA)));
         this.entry("throwing_knife_to_buried_treasure").selects(BuiltInLootTables.BURIED_TREASURE).addModifier(basicModifier(createLootEntry(SMItems.THROWING_KNIFE.get(), 2, 1, 7, SMFeatures.PIRANHA)));
         this.entry("throwing_knife_to_desert_pyramid").selects(BuiltInLootTables.DESERT_PYRAMID).addModifier(basicModifier(createLootEntry(SMItems.THROWING_KNIFE.get(), 20, 1, 8, SMFeatures.PIRANHA)));
+        /*
+        this.entry("bug_meat_to_spider").selects(new ResourceLocation("entities/spider")).addModifier(basicModifier(createBugMeatEntry(0.2F)));
+        this.entry("bug_meat_to_cave_spider").selects(new ResourceLocation("entities/cave_spider")).addModifier(basicModifier(createBugMeatEntry(0.2F)));
+        this.entry("bug_meat_to_silverfish").selects(new ResourceLocation("entities/silverfish")).addModifier(basicModifier(createBugMeatEntry(0.05F)));
+        this.entry("bug_meat_to_endermite").selects(new ResourceLocation("entities/endermite")).addModifier(basicModifier(createBugMeatEntry(0.05F)));
+        this.entry("bug_meat_to_bee").selects(new ResourceLocation("entities/bee")).addModifier(basicModifier(createBugMeatEntry(0.05F)));
+
+         */
     }
 
     private static LootPoolEntriesModifier basicModifier(LootPoolEntryContainer... containers) {
@@ -74,5 +84,9 @@ public class SMLootModifierProvider extends LootModifierProvider {
 
     private static LootPoolEntryContainer createMusicDiscLootEntry(ItemLike item, int weight, SMFeatures... features) {
         return LootItem.lootTableItem(item).setWeight(weight).when(SMFeatureLootItemCondition.modFeatureCondition(List.of(features))).build();
+    }
+
+    private static LootPoolEntryContainer createBugMeatEntry(float pChance) {
+        return LootItem.lootTableItem(SMItems.BUG_MEAT.get()).when(SMFeatureLootItemCondition.modFeatureCondition(List.of(SMFeatures.BUG_MEAT))).when(LootItemRandomChanceWithLootingCondition.randomChanceAndLootingBoost(pChance, 1.2F)).build();
     }
 }

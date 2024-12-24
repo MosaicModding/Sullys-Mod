@@ -55,6 +55,8 @@ public class SMItems {
     public static final RegistryObject<Item> COOKED_LANTERNFISH = createItem("cooked_lanternfish", PropertyUtil.food(SMProperties.Foods.COOKED_LANTERNFISH_FOOD));
     public static final RegistryObject<Item> PIRANHA = createItem("piranha", PropertyUtil.food(SMProperties.Foods.PIRANHA_FOOD), true);
     public static final RegistryObject<Item> COOKED_PIRANHA = createItem("cooked_piranha", PropertyUtil.food(SMProperties.Foods.COOKED_PIRANHA_FOOD));
+    public static final RegistryObject<Item> BUG_MEAT = createItem("bug_meat", PropertyUtil.food(SMProperties.Foods.BUG_MEAT_FOOD));
+    public static final RegistryObject<Item> COOKED_BUG_MEAT = createItem("cooked_bug_meat", PropertyUtil.food(SMProperties.Foods.COOKED_BUG_MEAT_FOOD));
 
     //Buckets & Spawn Eggs
     public static final RegistryObject<Item> MOLTEN_AMBER_BUCKET = createItem("molten_amber_bucket", () -> new BucketItem(SMFluids.SOURCE_MOLTEN_AMBER, new Item.Properties().stacksTo(1)));

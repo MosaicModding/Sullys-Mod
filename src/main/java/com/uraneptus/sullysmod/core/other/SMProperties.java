@@ -66,5 +66,7 @@ public class SMProperties {
         public static final FoodProperties PIRANHA_FOOD = new FoodProperties.Builder().nutrition(3).saturationMod(0.1F).build();
         public static final FoodProperties COOKED_PIRANHA_FOOD = new FoodProperties.Builder().nutrition(7).saturationMod(0.5F).build();
         public static final FoodProperties PETRIFIED_COOKIE = new FoodProperties.Builder().build();
+        public static final FoodProperties BUG_MEAT_FOOD = new FoodProperties.Builder().nutrition(2).saturationMod(0.3F).effect(() -> new MobEffectInstance(MobEffects.HUNGER, 600), 1.0F).effect(() -> new MobEffectInstance(MobEffects.CONFUSION, 600), 1.0F).meat().build();
+        public static final FoodProperties COOKED_BUG_MEAT_FOOD = new FoodProperties.Builder().nutrition(6).saturationMod(0.6F).effect(() -> new MobEffectInstance(MobEffects.DIG_SPEED, 600), 1.0F).meat().build();
     }
 }

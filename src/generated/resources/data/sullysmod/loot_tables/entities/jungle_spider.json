@@ -21,6 +21,23 @@
         }
       ],
       "rolls": 1.0
+    },
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "conditions": [
+            {
+              "chance": 0.2,
+              "condition": "minecraft:random_chance_with_looting",
+              "looting_multiplier": 1.2
+            }
+          ],
+          "name": "sullysmod:bug_meat"
+        }
+      ],
+      "rolls": 1.0
     }
   ],
   "random_sequence": "sullysmod:entities/jungle_spider"

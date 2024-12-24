@@ -22,7 +22,8 @@ public enum SMFeatures implements StringRepresentable {
     RESISTANCE_POTION,
     COPPER_BUTTONS,
     GEM_LANTERNS,
-    GRINDSTONE_POLISHING;
+    GRINDSTONE_POLISHING,
+    BUG_MEAT;
 
     public static final StringRepresentable.EnumCodec<SMFeatures> CODEC = StringRepresentable.fromEnum(SMFeatures::values);
     private static final Map<String, SMFeatures> BY_NAME = Arrays.stream(values()).collect(Collectors.toMap(SMFeatures::getSerializedName, mobCategory -> mobCategory));
@@ -44,6 +45,7 @@ public enum SMFeatures implements StringRepresentable {
             case COPPER_BUTTONS -> SMConfig.ENABLE_COPPER_BUTTONS.get();
             case GEM_LANTERNS -> SMConfig.ENABLE_GEM_LANTERNS.get();
             case GRINDSTONE_POLISHING -> SMConfig.ENABLE_GRINDSTONE_POLISHING.get();
+            case BUG_MEAT -> SMConfig.ENABLE_BUG_MEAT.get();
         };
     }
 

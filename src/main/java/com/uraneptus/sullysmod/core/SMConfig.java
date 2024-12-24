@@ -29,6 +29,7 @@ public class SMConfig {
     public static final ForgeConfigSpec.ConfigValue<Boolean> ENABLE_COPPER_BUTTONS;
     public static final ForgeConfigSpec.ConfigValue<Boolean> ENABLE_GEM_LANTERNS;
     public static final ForgeConfigSpec.ConfigValue<Boolean> ENABLE_GRINDSTONE_POLISHING;
+    public static final ForgeConfigSpec.ConfigValue<Boolean> ENABLE_BUG_MEAT;
 
     public static final ForgeConfigSpec CLIENT;
     public static final ForgeConfigSpec COMMON;
@@ -60,6 +61,7 @@ public class SMConfig {
         ENABLE_COPPER_BUTTONS = COMMON_BUILDER.comment("Enables copper buttons").define("copper_buttons", true);
         ENABLE_GEM_LANTERNS = COMMON_BUILDER.comment("Enables gem lanterns").define("gem_lanterns", false);
         ENABLE_GRINDSTONE_POLISHING = COMMON_BUILDER.comment("Enables grindstone polishing").define("grindstone_polishing", true);
+        ENABLE_BUG_MEAT = COMMON_BUILDER.comment("Enables bug meat").define("bug_meat", true);
         COMMON_BUILDER.comment("Ambient effects").push("ambient");
         ENABLE_MOUNTAIN_CALLS = COMMON_BUILDER.comment("Enables the Mountain call ambient sounds").define("enable_mountain_calls", true);
         ENABLE_MYSTERIOUS_EYES = COMMON_BUILDER.comment("Enables the mysterious eyes in the void").define("enable_mysterious_eyes", true);

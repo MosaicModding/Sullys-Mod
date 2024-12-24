@@ -48,6 +48,7 @@ public class CreativeTabAdditions {
         if (tab == CreativeModeTabs.FOOD_AND_DRINKS) {
             addAfter(event, List.of(SMFeatures.LANTERNFISH), Items.COOKED_COD, LANTERNFISH, COOKED_LANTERNFISH);
             addAfter(event, List.of(SMFeatures.PIRANHA), Items.COOKED_COD, PIRANHA, COOKED_PIRANHA);
+            addAfter(event, List.of(SMFeatures.BUG_MEAT), Items.SPIDER_EYE, BUG_MEAT, COOKED_BUG_MEAT);
         }
 
         if (tab == CreativeModeTabs.COMBAT) {

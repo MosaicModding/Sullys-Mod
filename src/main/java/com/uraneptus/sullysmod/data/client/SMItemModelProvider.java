@@ -147,6 +147,8 @@ public class SMItemModelProvider extends ItemModelProvider {
         basicItem(SMItems.EMERALD_EARRING);
         basicItemHandheld(SMItems.BROKEN_BOTTLE);
         basicItem(SMItems.FROG_IDOL);
+        basicItem(SMItems.BUG_MEAT);
+        basicItem(SMItems.COOKED_BUG_MEAT);
         //Single use methods
         brokenBottle();
         venomVialItem();
