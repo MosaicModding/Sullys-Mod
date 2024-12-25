@@ -43,11 +43,29 @@
     ],
     "subtitle": "subtitles.block.flinger_totem.add_honey"
   },
+  "block.flinger_totem.break": {
+    "sounds": [
+      "sullysmod:block/flinger_totem/place1",
+      "sullysmod:block/flinger_totem/place2",
+      "sullysmod:block/flinger_totem/place3",
+      "sullysmod:block/flinger_totem/place4"
+    ],
+    "subtitle": "subtitles.block.generic.break"
+  },
   "block.flinger_totem.input_honey": {
     "sounds": [
       "sullysmod:block/flinger_totem/flinger_input_honey"
     ],
     "subtitle": "subtitles.block.flinger_totem.input_honey"
+  },
+  "block.flinger_totem.place": {
+    "sounds": [
+      "sullysmod:block/flinger_totem/place1",
+      "sullysmod:block/flinger_totem/place2",
+      "sullysmod:block/flinger_totem/place3",
+      "sullysmod:block/flinger_totem/place4"
+    ],
+    "subtitle": "subtitles.block.generic.place"
   },
   "block.flinger_totem.reduce_honey": {
     "sounds": [
@@ -57,9 +75,9 @@
   },
   "block.flinger_totem.shoot": {
     "sounds": [
-      "sullysmod:block/flinger_totem/flinger_fling1",
-      "sullysmod:block/flinger_totem/flinger_fling3",
-      "sullysmod:block/flinger_totem/flinger_fling3"
+      "sullysmod:block/flinger_totem/shoot1",
+      "sullysmod:block/flinger_totem/shoot2",
+      "sullysmod:block/flinger_totem/shoot3"
     ],
     "subtitle": "subtitles.block.flinger_totem.shoot"
   },
@@ -70,13 +88,61 @@
     ],
     "subtitle": "subtitles.block.grindstone.polish_jade"
   },
+  "block.jade.break": {
+    "sounds": [
+      "sullysmod:block/jade/place1",
+      "sullysmod:block/jade/place2",
+      "sullysmod:block/jade/place3",
+      "sullysmod:block/jade/place4"
+    ],
+    "subtitle": "subtitles.block.generic.break"
+  },
+  "block.jade.fall": {
+    "sounds": [
+      "sullysmod:block/jade/step1",
+      "sullysmod:block/jade/step2",
+      "sullysmod:block/jade/step3",
+      "sullysmod:block/jade/step4",
+      "sullysmod:block/jade/step5"
+    ],
+    "subtitle": "subtitles.block.generic.fall"
+  },
+  "block.jade.hit": {
+    "sounds": [
+      "sullysmod:block/jade/step1",
+      "sullysmod:block/jade/step2",
+      "sullysmod:block/jade/step3",
+      "sullysmod:block/jade/step4",
+      "sullysmod:block/jade/step5"
+    ],
+    "subtitle": "subtitles.block.generic.hit"
+  },
+  "block.jade.place": {
+    "sounds": [
+      "sullysmod:block/jade/place1",
+      "sullysmod:block/jade/place2",
+      "sullysmod:block/jade/place3",
+      "sullysmod:block/jade/place4"
+    ],
+    "subtitle": "subtitles.block.generic.place"
+  },
   "block.jade.ricochet": {
     "sounds": [
-      "block/end_portal/eyeplace1",
-      "block/end_portal/eyeplace2",
-      "block/end_portal/eyeplace3"
+      "sullysmod:block/jade/ricochet1",
+      "sullysmod:block/jade/ricochet2",
+      "sullysmod:block/jade/ricochet3"
     ],
     "subtitle": "subtitles.block.jade.ricochet"
+  },
+  "block.jade.step": {
+    "sounds": [
+      "sullysmod:block/jade/step1",
+      "sullysmod:block/jade/step2",
+      "sullysmod:block/jade/step3",
+      "sullysmod:block/jade/step4",
+      "sullysmod:block/jade/step5"
+    ],
+    "subtitle": "subtitles.block.generic.footsteps"
   },
   "block.note_block.ancient_skull.cracked": {
     "sounds": [
@@ -215,6 +281,46 @@
       "sullysmod:block/petrified_wood/step4",
       "sullysmod:block/petrified_wood/step5",
       "sullysmod:block/petrified_wood/step6"
+    ],
+    "subtitle": "subtitles.block.generic.footsteps"
+  },
+  "block.rough_jade.break": {
+    "sounds": [
+      "sullysmod:block/rough_jade/place1",
+      "sullysmod:block/rough_jade/place2",
+      "sullysmod:block/rough_jade/place3"
+    ],
+    "subtitle": "subtitles.block.generic.break"
+  },
+  "block.rough_jade.fall": {
+    "sounds": [
+      "sullysmod:block/rough_jade/step1",
+      "sullysmod:block/rough_jade/step2",
+      "sullysmod:block/rough_jade/step3"
+    ],
+    "subtitle": "subtitles.block.generic.fall"
+  },
+  "block.rough_jade.hit": {
+    "sounds": [
+      "sullysmod:block/rough_jade/step1",
+      "sullysmod:block/rough_jade/step2",
+      "sullysmod:block/rough_jade/step3"
+    ],
+    "subtitle": "subtitles.block.generic.hit"
+  },
+  "block.rough_jade.place": {
+    "sounds": [
+      "sullysmod:block/rough_jade/place1",
+      "sullysmod:block/rough_jade/place2",
+      "sullysmod:block/rough_jade/place3"
+    ],
+    "subtitle": "subtitles.block.generic.place"
+  },
+  "block.rough_jade.step": {
+    "sounds": [
+      "sullysmod:block/rough_jade/step1",
+      "sullysmod:block/rough_jade/step2",
+      "sullysmod:block/rough_jade/step3"
     ],
     "subtitle": "subtitles.block.generic.footsteps"
   },
@@ -483,6 +589,14 @@
       }
     ],
     "subtitle": "subtitles.item.broken_bottle.shatter"
+  },
+  "item.jade_shield.ricochet": {
+    "sounds": [
+      "sullysmod:item/jade_shield/ricochet1",
+      "sullysmod:item/jade_shield/ricochet2",
+      "sullysmod:item/jade_shield/ricochet3"
+    ],
+    "subtitle": "subtitles.item.jade_shield.ricochet"
   },
   "item.throwing_knife.hit": {
     "sounds": [

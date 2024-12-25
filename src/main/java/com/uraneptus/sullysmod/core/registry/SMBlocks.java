@@ -41,7 +41,7 @@ public class SMBlocks {
     public static final RegistryObject<Block> JADE_BRICKS = createBlock("jade_bricks", () -> new Block(SMProperties.Blocks.JADE_BLOCKS));
     public static final RegistryObject<Block> CHISELED_JADE = createBlock("chiseled_jade", () -> new Block(SMProperties.Blocks.JADE_BLOCKS));
     public static final RegistryObject<Block> JADE_TOTEM = createBlock("jade_totem", () -> new SMDirectionalBlock(SMProperties.Blocks.JADE_BLOCKS));
-    public static final RegistryObject<Block> JADE_FLINGER_TOTEM = createBlock("jade_flinger_totem", () -> new FlingerTotem(SMProperties.Blocks.JADE_BLOCKS));
+    public static final RegistryObject<Block> JADE_FLINGER_TOTEM = createBlock("jade_flinger_totem", () -> new FlingerTotem(SMProperties.Blocks.FLINGER_TOTEM));
     public static final RegistryObject<Block> JADE_PILLAR = createBlock("jade_pillar", () -> new RotatedPillarBlock(SMProperties.Blocks.JADE_BLOCKS));
 
     //Jade Stairs

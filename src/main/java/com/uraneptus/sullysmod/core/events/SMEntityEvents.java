@@ -89,7 +89,7 @@ public class SMEntityEvents {
                     case Z -> projectile.shoot(vec3.x, vec3.y, vec3.reverse().z, calculateBounceVelocity(velocity), 0.0F);
                 }
                 level.addFreshEntity(projectile);
-                handleParticleAndSound(level, blockHitResult, direction, projectile);
+                handleParticleAndSound(level, blockHitResult, direction, projectile, true);
             }
             handleCancellation(event);
         }
@@ -105,7 +105,7 @@ public class SMEntityEvents {
                 projectile.shoot(angle.x, angle.y, angle.z, calculateBounceVelocity(velocity), 0.0F);
                 level.addFreshEntity(projectile);
                 player.getUseItem().hurtAndBreak(1, player, e -> e.broadcastBreakEvent(player.getUsedItemHand()));
-                handleParticleAndSound(level, entityHitResult, direction, projectile);
+                handleParticleAndSound(level, entityHitResult, direction, projectile, false);
             }
             if (entityHitResult.getEntity() instanceof Horse horse && horse.getArmor().is(SMItems.JADE_HORSE_ARMOR.get())) {
                 Direction direction = projectile.getDirection();
@@ -126,7 +126,7 @@ public class SMEntityEvents {
                     if (direction == Direction.SOUTH || direction == Direction.NORTH) {
                         direction = direction.getOpposite();
                     }
-                    handleParticleAndSound(level, entityHitResult, direction, projectile);
+                    handleParticleAndSound(level, entityHitResult, direction, projectile, false);
                 } else {
                     projectile.setPos(projectile.getX(), projectile.getY() + 0.25D, projectile.getZ());
                     RandomSource random = level.getRandom();
@@ -138,7 +138,7 @@ public class SMEntityEvents {
                         case Z ->
                                 projectile.shoot(vec3.x, vec3.y, vec3.reverse().offsetRandom(random, 8F).z, calculateBounceVelocity(velocity), 0.0F);
                     }
-                    handleParticleAndSound(level, entityHitResult, Direction.UP, projectile);
+                    handleParticleAndSound(level, entityHitResult, Direction.UP, projectile, false);
                 }
                 level.addFreshEntity(projectile);
             }
@@ -167,7 +167,7 @@ public class SMEntityEvents {
         return !(projectile.getType().is(SMEntityTags.CANNOT_BE_FLUNG)) && blockState.getBlock() instanceof FlingerTotem && !direction.equals(blockState.getValue(SMDirectionalBlock.FACING));
     }
 
-    private static void handleParticleAndSound(Level level, HitResult hitResult, Direction direction, Projectile projectile) {
+    private static void handleParticleAndSound(Level level, HitResult hitResult, Direction direction, Projectile projectile, boolean isBlock) {
         Vec3 particlePos = Vec3.ZERO;
         if (hitResult instanceof BlockHitResult blockHitResult) {
             particlePos = new Vec3(blockHitResult.getLocation().x, blockHitResult.getLocation().y, blockHitResult.getLocation().z).relative(direction, 0.1D);
@@ -176,6 +176,9 @@ public class SMEntityEvents {
         }
         if (level instanceof ServerLevel serverLevel) {
             serverLevel.sendParticles(new DirectionParticleOptions(SMParticleTypes.RICOCHET.get(), direction), particlePos.x(), particlePos.y(), particlePos.z(), 1, 0.0D, 0.0D, 0.0D, 0.0D);
+        }
+        if (!isBlock) {
+            level.playSound(null, projectile.getX(), projectile.getY(), projectile.getZ(), SMSounds.JADE_SHIELD_RICOCHET.get(), SoundSource.BLOCKS, 1.0F, 0.0F);
         }
         level.playSound(null, projectile.getX(), projectile.getY(), projectile.getZ(), SMSounds.JADE_RICOCHET.get(), SoundSource.BLOCKS, 1.0F, 0.0F);
         projectile.gameEvent(GameEvent.PROJECTILE_SHOOT);

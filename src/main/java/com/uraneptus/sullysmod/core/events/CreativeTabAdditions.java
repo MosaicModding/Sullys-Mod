@@ -10,6 +10,7 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.level.ItemLike;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
+import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
@@ -74,6 +75,7 @@ public class CreativeTabAdditions {
             addAfter(event, List.of(SMFeatures.AMBER), Items.COBWEB, AMBER, ROUGH_AMBER);
         }
 
+        //TODO when and why did this break?
         if (tab == CreativeModeTabs.BUILDING_BLOCKS) {
             addAfter(event, List.of(SMFeatures.JADE), Items.WAXED_OXIDIZED_CUT_COPPER_SLAB,
                     ROUGH_JADE_BLOCK, ROUGH_JADE_BRICKS, ROUGH_JADE_BRICK_STAIRS, ROUGH_JADE_BRICK_SLAB, ROUGH_JADE_BRICK_WALL,

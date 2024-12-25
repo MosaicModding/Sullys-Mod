@@ -24,10 +24,13 @@ public class SMSounds {
     public static final RegistryObject<SoundEvent> THROWING_KNIFE_HIT_GROUND = HELPER.createSoundEvent("item.throwing_knife.hit_ground");
     public static final RegistryObject<SoundEvent> THROWING_KNIFE_THROW = HELPER.createSoundEvent("item.throwing_knife.throw");
     public static final RegistryObject<SoundEvent> BROKEN_BOTTLE_SHATTERS = HELPER.createSoundEvent("item.broken_bottle.shatter");
+    public static final RegistryObject<SoundEvent> JADE_SHIELD_RICOCHET = HELPER.createSoundEvent("item.jade_shield.ricochet");
 
     //Block Sounds
     public static final RegistryObject<SoundEvent> JADE_RICOCHET = HELPER.createSoundEvent("block.jade.ricochet");
     public static final RegistryObject<SoundEvent> FLINGER_FLINGS = HELPER.createSoundEvent("block.flinger_totem.shoot");
+    public static final RegistryObject<SoundEvent> FLINGER_PLACE = HELPER.createSoundEvent("block.flinger_totem.place");
+    public static final RegistryObject<SoundEvent> FLINGER_BREAK = HELPER.createSoundEvent("block.flinger_totem.break");
     public static final RegistryObject<SoundEvent> FLINGER_INPUT_HONEY = HELPER.createSoundEvent("block.flinger_totem.input_honey");
     public static final RegistryObject<SoundEvent> FLINGER_ADD_HONEY = HELPER.createSoundEvent("block.flinger_totem.add_honey");
     public static final RegistryObject<SoundEvent> FLINGER_REDUCE_HONEY = HELPER.createSoundEvent("block.flinger_totem.reduce_honey");
@@ -36,6 +39,19 @@ public class SMSounds {
     public static final RegistryObject<SoundEvent> PETRIFIED_WOOD_HIT = HELPER.createSoundEvent("block.petrified_wood.hit");
     public static final RegistryObject<SoundEvent> PETRIFIED_WOOD_PLACE = HELPER.createSoundEvent("block.petrified_wood.place");
     public static final RegistryObject<SoundEvent> PETRIFIED_WOOD_STEP = HELPER.createSoundEvent("block.petrified_wood.step");
+
+    public static final RegistryObject<SoundEvent> JADE_BREAK = HELPER.createSoundEvent("block.jade.break");
+    public static final RegistryObject<SoundEvent> JADE_FALL = HELPER.createSoundEvent("block.jade.fall");
+    public static final RegistryObject<SoundEvent> JADE_HIT = HELPER.createSoundEvent("block.jade.hit");
+    public static final RegistryObject<SoundEvent> JADE_PLACE = HELPER.createSoundEvent("block.jade.place");
+    public static final RegistryObject<SoundEvent> JADE_STEP = HELPER.createSoundEvent("block.jade.step");
+
+    public static final RegistryObject<SoundEvent> ROUGH_JADE_BREAK = HELPER.createSoundEvent("block.rough_jade.break");
+    public static final RegistryObject<SoundEvent> ROUGH_JADE_FALL = HELPER.createSoundEvent("block.rough_jade.fall");
+    public static final RegistryObject<SoundEvent> ROUGH_JADE_HIT = HELPER.createSoundEvent("block.rough_jade.hit");
+    public static final RegistryObject<SoundEvent> ROUGH_JADE_PLACE = HELPER.createSoundEvent("block.rough_jade.place");
+    public static final RegistryObject<SoundEvent> ROUGH_JADE_STEP = HELPER.createSoundEvent("block.rough_jade.step");
+
     public static final RegistryObject<SoundEvent> COPPER_BUTTON_CLICK_OFF = HELPER.createSoundEvent("block.copper_button.click_off");
     public static final RegistryObject<SoundEvent> COPPER_BUTTON_CLICK_ON = HELPER.createSoundEvent("block.copper_button.click_on");
     public static final RegistryObject<SoundEvent> AMBER_DRIP = HELPER.createSoundEvent("block.amber.drip");
@@ -89,4 +105,7 @@ public class SMSounds {
 
     //SoundTypes
     public static final SoundType PETRIFIED_WOOD = new ForgeSoundType(1.0F, 1.0F, PETRIFIED_WOOD_BREAK, PETRIFIED_WOOD_STEP, PETRIFIED_WOOD_PLACE, PETRIFIED_WOOD_HIT, PETRIFIED_WOOD_FALL);
+    public static final SoundType JADE = new ForgeSoundType(1.0F, 1.0F, JADE_BREAK, JADE_STEP, JADE_PLACE, JADE_HIT, JADE_FALL);
+    public static final SoundType FLINGER_TOTEM = new ForgeSoundType(1.0F, 1.0F, FLINGER_BREAK, JADE_STEP, FLINGER_PLACE, JADE_HIT, JADE_FALL);
+    public static final SoundType ROUGH_JADE = new ForgeSoundType(1.0F, 1.0F, ROUGH_JADE_BREAK, ROUGH_JADE_STEP, ROUGH_JADE_PLACE, ROUGH_JADE_HIT, ROUGH_JADE_FALL);
 }
