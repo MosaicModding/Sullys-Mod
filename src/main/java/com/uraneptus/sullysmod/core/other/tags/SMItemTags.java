@@ -15,6 +15,7 @@ public class SMItemTags {
 
     //Forge Tags
     public static final TagKey<Item> AXE_ITEMS = TagUtil.itemTag("forge", "tools/axes");
+    public static final TagKey<Item> KNIFES = TagUtil.itemTag("forge", "tools/knives");
     public static final TagKey<Item> RAW_FISHES = TagUtil.itemTag("forge", "raw_fishes");
     public static final TagKey<Item> RAW_LANTERNFISH = TagUtil.itemTag("forge", "raw_fishes/lanternfish");
     public static final TagKey<Item> RAW_PIRANHA = TagUtil.itemTag("forge", "raw_fishes/piranha");

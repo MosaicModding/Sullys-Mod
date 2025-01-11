@@ -114,6 +114,7 @@ public class SMItemTagsProvider extends ItemTagsProvider {
         tag(ItemTags.PIGLIN_LOVED).add(SMItems.GOLDEN_BELT_BUCKLE.get(), SMItems.GOLDEN_GOBLET.get(), SMItems.LOST_CROWN.get());
 
         //Forge Tags
+        tag(SMItemTags.KNIFES).add(SMItems.PRIMITIVE_KNIFE.get());
         tag(SMItemTags.CRAFTING_TABLES).add(Items.CRAFTING_TABLE);
         tag(SMItemTags.JUKEBOXES).add(Items.JUKEBOX);
         tag(SMItemTags.RAW_LANTERNFISH).add(
