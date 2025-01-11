@@ -37,12 +37,12 @@ public class ItemStandBlock extends Block implements EntityBlock {
         ItemStack itemInHand = player.getItemInHand(hand);
         if (entity instanceof ItemStandBE itemStand) {
             if (itemStand.getDisplayItem().isEmpty()) {
-                itemStand.setDisplayItem(itemInHand.copy());
+                itemStand.setDisplayItem(itemInHand.copyWithCount(1));
                 itemStand.setChanged();
                 SMItemUtil.nonCreativeShrinkStack(player, itemInHand);
                 return InteractionResult.sidedSuccess(level.isClientSide());
             } else if (itemInHand.isEmpty()) {
-                SMItemUtil.nonCreativeAddItems(player, new ItemStack(itemStand.getDisplayItem().getItem()));
+                SMItemUtil.nonCreativeAddItems(player, itemStand.getDisplayItem().copy());
                 itemStand.setDisplayItem(ItemStack.EMPTY);
                 itemStand.setChanged();
                 return InteractionResult.sidedSuccess(level.isClientSide());
@@ -56,7 +56,7 @@ public class ItemStandBlock extends Block implements EntityBlock {
         if (!blockState.is(pNewState.getBlock())) {
             BlockEntity entity = level.getBlockEntity(pos);
             if (entity instanceof ItemStandBE itemStand && !itemStand.getDisplayItem().isEmpty()) {
-                Containers.dropItemStack(level, pos.getX(), pos.getY(), pos.getZ(), itemStand.getDisplayItem());
+                Containers.dropItemStack(level, pos.getX(), pos.getY(), pos.getZ(), itemStand.getDisplayItem().copy());
             }
             super.onRemove(blockState, level, pos, pNewState, pIsMoving);
         }
