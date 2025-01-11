@@ -1,6 +1,8 @@
 package com.uraneptus.sullysmod.data.server.loot;
 
 import com.uraneptus.sullysmod.SullysMod;
+import com.uraneptus.sullysmod.core.SMFeatures;
+import com.uraneptus.sullysmod.core.other.loot.SMFeatureLootItemCondition;
 import com.uraneptus.sullysmod.core.registry.SMEntityTypes;
 import com.uraneptus.sullysmod.core.registry.SMItems;
 import net.minecraft.data.loot.EntityLootSubProvider;
@@ -21,6 +23,7 @@ import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
 import net.minecraftforge.registries.ForgeRegistries;
 
+import java.util.List;
 import java.util.stream.Stream;
 
 public class SMEntityLoot extends EntityLootSubProvider {
@@ -39,7 +42,11 @@ public class SMEntityLoot extends EntityLootSubProvider {
         this.add(SMEntityTypes.LANTERNFISH.get(), LootTable.lootTable().withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F)).add(LootItem.lootTableItem(SMItems.LANTERNFISH.get()).apply(SmeltItemFunction.smelted().when(LootItemEntityPropertyCondition.hasProperties(LootContext.EntityTarget.THIS, ENTITY_ON_FIRE))))).withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F)).add(LootItem.lootTableItem(Items.BONE_MEAL)).when(LootItemRandomChanceCondition.randomChance(0.05F))));
         this.add(SMEntityTypes.TORTOISE.get(), LootTable.lootTable());
         this.add(SMEntityTypes.BOULDERING_ZOMBIE.get(), LootTable.lootTable().withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F)).add(LootItem.lootTableItem(Items.ROTTEN_FLESH).apply(SetItemCountFunction.setCount(UniformGenerator.between(0.0F, 2.0F))).apply(LootingEnchantFunction.lootingMultiplier(UniformGenerator.between(0.0F, 1.0F))))).withPool(LootPool.lootPool().apply(LootingEnchantFunction.lootingMultiplier(UniformGenerator.between(0.0F, 2.0F))).setRolls(UniformGenerator.between(0.0F, 1.0F)).add(LootItem.lootTableItem(Items.COAL).setWeight(30)).add(LootItem.lootTableItem(Items.DEEPSLATE).setWeight(35).apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 2.0F)))).add(LootItem.lootTableItem(SMItems.LANTERNFISH.get()).setWeight(5))));
-        this.add(SMEntityTypes.JUNGLE_SPIDER.get(), LootTable.lootTable().withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F)).add(LootItem.lootTableItem(Items.STRING).apply(SetItemCountFunction.setCount(UniformGenerator.between(0.0F, 2.0F))))).withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F)).add(LootItem.lootTableItem(SMItems.BUG_MEAT.get()).when(LootItemRandomChanceWithLootingCondition.randomChanceAndLootingBoost(0.2F, 1.2F)))));
+        this.add(SMEntityTypes.JUNGLE_SPIDER.get(), LootTable.lootTable().withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F)).add(LootItem.lootTableItem(Items.STRING).apply(SetItemCountFunction.setCount(UniformGenerator.between(0.0F, 2.0F))))).withPool(createBugMeatPool("bug_meat_jungle_spider", 0.2F)));
         this.add(SMEntityTypes.PIRANHA.get(), LootTable.lootTable().withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F)).add(LootItem.lootTableItem(SMItems.PIRANHA.get()).apply(SmeltItemFunction.smelted().when(LootItemEntityPropertyCondition.hasProperties(LootContext.EntityTarget.THIS, ENTITY_ON_FIRE))))).withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F)).add(LootItem.lootTableItem(Items.BONE_MEAL)).when(LootItemRandomChanceCondition.randomChance(0.05F))).withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F)).add(LootItem.lootTableItem(SMItems.PIRANHA_TOOTH.get())).when(LootItemRandomChanceWithLootingCondition.randomChanceAndLootingBoost(0.27F, 0.06F))));
+    }
+
+    public static LootPool.Builder createBugMeatPool(String name, float pChance) {
+        return LootPool.lootPool().name(name).setRolls(ConstantValue.exactly(1.0F)).add(LootItem.lootTableItem(SMItems.BUG_MEAT.get()).when(SMFeatureLootItemCondition.modFeatureCondition(List.of(SMFeatures.BUG_MEAT))).when(LootItemRandomChanceWithLootingCondition.randomChanceAndLootingBoost(pChance, 1.2F)));
     }
 }

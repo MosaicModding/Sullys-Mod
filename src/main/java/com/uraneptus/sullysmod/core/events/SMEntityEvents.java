@@ -89,7 +89,7 @@ public class SMEntityEvents {
                     case Z -> projectile.shoot(vec3.x, vec3.y, vec3.reverse().z, calculateBounceVelocity(velocity), 0.0F);
                 }
                 level.addFreshEntity(projectile);
-                handleParticleAndSound(level, blockHitResult, direction, projectile, true);
+                handleParticleAndSound(level, blockHitResult, direction, projectile, false);
             }
             handleCancellation(event);
         }
@@ -105,7 +105,7 @@ public class SMEntityEvents {
                 projectile.shoot(angle.x, angle.y, angle.z, calculateBounceVelocity(velocity), 0.0F);
                 level.addFreshEntity(projectile);
                 player.getUseItem().hurtAndBreak(1, player, e -> e.broadcastBreakEvent(player.getUsedItemHand()));
-                handleParticleAndSound(level, entityHitResult, direction, projectile, false);
+                handleParticleAndSound(level, entityHitResult, direction, projectile, true);
             }
             if (entityHitResult.getEntity() instanceof Horse horse && horse.getArmor().is(SMItems.JADE_HORSE_ARMOR.get())) {
                 Direction direction = projectile.getDirection();
@@ -167,7 +167,7 @@ public class SMEntityEvents {
         return !(projectile.getType().is(SMEntityTags.CANNOT_BE_FLUNG)) && blockState.getBlock() instanceof FlingerTotem && !direction.equals(blockState.getValue(SMDirectionalBlock.FACING));
     }
 
-    private static void handleParticleAndSound(Level level, HitResult hitResult, Direction direction, Projectile projectile, boolean isBlock) {
+    private static void handleParticleAndSound(Level level, HitResult hitResult, Direction direction, Projectile projectile, boolean isShield) {
         Vec3 particlePos = Vec3.ZERO;
         if (hitResult instanceof BlockHitResult blockHitResult) {
             particlePos = new Vec3(blockHitResult.getLocation().x, blockHitResult.getLocation().y, blockHitResult.getLocation().z).relative(direction, 0.1D);
@@ -177,7 +177,7 @@ public class SMEntityEvents {
         if (level instanceof ServerLevel serverLevel) {
             serverLevel.sendParticles(new DirectionParticleOptions(SMParticleTypes.RICOCHET.get(), direction), particlePos.x(), particlePos.y(), particlePos.z(), 1, 0.0D, 0.0D, 0.0D, 0.0D);
         }
-        if (!isBlock) {
+        if (!isShield) {
             level.playSound(null, projectile.getX(), projectile.getY(), projectile.getZ(), SMSounds.JADE_SHIELD_RICOCHET.get(), SoundSource.BLOCKS, 1.0F, 0.0F);
         }
         level.playSound(null, projectile.getX(), projectile.getY(), projectile.getZ(), SMSounds.JADE_RICOCHET.get(), SoundSource.BLOCKS, 1.0F, 0.0F);

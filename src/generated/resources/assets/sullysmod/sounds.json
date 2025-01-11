@@ -35,6 +35,15 @@
     ],
     "subtitle": "subtitles.block.button.click"
   },
+  "block.deepslate_jade_ore.break": {
+    "sounds": [
+      "sullysmod:block/deepslate_jade_ore/break1",
+      "sullysmod:block/deepslate_jade_ore/break2",
+      "sullysmod:block/deepslate_jade_ore/break3",
+      "sullysmod:block/deepslate_jade_ore/break4"
+    ],
+    "subtitle": "subtitles.block.generic.break"
+  },
   "block.flinger_totem.add_honey": {
     "sounds": [
       "item/honeycomb/wax_on1",
@@ -143,6 +152,15 @@
       "sullysmod:block/jade/step5"
     ],
     "subtitle": "subtitles.block.generic.footsteps"
+  },
+  "block.jade_ore.break": {
+    "sounds": [
+      "sullysmod:block/jade_ore/break1",
+      "sullysmod:block/jade_ore/break2",
+      "sullysmod:block/jade_ore/break3",
+      "sullysmod:block/jade_ore/break4"
+    ],
+    "subtitle": "subtitles.block.generic.break"
   },
   "block.note_block.ancient_skull.cracked": {
     "sounds": [

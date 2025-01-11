@@ -3,6 +3,7 @@ package com.uraneptus.sullysmod.core.registry;
 import com.teamabnormals.blueprint.core.util.registry.SoundSubRegistryHelper;
 import com.uraneptus.sullysmod.SullysMod;
 import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraftforge.common.util.ForgeSoundType;
 import net.minecraftforge.fml.common.Mod;
@@ -51,6 +52,9 @@ public class SMSounds {
     public static final RegistryObject<SoundEvent> ROUGH_JADE_HIT = HELPER.createSoundEvent("block.rough_jade.hit");
     public static final RegistryObject<SoundEvent> ROUGH_JADE_PLACE = HELPER.createSoundEvent("block.rough_jade.place");
     public static final RegistryObject<SoundEvent> ROUGH_JADE_STEP = HELPER.createSoundEvent("block.rough_jade.step");
+
+    public static final RegistryObject<SoundEvent> JADE_ORE_BREAK = HELPER.createSoundEvent("block.jade_ore.break");
+    public static final RegistryObject<SoundEvent> DEEPSLATE_JADE_ORE_BREAK = HELPER.createSoundEvent("block.deepslate_jade_ore.break");
 
     public static final RegistryObject<SoundEvent> COPPER_BUTTON_CLICK_OFF = HELPER.createSoundEvent("block.copper_button.click_off");
     public static final RegistryObject<SoundEvent> COPPER_BUTTON_CLICK_ON = HELPER.createSoundEvent("block.copper_button.click_on");
@@ -108,4 +112,6 @@ public class SMSounds {
     public static final SoundType JADE = new ForgeSoundType(1.0F, 1.0F, JADE_BREAK, JADE_STEP, JADE_PLACE, JADE_HIT, JADE_FALL);
     public static final SoundType FLINGER_TOTEM = new ForgeSoundType(1.0F, 1.0F, FLINGER_BREAK, JADE_STEP, FLINGER_PLACE, JADE_HIT, JADE_FALL);
     public static final SoundType ROUGH_JADE = new ForgeSoundType(1.0F, 1.0F, ROUGH_JADE_BREAK, ROUGH_JADE_STEP, ROUGH_JADE_PLACE, ROUGH_JADE_HIT, ROUGH_JADE_FALL);
+    public static final SoundType JADE_ORE = new ForgeSoundType(1.0F, 1.0F,  JADE_ORE_BREAK, () -> SoundEvents.STONE_STEP, () -> SoundEvents.STONE_PLACE, () -> SoundEvents.STONE_HIT, () -> SoundEvents.STONE_FALL);
+    public static final SoundType DEEPSLATE_JADE_ORE = new ForgeSoundType(1.0F, 1.0F,  DEEPSLATE_JADE_ORE_BREAK, () -> SoundEvents.DEEPSLATE_STEP, () -> SoundEvents.DEEPSLATE_PLACE, () -> SoundEvents.DEEPSLATE_HIT, () -> SoundEvents.DEEPSLATE_FALL);
 }

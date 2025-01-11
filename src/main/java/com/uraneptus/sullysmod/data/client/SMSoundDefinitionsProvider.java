@@ -219,6 +219,20 @@ public class SMSoundDefinitionsProvider extends SoundDefinitionsProvider {
                 sound(SullysMod.modPrefix("block/rough_jade/step3"))
         );
 
+        this.addBasicSound(SMSounds.JADE_ORE_BREAK, "block.generic.break",
+                sound(SullysMod.modPrefix("block/jade_ore/break1")),
+                sound(SullysMod.modPrefix("block/jade_ore/break2")),
+                sound(SullysMod.modPrefix("block/jade_ore/break3")),
+                sound(SullysMod.modPrefix("block/jade_ore/break4"))
+        );
+
+        this.addBasicSound(SMSounds.DEEPSLATE_JADE_ORE_BREAK, "block.generic.break",
+                sound(SullysMod.modPrefix("block/deepslate_jade_ore/break1")),
+                sound(SullysMod.modPrefix("block/deepslate_jade_ore/break2")),
+                sound(SullysMod.modPrefix("block/deepslate_jade_ore/break3")),
+                sound(SullysMod.modPrefix("block/deepslate_jade_ore/break4"))
+        );
+
         this.addBasicSound(SMSounds.COPPER_BUTTON_CLICK_OFF, "block.button.click",
                 sound(SullysMod.modPrefix("block/copper/copper_click")).pitch(0.5)
         );

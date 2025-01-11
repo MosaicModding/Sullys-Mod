@@ -166,7 +166,6 @@ public class SMBlocks {
 
     private static <B extends Block> RegistryObject<B> createBlockNoItem(String name, Supplier<? extends B> supplier) {
         RegistryObject<B> block = BLOCKS.register(name, supplier);
-        System.out.println(block.getId());
         AUTO_TRANSLATE.add(block);
         return block;
     }
