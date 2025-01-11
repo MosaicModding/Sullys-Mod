@@ -59,6 +59,7 @@ public class SMLangProvider extends LanguageProvider {
 
         add("subtitles.block.grindstone.polish_jade", "Grindstone polishes");
         add("subtitles.block.jade.ricochet", "Projectile ricochets");
+        add("subtitles.item.jade_shield.ricochet", "Projectile ricochets");
         add("subtitles.block.flinger_totem.shoot", "Projectile flung");
         add("subtitles.block.flinger_totem.input_honey", "Projectile absorbed");
         add("subtitles.block.flinger_totem.add_honey", "Honey applied");

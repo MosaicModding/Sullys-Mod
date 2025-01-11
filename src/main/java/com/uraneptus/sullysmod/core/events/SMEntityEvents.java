@@ -177,10 +177,11 @@ public class SMEntityEvents {
         if (level instanceof ServerLevel serverLevel) {
             serverLevel.sendParticles(new DirectionParticleOptions(SMParticleTypes.RICOCHET.get(), direction), particlePos.x(), particlePos.y(), particlePos.z(), 1, 0.0D, 0.0D, 0.0D, 0.0D);
         }
-        if (!isShield) {
+        if (isShield) {
             level.playSound(null, projectile.getX(), projectile.getY(), projectile.getZ(), SMSounds.JADE_SHIELD_RICOCHET.get(), SoundSource.BLOCKS, 1.0F, 0.0F);
+        } else {
+            level.playSound(null, projectile.getX(), projectile.getY(), projectile.getZ(), SMSounds.JADE_RICOCHET.get(), SoundSource.BLOCKS, 1.0F, 0.0F);
         }
-        level.playSound(null, projectile.getX(), projectile.getY(), projectile.getZ(), SMSounds.JADE_RICOCHET.get(), SoundSource.BLOCKS, 1.0F, 0.0F);
         projectile.gameEvent(GameEvent.PROJECTILE_SHOOT);
     }
 
