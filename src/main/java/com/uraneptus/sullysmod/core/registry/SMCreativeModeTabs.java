@@ -17,7 +17,7 @@ public class SMCreativeModeTabs {
             .title(SMTextDefinitions.ARTIFACT_TAB_TITLE)
             .withTabsBefore(CreativeModeTabs.SPAWN_EGGS)
             .icon(() -> SMItems.BROKEN_VASE.get().getDefaultInstance())
-            .displayItems((parameters, output) -> SMItems.ARTIFACT_DESC_MAP.forEach((item, desc) -> {
+            .displayItems((parameters, output) -> SMItems.ARTIFACT_DESC_MAP.forEach(item -> {
                 if (SMFeatures.isEnabled(SMFeatures.ARTIFACTS)) {
                     if (item.get() == SMBlocks.UNICORN_ANCIENT_SKULL.getFirst().get().asItem()) {
                         if (ModList.get().isLoaded("sullysmod_additions") && ModList.get().isLoaded("twilightforest")) {

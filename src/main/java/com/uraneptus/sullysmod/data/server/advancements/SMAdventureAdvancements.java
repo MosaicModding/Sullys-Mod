@@ -33,9 +33,9 @@ import static com.uraneptus.sullysmod.data.SMDatagenUtil.name;
 
 public class SMAdventureAdvancements implements ForgeAdvancementProvider.AdvancementGenerator {
     ResourceLocation adventureParent = new ResourceLocation("adventure/root");
-    private static final List<Item> ARTIFACTS = SMItems.ARTIFACT_DESC_MAP.keySet().stream().map(RegistryObject::get).collect(Collectors.toList());
+    private static final List<Item> ARTIFACTS = SMItems.ARTIFACT_DESC_MAP.stream().map(RegistryObject::get).collect(Collectors.toList());
     private static final List<Item> BIBLIOPHILE_ITEMS = List.of(SMItems.TORN_MANUSCRIPT.get(), SMItems.LOST_JOURNAL.get(), SMItems.LOST_SKETCHBOOK.get(), SMItems.LOST_RECIPE_BOOK.get());
-    private static final List<Item> ALL_SKULL_ITEMS = SMBlocks.ANCIENT_SKULLS.stream().map(Supplier::get).filter(block -> block != SMBlocks.UNICORN_ANCIENT_SKULL.getFirst().get()).map(Block::asItem).collect(Collectors.toList());
+    private static final List<Item> ALL_SKULL_ITEMS = SMBlocks.ANCIENT_SKULLS.stream().map(Supplier::get).filter(block -> block != SMBlocks.UNICORN_ANCIENT_SKULL.getFirst().get()).map(Block::asItem).collect(Collectors.toList()); //TODO maybe add some advancement trigger to add a check for the unicorn skull
     private static final List<Item> ALL_FOSSIL_ITEMS = List.of(SMItems.FOSSILISED_BONE.get(), SMItems.FOSSILISED_FISH.get(), SMItems.FOSSILISED_FOOTSTEP.get(), SMItems.FOSSILISED_SHELLS.get());
 
     @Override

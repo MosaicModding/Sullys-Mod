@@ -84,7 +84,7 @@ public class SMTextDefinitions {
         FIRST_SKULL_ADV = SMTextUtil.addAdvancementTranslatables(ADVENTURE_PATH + FIRST_SKULL_ADV_NAME, "No brainer", "Find your first ancient skull");
         ALL_SKULLS_ADV = SMTextUtil.addAdvancementTranslatables(ADVENTURE_PATH + ALL_SKULLS_ADV_NAME, "Walking with... heavy skulls!", "Find all ancient skulls");
         DRIED_FLOWERS_ADV = SMTextUtil.addAdvancementTranslatables(ADVENTURE_PATH + DRIED_FLOWERS_ADV_NAME, "A sentimental bouquet!", "Find both dried flowers");
-        FIND_TABLETS_ADV = SMTextUtil.addAdvancementTranslatables(ADVENTURE_PATH + FIND_TABLETS_ADV_NAME, "The boogeyman", "Find both ancient tablets");
+        FIND_TABLETS_ADV = SMTextUtil.addAdvancementTranslatables(ADVENTURE_PATH + FIND_TABLETS_ADV_NAME, "The boogeyman", "Find all ancient tablets");
         ALL_FOSSILS_ADV = SMTextUtil.addAdvancementTranslatables(ADVENTURE_PATH + ALL_FOSSILS_ADV_NAME, "Medusa's been busy", "Find all fossils");
         ALL_ARTIFACTS_ADV = SMTextUtil.addAdvancementTranslatables(ADVENTURE_PATH + ALL_ARTIFACTS_ADV_NAME, "A grand collection", "Find all artifacts");
         WHEN_THROWN_TOOLTIP = SMTextUtil.addSMTranslatable("item.modifiers.thrown", "When Thrown:").withStyle(ChatFormatting.GRAY);

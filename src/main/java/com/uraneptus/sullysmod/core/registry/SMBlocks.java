@@ -129,9 +129,10 @@ public class SMBlocks {
         RegistryObject<Block> skull = createBlockNoItemNoLang(skullName, () -> new AncientSkullBlock(type, SMProperties.Blocks.ancientSkulls()));
         RegistryObject<Block> wallSkull = createBlockNoItemNoLang(typeName + "_ancient_wall_skull", () -> new AncientWallSkullBlock(type, SMProperties.Blocks.ancientSkulls().lootFrom(skull)));
         ANCIENT_SKULLS.add(skull);
-        RegistryObject<Item> skullItem = SMItems.ITEMS.register(skullName, () -> new StandingAndWallBlockItem(skull.get(), wallSkull.get(), SMProperties.Items.artifacts(), Direction.DOWN));
-        SMItems.ARTIFACT_DESC_MAP.put(skullItem, SMTextUtil.addSMTranslatable("artifact." + skullName + ".desc", description).withStyle(SMTextDefinitions.ARTIFACT_DESC_STYLE));
+        RegistryObject<Item> skullItem = SMItems.createItem(skullName, () -> new StandingAndWallBlockItem(skull.get(), wallSkull.get(), SMProperties.Items.artifacts(), Direction.DOWN));
+        SMItems.ARTIFACT_DESC_MAP.add(skullItem);
         SMItems.TRADES.put(skullItem, price);
+        SMTextUtil.artifactDesc(skullName, description);
 
         return Pair.of(skull, wallSkull);
     }

@@ -5,9 +5,7 @@ import com.uraneptus.sullysmod.SullysMod;
 import com.uraneptus.sullysmod.common.items.*;
 import com.uraneptus.sullysmod.core.other.SMArmorMaterials;
 import com.uraneptus.sullysmod.core.other.SMProperties;
-import com.uraneptus.sullysmod.core.other.SMTextDefinitions;
 import com.uraneptus.sullysmod.core.other.SMTextUtil;
-import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
@@ -69,7 +67,7 @@ public class SMItems {
     public static final RegistryObject<Item> PIRANHA_SPAWN_EGG = createSpawnEggItem("piranha", SMEntityTypes.PIRANHA::get, 15561472, 4240022);
 
     //Artifacts
-    public static Map<RegistryObject<Item>, Component> ARTIFACT_DESC_MAP = new HashMap<>();
+    public static List<RegistryObject<Item>> ARTIFACT_DESC_MAP = new ArrayList<>();
     public static Map<Supplier<Item>, Integer> TRADES = new HashMap<>();
 
     public static final RegistryObject<Item> BROKEN_VASE = registerArtifact("broken_vase", "A large piece of the side is missing", 10);
@@ -116,13 +114,37 @@ public class SMItems {
     public static final RegistryObject<Item> BROKEN_BOTTLE = registerArtifact("broken_bottle", "The top half of a bottle", () -> new ArtifactWeaponItem(4, -1.2F, SMSounds.BROKEN_BOTTLE_SHATTERS, SMProperties.Items.artifacts().stacksTo(1).durability(1)), 5);
     public static final RegistryObject<Item> FROG_IDOL = registerArtifact("frog_idol", "Everybody likes frogs", 29);
 
+    public static final RegistryObject<Item> BROKEN_CUP = registerArtifact("broken_cup", "soon", 1);
+    public static final RegistryObject<Item> BROKEN_FANCY_DAGGER = registerArtifact("broken_fancy_dagger", "soon", 1);
+    public static final RegistryObject<Item> BROKEN_MUG = registerArtifact("broken_mug", "soon", 1);
+    public static final RegistryObject<Item> CAVE_CARROT = registerArtifact("cave_carrot", "soon", 1);
+    public static final RegistryObject<Item> COPPER_SPOON = registerArtifact("copper_spoon", "soon", 1);
+    public static final RegistryObject<Item> DARK_TABLET = registerArtifact("dark_tablet", "soon", 1);
+    public static final RegistryObject<Item> EYE_TABLET = registerArtifact("eye_tablet", "soon", 1);
+    public static final RegistryObject<Item> FOSSILIZED_BEAK = registerArtifact("fossilized_beak", "soon", 1);
+    public static final RegistryObject<Item> GLOOMY_TABLET = registerArtifact("gloomy_tablet", "soon", 1);
+    public static final RegistryObject<Item> GOLDEN_IDOL = registerArtifact("golden_idol", "soon", 1);
+    public static final RegistryObject<Item> JADE_RING = registerArtifact("jade_ring", "soon", 1);
+    public static final RegistryObject<Item> LOST_BESTIARY = registerArtifact("lost_bestiary", "soon", 1);
+    public static final RegistryObject<Item> LOST_PICTURE_BOOK = registerArtifact("lost_picture_book", "soon", 1);
+    public static final RegistryObject<Item> LOST_SHOE = registerArtifact("lost_shoe", "soon", 1);
+    public static final RegistryObject<Item> PETRIFIED_PILLBUG = registerArtifact("petrified_pillbug", "soon", 1);
+    public static final RegistryObject<Item> PRIMITIVE_NECKLACE = registerArtifact("primitive_necklace", "soon", 1);
+    public static final RegistryObject<Item> SMALL_DIAMOND_GEODE = registerArtifact("small_diamond_geode", "soon", 1);
+    public static final RegistryObject<Item> SMALL_EMERALD_GEODE = registerArtifact("small_emerald_geode", "soon", 1);
+    public static final RegistryObject<Item> SNAPPED_PAINTBRUSH = registerArtifact("snapped_paintbrush", "soon", 1);
+    public static final RegistryObject<Item> SOAKED_BOOK = registerArtifact("soaked_book", "soon", 1);
+    public static final RegistryObject<Item> STONE_MASK = registerArtifact("stone_mask", "soon", 1);
+    public static final RegistryObject<Item> STRANGE_FUR = registerArtifact("strange_fur", "soon", 1);
+
     private static RegistryObject<Item> registerArtifact(String name, String description, int price) {
         return registerArtifact(name, description, () -> new Item(SMProperties.Items.artifacts()), price);
     }
 
     private static RegistryObject<Item> registerArtifact(String name, String description, Supplier<? extends Item> item, int price) {
-        RegistryObject<Item> object = createItem(name, item, true);
-        ARTIFACT_DESC_MAP.put(object, SMTextUtil.addSMTranslatable("artifact." + name + ".desc", description).withStyle(SMTextDefinitions.ARTIFACT_DESC_STYLE));
+        RegistryObject<Item> object = createItem(name, item);
+        SMTextUtil.artifactDesc(name, description);
+        ARTIFACT_DESC_MAP.add(object);
         TRADES.put(object, price);
         return object;
     }

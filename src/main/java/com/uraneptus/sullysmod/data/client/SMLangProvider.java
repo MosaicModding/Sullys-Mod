@@ -31,7 +31,7 @@ public class SMLangProvider extends LanguageProvider {
         addBlock(SMBlocks.ROUGH_JADE_BLOCK, "Block of Rough Jade");
 
         //Items
-        SMItems.ARTIFACT_DESC_MAP.forEach((item, desc) -> forItem(item));
+        //SMItems.ARTIFACT_DESC_MAP.forEach(this::forItem);
         SMItems.AUTO_TRANSLATE.forEach(this::forItem);
         add(SMItems.VENOM_VIAL.get(), "Vial of Jungle Venom");
         add(SMItems.LANTERNFISH_BUCKET.get(), "Bucket of Lanternfish");

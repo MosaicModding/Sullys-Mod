@@ -149,6 +149,28 @@ public class SMItemModelProvider extends ItemModelProvider {
         basicItem(SMItems.FROG_IDOL);
         basicItem(SMItems.BUG_MEAT);
         basicItem(SMItems.COOKED_BUG_MEAT);
+        basicItem(SMItems.BROKEN_CUP);
+        basicItem(SMItems.BROKEN_FANCY_DAGGER);
+        basicItem(SMItems.BROKEN_MUG);
+        basicItem(SMItems.CAVE_CARROT);
+        basicItem(SMItems.COPPER_SPOON);
+        basicItem(SMItems.DARK_TABLET);
+        basicItem(SMItems.EYE_TABLET);
+        basicItem(SMItems.FOSSILIZED_BEAK);
+        basicItem(SMItems.GLOOMY_TABLET);
+        basicItem(SMItems.GOLDEN_IDOL);
+        basicItem(SMItems.JADE_RING);
+        basicItem(SMItems.LOST_BESTIARY);
+        basicItem(SMItems.LOST_PICTURE_BOOK);
+        basicItem(SMItems.LOST_SHOE);
+        basicItem(SMItems.PETRIFIED_PILLBUG);
+        basicItem(SMItems.PRIMITIVE_NECKLACE);
+        basicItem(SMItems.SMALL_DIAMOND_GEODE);
+        basicItem(SMItems.SMALL_EMERALD_GEODE);
+        basicItem(SMItems.SNAPPED_PAINTBRUSH);
+        basicItem(SMItems.SOAKED_BOOK);
+        basicItem(SMItems.STONE_MASK);
+        basicItem(SMItems.STRANGE_FUR);
         //Single use methods
         brokenBottle();
         venomVialItem();

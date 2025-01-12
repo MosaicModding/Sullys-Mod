@@ -46,7 +46,7 @@ public class SMItemTagsProvider extends ItemTagsProvider {
                 SMBlocks.PETRIFIED_WOOD.get().asItem(),
                 SMBlocks.STRIPPED_PETRIFIED_WOOD.get().asItem()
         );
-        SMItems.ARTIFACT_DESC_MAP.forEach((item, desc) -> tag(SMItemTags.ARTIFACTS).add(item.get()));
+        SMItems.ARTIFACT_DESC_MAP.forEach(item -> tag(SMItemTags.ARTIFACTS).add(item.get()));
 
         //Minecraft Tags
         tag(ItemTags.BUTTONS).add(
@@ -111,7 +111,7 @@ public class SMItemTagsProvider extends ItemTagsProvider {
         tag(ItemTags.LOGS).addTag(SMItemTags.PETRIFIED_LOGS);
         tag(ItemTags.SAPLINGS).add(SMBlocks.PETRIFIED_SAPLING.get().asItem());
         tag(ItemTags.STONE_TOOL_MATERIALS).addTag(SMItemTags.PETRIFIED_LOGS);
-        tag(ItemTags.PIGLIN_LOVED).add(SMItems.GOLDEN_BELT_BUCKLE.get(), SMItems.GOLDEN_GOBLET.get(), SMItems.LOST_CROWN.get());
+        tag(ItemTags.PIGLIN_LOVED).add(SMItems.GOLDEN_BELT_BUCKLE.get(), SMItems.GOLDEN_GOBLET.get(), SMItems.LOST_CROWN.get(), SMItems.GOLDEN_IDOL.get());
 
         //Forge Tags
         tag(SMItemTags.KNIFES).add(SMItems.PRIMITIVE_KNIFE.get());
@@ -167,7 +167,7 @@ public class SMItemTagsProvider extends ItemTagsProvider {
         );
         tag(Tags.Items.FENCES_WOODEN).add(SMBlocks.PETRIFIED_FENCE.get().asItem());
         tag(Tags.Items.FENCE_GATES_WOODEN).add(SMBlocks.PETRIFIED_FENCE_GATE.get().asItem());
-        SMItems.ARTIFACT_DESC_MAP.forEach((item, desc) -> {
+        SMItems.ARTIFACT_DESC_MAP.forEach(item -> {
             if (item.getId().getPath().contains("ancient_skull")) {
                 tag(Tags.Items.HEADS).add(item.get());
                 tag(SMItemTags.ANCIENT_SKULLS).add(item.get());

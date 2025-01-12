@@ -16,6 +16,8 @@ import com.uraneptus.sullysmod.core.registry.SMItems;
 import com.uraneptus.sullysmod.core.registry.SMParticleTypes;
 import com.uraneptus.sullysmod.core.registry.SMSounds;
 import net.minecraft.ChatFormatting;
+import net.minecraft.Util;
+import net.minecraft.client.resources.language.I18n;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.cauldron.CauldronInteraction;
@@ -50,6 +52,7 @@ import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.loading.FMLEnvironment;
+import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -168,11 +171,12 @@ public class SMPlayerEvents {
     public static void onItemTooltip(ItemTooltipEvent event) {
         Player player = event.getEntity();
         ItemStack itemstack = event.getItemStack();
-        SMItems.ARTIFACT_DESC_MAP.forEach((item, desc) -> {
-            if (itemstack.is(item.get())) {
-                event.getToolTip().add(desc);
+        if (itemstack.is(SMItemTags.ARTIFACTS)) {
+            String descriptionKey = Util.makeDescriptionId("artifact", ForgeRegistries.ITEMS.getKey(itemstack.getItem())) + ".desc";
+            if (I18n.exists(descriptionKey)) {
+                event.getToolTip().add(Component.translatable(descriptionKey).withStyle(SMTextDefinitions.ARTIFACT_DESC_STYLE));
             }
-        });
+        }
 
         if (itemstack.is(SMItems.JADE_SHIELD.get()) || (itemstack.is(SMItemTags.ARTIFACTS) && !itemstack.is(SMItems.BROKEN_BOTTLE.get()) && !itemstack.is(SMItems.PRIMITIVE_KNIFE.get()))) { //This also hides damage values of artifacts
             if (FMLEnvironment.production) {
