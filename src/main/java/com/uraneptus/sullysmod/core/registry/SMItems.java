@@ -83,7 +83,7 @@ public class SMItems {
     public static final RegistryObject<Item> RUSTY_TOOLS = registerArtifact("rusty_tools", "Maybe their owners are still out there", 9);
     public static final RegistryObject<Item> BROKEN_BOWL = registerArtifact("broken_bowl", "A large crack runs down the edge", 9);
     public static final RegistryObject<Item> COPPER_COG = registerArtifact("copper_cog", "Said to have been part of living creatures", 23);
-    public static final RegistryObject<Item> PETRIFIED_COOKIE = registerArtifact("petrified_cookie", "Petrified food is still food, just extra crisp", () -> new Item(SMProperties.Items.artifacts().food(SMProperties.Foods.PETRIFIED_COOKIE)), 12);
+    public static final RegistryObject<Item> PETRIFIED_COOKIE = registerArtifact("petrified_cookie", "Petrified food is still food, just extra crisp", () -> new PetrifiedCookieItem(SMProperties.Items.artifacts().food(SMProperties.Foods.PETRIFIED_COOKIE)), 12);
     public static final RegistryObject<Item> ARROWHEAD = registerArtifact("arrowhead", "The tip of an ancient arrow", 5);
     public static final RegistryObject<Item> DEATH_WHISTLE = registerArtifact("death_whistle", "Screeches horrible noises when blown into", DeathWhistleItem::new, 20);
     public static final RegistryObject<Item> OMINOUS_TABLET = registerArtifact("ominous_tablet", "A dark figure is carved into the stone", 25);
@@ -145,7 +145,7 @@ public class SMItems {
         RegistryObject<Item> object = createItem(name, item);
         SMTextUtil.artifactDesc(name, description);
         ARTIFACT_DESC_MAP.add(object);
-        TRADES.put(object, price);
+        TRADES.put(object, Integer.valueOf(price));
         return object;
     }
 
