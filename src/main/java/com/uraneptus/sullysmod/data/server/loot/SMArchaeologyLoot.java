@@ -111,6 +111,7 @@ public class SMArchaeologyLoot implements LootTableSubProvider {
                 .add(LootItem.lootTableItem(SMBlocks.HORNED_ANCIENT_SKULL.getFirst().get()).setWeight(ARTIFACT_VERY_RARE_WEIGHT).when(biomeConditionCheck(Biomes.DESERT)))
                 .add(LootItem.lootTableItem(SMBlocks.TINY_ANCIENT_SKULL.getFirst().get()).setWeight(ARTIFACT_VERY_RARE_WEIGHT).when(biomeConditionCheck(Biomes.OLD_GROWTH_SPRUCE_TAIGA)))
                 .add(LootItem.lootTableItem(SMBlocks.FLATBILLED_ANCIENT_SKULL.getFirst().get()).setWeight(ARTIFACT_VERY_RARE_WEIGHT).when(biomeConditionCheck(Biomes.PLAINS)))
+                .add(LootItem.lootTableItem(SMBlocks.SNOUTED_ANCIENT_SKULL.getFirst().get()).setWeight(ARTIFACT_VERY_RARE_WEIGHT).when(biomeConditionCheck(Biomes.PLAINS)))
                 .add(LootItem.lootTableItem(SMBlocks.CRESTED_ANCIENT_SKULL.getFirst().get()).setWeight(ARTIFACT_VERY_RARE_WEIGHT).when(isMountain()))
                 .add(LootItem.lootTableItem(SMBlocks.GIGANTIC_ANCIENT_SKULL.getFirst().get()).setWeight(ARTIFACT_VERY_RARE_WEIGHT).when(biomeConditionCheck(Biomes.WARM_OCEAN)))
                 .add(LootItem.lootTableItem(SMBlocks.CRACKED_ANCIENT_SKULL.getFirst().get()).setWeight(ARTIFACT_VERY_RARE_WEIGHT).when(biomeConditionCheck(Biomes.COLD_OCEAN).or(biomeConditionCheck(Biomes.DEEP_COLD_OCEAN))))
@@ -128,6 +129,7 @@ public class SMArchaeologyLoot implements LootTableSubProvider {
                 .add(LootItem.lootTableItem(SMBlocks.GIGANTIC_ANCIENT_SKULL.getFirst().get()).setWeight(ARTIFACT_EXTREMELY_RARE_WEIGHT))
                 .add(LootItem.lootTableItem(SMBlocks.CRACKED_ANCIENT_SKULL.getFirst().get()).setWeight(ARTIFACT_EXTREMELY_RARE_WEIGHT))
                 .add(LootItem.lootTableItem(SMBlocks.RIBBED_ANCIENT_SKULL.getFirst().get()).setWeight(ARTIFACT_EXTREMELY_RARE_WEIGHT))
+                .add(LootItem.lootTableItem(SMBlocks.SNOUTED_ANCIENT_SKULL.getFirst().get()).setWeight(ARTIFACT_EXTREMELY_RARE_WEIGHT))
         ));
     }
 }

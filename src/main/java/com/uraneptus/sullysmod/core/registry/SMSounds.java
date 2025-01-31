@@ -71,6 +71,7 @@ public class SMSounds {
     public static final RegistryObject<SoundEvent> NOTE_BLOCK_WIDE_SKULL = HELPER.createSoundEvent("block.note_block.ancient_skull.wide");
     public static final RegistryObject<SoundEvent> NOTE_BLOCK_RIBBED_SKULL = HELPER.createSoundEvent("block.note_block.ancient_skull.ribbed");
     public static final RegistryObject<SoundEvent> NOTE_BLOCK_UNICORN_SKULL = HELPER.createSoundEvent("block.note_block.ancient_skull.unicorn");
+    public static final RegistryObject<SoundEvent> NOTE_BLOCK_SNOUTED_SKULL = HELPER.createSoundEvent("block.note_block.ancient_skull.snouted");
 
     //Entity Sounds
     public static final RegistryObject<SoundEvent> TORTOISE_HURT = HELPER.createSoundEvent("entity.tortoise.hurt");

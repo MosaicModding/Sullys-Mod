@@ -104,7 +104,7 @@ public class SMItems {
     public static final RegistryObject<Item> TORN_MANUSCRIPT = registerArtifact("torn_manuscript", "Part of a manuscript with an unknown language", 18);
     public static final RegistryObject<Item> LOST_JOURNAL = registerArtifact("lost_journal", "Waterlogged and left unreadable, it has a few pages ripped out", 17);
     public static final RegistryObject<Item> LOST_SKETCHBOOK = registerArtifact("lost_sketchbook", "A small book with scratchy drawings of an unknown large mouthed biped", 24);
-    public static final RegistryObject<Item> LOST_RECIPE_BOOK = registerArtifact("lost_recipe_book", "Mostly ruined and unreadable, but still has some recipes inside.", 12);
+    public static final RegistryObject<Item> LOST_RECIPE_BOOK = registerArtifact("lost_recipe_book", "Mostly ruined and unreadable, but still has some recipes inside", 12);
     public static final RegistryObject<Item> GOLDEN_BELT_BUCKLE = registerArtifact("golden_belt_buckle", "Has a peculiar shape and it’s leather feels strange", 26);
     public static final RegistryObject<Item> DEEPSLATE_VASE = registerArtifact("deepslate_vase", "Who would’ve needed a vase made from deepslate?", 25);
     public static final RegistryObject<Item> SMALL_GEODE = registerArtifact("small_geode", "Kind of cute", 23);
@@ -121,7 +121,7 @@ public class SMItems {
     public static final RegistryObject<Item> COPPER_SPOON = registerArtifact("copper_spoon", "soon", 1);
     public static final RegistryObject<Item> DARK_TABLET = registerArtifact("dark_tablet", "soon", 1);
     public static final RegistryObject<Item> EYE_TABLET = registerArtifact("eye_tablet", "soon", 1);
-    public static final RegistryObject<Item> FOSSILIZED_BEAK = registerArtifact("fossilized_beak", "soon", 1);
+    public static final RegistryObject<Item> FOSSILISED_BEAK = registerArtifact("fossilised_beak", "soon", 1);
     public static final RegistryObject<Item> GLOOMY_TABLET = registerArtifact("gloomy_tablet", "soon", 1);
     public static final RegistryObject<Item> GOLDEN_IDOL = registerArtifact("golden_idol", "soon", 1);
     public static final RegistryObject<Item> JADE_RING = registerArtifact("jade_ring", "soon", 1);

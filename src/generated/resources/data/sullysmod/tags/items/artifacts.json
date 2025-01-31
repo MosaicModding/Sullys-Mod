@@ -47,7 +47,7 @@
     "sullysmod:copper_spoon",
     "sullysmod:dark_tablet",
     "sullysmod:eye_tablet",
-    "sullysmod:fossilized_beak",
+    "sullysmod:fossilised_beak",
     "sullysmod:gloomy_tablet",
     "sullysmod:golden_idol",
     "sullysmod:jade_ring",
@@ -71,6 +71,7 @@
     "sullysmod:tiny_ancient_skull",
     "sullysmod:wide_ancient_skull",
     "sullysmod:ribbed_ancient_skull",
-    "sullysmod:unicorn_ancient_skull"
+    "sullysmod:unicorn_ancient_skull",
+    "sullysmod:snouted_ancient_skull"
   ]
 }

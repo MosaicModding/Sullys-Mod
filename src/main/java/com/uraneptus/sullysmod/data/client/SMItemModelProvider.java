@@ -156,7 +156,7 @@ public class SMItemModelProvider extends ItemModelProvider {
         basicItem(SMItems.COPPER_SPOON);
         basicItem(SMItems.DARK_TABLET);
         basicItem(SMItems.EYE_TABLET);
-        basicItem(SMItems.FOSSILIZED_BEAK);
+        basicItem(SMItems.FOSSILISED_BEAK);
         basicItem(SMItems.GLOOMY_TABLET);
         basicItem(SMItems.GOLDEN_IDOL);
         basicItem(SMItems.JADE_RING);

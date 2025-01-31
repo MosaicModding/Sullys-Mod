@@ -23,6 +23,7 @@ public class SMNoteBlockInstruments {
         registerAncientSkullInstrument(SMBlocks.WIDE_ANCIENT_SKULL, SMSounds.NOTE_BLOCK_WIDE_SKULL);
         registerAncientSkullInstrument(SMBlocks.RIBBED_ANCIENT_SKULL, SMSounds.NOTE_BLOCK_RIBBED_SKULL);
         registerAncientSkullInstrument(SMBlocks.UNICORN_ANCIENT_SKULL, SMSounds.NOTE_BLOCK_UNICORN_SKULL);
+        registerAncientSkullInstrument(SMBlocks.SNOUTED_ANCIENT_SKULL, SMSounds.NOTE_BLOCK_SNOUTED_SKULL);
     }
 
     public static void registerAncientSkullInstrument(Pair<RegistryObject<Block>, RegistryObject<Block>> skull, Supplier<SoundEvent> soundEvent) {

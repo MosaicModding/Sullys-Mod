@@ -265,6 +265,18 @@
       },
       "trigger": "minecraft:inventory_changed"
     },
+    "fossilised_beak": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "sullysmod:fossilised_beak"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
     "fossilised_bone": {
       "conditions": {
         "items": [
@@ -307,18 +319,6 @@
           {
             "items": [
               "sullysmod:fossilised_shells"
-            ]
-          }
-        ]
-      },
-      "trigger": "minecraft:inventory_changed"
-    },
-    "fossilized_beak": {
-      "conditions": {
-        "items": [
-          {
-            "items": [
-              "sullysmod:fossilized_beak"
             ]
           }
         ]
@@ -757,6 +757,18 @@
       },
       "trigger": "minecraft:inventory_changed"
     },
+    "snouted_ancient_skull": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "sullysmod:snouted_ancient_skull"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
     "soaked_book": {
       "conditions": {
         "items": [
@@ -1024,7 +1036,7 @@
       "eye_tablet"
     ],
     [
-      "fossilized_beak"
+      "fossilised_beak"
     ],
     [
       "gloomy_tablet"
@@ -1097,6 +1109,9 @@
     ],
     [
       "unicorn_ancient_skull"
+    ],
+    [
+      "snouted_ancient_skull"
     ]
   ],
   "rewards": {

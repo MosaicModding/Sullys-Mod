@@ -86,6 +86,7 @@ public class SMClientModEvents {
         event.registerLayerDefinition(WideAncientSkullModel.LAYER_LOCATION, WideAncientSkullModel::createBodyLayer);
         event.registerLayerDefinition(RibbedAncientSkullModel.LAYER_LOCATION, RibbedAncientSkullModel::createBodyLayer);
         event.registerLayerDefinition(UnicornAncientSkullModel.LAYER_LOCATION, UnicornAncientSkullModel::createBodyLayer);
+        event.registerLayerDefinition(SnoutedAncientSkullModel.LAYER_LOCATION, SnoutedAncientSkullModel::createBodyLayer);
     }
 
     @SubscribeEvent
@@ -126,6 +127,7 @@ public class SMClientModEvents {
         event.registerSkullModel(AncientSkullBlock.Types.WIDE, new WideAncientSkullModel(event.getEntityModelSet().bakeLayer(WideAncientSkullModel.LAYER_LOCATION)));
         event.registerSkullModel(AncientSkullBlock.Types.RIBBED, new RibbedAncientSkullModel(event.getEntityModelSet().bakeLayer(RibbedAncientSkullModel.LAYER_LOCATION)));
         event.registerSkullModel(AncientSkullBlock.Types.UNICORN, new UnicornAncientSkullModel(event.getEntityModelSet().bakeLayer(UnicornAncientSkullModel.LAYER_LOCATION)));
+        event.registerSkullModel(AncientSkullBlock.Types.SNOUTED, new SnoutedAncientSkullModel(event.getEntityModelSet().bakeLayer(SnoutedAncientSkullModel.LAYER_LOCATION)));
     }
 
     @SuppressWarnings({"unchecked", "rawtypes"})

@@ -680,6 +680,19 @@
           "type": "minecraft:item",
           "conditions": [
             {
+              "condition": "minecraft:location_check",
+              "predicate": {
+                "biome": "minecraft:plains"
+              }
+            }
+          ],
+          "name": "sullysmod:snouted_ancient_skull",
+          "weight": 20
+        },
+        {
+          "type": "minecraft:item",
+          "conditions": [
+            {
               "condition": "minecraft:any_of",
               "terms": [
                 {
@@ -824,6 +837,11 @@
         {
           "type": "minecraft:item",
           "name": "sullysmod:ribbed_ancient_skull",
+          "weight": 10
+        },
+        {
+          "type": "minecraft:item",
+          "name": "sullysmod:snouted_ancient_skull",
           "weight": 10
         }
       ],

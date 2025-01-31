@@ -290,6 +290,10 @@ public class SMSoundDefinitionsProvider extends SoundDefinitionsProvider {
                 sound("entity.skeleton.ambient", SoundDefinition.SoundType.EVENT)
         );
 
+        this.addBasicSound(SMSounds.NOTE_BLOCK_SNOUTED_SKULL, "block.ancient_skull.snouted",
+                sound("entity.skeleton.ambient", SoundDefinition.SoundType.EVENT)
+        );
+
         //Entity Sounds
         this.addBasicSound(SMSounds.TORTOISE_AMBIENT,
                 sound("mob/turtle/idle1").volume(0.8F),

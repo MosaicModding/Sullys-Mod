@@ -74,6 +74,7 @@ public class SMLangProvider extends LanguageProvider {
         add("subtitles.block.ancient_skull.wide", "Proper Sound soon...");
         add("subtitles.block.ancient_skull.ribbed", "Proper Sound soon...");
         add("subtitles.block.ancient_skull.unicorn", "Proper Sound soon...");
+        add("subtitles.block.ancient_skull.snouted", "Proper Sound soon...");
         add("subtitles.block.amber.drip", "Amber drips");
 
         add("subtitles.entity.tortoise.ambient", "Tortoise chirps");

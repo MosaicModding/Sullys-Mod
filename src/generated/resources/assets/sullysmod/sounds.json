@@ -224,6 +224,15 @@
     ],
     "subtitle": "subtitles.block.ancient_skull.ribbed"
   },
+  "block.note_block.ancient_skull.snouted": {
+    "sounds": [
+      {
+        "type": "event",
+        "name": "entity.skeleton.ambient"
+      }
+    ],
+    "subtitle": "subtitles.block.ancient_skull.snouted"
+  },
   "block.note_block.ancient_skull.tiny": {
     "sounds": [
       {
