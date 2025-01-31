@@ -463,6 +463,14 @@ public class SMSoundDefinitionsProvider extends SoundDefinitionsProvider {
                 sound(new ResourceLocation("item/armor/equip_gold5")),
                 sound(new ResourceLocation("item/armor/equip_gold6"))
         );
+        this.addBasicSound(SMSounds.EQUIP_STONE_MASK, "item.armor.equip_stone_mask",
+                sound(new ResourceLocation("item/armor/equip_generic1")),
+                sound(new ResourceLocation("item/armor/equip_generic2")),
+                sound(new ResourceLocation("item/armor/equip_generic3")),
+                sound(new ResourceLocation("item/armor/equip_generic4")),
+                sound(new ResourceLocation("item/armor/equip_generic5")),
+                sound(new ResourceLocation("item/armor/equip_generic6"))
+        );
     }
 
     private void addBasicSound(Supplier<SoundEvent> soundEvent, String subtitle, SoundDefinition.Sound... sounds) {

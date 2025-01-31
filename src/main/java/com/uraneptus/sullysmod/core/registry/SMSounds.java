@@ -104,6 +104,7 @@ public class SMSounds {
     public static final RegistryObject<SoundEvent> EQUIP_MINERS_HELMET = HELPER.createSoundEvent("item.armor.equip_miners_helmet");
     public static final RegistryObject<SoundEvent> EQUIP_SMALL_DENTED_HELMET = HELPER.createSoundEvent("item.armor.equip_small_dented_helmet");
     public static final RegistryObject<SoundEvent> EQUIP_LOST_CROWN = HELPER.createSoundEvent("item.armor.equip_lost_crown");
+    public static final RegistryObject<SoundEvent> EQUIP_STONE_MASK = HELPER.createSoundEvent("item.armor.equip_stone_mask");
 
     //Ambient sounds
     public static final RegistryObject<SoundEvent> MOUNTAIN_CALLS = HELPER.createSoundEvent("ambient.mountain.calls");

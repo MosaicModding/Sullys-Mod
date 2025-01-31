@@ -14,6 +14,16 @@
             },
             "trigger": "minecraft:consume_item"
           },
+          "sullysmod:cave_carrot": {
+            "conditions": {
+              "item": {
+                "items": [
+                  "sullysmod:cave_carrot"
+                ]
+              }
+            },
+            "trigger": "minecraft:consume_item"
+          },
           "sullysmod:cooked_bug_meat": {
             "conditions": {
               "item": {
@@ -96,6 +106,9 @@
           ],
           [
             "sullysmod:petrified_cookie"
+          ],
+          [
+            "sullysmod:cave_carrot"
           ]
         ],
         "should_replace_requirements": false

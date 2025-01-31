@@ -13,6 +13,18 @@
       },
       "trigger": "minecraft:inventory_changed"
     },
+    "ancient_relic": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "sullysmod:ancient_relic"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
     "arrowhead": {
       "conditions": {
         "items": [
@@ -1079,6 +1091,9 @@
     ],
     [
       "strange_fur"
+    ],
+    [
+      "ancient_relic"
     ],
     [
       "cracked_ancient_skull"

@@ -114,28 +114,30 @@ public class SMItems {
     public static final RegistryObject<Item> BROKEN_BOTTLE = registerArtifact("broken_bottle", "The top half of a bottle", () -> new ArtifactWeaponItem(4, -1.2F, SMSounds.BROKEN_BOTTLE_SHATTERS, SMProperties.Items.artifacts().stacksTo(1).durability(1)), 5);
     public static final RegistryObject<Item> FROG_IDOL = registerArtifact("frog_idol", "Everybody likes frogs", 29);
 
-    public static final RegistryObject<Item> BROKEN_CUP = registerArtifact("broken_cup", "soon", 1);
-    public static final RegistryObject<Item> BROKEN_FANCY_DAGGER = registerArtifact("broken_fancy_dagger", "soon", 1);
-    public static final RegistryObject<Item> BROKEN_MUG = registerArtifact("broken_mug", "soon", 1);
-    public static final RegistryObject<Item> CAVE_CARROT = registerArtifact("cave_carrot", "soon", 1);
-    public static final RegistryObject<Item> COPPER_SPOON = registerArtifact("copper_spoon", "soon", 1);
-    public static final RegistryObject<Item> DARK_TABLET = registerArtifact("dark_tablet", "soon", 1);
-    public static final RegistryObject<Item> EYE_TABLET = registerArtifact("eye_tablet", "soon", 1);
-    public static final RegistryObject<Item> FOSSILISED_BEAK = registerArtifact("fossilised_beak", "soon", 1);
-    public static final RegistryObject<Item> GLOOMY_TABLET = registerArtifact("gloomy_tablet", "soon", 1);
-    public static final RegistryObject<Item> GOLDEN_IDOL = registerArtifact("golden_idol", "soon", 1);
-    public static final RegistryObject<Item> JADE_RING = registerArtifact("jade_ring", "soon", 1);
-    public static final RegistryObject<Item> LOST_BESTIARY = registerArtifact("lost_bestiary", "soon", 1);
-    public static final RegistryObject<Item> LOST_PICTURE_BOOK = registerArtifact("lost_picture_book", "soon", 1);
-    public static final RegistryObject<Item> LOST_SHOE = registerArtifact("lost_shoe", "soon", 1);
-    public static final RegistryObject<Item> PETRIFIED_PILLBUG = registerArtifact("petrified_pillbug", "soon", 1);
-    public static final RegistryObject<Item> PRIMITIVE_NECKLACE = registerArtifact("primitive_necklace", "soon", 1);
-    public static final RegistryObject<Item> SMALL_DIAMOND_GEODE = registerArtifact("small_diamond_geode", "soon", 1);
-    public static final RegistryObject<Item> SMALL_EMERALD_GEODE = registerArtifact("small_emerald_geode", "soon", 1);
-    public static final RegistryObject<Item> SNAPPED_PAINTBRUSH = registerArtifact("snapped_paintbrush", "soon", 1);
-    public static final RegistryObject<Item> SOAKED_BOOK = registerArtifact("soaked_book", "soon", 1);
-    public static final RegistryObject<Item> STONE_MASK = registerArtifact("stone_mask", "soon", 1);
-    public static final RegistryObject<Item> STRANGE_FUR = registerArtifact("strange_fur", "soon", 1);
+    public static final RegistryObject<Item> BROKEN_CUP = registerArtifact("broken_cup", "A small crack keeps it from retaining any liquid", 10);
+    public static final RegistryObject<Item> BROKEN_FANCY_DAGGER = registerArtifact("broken_fancy_dagger", "Must have been used for something sinister", 27);
+    public static final RegistryObject<Item> BROKEN_MUG = registerArtifact("broken_mug", "Once powerful, now just a useless old cup", 13);
+    public static final RegistryObject<Item> CAVE_CARROT = registerArtifact("cave_carrot", "Very common, but it serves for a decent meal", () -> new Item(SMProperties.Items.artifacts().food(SMProperties.Foods.CAVE_CARROT)), 3);
+    public static final RegistryObject<Item> COPPER_SPOON = registerArtifact("copper_spoon", "An oxidized old cauldron spoon", 7);
+    public static final RegistryObject<Item> DARK_TABLET = registerArtifact("dark_tablet", "Etched into the stone are frantic words of an unknown language", 25);
+    public static final RegistryObject<Item> EYE_TABLET = registerArtifact("eye_tablet", "An eye is etched into the dark stone", 27);
+    public static final RegistryObject<Item> FOSSILISED_BEAK = registerArtifact("fossilised_beak", "A small beak separated from its body", 27);
+    public static final RegistryObject<Item> GLOOMY_TABLET = registerArtifact("gloomy_tablet", "Two small eyes are carved into a dark shadow", 26);
+    public static final RegistryObject<Item> GOLDEN_IDOL = registerArtifact("golden_idol", "The red rock on top is warm to the touch", 35);
+    public static final RegistryObject<Item> JADE_RING = registerArtifact("jade_ring", "A delicate stone ring", 23);
+    public static final RegistryObject<Item> LOST_BESTIARY = registerArtifact("lost_bestiary", "Shows illustrations of animals", 20);
+    public static final RegistryObject<Item> LOST_PICTURE_BOOK = registerArtifact("lost_picture_book", "Shows images of a giant prosperous city", 20);
+    public static final RegistryObject<Item> LOST_SHOE = registerArtifact("lost_shoe", "Lonely", 2);
+    public static final RegistryObject<Item> PETRIFIED_PILLBUG = registerArtifact("petrified_pillbug", "Don't kick it, it hurts", 14);
+    public static final RegistryObject<Item> PRIMITIVE_NECKLACE = registerArtifact("primitive_necklace", "A rope with a small metal bead", 9);
+    public static final RegistryObject<Item> SMALL_DIAMOND_GEODE = registerArtifact("small_diamond_geode", "Kind of cute and very shiny", 25);
+    public static final RegistryObject<Item> SMALL_EMERALD_GEODE = registerArtifact("small_emerald_geode", "Kind of cute and expensive", 35);
+    public static final RegistryObject<Item> SNAPPED_PAINTBRUSH = registerArtifact("snapped_paintbrush", "A dried up brush from an arts & crafter's dream", 17);
+    public static final RegistryObject<Item> SOAKED_BOOK = registerArtifact("soaked_book", "A completely destroyed book with all pages ripped out", 4);
+    public static final RegistryObject<Item> STONE_MASK = registerArtifact("stone_mask", "A mask with a screaming face",
+            () -> new ArtifactHelmetItem(SMArmorMaterials.STONE_MASK, SMProperties.Items.artifacts().stacksTo(1)) , 26);
+    public static final RegistryObject<Item> STRANGE_FUR = registerArtifact("strange_fur", "A patch of thick coarse hair", 20);
+    public static final RegistryObject<Item> ANCIENT_RELIC = registerArtifact("ancient_relic", "It's unfathomably old", 40);
 
     private static RegistryObject<Item> registerArtifact(String name, String description, int price) {
         return registerArtifact(name, description, () -> new Item(SMProperties.Items.artifacts()), price);

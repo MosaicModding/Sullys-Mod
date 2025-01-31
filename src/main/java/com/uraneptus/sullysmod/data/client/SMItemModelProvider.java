@@ -171,6 +171,7 @@ public class SMItemModelProvider extends ItemModelProvider {
         basicItem(SMItems.SOAKED_BOOK);
         basicItem(SMItems.STONE_MASK);
         basicItem(SMItems.STRANGE_FUR);
+        basicItem(SMItems.ANCIENT_RELIC);
         //Single use methods
         brokenBottle();
         venomVialItem();

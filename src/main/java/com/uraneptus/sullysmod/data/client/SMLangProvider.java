@@ -112,6 +112,7 @@ public class SMLangProvider extends LanguageProvider {
         add("subtitles.item.armor.equip_miners_helmet", "Miners Helmet clanks");
         add("subtitles.item.armor.equip_small_dented_helmet", "Small Dented Helmet clangs");
         add("subtitles.item.armor.equip_lost_crown", "Lost Crown clings");
+        add("subtitles.item.armor.equip_stone_mask", "Stone Mask rattles");
 
         //Other
         SMTextUtil.TRANSLATABLES.forEach(this::add);

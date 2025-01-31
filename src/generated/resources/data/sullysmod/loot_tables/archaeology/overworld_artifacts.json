@@ -3,6 +3,173 @@
   "pools": [
     {
       "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "condition": "minecraft:location_check",
+          "predicate": {
+            "position": {
+              "y": {
+                "max": 45.0,
+                "min": -59.0
+              }
+            }
+          }
+        },
+        {
+          "condition": "minecraft:location_check",
+          "predicate": {
+            "position": {
+              "y": {
+                "max": 0.0,
+                "min": -59.0
+              }
+            }
+          }
+        },
+        {
+          "condition": "minecraft:any_of",
+          "terms": [
+            {
+              "condition": "minecraft:location_check",
+              "predicate": {
+                "biome": "minecraft:jungle"
+              }
+            },
+            {
+              "condition": "minecraft:location_check",
+              "predicate": {
+                "biome": "minecraft:sparse_jungle"
+              }
+            },
+            {
+              "condition": "minecraft:location_check",
+              "predicate": {
+                "biome": "minecraft:bamboo_jungle"
+              }
+            }
+          ]
+        },
+        {
+          "condition": "minecraft:location_check",
+          "predicate": {
+            "position": {
+              "y": {
+                "max": 0.0,
+                "min": -59.0
+              }
+            }
+          }
+        },
+        {
+          "condition": "minecraft:any_of",
+          "terms": [
+            {
+              "condition": "minecraft:location_check",
+              "predicate": {
+                "biome": "minecraft:meadow"
+              }
+            },
+            {
+              "condition": "minecraft:location_check",
+              "predicate": {
+                "biome": "minecraft:frozen_peaks"
+              }
+            },
+            {
+              "condition": "minecraft:location_check",
+              "predicate": {
+                "biome": "minecraft:jagged_peaks"
+              }
+            },
+            {
+              "condition": "minecraft:location_check",
+              "predicate": {
+                "biome": "minecraft:stony_peaks"
+              }
+            },
+            {
+              "condition": "minecraft:location_check",
+              "predicate": {
+                "biome": "minecraft:snowy_slopes"
+              }
+            },
+            {
+              "condition": "minecraft:location_check",
+              "predicate": {
+                "biome": "minecraft:cherry_grove"
+              }
+            }
+          ]
+        },
+        {
+          "condition": "minecraft:location_check",
+          "predicate": {
+            "position": {
+              "y": {
+                "max": -20.0,
+                "min": -59.0
+              }
+            }
+          }
+        },
+        {
+          "condition": "minecraft:all_of",
+          "terms": [
+            {
+              "condition": "minecraft:any_of",
+              "terms": [
+                {
+                  "condition": "minecraft:location_check",
+                  "predicate": {
+                    "biome": "minecraft:meadow"
+                  }
+                },
+                {
+                  "condition": "minecraft:location_check",
+                  "predicate": {
+                    "biome": "minecraft:frozen_peaks"
+                  }
+                },
+                {
+                  "condition": "minecraft:location_check",
+                  "predicate": {
+                    "biome": "minecraft:jagged_peaks"
+                  }
+                },
+                {
+                  "condition": "minecraft:location_check",
+                  "predicate": {
+                    "biome": "minecraft:stony_peaks"
+                  }
+                },
+                {
+                  "condition": "minecraft:location_check",
+                  "predicate": {
+                    "biome": "minecraft:snowy_slopes"
+                  }
+                },
+                {
+                  "condition": "minecraft:location_check",
+                  "predicate": {
+                    "biome": "minecraft:cherry_grove"
+                  }
+                }
+              ]
+            },
+            {
+              "condition": "minecraft:location_check",
+              "predicate": {
+                "position": {
+                  "y": {
+                    "max": 30.0,
+                    "min": -59.0
+                  }
+                }
+              }
+            }
+          ]
+        }
+      ],
       "entries": [
         {
           "type": "minecraft:item",
@@ -90,6 +257,26 @@
         {
           "type": "minecraft:item",
           "name": "sullysmod:broken_bottle",
+          "weight": 50
+        },
+        {
+          "type": "minecraft:item",
+          "name": "sullysmod:broken_cup",
+          "weight": 50
+        },
+        {
+          "type": "minecraft:item",
+          "name": "sullysmod:cave_carrot",
+          "weight": 50
+        },
+        {
+          "type": "minecraft:item",
+          "name": "sullysmod:copper_spoon",
+          "weight": 50
+        },
+        {
+          "type": "minecraft:item",
+          "name": "sullysmod:primitive_necklace",
           "weight": 50
         },
         {
@@ -211,6 +398,26 @@
         {
           "type": "minecraft:item",
           "name": "sullysmod:lost_recipe_book",
+          "weight": 40
+        },
+        {
+          "type": "minecraft:item",
+          "name": "sullysmod:broken_mug",
+          "weight": 40
+        },
+        {
+          "type": "minecraft:item",
+          "name": "sullysmod:lost_shoe",
+          "weight": 40
+        },
+        {
+          "type": "minecraft:item",
+          "name": "sullysmod:petrified_pillbug",
+          "weight": 40
+        },
+        {
+          "type": "minecraft:item",
+          "name": "sullysmod:soaked_book",
           "weight": 40
         },
         {
@@ -387,6 +594,31 @@
             }
           ],
           "name": "sullysmod:frog_idol",
+          "weight": 30
+        },
+        {
+          "type": "minecraft:item",
+          "name": "sullysmod:jade_ring",
+          "weight": 30
+        },
+        {
+          "type": "minecraft:item",
+          "name": "sullysmod:lost_bestiary",
+          "weight": 30
+        },
+        {
+          "type": "minecraft:item",
+          "name": "sullysmod:lost_picture_book",
+          "weight": 30
+        },
+        {
+          "type": "minecraft:item",
+          "name": "sullysmod:snapped_paintbrush",
+          "weight": 30
+        },
+        {
+          "type": "minecraft:item",
+          "name": "sullysmod:strange_fur",
           "weight": 30
         },
         {
@@ -776,6 +1008,46 @@
         },
         {
           "type": "minecraft:item",
+          "name": "sullysmod:broken_fancy_dagger",
+          "weight": 20
+        },
+        {
+          "type": "minecraft:item",
+          "name": "sullysmod:dark_tablet",
+          "weight": 20
+        },
+        {
+          "type": "minecraft:item",
+          "name": "sullysmod:eye_tablet",
+          "weight": 20
+        },
+        {
+          "type": "minecraft:item",
+          "name": "sullysmod:fossilised_beak",
+          "weight": 20
+        },
+        {
+          "type": "minecraft:item",
+          "name": "sullysmod:gloomy_tablet",
+          "weight": 20
+        },
+        {
+          "type": "minecraft:item",
+          "name": "sullysmod:small_diamond_geode",
+          "weight": 20
+        },
+        {
+          "type": "minecraft:item",
+          "name": "sullysmod:small_emerald_geode",
+          "weight": 20
+        },
+        {
+          "type": "minecraft:item",
+          "name": "sullysmod:stone_mask",
+          "weight": 20
+        },
+        {
+          "type": "minecraft:item",
           "name": "sullysmod:stone_idol",
           "weight": 10
         },
@@ -792,6 +1064,16 @@
         {
           "type": "minecraft:item",
           "name": "sullysmod:familiar_cube",
+          "weight": 10
+        },
+        {
+          "type": "minecraft:item",
+          "name": "sullysmod:ancient_relic",
+          "weight": 10
+        },
+        {
+          "type": "minecraft:item",
+          "name": "sullysmod:golden_idol",
           "weight": 10
         },
         {
