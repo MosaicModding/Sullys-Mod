@@ -1,5 +1,6 @@
 package com.uraneptus.sullysmod.data.server.loot;
 
+import com.uraneptus.sullysmod.core.registry.SMArtifacts;
 import com.uraneptus.sullysmod.core.registry.SMBlocks;
 import com.uraneptus.sullysmod.core.registry.SMItems;
 import net.minecraft.data.loot.BlockLootSubProvider;
@@ -105,9 +106,13 @@ public class SMBlockLoot extends BlockLootSubProvider {
         createDoor(SMBlocks.PETRIFIED_DOOR.get());
         this.dropSelf(SMBlocks.PETRIFIED_SAPLING.get());
         dropPottedContents(SMBlocks.POTTED_PETRIFIED_SAPLING.get());
+        dropPottedContents(SMArtifacts.POTTED_DRIED_CYAN_FLOWER.get());
+        dropPottedContents(SMArtifacts.POTTED_DRIED_RED_FLOWER.get());
 
         this.dropSelf(SMBlocks.ITEM_STAND.get());
-        SMBlocks.ANCIENT_SKULLS.forEach(regObj -> dropSelf(regObj.get()));
+        this.dropSelf(SMArtifacts.DRIED_RED_FLOWER.get());
+        this.dropSelf(SMArtifacts.DRIED_CYAN_FLOWER.get());
+        SMArtifacts.ANCIENT_SKULLS.forEach(regObj -> dropSelf(regObj.get()));
     }
 
     protected LootTable.Builder createJadeOreDrops(Block block) {

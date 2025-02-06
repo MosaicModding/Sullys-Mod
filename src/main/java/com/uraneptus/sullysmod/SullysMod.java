@@ -58,8 +58,10 @@ public class SullysMod {
         SMPetrifiedTreeVariants.init();
 
         REGISTRY_HELPER.register(bus);
+        SMArtifacts.init();
         SMBlocks.BLOCKS.register(bus);
         SMItems.ITEMS.register(bus);
+
         SMBlockEntityTypes.BLOCK_ENTITY.register(bus);
         SMParticleTypes.PARTICLES.register(bus);
         SMPotions.POTIONS.register(bus);

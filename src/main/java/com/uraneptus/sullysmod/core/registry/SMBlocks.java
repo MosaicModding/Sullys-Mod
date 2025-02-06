@@ -5,15 +5,15 @@ import com.teamabnormals.blueprint.common.block.sign.BlueprintCeilingHangingSign
 import com.teamabnormals.blueprint.common.block.sign.BlueprintStandingSignBlock;
 import com.teamabnormals.blueprint.common.block.sign.BlueprintWallHangingSignBlock;
 import com.teamabnormals.blueprint.common.block.sign.BlueprintWallSignBlock;
-import com.teamabnormals.blueprint.core.util.PropertyUtil;
 import com.uraneptus.sullysmod.SullysMod;
 import com.uraneptus.sullysmod.common.blocks.*;
 import com.uraneptus.sullysmod.common.blocks.utilities.SMDirectionalBlock;
 import com.uraneptus.sullysmod.core.other.SMProperties;
-import com.uraneptus.sullysmod.core.other.SMTextDefinitions;
-import com.uraneptus.sullysmod.core.other.SMTextUtil;
 import net.minecraft.core.Direction;
-import net.minecraft.world.item.*;
+import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.HangingSignItem;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.SignItem;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.properties.WoodType;
@@ -104,39 +104,11 @@ public class SMBlocks {
     public static final RegistryObject<Block> PETRIFIED_FENCE = createBlock("petrified_fence", () -> new FenceBlock(SMProperties.Blocks.petrified().requiresCorrectToolForDrops()));
     public static final RegistryObject<Block> PETRIFIED_DOOR = createBlock("petrified_door", () -> new DoorBlock(SMProperties.Blocks.petrified().requiresCorrectToolForDrops().noOcclusion().strength(0.35F), SMBlocksetTypes.PETRIFIED_BLOCKSET.get()));
     public static final RegistryObject<Block> PETRIFIED_SAPLING = createBlock("petrified_sapling", () -> new PetrifiedSapling(SMProperties.Blocks.PETRIFIED_SAPLING));
-    public static final RegistryObject<Block> POTTED_PETRIFIED_SAPLING = createBlockNoItem("potted_petrified_sapling", () -> new FlowerPotBlock(null, PETRIFIED_SAPLING, PropertyUtil.flowerPot()));
+    public static final RegistryObject<Block> POTTED_PETRIFIED_SAPLING = createBlockNoItem("potted_petrified_sapling", () -> new FlowerPotBlock(PETRIFIED_SAPLING.get(), SMProperties.Blocks.flowerPot()));
 
     //Misc
     public static final RegistryObject<Block> TORTOISE_EGG = createBlock("tortoise_egg", () -> new TortoiseEggBlock(BlockBehaviour.Properties.copy(Blocks.TURTLE_EGG)));
     public static final RegistryObject<Block> ITEM_STAND = createBlock("item_stand", () -> new ItemStandBlock(SMProperties.Blocks.ITEM_STAND));
-
-    //Ancient Skulls
-    public static List<Supplier<Block>> ANCIENT_SKULLS = new ArrayList<>();
-    public static final Pair<RegistryObject<Block>, RegistryObject<Block>> CRACKED_ANCIENT_SKULL = registerAncientSkull(AncientSkullBlock.Types.CRACKED, "The head of a giant ancient creature, it has a noticeable amount of cracks", 43);
-    public static final Pair<RegistryObject<Block>, RegistryObject<Block>> CRESTED_ANCIENT_SKULL = registerAncientSkull(AncientSkullBlock.Types.CRESTED, "The large head of a now extinct animal, the beak seems more hollow than others", 40);
-    public static final Pair<RegistryObject<Block>, RegistryObject<Block>> FLATBILLED_ANCIENT_SKULL = registerAncientSkull(AncientSkullBlock.Types.FLATBILLED, "The head of an animal that went extinct long ago", 37);
-    public static final Pair<RegistryObject<Block>, RegistryObject<Block>> GIGANTIC_ANCIENT_SKULL = registerAncientSkull(AncientSkullBlock.Types.GIGANTIC, "The gigantic head of an ancient creature, it feels familiar", 43);
-    public static final Pair<RegistryObject<Block>, RegistryObject<Block>> HORNED_ANCIENT_SKULL = registerAncientSkull(AncientSkullBlock.Types.HORNED, "The head of an extinct creature with a broken off horn on its head", 36);
-    public static final Pair<RegistryObject<Block>, RegistryObject<Block>> LONG_ANCIENT_SKULL = registerAncientSkull(AncientSkullBlock.Types.LONG, "A long head from an extinct animals, it has a large overbite", 34);
-    public static final Pair<RegistryObject<Block>, RegistryObject<Block>> TINY_ANCIENT_SKULL = registerAncientSkull(AncientSkullBlock.Types.TINY, "The head of a small chicken sized critter that lived long ago", 30);
-    public static final Pair<RegistryObject<Block>, RegistryObject<Block>> WIDE_ANCIENT_SKULL = registerAncientSkull(AncientSkullBlock.Types.WIDE, "The head of an extinct animal with a strangely wide head and giant eye sockets", 37);
-    public static final Pair<RegistryObject<Block>, RegistryObject<Block>> RIBBED_ANCIENT_SKULL = registerAncientSkull(AncientSkullBlock.Types.RIBBED, "Has a small ribcage directly attached to the skull", 37);
-    public static final Pair<RegistryObject<Block>, RegistryObject<Block>> UNICORN_ANCIENT_SKULL = registerAncientSkull(AncientSkullBlock.Types.UNICORN, "A normal horse skull, but with a large horn protruding from it", 25);
-    public static final Pair<RegistryObject<Block>, RegistryObject<Block>> SNOUTED_ANCIENT_SKULL = registerAncientSkull(AncientSkullBlock.Types.SNOUTED, "Horrifying", 35);
-
-    public static Pair<RegistryObject<Block>, RegistryObject<Block>> registerAncientSkull(AncientSkullBlock.Types type, String description, int price) {
-        String typeName = SMTextUtil.convertSkullTypeToString(type);
-        String skullName = typeName + "_ancient_skull";
-        RegistryObject<Block> skull = createBlockNoItemNoLang(skullName, () -> new AncientSkullBlock(type, SMProperties.Blocks.ancientSkulls()));
-        RegistryObject<Block> wallSkull = createBlockNoItemNoLang(typeName + "_ancient_wall_skull", () -> new AncientWallSkullBlock(type, SMProperties.Blocks.ancientSkulls().lootFrom(skull)));
-        ANCIENT_SKULLS.add(skull);
-        RegistryObject<Item> skullItem = SMItems.createItem(skullName, () -> new StandingAndWallBlockItem(skull.get(), wallSkull.get(), SMProperties.Items.artifacts(), Direction.DOWN));
-        SMItems.ARTIFACT_DESC_MAP.add(skullItem);
-        SMItems.TRADES.put(skullItem, price);
-        SMTextUtil.artifactDesc(skullName, description);
-
-        return Pair.of(skull, wallSkull);
-    }
 
     private static PetrifiedLog log(Supplier<Block> strippedBlock, MapColor pTopMapColor, MapColor pSideMapColor) {
         return new PetrifiedLog(strippedBlock, SMProperties.Blocks.petrified().requiresCorrectToolForDrops().mapColor((blockState) ->
@@ -162,23 +134,23 @@ public class SMBlocks {
         return Pair.of(ceiling, wall);
     }
 
-    private static <B extends Block> RegistryObject<B> createBlockNoItemNoLang(String name, Supplier<? extends B> supplier) {
+    public static <B extends Block> RegistryObject<B> createBlockNoItemNoLang(String name, Supplier<? extends B> supplier) {
         return BLOCKS.register(name, supplier);
     }
 
-    private static <B extends Block> RegistryObject<B> createBlockNoItem(String name, Supplier<? extends B> supplier) {
+    public static <B extends Block> RegistryObject<B> createBlockNoItem(String name, Supplier<? extends B> supplier) {
         RegistryObject<B> block = BLOCKS.register(name, supplier);
         AUTO_TRANSLATE.add(block);
         return block;
     }
     
-    private static <B extends Block> RegistryObject<B> createBlockNoLang(String name, Supplier<? extends B> supplier) {
+    public static <B extends Block> RegistryObject<B> createBlockNoLang(String name, Supplier<? extends B> supplier) {
         RegistryObject<B> block = BLOCKS.register(name, supplier);
         SMItems.ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties()));
         return block;
     }
 
-    private static <B extends Block> RegistryObject<B> createBlock(String name, Supplier<? extends B> supplier) {
+    public static <B extends Block> RegistryObject<B> createBlock(String name, Supplier<? extends B> supplier) {
         RegistryObject<B> block = BLOCKS.register(name, supplier);
         SMItems.ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties()));
         AUTO_TRANSLATE.add(block);

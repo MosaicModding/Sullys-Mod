@@ -4,6 +4,7 @@ import com.uraneptus.sullysmod.SullysMod;
 import com.uraneptus.sullysmod.common.recipes.SMFeatureRecipeCondition;
 import com.uraneptus.sullysmod.core.SMFeatures;
 import com.uraneptus.sullysmod.core.other.tags.SMItemTags;
+import com.uraneptus.sullysmod.core.registry.SMArtifacts;
 import com.uraneptus.sullysmod.core.registry.SMBlocks;
 import com.uraneptus.sullysmod.core.registry.SMItems;
 import com.uraneptus.sullysmod.data.server.builder.GrindstonePolishingRecipeBuilder;
@@ -206,10 +207,10 @@ public class SMRecipeProvider extends RecipeProvider {
         );
         featureConditionRecipe(List.of(SMFeatures.ARTIFACTS), RecipeCategory.BUILDING_BLOCKS,
                 ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, Items.ARROW, 4)
-                        .define('#', Items.STICK).define('X', SMItems.ARROWHEAD.get()).define('Y', Items.FEATHER)
+                        .define('#', Items.STICK).define('X', SMArtifacts.ARROWHEAD.get()).define('Y', Items.FEATHER)
                         .pattern("X").pattern("#").pattern("Y")
                         .unlockedBy("has_feather", has(Items.FEATHER))
-                        .unlockedBy(getHasName(SMItems.ARROWHEAD.get()), has(SMItems.ARROWHEAD.get())),
+                        .unlockedBy(getHasName(SMArtifacts.ARROWHEAD.get()), has(SMArtifacts.ARROWHEAD.get())),
                 craftingPath("arrow_from_arrowhead"), consumer
         );
         featureConditionRecipe(List.of(SMFeatures.JUNGLE_SPIDER), RecipeCategory.BUILDING_BLOCKS,
@@ -221,8 +222,8 @@ public class SMRecipeProvider extends RecipeProvider {
         );
         featureConditionRecipe(List.of(SMFeatures.ARTIFACTS), RecipeCategory.BUILDING_BLOCKS,
                 ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, Items.AMETHYST_SHARD, 3)
-                        .requires(SMItems.SMALL_GEODE.get())
-                        .unlockedBy(getHasName(SMItems.SMALL_GEODE.get()), has(SMItems.SMALL_GEODE.get())),
+                        .requires(SMArtifacts.SMALL_GEODE.get())
+                        .unlockedBy(getHasName(SMArtifacts.SMALL_GEODE.get()), has(SMArtifacts.SMALL_GEODE.get())),
                 craftingPath("amethyst_shard_from_small_geode"), consumer
         );
         featureConditionRecipe(List.of(SMFeatures.ITEM_STAND), RecipeCategory.BUILDING_BLOCKS,

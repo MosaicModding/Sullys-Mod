@@ -3,8 +3,8 @@ package com.uraneptus.sullysmod.core.events;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.*;
 import com.uraneptus.sullysmod.SullysMod;
+import com.uraneptus.sullysmod.core.registry.SMArtifacts;
 import com.uraneptus.sullysmod.core.registry.SMBlocks;
-import com.uraneptus.sullysmod.core.registry.SMItems;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.client.renderer.PostChain;
@@ -68,7 +68,7 @@ public class SMClientForgeEvents {
 
         GameRenderer renderer = mc.gameRenderer;
 
-        if (player.getItemBySlot(EquipmentSlot.HEAD).is(SMItems.STONE_MASK.get()) && mc.options.getCameraType().isFirstPerson()) {
+        if (player.getItemBySlot(EquipmentSlot.HEAD).is(SMArtifacts.STONE_MASK.get()) && mc.options.getCameraType().isFirstPerson()) {
             if (refresh == 0 || renderer.currentEffect() != effect || !renderer.effectActive) {
                 refresh = 1;
             }

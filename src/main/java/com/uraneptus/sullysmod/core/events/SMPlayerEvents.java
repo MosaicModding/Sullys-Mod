@@ -11,10 +11,7 @@ import com.uraneptus.sullysmod.core.other.SMItemUtil;
 import com.uraneptus.sullysmod.core.other.SMTextDefinitions;
 import com.uraneptus.sullysmod.core.other.tags.SMBiomeTags;
 import com.uraneptus.sullysmod.core.other.tags.SMItemTags;
-import com.uraneptus.sullysmod.core.registry.SMBlocks;
-import com.uraneptus.sullysmod.core.registry.SMItems;
-import com.uraneptus.sullysmod.core.registry.SMParticleTypes;
-import com.uraneptus.sullysmod.core.registry.SMSounds;
+import com.uraneptus.sullysmod.core.registry.*;
 import net.minecraft.ChatFormatting;
 import net.minecraft.Util;
 import net.minecraft.client.resources.language.I18n;
@@ -149,7 +146,7 @@ public class SMPlayerEvents {
         ItemStack itemInHand = event.getItemStack();
         Player player = event.getEntity();
         Level level = event.getLevel();
-        if (itemInHand.is(SMItems.LOST_RECIPE_BOOK.get()) && level.getServer() != null && player instanceof ServerPlayer serverPlayer) {
+        if (itemInHand.is(SMArtifacts.LOST_RECIPE_BOOK.get()) && level.getServer() != null && player instanceof ServerPlayer serverPlayer) {
             List<Recipe<?>> unknownRecipes = new ArrayList<>();
 
             for (Recipe<?> recipe : level.getServer().getRecipeManager().getRecipes()) {
@@ -178,7 +175,7 @@ public class SMPlayerEvents {
             }
         }
 
-        if (itemstack.is(SMItems.JADE_SHIELD.get()) || (itemstack.is(SMItemTags.ARTIFACTS) && !itemstack.is(SMItems.BROKEN_BOTTLE.get()) && !itemstack.is(SMItems.PRIMITIVE_KNIFE.get()))) { //This also hides damage values of artifacts
+        if (itemstack.is(SMItems.JADE_SHIELD.get()) || (itemstack.is(SMItemTags.ARTIFACTS) && !itemstack.is(SMArtifacts.BROKEN_BOTTLE.get()) && !itemstack.is(SMArtifacts.PRIMITIVE_KNIFE.get()))) { //This also hides damage values of artifacts
             if (FMLEnvironment.production) {
                 itemstack.hideTooltipPart(ItemStack.TooltipPart.MODIFIERS);
             }

@@ -3,6 +3,7 @@ package com.uraneptus.sullysmod.data.server.tags;
 import com.teamabnormals.blueprint.core.other.tags.BlueprintBlockTags;
 import com.uraneptus.sullysmod.SullysMod;
 import com.uraneptus.sullysmod.core.other.tags.SMBlockTags;
+import com.uraneptus.sullysmod.core.registry.SMArtifacts;
 import com.uraneptus.sullysmod.core.registry.SMBlocks;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
@@ -130,7 +131,15 @@ public class SMBlockTagsProvider extends BlockTagsProvider {
         tag(BlockTags.WOODEN_STAIRS).add(SMBlocks.PETRIFIED_STAIRS.get());
         tag(BlockTags.PLANKS).add(SMBlocks.PETRIFIED_PLANKS.get());
         tag(BlockTags.SAPLINGS).add(SMBlocks.PETRIFIED_SAPLING.get());
-        tag(BlockTags.FLOWER_POTS).add(SMBlocks.POTTED_PETRIFIED_SAPLING.get());
+        tag(BlockTags.FLOWER_POTS).add(
+                SMBlocks.POTTED_PETRIFIED_SAPLING.get(),
+                SMArtifacts.POTTED_DRIED_CYAN_FLOWER.get(),
+                SMArtifacts.POTTED_DRIED_RED_FLOWER.get()
+        );
+        tag(BlockTags.SMALL_FLOWERS).add(
+                SMArtifacts.DRIED_RED_FLOWER.get(),
+                SMArtifacts.DRIED_CYAN_FLOWER.get()
+        );
 
         //Our Tags
         tag(SMBlockTags.PROJECTILES_BOUNCE_ON).add(
@@ -208,7 +217,7 @@ public class SMBlockTagsProvider extends BlockTagsProvider {
         );
         tag(Tags.Blocks.FENCES_WOODEN).add(SMBlocks.PETRIFIED_FENCE.get());
         tag(Tags.Blocks.FENCE_GATES_WOODEN).add(SMBlocks.PETRIFIED_FENCE_GATE.get());
-        SMBlocks.ANCIENT_SKULLS.forEach(blockSupplier -> {
+        SMArtifacts.ANCIENT_SKULLS.forEach(blockSupplier -> {
             tag(BlueprintBlockTags.NOTE_BLOCK_TOP_INSTRUMENTS).add(blockSupplier.get());
         });
     }

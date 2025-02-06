@@ -16,10 +16,10 @@ public class SMCreativeModeTabs {
     public static final RegistryObject<CreativeModeTab> ARTIFACT_TAB = TABS.register("artifact_tab", () -> CreativeModeTab.builder()
             .title(SMTextDefinitions.ARTIFACT_TAB_TITLE)
             .withTabsBefore(CreativeModeTabs.SPAWN_EGGS)
-            .icon(() -> SMItems.BROKEN_VASE.get().getDefaultInstance())
-            .displayItems((parameters, output) -> SMItems.ARTIFACT_DESC_MAP.forEach(item -> {
+            .icon(() -> SMArtifacts.BROKEN_VASE.get().getDefaultInstance())
+            .displayItems((parameters, output) -> SMArtifacts.ARTIFACT_DESC_MAP.forEach(item -> {
                 if (SMFeatures.isEnabled(SMFeatures.ARTIFACTS)) {
-                    if (item.get() == SMBlocks.UNICORN_ANCIENT_SKULL.getFirst().get().asItem()) {
+                    if (item.get() == SMArtifacts.UNICORN_ANCIENT_SKULL.getFirst().get().asItem()) {
                         if (ModList.get().isLoaded("sullysmod_additions") && ModList.get().isLoaded("twilightforest")) {
                             output.accept(item.get());
                         }
