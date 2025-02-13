@@ -1,0 +1,27 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "sullysmod:mod_features",
+          "values": [
+            "artifacts"
+          ]
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:crafting_shapeless",
+        "category": "misc",
+        "ingredients": [
+          {
+            "item": "sullysmod:small_emerald_geode"
+          }
+        ],
+        "result": {
+          "item": "minecraft:emerald"
+        }
+      }
+    }
+  ]
+}

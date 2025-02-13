@@ -1,0 +1,49 @@
+{
+  "advancements": [
+    {
+      "advancement": {
+        "parent": "minecraft:recipes/root",
+        "criteria": {
+          "has_the_recipe": {
+            "conditions": {
+              "recipe": "sullysmod:string"
+            },
+            "trigger": "minecraft:recipe_unlocked"
+          },
+          "has_torn_cloth": {
+            "conditions": {
+              "items": [
+                {
+                  "items": [
+                    "sullysmod:torn_cloth"
+                  ]
+                }
+              ]
+            },
+            "trigger": "minecraft:inventory_changed"
+          }
+        },
+        "requirements": [
+          [
+            "has_torn_cloth",
+            "has_the_recipe"
+          ]
+        ],
+        "rewards": {
+          "recipes": [
+            "sullysmod:string"
+          ]
+        },
+        "sends_telemetry_event": false
+      },
+      "conditions": [
+        {
+          "type": "sullysmod:mod_features",
+          "values": [
+            "artifacts"
+          ]
+        }
+      ]
+    }
+  ]
+}

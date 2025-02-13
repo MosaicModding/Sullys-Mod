@@ -1,0 +1,28 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "sullysmod:mod_features",
+          "values": [
+            "artifacts"
+          ]
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:crafting_shapeless",
+        "category": "misc",
+        "ingredients": [
+          {
+            "item": "sullysmod:lost_recipe_book"
+          }
+        ],
+        "result": {
+          "count": 2,
+          "item": "minecraft:paper"
+        }
+      }
+    }
+  ]
+}

@@ -109,6 +109,7 @@ public class SullysMod {
             SMDispenseBehaviors.register();
             SMNoteBlockInstruments.register();
             SMPacketHandler.register();
+            SMCompostables.registerCompostables();
         });
     }
 

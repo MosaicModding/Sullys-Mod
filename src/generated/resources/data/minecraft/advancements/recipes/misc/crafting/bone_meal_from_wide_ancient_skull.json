@@ -1,0 +1,49 @@
+{
+  "advancements": [
+    {
+      "advancement": {
+        "parent": "minecraft:recipes/root",
+        "criteria": {
+          "has_the_recipe": {
+            "conditions": {
+              "recipe": "sullysmod:bone_meal"
+            },
+            "trigger": "minecraft:recipe_unlocked"
+          },
+          "has_wide_ancient_skull": {
+            "conditions": {
+              "items": [
+                {
+                  "items": [
+                    "sullysmod:wide_ancient_skull"
+                  ]
+                }
+              ]
+            },
+            "trigger": "minecraft:inventory_changed"
+          }
+        },
+        "requirements": [
+          [
+            "has_wide_ancient_skull",
+            "has_the_recipe"
+          ]
+        ],
+        "rewards": {
+          "recipes": [
+            "sullysmod:bone_meal"
+          ]
+        },
+        "sends_telemetry_event": false
+      },
+      "conditions": [
+        {
+          "type": "sullysmod:mod_features",
+          "values": [
+            "artifacts"
+          ]
+        }
+      ]
+    }
+  ]
+}
