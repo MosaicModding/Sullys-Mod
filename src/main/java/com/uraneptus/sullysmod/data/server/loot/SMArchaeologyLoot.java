@@ -81,6 +81,7 @@ public class SMArchaeologyLoot implements LootTableSubProvider {
                 .add(LootItem.lootTableItem(Items.IRON_NUGGET).setWeight(ARTIFACT_RARE_WEIGHT + TRASH_WEIGHT_BONUS))
                 .add(LootItem.lootTableItem(Items.GLOW_BERRIES).setWeight(ARTIFACT_RARE_WEIGHT + TRASH_WEIGHT_BONUS))
                 .add(LootItem.lootTableItem(Items.STONE_PICKAXE).setWeight(ARTIFACT_RARE_WEIGHT + TRASH_WEIGHT_BONUS))
+                .add(LootItem.lootTableItem(Items.NAME_TAG).setWeight(ARTIFACT_RARE_WEIGHT + TRASH_WEIGHT_BONUS))
                 .add(LootItem.lootTableItem(Items.ROTTEN_FLESH).setWeight(ARTIFACT_RARE_WEIGHT + TRASH_WEIGHT_BONUS).when(IS_DEEPSLATE_CAVE))
                 .add(LootItem.lootTableItem(Items.GOLD_NUGGET).setWeight(ARTIFACT_RARE_WEIGHT + TRASH_WEIGHT_BONUS).when(IS_DEEPSLATE_CAVE))
                 .add(LootItem.lootTableItem(SMArtifacts.JADE_AMULET.get()).setWeight(ARTIFACT_RARE_WEIGHT).when(isJungle()))

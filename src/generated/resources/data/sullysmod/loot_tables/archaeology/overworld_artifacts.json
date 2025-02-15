@@ -437,6 +437,11 @@
         },
         {
           "type": "minecraft:item",
+          "name": "minecraft:name_tag",
+          "weight": 36
+        },
+        {
+          "type": "minecraft:item",
           "conditions": [
             {
               "condition": "minecraft:location_check",
