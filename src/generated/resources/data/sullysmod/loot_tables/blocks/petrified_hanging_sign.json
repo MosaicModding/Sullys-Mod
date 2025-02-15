@@ -11,11 +11,11 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "sullysmod:petrified_sign"
+          "name": "sullysmod:petrified_hanging_sign"
         }
       ],
       "rolls": 1.0
     }
   ],
-  "random_sequence": "sullysmod:blocks/petrified_sign"
+  "random_sequence": "sullysmod:blocks/petrified_hanging_sign"
 }

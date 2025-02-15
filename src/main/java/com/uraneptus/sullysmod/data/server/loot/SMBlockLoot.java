@@ -1,5 +1,6 @@
 package com.uraneptus.sullysmod.data.server.loot;
 
+import com.uraneptus.sullysmod.SullysMod;
 import com.uraneptus.sullysmod.core.registry.SMArtifacts;
 import com.uraneptus.sullysmod.core.registry.SMBlocks;
 import com.uraneptus.sullysmod.core.registry.SMItems;
@@ -14,20 +15,17 @@ import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.functions.ApplyBonusCount;
 import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
 import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
+import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class SMBlockLoot extends BlockLootSubProvider {
     private static final Set<Item> EXPLOSION_RESISTANT = Set.of();
 
     protected SMBlockLoot() {
         super(EXPLOSION_RESISTANT, FeatureFlags.REGISTRY.allFlags());
-    }
-
-    @Override
-    protected Iterable<Block> getKnownBlocks() {
-        return SMBlocks.BLOCKS.getEntries().stream().map(RegistryObject::get)::iterator;
     }
 
     @Override
@@ -100,9 +98,7 @@ public class SMBlockLoot extends BlockLootSubProvider {
         this.dropSelf(SMBlocks.PETRIFIED_FENCE_GATE.get());
         this.dropSelf(SMBlocks.PETRIFIED_FENCE.get());
         this.dropSelf(SMBlocks.PETRIFIED_SIGN.getFirst().get());
-        this.dropSelf(SMBlocks.PETRIFIED_SIGN.getSecond().get());
         this.dropSelf(SMBlocks.PETRIFIED_HANGING_SIGN.getFirst().get());
-        this.dropSelf(SMBlocks.PETRIFIED_HANGING_SIGN.getSecond().get());
         createDoor(SMBlocks.PETRIFIED_DOOR.get());
         this.dropSelf(SMBlocks.PETRIFIED_SAPLING.get());
         dropPottedContents(SMBlocks.POTTED_PETRIFIED_SAPLING.get());
@@ -125,5 +121,10 @@ public class SMBlockLoot extends BlockLootSubProvider {
 
     protected void createDoor(Block block) {
         add(block, createDoorTable(block));
+    }
+
+    @Override
+    protected Iterable<Block> getKnownBlocks() {
+        return ForgeRegistries.BLOCKS.getValues().stream().filter(block -> ForgeRegistries.BLOCKS.getKey(block).getNamespace().equals(SullysMod.MOD_ID)).collect(Collectors.toSet());
     }
 }

@@ -54,8 +54,12 @@ public class SMBlockTagsProvider extends BlockTagsProvider {
                 SMBlocks.PETRIFIED_FENCE_GATE.get(),
                 SMBlocks.PETRIFIED_FENCE.get(),
                 SMBlocks.PETRIFIED_SIGN.getFirst().get(),
-                SMBlocks.PETRIFIED_HANGING_SIGN.getFirst().get(),
+                SMBlocks.PETRIFIED_SIGN.getSecond().get(),
+                SMBlocks.PETRIFIED_HANGING_SIGN.getSecond().get(),
                 SMBlocks.PETRIFIED_DOOR.get(),
+                SMBlocks.PETRIFIED_TRAPDOOR.get(),
+                SMBlocks.PETRIFIED_PRESSURE_PLATE.get(),
+                SMBlocks.PETRIFIED_BUTTON.get(),
                 SMBlocks.AMBER.get(),
                 SMBlocks.ROUGH_AMBER.get(),
                 SMBlocks.CHISELED_AMBER.get(),
@@ -70,7 +74,15 @@ public class SMBlockTagsProvider extends BlockTagsProvider {
                 SMBlocks.EMERALD_LANTERN.get(),
                 SMBlocks.LAPIS_LANTERN.get(),
                 SMBlocks.AMETHYST_LANTERN.get(),
-                SMBlocks.QUARTZ_LANTERN.get()
+                SMBlocks.QUARTZ_LANTERN.get(),
+                SMBlocks.COPPER_BUTTON.get(),
+                SMBlocks.EXPOSED_COPPER_BUTTON.get(),
+                SMBlocks.WEATHERED_COPPER_BUTTON.get(),
+                SMBlocks.OXIDIZED_COPPER_BUTTON.get(),
+                SMBlocks.WAXED_COPPER_BUTTON.get(),
+                SMBlocks.WAXED_EXPOSED_COPPER_BUTTON.get(),
+                SMBlocks.WAXED_WEATHERED_COPPER_BUTTON.get(),
+                SMBlocks.WAXED_OXIDIZED_COPPER_BUTTON.get()
         );
         tag(BlockTags.NEEDS_IRON_TOOL).add(
                 SMBlocks.JADE_ORE.get(),

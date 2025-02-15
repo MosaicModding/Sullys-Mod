@@ -59,8 +59,8 @@ public class SullysMod {
 
         REGISTRY_HELPER.register(bus);
         SMArtifacts.init();
-        SMBlocks.BLOCKS.register(bus);
         SMItems.ITEMS.register(bus);
+        SMBlocks.BLOCKS.register(bus);
 
         SMBlockEntityTypes.BLOCK_ENTITY.register(bus);
         SMParticleTypes.PARTICLES.register(bus);
