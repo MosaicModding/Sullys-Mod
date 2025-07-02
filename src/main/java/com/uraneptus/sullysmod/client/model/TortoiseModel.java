@@ -15,7 +15,7 @@ import net.minecraft.client.model.geom.builders.*;
 @SuppressWarnings({"FieldCanBeLocal", "unused"})
 public class TortoiseModel<E extends Tortoise> extends EntityModel<E> implements RootModel {
     public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(SullysMod.modPrefix("tortoise"), "main");
-
+    private static final float BABY_SCALE = 0.15F;
     private final ModelPart root;
     private final ModelPart body;
     private final ModelPart left_back_leg;
@@ -80,7 +80,15 @@ public class TortoiseModel<E extends Tortoise> extends EntityModel<E> implements
 
     @Override
     public void renderToBuffer(PoseStack pPoseStack, VertexConsumer pBuffer, int pPackedLight, int pPackedOverlay, float pRed, float pGreen, float pBlue, float pAlpha) {
-        this.root().render(pPoseStack, pBuffer, pPackedLight, pPackedOverlay);
+        if (this.young) {
+            pPoseStack.pushPose();
+            pPoseStack.scale(BABY_SCALE, BABY_SCALE, BABY_SCALE);
+            pPoseStack.translate(0, 8.5F, 0);
+            this.root().render(pPoseStack, pBuffer, pPackedLight, pPackedOverlay);
+            pPoseStack.popPose();
+        } else {
+            this.root().render(pPoseStack, pBuffer, pPackedLight, pPackedOverlay);
+        }
     }
 
     @Override
