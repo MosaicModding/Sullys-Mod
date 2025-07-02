@@ -60,5 +60,6 @@ public class AmberBER implements BlockEntityRenderer<AmberBE> {
             }
         }
         pPoseStack.popPose();
+        this.renderDispatcher.setRenderShadow(true);
     }
 }
