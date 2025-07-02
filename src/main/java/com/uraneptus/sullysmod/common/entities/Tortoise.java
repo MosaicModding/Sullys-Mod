@@ -146,14 +146,11 @@ public class Tortoise extends Animal implements WorkstationAttachable {
     @Override
     public void remove(Entity.RemovalReason pReason) {
         super.remove(pReason);
-        this.handleServerRemoval(this);
+        this.handleServerRemoval(this, pReason);
     }
 
     @Override
     public void onClientRemoval() {
-        if (this.hasAppliedWorkstation() && !this.getRecordItem().isEmpty()) {
-
-        }
         super.onClientRemoval();
     }
 
