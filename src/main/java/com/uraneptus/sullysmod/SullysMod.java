@@ -139,7 +139,11 @@ public class SullysMod {
         generator.addProvider(includeServer, new SMAdvancementProvider(packOutput, lookupProvider, fileHelper));
         generator.addProvider(includeServer, new SMRecipeProvider(packOutput));
         generator.addProvider(includeServer, new SMLootModifierProvider(packOutput, lookupProvider));
-        generator.addProvider(includeServer, new SMBuiltinEntriesProvider(packOutput, lookupProvider));
-        generator.addProvider(includeServer, new SMFluidTagsProvider(packOutput, lookupProvider, SullysMod.MOD_ID, fileHelper));
+
+        generator.addProvider(includeServer, new SMFluidTagsProvider(packOutput, lookupProvider, fileHelper));
+
+        var builtinProvider = new SMBuiltinEntriesProvider(packOutput, lookupProvider);
+        generator.addProvider(includeServer, builtinProvider);
+        generator.addProvider(includeServer, new SMDamageTypeTagsProvider(packOutput, builtinProvider.getRegistryProvider(), fileHelper));
     }
 }

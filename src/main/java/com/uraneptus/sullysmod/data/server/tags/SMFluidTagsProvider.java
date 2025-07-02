@@ -1,5 +1,6 @@
 package com.uraneptus.sullysmod.data.server.tags;
 
+import com.uraneptus.sullysmod.SullysMod;
 import com.uraneptus.sullysmod.core.registry.SMFluids;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
@@ -11,8 +12,8 @@ import org.jetbrains.annotations.Nullable;
 import java.util.concurrent.CompletableFuture;
 
 public class SMFluidTagsProvider extends FluidTagsProvider {
-    public SMFluidTagsProvider(PackOutput packOutput, CompletableFuture<HolderLookup.Provider> provider, String modId, @Nullable ExistingFileHelper existingFileHelper) {
-        super(packOutput, provider, modId, existingFileHelper);
+    public SMFluidTagsProvider(PackOutput packOutput, CompletableFuture<HolderLookup.Provider> provider, @Nullable ExistingFileHelper existingFileHelper) {
+        super(packOutput, provider, SullysMod.MOD_ID, existingFileHelper);
     }
 
     @Override
