@@ -325,8 +325,8 @@ public class Tortoise extends Animal implements WorkstationAttachable {
         if (this.getHideTimerDuration() < durationInTicks || durationInTicks == this.getHideTimerDuration() - 1) {
             if (this.getHideTimerDuration() == 0) {
                 level.playSound(null, this.blockPosition(), SMSounds.TORTOISE_HIDE.get(), SoundSource.AMBIENT, 1.0F, 1.0F);
+                this.dropLeash(true, true);
             }
-            this.dropLeash(true, true);
             this.entityData.set(HIDE_TIMER, durationInTicks);
             this.refreshDimensions();
         }
