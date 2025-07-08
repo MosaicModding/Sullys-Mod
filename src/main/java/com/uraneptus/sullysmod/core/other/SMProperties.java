@@ -10,6 +10,7 @@ import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Rarity;
 import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
@@ -44,12 +45,16 @@ public class SMProperties {
         public static final BlockBehaviour.Properties PETRIFIED_TRAPDOOR = petrified().requiresCorrectToolForDrops().noOcclusion().isValidSpawn(SMProperties::never).strength(3.0F);
         public static final BlockBehaviour.Properties PETRIFIED_PRESSURE_PLATE = petrified().forceSolidOn().noCollission().pushReaction(PushReaction.DESTROY).strength(0.5F);
         public static final BlockBehaviour.Properties PETRIFIED_BUTTON = petrified().noCollission().strength(0.5F).pushReaction(PushReaction.DESTROY);
-        //YES sign and hanging sign really need to be separate definitions.
+        //YES sign and hanging sign really need to be separate definitions. idk why tho
         public static final BlockBehaviour.Properties PETRIFIED_SIGN = petrified().forceSolidOn().noCollission().strength(1.0F);
         public static final BlockBehaviour.Properties PETRIFIED_HANGING_SIGN = petrified().forceSolidOn().noCollission().strength(1.0F);
         public static final BlockBehaviour.Properties PETRIFIED_SAPLING = BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_BROWN).noCollission().instabreak().sound(SoundType.GRASS).pushReaction(PushReaction.DESTROY);
 
         public static final BlockBehaviour.Properties ARTIFACT_FLOWER = BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).noCollission().instabreak().sound(SoundType.GRASS).offsetType(BlockBehaviour.OffsetType.XZ).pushReaction(PushReaction.DESTROY);
+        public static final BlockBehaviour.Properties GOLDEN_IDOL = BlockBehaviour.Properties.of().strength(3.0F, 6.0F).sound(SoundType.METAL).mapColor(MapColor.GOLD).emissiveRendering(SMProperties::always).lightLevel(state -> 6);
+        public static final BlockBehaviour.Properties GOLDEN_GOBLET = BlockBehaviour.Properties.of().instabreak().pushReaction(PushReaction.DESTROY).sound(SoundType.METAL).mapColor(MapColor.GOLD);
+        public static final BlockBehaviour.Properties FAMILIAR_CUBE = BlockBehaviour.Properties.of().mapColor(MapColor.METAL).strength(5.0F, 6.0F).sound(SoundType.METAL);
+        public static final BlockBehaviour.Properties STONE_IDOL = BlockBehaviour.Properties.of().mapColor(MapColor.STONE).strength(1.5F, 6.0F);
     }
 
     public static final class Items {

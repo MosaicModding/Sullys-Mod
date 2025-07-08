@@ -109,6 +109,9 @@ public class SMBlocks {
     //Misc
     public static final RegistryObject<Block> TORTOISE_EGG = createBlock("tortoise_egg", () -> new TortoiseEggBlock(BlockBehaviour.Properties.copy(Blocks.TURTLE_EGG)));
     public static final RegistryObject<Block> ITEM_STAND = createBlock("item_stand", () -> new ItemStandBlock(SMProperties.Blocks.ITEM_STAND));
+    public static final RegistryObject<Block> FIXED_BOWL = createBlock("fixed_bowl", () -> new BowlBlock(SMProperties.Blocks.flowerPot()));
+    public static final RegistryObject<Block> FIXED_CUP = createBlock("fixed_cup", () -> new CupBlock(SMProperties.Blocks.flowerPot()));
+    public static final RegistryObject<Block> FIXED_VASE = createBlock("fixed_vase", () -> new VaseBlock(SMProperties.Blocks.flowerPot()));
 
     private static PetrifiedLog log(Supplier<Block> strippedBlock, MapColor pTopMapColor, MapColor pSideMapColor) {
         return new PetrifiedLog(strippedBlock, SMProperties.Blocks.petrified().requiresCorrectToolForDrops().mapColor((blockState) ->

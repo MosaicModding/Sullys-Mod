@@ -219,6 +219,10 @@ public class SMRecipeProvider extends RecipeProvider {
         convertRecipe(RecipeCategory.MISC, SMArtifacts.UNICORN_ANCIENT_SKULL.getFirst(), () -> Items.BONE_MEAL, 5, consumer, SMFeatures.ARTIFACTS);
         convertRecipe(RecipeCategory.MISC, SMArtifacts.SNOUTED_ANCIENT_SKULL.getFirst(), () -> Items.BONE_MEAL, 5, consumer, SMFeatures.ARTIFACTS);
 
+        fixArtifactRecipe(SMArtifacts.BROKEN_VASE, () -> Items.BRICK, SMBlocks.FIXED_VASE, consumer, SMFeatures.ARTIFACTS);
+        fixArtifactRecipe(SMArtifacts.BROKEN_CUP, () -> Items.BRICK, SMBlocks.FIXED_CUP, consumer, SMFeatures.ARTIFACTS);
+        fixArtifactRecipe(SMArtifacts.BROKEN_BOWL, () -> Items.BRICK, SMBlocks.FIXED_BOWL, consumer, SMFeatures.ARTIFACTS);
+
         //Custom
         featureConditionRecipe(List.of(SMFeatures.JADE), RecipeCategory.BUILDING_BLOCKS,
                 ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, SMBlocks.JADE_TOTEM.get())
@@ -318,8 +322,6 @@ public class SMRecipeProvider extends RecipeProvider {
                 ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, result.get(), 4)
                         .define('#', ingredient.get()).pattern("##").pattern("##")
                         .unlockedBy(getHasName(ingredient.get()), has(ingredient.get())), craftingPath(getItemName(result.get())), consumer);
-
-
     }
 
     protected static void meltingRecipes(RecipeCategory category, Supplier<? extends ItemLike> ingredient, Supplier<? extends ItemLike> result, float experience, boolean isMetal, Consumer<FinishedRecipe> consumer, SMFeatures... features) {
@@ -529,6 +531,17 @@ public class SMRecipeProvider extends RecipeProvider {
                         .pattern("#X#")
                         .pattern(" # ")
                         .unlockedBy(getHasName(ingredient.get()), has(ingredient.get())), craftingPath(getItemName(result.get())), consumer);
+    }
+
+    protected static void fixArtifactRecipe(Supplier<? extends ItemLike> broken, Supplier<? extends ItemLike> repairCost, Supplier<? extends ItemLike> result, Consumer<FinishedRecipe> consumer, SMFeatures... features) {
+        featureConditionRecipe(List.of(features), RecipeCategory.DECORATIONS,
+                ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, result.get())
+                        .define('#', repairCost.get())
+                        .define('X', broken.get())
+                        .pattern(" # ")
+                        .pattern("#X#")
+                        .pattern(" # ")
+                        .unlockedBy(getHasName(broken.get()), has(broken.get())), craftingPath(getItemName(result.get())), consumer);
     }
 
     private static void featureConditionRecipe(List<SMFeatures> features, RecipeCategory category, RecipeBuilder recipe, ResourceLocation customPath, Consumer<FinishedRecipe> consumer) {

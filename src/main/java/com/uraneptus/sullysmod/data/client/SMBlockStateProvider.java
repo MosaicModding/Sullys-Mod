@@ -24,6 +24,7 @@ import net.minecraftforge.registries.RegistryObject;
 import java.util.function.Supplier;
 
 import static com.uraneptus.sullysmod.data.SMDatagenUtil.*;
+import static com.uraneptus.sullysmod.data.SMDatagenUtil.modBlockLocation;
 
 @SuppressWarnings("SameParameterValue")
 public class SMBlockStateProvider extends BlockStateProvider {
@@ -104,6 +105,16 @@ public class SMBlockStateProvider extends BlockStateProvider {
         basicBlock(SMBlocks.AMETHYST_LANTERN);
         basicBlock(SMBlocks.QUARTZ_LANTERN);
         amberCauldron();
+        basedOnTemplate(SMBlocks.FIXED_BOWL, "bowl");
+        basedOnTemplate(SMArtifacts.BROKEN_BOWL, "bowl");
+        basedOnTemplate(SMBlocks.FIXED_VASE, "vase");
+        basedOnTemplate(SMArtifacts.BROKEN_VASE, "vase");
+        basedOnTemplate(SMBlocks.FIXED_CUP, "cup");
+        basedOnTemplate(SMArtifacts.BROKEN_CUP, "cup");
+        basedOnTemplate(SMArtifacts.GOLDEN_IDOL);
+        basedOnTemplate(SMArtifacts.GOLDEN_GOBLET);
+        basedOnTemplate(SMArtifacts.FAMILIAR_CUBE);
+        basedOnTemplate(SMArtifacts.STONE_IDOL);
     }
 
     private void basicBlock(Supplier<? extends Block> block) {
@@ -322,5 +333,19 @@ public class SMBlockStateProvider extends BlockStateProvider {
 
             return ConfiguredModel.builder().modelFile(file).build();
         });
+    }
+
+    private void basedOnTemplate(Supplier<? extends Block> block, String diffTemplate) {
+
+        getVariantBuilder(block.get()).forAllStates(blockState -> {
+            ResourceLocation templateLoc = modBlockLocation("template_" + diffTemplate);
+            ModelFile file = models().withExistingParent(name(block.get()), templateLoc).texture("0", modBlockLocation(name(block.get()))).renderType("cutout");
+
+            return ConfiguredModel.builder().modelFile(file).build();
+        });
+    }
+
+    private void basedOnTemplate(Supplier<? extends Block> block) {
+        basedOnTemplate(block, name(block.get()));
     }
 }

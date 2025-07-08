@@ -907,9 +907,6 @@
   },
   "requirements": [
     [
-      "broken_vase"
-    ],
-    [
       "primitive_knife"
     ],
     [
@@ -931,9 +928,6 @@
       "rusty_tools"
     ],
     [
-      "broken_bowl"
-    ],
-    [
       "copper_cog"
     ],
     [
@@ -952,9 +946,6 @@
       "moon_tablet"
     ],
     [
-      "stone_idol"
-    ],
-    [
       "red_cap"
     ],
     [
@@ -965,9 +956,6 @@
     ],
     [
       "mysterious_plate"
-    ],
-    [
-      "familiar_cube"
     ],
     [
       "amber_encased_bug"
@@ -1009,9 +997,6 @@
       "torn_cloth"
     ],
     [
-      "golden_goblet"
-    ],
-    [
       "emerald_earring"
     ],
     [
@@ -1019,9 +1004,6 @@
     ],
     [
       "frog_idol"
-    ],
-    [
-      "broken_cup"
     ],
     [
       "broken_fancy_dagger"
@@ -1046,9 +1028,6 @@
     ],
     [
       "gloomy_tablet"
-    ],
-    [
-      "golden_idol"
     ],
     [
       "jade_ring"
@@ -1094,6 +1073,27 @@
     ],
     [
       "dried_red_flower"
+    ],
+    [
+      "broken_bowl"
+    ],
+    [
+      "broken_vase"
+    ],
+    [
+      "broken_cup"
+    ],
+    [
+      "golden_idol"
+    ],
+    [
+      "golden_goblet"
+    ],
+    [
+      "familiar_cube"
+    ],
+    [
+      "stone_idol"
     ],
     [
       "cracked_ancient_skull"

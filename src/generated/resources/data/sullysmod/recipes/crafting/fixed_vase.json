@@ -1,0 +1,36 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "sullysmod:mod_features",
+          "values": [
+            "artifacts"
+          ]
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:crafting_shaped",
+        "category": "misc",
+        "key": {
+          "#": {
+            "item": "minecraft:brick"
+          },
+          "X": {
+            "item": "sullysmod:broken_vase"
+          }
+        },
+        "pattern": [
+          " # ",
+          "#X#",
+          " # "
+        ],
+        "result": {
+          "item": "sullysmod:fixed_vase"
+        },
+        "show_notification": true
+      }
+    }
+  ]
+}

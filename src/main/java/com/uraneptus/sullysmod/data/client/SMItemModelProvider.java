@@ -107,7 +107,7 @@ public class SMItemModelProvider extends ItemModelProvider {
         blockItemWithItemTexture(SMBlocks.PETRIFIED_HANGING_SIGN.getFirst());
         blockItemWithItemTexture(SMBlocks.PETRIFIED_DOOR);
         itemFromBlockTexture(SMBlocks.PETRIFIED_SAPLING);
-        basicItem(SMArtifacts.BROKEN_VASE);
+        blockItemWithItemTexture(SMArtifacts.BROKEN_VASE);
         basicItem(SMArtifacts.MINERS_HELMET);
         basicItem(SMArtifacts.SMALL_DENTED_HELMET);
         basicItem(SMArtifacts.LOST_CROWN);
@@ -116,21 +116,21 @@ public class SMItemModelProvider extends ItemModelProvider {
         basicItem(SMArtifacts.JADE_AMULET);
         basicItem(SMArtifacts.PRIMITIVE_RING);
         basicItem(SMArtifacts.RUSTY_TOOLS);
-        basicItem(SMArtifacts.BROKEN_BOWL);
+        blockItemWithItemTexture(SMArtifacts.BROKEN_BOWL);
         basicItem(SMArtifacts.COPPER_COG);
         basicItem(SMArtifacts.PETRIFIED_COOKIE);
         basicItem(SMArtifacts.ARROWHEAD);
         basicItem(SMArtifacts.DEATH_WHISTLE);
         basicItem(SMArtifacts.OMINOUS_TABLET);
         basicItem(SMArtifacts.MOON_TABLET);
-        basicItem(SMArtifacts.STONE_IDOL);
+        blockItemWithItemTexture(SMArtifacts.STONE_IDOL);
         basicItem(SMArtifacts.RED_CAP);
         basicItem(SMArtifacts.DRIED_CYAN_FLOWER.get().asItem());
         basicItem(SMArtifacts.DRIED_RED_FLOWER.get().asItem());
         basicItem(SMArtifacts.METALLIC_SKULL);
         basicItem(SMArtifacts.LOST_BAG);
         basicItem(SMArtifacts.MYSTERIOUS_PLATE);
-        basicItem(SMArtifacts.FAMILIAR_CUBE);
+        blockItemWithItemTexture(SMArtifacts.FAMILIAR_CUBE);
         basicItem(SMArtifacts.AMBER_ENCASED_BUG);
         basicItem(SMArtifacts.FOSSILISED_SHELLS);
         basicItem(SMArtifacts.FOSSILISED_BONE);
@@ -144,13 +144,13 @@ public class SMItemModelProvider extends ItemModelProvider {
         basicItem(SMArtifacts.DEEPSLATE_VASE);
         basicItem(SMArtifacts.SMALL_GEODE);
         basicItem(SMArtifacts.TORN_CLOTH);
-        basicItem(SMArtifacts.GOLDEN_GOBLET);
+        blockItemWithItemTexture(SMArtifacts.GOLDEN_GOBLET);
         basicItem(SMArtifacts.EMERALD_EARRING);
         basicItemHandheld(SMArtifacts.BROKEN_BOTTLE);
         basicItem(SMArtifacts.FROG_IDOL);
         basicItem(SMItems.BUG_MEAT);
         basicItem(SMItems.COOKED_BUG_MEAT);
-        basicItem(SMArtifacts.BROKEN_CUP);
+        blockItemWithItemTexture(SMArtifacts.BROKEN_CUP);
         basicItem(SMArtifacts.BROKEN_FANCY_DAGGER);
         basicItem(SMArtifacts.BROKEN_MUG);
         basicItem(SMArtifacts.CAVE_CARROT);
@@ -159,7 +159,7 @@ public class SMItemModelProvider extends ItemModelProvider {
         basicItem(SMArtifacts.EYE_TABLET);
         basicItem(SMArtifacts.FOSSILISED_BEAK);
         basicItem(SMArtifacts.GLOOMY_TABLET);
-        basicItem(SMArtifacts.GOLDEN_IDOL);
+        blockItemWithItemTexture(SMArtifacts.GOLDEN_IDOL);
         basicItem(SMArtifacts.JADE_RING);
         basicItem(SMArtifacts.LOST_BESTIARY);
         basicItem(SMArtifacts.LOST_PICTURE_BOOK);
@@ -173,6 +173,9 @@ public class SMItemModelProvider extends ItemModelProvider {
         basicItem(SMArtifacts.STONE_MASK);
         basicItem(SMArtifacts.STRANGE_FUR);
         basicItem(SMArtifacts.ANCIENT_RELIC);
+        blockItemWithItemTexture(SMBlocks.FIXED_BOWL);
+        blockItemWithItemTexture(SMBlocks.FIXED_CUP);
+        blockItemWithItemTexture(SMBlocks.FIXED_VASE);
         //Single use methods
         brokenBottle();
         venomVialItem();

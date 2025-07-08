@@ -1,9 +1,7 @@
 package com.uraneptus.sullysmod.core.registry;
 
 import com.mojang.datafixers.util.Pair;
-import com.uraneptus.sullysmod.common.blocks.AncientSkullBlock;
-import com.uraneptus.sullysmod.common.blocks.AncientWallSkullBlock;
-import com.uraneptus.sullysmod.common.blocks.ArtifactFlowerBlock;
+import com.uraneptus.sullysmod.common.blocks.*;
 import com.uraneptus.sullysmod.common.items.*;
 import com.uraneptus.sullysmod.core.other.SMArmorMaterials;
 import com.uraneptus.sullysmod.core.other.SMProperties;
@@ -14,7 +12,6 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.StandingAndWallBlockItem;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.FlowerPotBlock;
 import net.minecraftforge.registries.RegistryObject;
 
@@ -33,7 +30,6 @@ public class SMArtifacts {
     public static List<RegistryObject<Item>> ARTIFACT_DESC_MAP = new ArrayList<>();
     public static Map<Supplier<Item>, Integer> TRADES = new HashMap<>();
 
-    public static final RegistryObject<Item> BROKEN_VASE = registerArtifact("broken_vase", "A large piece of the side is missing", 10);
     public static final RegistryObject<Item> PRIMITIVE_KNIFE = registerArtifact("primitive_knife", "A small knife made from obsidian", () -> new ArtifactWeaponItem(5, -2.5F, null, SMProperties.Items.artifacts().stacksTo(1).durability(20)), 15);
     public static final RegistryObject<Item> MINERS_HELMET = registerArtifact("miners_helmet", "Looks like it’s previous owner couldn’t get the candle lit anymore",
             () -> new MinersHelmetItem(SMProperties.Items.artifacts().stacksTo(1)), 15);
@@ -44,19 +40,17 @@ public class SMArtifacts {
     public static final RegistryObject<Item> JADE_AMULET = registerArtifact("jade_amulet", "A creature is carefully sculpted from the stone", 20);
     public static final RegistryObject<Item> PRIMITIVE_RING = registerArtifact("primitive_ring", "A roughly made metal ring", 10);
     public static final RegistryObject<Item> RUSTY_TOOLS = registerArtifact("rusty_tools", "Maybe their owners are still out there", 9);
-    public static final RegistryObject<Item> BROKEN_BOWL = registerArtifact("broken_bowl", "A large crack runs down the edge", 9);
     public static final RegistryObject<Item> COPPER_COG = registerArtifact("copper_cog", "Said to have been part of living creatures", 23);
     public static final RegistryObject<Item> PETRIFIED_COOKIE = registerArtifact("petrified_cookie", "Petrified food is still food, just extra crisp", () -> new PetrifiedCookieItem(SMProperties.Items.artifacts().food(SMProperties.Foods.PETRIFIED_COOKIE)), 12);
     public static final RegistryObject<Item> ARROWHEAD = registerArtifact("arrowhead", "The tip of an ancient arrow", 5);
     public static final RegistryObject<Item> DEATH_WHISTLE = registerArtifact("death_whistle", "Screeches horrible noises when blown into", DeathWhistleItem::new, 20);
     public static final RegistryObject<Item> OMINOUS_TABLET = registerArtifact("ominous_tablet", "A dark figure is carved into the stone", 25);
     public static final RegistryObject<Item> MOON_TABLET = registerArtifact("moon_tablet", "Has a carved image of the moon", 27);
-    public static final RegistryObject<Item> STONE_IDOL = registerArtifact("stone_idol", "Almost looks alive", 20);
+
     public static final RegistryObject<Item> RED_CAP = registerArtifact("red_cap", "A tiny red cap. It’s too small to wear and the fabric feels strange", 20);
     public static final RegistryObject<Item> METALLIC_SKULL = registerArtifact("metallic_skull", "The a metallic skull attached to broken off bars", 25);
     public static final RegistryObject<Item> LOST_BAG = registerArtifact("lost_bag", "A small lightweight bag sloppily sewn together", 14);
     public static final RegistryObject<Item> MYSTERIOUS_PLATE = registerArtifact("mysterious_plate", "Made from an unknown material", 35);
-    public static final RegistryObject<Item> FAMILIAR_CUBE = registerArtifact("familiar_cube", "Hot to the touch and has strange growths on it", 30);
     public static final RegistryObject<Item> AMBER_ENCASED_BUG = registerArtifact("amber_encased_bug", "A small bug that was covered by tree sap ages ago", 20);
     public static final RegistryObject<Item> FOSSILISED_SHELLS = registerArtifact("fossilised_shells", "Shells from a sea creature that lived long ago", 27);
     public static final RegistryObject<Item> FOSSILISED_BONE = registerArtifact("fossilised_bone", "A large bone of an extinct creature", 27);
@@ -70,11 +64,10 @@ public class SMArtifacts {
     public static final RegistryObject<Item> DEEPSLATE_VASE = registerArtifact("deepslate_vase", "Who would’ve needed a vase made from deepslate?", 25);
     public static final RegistryObject<Item> SMALL_GEODE = registerArtifact("small_geode", "Kind of cute", 23);
     public static final RegistryObject<Item> TORN_CLOTH = registerArtifact("torn_cloth", "A dirty torn off piece of clothing", 6);
-    public static final RegistryObject<Item> GOLDEN_GOBLET = registerArtifact("golden_goblet", "An old but beautiful chalice made by a skilled goldsmith", 29);
     public static final RegistryObject<Item> EMERALD_EARRING = registerArtifact("emerald_earring", "Besides the beautiful emerald, it looks sloppily put together", 17);
     public static final RegistryObject<Item> BROKEN_BOTTLE = registerArtifact("broken_bottle", "The top half of a bottle", () -> new ArtifactWeaponItem(4, -1.2F, SMSounds.BROKEN_BOTTLE_SHATTERS, SMProperties.Items.artifacts().stacksTo(1).durability(1)), 5);
     public static final RegistryObject<Item> FROG_IDOL = registerArtifact("frog_idol", "Everybody likes frogs", 29);
-    public static final RegistryObject<Item> BROKEN_CUP = registerArtifact("broken_cup", "A small crack keeps it from retaining any liquid", 10);
+
     public static final RegistryObject<Item> BROKEN_FANCY_DAGGER = registerArtifact("broken_fancy_dagger", "Must have been used for something sinister", 27);
     public static final RegistryObject<Item> BROKEN_MUG = registerArtifact("broken_mug", "Once powerful, now just a useless old cup", 13);
     public static final RegistryObject<Item> CAVE_CARROT = registerArtifact("cave_carrot", "Very common, but it serves for a decent meal", () -> new Item(SMProperties.Items.artifacts().food(SMProperties.Foods.CAVE_CARROT)), 3);
@@ -83,7 +76,7 @@ public class SMArtifacts {
     public static final RegistryObject<Item> EYE_TABLET = registerArtifact("eye_tablet", "An eye is etched into the dark stone", 27);
     public static final RegistryObject<Item> FOSSILISED_BEAK = registerArtifact("fossilised_beak", "A small beak separated from its body", 27);
     public static final RegistryObject<Item> GLOOMY_TABLET = registerArtifact("gloomy_tablet", "Two small eyes are carved into a dark shadow", 26);
-    public static final RegistryObject<Item> GOLDEN_IDOL = registerArtifact("golden_idol", "The red rock on top is warm to the touch", 35);
+
     public static final RegistryObject<Item> JADE_RING = registerArtifact("jade_ring", "A delicate stone ring", 23);
     public static final RegistryObject<Item> LOST_BESTIARY = registerArtifact("lost_bestiary", "Shows illustrations of animals", 20);
     public static final RegistryObject<Item> LOST_PICTURE_BOOK = registerArtifact("lost_picture_book", "Shows images of a giant prosperous city", 20);
@@ -104,6 +97,15 @@ public class SMArtifacts {
     public static final RegistryObject<Block> POTTED_DRIED_CYAN_FLOWER = SMBlocks.createBlockNoItem("potted_dried_cyan_flower", () -> new FlowerPotBlock(DRIED_CYAN_FLOWER.get(), SMProperties.Blocks.flowerPot()));
     public static final RegistryObject<Block> DRIED_RED_FLOWER = registerPlaceable("dried_red_flower", "A delicate red flower that feels like home", () -> new ArtifactFlowerBlock(SMProperties.Blocks.ARTIFACT_FLOWER), 22);
     public static final RegistryObject<Block> POTTED_DRIED_RED_FLOWER = SMBlocks.createBlockNoItem("potted_dried_red_flower", () -> new FlowerPotBlock(DRIED_RED_FLOWER.get(), SMProperties.Blocks.flowerPot()));
+
+    public static final RegistryObject<Block> BROKEN_BOWL = registerPlaceable("broken_bowl", "A large crack runs down the edge", () -> new BowlBlock(SMProperties.Blocks.flowerPot()), 9);
+    public static final RegistryObject<Block> BROKEN_VASE = registerPlaceable("broken_vase", "A large piece of the side is missing", () -> new VaseBlock(SMProperties.Blocks.flowerPot()), 10);
+    public static final RegistryObject<Block> BROKEN_CUP = registerPlaceable("broken_cup", "A small crack keeps it from retaining any liquid", () -> new CupBlock(SMProperties.Blocks.flowerPot()), 10);
+    public static final RegistryObject<Block> GOLDEN_IDOL = registerPlaceable("golden_idol", "The red rock on top is warm to the touch", () -> new GoldenIdolBlock(SMProperties.Blocks.GOLDEN_IDOL), 35);
+    public static final RegistryObject<Block> GOLDEN_GOBLET = registerPlaceable("golden_goblet", "An old but beautiful chalice made by a skilled goldsmith", () -> new GoldenGobletBlock(SMProperties.Blocks.GOLDEN_GOBLET), 29);
+    public static final RegistryObject<Block> FAMILIAR_CUBE = registerPlaceable("familiar_cube", "Hot to the touch and has strange growths on it", () -> new FamiliarCubeBlock(SMProperties.Blocks.FAMILIAR_CUBE), 30);
+
+    public static final RegistryObject<Block> STONE_IDOL = registerPlaceable("stone_idol", "Almost looks alive", () -> new StoneIdolBlock(SMProperties.Blocks.STONE_IDOL), 20);
 
     //Ancient Skulls
     public static List<Supplier<Block>> ANCIENT_SKULLS = new ArrayList<>();

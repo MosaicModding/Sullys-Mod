@@ -2,6 +2,7 @@ package com.uraneptus.sullysmod.core.events;
 
 import com.uraneptus.sullysmod.SullysMod;
 import com.uraneptus.sullysmod.core.SMFeatures;
+import com.uraneptus.sullysmod.core.registry.SMItems;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.CreativeModeTabs;
@@ -35,6 +36,7 @@ public class CreativeTabAdditions {
             addAfter(event, List.of(SMFeatures.TORTOISE), Items.SCUTE, TORTOISE_SCUTE);
             addAfter(event, List.of(SMFeatures.PIRANHA), Items.BONE, PIRANHA_TOOTH);
             addAfter(event, Items.GLASS_BOTTLE, GLASS_VIAL);
+            addAfter(event, List.of(SMFeatures.ARTIFACTS), Items.BOWL, FIXED_BOWL, FIXED_CUP, FIXED_VASE);
         }
 
         if (tab == CreativeModeTabs.TOOLS_AND_UTILITIES) {

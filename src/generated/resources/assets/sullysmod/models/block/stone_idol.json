@@ -1,0 +1,7 @@
+{
+  "parent": "sullysmod:block/template_stone_idol",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "0": "sullysmod:block/stone_idol"
+  }
+}

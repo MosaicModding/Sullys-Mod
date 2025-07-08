@@ -1,0 +1,7 @@
+{
+  "parent": "sullysmod:block/template_cup",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "0": "sullysmod:block/fixed_cup"
+  }
+}

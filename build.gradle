@@ -80,10 +80,14 @@ repositories {
         url = "https://maven.blamejared.com/"
     }
     maven {
-        url = "https://maven.jaackson.me"
+        url = "https://maven.teamabnormals.com"
     }
-    flatDir {
-        dirs 'libs'
+    maven {
+        name = "Mosaic-Modding-Maven"
+        url = 'https://maven.mosaicmodding.com'
+        content {
+            includeGroup "com.mosaicmodding"
+        }
     }
 }
 
@@ -96,8 +100,8 @@ dependencies {
     implementation fg.deobf("com.teamabnormals:${blueprint_id}:1.20.1-${blueprint_version}")
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
     //For capes
-    implementation fg.deobf("mosaicmodding:MosaicCosmetics:1.20.1-1.0.0-forge")
-    jarJar(group: 'mosaicmodding', name: 'MosaicCosmetics', version: '[1.20.1-1.0.0-forge,)')
+    implementation fg.deobf("com.mosaicmodding:mosaic_cosmetics-forge:${cosmetics_version}")
+    jarJar(group: 'com.mosaicmodding', name: 'mosaic_cosmetics-forge', version: "${cosmetics_version_range}")
 
     implementation fg.deobf("curse.maven:carry-on-274259:4882500")
     implementation fg.deobf("curse.maven:zeta-968868:5597406")

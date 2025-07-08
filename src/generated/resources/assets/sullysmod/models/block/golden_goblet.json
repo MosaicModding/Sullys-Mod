@@ -1,0 +1,7 @@
+{
+  "parent": "sullysmod:block/template_golden_goblet",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "0": "sullysmod:block/golden_goblet"
+  }
+}
