@@ -67,6 +67,8 @@ public class SMBlockLoot extends BlockLootSubProvider {
 
         //Amber
         this.add(SMBlocks.AMBER.get(), createSingleItemTableWithSilkTouch(SMBlocks.AMBER.get(), SMBlocks.ROUGH_AMBER.get()));
+        this.add(SMBlocks.NEW_AMBER.get(), createSingleItemTableWithSilkTouch(SMBlocks.NEW_AMBER.get(), SMBlocks.ROUGH_AMBER.get()));
+        this.add(SMBlocks.NEW_AMBER_SOLID.get(), createSingleItemTableWithSilkTouch(SMBlocks.NEW_AMBER_SOLID.get(), SMBlocks.ROUGH_AMBER.get()));
         this.dropSelf(SMBlocks.ROUGH_AMBER.get());
         this.dropSelf(SMBlocks.CHISELED_AMBER.get());
         this.dropSelf(SMBlocks.AMBER_PILLAR.get());

@@ -67,6 +67,9 @@ public class SMBlocks {
     public static final RegistryObject<Block> WAXED_OXIDIZED_COPPER_BUTTON = createBlock("waxed_oxidized_copper_button", () -> new CopperButtonBlock(SMProperties.Blocks.COPPER_BUTTONS, SMBlocksetTypes.COPPER_BLOCKSET.get(), 40, true));
 
     //Amber
+    public static final RegistryObject<Block> NEW_AMBER = createBlock("new_amber", () -> new AmberBlockNew(SMProperties.Blocks.AMBER));
+    public static final RegistryObject<Block> NEW_AMBER_SOLID = createBlock("new_amber_solid", () -> new AmberBlockNewSolid(SMProperties.Blocks.AMBER));
+
     public static final RegistryObject<Block> AMBER = createBlock("amber", () -> new AmberBlock(SMProperties.Blocks.AMBER));
     public static final RegistryObject<Block> AMBER_BRICKS = createBlock("amber_bricks", () -> new SolidAmberBlock(SMProperties.Blocks.AMBER_BUILDING_BLOCKS));
     public static final RegistryObject<Block> AMBER_BRICK_STAIRS = createBlock("amber_brick_stairs", () -> new AmberStairBlock(() -> AMBER_BRICKS.get().defaultBlockState(), SMProperties.Blocks.AMBER_BUILDING_BLOCKS));

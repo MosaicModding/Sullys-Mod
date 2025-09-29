@@ -56,7 +56,7 @@ public class SMClientModEvents {
         event.registerEntityRenderer(SMEntityTypes.JUNGLE_SPIDER.get(), JungleSpiderRenderer::new);
         event.registerEntityRenderer(SMEntityTypes.PIRANHA.get(), PiranhaRenderer::new);
         event.registerEntityRenderer(SMEntityTypes.THROWN_THROWING_KNIFE.get(), ThrownThrowingKnifeRenderer::new);
-        event.registerBlockEntityRenderer(SMBlockEntityTypes.AMBER.get(), AmberBER::new);
+        event.registerBlockEntityRenderer(SMBlockEntityTypes.AMBER_NEW.get(), AmberBER::new);
         event.registerBlockEntityRenderer(SMBlockEntityTypes.ITEM_STAND.get(), ItemStandBER::new);
         event.registerBlockEntityRenderer(SMBlockEntityTypes.ANCIENT_SKULL.get(), SkullBlockRenderer::new);
     }

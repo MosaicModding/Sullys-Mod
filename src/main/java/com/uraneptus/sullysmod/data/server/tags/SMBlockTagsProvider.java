@@ -61,6 +61,7 @@ public class SMBlockTagsProvider extends BlockTagsProvider {
                 SMBlocks.PETRIFIED_PRESSURE_PLATE.get(),
                 SMBlocks.PETRIFIED_BUTTON.get(),
                 SMBlocks.AMBER.get(),
+                SMBlocks.NEW_AMBER_SOLID.get(),
                 SMBlocks.ROUGH_AMBER.get(),
                 SMBlocks.CHISELED_AMBER.get(),
                 SMBlocks.AMBER_PILLAR.get(),

@@ -79,7 +79,6 @@ public class AmberBlock extends Block implements EntityBlock {
         AmberUtil.fillCauldronBehavior(pState, pLevel, pPos);
     }
 
-    //TODO maybe stop handling this in collision shape
     @Override
     public VoxelShape getCollisionShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
         BlockEntity blockEntity = pLevel.getBlockEntity(pPos);
