@@ -65,7 +65,15 @@ public class AmberBENew extends BlockEntity {
 
     @Nullable
     public BlockPos getParentBlock() {
-        return parentBlock;
+        if (parentBlock != null) {
+            return parentBlock.immutable();
+        } else {
+            return null;
+        }
+    }
+
+    private void setParentBlock(@Nullable BlockPos pParentBlock) {
+        this.parentBlock = pParentBlock;
     }
 
     public void storeAsParent(Entity entity, @Nonnull List<BlockPos> childBlocks) {
@@ -74,7 +82,7 @@ public class AmberBENew extends BlockEntity {
     }
 
     public void storeAsChild(BlockPos parentBlock) {
-        this.parentBlock = parentBlock;
+        setParentBlock(parentBlock.immutable());
     }
 
     public void storeEntity(Entity entity) {
@@ -149,8 +157,9 @@ public class AmberBENew extends BlockEntity {
         super.saveAdditional(pTag);
         pTag.put("StuckEntity", this.writeStuckEntity());
         pTag.putBoolean("RenderEntity", this.renderEntity);
-        if (parentBlock != null) {
-            pTag.put("ParentBlock", NbtUtils.writeBlockPos(parentBlock));
+        if (this.getParentBlock() != null) {
+            CompoundTag bp = NbtUtils.writeBlockPos(this.getParentBlock());
+            pTag.put("ParentBlock", bp);
         } else if (!childBlocks.isEmpty()) {
             ListTag childBlocksTag = new ListTag();
             for (BlockPos pos : childBlocks) {
@@ -175,7 +184,7 @@ public class AmberBENew extends BlockEntity {
         }
         this.renderEntity = pTag.getBoolean("RenderEntity");
         if (pTag.contains("ParentBlock")) {
-            this.parentBlock = NbtUtils.readBlockPos(pTag.getCompound("ParentBlock"));
+            setParentBlock(NbtUtils.readBlockPos(pTag.getCompound("ParentBlock")).immutable());
         } else if (pTag.contains("ChildBlocks")) {
             ListTag childBlocksTag = pTag.getList("ChildBlocks", 10);
             if (!childBlocksTag.isEmpty()) {
@@ -193,8 +202,9 @@ public class AmberBENew extends BlockEntity {
         CompoundTag tag = new CompoundTag();
         tag.put("StuckEntity", this.writeStuckEntity());
         tag.putBoolean("RenderEntity", this.renderEntity);
-        if (parentBlock != null) {
-            tag.put("ParentBlock", NbtUtils.writeBlockPos(parentBlock));
+        if (this.getParentBlock() != null) {
+            CompoundTag bp = NbtUtils.writeBlockPos(this.getParentBlock());
+            tag.put("ParentBlock", bp);
         } else if (!childBlocks.isEmpty()) {
             ListTag childBlocksTag = new ListTag();
             for (BlockPos pos : childBlocks) {

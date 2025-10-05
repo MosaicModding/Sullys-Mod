@@ -1,5 +1,6 @@
 package com.uraneptus.sullysmod.common.blocks;
 
+import com.mojang.datafixers.util.Pair;
 import com.uraneptus.sullysmod.common.blockentities.AmberBENew;
 import com.uraneptus.sullysmod.common.blocks.utilities.AmberUtil;
 import com.uraneptus.sullysmod.core.registry.SMBlocks;
@@ -31,11 +32,15 @@ import net.minecraft.world.phys.shapes.EntityCollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public class AmberBlockNew extends Block {
     public static final BooleanProperty IS_MELTED = AmberUtil.IS_MELTED;
+    @Nullable
+    private Pair<BlockPos, UUID> alreadyChecked = null;
 
     public AmberBlockNew(Properties pProperties) {
         super(pProperties);
@@ -56,6 +61,12 @@ public class AmberBlockNew extends Block {
                         makeStuckInAmber(pLevel, pPos, pEntity);
                     }
                 } else if (pEntity instanceof Mob mob) {
+                    if (alreadyChecked != null) {
+                        if (alreadyChecked.equals(Pair.of(pPos, mob.getUUID()))) {
+                            mob.makeStuckInBlock(pState, new Vec3(0.5F, 0.1D, 0.5F));
+                            return;
+                        }
+                    }
                     if (mob.isVehicle()) {
                         mob.makeStuckInBlock(pState, new Vec3(0.5F, 0.1D, 0.5F));
                     } else {
@@ -91,6 +102,7 @@ public class AmberBlockNew extends Block {
 
                                             // Skip the base position (current block)
                                             if (checkPos.equals(pPos)) {
+                                                this.alreadyChecked = new Pair<>(checkPos, mob.getUUID());
                                                 continue;
                                             }
 
@@ -110,7 +122,6 @@ public class AmberBlockNew extends Block {
                                 if (canStoreEntity) {
                                     makeStuckInMultipleAmber(pLevel, pEntity, pPos, allPositions);
                                 } else {
-                                    // Apply normal stuck behavior if can't store
                                     mob.makeStuckInBlock(pState, new Vec3(0.8F, 0.1D, 0.8F));
                                 }
                             }

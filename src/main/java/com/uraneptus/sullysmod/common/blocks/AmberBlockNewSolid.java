@@ -20,6 +20,7 @@ import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.EntityBlock;
 import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -55,19 +56,16 @@ public class AmberBlockNewSolid extends Block implements EntityBlock {
     public void onRemove(BlockState blockState, Level pLevel, BlockPos blockPos, BlockState pNewState, boolean pIsMoving) {
         BlockEntity blockEntity = pLevel.getBlockEntity(blockPos);
         if (!(blockEntity instanceof AmberBENew amberBe)) return;
-
+        this.extraDropAmount = 0;
         if (amberBe.isValidChild()) {
-            BlockPos parentPos = amberBe.getParentBlock();//Currently has wrong parent saved for some reason
+            BlockPos parentPos = amberBe.getParentBlock();
             BlockState parentState = pLevel.getBlockState(parentPos);
             parentState.getBlock().onRemove(parentState, pLevel, parentPos, pNewState, pIsMoving);
-            //parentState.onRemove(pLevel, parentPos, pNewState, pIsMoving);
         } else if (amberBe.isValidParent()) {
-            System.out.println("Here as parent");
             if (!amberBe.getChildBlocks().isEmpty()) {
                 for (BlockPos pos : amberBe.getChildBlocks()) {
                     pLevel.removeBlock(pos, false);
                     pLevel.removeBlockEntity(pos);
-                    this.extraDropAmount++;
                 }
             }
 
@@ -85,6 +83,8 @@ public class AmberBlockNewSolid extends Block implements EntityBlock {
                 entity.moveTo(blockPos.getX() + 0.5, blockPos.getY(), blockPos.getZ() + 0.5);
                 pLevel.addFreshEntity(entity);
             }
+            this.extraDropAmount = amberBe.getChildBlocks().size();
+            pLevel.removeBlock(blockPos, pIsMoving);
         }
         super.onRemove(blockState, pLevel, blockPos, pNewState, pIsMoving);
     }
