@@ -99,8 +99,10 @@ public class SMClientModEvents {
 
     @SubscribeEvent
     public static void onClientSetup(FMLClientSetupEvent event) {
-        ItemProperties.register(SMItems.JADE_SHIELD.get(), new ResourceLocation("blocking"), (itemStack, clientWorld, livingEntity, useTime) -> livingEntity != null && livingEntity.isUsingItem() && livingEntity.getUseItem() == itemStack ? 1.0F : 0.0F);
-        SkullBlockRenderer.SKIN_BY_TYPE.putAll(Util.make(Maps.newHashMap(), SMClientModEvents::addSkull));
+        event.enqueueWork(() -> {
+            ItemProperties.register(SMItems.JADE_SHIELD.get(), new ResourceLocation("blocking"), (itemStack, clientWorld, livingEntity, useTime) -> livingEntity != null && livingEntity.isUsingItem() && livingEntity.getUseItem() == itemStack ? 1.0F : 0.0F);
+            SkullBlockRenderer.SKIN_BY_TYPE.putAll(Util.make(Maps.newHashMap(), SMClientModEvents::addSkull));
+        });
     }
 
     public static void addSkull(Map<SkullBlock.Type, ResourceLocation> map) {
