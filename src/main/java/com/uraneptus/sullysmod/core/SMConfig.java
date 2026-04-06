@@ -59,7 +59,7 @@ public class SMConfig {
         ENABLE_RESISTANCE_POTION = COMMON_BUILDER.comment("Enables the resistance potion").define("resistance_potion", true);
         COMMON_BUILDER.pop();
         ENABLE_COPPER_BUTTONS = COMMON_BUILDER.comment("Enables copper buttons").define("copper_buttons", true);
-        ENABLE_GEM_LANTERNS = COMMON_BUILDER.comment("Enables gem lanterns").define("gem_lanterns", false);
+        ENABLE_GEM_LANTERNS = COMMON_BUILDER.comment("Enables gem lanterns").define("gem_lanterns", true);
         ENABLE_GRINDSTONE_POLISHING = COMMON_BUILDER.comment("Enables grindstone polishing").define("grindstone_polishing", true);
         ENABLE_BUG_MEAT = COMMON_BUILDER.comment("Enables bug meat").define("bug_meat", true);
         COMMON_BUILDER.comment("Ambient effects").push("ambient");

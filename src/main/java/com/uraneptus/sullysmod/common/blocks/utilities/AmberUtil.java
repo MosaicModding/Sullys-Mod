@@ -37,7 +37,6 @@ import java.util.Optional;
 import java.util.function.BiPredicate;
 import java.util.function.Predicate;
 
-//TODO cleanup and check what can be updated to the new amber system
 public class AmberUtil {
     public static final BooleanProperty IS_MELTED = BooleanProperty.create("is_melted");
     public static final VoxelShape MELTING_COLLISION_SHAPE = Shapes.box(0.0D, 0.0D, 0.0D, 1.0D, 0.0F, 1.0D);
@@ -50,7 +49,6 @@ public class AmberUtil {
             if (entity != null) {
                 Level level = entity.level();
                 boolean shouldMeltFlag = false;
-                //level.setBlock(pPos, pState.setValue(IS_MELTED, false), Block.UPDATE_ALL);
 
                 for (BlockPos pos : BlockPos.betweenClosed(pPos.offset(-1, -1, -1), pPos.offset(1, 1, 1))) {
                     BlockState state = pLevel.getBlockState(pos);
