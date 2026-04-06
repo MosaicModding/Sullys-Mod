@@ -106,16 +106,16 @@ public class SMBlockStateProvider extends BlockStateProvider {
         basicBlock(SMBlocks.AMETHYST_LANTERN);
         basicBlock(SMBlocks.QUARTZ_LANTERN);
         amberCauldron();
-        basedOnTemplate(SMBlocks.FIXED_BOWL, "bowl");
-        basedOnTemplate(SMArtifacts.BROKEN_BOWL, "bowl");
-        basedOnTemplate(SMBlocks.FIXED_VASE, "vase");
-        basedOnTemplate(SMArtifacts.BROKEN_VASE, "vase");
-        basedOnTemplate(SMBlocks.FIXED_CUP, "cup");
-        basedOnTemplate(SMArtifacts.BROKEN_CUP, "cup");
-        basedOnTemplate(SMArtifacts.GOLDEN_IDOL);
-        basedOnTemplate(SMArtifacts.GOLDEN_GOBLET);
-        basedOnTemplate(SMArtifacts.FAMILIAR_CUBE);
-        basedOnTemplate(SMArtifacts.STONE_IDOL);
+        basedOnTemplate(SMBlocks.FIXED_BOWL, "bowl", false);
+        basedOnTemplate(SMArtifacts.BROKEN_BOWL, "bowl", false);
+        basedOnTemplate(SMBlocks.FIXED_VASE, "vase", false);
+        basedOnTemplate(SMArtifacts.BROKEN_VASE, "vase", false);
+        basedOnTemplate(SMBlocks.FIXED_CUP, "cup", false);
+        basedOnTemplate(SMArtifacts.BROKEN_CUP, "cup", false);
+        basedOnTemplate(SMArtifacts.GOLDEN_IDOL, false);
+        basedOnTemplate(SMArtifacts.GOLDEN_GOBLET, false);
+        basedOnTemplate(SMArtifacts.FAMILIAR_CUBE, false);
+        basedOnTemplate(SMArtifacts.STONE_IDOL, true);
     }
 
     private void basicBlock(Supplier<? extends Block> block) {
@@ -191,12 +191,12 @@ public class SMBlockStateProvider extends BlockStateProvider {
 
     private void totemBlock(Supplier<? extends Block> block) {
         ModelFile totemModel = models().cube(name(block.get()),
-              modBlockLocation(name(block.get()) + "_top"),
-              modBlockLocation(name(block.get()) + "_top"),
-              modBlockLocation(name(block.get()) + "_front"),
-              modBlockLocation(name(block.get()) + "_back"),
-              modBlockLocation(name(block.get()) + "_right"),
-              modBlockLocation(name(block.get()) + "_left"))
+                        modBlockLocation(name(block.get()) + "_top"),
+                        modBlockLocation(name(block.get()) + "_top"),
+                        modBlockLocation(name(block.get()) + "_front"),
+                        modBlockLocation(name(block.get()) + "_back"),
+                        modBlockLocation(name(block.get()) + "_right"),
+                        modBlockLocation(name(block.get()) + "_left"))
                 .texture("particle", modBlockLocation(name(block.get()) + "_back"));
 
         getVariantBuilder(block.get()).forAllStates(blockState -> ConfiguredModel.builder()
@@ -336,17 +336,22 @@ public class SMBlockStateProvider extends BlockStateProvider {
         });
     }
 
-    private void basedOnTemplate(Supplier<? extends Block> block, String diffTemplate) {
-
+    private void basedOnTemplate(Supplier<? extends Block> block, String diffTemplate, boolean directional) {
         getVariantBuilder(block.get()).forAllStates(blockState -> {
             ResourceLocation templateLoc = modBlockLocation("template_" + diffTemplate);
             ModelFile file = models().withExistingParent(name(block.get()), templateLoc).texture("0", modBlockLocation(name(block.get()))).renderType("cutout");
 
-            return ConfiguredModel.builder().modelFile(file).build();
+            var builder = ConfiguredModel.builder();
+            builder.modelFile(file);
+            if (directional) {
+                builder.rotationY(((int) blockState.getValue(BlockStateProperties.HORIZONTAL_FACING).toYRot() + 180) % 360);
+            }
+
+            return builder.build();
         });
     }
 
-    private void basedOnTemplate(Supplier<? extends Block> block) {
-        basedOnTemplate(block, name(block.get()));
+    private void basedOnTemplate(Supplier<? extends Block> block, boolean directional) {
+        basedOnTemplate(block, name(block.get()), directional);
     }
 }

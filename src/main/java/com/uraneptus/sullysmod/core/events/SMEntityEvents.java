@@ -29,6 +29,7 @@ import net.minecraft.world.entity.animal.Ocelot;
 import net.minecraft.world.entity.animal.Turtle;
 import net.minecraft.world.entity.animal.Wolf;
 import net.minecraft.world.entity.animal.horse.Horse;
+import net.minecraft.world.entity.animal.horse.ZombieHorse;
 import net.minecraft.world.entity.monster.Zombie;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.Projectile;
@@ -235,12 +236,19 @@ public class SMEntityEvents {
         Entity killer = event.getSource().getEntity();
         Level level = event.getEntity().level();
         if (!SMFeatures.isEnabled(SMFeatures.PIRANHA)) return;
-        if (!(livingEntity instanceof Zombie zombie && !zombie.isBaby()) || !(killer instanceof Piranha)) return;
+        if (!(killer instanceof Piranha)) return;
+        if (livingEntity instanceof Zombie zombie && !zombie.isBaby()) {
+            replaceEntity(livingEntity, level, EntityType.SKELETON);
+        } else if (livingEntity instanceof ZombieHorse) {
+            replaceEntity(livingEntity, level, EntityType.SKELETON_HORSE);
+        }
+    }
 
+    private static void replaceEntity(LivingEntity livingEntity, Level level, EntityType<? extends LivingEntity> resultEntity) {
         CompoundTag compoundtag = livingEntity.saveWithoutId(new CompoundTag());
         compoundtag.remove("Health");
         livingEntity.setRemoved(Entity.RemovalReason.DISCARDED);
-        livingEntity = EntityType.SKELETON.create(level);
+        livingEntity = resultEntity.create(level);
         if (livingEntity != null) {
             livingEntity.load(compoundtag);
             level.addFreshEntity(livingEntity);
