@@ -28,7 +28,7 @@ public class AmberBlobFeature extends Feature<NoneFeatureConfiguration> {
         BlockPos blockpos = context.origin();
         WorldGenLevel worldgenlevel = context.level();
         RandomSource randomsource = context.random();
-        BlockState amber = SMBlocks.AMBER.get().defaultBlockState();
+        BlockState amber = SMBlocks.AMBER_SOLID.get().defaultBlockState(); //TODO add normal ambe here as well
         List<EntityType<?>> possibleEntities = ForgeRegistries.ENTITY_TYPES.getValues().stream().filter(e -> e.is(SMEntityTags.SPAWN_IN_AMBER)).toList();
         int placedEntities = 0;
 

@@ -1,21 +1,17 @@
 package com.uraneptus.sullysmod.common.blocks;
 
+import com.mojang.datafixers.util.Pair;
 import com.uraneptus.sullysmod.common.blockentities.AmberBE;
 import com.uraneptus.sullysmod.common.blocks.utilities.AmberUtil;
-import com.uraneptus.sullysmod.common.caps.SMEntityCap;
-import com.uraneptus.sullysmod.common.networking.MsgEntityAmberStuck;
-import com.uraneptus.sullysmod.common.networking.SMPacketHandler;
 import com.uraneptus.sullysmod.core.registry.SMBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.BlockParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.item.ItemEntity;
@@ -25,11 +21,7 @@ import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LightLayer;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.EntityBlock;
-import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.world.level.block.entity.BlockEntityTicker;
-import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
@@ -38,25 +30,175 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.EntityCollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.minecraftforge.network.PacketDistributor;
-import org.jetbrains.annotations.Nullable;
 
-public class AmberBlock extends Block implements EntityBlock {
+import javax.annotation.Nullable;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
+
+//This is the regular block which can be melted.
+public class AmberBlock extends Block {
     public static final BooleanProperty IS_MELTED = AmberUtil.IS_MELTED;
+    @Nullable
+    private Pair<BlockPos, UUID> alreadyChecked = null;
 
     public AmberBlock(Properties pProperties) {
         super(pProperties);
-        this.registerDefaultState(this.defaultBlockState().setValue(IS_MELTED, false));
+        this.registerDefaultState(this.stateDefinition.any().setValue(IS_MELTED, false));
     }
 
     @Override
-    public RenderShape getRenderShape(BlockState pState) {
-        return RenderShape.MODEL;
+    public void entityInside(BlockState pState, Level pLevel, BlockPos pPos, Entity pEntity) {
+        if (pState.getValue(IS_MELTED)) {
+            if (!(pEntity instanceof LivingEntity) || pEntity.getFeetBlockState().is(this)) {
+                if (pEntity instanceof Player) {
+                    pEntity.makeStuckInBlock(pState, new Vec3(0.8F, 0.1D, 0.8F));
+                }
+                if (pEntity instanceof ItemEntity itemEntity) {
+                    itemEntity.makeStuckInBlock(pState, new Vec3(0.8F, 0.1D, 0.8F));
+
+                    if (closeToCenter(pPos, pEntity)) {
+                        makeStuckInAmber(pLevel, pPos, pEntity);
+                    }
+                } else if (pEntity instanceof Mob mob) {
+                    if (alreadyChecked != null) {
+                        if (alreadyChecked.equals(Pair.of(pPos, mob.getUUID()))) {
+                            mob.makeStuckInBlock(pState, new Vec3(0.5F, 0.1D, 0.5F));
+                            return;
+                        }
+                    }
+                    if (mob.isVehicle()) {
+                        mob.makeStuckInBlock(pState, new Vec3(0.5F, 0.1D, 0.5F));
+                    } else {
+                        mob.makeStuckInBlock(pState, new Vec3(0.8F, 0.1D, 0.8F));
+                        if (closeToCenter(pPos, pEntity)) {
+                            // Get full bounding box dimensions
+                            double height = pEntity.getBoundingBox().getYsize();
+                            double width = pEntity.getBoundingBox().getXsize();
+                            double depth = pEntity.getBoundingBox().getZsize();
+
+                            // Calculate blocks needed in each dimension
+                            int blocksNeededY = (int) Math.ceil(height);
+                            int blocksNeededX = (int) Math.ceil(width);
+                            int blocksNeededZ = (int) Math.ceil(depth);
+
+                            // If entity fits in a single block
+                            if (blocksNeededY == 1 && blocksNeededX == 1 && blocksNeededZ == 1) {
+                                makeStuckInAmber(pLevel, pPos, pEntity);
+                            } else {
+                                // Calculate all positions needed for the full bounding box
+                                List<BlockPos> allPositions = new ArrayList<>();
+                                boolean canStoreEntity = true;
+
+                                // Calculate offset for centering the entity
+                                int xOffset = (blocksNeededX - 1) / 2;
+                                int zOffset = (blocksNeededZ - 1) / 2;
+
+                                // Check all required positions
+                                for (int y = 0; y < blocksNeededY; y++) {
+                                    for (int x = -xOffset; x <= (blocksNeededX - 1 - xOffset); x++) {
+                                        for (int z = -zOffset; z <= (blocksNeededZ - 1 - zOffset); z++) {
+                                            BlockPos checkPos = pPos.offset(x, y, z);
+
+                                            // Skip the base position (current block)
+                                            if (checkPos.equals(pPos)) {
+                                                this.alreadyChecked = new Pair<>(checkPos, mob.getUUID());
+                                                continue;
+                                            }
+
+                                            BlockState checkState = pLevel.getBlockState(checkPos);
+                                            if (checkState.is(SMBlocks.AMBER.get()) && checkState.getValue(IS_MELTED)) {
+                                                allPositions.add(checkPos);
+                                            } else {
+                                                canStoreEntity = false;
+                                                break;
+                                            }
+                                        }
+                                        if (!canStoreEntity) break;
+                                    }
+                                    if (!canStoreEntity) break;
+                                }
+
+                                if (canStoreEntity) {
+                                    makeStuckInMultipleAmber(pLevel, pEntity, pPos, allPositions);
+                                } else {
+                                    mob.makeStuckInBlock(pState, new Vec3(0.8F, 0.1D, 0.8F));
+                                }
+                            }
+                        }
+                    }
+                }
+                if (pLevel.isClientSide) {
+                    RandomSource randomsource = pLevel.getRandom();
+                    boolean flag = pEntity.xOld != pEntity.getX() || pEntity.zOld != pEntity.getZ();
+                    if (flag && randomsource.nextBoolean()) {
+                        pLevel.addParticle(new BlockParticleOption(ParticleTypes.BLOCK, SMBlocks.AMBER.get().defaultBlockState()), pEntity.getX(), pPos.getY() + 1, pEntity.getZ(), Mth.randomBetween(randomsource, -1.0F, 1.0F) * 0.083333336F, 0.05F, Mth.randomBetween(randomsource, -1.0F, 1.0F) * 0.083333336F);
+                    }
+                }
+            }
+        }
+    }
+
+    public void makeStuckInAmber(Level level, BlockPos pos, Entity entity) {
+        level.setBlock(pos, SMBlocks.AMBER_SOLID.get().defaultBlockState(), Block.UPDATE_ALL);
+        BlockEntity be = level.getBlockEntity(pos);
+        if (be instanceof AmberBE amberBE) {
+            amberBE.storeAsParent(entity, List.of());
+        }
+    }
+
+    public void makeStuckInMultipleAmber(Level level, Entity entity, BlockPos parentBlock, List<BlockPos> childBlocks) {
+        level.setBlock(parentBlock, SMBlocks.AMBER_SOLID.get().defaultBlockState(), Block.UPDATE_ALL);
+        BlockEntity be = level.getBlockEntity(parentBlock);
+        if (be instanceof AmberBE amberBE) {
+            amberBE.storeAsParent(entity, childBlocks);
+        }
+
+        for (BlockPos pos : childBlocks) {
+            level.setBlock(pos, SMBlocks.AMBER_SOLID.get().defaultBlockState(), Block.UPDATE_ALL);
+            BlockEntity childBE = level.getBlockEntity(pos);
+            if (childBE instanceof AmberBE amberBE) {
+                List<BlockPos> siblings = childBlocks.stream().filter(p -> !p.equals(pos)).toList();
+                amberBE.storeAsChild(parentBlock, siblings);
+            }
+        }
+    }
+
+    public boolean closeToCenter(BlockPos pPos, Entity pEntity) {
+        Vec3 extendedCenter = pPos.getCenter().subtract(0.07, 0.07, 0.07);
+        double vec = pEntity.position().add(0, 0.5, 0).distanceTo(extendedCenter);
+        return vec < 0.5;
+    }
+
+    @Override
+    public VoxelShape getCollisionShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
+        if (pContext instanceof EntityCollisionContext entitycollisioncontext) {
+            Entity entity = entitycollisioncontext.getEntity();
+            if (entity == null || entity instanceof Projectile) return Shapes.block();
+            Level level = entity.level();
+            boolean shouldMeltFlag = false;
+
+            for (BlockPos pos : BlockPos.betweenClosed(pPos.offset(-1, -1, -1), pPos.offset(1, 1, 1))) {
+                BlockState state = pLevel.getBlockState(pos);
+                if (AmberUtil.AMBER_MELTING_BLOCKS.test(state)) {
+                    shouldMeltFlag = true;
+                }
+                if (state.hasProperty(IS_MELTED) && state.getValue(IS_MELTED) && level.getBrightness(LightLayer.BLOCK, pPos.above()) >= 9) {
+                    shouldMeltFlag = true;
+                }
+            }
+            if (shouldMeltFlag) {
+                level.setBlock(pPos, pState.setValue(IS_MELTED, true), Block.UPDATE_ALL);
+                return AmberUtil.MELTING_COLLISION_SHAPE;
+            }
+
+        }
+        return Shapes.block();
     }
 
     @Override
     public boolean skipRendering(BlockState pState, BlockState pAdjacentBlockState, Direction pSide) {
-        return pAdjacentBlockState.is(this) || super.skipRendering(pState, pAdjacentBlockState, pSide);
+        return pAdjacentBlockState.is(this) || pAdjacentBlockState.is(SMBlocks.AMBER_SOLID.get()) || super.skipRendering(pState, pAdjacentBlockState, pSide);
     }
 
     @Override
@@ -80,194 +222,7 @@ public class AmberBlock extends Block implements EntityBlock {
     }
 
     @Override
-    public VoxelShape getCollisionShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
-        BlockEntity blockEntity = pLevel.getBlockEntity(pPos);
-
-        if (blockEntity instanceof AmberBE amber) {
-            if (pContext instanceof EntityCollisionContext entitycollisioncontext) {
-                Entity entity = entitycollisioncontext.getEntity();
-                if (entity instanceof Projectile) return Shapes.block();
-                Level level = blockEntity.getLevel();
-                if (level == null) return Shapes.block();
-                if (!amber.hasStuckEntity()) {
-                    if (entity != null) {
-                        boolean shouldMeltFlag = false;
-                        level.setBlock(pPos, pState.setValue(IS_MELTED, false), Block.UPDATE_ALL);
-
-                        for (BlockPos pos : BlockPos.betweenClosed(pPos.offset(-1, -1, -1), pPos.offset(1, 1, 1))) {
-                            BlockState state = pLevel.getBlockState(pos);
-                            if (AmberUtil.AMBER_MELTING_BLOCKS.test(state)) {
-                                shouldMeltFlag = true;
-                            }
-                            if (state.hasProperty(IS_MELTED) && state.getValue(IS_MELTED) && level.getBrightness(LightLayer.BLOCK, pPos.above()) >= 9) {
-                                shouldMeltFlag = true;
-                            }
-                        }
-                        for (BlockPos pos : BlockPos.betweenClosed(pPos.offset(0, -1, 0), pPos.offset(0, -2, 0))) {
-                            BlockState state = pLevel.getBlockState(pos);
-                            BlockEntity be = pLevel.getBlockEntity(pos);
-                            if (state.is(SMBlocks.AMBER.get())) {
-                                if (be instanceof AmberBE amberBE && amberBE.hasStuckEntity()) {
-                                    CompoundTag compoundtag = amberBE.getEntityStuck();
-                                    Entity entityLoaded = EntityType.loadEntityRecursive(compoundtag, level, entityStuck -> entityStuck);
-                                    if (entityLoaded != null) {
-                                        if (entityLoaded.getBoundingBox().getYsize() > 1.5F && entityLoaded.getBoundingBox().getYsize() < 2F && pos.equals(pPos.offset(0, -1, 0))) {
-                                            shouldMeltFlag = false;
-                                        }
-                                        else if (entityLoaded.getBoundingBox().getYsize() >= 2F && entityLoaded.getBoundingBox().getYsize() < 3.5F && pos.equals(pPos.offset(0, -2, 0))) {
-                                            shouldMeltFlag = false;
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                        if (shouldMeltFlag) {
-                            level.setBlock(pPos, pState.setValue(IS_MELTED, true), Block.UPDATE_ALL);
-                            return AmberUtil.MELTING_COLLISION_SHAPE;
-                        }
-                    }
-                }
-            }
-        }
-        return Shapes.block();
-    }
-
-    public void onRemove(BlockState blockState, Level pLevel, BlockPos blockPos, BlockState pNewState, boolean pIsMoving) {
-        if (blockState.getBlock() == SMBlocks.AMBER.get()) {
-            BlockEntity blockEntity = pLevel.getBlockEntity(blockPos);
-            if (blockEntity instanceof AmberBE amberBlockEntity) {
-                if (amberBlockEntity.hasStuckEntity()) {
-                    CompoundTag compoundtag = amberBlockEntity.getEntityStuck();
-                    AmberBE.removeIgnoredNBT(compoundtag);
-                    Entity entity = EntityType.loadEntityRecursive(compoundtag, pLevel, entityLoaded -> entityLoaded);
-                    if (entity != null) {
-                        SMEntityCap.getCapOptional(entity).ifPresent(cap -> {
-                            cap.stuckInAmber = false;
-                        });
-                        SMPacketHandler.sendMsg(PacketDistributor.TRACKING_ENTITY_AND_SELF.with(() -> entity), new MsgEntityAmberStuck(entity, false));
-                        if (entity instanceof ItemEntity) {
-                            entity.setDeltaMovement(0, 0, 0);
-                        }
-                        entity.moveTo(blockPos.getX() + 0.5, blockPos.getY(), blockPos.getZ() + 0.5);
-                        pLevel.addFreshEntity(entity);
-                    }
-                }
-                for (BlockPos pos : BlockPos.betweenClosed(blockPos.offset(0, -1, 0), blockPos.offset(0, -2, 0))) {
-                    BlockState state = pLevel.getBlockState(pos);
-                    BlockEntity be = pLevel.getBlockEntity(pos);
-                    if (state.is(SMBlocks.AMBER.get())) {
-                        if (be instanceof AmberBE amberBE && amberBE.hasStuckEntity()) {
-                            CompoundTag compoundtag = amberBE.getEntityStuck();
-                            AmberBE.removeIgnoredNBT(compoundtag);
-                            Entity entity = EntityType.loadEntityRecursive(compoundtag, pLevel, entityStuck -> entityStuck);
-                            if (entity != null) {
-                                SMEntityCap.getCapOptional(entity).ifPresent(cap -> {
-                                    cap.stuckInAmber = false;
-                                });
-                                SMPacketHandler.sendMsg(PacketDistributor.TRACKING_ENTITY_AND_SELF.with(() -> entity), new MsgEntityAmberStuck(entity, false));
-                                if (entity.getBoundingBox().getYsize() > 1.5F && entity.getBoundingBox().getYsize() < 2F && pos.equals(blockPos.offset(0, -1, 0))) {
-                                    pLevel.setBlock(pos, blockState.setValue(IS_MELTED, false), Block.UPDATE_ALL);
-                                    entity.moveTo(pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5);
-                                    pLevel.addFreshEntity(entity);
-                                    amberBE.setStuckEntityData(null);
-
-                                }
-                                else if (entity.getBoundingBox().getYsize() >= 2F && entity.getBoundingBox().getYsize() < 3.5F) {
-                                    pLevel.setBlock(pos, blockState.setValue(IS_MELTED, false), Block.UPDATE_ALL);
-                                    entity.moveTo(pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5);
-                                    pLevel.addFreshEntity(entity);
-                                    amberBE.setStuckEntityData(null);
-
-                                }
-
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        super.onRemove(blockState, pLevel, blockPos, pNewState, pIsMoving);
-    }
-
-    @Override
-    public void entityInside(BlockState pState, Level pLevel, BlockPos pPos, Entity pEntity) {
-        BlockEntity blockEntity = pLevel.getBlockEntity(pPos);
-        if (blockEntity instanceof AmberBE amber) {
-            if (!amber.hasStuckEntity() && pState.getValue(IS_MELTED)) {
-                if (!(pEntity instanceof LivingEntity) || pEntity.getFeetBlockState().is(this)) {
-                    if (pEntity instanceof Player) {
-                        pEntity.makeStuckInBlock(pState, new Vec3(0.8F, 0.1D, 0.8F));
-                    }
-                    if (pEntity instanceof ItemEntity itemEntity) {
-                        itemEntity.makeStuckInBlock(pState, new Vec3(0F, 0.1D, 0F));
-                        if (itemEntity.onGround()) {
-                            amber.makeEntityStuck(itemEntity);
-                        }
-                    } else if (pEntity instanceof Mob mob) {
-                        if (mob.isVehicle()) {
-                            mob.makeStuckInBlock(pState, new Vec3(0.5F, 0.1D, 0.5F));
-                        } else if (mob.getBoundingBox().getYsize() < 1.5F) {
-                            mob.makeStuckInBlock(pState, new Vec3(0F, 0.1D, 0F));
-                            if (mob.onGround()) {
-                                amber.makeEntityStuck(mob);
-                            }
-                        }
-                        else if (mob.getBoundingBox().getYsize() < 2F) {
-                            BlockPos extendedPos = new BlockPos(mob.getBlockX(), mob.getBlockY() + 1, mob.getBlockZ());
-                            if (pLevel.getBlockState(extendedPos).is(SMBlocks.AMBER.get())) {
-                                mob.makeStuckInBlock(pState, new Vec3(0F, 0.1D, 0F));
-                                if (mob.onGround()) {
-                                    pLevel.setBlock(extendedPos, pState.setValue(IS_MELTED, false), Block.UPDATE_ALL);
-                                    amber.makeEntityStuck(mob);
-                                }
-                            } else {
-                                mob.makeStuckInBlock(pState, new Vec3(0.8F, 0.1D, 0.8F));
-                            }
-                        }
-                        else if (mob.getBoundingBox().getYsize() < 3.5F) {
-                            BlockPos extendedPos = new BlockPos(mob.getBlockX(), mob.getBlockY() + 1, mob.getBlockZ());
-                            BlockPos extendedPos1 = new BlockPos(mob.getBlockX(), mob.getBlockY() + 2, mob.getBlockZ());
-                            if (pLevel.getBlockState(extendedPos).is(SMBlocks.AMBER.get()) && pLevel.getBlockState(extendedPos1).is(SMBlocks.AMBER.get())) {
-                                mob.makeStuckInBlock(pState, new Vec3(0F, 0.1D, 0F));
-                                if (mob.onGround()) {
-                                    pLevel.setBlock(extendedPos, pState.setValue(IS_MELTED, false), Block.UPDATE_ALL);
-                                    pLevel.setBlock(extendedPos1, pState.setValue(IS_MELTED, false), Block.UPDATE_ALL);
-                                    amber.makeEntityStuck(mob);
-                                }
-                            } else {
-                                mob.makeStuckInBlock(pState, new Vec3(0.8F, 0.1D, 0.8F));
-                            }
-                        }
-                        else {
-                            mob.makeStuckInBlock(pState, new Vec3(0.8F, 0.1D, 0.8F));
-                        }
-                    }
-                    if (pLevel.isClientSide) {
-                        RandomSource randomsource = pLevel.getRandom();
-                        boolean flag = pEntity.xOld != pEntity.getX() || pEntity.zOld != pEntity.getZ();
-                        if (flag && randomsource.nextBoolean()) {
-                            pLevel.addParticle(new BlockParticleOption(ParticleTypes.BLOCK, SMBlocks.AMBER.get().defaultBlockState()), pEntity.getX(), pPos.getY() + 1, pEntity.getZ(), Mth.randomBetween(randomsource, -1.0F, 1.0F) * 0.083333336F, 0.05F, Mth.randomBetween(randomsource, -1.0F, 1.0F) * 0.083333336F);
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-    @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> pBuilder) {
         pBuilder.add(IS_MELTED);
-    }
-
-    @Nullable
-    @Override
-    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level pLevel, BlockState pState, BlockEntityType<T> pBlockEntityType) {
-        return (level1, pos, state1, tile) -> ((AmberBE) tile).tick();
-    }
-
-    @Nullable
-    @Override
-    public BlockEntity newBlockEntity(BlockPos pPos, BlockState pState) {
-        return new AmberBE(pPos, pState);
     }
 }

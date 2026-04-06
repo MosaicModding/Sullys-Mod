@@ -14,10 +14,10 @@ import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-public class SolidAmberBlock extends Block {
+public class AmberDecorationBlock extends Block {
     public static final BooleanProperty IS_MELTED = AmberUtil.IS_MELTED;
 
-    public SolidAmberBlock(Properties pProperties) {
+    public AmberDecorationBlock(Properties pProperties) {
         super(pProperties);
         this.registerDefaultState(this.defaultBlockState().setValue(IS_MELTED, false));
     }

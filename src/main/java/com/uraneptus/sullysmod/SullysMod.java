@@ -73,8 +73,6 @@ public class SullysMod {
         SMTreeDecoratorTypes.TREE_DECORATORS.register(bus);
         com.uraneptus.sullysmod.core.registry.SMFeatures.FEATURES.register(bus);
         SMCreativeModeTabs.TABS.register(bus);
-        SMFluids.FLUIDS.register(bus);
-        SMFluidTypes.FLUID_TYPES.register(bus);
 
         CraftingHelper.register(new SMFeatureRecipeCondition.Serializer());
 

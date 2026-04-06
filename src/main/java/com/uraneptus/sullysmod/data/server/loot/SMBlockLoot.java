@@ -16,7 +16,6 @@ import net.minecraft.world.level.storage.loot.functions.ApplyBonusCount;
 import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
 import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
 import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.RegistryObject;
 
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -66,9 +65,8 @@ public class SMBlockLoot extends BlockLootSubProvider {
         this.dropWhenSilkTouch(SMBlocks.TORTOISE_EGG.get());
 
         //Amber
-        this.add(SMBlocks.AMBER.get(), createSingleItemTableWithSilkTouch(SMBlocks.AMBER.get(), SMBlocks.ROUGH_AMBER.get()));
-        this.add(SMBlocks.NEW_AMBER.get(), createSingleItemTableWithSilkTouch(SMBlocks.NEW_AMBER.get(), SMBlocks.ROUGH_AMBER.get()));
-        this.add(SMBlocks.NEW_AMBER_SOLID.get(), createSingleItemTableWithSilkTouch(SMBlocks.NEW_AMBER.get(), SMBlocks.ROUGH_AMBER.get()));
+        this.dropOther(SMBlocks.AMBER.get(), SMBlocks.ROUGH_AMBER.get());
+        this.dropOther(SMBlocks.AMBER_SOLID.get(), SMBlocks.ROUGH_AMBER.get());
         this.dropSelf(SMBlocks.ROUGH_AMBER.get());
         this.dropSelf(SMBlocks.CHISELED_AMBER.get());
         this.dropSelf(SMBlocks.AMBER_PILLAR.get());
@@ -83,7 +81,6 @@ public class SMBlockLoot extends BlockLootSubProvider {
         createSlab(SMBlocks.AMBER_BRICK_SLAB.get());
         this.dropSelf(SMBlocks.AMBER_BRICK_STAIRS.get());
         this.dropSelf(SMBlocks.AMBER_BRICK_WALL.get());
-        add(SMBlocks.MOLTEN_AMBER_BLOCK.get(), noDrop());
         this.dropOther(SMBlocks.AMBER_CAULDRON.get(), Blocks.CAULDRON);
 
         //Petrified Wood

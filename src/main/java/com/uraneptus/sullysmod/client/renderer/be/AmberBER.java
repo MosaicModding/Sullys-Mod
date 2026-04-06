@@ -3,7 +3,6 @@ package com.uraneptus.sullysmod.client.renderer.be;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
 import com.uraneptus.sullysmod.common.blockentities.AmberBE;
-import com.uraneptus.sullysmod.common.blockentities.AmberBENew;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
@@ -25,7 +24,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.function.Function;
 
 @OnlyIn(Dist.CLIENT)
-public class AmberBER implements BlockEntityRenderer<AmberBENew> {
+public class AmberBER implements BlockEntityRenderer<AmberBE> {
     private final EntityRenderDispatcher renderDispatcher;
     private final ItemRenderer itemRenderer;
 
@@ -35,7 +34,7 @@ public class AmberBER implements BlockEntityRenderer<AmberBENew> {
     }
 
     @Override
-    public void render(AmberBENew amberBlockEntity, float pPartialTick, @NotNull PoseStack pPoseStack, @NotNull MultiBufferSource pBuffer, int pPackedLight, int pPackedOverlay) {
+    public void render(AmberBE amberBlockEntity, float pPartialTick, @NotNull PoseStack pPoseStack, @NotNull MultiBufferSource pBuffer, int pPackedLight, int pPackedOverlay) {
         Level level = amberBlockEntity.getLevel();
 
         pPoseStack.pushPose();

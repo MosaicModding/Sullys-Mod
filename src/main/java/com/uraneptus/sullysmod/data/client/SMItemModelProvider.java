@@ -74,8 +74,7 @@ public class SMItemModelProvider extends ItemModelProvider {
         basicItem(SMItems.JADE_HORSE_ARMOR);
         basicItemHandheld(SMItems.THROWING_KNIFE);
         basicBlockItem(SMBlocks.AMBER);
-        basicBlockItem(SMBlocks.NEW_AMBER);
-        basicBlockItem(SMBlocks.NEW_AMBER_SOLID);
+        basicBlockItem(SMBlocks.AMBER_SOLID);
         basicBlockItem(SMBlocks.ROUGH_AMBER);
         basicBlockItem(SMBlocks.CHISELED_AMBER);
         basicBlockItem(SMBlocks.AMBER_PILLAR);

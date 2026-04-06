@@ -7,10 +7,7 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.animal.WaterAnimal;
-import net.minecraft.world.item.BucketItem;
-import net.minecraft.world.item.HorseArmorItem;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.MobBucketItem;
+import net.minecraft.world.item.*;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraftforge.common.ForgeSpawnEggItem;
 import net.minecraftforge.registries.DeferredRegister;
@@ -52,7 +49,7 @@ public class SMItems {
     public static final RegistryObject<Item> COOKED_BUG_MEAT = createItem("cooked_bug_meat", SMProperties.Items.food(SMProperties.Foods.COOKED_BUG_MEAT_FOOD));
 
     //Buckets & Spawn Eggs
-    public static final RegistryObject<Item> MOLTEN_AMBER_BUCKET = createItem("molten_amber_bucket", () -> new BucketItem(SMFluids.SOURCE_MOLTEN_AMBER, new Item.Properties().stacksTo(1)));
+    public static final RegistryObject<Item> MOLTEN_AMBER_BUCKET = createItem("molten_amber_bucket", () -> new Item(new Item.Properties().stacksTo(1))); //TODO make bucket place amber
     public static final RegistryObject<Item> LANTERNFISH_BUCKET = createMobBucketItem("lanternfish_bucket", SMEntityTypes.LANTERNFISH::get);
     public static final RegistryObject<Item> LANTERNFISH_SPAWN_EGG = createSpawnEggItem("lanternfish", SMEntityTypes.LANTERNFISH::get, 0xFCE3D3, 9306085);
     public static final RegistryObject<Item> TORTOISE_SPAWN_EGG = createSpawnEggItem("tortoise", SMEntityTypes.TORTOISE::get, 15198183, 10844478);

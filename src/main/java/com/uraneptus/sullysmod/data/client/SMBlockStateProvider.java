@@ -60,8 +60,7 @@ public class SMBlockStateProvider extends BlockStateProvider {
         modWallBlock(SMBlocks.ROUGH_JADE_BRICK_WALL, SMBlocks.ROUGH_JADE_BRICKS);
         modEggBlock(SMBlocks.TORTOISE_EGG);
         basicBlockWRenderType(SMBlocks.AMBER, "translucent");
-        basicBlockWRenderType(SMBlocks.NEW_AMBER, "translucent");
-        basicBlockWRenderType(SMBlocks.NEW_AMBER_SOLID, "translucent");
+        basicBlockWRenderType(SMBlocks.AMBER_SOLID, "translucent");
         basicBlock(SMBlocks.AMBER_BRICKS);
         modSlabBlock(SMBlocks.AMBER_BRICK_SLAB, SMBlocks.AMBER_BRICKS);
         modWallBlock(SMBlocks.AMBER_BRICK_WALL, SMBlocks.AMBER_BRICKS);

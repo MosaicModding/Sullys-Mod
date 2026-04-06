@@ -37,6 +37,7 @@ import java.util.Optional;
 import java.util.function.BiPredicate;
 import java.util.function.Predicate;
 
+//TODO cleanup and check what can be updated to the new amber system
 public class AmberUtil {
     public static final BooleanProperty IS_MELTED = BooleanProperty.create("is_melted");
     public static final VoxelShape MELTING_COLLISION_SHAPE = Shapes.box(0.0D, 0.0D, 0.0D, 1.0D, 0.0F, 1.0D);

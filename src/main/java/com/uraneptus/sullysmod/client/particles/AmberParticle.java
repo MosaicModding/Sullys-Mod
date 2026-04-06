@@ -1,30 +1,23 @@
 package com.uraneptus.sullysmod.client.particles;
 
-import com.uraneptus.sullysmod.core.registry.SMFluids;
 import com.uraneptus.sullysmod.core.registry.SMParticleTypes;
 import com.uraneptus.sullysmod.core.registry.SMSounds;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.ParticleRenderType;
 import net.minecraft.client.particle.TextureSheetParticle;
-import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
-import net.minecraft.world.level.material.Fluid;
-import net.minecraft.world.level.material.FluidState;
-import net.minecraft.world.level.material.Fluids;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 @SuppressWarnings("unused")
 public class AmberParticle extends TextureSheetParticle {
-    private final Fluid type;
 
     public AmberParticle(ClientLevel pLevel, double pX, double pY, double pZ) {
         super(pLevel, pX, pY, pZ);
         this.setSize(0.01F, 0.01F);
-        this.type = SMFluids.SOURCE_MOLTEN_AMBER.get();
     }
 
     public ParticleRenderType getRenderType() {
@@ -44,14 +37,6 @@ public class AmberParticle extends TextureSheetParticle {
                 this.xd *= 0.98F;
                 this.yd *= 0.98F;
                 this.zd *= 0.98F;
-                if (this.type != Fluids.EMPTY) {
-                    BlockPos blockpos = BlockPos.containing(this.x, this.y, this.z);
-                    FluidState fluidstate = this.level.getFluidState(blockpos);
-                    if (fluidstate.getType() == this.type && this.y < (double)((float)blockpos.getY() + fluidstate.getHeight(this.level, blockpos))) {
-                        this.remove();
-                    }
-
-                }
             }
         }
     }

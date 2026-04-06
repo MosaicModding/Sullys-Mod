@@ -262,15 +262,4 @@ public class SMPlayerEvents {
             serverPlayer.sendSystemMessage(component);
         }
     }
-
-    @SubscribeEvent
-    public static void onPlayerBreakSpeed(PlayerEvent.BreakSpeed event) {
-        Level level = event.getEntity().level();
-        BlockState state = event.getState();
-        if (event.getPosition().isEmpty()) return;
-        if (state.hasProperty(AmberUtil.IS_MELTED)) {
-            float breakSpeed = state.getValue(AmberUtil.IS_MELTED) ? 2F : 6F;
-            event.setNewSpeed(breakSpeed);
-        }
-    }
 }
