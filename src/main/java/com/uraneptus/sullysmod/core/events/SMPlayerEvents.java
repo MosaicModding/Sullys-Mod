@@ -81,6 +81,15 @@ public class SMPlayerEvents {
                         event.setCanceled(true);
                         event.setCancellationResult(InteractionResult.FAIL);
                         ItemStack resultItem = result.copy();
+
+                        player.swing(hand);
+                        Direction face = event.getFace();
+                        if (face != null) {
+                            ParticleUtils.spawnParticlesOnBlockFace(level, pos, ParticleTypes.CRIT, UniformInt.of(1, 4), face, () -> new Vec3(player.getLookAngle().x() + Mth.nextDouble(random, -0.5, 0.5), 0.8D, player.getLookAngle().z() + Mth.nextDouble(random, -0.5, 0.5)), 0.55D);
+                            ParticleUtils.spawnParticlesOnBlockFace(level, pos, new ItemParticleOption(ParticleTypes.ITEM, itemInHand), UniformInt.of(1, 2), face, () -> new Vec3(Mth.nextDouble(random, -0.05D, 0.05D), 0, Mth.nextDouble(random, -0.05D, 0.05D)), 0.55D);
+                        }
+                        level.playSound(player, pos, SMSounds.POLISH_JADE.get(), SoundSource.BLOCKS, 0.5F, 0.0F);
+
                         if (player.isShiftKeyDown()) {
                             int ingredientCount = itemInHand.getCount();
                             shrinkIngredientAddResults(player, itemInHand, resultItem, resultCount, ingredientCount);
@@ -106,13 +115,6 @@ public class SMPlayerEvents {
                                 }
                             }
                         }
-                        player.swing(hand);
-                        Direction face = event.getFace();
-                        if (face != null) {
-                            ParticleUtils.spawnParticlesOnBlockFace(level, pos, ParticleTypes.CRIT, UniformInt.of(1, 4), face, () -> new Vec3(player.getLookAngle().x() + Mth.nextDouble(random, -0.5, 0.5), 0.8D, player.getLookAngle().z() + Mth.nextDouble(random, -0.5, 0.5)), 0.55D);
-                            ParticleUtils.spawnParticlesOnBlockFace(level, pos, new ItemParticleOption(ParticleTypes.ITEM, itemInHand), UniformInt.of(1, 2), face, () -> new Vec3(Mth.nextDouble(random, -0.05D, 0.05D), 0, Mth.nextDouble(random, -0.05D, 0.05D)), 0.55D);
-                        }
-                        level.playSound(player, pos, SMSounds.POLISH_JADE.get(), SoundSource.BLOCKS, 0.5F, 0.0F);
                     }
                 }
             }
