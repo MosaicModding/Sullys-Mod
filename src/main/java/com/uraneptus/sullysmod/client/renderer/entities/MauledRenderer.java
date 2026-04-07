@@ -20,7 +20,7 @@ public class MauledRenderer<E extends Mauled> extends HumanoidMobRenderer<E, Mau
 
     @Override
     public ResourceLocation getTextureLocation(E pEntity) {
-        return TEXTURE;
+        return pEntity.isSkinless() ? TEXTURE_SKINLESS : TEXTURE;
     }
 
     @Override
