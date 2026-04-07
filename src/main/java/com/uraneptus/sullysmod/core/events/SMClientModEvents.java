@@ -59,6 +59,7 @@ public class SMClientModEvents {
         event.registerBlockEntityRenderer(SMBlockEntityTypes.AMBER.get(), AmberBER::new);
         event.registerBlockEntityRenderer(SMBlockEntityTypes.ITEM_STAND.get(), ItemStandBER::new);
         event.registerBlockEntityRenderer(SMBlockEntityTypes.ANCIENT_SKULL.get(), SkullBlockRenderer::new);
+        event.registerEntityRenderer(SMEntityTypes.MAULED.get(), MauledRenderer::new);
     }
 
     @SubscribeEvent
@@ -74,6 +75,9 @@ public class SMClientModEvents {
         event.registerLayerDefinition(BoulderingZombieModel.LAYER_LOCATION, BoulderingZombieModel::createBodyLayer);
         event.registerLayerDefinition(BoulderingZombieModel.INNER_ARMOR, () -> INNER_ARMOR_DEF);
         event.registerLayerDefinition(BoulderingZombieModel.OUTER_ARMOR, () -> OUTER_ARMOR_DEF);
+        event.registerLayerDefinition(MauledModel.MAIN_LAYER, MauledModel::createBodyLayer);
+        event.registerLayerDefinition(MauledModel.INNER_ARMOR, () -> MauledModel.INNER_ARMOR_DEF);
+        event.registerLayerDefinition(MauledModel.OUTER_ARMOR, () -> MauledModel.OUTER_ARMOR_DEF);
         event.registerLayerDefinition(PiranhaModel.LAYER_LOCATION, PiranhaModel::createBodyLayer);
         event.registerLayerDefinition(MinersHelmetModel.LAYER_LOCATION, MinersHelmetModel::createBodyLayer);
         event.registerLayerDefinition(CrackedAncientSkullModel.LAYER_LOCATION, CrackedAncientSkullModel::createBodyLayer);

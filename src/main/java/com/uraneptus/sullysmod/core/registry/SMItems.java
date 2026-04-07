@@ -58,6 +58,7 @@ public class SMItems {
     public static final RegistryObject<Item> JUNGLE_SPIDER_SPAWN_EGG = createSpawnEggItem("jungle_spider", SMEntityTypes.JUNGLE_SPIDER::get, 5597514, 11013646);
     public static final RegistryObject<Item> PIRANHA_BUCKET = createMobBucketItem("piranha_bucket", SMEntityTypes.PIRANHA::get);
     public static final RegistryObject<Item> PIRANHA_SPAWN_EGG = createSpawnEggItem("piranha", SMEntityTypes.PIRANHA::get, 15561472, 4240022);
+    public static final RegistryObject<Item> MAULED_SPAWN_EGG = createSpawnEggItem("mauled", SMEntityTypes.MAULED::get, 8553090, 9468304);
 
     private static RegistryObject<Item> createSpawnEggItem(String name, Supplier<EntityType<? extends Mob>> supplier, int primaryColor, int secondaryColor) {
         return createItem(name + "_spawn_egg", () -> new ForgeSpawnEggItem(supplier, primaryColor, secondaryColor, new Item.Properties()));

@@ -92,6 +92,7 @@ public class SullysMod {
         event.put(SMEntityTypes.LANTERNFISH.get(), Lanternfish.createAttributes().build());
         event.put(SMEntityTypes.TORTOISE.get(), Tortoise.createAttributes().build());
         event.put(SMEntityTypes.BOULDERING_ZOMBIE.get(), BoulderingZombie.createAttributes().build());
+        event.put(SMEntityTypes.MAULED.get(), Mauled.createAttributes().build());
         event.put(SMEntityTypes.JUNGLE_SPIDER.get(), JungleSpider.createAttributes().build());
         event.put(SMEntityTypes.PIRANHA.get(), Piranha.createAttributes().build());
     }

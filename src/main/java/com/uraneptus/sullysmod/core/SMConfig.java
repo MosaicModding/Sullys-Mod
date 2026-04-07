@@ -30,6 +30,7 @@ public class SMConfig {
     public static final ForgeConfigSpec.ConfigValue<Boolean> ENABLE_GEM_LANTERNS;
     public static final ForgeConfigSpec.ConfigValue<Boolean> ENABLE_GRINDSTONE_POLISHING;
     public static final ForgeConfigSpec.ConfigValue<Boolean> ENABLE_BUG_MEAT;
+    public static final ForgeConfigSpec.ConfigValue<Boolean> ENABLE_MAULED;
 
     public static final ForgeConfigSpec CLIENT;
     public static final ForgeConfigSpec COMMON;
@@ -51,6 +52,7 @@ public class SMConfig {
         ENABLE_LANTERNFISH = COMMON_BUILDER.comment("Enables all lanternfish features").define("lanternfish", true);
         ENABLE_PIRANHA = COMMON_BUILDER.comment("Enables all piranha features").define("piranha", true);
         ENABLE_BOULDERING_ZOMBIE = COMMON_BUILDER.comment("Enables all bouldering zombie features").define("bouldering_zombie", true);
+        ENABLE_MAULED = COMMON_BUILDER.comment("Enables all features regarding the mauled").define("mauled", true);
         ENABLE_JUNGLE_SPIDER = COMMON_BUILDER.comment("Enables all jungle spider features").define("jungle_spider", true);
         ENABLE_ITEM_STAND = COMMON_BUILDER.comment("Enables the item stand").define("item_stand", true);
         ENABLE_ARTIFACTS = COMMON_BUILDER.comment("Enables all artifact features").define("artifacts", true);

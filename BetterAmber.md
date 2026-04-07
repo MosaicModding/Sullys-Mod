@@ -1,10 +1,10 @@
 # Current Problems
-- Performance problems with amber fluid
-- Fluid doesn't stop flowing when placed high up, causing mass reproduction of amber blocks
+- Performance problems with amber fluid  (done)
+- Fluid doesn't stop flowing when placed high up, causing mass reproduction of amber blocks  (done)
 - too many BE's can cause performance problems (done I think (at least there are less BEs now))
 - problems saving the entity correctly (done)
 - saving & unsaving bigger entities (done)
-- Entities only rotated 90 degrees -> should be better randomized
+- Entities only rotated 90 degrees -> should be better randomized  (done, I think)
 
 # Solving the Problems
 

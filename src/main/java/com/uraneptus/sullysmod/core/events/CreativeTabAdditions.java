@@ -66,6 +66,7 @@ public class CreativeTabAdditions {
             addAfter(event, List.of(SMFeatures.JUNGLE_SPIDER), Items.IRON_GOLEM_SPAWN_EGG, JUNGLE_SPIDER_SPAWN_EGG);
             addAfter(event, List.of(SMFeatures.LANTERNFISH), Items.IRON_GOLEM_SPAWN_EGG, LANTERNFISH_SPAWN_EGG);
             addAfter(event, List.of(SMFeatures.PIRANHA), Items.PILLAGER_SPAWN_EGG, PIRANHA_SPAWN_EGG);
+            addAfter(event, List.of(SMFeatures.MAULED), Items.MAGMA_CUBE_SPAWN_EGG, MAULED_SPAWN_EGG);
         }
 
         if (tab == CreativeModeTabs.NATURAL_BLOCKS) {
