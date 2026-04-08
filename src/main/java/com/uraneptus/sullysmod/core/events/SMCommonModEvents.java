@@ -18,6 +18,7 @@ import net.minecraft.world.entity.SpawnPlacements;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.levelgen.Heightmap;
+import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.event.AddPackFindersEvent;
 import net.minecraftforge.event.entity.SpawnPlacementRegisterEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -25,6 +26,8 @@ import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.forgespi.locating.IModFile;
 import net.minecraftforge.resource.PathPackResources;
+
+import java.util.function.Predicate;
 
 @Mod.EventBusSubscriber(modid = SullysMod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 @SuppressWarnings("unused")
@@ -37,17 +40,35 @@ public class SMCommonModEvents {
        event.register(SMEntityTypes.TORTOISE.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Tortoise::checkTortoiseSpawnRules, SpawnPlacementRegisterEvent.Operation.AND);
        event.register(SMEntityTypes.BOULDERING_ZOMBIE.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, BoulderingZombie::checkBoulderingZombieSpawnRules, SpawnPlacementRegisterEvent.Operation.AND);
        event.register(SMEntityTypes.JUNGLE_SPIDER.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, JungleSpider::checkJungleSpiderSpawnRules, SpawnPlacementRegisterEvent.Operation.AND);
+       event.register(SMEntityTypes.MAULED.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Mauled::checkMauledSpawnRules, SpawnPlacementRegisterEvent.Operation.AND);
 
        event.register(EntityType.ZOMBIE, SMCommonModEvents::zombieExtraRules, SpawnPlacementRegisterEvent.Operation.AND);
        event.register(EntityType.SPIDER, SMCommonModEvents::spiderExtraRules, SpawnPlacementRegisterEvent.Operation.AND);
+       event.register(EntityType.SKELETON, SMCommonModEvents::skeletonExtraRules, SpawnPlacementRegisterEvent.Operation.AND);
     }
 
     public static boolean zombieExtraRules(EntityType<? extends Monster> pType, ServerLevelAccessor pLevel, MobSpawnType pSpawnType, BlockPos pPos, RandomSource pRandom) {
-        return (!SMConfig.DISABLE_DEEPSLATE_ZOMBIE_SPAWNS.get() || !SMFeatures.isEnabled(SMFeatures.BOULDERING_ZOMBIE)) || pSpawnType.equals(MobSpawnType.SPAWNER) || pPos.getY() > 0;
+        return rateDependentSpawn(SMFeatures.BOULDERING_ZOMBIE, SMConfig.ZOMBIE_IN_DEEPSLATE_REPLACEMENT_RATE.get(), pPos.getY() > 0, pSpawnType, pRandom);
     }
 
     public static boolean spiderExtraRules(EntityType<? extends Monster> pType, ServerLevelAccessor pLevel, MobSpawnType pSpawnType, BlockPos pPos, RandomSource pRandom) {
-        return (!SMConfig.DISABLE_SPIDER_IN_JUNGLE_SPAWNS.get() || !SMFeatures.isEnabled(SMFeatures.JUNGLE_SPIDER)) || pSpawnType.equals(MobSpawnType.SPAWNER) || !pLevel.getBiome(pPos).is(SMBiomeTags.JUNGLE_SPIDER_SPAWN_IN);
+        return rateDependentSpawn(SMFeatures.JUNGLE_SPIDER, SMConfig.SPIDER_IN_JUNGLE_REPLACEMENT_RATE.get(), !pLevel.getBiome(pPos).is(SMBiomeTags.JUNGLE_SPIDER_SPAWN_IN), pSpawnType, pRandom);
+    }
+
+    public static boolean skeletonExtraRules(EntityType<? extends Monster> pType, ServerLevelAccessor pLevel, MobSpawnType pSpawnType, BlockPos pPos, RandomSource pRandom) {
+        return rateDependentSpawn(SMFeatures.MAULED, SMConfig.SKELETON_IN_DEEPSLATE_REPLACEMENT_RATE.get(), pPos.getY() > 0, pSpawnType, pRandom);
+    }
+
+    private static boolean rateDependentSpawn(SMFeatures requiredFeature, float replacementRate, boolean whenNotToApply, MobSpawnType pSpawnType, RandomSource pRandom) {
+        if (pSpawnType.equals(MobSpawnType.SPAWNER) || whenNotToApply) {
+            return true;
+        }
+
+        if (!SMFeatures.isEnabled(requiredFeature)) {
+            return true;
+        }
+
+        return pRandom.nextFloat() > replacementRate;
     }
 
     @SubscribeEvent

@@ -1,15 +1,18 @@
 package com.uraneptus.sullysmod.client.model;
 
+import com.mojang.blaze3d.vertex.PoseStack;
 import com.uraneptus.sullysmod.SullysMod;
 import com.uraneptus.sullysmod.common.entities.Mauled;
 import net.minecraft.client.model.HumanoidArmorModel;
 import net.minecraft.client.model.HumanoidModel;
+import net.minecraft.client.model.SkeletonModel;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
+import net.minecraft.world.entity.HumanoidArm;
 
-public class MauledModel<T extends Mauled> extends HumanoidModel<T> {
+public class MauledModel<T extends Mauled> extends SkeletonModel<T> {
     public static final ModelLayerLocation MAIN_LAYER = new ModelLayerLocation(SullysMod.modPrefix("mauled"), "main");
     public static final ModelLayerLocation INNER_ARMOR = new ModelLayerLocation(SullysMod.modPrefix("mauled"), "inner_armor");
     public static final ModelLayerLocation OUTER_ARMOR = new ModelLayerLocation(SullysMod.modPrefix("mauled"), "outer_armor");
@@ -41,5 +44,10 @@ public class MauledModel<T extends Mauled> extends HumanoidModel<T> {
                 .texOffs(28, 32).addBox(-3.0F, 1.0F, -2.1F, 5.0F, 11.0F, 4.0F, new CubeDeformation(0.01F)), PartPose.offset(-2.0F, 12.0F, 0.1F));
 
         return LayerDefinition.create(meshdefinition, 64, 64);
+    }
+
+    @Override
+    public void translateToHand(HumanoidArm pSide, PoseStack pPoseStack) {
+        this.getArm(pSide).translateAndRotate(pPoseStack);
     }
 }

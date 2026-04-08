@@ -227,6 +227,7 @@ public class SMEntityEvents {
 
         if (killer instanceof Piranha || (SMConfig.ENABLE_WOLF_CARNIVORE.get() && killer instanceof Wolf)) {
             event.getDrops().removeIf(itemEntity -> itemEntity.getItem().is(SMItemTags.CARNIVORE_CONSUMABLES));
+            //TODO maybe also heal the entity slightly
         }
     }
 
