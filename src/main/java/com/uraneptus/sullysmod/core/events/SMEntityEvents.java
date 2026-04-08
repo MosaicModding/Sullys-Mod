@@ -226,8 +226,12 @@ public class SMEntityEvents {
         if (livingEntity instanceof Player) return;
 
         if (killer instanceof Piranha || (SMConfig.ENABLE_WOLF_CARNIVORE.get() && killer instanceof Wolf)) {
-            event.getDrops().removeIf(itemEntity -> itemEntity.getItem().is(SMItemTags.CARNIVORE_CONSUMABLES));
-            //TODO maybe also heal the entity slightly
+            if (event.getDrops().removeIf(itemEntity -> itemEntity.getItem().is(SMItemTags.CARNIVORE_CONSUMABLES))) {
+                var pathKiller = (PathfinderMob) killer;
+                if (pathKiller.getHealth() < pathKiller.getMaxHealth()) {
+                    pathKiller.heal(1.0F);
+                }
+            }
         }
     }
 
