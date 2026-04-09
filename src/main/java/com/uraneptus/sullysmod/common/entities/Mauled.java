@@ -10,7 +10,6 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.RandomSource;
-import net.minecraft.world.Difficulty;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.EntityType;
@@ -21,22 +20,17 @@ import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
-import net.minecraft.world.entity.ai.goal.WrappedGoal;
 import net.minecraft.world.entity.monster.AbstractSkeleton;
 import net.minecraft.world.entity.monster.Monster;
-import net.minecraft.world.entity.projectile.ProjectileUtil;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
-import net.minecraft.world.phys.Vec3;
 
-import java.util.RandomAccess;
 import java.util.UUID;
 
 public class Mauled extends AbstractSkeleton {
-    private static final UUID SPEED_COMPENSION_MODIFIER_UUID = UUID.fromString("25c241f4-b183-4134-b44b-5cc1203d8889");
+    private static final UUID SPEED_SKINLESS_MODIFIER_UUID = UUID.fromString("25c241f4-b183-4134-b44b-5cc1203d8889");
     private static final EntityDataAccessor<Boolean> SKINLESS = SynchedEntityData.defineId(Mauled.class, EntityDataSerializers.BOOLEAN);
 
     public Mauled(EntityType<? extends Mauled> pEntityType, Level pLevel) {
@@ -44,7 +38,7 @@ public class Mauled extends AbstractSkeleton {
     }
 
     public static AttributeSupplier.Builder createAttributes() {
-        return AbstractSkeleton.createAttributes();
+        return AbstractSkeleton.createAttributes().add(Attributes.MOVEMENT_SPEED, 0.15).add(Attributes.MAX_HEALTH, 26);
     }
 
     @Override
@@ -59,33 +53,27 @@ public class Mauled extends AbstractSkeleton {
         if (distanceToTarget < requiredDistance) {
             if (itemstack.is(Items.STONE_SWORD)) return;
             this.setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(Items.STONE_SWORD));
-            if (!this.isSkinless()) {
-                addSpeedCompensation();
-            } else {
-                removeSpeedCompensation();
-            }
         } else {
             if (itemstack.is(Items.BOW)) return;
             this.setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(Items.BOW));
         }
     }
 
-    private void removeSpeedCompensation() {
+    private void removeSkinlessSpeedBoost() {
         AttributeInstance attributeinstance = this.getAttribute(Attributes.MOVEMENT_SPEED);
         if (attributeinstance != null) {
-            if (attributeinstance.getModifier(SPEED_COMPENSION_MODIFIER_UUID) != null) {
-                attributeinstance.removeModifier(SPEED_COMPENSION_MODIFIER_UUID);
+            if (attributeinstance.getModifier(SPEED_SKINLESS_MODIFIER_UUID) != null) {
+                attributeinstance.removeModifier(SPEED_SKINLESS_MODIFIER_UUID);
             }
         }
     }
 
-    //We need this cuz the AbstractSkeleton melee Goal has a speed modify we don't want when the flesh is still on!
-    protected void addSpeedCompensation() {
+    protected void addSkinlessSpeedBoost() {
         AttributeInstance attributeinstance = this.getAttribute(Attributes.MOVEMENT_SPEED);
-        if (attributeinstance == null || attributeinstance.getModifier(SPEED_COMPENSION_MODIFIER_UUID) != null) {
+        if (attributeinstance == null || attributeinstance.getModifier(SPEED_SKINLESS_MODIFIER_UUID) != null) {
             return;
         }
-        attributeinstance.addTransientModifier(new AttributeModifier(SPEED_COMPENSION_MODIFIER_UUID, "Mauled Speed Compensation", -0.1, AttributeModifier.Operation.ADDITION));
+        attributeinstance.addTransientModifier(new AttributeModifier(SPEED_SKINLESS_MODIFIER_UUID, "Mauled Skinless Speed Boost", 0.1, AttributeModifier.Operation.ADDITION));
     }
 
     @Override
@@ -114,7 +102,7 @@ public class Mauled extends AbstractSkeleton {
         level.sendParticles(new ItemParticleOption(ParticleTypes.ITEM, new ItemStack(Items.ROTTEN_FLESH)), this.getX(), this.getY(), this.getZ(), 8, 0, 0.8, 0 , 0.1D);
         //TODO add sound as well
         this.setSkinless(true);
-        this.removeSpeedCompensation();
+        addSkinlessSpeedBoost();
     }
 
     public static boolean checkMauledSpawnRules(EntityType<? extends Mauled> entityType, ServerLevelAccessor level, MobSpawnType spawnType, BlockPos pos, RandomSource random) {
