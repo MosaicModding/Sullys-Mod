@@ -100,6 +100,11 @@ public class SMSounds {
     public static final RegistryObject<SoundEvent> BOULDERING_ZOMBIE_HURT = HELPER.createSoundEvent("entity.bouldering_zombie.hurt");
     public static final RegistryObject<SoundEvent> BOULDERING_ZOMBIE_DEATH = HELPER.createSoundEvent("entity.bouldering_zombie.death");
 
+    public static final RegistryObject<SoundEvent> MAULED_AMBIENT = HELPER.createSoundEvent("entity.mauled.ambient");
+    public static final RegistryObject<SoundEvent> MAULED_HURT = HELPER.createSoundEvent("entity.mauled.hurt");
+    public static final RegistryObject<SoundEvent> MAULED_DEATH = HELPER.createSoundEvent("entity.mauled.death");
+    public static final RegistryObject<SoundEvent> MAULED_STEP = HELPER.createSoundEvent("entity.mauled.step");
+
     //Equip sounds
     public static final RegistryObject<SoundEvent> EQUIP_MINERS_HELMET = HELPER.createSoundEvent("item.armor.equip_miners_helmet");
     public static final RegistryObject<SoundEvent> EQUIP_SMALL_DENTED_HELMET = HELPER.createSoundEvent("item.armor.equip_small_dented_helmet");

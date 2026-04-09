@@ -411,6 +411,38 @@
     ],
     "subtitle": "subtitles.entity.lanternfish.hurt"
   },
+  "entity.mauled.ambient": {
+    "sounds": [
+      "mob/skeleton/say1",
+      "mob/skeleton/say2",
+      "mob/skeleton/say3"
+    ],
+    "subtitle": "subtitles.entity.mauled.ambient"
+  },
+  "entity.mauled.death": {
+    "sounds": [
+      "mob/skeleton/death"
+    ],
+    "subtitle": "subtitles.entity.mauled.death"
+  },
+  "entity.mauled.hurt": {
+    "sounds": [
+      "mob/skeleton/hurt1",
+      "mob/skeleton/hurt2",
+      "mob/skeleton/hurt3",
+      "mob/skeleton/hurt4"
+    ],
+    "subtitle": "subtitles.entity.mauled.hurt"
+  },
+  "entity.mauled.step": {
+    "sounds": [
+      "mob/skeleton/step1",
+      "mob/skeleton/step2",
+      "mob/skeleton/step3",
+      "mob/skeleton/step4"
+    ],
+    "subtitle": "subtitles.entity.mauled.step"
+  },
   "entity.piranha.death": {
     "sounds": [
       "entity/fish/hurt1",

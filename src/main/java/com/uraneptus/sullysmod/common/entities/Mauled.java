@@ -1,5 +1,6 @@
 package com.uraneptus.sullysmod.common.entities;
 
+import com.uraneptus.sullysmod.core.registry.SMSounds;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ItemParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
@@ -8,7 +9,6 @@ import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.damagesource.DamageSource;
@@ -117,8 +117,20 @@ public class Mauled extends AbstractSkeleton {
         this.entityData.set(SKINLESS, skinless);
     }
 
+    protected SoundEvent getAmbientSound() {
+        return SMSounds.MAULED_AMBIENT.get();
+    }
+
+    protected SoundEvent getHurtSound(DamageSource pDamageSource) {
+        return SMSounds.MAULED_HURT.get();
+    }
+
+    protected SoundEvent getDeathSound() {
+        return SMSounds.MAULED_DEATH.get();
+    }
+
     @Override
     protected SoundEvent getStepSound() {
-        return SoundEvents.SKELETON_STEP; //TODO change to own
+        return SMSounds.MAULED_STEP.get();
     }
 }

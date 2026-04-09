@@ -432,6 +432,30 @@ public class SMSoundDefinitionsProvider extends SoundDefinitionsProvider {
         this.addBasicSound(SMSounds.BOULDERING_ZOMBIE_DEATH,
                 sound(new ResourceLocation("mob/zombie/death"))
         );
+
+        this.addBasicSound(SMSounds.MAULED_AMBIENT,
+                sound(new ResourceLocation("mob/skeleton/say1")),
+                sound(new ResourceLocation("mob/skeleton/say2")),
+                sound(new ResourceLocation("mob/skeleton/say3"))
+        );
+
+        this.addBasicSound(SMSounds.MAULED_HURT,
+                sound(new ResourceLocation("mob/skeleton/hurt1")),
+                sound(new ResourceLocation("mob/skeleton/hurt2")),
+                sound(new ResourceLocation("mob/skeleton/hurt3")),
+                sound(new ResourceLocation("mob/skeleton/hurt4"))
+        );
+
+        this.addBasicSound(SMSounds.MAULED_STEP,
+                sound(new ResourceLocation("mob/skeleton/step1")),
+                sound(new ResourceLocation("mob/skeleton/step2")),
+                sound(new ResourceLocation("mob/skeleton/step3")),
+                sound(new ResourceLocation("mob/skeleton/step4"))
+        );
+
+        this.addBasicSound(SMSounds.MAULED_DEATH,
+                sound(new ResourceLocation("mob/skeleton/death"))
+        );
         this.addBasicSound(SMSounds.MOUNTAIN_CALLS, "ambient.mountain.calls",
                 sound(SullysMod.modPrefix("ambient/mountain/call1")),
                 sound(SullysMod.modPrefix("ambient/mountain/call2")),
