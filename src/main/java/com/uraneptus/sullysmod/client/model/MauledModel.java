@@ -2,6 +2,7 @@ package com.uraneptus.sullysmod.client.model;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.uraneptus.sullysmod.SullysMod;
+import com.uraneptus.sullysmod.client.renderer.entities.MauledArmorModel;
 import com.uraneptus.sullysmod.common.entities.Mauled;
 import net.minecraft.client.model.HumanoidArmorModel;
 import net.minecraft.client.model.HumanoidModel;
@@ -17,8 +18,11 @@ public class MauledModel<T extends Mauled> extends SkeletonModel<T> {
     public static final ModelLayerLocation INNER_ARMOR = new ModelLayerLocation(SullysMod.modPrefix("mauled"), "inner_armor");
     public static final ModelLayerLocation OUTER_ARMOR = new ModelLayerLocation(SullysMod.modPrefix("mauled"), "outer_armor");
 
-    public static final LayerDefinition INNER_ARMOR_DEF = LayerDefinition.create(HumanoidArmorModel.createBodyLayer(new CubeDeformation(1.2F)), 64, 32);
-    public static final LayerDefinition OUTER_ARMOR_DEF = LayerDefinition.create(HumanoidArmorModel.createBodyLayer(new CubeDeformation(1.5F)), 64, 32);
+    //public static final LayerDefinition INNER_ARMOR_DEF = LayerDefinition.create(MauledArmorModel.createBodyLayer(new CubeDeformation(1.2F)), 64, 32);
+    //public static final LayerDefinition OUTER_ARMOR_DEF = LayerDefinition.create(MauledArmorModel.createBodyLayer(new CubeDeformation(1.5F)), 64, 32);
+
+    public static final LayerDefinition INNER_ARMOR_DEF_M = LayerDefinition.create(MauledArmorModel.createBodyLayer(new CubeDeformation(0.5F)), 64, 32);
+    public static final LayerDefinition OUTER_ARMOR_DEF_M = LayerDefinition.create(MauledArmorModel.createBodyLayer(new CubeDeformation(1.0F)), 64, 32);
 
     public MauledModel(ModelPart pRoot) {
         super(pRoot);

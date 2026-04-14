@@ -31,7 +31,7 @@ import java.util.UUID;
 
 public class Mauled extends AbstractSkeleton {
     private static final UUID SPEED_SKINLESS_MODIFIER_UUID = UUID.fromString("25c241f4-b183-4134-b44b-5cc1203d8889");
-    private static final EntityDataAccessor<Boolean> SKINLESS = SynchedEntityData.defineId(Mauled.class, EntityDataSerializers.BOOLEAN);
+    private static final EntityDataAccessor<Boolean> SKINLESS = SynchedEntityData.defineId(Mauled.class, EntityDataSerializers.BOOLEAN); //TODO this isn't properly safed
 
     public Mauled(EntityType<? extends Mauled> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
