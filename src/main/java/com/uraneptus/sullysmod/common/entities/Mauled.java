@@ -31,7 +31,7 @@ import java.util.UUID;
 
 public class Mauled extends AbstractSkeleton {
     private static final UUID SPEED_SKINLESS_MODIFIER_UUID = UUID.fromString("25c241f4-b183-4134-b44b-5cc1203d8889");
-    private static final EntityDataAccessor<Boolean> SKINLESS = SynchedEntityData.defineId(Mauled.class, EntityDataSerializers.BOOLEAN); //TODO this isn't properly safed
+    private static final EntityDataAccessor<Boolean> SKINLESS = SynchedEntityData.defineId(Mauled.class, EntityDataSerializers.BOOLEAN); //TODO this isn't properly saved
 
     public Mauled(EntityType<? extends Mauled> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
@@ -51,8 +51,8 @@ public class Mauled extends AbstractSkeleton {
         ItemStack itemstack = this.getItemInHand(InteractionHand.MAIN_HAND);
         double requiredDistance = this.isSkinless() ? 50 : 20;
         if (distanceToTarget < requiredDistance) {
-            if (itemstack.is(Items.STONE_SWORD)) return;
-            this.setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(Items.STONE_SWORD));
+            if (itemstack.is(Items.IRON_SWORD)) return;
+            this.setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(Items.IRON_SWORD));
         } else {
             if (itemstack.is(Items.BOW)) return;
             this.setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(Items.BOW));
