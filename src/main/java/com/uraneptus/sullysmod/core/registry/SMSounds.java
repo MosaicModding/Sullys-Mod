@@ -104,6 +104,7 @@ public class SMSounds {
     public static final RegistryObject<SoundEvent> MAULED_HURT = HELPER.createSoundEvent("entity.mauled.hurt");
     public static final RegistryObject<SoundEvent> MAULED_DEATH = HELPER.createSoundEvent("entity.mauled.death");
     public static final RegistryObject<SoundEvent> MAULED_STEP = HELPER.createSoundEvent("entity.mauled.step");
+    public static final RegistryObject<SoundEvent> MAULED_SHED = HELPER.createSoundEvent("entity.mauled.shed");
 
     //Equip sounds
     public static final RegistryObject<SoundEvent> EQUIP_MINERS_HELMET = HELPER.createSoundEvent("item.armor.equip_miners_helmet");

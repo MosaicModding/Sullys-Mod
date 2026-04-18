@@ -32,7 +32,7 @@ import java.util.UUID;
 
 public class Mauled extends AbstractSkeleton {
     private static final UUID SPEED_SKINLESS_MODIFIER_UUID = UUID.fromString("25c241f4-b183-4134-b44b-5cc1203d8889");
-    private static final EntityDataAccessor<Boolean> SKINLESS = SynchedEntityData.defineId(Mauled.class, EntityDataSerializers.BOOLEAN); //TODO this isn't properly saved
+    private static final EntityDataAccessor<Boolean> SKINLESS = SynchedEntityData.defineId(Mauled.class, EntityDataSerializers.BOOLEAN);
 
     public Mauled(EntityType<? extends Mauled> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
@@ -113,7 +113,7 @@ public class Mauled extends AbstractSkeleton {
             this.spawnAtLocation(Items.ROTTEN_FLESH);
         }
         level.sendParticles(new ItemParticleOption(ParticleTypes.ITEM, new ItemStack(Items.ROTTEN_FLESH)), this.getX(), this.getY(), this.getZ(), 8, 0, 0.8, 0 , 0.1D);
-        //TODO add sound as well
+        this.playSound(SMSounds.MAULED_SHED.get(), 1.7F, 1.0F);
         this.setSkinless(true);
         addSkinlessSpeedBoost();
     }

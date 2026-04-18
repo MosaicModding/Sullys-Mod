@@ -74,6 +74,7 @@ public class SMConfig {
 
         COMMON_BUILDER.comment("Other Settings").push("other_settings");
         ENABLE_DYNAMIC_VELOCITY = COMMON_BUILDER.comment("If the velocity of projectiles bounced off of a Jade block should be based on its previous velocity instead of a static value. [Warning: Experimental] (default = false)").define("Dynamic ricochet velocity", false);
+        COMMON_BUILDER.pop();
 
         COMMON_BUILDER.comment("Vanilla Spawn Modifications").push("vanilla_spawn_modifications");
         ZOMBIE_IN_DEEPSLATE_REPLACEMENT_RATE = COMMON_BUILDER.comment("Sets a percentage for how many vanilla zombies should be replaced by bouldering zombies in deepslate levels.").define("zombie_deepslate_replacement_rate", 1.0F);

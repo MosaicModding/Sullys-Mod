@@ -434,6 +434,12 @@
     ],
     "subtitle": "subtitles.entity.mauled.hurt"
   },
+  "entity.mauled.shed": {
+    "sounds": [
+      "sullysmod:entity/mauled/shed"
+    ],
+    "subtitle": "subtitles.entity.mauled.shed"
+  },
   "entity.mauled.step": {
     "sounds": [
       "mob/skeleton/step1",
@@ -441,7 +447,7 @@
       "mob/skeleton/step3",
       "mob/skeleton/step4"
     ],
-    "subtitle": "subtitles.entity.mauled.step"
+    "subtitle": "subtitles.block.generic.footsteps"
   },
   "entity.piranha.death": {
     "sounds": [

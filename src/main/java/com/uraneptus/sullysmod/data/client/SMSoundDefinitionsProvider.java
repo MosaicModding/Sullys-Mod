@@ -446,7 +446,7 @@ public class SMSoundDefinitionsProvider extends SoundDefinitionsProvider {
                 sound(new ResourceLocation("mob/skeleton/hurt4"))
         );
 
-        this.addBasicSound(SMSounds.MAULED_STEP,
+        this.addBasicSound(SMSounds.MAULED_STEP, "block.generic.footsteps",
                 sound(new ResourceLocation("mob/skeleton/step1")),
                 sound(new ResourceLocation("mob/skeleton/step2")),
                 sound(new ResourceLocation("mob/skeleton/step3")),
@@ -456,6 +456,11 @@ public class SMSoundDefinitionsProvider extends SoundDefinitionsProvider {
         this.addBasicSound(SMSounds.MAULED_DEATH,
                 sound(new ResourceLocation("mob/skeleton/death"))
         );
+
+        this.addBasicSound(SMSounds.MAULED_SHED,
+                sound(SullysMod.modPrefix("entity/mauled/shed"))
+        );
+
         this.addBasicSound(SMSounds.MOUNTAIN_CALLS, "ambient.mountain.calls",
                 sound(SullysMod.modPrefix("ambient/mountain/call1")),
                 sound(SullysMod.modPrefix("ambient/mountain/call2")),

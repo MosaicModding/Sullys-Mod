@@ -9,7 +9,6 @@ import net.minecraft.client.renderer.entity.HumanoidMobRenderer;
 import net.minecraft.client.renderer.entity.layers.HumanoidArmorLayer;
 import net.minecraft.resources.ResourceLocation;
 
-//TODO mauled step subtitle needs translation
 public class MauledRenderer<E extends Mauled> extends HumanoidMobRenderer<E, MauledModel<E>> {
     private static final ResourceLocation TEXTURE = SullysMod.modPrefix("textures/entity/mauled/mauled_skin.png");
     private static final ResourceLocation TEXTURE_SKINLESS = SullysMod.modPrefix("textures/entity/mauled/mauled_skinless.png");
