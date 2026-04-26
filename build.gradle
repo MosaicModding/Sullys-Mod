@@ -101,7 +101,7 @@ dependencies {
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
     //For capes
     implementation fg.deobf("com.mosaicmodding:mosaic_cosmetics-forge:${cosmetics_version}")
-    jarJar(group: 'com.mosaicmodding', name: 'mosaic_cosmetics-forge', version: "${cosmetics_version_range}")
+    jarJar("com.mosaicmodding:mosaic_cosmetics-forge:$cosmetics_version_range")
 
     //implementation fg.deobf("curse.maven:carry-on-274259:4882500")
     //implementation fg.deobf("curse.maven:zeta-968868:7335229")
