@@ -255,6 +255,7 @@ public class SMPlayerEvents {
         }
     }
 
+    /*
     @SubscribeEvent
     public static void onPlayerLoggedIn(PlayerEvent.PlayerLoggedInEvent event) {
         Player player = event.getEntity();
@@ -264,4 +265,5 @@ public class SMPlayerEvents {
             serverPlayer.sendSystemMessage(component);
         }
     }
+     */
 }
