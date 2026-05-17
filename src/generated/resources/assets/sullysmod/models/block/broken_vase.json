@@ -2,6 +2,7 @@
   "parent": "sullysmod:block/template_vase",
   "render_type": "minecraft:cutout",
   "textures": {
-    "0": "sullysmod:block/broken_vase"
+    "0": "sullysmod:block/broken_vase",
+    "1": "minecraft:block/terracotta"
   }
 }

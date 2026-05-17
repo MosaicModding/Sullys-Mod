@@ -114,6 +114,7 @@ public class SMBlockLoot extends BlockLootSubProvider {
         this.dropSelf(SMArtifacts.GOLDEN_GOBLET.get());
         this.dropSelf(SMArtifacts.FAMILIAR_CUBE.get());
         this.dropSelf(SMArtifacts.STONE_IDOL.get());
+        this.dropSelf(SMArtifacts.FROG_IDOL.get());
         this.dropSelf(SMBlocks.FIXED_BOWL.get());
         this.dropSelf(SMBlocks.FIXED_CUP.get());
         this.dropSelf(SMBlocks.FIXED_VASE.get());

@@ -66,7 +66,6 @@ public class SMArtifacts {
     public static final RegistryObject<Item> TORN_CLOTH = registerArtifact("torn_cloth", "A dirty torn off piece of clothing", 6);
     public static final RegistryObject<Item> EMERALD_EARRING = registerArtifact("emerald_earring", "Besides the beautiful emerald, it looks sloppily put together", 17);
     public static final RegistryObject<Item> BROKEN_BOTTLE = registerArtifact("broken_bottle", "The top half of a bottle", () -> new ArtifactWeaponItem(4, -1.2F, SMSounds.BROKEN_BOTTLE_SHATTERS, SMProperties.Items.artifacts().stacksTo(1).durability(1)), 5);
-    public static final RegistryObject<Item> FROG_IDOL = registerArtifact("frog_idol", "Everybody likes frogs", 29);
 
     public static final RegistryObject<Item> BROKEN_FANCY_DAGGER = registerArtifact("broken_fancy_dagger", "Must have been used for something sinister", 27);
     public static final RegistryObject<Item> BROKEN_MUG = registerArtifact("broken_mug", "Once powerful, now just a useless old cup", 13);
@@ -106,6 +105,9 @@ public class SMArtifacts {
     public static final RegistryObject<Block> FAMILIAR_CUBE = registerPlaceable("familiar_cube", "Hot to the touch and has strange growths on it", () -> new FamiliarCubeBlock(SMProperties.Blocks.FAMILIAR_CUBE), 30);
 
     public static final RegistryObject<Block> STONE_IDOL = registerPlaceable("stone_idol", "Almost looks alive", () -> new StoneIdolBlock(SMProperties.Blocks.STONE_IDOL), 20);
+
+    public static final RegistryObject<Block> FROG_IDOL = registerPlaceable("frog_idol", "Everybody likes frogs", () -> new FrogIdolBlock(SMProperties.Blocks.FROG_IDOL), 29);
+
 
     //Ancient Skulls
     public static List<Supplier<Block>> ANCIENT_SKULLS = new ArrayList<>();

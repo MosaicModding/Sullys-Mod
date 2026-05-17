@@ -2,7 +2,7 @@
 	"ambientocclusion": false,
 	"texture_size": [32, 32],
 	"textures": {
-		"particle": "minecraft:block/gold_block"
+		"particle": "#1"
 	},
 	"elements": [
 		{

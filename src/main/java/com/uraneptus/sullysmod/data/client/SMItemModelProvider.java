@@ -149,7 +149,6 @@ public class SMItemModelProvider extends ItemModelProvider {
         blockItemWithItemTexture(SMArtifacts.GOLDEN_GOBLET);
         basicItem(SMArtifacts.EMERALD_EARRING);
         basicItemHandheld(SMArtifacts.BROKEN_BOTTLE);
-        basicItem(SMArtifacts.FROG_IDOL);
         basicItem(SMItems.BUG_MEAT);
         basicItem(SMItems.COOKED_BUG_MEAT);
         blockItemWithItemTexture(SMArtifacts.BROKEN_CUP);
@@ -178,6 +177,7 @@ public class SMItemModelProvider extends ItemModelProvider {
         blockItemWithItemTexture(SMBlocks.FIXED_BOWL);
         blockItemWithItemTexture(SMBlocks.FIXED_CUP);
         blockItemWithItemTexture(SMBlocks.FIXED_VASE);
+        blockItemWithItemTexture(SMArtifacts.FROG_IDOL);
         //Single use methods
         brokenBottle();
         venomVialItem();
