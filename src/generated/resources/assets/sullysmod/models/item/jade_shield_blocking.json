@@ -48,7 +48,7 @@
       ],
       "translation": [
         2,
-        2.5,
+        0.5,
         0
       ]
     },
@@ -61,7 +61,7 @@
       "translation": [
         13.51,
         3,
-        5
+        3
       ]
     },
     "thirdperson_righthand": {
@@ -73,7 +73,7 @@
       "translation": [
         3.51,
         11,
-        -2
+        -4
       ]
     }
   },
