@@ -21,6 +21,7 @@ import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.RegistryObject;
 
+import javax.annotation.Nullable;
 import java.util.function.Supplier;
 
 import static com.uraneptus.sullysmod.data.SMDatagenUtil.*;
@@ -106,16 +107,17 @@ public class SMBlockStateProvider extends BlockStateProvider {
         basicBlock(SMBlocks.AMETHYST_LANTERN);
         basicBlock(SMBlocks.QUARTZ_LANTERN);
         amberCauldron();
-        basedOnTemplate(SMBlocks.FIXED_BOWL, "bowl", false);
-        basedOnTemplate(SMArtifacts.BROKEN_BOWL, "bowl", false);
-        basedOnTemplate(SMBlocks.FIXED_VASE, "vase", false);
-        basedOnTemplate(SMArtifacts.BROKEN_VASE, "vase", false);
-        basedOnTemplate(SMBlocks.FIXED_CUP, "cup", false);
-        basedOnTemplate(SMArtifacts.BROKEN_CUP, "cup", false);
-        basedOnTemplate(SMArtifacts.GOLDEN_IDOL, false);
-        basedOnTemplate(SMArtifacts.GOLDEN_GOBLET, false);
+        basedOnTemplate(SMBlocks.FIXED_BOWL, "bowl", false, vanillaBlockLocation(name(Blocks.TERRACOTTA)));
+        basedOnTemplate(SMArtifacts.BROKEN_BOWL, "bowl", false,  vanillaBlockLocation(name(Blocks.TERRACOTTA)));
+        basedOnTemplate(SMBlocks.FIXED_VASE, "vase", false,  vanillaBlockLocation(name(Blocks.TERRACOTTA)));
+        basedOnTemplate(SMArtifacts.BROKEN_VASE, "vase", false,  vanillaBlockLocation(name(Blocks.TERRACOTTA)));
+        basedOnTemplate(SMBlocks.FIXED_CUP, "cup", false,  vanillaBlockLocation(name(Blocks.TERRACOTTA)));
+        basedOnTemplate(SMArtifacts.BROKEN_CUP, "cup", false,  vanillaBlockLocation(name(Blocks.TERRACOTTA)));
+        basedOnTemplate(SMArtifacts.GOLDEN_IDOL, false,  vanillaBlockLocation(name(Blocks.GOLD_BLOCK)));
+        basedOnTemplate(SMArtifacts.GOLDEN_GOBLET, false,  vanillaBlockLocation(name(Blocks.GOLD_BLOCK)));
         basedOnTemplate(SMArtifacts.FAMILIAR_CUBE, false);
-        basedOnTemplate(SMArtifacts.STONE_IDOL, true);
+        basedOnTemplate(SMArtifacts.STONE_IDOL, true,  vanillaBlockLocation(name(Blocks.STONE)));
+        basedOnTemplate(SMArtifacts.FROG_IDOL, true,  vanillaBlockLocation(name(Blocks.PACKED_MUD)));
     }
 
     private void basicBlock(Supplier<? extends Block> block) {
@@ -336,10 +338,14 @@ public class SMBlockStateProvider extends BlockStateProvider {
         });
     }
 
-    private void basedOnTemplate(Supplier<? extends Block> block, String diffTemplate, boolean directional) {
+    private void basedOnTemplate(Supplier<? extends Block> block, String diffTemplate, boolean directional, @Nullable ResourceLocation customParticle) {
         getVariantBuilder(block.get()).forAllStates(blockState -> {
             ResourceLocation templateLoc = modBlockLocation("template_" + diffTemplate);
-            ModelFile file = models().withExistingParent(name(block.get()), templateLoc).texture("0", modBlockLocation(name(block.get()))).renderType("cutout");
+            ResourceLocation baseTexture = modBlockLocation(name(block.get()));
+            ModelFile file = models().withExistingParent(name(block.get()), templateLoc)
+                    .texture("0", baseTexture)
+                    .texture("1", customParticle != null ? customParticle : baseTexture)
+                    .renderType("cutout");
 
             var builder = ConfiguredModel.builder();
             builder.modelFile(file);
@@ -351,7 +357,11 @@ public class SMBlockStateProvider extends BlockStateProvider {
         });
     }
 
+    private void basedOnTemplate(Supplier<? extends Block> block, boolean directional, ResourceLocation customParticle) {
+        basedOnTemplate(block, name(block.get()), directional, customParticle);
+    }
+
     private void basedOnTemplate(Supplier<? extends Block> block, boolean directional) {
-        basedOnTemplate(block, name(block.get()), directional);
+        basedOnTemplate(block, name(block.get()), directional, null);
     }
 }

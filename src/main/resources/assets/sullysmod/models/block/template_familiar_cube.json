@@ -1,7 +1,7 @@
 {
 	"texture_size": [64, 64],
 	"textures": {
-		"particle": "#0"
+		"particle": "#1"
 	},
 	"elements": [
 		{

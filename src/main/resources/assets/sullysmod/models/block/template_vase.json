@@ -2,7 +2,7 @@
 	"ambientocclusion": false,
 	"texture_size": [64, 64],
 	"textures": {
-		"particle": "minecraft:block/terracotta"
+		"particle": "#1"
 	},
 	"elements": [
 		{

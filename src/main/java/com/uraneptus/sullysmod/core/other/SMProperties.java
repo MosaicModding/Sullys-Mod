@@ -56,6 +56,7 @@ public class SMProperties {
         public static final BlockBehaviour.Properties GOLDEN_GOBLET = BlockBehaviour.Properties.of().instabreak().pushReaction(PushReaction.DESTROY).sound(SoundType.METAL).mapColor(MapColor.GOLD);
         public static final BlockBehaviour.Properties FAMILIAR_CUBE = BlockBehaviour.Properties.of().mapColor(MapColor.METAL).strength(5.0F, 6.0F).sound(SoundType.METAL);
         public static final BlockBehaviour.Properties STONE_IDOL = BlockBehaviour.Properties.of().mapColor(MapColor.STONE).strength(1.5F, 6.0F);
+        public static final BlockBehaviour.Properties FROG_IDOL = BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_BROWN).strength(1.5F, 6.0F);
     }
 
     public static final class Items {
