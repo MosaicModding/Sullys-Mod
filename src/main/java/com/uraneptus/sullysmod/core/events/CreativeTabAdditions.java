@@ -1,6 +1,7 @@
 package com.uraneptus.sullysmod.core.events;
 
 import com.uraneptus.sullysmod.SullysMod;
+import com.uraneptus.sullysmod.core.SMConfig;
 import com.uraneptus.sullysmod.core.SMFeatures;
 import com.uraneptus.sullysmod.core.registry.SMItems;
 import net.minecraft.resources.ResourceKey;
@@ -28,6 +29,7 @@ public class CreativeTabAdditions {
     //We partly use add here instead of addAfter cuz of a quark/zeta conflict
     @SubscribeEvent
     public static void addToCreativeTab(BuildCreativeModeTabContentsEvent event) {
+        if (SMConfig.USE_CUSTOM_TAB.get()) return;
         ResourceKey<CreativeModeTab> tab = event.getTabKey();
         if (tab == CreativeModeTabs.INGREDIENTS) {
             addAfter(event, List.of(SMFeatures.JADE), Items.COPPER_INGOT, JADE);

@@ -388,6 +388,7 @@
   "sullysmod.item.throwing_knife.damage": " 2 Attack Damage",
   "sullysmod.item.throwing_knife.damage.air": " 4 Airborne Bonus",
   "sullysmod.itemGroup.artifacts": "Ancient Artifacts",
+  "sullysmod.itemGroup.sullysmod": "Sully's Mod",
   "sullysmod.jei.grindstone_polishing": "Polishing",
   "sullysmod.jei.grindstone_polishing.info": "Right click to polish",
   "sullysmod.polishing.tooltip": "Polishable at grindstone",

@@ -12,6 +12,7 @@ public class SMConfig {
     public static final ForgeConfigSpec.ConfigValue<Float> SPIDER_IN_JUNGLE_REPLACEMENT_RATE;
     public static final ForgeConfigSpec.ConfigValue<Float> SKELETON_IN_DEEPSLATE_REPLACEMENT_RATE;
     public static final ForgeConfigSpec.ConfigValue<Boolean> ENABLE_POLISHABLE_TOOLTIP;
+    public static final ForgeConfigSpec.ConfigValue<Boolean> USE_CUSTOM_TAB;
     public static final ForgeConfigSpec.ConfigValue<Boolean> ENABLE_MOUNTAIN_CALLS;
     public static final ForgeConfigSpec.ConfigValue<Boolean> ENABLE_MYSTERIOUS_EYES;
     public static final ForgeConfigSpec.ConfigValue<Boolean> ENABLE_WOLF_CARNIVORE;
@@ -42,7 +43,7 @@ public class SMConfig {
 
         //Client
         ENABLE_POLISHABLE_TOOLTIP = CLIENT_BUILDER.comment("Enables the 'Polishable' tooltip on polishable items").define("Enable Polishable Tooltip", true);
-
+        USE_CUSTOM_TAB = CLIENT_BUILDER.comment("When enabled, all mod items except for artifacts are added to a custom sully's mod creative tab").define("use_custom_tab", true);
 
         //COMMON
         COMMON_BUILDER.comment("Mod Feature Selection").push("feature_selection");
