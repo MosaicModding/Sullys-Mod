@@ -32,6 +32,7 @@ public class AncientSkullBlock extends SkullBlock {
         TINY,
         WIDE,
         RIBBED,
-        UNICORN
+        UNICORN,
+        SNOUTED
     }
 }

@@ -6,6 +6,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.entity.SkullBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.AABB;
 
 import javax.annotation.Nonnull;
 import java.util.HashSet;
@@ -15,6 +16,11 @@ public class AncientSkullBE extends SkullBlockEntity {
 
     public AncientSkullBE(BlockPos pPos, BlockState pBlockState) {
         super(pPos, pBlockState);
+    }
+
+    public AABB getRenderBoundingBox() {
+        BlockPos pos = this.getBlockPos();
+        return new AABB(pos.offset(-1, -1, -1), pos.offset(1, 1, 1));
     }
 
     @Nonnull

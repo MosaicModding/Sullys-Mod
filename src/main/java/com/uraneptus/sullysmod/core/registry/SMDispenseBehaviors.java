@@ -55,7 +55,7 @@ public class SMDispenseBehaviors {
             }
         });
 
-        SMBlocks.ANCIENT_SKULLS.forEach(block -> DispenserBlock.registerBehavior(block.get().asItem(), new OptionalDispenseItemBehavior() {
+        SMArtifacts.ANCIENT_SKULLS.forEach(block -> DispenserBlock.registerBehavior(block.get().asItem(), new OptionalDispenseItemBehavior() {
             @Override
             protected ItemStack execute(BlockSource pSource, ItemStack pStack) {
                 this.setSuccess(ArmorItem.dispenseArmor(pSource, pStack));

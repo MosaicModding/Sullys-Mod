@@ -7,10 +7,7 @@ import net.minecraft.client.model.Model;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
-import net.minecraft.client.model.geom.builders.CubeListBuilder;
-import net.minecraft.client.model.geom.builders.LayerDefinition;
-import net.minecraft.client.model.geom.builders.MeshDefinition;
-import net.minecraft.client.model.geom.builders.PartDefinition;
+import net.minecraft.client.model.geom.builders.*;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -33,10 +30,19 @@ public class JadeShieldModel extends Model {
         MeshDefinition meshdefinition = new MeshDefinition();
         PartDefinition partdefinition = meshdefinition.getRoot();
 
+        /*
         partdefinition.addOrReplaceChild("plate", CubeListBuilder.create().texOffs(0, 0).addBox(-6.0F, -11.0F, -2.0F, 14.0F, 20.0F, 1.0F), PartPose.ZERO);
         partdefinition.addOrReplaceChild("handle", CubeListBuilder.create().texOffs(0, 21).addBox(-1.0F, -3.0F, -1.0F, 2.0F, 6.0F, 6.0F), PartPose.ZERO);
+         */
 
-        return LayerDefinition.create(meshdefinition, 64, 64);
+        partdefinition.addOrReplaceChild("plate", CubeListBuilder.create().texOffs(16, 20).addBox(-1.0F, -22.0F, -1.0F, 6.0F, 4.0F, 1.0F, CubeDeformation.NONE)
+                .texOffs(16, 15).addBox(-1.0F, -38.0F, -1.0F, 6.0F, 4.0F, 1.0F, CubeDeformation.NONE)
+                .texOffs(0, 0).addBox(-5.0F, -34.0F, -1.0F, 14.0F, 12.0F, 1.0F, CubeDeformation.NONE), PartPose.offset(-1.0F, 24.0F, 0.0F));
+
+        partdefinition.addOrReplaceChild("handle", CubeListBuilder.create().texOffs(0, 15).addBox(0.0F, -31.0F, 0.0F, 2.0F, 6.0F, 6.0F, CubeDeformation.NONE), PartPose.offset(0.0F, 24.0F, 0.0F));
+
+
+        return LayerDefinition.create(meshdefinition, 32, 32);
     }
 
     public ModelPart plate() {

@@ -15,6 +15,7 @@ import net.minecraft.world.level.levelgen.feature.stateproviders.WeightedStatePr
 import net.minecraft.world.level.levelgen.feature.treedecorators.TreeDecorator;
 import net.minecraft.world.level.levelgen.feature.treedecorators.TreeDecoratorType;
 import net.minecraftforge.event.ForgeEventFactory;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
@@ -34,66 +35,73 @@ public class PetrifiedTreeGravelDecorator extends TreeDecorator {
         return SMTreeDecoratorTypes.GRAVEL_DECORATOR.get();
     }
 
-    @Override
     public void place(TreeDecorator.Context pContext) {
-        List<BlockPos> list = Lists.newArrayList();
-        List<BlockPos> list1 = pContext.roots();
-        List<BlockPos> list2 = pContext.logs();
-        if (list1.isEmpty()) {
-            list.addAll(list2);
-        } else if (!list2.isEmpty() && list1.get(0).getY() == list2.get(0).getY()) {
-            list.addAll(list2);
-            list.addAll(list1);
+        List<BlockPos> placementPositions = getPlacementPositions(pContext);
+
+        if (!placementPositions.isEmpty()) {
+            int baseY = placementPositions.get(0).getY();
+            placementPositions.stream()
+                    .filter((position) -> position.getY() == baseY)
+                    .forEach((basePosition) -> {
+                        // Place circles in cardinal directions
+                        this.placeCircle(pContext, basePosition.west().north());
+                        this.placeCircle(pContext, basePosition.east().north());
+                        this.placeCircle(pContext, basePosition.west().south());
+                        this.placeCircle(pContext, basePosition.east().south());
+
+                        // Random placement in 8x8 grid
+                        for(int attempt = 0; attempt < 1; ++attempt) {
+                            int randomIndex = pContext.random().nextInt(64);
+                            int gridX = randomIndex % 8;
+                            int gridZ = randomIndex / 8;
+                            if (gridX == 0 || gridX == 7 || gridZ == 0 || gridZ == 7) {
+                                this.placeCircle(pContext, basePosition.offset(-3 + gridX, 0, -3 + gridZ));
+                            }
+                        }
+                    });
+        }
+    }
+
+    private static @NotNull List<BlockPos> getPlacementPositions(Context pContext) {
+        List<BlockPos> placementPositions = Lists.newArrayList();
+        List<BlockPos> rootPositions = pContext.roots();
+        List<BlockPos> logPositions = pContext.logs();
+
+        if (rootPositions.isEmpty()) {
+            placementPositions.addAll(logPositions);
+        } else if (!logPositions.isEmpty() && rootPositions.get(0).getY() == logPositions.get(0).getY()) {
+            placementPositions.addAll(logPositions);
+            placementPositions.addAll(rootPositions);
         } else {
-            list.addAll(list1);
+            placementPositions.addAll(rootPositions);
         }
-
-        if (!list.isEmpty()) {
-            int i = list.get(0).getY();
-            list.stream().filter((p_69310_) -> p_69310_.getY() == i).forEach((p_225978_) -> {
-                this.placeCircle(pContext, p_225978_.west().north());
-                this.placeCircle(pContext, p_225978_.east(1).north());
-                this.placeCircle(pContext, p_225978_.west().south(1));
-                this.placeCircle(pContext, p_225978_.east(1).south(1));
-
-                for(int j = 0; j < 1; ++j) {
-                    int k = pContext.random().nextInt(64);
-                    int l = k % 8;
-                    int i1 = k / 8;
-                    if (l == 0 || l == 7 || i1 == 0 || i1 == 7) {
-                        this.placeCircle(pContext, p_225978_.offset(-3 + l, 0, -3 + i1));
-                    }
-                }
-            });
-        }
+        return placementPositions;
     }
 
-    private void placeCircle(TreeDecorator.Context pContext, BlockPos pPos) {
-        for(int i = -2; i <= 2; ++i) {
-            for(int j = -2; j <= 2; ++j) {
-                if (Math.abs(i) != 2 || Math.abs(j) != 2) {
-                    this.placeBlockAt(pContext, pPos.offset(i, 0, j));
+    private void placeCircle(TreeDecorator.Context pContext, BlockPos centerPos) {
+        for(int xOffset = -2; xOffset <= 2; ++xOffset) {
+            for(int zOffset = -2; zOffset <= 2; ++zOffset) {
+                if (Math.abs(xOffset) != 2 || Math.abs(zOffset) != 2) {
+                    this.placeBlockAt(pContext, centerPos.offset(xOffset, 0, zOffset));
                 }
             }
         }
-
     }
 
-    private void placeBlockAt(TreeDecorator.Context pContext, BlockPos pPos) {
-        for(int i = 2; i >= -3; --i) {
-            BlockPos blockpos = pPos.above(i);
-            if (Feature.isGrassOrDirt(pContext.level(), blockpos)) {
-                BlockState state = this.provider.getState(pContext.random(), pPos);
-                pContext.level().getBlockEntity(pPos, BlockEntityType.BRUSHABLE_BLOCK).ifPresent(brushableBlockEntity -> {
-                    brushableBlockEntity.setLootTable(SMBuiltInLootTables.GRAVEL_PETRIFIED_SAPLING_TREE, pPos.asLong());
+    private void placeBlockAt(TreeDecorator.Context pContext, BlockPos targetPos) {
+        for(int yOffset = 2; yOffset >= -3; --yOffset) {
+            BlockPos checkPos = targetPos.above(yOffset);
+            if (Feature.isGrassOrDirt(pContext.level(), checkPos)) {
+                BlockState gravelState = this.provider.getState(pContext.random(), checkPos);
+                pContext.setBlock(checkPos, ForgeEventFactory.alterGround(pContext.level(), pContext.random(), checkPos, gravelState));
+                pContext.level().getBlockEntity(checkPos, BlockEntityType.BRUSHABLE_BLOCK).ifPresent(brushableBlockEntity -> {
+                    brushableBlockEntity.setLootTable(SMBuiltInLootTables.GRAVEL_PETRIFIED_SAPLING_TREE, checkPos.asLong());
                 });
-                pContext.setBlock(blockpos, ForgeEventFactory.alterGround(pContext.level(), pContext.random(), blockpos, state));
                 break;
             }
-            if (!pContext.isAir(blockpos) && i < 0) {
+            if (!pContext.isAir(checkPos) && yOffset < 0) {
                 break;
             }
         }
-
     }
 }

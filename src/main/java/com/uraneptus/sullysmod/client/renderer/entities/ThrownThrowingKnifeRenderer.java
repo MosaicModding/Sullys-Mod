@@ -34,7 +34,7 @@ public class ThrownThrowingKnifeRenderer extends EntityRenderer<ThrownThrowingKn
 
         if (!pEntity.inGround || (pEntity.lastState != null && pEntity.lastState.is(SMBlockTags.PROJECTILES_BOUNCE_ON))) {
             float time = pEntity.tickCount + pPartialTicks;
-            pPoseStack.mulPose(Axis.ZP.rotationDegrees(time * 50F));
+            pPoseStack.mulPose(Axis.ZN.rotationDegrees(time * 50F));
         }
 
         this.itemRenderer.render(itemstack, ItemDisplayContext.FIXED, false, pPoseStack, pBuffer, pPackedLight, OverlayTexture.NO_OVERLAY, bakedmodel);

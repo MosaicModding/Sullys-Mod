@@ -27,9 +27,14 @@
     "sullysmod:petrified_fence_gate",
     "sullysmod:petrified_fence",
     "sullysmod:petrified_sign",
-    "sullysmod:petrified_hanging_sign",
+    "sullysmod:petrified_wall_sign",
+    "sullysmod:petrified_wall_hanging_sign",
     "sullysmod:petrified_door",
+    "sullysmod:petrified_trapdoor",
+    "sullysmod:petrified_pressure_plate",
+    "sullysmod:petrified_button",
     "sullysmod:amber",
+    "sullysmod:amber_solid",
     "sullysmod:rough_amber",
     "sullysmod:chiseled_amber",
     "sullysmod:amber_pillar",
@@ -43,6 +48,14 @@
     "sullysmod:emerald_lantern",
     "sullysmod:lapis_lantern",
     "sullysmod:amethyst_lantern",
-    "sullysmod:quartz_lantern"
+    "sullysmod:quartz_lantern",
+    "sullysmod:copper_button",
+    "sullysmod:exposed_copper_button",
+    "sullysmod:weathered_copper_button",
+    "sullysmod:oxidized_copper_button",
+    "sullysmod:waxed_copper_button",
+    "sullysmod:waxed_exposed_copper_button",
+    "sullysmod:waxed_weathered_copper_button",
+    "sullysmod:waxed_oxidized_copper_button"
   ]
 }

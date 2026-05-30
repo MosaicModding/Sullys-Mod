@@ -28,7 +28,6 @@ public class AmberBlobFeature extends Feature<NoneFeatureConfiguration> {
         BlockPos blockpos = context.origin();
         WorldGenLevel worldgenlevel = context.level();
         RandomSource randomsource = context.random();
-        BlockState amber = SMBlocks.AMBER.get().defaultBlockState();
         List<EntityType<?>> possibleEntities = ForgeRegistries.ENTITY_TYPES.getValues().stream().filter(e -> e.is(SMEntityTags.SPAWN_IN_AMBER)).toList();
         int placedEntities = 0;
 
@@ -43,8 +42,17 @@ public class AmberBlobFeature extends Feature<NoneFeatureConfiguration> {
 
                 for (BlockPos blockpos1 : BlockPos.betweenClosed(blockpos.offset(-i, -j, -k), blockpos.offset(i, j, k))) {
                     if (blockpos1.distSqr(blockpos) <= (double) (f * f)) {
-                        worldgenlevel.setBlock(blockpos1, amber, 3);
-                        if (placedEntities < 2 && randomsource.nextInt(10) == 0) {
+                        BlockState toBePlaced;
+                        boolean storeEntity = false;
+                        if (placedEntities < 3 && randomsource.nextInt(5) == 0) {
+                            toBePlaced = SMBlocks.AMBER_SOLID.get().defaultBlockState();
+                            storeEntity = true;
+                        } else {
+                            toBePlaced = SMBlocks.AMBER.get().defaultBlockState();
+                        }
+
+                        worldgenlevel.setBlock(blockpos1, toBePlaced, 3);
+                        if (storeEntity) {
                             BlockEntity be = worldgenlevel.getBlockEntity(blockpos1);
                             if (be instanceof AmberBE amberBE) {
                                 EntityType<?> entityType = possibleEntities.get(randomsource.nextInt(possibleEntities.size()));
@@ -57,10 +65,8 @@ public class AmberBlobFeature extends Feature<NoneFeatureConfiguration> {
                         }
                     }
                 }
-
                 blockpos = blockpos.offset(-1 + randomsource.nextInt(2), -randomsource.nextInt(2), -1 + randomsource.nextInt(2));
             }
-
             return true;
         }
     }

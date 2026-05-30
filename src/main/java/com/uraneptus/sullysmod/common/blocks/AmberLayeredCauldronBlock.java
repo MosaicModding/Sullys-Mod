@@ -32,7 +32,7 @@ public class AmberLayeredCauldronBlock extends LayeredCauldronBlock {
     public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
         ItemStack itemstack = pPlayer.getItemInHand(pHand);
         if (this.isFull(pState) && itemstack.is(Items.BUCKET)) {
-            return CauldronInteraction.fillBucket(pState, pLevel, pPos, pPlayer, pHand, new ItemStack(Items.BUCKET), new ItemStack(SMItems.MOLTEN_AMBER_BUCKET.get()), state -> state.getValue(AmberLayeredCauldronBlock.LEVEL) == 3, SoundEvents.BUCKET_FILL);
+            return CauldronInteraction.fillBucket(pState, pLevel, pPos, pPlayer, pHand, itemstack, new ItemStack(SMItems.MOLTEN_AMBER_BUCKET.get()), state -> state.getValue(AmberLayeredCauldronBlock.LEVEL) == 3, SoundEvents.BUCKET_FILL);
         }
         return InteractionResult.PASS;
     }

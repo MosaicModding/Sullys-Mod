@@ -1,17 +1,17 @@
 {
   "values": [
     "sullysmod:unnerving_night",
-    "sullysmod:amber",
     "sullysmod:infestation",
     "sullysmod:lake",
     "sullysmod:caverns",
-    "sullysmod:river_terror",
-    "sullysmod:mesmurrizing",
     "sullysmod:jade_dragon",
     "sullysmod:a_visitor",
     "sullysmod:beginning",
     "sullysmod:home",
     "sullysmod:illager_beast",
-    "sullysmod:thank_you"
+    "sullysmod:thank_you",
+    "sullysmod:man_eater",
+    "sullysmod:pots",
+    "sullysmod:the_jade_tortoise"
   ]
 }

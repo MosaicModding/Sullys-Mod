@@ -1,7 +1,9 @@
 package com.uraneptus.sullysmod.core.events;
 
 import com.uraneptus.sullysmod.SullysMod;
+import com.uraneptus.sullysmod.core.SMConfig;
 import com.uraneptus.sullysmod.core.SMFeatures;
+import com.uraneptus.sullysmod.core.registry.SMItems;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.CreativeModeTabs;
@@ -24,8 +26,10 @@ import static com.uraneptus.sullysmod.core.registry.SMItems.*;
 @Mod.EventBusSubscriber(modid = SullysMod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public class CreativeTabAdditions {
 
+    //We partly use add here instead of addAfter cuz of a quark/zeta conflict
     @SubscribeEvent
     public static void addToCreativeTab(BuildCreativeModeTabContentsEvent event) {
+        if (SMConfig.USE_CUSTOM_TAB.get()) return;
         ResourceKey<CreativeModeTab> tab = event.getTabKey();
         if (tab == CreativeModeTabs.INGREDIENTS) {
             addAfter(event, List.of(SMFeatures.JADE), Items.COPPER_INGOT, JADE);
@@ -34,6 +38,7 @@ public class CreativeTabAdditions {
             addAfter(event, List.of(SMFeatures.TORTOISE), Items.SCUTE, TORTOISE_SCUTE);
             addAfter(event, List.of(SMFeatures.PIRANHA), Items.BONE, PIRANHA_TOOTH);
             addAfter(event, Items.GLASS_BOTTLE, GLASS_VIAL);
+            addAfter(event, List.of(SMFeatures.ARTIFACTS), Items.BOWL, FIXED_BOWL, FIXED_CUP, FIXED_VASE);
         }
 
         if (tab == CreativeModeTabs.TOOLS_AND_UTILITIES) {
@@ -41,13 +46,14 @@ public class CreativeTabAdditions {
             addAfter(event, List.of(SMFeatures.TORTOISE), Items.SADDLE, TORTOISE_SHELL);
             addAfter(event, List.of(SMFeatures.LANTERNFISH), Items.COD_BUCKET, LANTERNFISH_BUCKET);
             addAfter(event, List.of(SMFeatures.PIRANHA), Items.COD_BUCKET, PIRANHA_BUCKET);
-            addAfter(event, List.of(SMFeatures.JADE), Items.MUSIC_DISC_RELIC, MUSIC_DISC_SCOUR);
-            addAfter(event, Items.MUSIC_DISC_RELIC, MUSIC_DISC_SUNKEN_PAST);
+            add(event, List.of(SMFeatures.JADE), MUSIC_DISC_SCOUR);
+            add(event, MUSIC_DISC_SUNKEN_PAST);
         }
 
         if (tab == CreativeModeTabs.FOOD_AND_DRINKS) {
             addAfter(event, List.of(SMFeatures.LANTERNFISH), Items.COOKED_COD, LANTERNFISH, COOKED_LANTERNFISH);
             addAfter(event, List.of(SMFeatures.PIRANHA), Items.COOKED_COD, PIRANHA, COOKED_PIRANHA);
+            addAfter(event, List.of(SMFeatures.BUG_MEAT), Items.SPIDER_EYE, BUG_MEAT, COOKED_BUG_MEAT);
         }
 
         if (tab == CreativeModeTabs.COMBAT) {
@@ -62,6 +68,7 @@ public class CreativeTabAdditions {
             addAfter(event, List.of(SMFeatures.JUNGLE_SPIDER), Items.IRON_GOLEM_SPAWN_EGG, JUNGLE_SPIDER_SPAWN_EGG);
             addAfter(event, List.of(SMFeatures.LANTERNFISH), Items.IRON_GOLEM_SPAWN_EGG, LANTERNFISH_SPAWN_EGG);
             addAfter(event, List.of(SMFeatures.PIRANHA), Items.PILLAGER_SPAWN_EGG, PIRANHA_SPAWN_EGG);
+            addAfter(event, List.of(SMFeatures.MAULED), Items.MAGMA_CUBE_SPAWN_EGG, MAULED_SPAWN_EGG);
         }
 
         if (tab == CreativeModeTabs.NATURAL_BLOCKS) {
@@ -74,15 +81,15 @@ public class CreativeTabAdditions {
         }
 
         if (tab == CreativeModeTabs.BUILDING_BLOCKS) {
-            addAfter(event, List.of(SMFeatures.JADE), Items.WAXED_OXIDIZED_CUT_COPPER_SLAB,
+            add(event, List.of(SMFeatures.JADE),
                     ROUGH_JADE_BLOCK, ROUGH_JADE_BRICKS, ROUGH_JADE_BRICK_STAIRS, ROUGH_JADE_BRICK_SLAB, ROUGH_JADE_BRICK_WALL,
                     JADE_BLOCK, JADE_BRICKS, JADE_BRICK_STAIRS, JADE_BRICK_SLAB, JADE_BRICK_WALL, JADE_PILLAR, CHISELED_JADE, JADE_TOTEM
             );
-            addAfter(event, List.of(SMFeatures.JADE, SMFeatures.GEM_LANTERNS), Items.WAXED_OXIDIZED_CUT_COPPER_SLAB, JADE_LANTERN);
-            addAfter(event, List.of(SMFeatures.AMBER), Items.WAXED_OXIDIZED_CUT_COPPER_SLAB,
+            add(event, List.of(SMFeatures.JADE, SMFeatures.GEM_LANTERNS), JADE_LANTERN);
+            add(event, List.of(SMFeatures.AMBER),
                     ROUGH_AMBER, CHISELED_AMBER, AMBER_PILLAR, AMBER_BRICKS, AMBER_BRICK_STAIRS, AMBER_BRICK_SLAB, AMBER_BRICK_WALL
             );
-            addAfter(event, List.of(SMFeatures.AMBER, SMFeatures.GEM_LANTERNS), Items.WAXED_OXIDIZED_CUT_COPPER_SLAB, AMBER_LANTERN);
+            add(event, List.of(SMFeatures.AMBER, SMFeatures.GEM_LANTERNS), AMBER_LANTERN);
             addAfter(event, List.of(SMFeatures.PETRIFIED_WOOD, SMFeatures.AMBER), Items.CHERRY_BUTTON,
                     PETRIFIED_LOG, PETRIFIED_WOOD, STRIPPED_PETRIFIED_LOG, STRIPPED_PETRIFIED_WOOD, PETRIFIED_PLANKS, PETRIFIED_STAIRS,
                     PETRIFIED_SLAB, PETRIFIED_FENCE, PETRIFIED_FENCE_GATE, PETRIFIED_DOOR, PETRIFIED_TRAPDOOR, PETRIFIED_PRESSURE_PLATE, PETRIFIED_BUTTON
@@ -103,11 +110,25 @@ public class CreativeTabAdditions {
 
         if (tab == CreativeModeTabs.FUNCTIONAL_BLOCKS) {
             addAfter(event, List.of(SMFeatures.PETRIFIED_WOOD, SMFeatures.AMBER), Items.CHERRY_HANGING_SIGN, PETRIFIED_SIGN.getFirst(), PETRIFIED_HANGING_SIGN.getFirst());
-            addAfter(event, List.of(SMFeatures.AMBER), Items.INFESTED_DEEPSLATE, AMBER);
+            add(event, List.of(SMFeatures.AMBER), AMBER);
             addAfter(event, List.of(SMFeatures.ITEM_STAND), Items.ARMOR_STAND, ITEM_STAND);
             addAfter(event, List.of(SMFeatures.GEM_LANTERNS, SMFeatures.AMBER), Items.PEARLESCENT_FROGLIGHT, AMBER_LANTERN);
             addAfter(event, List.of(SMFeatures.GEM_LANTERNS, SMFeatures.JADE), Items.PEARLESCENT_FROGLIGHT, JADE_LANTERN);
             addAfter(event, List.of(SMFeatures.GEM_LANTERNS), Items.PEARLESCENT_FROGLIGHT, DIAMOND_LANTERN, EMERALD_LANTERN, LAPIS_LANTERN, AMETHYST_LANTERN, QUARTZ_LANTERN);
+        }
+    }
+
+    @SafeVarargs
+    private static void add(BuildCreativeModeTabContentsEvent event, List<SMFeatures> features, Supplier<? extends ItemLike>... itemsToAdd) {
+        if (features.stream().allMatch(SMFeatures::isEnabled)) {
+            add(event, itemsToAdd);
+        }
+    }
+
+    @SafeVarargs
+    private static void add(BuildCreativeModeTabContentsEvent event, Supplier<? extends ItemLike>... itemsToAdd) {
+        for (Supplier<? extends ItemLike> item : itemsToAdd) {
+            event.accept(item.get().asItem().getDefaultInstance());
         }
     }
 

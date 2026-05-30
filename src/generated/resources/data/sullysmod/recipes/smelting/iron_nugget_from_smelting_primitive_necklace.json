@@ -1,0 +1,25 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "sullysmod:mod_features",
+          "values": [
+            "artifacts"
+          ]
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:smelting",
+        "category": "misc",
+        "cookingtime": 200,
+        "experience": 0.1,
+        "ingredient": {
+          "item": "sullysmod:primitive_necklace"
+        },
+        "result": "minecraft:iron_nugget"
+      }
+    }
+  ]
+}

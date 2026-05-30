@@ -29,6 +29,7 @@ import net.minecraft.world.entity.animal.Ocelot;
 import net.minecraft.world.entity.animal.Turtle;
 import net.minecraft.world.entity.animal.Wolf;
 import net.minecraft.world.entity.animal.horse.Horse;
+import net.minecraft.world.entity.animal.horse.ZombieHorse;
 import net.minecraft.world.entity.monster.Zombie;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.Projectile;
@@ -89,7 +90,7 @@ public class SMEntityEvents {
                     case Z -> projectile.shoot(vec3.x, vec3.y, vec3.reverse().z, calculateBounceVelocity(velocity), 0.0F);
                 }
                 level.addFreshEntity(projectile);
-                handleParticleAndSound(level, blockHitResult, direction, projectile);
+                handleParticleAndSound(level, blockHitResult, direction, projectile, false);
             }
             handleCancellation(event);
         }
@@ -105,7 +106,7 @@ public class SMEntityEvents {
                 projectile.shoot(angle.x, angle.y, angle.z, calculateBounceVelocity(velocity), 0.0F);
                 level.addFreshEntity(projectile);
                 player.getUseItem().hurtAndBreak(1, player, e -> e.broadcastBreakEvent(player.getUsedItemHand()));
-                handleParticleAndSound(level, entityHitResult, direction, projectile);
+                handleParticleAndSound(level, entityHitResult, direction, projectile, true);
             }
             if (entityHitResult.getEntity() instanceof Horse horse && horse.getArmor().is(SMItems.JADE_HORSE_ARMOR.get())) {
                 Direction direction = projectile.getDirection();
@@ -126,7 +127,7 @@ public class SMEntityEvents {
                     if (direction == Direction.SOUTH || direction == Direction.NORTH) {
                         direction = direction.getOpposite();
                     }
-                    handleParticleAndSound(level, entityHitResult, direction, projectile);
+                    handleParticleAndSound(level, entityHitResult, direction, projectile, false);
                 } else {
                     projectile.setPos(projectile.getX(), projectile.getY() + 0.25D, projectile.getZ());
                     RandomSource random = level.getRandom();
@@ -138,7 +139,7 @@ public class SMEntityEvents {
                         case Z ->
                                 projectile.shoot(vec3.x, vec3.y, vec3.reverse().offsetRandom(random, 8F).z, calculateBounceVelocity(velocity), 0.0F);
                     }
-                    handleParticleAndSound(level, entityHitResult, Direction.UP, projectile);
+                    handleParticleAndSound(level, entityHitResult, Direction.UP, projectile, false);
                 }
                 level.addFreshEntity(projectile);
             }
@@ -167,7 +168,7 @@ public class SMEntityEvents {
         return !(projectile.getType().is(SMEntityTags.CANNOT_BE_FLUNG)) && blockState.getBlock() instanceof FlingerTotem && !direction.equals(blockState.getValue(SMDirectionalBlock.FACING));
     }
 
-    private static void handleParticleAndSound(Level level, HitResult hitResult, Direction direction, Projectile projectile) {
+    private static void handleParticleAndSound(Level level, HitResult hitResult, Direction direction, Projectile projectile, boolean isShield) {
         Vec3 particlePos = Vec3.ZERO;
         if (hitResult instanceof BlockHitResult blockHitResult) {
             particlePos = new Vec3(blockHitResult.getLocation().x, blockHitResult.getLocation().y, blockHitResult.getLocation().z).relative(direction, 0.1D);
@@ -177,7 +178,11 @@ public class SMEntityEvents {
         if (level instanceof ServerLevel serverLevel) {
             serverLevel.sendParticles(new DirectionParticleOptions(SMParticleTypes.RICOCHET.get(), direction), particlePos.x(), particlePos.y(), particlePos.z(), 1, 0.0D, 0.0D, 0.0D, 0.0D);
         }
-        level.playSound(null, projectile.getX(), projectile.getY(), projectile.getZ(), SMSounds.JADE_RICOCHET.get(), SoundSource.BLOCKS, 1.0F, 0.0F);
+        if (isShield) {
+            level.playSound(null, projectile.getX(), projectile.getY(), projectile.getZ(), SMSounds.JADE_SHIELD_RICOCHET.get(), SoundSource.BLOCKS, 1.0F, 0.0F);
+        } else {
+            level.playSound(null, projectile.getX(), projectile.getY(), projectile.getZ(), SMSounds.JADE_RICOCHET.get(), SoundSource.BLOCKS, 1.0F, 0.0F);
+        }
         projectile.gameEvent(GameEvent.PROJECTILE_SHOOT);
     }
 
@@ -221,7 +226,12 @@ public class SMEntityEvents {
         if (livingEntity instanceof Player) return;
 
         if (killer instanceof Piranha || (SMConfig.ENABLE_WOLF_CARNIVORE.get() && killer instanceof Wolf)) {
-            event.getDrops().removeIf(itemEntity -> itemEntity.getItem().is(SMItemTags.CARNIVORE_CONSUMABLES));
+            if (event.getDrops().removeIf(itemEntity -> itemEntity.getItem().is(SMItemTags.CARNIVORE_CONSUMABLES))) {
+                var pathKiller = (PathfinderMob) killer;
+                if (pathKiller.getHealth() < pathKiller.getMaxHealth()) {
+                    pathKiller.heal(1.0F);
+                }
+            }
         }
     }
 
@@ -231,12 +241,19 @@ public class SMEntityEvents {
         Entity killer = event.getSource().getEntity();
         Level level = event.getEntity().level();
         if (!SMFeatures.isEnabled(SMFeatures.PIRANHA)) return;
-        if (!(livingEntity instanceof Zombie zombie && !zombie.isBaby()) || !(killer instanceof Piranha)) return;
+        if (!(killer instanceof Piranha)) return;
+        if (livingEntity instanceof Zombie zombie && !zombie.isBaby()) {
+            replaceEntity(livingEntity, level, EntityType.SKELETON);
+        } else if (livingEntity instanceof ZombieHorse) {
+            replaceEntity(livingEntity, level, EntityType.SKELETON_HORSE);
+        }
+    }
 
+    private static void replaceEntity(LivingEntity livingEntity, Level level, EntityType<? extends LivingEntity> resultEntity) {
         CompoundTag compoundtag = livingEntity.saveWithoutId(new CompoundTag());
         compoundtag.remove("Health");
         livingEntity.setRemoved(Entity.RemovalReason.DISCARDED);
-        livingEntity = EntityType.SKELETON.create(level);
+        livingEntity = resultEntity.create(level);
         if (livingEntity != null) {
             livingEntity.load(compoundtag);
             level.addFreshEntity(livingEntity);

@@ -58,8 +58,10 @@ public class SullysMod {
         SMPetrifiedTreeVariants.init();
 
         REGISTRY_HELPER.register(bus);
-        SMBlocks.BLOCKS.register(bus);
+        SMArtifacts.init();
         SMItems.ITEMS.register(bus);
+        SMBlocks.BLOCKS.register(bus);
+
         SMBlockEntityTypes.BLOCK_ENTITY.register(bus);
         SMParticleTypes.PARTICLES.register(bus);
         SMPotions.POTIONS.register(bus);
@@ -71,8 +73,6 @@ public class SullysMod {
         SMTreeDecoratorTypes.TREE_DECORATORS.register(bus);
         com.uraneptus.sullysmod.core.registry.SMFeatures.FEATURES.register(bus);
         SMCreativeModeTabs.TABS.register(bus);
-        SMFluids.FLUIDS.register(bus);
-        SMFluidTypes.FLUID_TYPES.register(bus);
 
         CraftingHelper.register(new SMFeatureRecipeCondition.Serializer());
 
@@ -92,6 +92,7 @@ public class SullysMod {
         event.put(SMEntityTypes.LANTERNFISH.get(), Lanternfish.createAttributes().build());
         event.put(SMEntityTypes.TORTOISE.get(), Tortoise.createAttributes().build());
         event.put(SMEntityTypes.BOULDERING_ZOMBIE.get(), BoulderingZombie.createAttributes().build());
+        event.put(SMEntityTypes.MAULED.get(), Mauled.createAttributes().build());
         event.put(SMEntityTypes.JUNGLE_SPIDER.get(), JungleSpider.createAttributes().build());
         event.put(SMEntityTypes.PIRANHA.get(), Piranha.createAttributes().build());
     }
@@ -107,6 +108,7 @@ public class SullysMod {
             SMDispenseBehaviors.register();
             SMNoteBlockInstruments.register();
             SMPacketHandler.register();
+            SMCompostables.registerCompostables();
         });
     }
 
@@ -136,7 +138,11 @@ public class SullysMod {
         generator.addProvider(includeServer, new SMAdvancementProvider(packOutput, lookupProvider, fileHelper));
         generator.addProvider(includeServer, new SMRecipeProvider(packOutput));
         generator.addProvider(includeServer, new SMLootModifierProvider(packOutput, lookupProvider));
-        generator.addProvider(includeServer, new SMBuiltinEntriesProvider(packOutput, lookupProvider));
-        generator.addProvider(includeServer, new SMFluidTagsProvider(packOutput, lookupProvider, SullysMod.MOD_ID, fileHelper));
+
+        generator.addProvider(includeServer, new SMFluidTagsProvider(packOutput, lookupProvider, fileHelper));
+
+        var builtinProvider = new SMBuiltinEntriesProvider(packOutput, lookupProvider);
+        generator.addProvider(includeServer, builtinProvider);
+        generator.addProvider(includeServer, new SMDamageTypeTagsProvider(packOutput, builtinProvider.getRegistryProvider(), fileHelper));
     }
 }

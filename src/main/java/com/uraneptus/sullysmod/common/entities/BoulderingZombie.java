@@ -45,10 +45,10 @@ public class BoulderingZombie extends Zombie {
 
 
     public static boolean checkBoulderingZombieSpawnRules(EntityType<? extends BoulderingZombie> entityType, ServerLevelAccessor level, MobSpawnType spawnType, BlockPos pos, RandomSource random) {
-        return isInDeepslateLayer(pos, random) && Monster.checkMonsterSpawnRules(entityType, level, spawnType, pos, random);
+        return spawnChanceForPosBelowDeepslate(pos, random) && Monster.checkMonsterSpawnRules(entityType, level, spawnType, pos, random);
     }
 
-    public static boolean isInDeepslateLayer(BlockPos pos, RandomSource random) {
+    public static boolean spawnChanceForPosBelowDeepslate(BlockPos pos, RandomSource random) {
         int chance = random.nextInt(100);
         double y = pos.getY();
 

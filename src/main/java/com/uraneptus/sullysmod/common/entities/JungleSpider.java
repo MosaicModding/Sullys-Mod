@@ -34,8 +34,6 @@ import java.util.Objects;
 public class JungleSpider extends Spider implements IEntityAdditionalSpawnData {
     private static final EntityDataAccessor<String> BENEFICIAL_VENOM_EFFECT = SynchedEntityData.defineId(JungleSpider.class, EntityDataSerializers.STRING);
     private static final EntityDataAccessor<String> HARMFUL_VENOM_EFFECT = SynchedEntityData.defineId(JungleSpider.class, EntityDataSerializers.STRING);
-
-
     private static final List<MobEffect> BENEFICIAL_VENOM_EFFECTS = new ArrayList<>();
     private static final List<MobEffect> HARMFUL_VENOM_EFFECTS = new ArrayList<>();
 
@@ -102,7 +100,7 @@ public class JungleSpider extends Spider implements IEntityAdditionalSpawnData {
     }
 
     public static AttributeSupplier.Builder createAttributes() {
-        return Monster.createMonsterAttributes().add(Attributes.MAX_HEALTH, 18.0D).add(Attributes.MOVEMENT_SPEED, (double)0.3F);
+        return Monster.createMonsterAttributes().add(Attributes.MAX_HEALTH, 18.0D).add(Attributes.MOVEMENT_SPEED, 0.3F);
     }
 
     @Override

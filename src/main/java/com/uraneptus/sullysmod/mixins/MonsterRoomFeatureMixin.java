@@ -28,8 +28,11 @@ public class MonsterRoomFeatureMixin {
     private void sullysmod_replaceZombie (FeaturePlaceContext<NoneFeatureConfiguration> pContext, CallbackInfoReturnable<Boolean> cir, Predicate predicate, BlockPos blockpos, RandomSource randomsource, WorldGenLevel worldgenlevel, int i, int j, int k, int l, int i1, int j1, int k1, int l1, int i2, int j2, BlockEntity blockentity, SpawnerBlockEntity spawnerblockentity) {
         Entity entity = spawnerblockentity.getSpawner().getOrCreateDisplayEntity(worldgenlevel.getLevel(), randomsource, blockpos);
         if (entity != null) {
-            if (entity.getType() == EntityType.ZOMBIE && SMConfig.DISABLE_DEEPSLATE_ZOMBIE_SPAWNS.get() && blockpos.getY() <= 0 && SMFeatures.isEnabled(SMFeatures.BOULDERING_ZOMBIE)) {
-                spawnerblockentity.setEntityId(SMEntityTypes.BOULDERING_ZOMBIE.get(), randomsource);
+            if (entity.getType() == EntityType.ZOMBIE && SMFeatures.isEnabled(SMFeatures.BOULDERING_ZOMBIE) && blockpos.getY() <= 0) {
+                if (randomsource.nextFloat() < SMConfig.ZOMBIE_IN_DEEPSLATE_REPLACEMENT_RATE.get()) {
+                    spawnerblockentity.setEntityId(SMEntityTypes.BOULDERING_ZOMBIE.get(), randomsource);
+                }
+
             }
         }
 

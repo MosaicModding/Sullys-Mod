@@ -3,6 +3,7 @@ package com.uraneptus.sullysmod.core.registry;
 import com.teamabnormals.blueprint.core.util.registry.SoundSubRegistryHelper;
 import com.uraneptus.sullysmod.SullysMod;
 import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraftforge.common.util.ForgeSoundType;
 import net.minecraftforge.fml.common.Mod;
@@ -24,10 +25,13 @@ public class SMSounds {
     public static final RegistryObject<SoundEvent> THROWING_KNIFE_HIT_GROUND = HELPER.createSoundEvent("item.throwing_knife.hit_ground");
     public static final RegistryObject<SoundEvent> THROWING_KNIFE_THROW = HELPER.createSoundEvent("item.throwing_knife.throw");
     public static final RegistryObject<SoundEvent> BROKEN_BOTTLE_SHATTERS = HELPER.createSoundEvent("item.broken_bottle.shatter");
+    public static final RegistryObject<SoundEvent> JADE_SHIELD_RICOCHET = HELPER.createSoundEvent("item.jade_shield.ricochet");
 
     //Block Sounds
     public static final RegistryObject<SoundEvent> JADE_RICOCHET = HELPER.createSoundEvent("block.jade.ricochet");
     public static final RegistryObject<SoundEvent> FLINGER_FLINGS = HELPER.createSoundEvent("block.flinger_totem.shoot");
+    public static final RegistryObject<SoundEvent> FLINGER_PLACE = HELPER.createSoundEvent("block.flinger_totem.place");
+    public static final RegistryObject<SoundEvent> FLINGER_BREAK = HELPER.createSoundEvent("block.flinger_totem.break");
     public static final RegistryObject<SoundEvent> FLINGER_INPUT_HONEY = HELPER.createSoundEvent("block.flinger_totem.input_honey");
     public static final RegistryObject<SoundEvent> FLINGER_ADD_HONEY = HELPER.createSoundEvent("block.flinger_totem.add_honey");
     public static final RegistryObject<SoundEvent> FLINGER_REDUCE_HONEY = HELPER.createSoundEvent("block.flinger_totem.reduce_honey");
@@ -36,6 +40,22 @@ public class SMSounds {
     public static final RegistryObject<SoundEvent> PETRIFIED_WOOD_HIT = HELPER.createSoundEvent("block.petrified_wood.hit");
     public static final RegistryObject<SoundEvent> PETRIFIED_WOOD_PLACE = HELPER.createSoundEvent("block.petrified_wood.place");
     public static final RegistryObject<SoundEvent> PETRIFIED_WOOD_STEP = HELPER.createSoundEvent("block.petrified_wood.step");
+
+    public static final RegistryObject<SoundEvent> JADE_BREAK = HELPER.createSoundEvent("block.jade.break");
+    public static final RegistryObject<SoundEvent> JADE_FALL = HELPER.createSoundEvent("block.jade.fall");
+    public static final RegistryObject<SoundEvent> JADE_HIT = HELPER.createSoundEvent("block.jade.hit");
+    public static final RegistryObject<SoundEvent> JADE_PLACE = HELPER.createSoundEvent("block.jade.place");
+    public static final RegistryObject<SoundEvent> JADE_STEP = HELPER.createSoundEvent("block.jade.step");
+
+    public static final RegistryObject<SoundEvent> ROUGH_JADE_BREAK = HELPER.createSoundEvent("block.rough_jade.break");
+    public static final RegistryObject<SoundEvent> ROUGH_JADE_FALL = HELPER.createSoundEvent("block.rough_jade.fall");
+    public static final RegistryObject<SoundEvent> ROUGH_JADE_HIT = HELPER.createSoundEvent("block.rough_jade.hit");
+    public static final RegistryObject<SoundEvent> ROUGH_JADE_PLACE = HELPER.createSoundEvent("block.rough_jade.place");
+    public static final RegistryObject<SoundEvent> ROUGH_JADE_STEP = HELPER.createSoundEvent("block.rough_jade.step");
+
+    public static final RegistryObject<SoundEvent> JADE_ORE_BREAK = HELPER.createSoundEvent("block.jade_ore.break");
+    public static final RegistryObject<SoundEvent> DEEPSLATE_JADE_ORE_BREAK = HELPER.createSoundEvent("block.deepslate_jade_ore.break");
+
     public static final RegistryObject<SoundEvent> COPPER_BUTTON_CLICK_OFF = HELPER.createSoundEvent("block.copper_button.click_off");
     public static final RegistryObject<SoundEvent> COPPER_BUTTON_CLICK_ON = HELPER.createSoundEvent("block.copper_button.click_on");
     public static final RegistryObject<SoundEvent> AMBER_DRIP = HELPER.createSoundEvent("block.amber.drip");
@@ -51,6 +71,7 @@ public class SMSounds {
     public static final RegistryObject<SoundEvent> NOTE_BLOCK_WIDE_SKULL = HELPER.createSoundEvent("block.note_block.ancient_skull.wide");
     public static final RegistryObject<SoundEvent> NOTE_BLOCK_RIBBED_SKULL = HELPER.createSoundEvent("block.note_block.ancient_skull.ribbed");
     public static final RegistryObject<SoundEvent> NOTE_BLOCK_UNICORN_SKULL = HELPER.createSoundEvent("block.note_block.ancient_skull.unicorn");
+    public static final RegistryObject<SoundEvent> NOTE_BLOCK_SNOUTED_SKULL = HELPER.createSoundEvent("block.note_block.ancient_skull.snouted");
 
     //Entity Sounds
     public static final RegistryObject<SoundEvent> TORTOISE_HURT = HELPER.createSoundEvent("entity.tortoise.hurt");
@@ -79,14 +100,26 @@ public class SMSounds {
     public static final RegistryObject<SoundEvent> BOULDERING_ZOMBIE_HURT = HELPER.createSoundEvent("entity.bouldering_zombie.hurt");
     public static final RegistryObject<SoundEvent> BOULDERING_ZOMBIE_DEATH = HELPER.createSoundEvent("entity.bouldering_zombie.death");
 
+    public static final RegistryObject<SoundEvent> MAULED_AMBIENT = HELPER.createSoundEvent("entity.mauled.ambient");
+    public static final RegistryObject<SoundEvent> MAULED_HURT = HELPER.createSoundEvent("entity.mauled.hurt");
+    public static final RegistryObject<SoundEvent> MAULED_DEATH = HELPER.createSoundEvent("entity.mauled.death");
+    public static final RegistryObject<SoundEvent> MAULED_STEP = HELPER.createSoundEvent("entity.mauled.step");
+    public static final RegistryObject<SoundEvent> MAULED_SHED = HELPER.createSoundEvent("entity.mauled.shed");
+
     //Equip sounds
     public static final RegistryObject<SoundEvent> EQUIP_MINERS_HELMET = HELPER.createSoundEvent("item.armor.equip_miners_helmet");
     public static final RegistryObject<SoundEvent> EQUIP_SMALL_DENTED_HELMET = HELPER.createSoundEvent("item.armor.equip_small_dented_helmet");
     public static final RegistryObject<SoundEvent> EQUIP_LOST_CROWN = HELPER.createSoundEvent("item.armor.equip_lost_crown");
+    public static final RegistryObject<SoundEvent> EQUIP_STONE_MASK = HELPER.createSoundEvent("item.armor.equip_stone_mask");
 
     //Ambient sounds
     public static final RegistryObject<SoundEvent> MOUNTAIN_CALLS = HELPER.createSoundEvent("ambient.mountain.calls");
 
     //SoundTypes
     public static final SoundType PETRIFIED_WOOD = new ForgeSoundType(1.0F, 1.0F, PETRIFIED_WOOD_BREAK, PETRIFIED_WOOD_STEP, PETRIFIED_WOOD_PLACE, PETRIFIED_WOOD_HIT, PETRIFIED_WOOD_FALL);
+    public static final SoundType JADE = new ForgeSoundType(1.0F, 1.0F, JADE_BREAK, JADE_STEP, JADE_PLACE, JADE_HIT, JADE_FALL);
+    public static final SoundType FLINGER_TOTEM = new ForgeSoundType(1.0F, 1.0F, FLINGER_BREAK, JADE_STEP, FLINGER_PLACE, JADE_HIT, JADE_FALL);
+    public static final SoundType ROUGH_JADE = new ForgeSoundType(1.0F, 1.0F, ROUGH_JADE_BREAK, ROUGH_JADE_STEP, ROUGH_JADE_PLACE, ROUGH_JADE_HIT, ROUGH_JADE_FALL);
+    public static final SoundType JADE_ORE = new ForgeSoundType(1.0F, 1.0F,  JADE_ORE_BREAK, () -> SoundEvents.STONE_STEP, () -> SoundEvents.STONE_PLACE, () -> SoundEvents.STONE_HIT, () -> SoundEvents.STONE_FALL);
+    public static final SoundType DEEPSLATE_JADE_ORE = new ForgeSoundType(1.0F, 1.0F,  DEEPSLATE_JADE_ORE_BREAK, () -> SoundEvents.DEEPSLATE_STEP, () -> SoundEvents.DEEPSLATE_PLACE, () -> SoundEvents.DEEPSLATE_HIT, () -> SoundEvents.DEEPSLATE_FALL);
 }

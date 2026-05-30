@@ -4,6 +4,36 @@
       "type": "criteria",
       "config": {
         "criteria": {
+          "sullysmod:bug_meat": {
+            "conditions": {
+              "item": {
+                "items": [
+                  "sullysmod:bug_meat"
+                ]
+              }
+            },
+            "trigger": "minecraft:consume_item"
+          },
+          "sullysmod:cave_carrot": {
+            "conditions": {
+              "item": {
+                "items": [
+                  "sullysmod:cave_carrot"
+                ]
+              }
+            },
+            "trigger": "minecraft:consume_item"
+          },
+          "sullysmod:cooked_bug_meat": {
+            "conditions": {
+              "item": {
+                "items": [
+                  "sullysmod:cooked_bug_meat"
+                ]
+              }
+            },
+            "trigger": "minecraft:consume_item"
+          },
           "sullysmod:cooked_lanternfish": {
             "conditions": {
               "item": {
@@ -69,7 +99,16 @@
             "sullysmod:cooked_piranha"
           ],
           [
+            "sullysmod:bug_meat"
+          ],
+          [
+            "sullysmod:cooked_bug_meat"
+          ],
+          [
             "sullysmod:petrified_cookie"
+          ],
+          [
+            "sullysmod:cave_carrot"
           ]
         ],
         "should_replace_requirements": false

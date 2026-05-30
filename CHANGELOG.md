@@ -1,3 +1,57 @@
+# Changelog version 3.3.0-beta for 1.20.1:
+**This version changes several mod features and the mod's config!**
+**This will be the last version of Sully's Mod for 1.20.1!**
+
+> ## Changes/Updates:
+> - Amber has been rewritten to be more stable. This also changes some amber behaviors, please check the wiki for more information.
+> - Primitive knife is now tagged as forge:tools/knives
+> - Several artifacts can now be placed on the ground 
+> - Artifact flowers can now be placed in a flower pot
+> - Some artifacts can now be recycled (furnace, composter, crafting table)
+> - Nametags can now be found inside the artifact gravel patches
+> - Some broken artifacts can now be repaired
+> - Gem Lanterns are now enabled by default
+> - The configs for replacing some vanilla mobs with sullysmod variants is now percentage instead of a simple true/false
+> - Carnivore behavior on the piranha or wolves now heal the entity slightly
+> - You no longer get the jade block notification on world load
+> - The jade shield now has a new model
+> - Sully's Mod now has a dedicated creative tab and doesn't sort the items into vanilla's tabs anymore. This can be configured in the config
+> - Updated ru_ru @anchor_kotvanov
+> - Updated uk_ua @unroman
+>
+> ## Additions:
+> - Added bug meat, a rare drop from cave critters and some other mobs.
+> - Added new sounds for some jade blocks and the jade shield @JadenXgamer
+> - Added several new artifacts
+> - Added a new ancient skull
+> - Added some new paintings
+> - Added a new skeleton variant: The Mauled
+> - Added ko_kr @sunbatheproductions
+> 
+> ## Fixes:
+> - Ribbed skull can now be obtained
+> - Make advancement for collecting all skulls completable
+> - Piglins now try to pick up the golden goblet and golden belt buckle
+> - Items on the itemstand now keep their previous state and don't reset enchantments or durability
+> - A workaround has been added to prevent some items from not showing up in creative if quark was loaded
+> - Fixed some stone cutter inconsistencies
+> - Fixed some tag and loot table issues with petrified blocks
+> - The throwing knife now rotates in the correct direction
+> - Copper buttons are now tagged as pickaxe mineable
+> - The rendered hitbox for ancient skulls is now the correct size
+> - Botania's mana burst is now also blacklisted for bouncing off jade
+> - Jungle Spider now drops spider eyes and string is affected by looting
+> - Submerging mobs in amber no longer prevents entity shadows globally
+> - Baby tortoise now has the correct size again
+> - Fixed a duplication bug when using "Carry On"
+> - Fixed crashes when using the Sounds mod
+> - Throwing knives can no loner hit endermen
+> - Fix a startup crash @evanbones
+> - Death whistle now plays the same sound for all players
+> - Fix missing texture particles when shift-polishing
+> - Fix a deadlock on worldload when using dynamic resources in modern fix
+
+
 # Changelog version 3.2.1-beta for 1.20.1:
 > ## Changes/Updates:
 > - update zh_cn translation thanks to @0Starocean0

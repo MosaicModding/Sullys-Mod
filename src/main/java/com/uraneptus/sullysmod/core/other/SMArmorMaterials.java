@@ -36,4 +36,14 @@ public class SMArmorMaterials {
             0.0F, 0.0F,
             () -> Ingredient.of(ItemStack.EMPTY)
     );
+
+    public static final BlueprintArmorMaterial STONE_MASK = new BlueprintArmorMaterial(
+            SullysMod.modPrefix("stone_mask"),
+            9,
+            new int[]{1, 0, 0, 0},
+            0,
+            SMSounds.EQUIP_STONE_MASK,
+            0.0F, 0.0F,
+            () -> Ingredient.of(ItemStack.EMPTY)
+    );
 }

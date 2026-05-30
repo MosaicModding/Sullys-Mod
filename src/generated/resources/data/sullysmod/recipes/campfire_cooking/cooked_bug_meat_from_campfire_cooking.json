@@ -1,0 +1,25 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "sullysmod:mod_features",
+          "values": [
+            "bug_meat"
+          ]
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:campfire_cooking",
+        "category": "food",
+        "cookingtime": 600,
+        "experience": 0.35,
+        "ingredient": {
+          "item": "sullysmod:bug_meat"
+        },
+        "result": "sullysmod:cooked_bug_meat"
+      }
+    }
+  ]
+}

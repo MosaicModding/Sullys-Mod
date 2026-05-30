@@ -31,8 +31,10 @@ public class DeathWhistleItem extends Item {
     @Override
     public InteractionResultHolder<ItemStack> use(Level pLevel, Player pPlayer, InteractionHand pUsedHand) {
         ItemStack itemstack = pPlayer.getItemInHand(pUsedHand);
-        SoundEvent soundevent = DEATH_SOUNDS.get(pPlayer.getRandom().nextInt(DEATH_SOUNDS.size()));
-        pLevel.playSound(pPlayer, pPlayer, soundevent, SoundSource.RECORDS, 16.0F, 1.0F);
+        if (!pLevel.isClientSide()) {
+            SoundEvent soundevent = DEATH_SOUNDS.get(pPlayer.getRandom().nextInt(DEATH_SOUNDS.size()));
+            pLevel.playSound(null, pPlayer, soundevent, SoundSource.RECORDS, 16.0F, 1.0F);
+        }
         pLevel.gameEvent(GameEvent.INSTRUMENT_PLAY, pPlayer.position(), GameEvent.Context.of(pPlayer));
         pPlayer.getCooldowns().addCooldown(this, 60);
         pPlayer.awardStat(Stats.ITEM_USED.get(this));

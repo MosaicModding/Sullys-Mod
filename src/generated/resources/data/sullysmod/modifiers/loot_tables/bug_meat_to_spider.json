@@ -1,0 +1,38 @@
+{
+  "modifiers": [
+    {
+      "type": "pools",
+      "config": {
+        "pools": [
+          {
+            "bonus_rolls": 0.0,
+            "entries": [
+              {
+                "type": "minecraft:item",
+                "conditions": [
+                  {
+                    "condition": "sullysmod:mod_feature_flag",
+                    "values": [
+                      "bug_meat"
+                    ]
+                  },
+                  {
+                    "chance": 0.2,
+                    "condition": "minecraft:random_chance_with_looting",
+                    "looting_multiplier": 1.2
+                  }
+                ],
+                "name": "sullysmod:bug_meat"
+              }
+            ],
+            "name": "bug_meat_spider",
+            "rolls": 1.0
+          }
+        ],
+        "replace": false
+      }
+    }
+  ],
+  "priority": "normal",
+  "selector": "minecraft:entities/spider"
+}

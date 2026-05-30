@@ -58,6 +58,12 @@ public class SMSoundDefinitionsProvider extends SoundDefinitionsProvider {
                 sound("random/glass3").pitch(1.3F)
         );
 
+        this.addBasicSound(SMSounds.JADE_SHIELD_RICOCHET,
+                sound(SullysMod.modPrefix("item/jade_shield/ricochet1")),
+                sound(SullysMod.modPrefix("item/jade_shield/ricochet2")),
+                sound(SullysMod.modPrefix("item/jade_shield/ricochet3"))
+        );
+
         //Block Sounds
         this.addBasicSound(SMSounds.POLISH_JADE,
                 sound(SullysMod.modPrefix("block/grindstone/jade_polish0")),
@@ -65,15 +71,29 @@ public class SMSoundDefinitionsProvider extends SoundDefinitionsProvider {
         );
 
         this.addBasicSound(SMSounds.JADE_RICOCHET,
-                sound("block/end_portal/eyeplace1"),
-                sound("block/end_portal/eyeplace2"),
-                sound("block/end_portal/eyeplace3")
+                sound(SullysMod.modPrefix("block/jade/ricochet1")),
+                sound(SullysMod.modPrefix("block/jade/ricochet2")),
+                sound(SullysMod.modPrefix("block/jade/ricochet3"))
         );
 
         this.addBasicSound(SMSounds.FLINGER_FLINGS,
-                sound(SullysMod.modPrefix("block/flinger_totem/flinger_fling1")),
-                sound(SullysMod.modPrefix("block/flinger_totem/flinger_fling3")),
-                sound(SullysMod.modPrefix("block/flinger_totem/flinger_fling3"))
+                sound(SullysMod.modPrefix("block/flinger_totem/shoot1")),
+                sound(SullysMod.modPrefix("block/flinger_totem/shoot2")),
+                sound(SullysMod.modPrefix("block/flinger_totem/shoot3"))
+        );
+
+        this.addBasicSound(SMSounds.FLINGER_PLACE, "block.generic.place",
+                sound(SullysMod.modPrefix("block/flinger_totem/place1")),
+                sound(SullysMod.modPrefix("block/flinger_totem/place2")),
+                sound(SullysMod.modPrefix("block/flinger_totem/place3")),
+                sound(SullysMod.modPrefix("block/flinger_totem/place4"))
+        );
+
+        this.addBasicSound(SMSounds.FLINGER_BREAK, "block.generic.break",
+                sound(SullysMod.modPrefix("block/flinger_totem/place1")),
+                sound(SullysMod.modPrefix("block/flinger_totem/place2")),
+                sound(SullysMod.modPrefix("block/flinger_totem/place3")),
+                sound(SullysMod.modPrefix("block/flinger_totem/place4"))
         );
 
         this.addBasicSound(SMSounds.FLINGER_INPUT_HONEY,
@@ -131,6 +151,88 @@ public class SMSoundDefinitionsProvider extends SoundDefinitionsProvider {
                 sound(SullysMod.modPrefix("block/petrified_wood/step6"))
         );
 
+        this.addBasicSound(SMSounds.JADE_BREAK, "block.generic.break",
+                sound(SullysMod.modPrefix("block/jade/place1")),
+                sound(SullysMod.modPrefix("block/jade/place2")),
+                sound(SullysMod.modPrefix("block/jade/place3")),
+                sound(SullysMod.modPrefix("block/jade/place4"))
+        );
+
+        this.addBasicSound(SMSounds.JADE_FALL, "block.generic.fall",
+                sound(SullysMod.modPrefix("block/jade/step1")),
+                sound(SullysMod.modPrefix("block/jade/step2")),
+                sound(SullysMod.modPrefix("block/jade/step3")),
+                sound(SullysMod.modPrefix("block/jade/step4")),
+                sound(SullysMod.modPrefix("block/jade/step5"))
+        );
+
+        this.addBasicSound(SMSounds.JADE_HIT, "block.generic.hit",
+                sound(SullysMod.modPrefix("block/jade/step1")),
+                sound(SullysMod.modPrefix("block/jade/step2")),
+                sound(SullysMod.modPrefix("block/jade/step3")),
+                sound(SullysMod.modPrefix("block/jade/step4")),
+                sound(SullysMod.modPrefix("block/jade/step5"))
+        );
+
+        this.addBasicSound(SMSounds.JADE_PLACE, "block.generic.place",
+                sound(SullysMod.modPrefix("block/jade/place1")),
+                sound(SullysMod.modPrefix("block/jade/place2")),
+                sound(SullysMod.modPrefix("block/jade/place3")),
+                sound(SullysMod.modPrefix("block/jade/place4"))
+        );
+
+        this.addBasicSound(SMSounds.JADE_STEP, "block.generic.footsteps",
+                sound(SullysMod.modPrefix("block/jade/step1")),
+                sound(SullysMod.modPrefix("block/jade/step2")),
+                sound(SullysMod.modPrefix("block/jade/step3")),
+                sound(SullysMod.modPrefix("block/jade/step4")),
+                sound(SullysMod.modPrefix("block/jade/step5"))
+        );
+
+        this.addBasicSound(SMSounds.ROUGH_JADE_BREAK, "block.generic.break",
+                sound(SullysMod.modPrefix("block/rough_jade/place1")),
+                sound(SullysMod.modPrefix("block/rough_jade/place2")),
+                sound(SullysMod.modPrefix("block/rough_jade/place3"))
+        );
+
+        this.addBasicSound(SMSounds.ROUGH_JADE_FALL, "block.generic.fall",
+                sound(SullysMod.modPrefix("block/rough_jade/step1")),
+                sound(SullysMod.modPrefix("block/rough_jade/step2")),
+                sound(SullysMod.modPrefix("block/rough_jade/step3"))
+        );
+
+        this.addBasicSound(SMSounds.ROUGH_JADE_HIT, "block.generic.hit",
+                sound(SullysMod.modPrefix("block/rough_jade/step1")),
+                sound(SullysMod.modPrefix("block/rough_jade/step2")),
+                sound(SullysMod.modPrefix("block/rough_jade/step3"))
+        );
+
+        this.addBasicSound(SMSounds.ROUGH_JADE_PLACE, "block.generic.place",
+                sound(SullysMod.modPrefix("block/rough_jade/place1")),
+                sound(SullysMod.modPrefix("block/rough_jade/place2")),
+                sound(SullysMod.modPrefix("block/rough_jade/place3"))
+        );
+
+        this.addBasicSound(SMSounds.ROUGH_JADE_STEP, "block.generic.footsteps",
+                sound(SullysMod.modPrefix("block/rough_jade/step1")),
+                sound(SullysMod.modPrefix("block/rough_jade/step2")),
+                sound(SullysMod.modPrefix("block/rough_jade/step3"))
+        );
+
+        this.addBasicSound(SMSounds.JADE_ORE_BREAK, "block.generic.break",
+                sound(SullysMod.modPrefix("block/jade_ore/break1")),
+                sound(SullysMod.modPrefix("block/jade_ore/break2")),
+                sound(SullysMod.modPrefix("block/jade_ore/break3")),
+                sound(SullysMod.modPrefix("block/jade_ore/break4"))
+        );
+
+        this.addBasicSound(SMSounds.DEEPSLATE_JADE_ORE_BREAK, "block.generic.break",
+                sound(SullysMod.modPrefix("block/deepslate_jade_ore/break1")),
+                sound(SullysMod.modPrefix("block/deepslate_jade_ore/break2")),
+                sound(SullysMod.modPrefix("block/deepslate_jade_ore/break3")),
+                sound(SullysMod.modPrefix("block/deepslate_jade_ore/break4"))
+        );
+
         this.addBasicSound(SMSounds.COPPER_BUTTON_CLICK_OFF, "block.button.click",
                 sound(SullysMod.modPrefix("block/copper/copper_click")).pitch(0.5)
         );
@@ -185,6 +287,10 @@ public class SMSoundDefinitionsProvider extends SoundDefinitionsProvider {
         );
 
         this.addBasicSound(SMSounds.NOTE_BLOCK_UNICORN_SKULL, "block.ancient_skull.unicorn",
+                sound("entity.skeleton.ambient", SoundDefinition.SoundType.EVENT)
+        );
+
+        this.addBasicSound(SMSounds.NOTE_BLOCK_SNOUTED_SKULL, "block.ancient_skull.snouted",
                 sound("entity.skeleton.ambient", SoundDefinition.SoundType.EVENT)
         );
 
@@ -326,6 +432,35 @@ public class SMSoundDefinitionsProvider extends SoundDefinitionsProvider {
         this.addBasicSound(SMSounds.BOULDERING_ZOMBIE_DEATH,
                 sound(new ResourceLocation("mob/zombie/death"))
         );
+
+        this.addBasicSound(SMSounds.MAULED_AMBIENT,
+                sound(new ResourceLocation("mob/skeleton/say1")),
+                sound(new ResourceLocation("mob/skeleton/say2")),
+                sound(new ResourceLocation("mob/skeleton/say3"))
+        );
+
+        this.addBasicSound(SMSounds.MAULED_HURT,
+                sound(new ResourceLocation("mob/skeleton/hurt1")),
+                sound(new ResourceLocation("mob/skeleton/hurt2")),
+                sound(new ResourceLocation("mob/skeleton/hurt3")),
+                sound(new ResourceLocation("mob/skeleton/hurt4"))
+        );
+
+        this.addBasicSound(SMSounds.MAULED_STEP, "block.generic.footsteps",
+                sound(new ResourceLocation("mob/skeleton/step1")),
+                sound(new ResourceLocation("mob/skeleton/step2")),
+                sound(new ResourceLocation("mob/skeleton/step3")),
+                sound(new ResourceLocation("mob/skeleton/step4"))
+        );
+
+        this.addBasicSound(SMSounds.MAULED_DEATH,
+                sound(new ResourceLocation("mob/skeleton/death"))
+        );
+
+        this.addBasicSound(SMSounds.MAULED_SHED,
+                sound(SullysMod.modPrefix("entity/mauled/shed"))
+        );
+
         this.addBasicSound(SMSounds.MOUNTAIN_CALLS, "ambient.mountain.calls",
                 sound(SullysMod.modPrefix("ambient/mountain/call1")),
                 sound(SullysMod.modPrefix("ambient/mountain/call2")),
@@ -356,6 +491,14 @@ public class SMSoundDefinitionsProvider extends SoundDefinitionsProvider {
                 sound(new ResourceLocation("item/armor/equip_gold4")),
                 sound(new ResourceLocation("item/armor/equip_gold5")),
                 sound(new ResourceLocation("item/armor/equip_gold6"))
+        );
+        this.addBasicSound(SMSounds.EQUIP_STONE_MASK, "item.armor.equip_stone_mask",
+                sound(new ResourceLocation("item/armor/equip_generic1")),
+                sound(new ResourceLocation("item/armor/equip_generic2")),
+                sound(new ResourceLocation("item/armor/equip_generic3")),
+                sound(new ResourceLocation("item/armor/equip_generic4")),
+                sound(new ResourceLocation("item/armor/equip_generic5")),
+                sound(new ResourceLocation("item/armor/equip_generic6"))
         );
     }
 
