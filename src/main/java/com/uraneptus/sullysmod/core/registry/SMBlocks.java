@@ -10,13 +10,13 @@ import com.uraneptus.sullysmod.common.blocks.*;
 import com.uraneptus.sullysmod.common.blocks.utilities.SMDirectionalBlock;
 import com.uraneptus.sullysmod.core.other.SMProperties;
 import net.minecraft.core.Direction;
+import net.minecraft.util.valueproviders.ConstantInt;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.HangingSignItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.SignItem;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
-import net.minecraft.world.level.block.state.properties.BlockSetType;
 import net.minecraft.world.level.block.state.properties.WoodType;
 import net.minecraft.world.level.material.MapColor;
 import net.neoforged.neoforge.registries.DeferredBlock;
@@ -31,8 +31,8 @@ public class SMBlocks {
     public static List<DeferredBlock<? extends Block>> AUTO_TRANSLATE = new ArrayList<>();
 
     //Jade
-    public static final DeferredBlock<Block> JADE_ORE = createBlock("jade_ore", () -> new DropExperienceBlock(SMProperties.Blocks.JADE_ORE));
-    public static final DeferredBlock<Block> DEEPSLATE_JADE_ORE = createBlock("deepslate_jade_ore", () -> new DropExperienceBlock(SMProperties.Blocks.DEEPSLATE_JADE_ORE));
+    public static final DeferredBlock<Block> JADE_ORE = createBlock("jade_ore", () -> new DropExperienceBlock(ConstantInt.of(0), SMProperties.Blocks.JADE_ORE));
+    public static final DeferredBlock<Block> DEEPSLATE_JADE_ORE = createBlock("deepslate_jade_ore", () -> new DropExperienceBlock(ConstantInt.of(0), SMProperties.Blocks.DEEPSLATE_JADE_ORE));
     public static final DeferredBlock<Block> ROUGH_JADE_BLOCK = createBlockNoLang("rough_jade_block", () -> new Block(SMProperties.Blocks.ROUGH_JADE_BLOCKS));
     public static final DeferredBlock<Block> ROUGH_JADE_BRICKS = createBlock("rough_jade_bricks", () -> new Block(SMProperties.Blocks.ROUGH_JADE_BLOCKS));
     public static final DeferredBlock<Block> JADE_BLOCK = createBlockNoLang("jade_block", () -> new Block(SMProperties.Blocks.JADE_BLOCKS));
@@ -43,8 +43,8 @@ public class SMBlocks {
     public static final DeferredBlock<Block> JADE_PILLAR = createBlock("jade_pillar", () -> new RotatedPillarBlock(SMProperties.Blocks.JADE_BLOCKS));
 
     //Jade Stairs
-    public static final DeferredBlock<Block> ROUGH_JADE_BRICK_STAIRS = createBlock("rough_jade_brick_stairs", () -> new StairBlock(() -> ROUGH_JADE_BRICKS.get().defaultBlockState(), SMProperties.Blocks.ROUGH_JADE_BLOCKS));
-    public static final DeferredBlock<Block> JADE_BRICK_STAIRS = createBlock("jade_brick_stairs", () -> new StairBlock(() -> JADE_BRICKS.get().defaultBlockState(), SMProperties.Blocks.JADE_BLOCKS));
+    public static final DeferredBlock<Block> ROUGH_JADE_BRICK_STAIRS = createBlock("rough_jade_brick_stairs", () -> new StairBlock(ROUGH_JADE_BRICKS.get().defaultBlockState(), SMProperties.Blocks.ROUGH_JADE_BLOCKS));
+    public static final DeferredBlock<Block> JADE_BRICK_STAIRS = createBlock("jade_brick_stairs", () -> new StairBlock(JADE_BRICKS.get().defaultBlockState(), SMProperties.Blocks.JADE_BLOCKS));
 
     //Jade Slabs
     public static final DeferredBlock<Block> ROUGH_JADE_BRICK_SLAB = createBlock("rough_jade_brick_slab", () -> new SlabBlock(SMProperties.Blocks.ROUGH_JADE_BLOCKS));
@@ -98,10 +98,10 @@ public class SMBlocks {
     public static final DeferredBlock<Block> PETRIFIED_TRAPDOOR = createBlock("petrified_trapdoor", () -> new TrapDoorBlock(SMBlocksetTypes.PETRIFIED_BLOCKSET.get(), SMProperties.Blocks.PETRIFIED_TRAPDOOR));
     public static final DeferredBlock<Block> PETRIFIED_STAIRS = createBlock("petrified_stairs", () -> new StairBlock(PETRIFIED_PLANKS.get().defaultBlockState(), SMProperties.Blocks.petrified().requiresCorrectToolForDrops()));
     public static final DeferredBlock<Block> PETRIFIED_SLAB = createBlock("petrified_slab", () -> new SlabBlock(SMProperties.Blocks.petrified().requiresCorrectToolForDrops()));
-    public static final DeferredBlock<Block> PETRIFIED_BUTTON = createBlock("petrified_button", () -> new ButtonBlock(SMProperties.Blocks.PETRIFIED_BUTTON, SMBlocksetTypes.PETRIFIED_BLOCKSET.get(), 20, false));
-    public static final DeferredBlock<Block> PETRIFIED_FENCE_GATE = createBlock("petrified_fence_gate", () -> new FenceGateBlock(SMProperties.Blocks.petrified().requiresCorrectToolForDrops().forceSolidOn(), SMBlocksetTypes.PETRIFIED_WOOD_TYPE.get()));
+    public static final DeferredBlock<Block> PETRIFIED_BUTTON = createBlock("petrified_button", () -> new ButtonBlock(SMBlocksetTypes.PETRIFIED_BLOCKSET.get(), 20, SMProperties.Blocks.PETRIFIED_BUTTON));
+    public static final DeferredBlock<Block> PETRIFIED_FENCE_GATE = createBlock("petrified_fence_gate", () -> new FenceGateBlock(SMBlocksetTypes.PETRIFIED_WOOD_TYPE.get(), SMProperties.Blocks.petrified().requiresCorrectToolForDrops().forceSolidOn()));
     public static final DeferredBlock<Block> PETRIFIED_FENCE = createBlock("petrified_fence", () -> new FenceBlock(SMProperties.Blocks.petrified().requiresCorrectToolForDrops()));
-    public static final DeferredBlock<Block> PETRIFIED_DOOR = createBlock("petrified_door", () -> new DoorBlock(SMProperties.Blocks.petrified().requiresCorrectToolForDrops().noOcclusion().strength(0.35F), SMBlocksetTypes.PETRIFIED_BLOCKSET.get()));
+    public static final DeferredBlock<Block> PETRIFIED_DOOR = createBlock("petrified_door", () -> new DoorBlock(SMBlocksetTypes.PETRIFIED_BLOCKSET.get(), SMProperties.Blocks.petrified().requiresCorrectToolForDrops().noOcclusion().strength(0.35F)));
     public static final DeferredBlock<Block> PETRIFIED_SAPLING = createBlock("petrified_sapling", () -> new PetrifiedSapling(SMProperties.Blocks.PETRIFIED_SAPLING));
     public static final DeferredBlock<Block> POTTED_PETRIFIED_SAPLING = createBlockNoItem("potted_petrified_sapling", () -> new FlowerPotBlock(PETRIFIED_SAPLING.get(), SMProperties.Blocks.flowerPot()));
 
