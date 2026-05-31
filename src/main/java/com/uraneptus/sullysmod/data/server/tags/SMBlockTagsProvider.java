@@ -3,6 +3,7 @@ package com.uraneptus.sullysmod.data.server.tags;
 import com.teamabnormals.blueprint.core.other.tags.BlueprintBlockTags;
 import com.uraneptus.sullysmod.SullysMod;
 import com.uraneptus.sullysmod.core.other.tags.SMBlockTags;
+import com.uraneptus.sullysmod.core.registry.SMArtifacts;
 import com.uraneptus.sullysmod.core.registry.SMBlocks;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
@@ -53,9 +54,14 @@ public class SMBlockTagsProvider extends BlockTagsProvider {
                 SMBlocks.PETRIFIED_FENCE_GATE.get(),
                 SMBlocks.PETRIFIED_FENCE.get(),
                 SMBlocks.PETRIFIED_SIGN.getFirst().get(),
-                SMBlocks.PETRIFIED_HANGING_SIGN.getFirst().get(),
+                SMBlocks.PETRIFIED_SIGN.getSecond().get(),
+                SMBlocks.PETRIFIED_HANGING_SIGN.getSecond().get(),
                 SMBlocks.PETRIFIED_DOOR.get(),
+                SMBlocks.PETRIFIED_TRAPDOOR.get(),
+                SMBlocks.PETRIFIED_PRESSURE_PLATE.get(),
+                SMBlocks.PETRIFIED_BUTTON.get(),
                 SMBlocks.AMBER.get(),
+                SMBlocks.AMBER_SOLID.get(),
                 SMBlocks.ROUGH_AMBER.get(),
                 SMBlocks.CHISELED_AMBER.get(),
                 SMBlocks.AMBER_PILLAR.get(),
@@ -69,7 +75,15 @@ public class SMBlockTagsProvider extends BlockTagsProvider {
                 SMBlocks.EMERALD_LANTERN.get(),
                 SMBlocks.LAPIS_LANTERN.get(),
                 SMBlocks.AMETHYST_LANTERN.get(),
-                SMBlocks.QUARTZ_LANTERN.get()
+                SMBlocks.QUARTZ_LANTERN.get(),
+                SMBlocks.COPPER_BUTTON.get(),
+                SMBlocks.EXPOSED_COPPER_BUTTON.get(),
+                SMBlocks.WEATHERED_COPPER_BUTTON.get(),
+                SMBlocks.OXIDIZED_COPPER_BUTTON.get(),
+                SMBlocks.WAXED_COPPER_BUTTON.get(),
+                SMBlocks.WAXED_EXPOSED_COPPER_BUTTON.get(),
+                SMBlocks.WAXED_WEATHERED_COPPER_BUTTON.get(),
+                SMBlocks.WAXED_OXIDIZED_COPPER_BUTTON.get()
         );
         tag(BlockTags.NEEDS_IRON_TOOL).add(
                 SMBlocks.JADE_ORE.get(),
@@ -130,7 +144,15 @@ public class SMBlockTagsProvider extends BlockTagsProvider {
         tag(BlockTags.WOODEN_STAIRS).add(SMBlocks.PETRIFIED_STAIRS.get());
         tag(BlockTags.PLANKS).add(SMBlocks.PETRIFIED_PLANKS.get());
         tag(BlockTags.SAPLINGS).add(SMBlocks.PETRIFIED_SAPLING.get());
-        tag(BlockTags.FLOWER_POTS).add(SMBlocks.POTTED_PETRIFIED_SAPLING.get());
+        tag(BlockTags.FLOWER_POTS).add(
+                SMBlocks.POTTED_PETRIFIED_SAPLING.get(),
+                SMArtifacts.POTTED_DRIED_CYAN_FLOWER.get(),
+                SMArtifacts.POTTED_DRIED_RED_FLOWER.get()
+        );
+        tag(BlockTags.SMALL_FLOWERS).add(
+                SMArtifacts.DRIED_RED_FLOWER.get(),
+                SMArtifacts.DRIED_CYAN_FLOWER.get()
+        );
 
         //Our Tags
         tag(SMBlockTags.PROJECTILES_BOUNCE_ON).add(
@@ -208,7 +230,7 @@ public class SMBlockTagsProvider extends BlockTagsProvider {
         );
         tag(Tags.Blocks.FENCES_WOODEN).add(SMBlocks.PETRIFIED_FENCE.get());
         tag(Tags.Blocks.FENCE_GATES_WOODEN).add(SMBlocks.PETRIFIED_FENCE_GATE.get());
-        SMBlocks.ANCIENT_SKULLS.forEach(blockSupplier -> {
+        SMArtifacts.ANCIENT_SKULLS.forEach(blockSupplier -> {
             tag(BlueprintBlockTags.NOTE_BLOCK_TOP_INSTRUMENTS).add(blockSupplier.get());
         });
     }

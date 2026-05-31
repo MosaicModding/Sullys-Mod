@@ -1,0 +1,13 @@
+{
+  "type": "sullysmod:add_optional_spawns",
+  "biomes": "#sullysmod:mauled_spawn_in",
+  "mod_feature": [
+    "mauled"
+  ],
+  "spawners": {
+    "type": "sullysmod:mauled",
+    "maxCount": 4,
+    "minCount": 2,
+    "weight": 100
+  }
+}

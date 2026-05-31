@@ -57,7 +57,7 @@ public class PetrifiedTreeFeature extends Feature<PetrifiedTreeConfig> {
     }
 
     private static boolean place(FeaturePlaceContext<PetrifiedTreeConfig> context, StructureTemplate template, WorldGenLevel level, BlockPos offsetPos, StructurePlaceSettings placeSettings, RandomSource random, PetrifiedTreeVariant variant, PetrifiedTreeConfig config) {
-        if (template.placeInWorld(level, new BlockPos(offsetPos.getX(), offsetPos.getY() - 2, offsetPos.getZ()), offsetPos, placeSettings, random, Block.UPDATE_ALL)) {
+        if (template.placeInWorld(level, new BlockPos(offsetPos.getX(), offsetPos.getY() - 2, offsetPos.getZ()), offsetPos, placeSettings, random, Block.UPDATE_CLIENTS)) { //Don't use a flag here that includes UPDATE_NEIGHBORS, because it can lead to server deadlocks. Refer to issue #153
             if (variant.allowAmber()) {
                 int radius = 2;
                 int tries = 2;

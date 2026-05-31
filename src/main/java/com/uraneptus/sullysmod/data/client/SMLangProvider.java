@@ -31,7 +31,7 @@ public class SMLangProvider extends LanguageProvider {
         addBlock(SMBlocks.ROUGH_JADE_BLOCK, "Block of Rough Jade");
 
         //Items
-        SMItems.ARTIFACT_DESC_MAP.forEach((item, desc) -> forItem(item));
+        //SMItems.ARTIFACT_DESC_MAP.forEach(this::forItem);
         SMItems.AUTO_TRANSLATE.forEach(this::forItem);
         add(SMItems.VENOM_VIAL.get(), "Vial of Jungle Venom");
         add(SMItems.LANTERNFISH_BUCKET.get(), "Bucket of Lanternfish");
@@ -49,6 +49,7 @@ public class SMLangProvider extends LanguageProvider {
         forEntity(SMEntityTypes.BOULDERING_ZOMBIE);
         forEntity(SMEntityTypes.JUNGLE_SPIDER);
         forEntity(SMEntityTypes.PIRANHA);
+        forEntity(SMEntityTypes.MAULED);
 
         //Potions
         SMPotions.POTION_TRANSLATIONS.forEach(this::addPotionsForEffect);
@@ -59,6 +60,7 @@ public class SMLangProvider extends LanguageProvider {
 
         add("subtitles.block.grindstone.polish_jade", "Grindstone polishes");
         add("subtitles.block.jade.ricochet", "Projectile ricochets");
+        add("subtitles.item.jade_shield.ricochet", "Projectile ricochets");
         add("subtitles.block.flinger_totem.shoot", "Projectile flung");
         add("subtitles.block.flinger_totem.input_honey", "Projectile absorbed");
         add("subtitles.block.flinger_totem.add_honey", "Honey applied");
@@ -73,6 +75,7 @@ public class SMLangProvider extends LanguageProvider {
         add("subtitles.block.ancient_skull.wide", "Proper Sound soon...");
         add("subtitles.block.ancient_skull.ribbed", "Proper Sound soon...");
         add("subtitles.block.ancient_skull.unicorn", "Proper Sound soon...");
+        add("subtitles.block.ancient_skull.snouted", "Proper Sound soon...");
         add("subtitles.block.amber.drip", "Amber drips");
 
         add("subtitles.entity.tortoise.ambient", "Tortoise chirps");
@@ -103,6 +106,11 @@ public class SMLangProvider extends LanguageProvider {
         add("subtitles.entity.bouldering_zombie.hurt", "Bouldering Zombie hurts");
         add("subtitles.entity.bouldering_zombie.death", "Bouldering Zombie dies");
 
+        add("subtitles.entity.mauled.ambient", "Mauled rattles");
+        add("subtitles.entity.mauled.hurt", "Mauled hurts");
+        add("subtitles.entity.mauled.death", "Mauled dies");
+        add("subtitles.entity.mauled.shed", "Mauled sheds its flesh");
+
         add("subtitles.item.throwing_knife.hit", "Knife hits entity");
         add("subtitles.item.throwing_knife.hit_ground", "Knife hits ground");
         add("subtitles.item.throwing_knife.throw", "Knife flies");
@@ -110,6 +118,7 @@ public class SMLangProvider extends LanguageProvider {
         add("subtitles.item.armor.equip_miners_helmet", "Miners Helmet clanks");
         add("subtitles.item.armor.equip_small_dented_helmet", "Small Dented Helmet clangs");
         add("subtitles.item.armor.equip_lost_crown", "Lost Crown clings");
+        add("subtitles.item.armor.equip_stone_mask", "Stone Mask rattles");
 
         //Other
         SMTextUtil.TRANSLATABLES.forEach(this::add);

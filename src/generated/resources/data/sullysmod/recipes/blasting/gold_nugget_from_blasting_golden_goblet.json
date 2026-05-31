@@ -1,0 +1,25 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "sullysmod:mod_features",
+          "values": [
+            "artifacts"
+          ]
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:blasting",
+        "category": "misc",
+        "cookingtime": 100,
+        "experience": 0.1,
+        "ingredient": {
+          "item": "sullysmod:golden_goblet"
+        },
+        "result": "minecraft:gold_nugget"
+      }
+    }
+  ]
+}

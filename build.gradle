@@ -1,67 +1,87 @@
 plugins {
     id 'eclipse'
     id 'maven-publish'
-    id 'net.minecraftforge.gradle' version '5.1.+'
-    id 'org.parchmentmc.librarian.forgegradle' version '1.+'
-    id 'org.spongepowered.mixin' version '0.7.+'
+    id 'net.neoforged.moddev' version '2.0.141'
+   // id 'org.spongepowered.mixin' version '0.7.+'
 }
 
 version = "${mod_version}"
 group = "com.uraneptus.${mod_id}"
 archivesBaseName = "${mod_id}"
 
-java.toolchain.languageVersion = JavaLanguageVersion.of(17)
-jarJar.enable()
+java.toolchain.languageVersion = JavaLanguageVersion.of(21)
+//jarJar.enable()
 
 println('Java: ' + System.getProperty('java.version') + ' JVM: ' + System.getProperty('java.vm.version') + '(' + System.getProperty('java.vendor') + ') Arch: ' + System.getProperty('os.arch'))
-minecraft {
-    mappings channel: 'parchment', version: "${parchment_version}"
 
-    accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
+neoForge {
+    // Specify the version of NeoForge to use.
+    version = project.forge_version
 
+    parchment {
+        mappingsVersion = project.parchment_version
+        minecraftVersion = project.mc_version
+    }
+
+    // This line is optional. Access Transformers are automatically detected
+    // accessTransformers = project.files('src/main/resources/META-INF/accesstransformer.cfg')
+
+    // Default run configurations.
+    // These can be tweaked, removed, or duplicated as needed.
     runs {
         client {
-            workingDirectory project.file('run')
-            property 'mixin.env.remapRefMap', 'true'
-            property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
-            property 'forge.logging.markers', 'REGISTRIES'
-            property 'forge.logging.console.level', 'debug'
+            client()
 
-            mods {
-                sullysmod {
-                    source sourceSets.main
-                }
-            }
+            // Comma-separated list of namespaces to load gametests from. Empty = all namespaces.
+            systemProperty 'neoforge.enabledGameTestNamespaces', project.mod_id
         }
 
         server {
-            workingDirectory project.file('run')
-            property 'mixin.env.remapRefMap', 'true'
-            property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
-            property 'forge.logging.markers', 'REGISTRIES'
-            property 'forge.logging.console.level', 'debug'
+            server()
+            programArgument '--nogui'
+            systemProperty 'neoforge.enabledGameTestNamespaces', project.mod_id
+        }
 
-            mods {
-                sullysmod {
-                    source sourceSets.main
-                }
-            }
+        // This run config launches GameTestServer and runs all registered gametests, then exits.
+        // By default, the server will crash when no gametests are provided.
+        // The gametest system is also enabled by default for other run configs under the /test command.
+        gameTestServer {
+            type = "gameTestServer"
+            systemProperty 'neoforge.enabledGameTestNamespaces', project.mod_id
         }
 
         data {
-            workingDirectory project.file('run')
-            property 'mixin.env.remapRefMap', 'true'
-            property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
-            property 'forge.logging.markers', 'REGISTRIES'
-            property 'forge.logging.console.level', 'debug'
+            data()
 
-            args '--mod', "${mod_id}", '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/'), '--existing-mod', "${blueprint_id}"
+            // example of overriding the workingDirectory set in configureEach above, uncomment if you want to use it
+            // gameDirectory = project.file('run-data')
 
-            mods {
-                sullysmod {
-                    source sourceSets.main
-                }
-            }
+            // Specify the modid for data generation, where to output the resulting resource, and where to look for existing resources.
+            programArguments.addAll '--mod', project.mod_id, '--all', '--output', file('src/generated/resources/').getAbsolutePath(), '--existing', file('src/main/resources/').getAbsolutePath()
+        }
+
+        // applies to all the run configs above
+        configureEach {
+            // Recommended logging data for a userdev environment
+            // The markers can be added/remove as needed separated by commas.
+            // "SCAN": For mods scan.
+            // "REGISTRIES": For firing of registry events.
+            // "REGISTRYDUMP": For getting the contents of all registries.
+            systemProperty 'forge.logging.markers', 'REGISTRIES'
+
+            // Recommended logging level for the console
+            // You can set various levels here.
+            // Please read: https://stackoverflow.com/questions/2031163/when-to-use-the-different-log-levels
+            logLevel = org.slf4j.event.Level.DEBUG
+        }
+    }
+
+    mods {
+        // define mod <-> source bindings
+        // these are used to tell the game which sources are for which mod
+        // multi mod projects should define one per mod
+        "${mod_id}" {
+            sourceSet(sourceSets.main)
         }
     }
 }
@@ -80,10 +100,14 @@ repositories {
         url = "https://maven.blamejared.com/"
     }
     maven {
-        url = "https://maven.jaackson.me"
+        url = "https://maven.teamabnormals.com"
     }
-    flatDir {
-        dirs 'libs'
+    maven {
+        name = "Mosaic-Modding-Maven"
+        url = 'https://maven.mosaicmodding.com'
+        content {
+            includeGroup "com.mosaicmodding"
+        }
     }
 }
 
@@ -92,31 +116,37 @@ configurations {
 }
 
 dependencies {
-    minecraft "net.minecraftforge:forge:${mc_version}-${forge_version}"
-    implementation fg.deobf("com.teamabnormals:${blueprint_id}:1.20.1-${blueprint_version}")
-    annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
+    //minecraft "net.minecraftforge:forge:${mc_version}-${forge_version}"
+    //implementation ("com.teamabnormals:${blueprint_id}:1.20.1-${blueprint_version}")
+    //temp
+    implementation "curse.maven:blueprint-382216:8048607"
+    //annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
     //For capes
-    implementation fg.deobf("mosaicmodding:MosaicCosmetics:1.20.1-1.0.0-forge")
-    jarJar(group: 'mosaicmodding', name: 'MosaicCosmetics', version: '[1.20.1-1.0.0-forge,)')
+    //implementation ("com.mosaicmodding:mosaic_cosmetics-forge:${cosmetics_version}")
+    //jarJar("com.mosaicmodding:mosaic_cosmetics-forge:$cosmetics_version_range")
 
-    implementation fg.deobf("curse.maven:carry-on-274259:4882500")
-    implementation fg.deobf("curse.maven:zeta-968868:5597406")
-    implementation fg.deobf("curse.maven:quark-243121:5594847")
-    compileOnly fg.deobf("mezz.jei:jei-${mc_version}-forge-api:${jei_version}")
-    implementation fg.deobf("mezz.jei:jei-${mc_version}-forge:${jei_version}")
-    localRuntime fg.deobf("curse.maven:catalogue-459701:4590890")
-    localRuntime fg.deobf("curse.maven:configured-457570:5180900")
+    //implementation fg.deobf("curse.maven:carry-on-274259:4882500")
+    //implementation fg.deobf("curse.maven:zeta-968868:7335229")
+    //implementation fg.deobf("curse.maven:quark-243121:6427817")
+    //compileOnly ("mezz.jei:jei-${mc_version}-forge-api:${jei_version}")
+    //implementation ("mezz.jei:jei-${mc_version}-forge:${jei_version}")
+    //temp
+    implementation "curse.maven:jei-238222:7391682"
+    localRuntime ("curse.maven:catalogue-459701:6926815")
+    localRuntime ("curse.maven:configured-457570:7276577")
     //localRuntime fg.deobf("curse.maven:config-menus-forge-544048:4672356")
-    localRuntime fg.deobf("curse.maven:neat-238372:5838485")
+    localRuntime "curse.maven:neat-238372:7774002"
     //localRuntime fg.deobf("curse.maven:advanced-xray-256256:4840340") //Use this for worldgen tests only
 
     //localRuntime fg.deobf("curse.maven:no-falling-blocks-522715:5617563")
 }
-
+/*
 mixin {
     add sourceSets.main, "${mod_id}.refmap.json"
     config "${mod_id}.mixins.json"
 }
+
+ */
 
 java {
     withSourcesJar()

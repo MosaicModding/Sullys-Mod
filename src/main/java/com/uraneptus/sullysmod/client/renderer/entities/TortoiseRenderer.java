@@ -20,9 +20,7 @@ public class TortoiseRenderer<E extends Tortoise> extends MobRenderer<E, Tortois
     @Override
     public void render(E pEntity, float pEntityYaw, float pPartialTicks, PoseStack pPoseStack, MultiBufferSource pBuffer, int pPackedLight) {
         super.render(pEntity, pEntityYaw, pPartialTicks, pPoseStack, pBuffer, pPackedLight);
-
         if (pEntity.isBaby()) {
-            pPoseStack.scale(0.15F, 0.15F, 0.15F);
             this.shadowRadius *= 0.15F;
         }
     }

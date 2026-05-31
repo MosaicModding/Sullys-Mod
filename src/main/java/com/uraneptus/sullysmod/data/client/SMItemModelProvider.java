@@ -1,6 +1,7 @@
 package com.uraneptus.sullysmod.data.client;
 
 import com.uraneptus.sullysmod.SullysMod;
+import com.uraneptus.sullysmod.core.registry.SMArtifacts;
 import com.uraneptus.sullysmod.core.registry.SMBlocks;
 import com.uraneptus.sullysmod.core.registry.SMItems;
 import net.minecraft.client.renderer.block.model.BlockModel;
@@ -47,6 +48,7 @@ public class SMItemModelProvider extends ItemModelProvider {
         basicSpawnEggItem(SMItems.TORTOISE_SPAWN_EGG);
         basicSpawnEggItem(SMItems.BOULDERING_ZOMBIE_SPAWN_EGG);
         basicSpawnEggItem(SMItems.JUNGLE_SPIDER_SPAWN_EGG);
+        basicSpawnEggItem(SMItems.MAULED_SPAWN_EGG);
         basicItem(SMItems.LANTERNFISH);
         basicItem(SMItems.COOKED_LANTERNFISH);
         basicItem(SMItems.PIRANHA);
@@ -73,6 +75,7 @@ public class SMItemModelProvider extends ItemModelProvider {
         basicItem(SMItems.JADE_HORSE_ARMOR);
         basicItemHandheld(SMItems.THROWING_KNIFE);
         basicBlockItem(SMBlocks.AMBER);
+        basicBlockItem(SMBlocks.AMBER_SOLID);
         basicBlockItem(SMBlocks.ROUGH_AMBER);
         basicBlockItem(SMBlocks.CHISELED_AMBER);
         basicBlockItem(SMBlocks.AMBER_PILLAR);
@@ -106,52 +109,80 @@ public class SMItemModelProvider extends ItemModelProvider {
         blockItemWithItemTexture(SMBlocks.PETRIFIED_HANGING_SIGN.getFirst());
         blockItemWithItemTexture(SMBlocks.PETRIFIED_DOOR);
         itemFromBlockTexture(SMBlocks.PETRIFIED_SAPLING);
-        basicItem(SMItems.BROKEN_VASE);
-        basicItem(SMItems.MINERS_HELMET);
-        basicItem(SMItems.SMALL_DENTED_HELMET);
-        basicItem(SMItems.LOST_CROWN);
-        basicItemHandheld(SMItems.PRIMITIVE_KNIFE);
+        blockItemWithItemTexture(SMArtifacts.BROKEN_VASE);
+        basicItem(SMArtifacts.MINERS_HELMET);
+        basicItem(SMArtifacts.SMALL_DENTED_HELMET);
+        basicItem(SMArtifacts.LOST_CROWN);
+        basicItemHandheld(SMArtifacts.PRIMITIVE_KNIFE);
         blockItemWithItemTexture(SMBlocks.ITEM_STAND);
-        basicItem(SMItems.JADE_AMULET);
-        basicItem(SMItems.PRIMITIVE_RING);
-        basicItem(SMItems.RUSTY_TOOLS);
-        basicItem(SMItems.BROKEN_BOWL);
-        basicItem(SMItems.COPPER_COG);
-        basicItem(SMItems.PETRIFIED_COOKIE);
-        basicItem(SMItems.ARROWHEAD);
-        basicItem(SMItems.DEATH_WHISTLE);
-        basicItem(SMItems.OMINOUS_TABLET);
-        basicItem(SMItems.MOON_TABLET);
-        basicItem(SMItems.STONE_IDOL);
-        basicItem(SMItems.RED_CAP);
-        basicItem(SMItems.DRIED_CYAN_FLOWER);
-        basicItem(SMItems.DRIED_RED_FLOWER);
-        basicItem(SMItems.METALLIC_SKULL);
-        basicItem(SMItems.LOST_BAG);
-        basicItem(SMItems.MYSTERIOUS_PLATE);
-        basicItem(SMItems.FAMILIAR_CUBE);
-        basicItem(SMItems.AMBER_ENCASED_BUG);
-        basicItem(SMItems.FOSSILISED_SHELLS);
-        basicItem(SMItems.FOSSILISED_BONE);
-        basicItem(SMItems.FOSSILISED_FOOTSTEP);
-        basicItem(SMItems.FOSSILISED_FISH);
-        basicItem(SMItems.TORN_MANUSCRIPT);
-        basicItem(SMItems.LOST_JOURNAL);
-        basicItem(SMItems.LOST_SKETCHBOOK);
-        basicItem(SMItems.LOST_RECIPE_BOOK);
-        basicItem(SMItems.GOLDEN_BELT_BUCKLE);
-        basicItem(SMItems.DEEPSLATE_VASE);
-        basicItem(SMItems.SMALL_GEODE);
-        basicItem(SMItems.TORN_CLOTH);
-        basicItem(SMItems.GOLDEN_GOBLET);
-        basicItem(SMItems.EMERALD_EARRING);
-        basicItemHandheld(SMItems.BROKEN_BOTTLE);
-        basicItem(SMItems.FROG_IDOL);
+        basicItem(SMArtifacts.JADE_AMULET);
+        basicItem(SMArtifacts.PRIMITIVE_RING);
+        basicItem(SMArtifacts.RUSTY_TOOLS);
+        blockItemWithItemTexture(SMArtifacts.BROKEN_BOWL);
+        basicItem(SMArtifacts.COPPER_COG);
+        basicItem(SMArtifacts.PETRIFIED_COOKIE);
+        basicItem(SMArtifacts.ARROWHEAD);
+        basicItem(SMArtifacts.DEATH_WHISTLE);
+        basicItem(SMArtifacts.OMINOUS_TABLET);
+        basicItem(SMArtifacts.MOON_TABLET);
+        blockItemWithItemTexture(SMArtifacts.STONE_IDOL);
+        basicItem(SMArtifacts.RED_CAP);
+        basicItem(SMArtifacts.DRIED_CYAN_FLOWER.get().asItem());
+        basicItem(SMArtifacts.DRIED_RED_FLOWER.get().asItem());
+        basicItem(SMArtifacts.METALLIC_SKULL);
+        basicItem(SMArtifacts.LOST_BAG);
+        basicItem(SMArtifacts.MYSTERIOUS_PLATE);
+        blockItemWithItemTexture(SMArtifacts.FAMILIAR_CUBE);
+        basicItem(SMArtifacts.AMBER_ENCASED_BUG);
+        basicItem(SMArtifacts.FOSSILISED_SHELLS);
+        basicItem(SMArtifacts.FOSSILISED_BONE);
+        basicItem(SMArtifacts.FOSSILISED_FOOTSTEP);
+        basicItem(SMArtifacts.FOSSILISED_FISH);
+        basicItem(SMArtifacts.TORN_MANUSCRIPT);
+        basicItem(SMArtifacts.LOST_JOURNAL);
+        basicItem(SMArtifacts.LOST_SKETCHBOOK);
+        basicItem(SMArtifacts.LOST_RECIPE_BOOK);
+        basicItem(SMArtifacts.GOLDEN_BELT_BUCKLE);
+        basicItem(SMArtifacts.DEEPSLATE_VASE);
+        basicItem(SMArtifacts.SMALL_GEODE);
+        basicItem(SMArtifacts.TORN_CLOTH);
+        blockItemWithItemTexture(SMArtifacts.GOLDEN_GOBLET);
+        basicItem(SMArtifacts.EMERALD_EARRING);
+        basicItemHandheld(SMArtifacts.BROKEN_BOTTLE);
+        basicItem(SMItems.BUG_MEAT);
+        basicItem(SMItems.COOKED_BUG_MEAT);
+        blockItemWithItemTexture(SMArtifacts.BROKEN_CUP);
+        basicItem(SMArtifacts.BROKEN_FANCY_DAGGER);
+        basicItem(SMArtifacts.BROKEN_MUG);
+        basicItem(SMArtifacts.CAVE_CARROT);
+        basicItem(SMArtifacts.COPPER_SPOON);
+        basicItem(SMArtifacts.DARK_TABLET);
+        basicItem(SMArtifacts.EYE_TABLET);
+        basicItem(SMArtifacts.FOSSILISED_BEAK);
+        basicItem(SMArtifacts.GLOOMY_TABLET);
+        blockItemWithItemTexture(SMArtifacts.GOLDEN_IDOL);
+        basicItem(SMArtifacts.JADE_RING);
+        basicItem(SMArtifacts.LOST_BESTIARY);
+        basicItem(SMArtifacts.LOST_PICTURE_BOOK);
+        basicItem(SMArtifacts.LOST_SHOE);
+        basicItem(SMArtifacts.PETRIFIED_PILLBUG);
+        basicItem(SMArtifacts.PRIMITIVE_NECKLACE);
+        basicItem(SMArtifacts.SMALL_DIAMOND_GEODE);
+        basicItem(SMArtifacts.SMALL_EMERALD_GEODE);
+        basicItem(SMArtifacts.SNAPPED_PAINTBRUSH);
+        basicItem(SMArtifacts.SOAKED_BOOK);
+        basicItem(SMArtifacts.STONE_MASK);
+        basicItem(SMArtifacts.STRANGE_FUR);
+        basicItem(SMArtifacts.ANCIENT_RELIC);
+        blockItemWithItemTexture(SMBlocks.FIXED_BOWL);
+        blockItemWithItemTexture(SMBlocks.FIXED_CUP);
+        blockItemWithItemTexture(SMBlocks.FIXED_VASE);
+        blockItemWithItemTexture(SMArtifacts.FROG_IDOL);
         //Single use methods
         brokenBottle();
         venomVialItem();
         jadeShieldItem();
-        SMBlocks.ANCIENT_SKULLS.forEach(this::ancientSkull);
+        SMArtifacts.ANCIENT_SKULLS.forEach(this::ancientSkull);
     }
 
     private void basicBlockItem(Supplier<? extends Block> blockForItem) {
@@ -209,11 +240,11 @@ public class SMItemModelProvider extends ItemModelProvider {
                 .guiLight(BlockModel.GuiLight.FRONT)
                 .texture("particle", vanillaBlockLocation(name(Blocks.DARK_OAK_PLANKS)))
                 .transforms()
-                .transform(ItemDisplayContext.THIRD_PERSON_RIGHT_HAND).rotation(45, 135, 0).translation(3.51F, 11, -2).end()
-                .transform(ItemDisplayContext.THIRD_PERSON_LEFT_HAND).rotation(45, 135, 0).translation(13.51F, 3, 5).end()
+                .transform(ItemDisplayContext.THIRD_PERSON_RIGHT_HAND).rotation(45, 135, 0).translation(3.51F, 11, -4).end()
+                .transform(ItemDisplayContext.THIRD_PERSON_LEFT_HAND).rotation(45, 135, 0).translation(13.51F, 3, 3).end()
                 .transform(ItemDisplayContext.FIRST_PERSON_RIGHT_HAND).rotation(0, 180, -5).translation(-15, 5, -11).scale(1.25F, 1.25F, 1.25F).end()
                 .transform(ItemDisplayContext.FIRST_PERSON_LEFT_HAND).rotation(0, 180, -5).translation(5, 5, -11).scale(1.25F, 1.25F, 1.25F).end()
-                .transform(ItemDisplayContext.GUI).rotation(15, -25, -5).translation(2, 2.5F, 0).scale(0.65F, 0.65F, 0.65F).end()
+                .transform(ItemDisplayContext.GUI).rotation(15, -25, -5).translation(2, 0.5F, 0).scale(0.65F, 0.65F, 0.65F).end()
                 .end();
 
         getBuilder(name(item))
@@ -221,13 +252,13 @@ public class SMItemModelProvider extends ItemModelProvider {
                 .guiLight(BlockModel.GuiLight.FRONT)
                 .texture("particle", vanillaBlockLocation(name(Blocks.DARK_OAK_PLANKS)))
                 .transforms()
-                .transform(ItemDisplayContext.THIRD_PERSON_RIGHT_HAND).rotation(0, 90, 0).translation(10, 6, -4).end()
-                .transform(ItemDisplayContext.THIRD_PERSON_LEFT_HAND).rotation(0, 90, 0).translation(10, 6, 12).end()
+                .transform(ItemDisplayContext.THIRD_PERSON_RIGHT_HAND).rotation(0, 90, 0).translation(11, 2, -4).end()
+                .transform(ItemDisplayContext.THIRD_PERSON_LEFT_HAND).rotation(0, 90, 0).translation(11, 2, 10).end()
                 .transform(ItemDisplayContext.FIRST_PERSON_RIGHT_HAND).rotation(0, 180, 5).translation(-10, 2, -10).scale(1.25F, 1.25F, 1.25F).end()
                 .transform(ItemDisplayContext.FIRST_PERSON_LEFT_HAND).rotation(0, 180, 5).translation(10, 0, -10).scale(1.25F, 1.25F, 1.25F).end()
-                .transform(ItemDisplayContext.GUI).rotation(15, -25, -5).translation(2, 2.5F, 0).scale(0.65F, 0.65F, 0.65F).end()
+                .transform(ItemDisplayContext.GUI).rotation(15, -25, -5).translation(2, 0.5F, 0).scale(0.65F, 0.65F, 0.65F).end()
                 .transform(ItemDisplayContext.FIXED).rotation(0, 180, 0).translation(-4.5F, 4.5F, -5).scale(0.55F, 0.55F, 0.55F).end()
-                .transform(ItemDisplayContext.GROUND).rotation(0, 0, 0).translation(2, 4, 2).scale(0.25F, 0.25F, 0.25F).end()
+                .transform(ItemDisplayContext.GROUND).rotation(0, 0, 0).translation(1.7F, 4, 2).scale(0.25F, 0.25F, 0.25F).end()
                 .end()
                 .override().predicate(new ResourceLocation("blocking"), 1).model(new ModelFile.UncheckedModelFile(modItemLocation(name(item) + "_blocking")));
     }
@@ -254,7 +285,7 @@ public class SMItemModelProvider extends ItemModelProvider {
     }
 
     private void brokenBottle() {
-        Item bottle = SMItems.BROKEN_BOTTLE.get();
+        Item bottle = SMArtifacts.BROKEN_BOTTLE.get();
         getBuilder(name(bottle))
                 .parent(getExistingFile(HANDHELD))
                 .texture("layer0", modItemLocation(name(bottle)))

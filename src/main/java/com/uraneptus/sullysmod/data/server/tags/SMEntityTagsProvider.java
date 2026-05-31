@@ -74,7 +74,7 @@ public class SMEntityTagsProvider extends EntityTypeTagsProvider {
                 EntityType.SHULKER_BULLET,
                 EntityType.WITHER_SKULL,
                 EntityType.FISHING_BOBBER
-        );
+        ).addOptional(new ResourceLocation("botania", "mana_burst"));
 
         tag(SMEntityTags.CANNOT_BE_FLUNG).add(
                 EntityType.SMALL_FIREBALL,

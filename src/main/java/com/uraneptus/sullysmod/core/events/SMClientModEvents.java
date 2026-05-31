@@ -59,6 +59,7 @@ public class SMClientModEvents {
         event.registerBlockEntityRenderer(SMBlockEntityTypes.AMBER.get(), AmberBER::new);
         event.registerBlockEntityRenderer(SMBlockEntityTypes.ITEM_STAND.get(), ItemStandBER::new);
         event.registerBlockEntityRenderer(SMBlockEntityTypes.ANCIENT_SKULL.get(), SkullBlockRenderer::new);
+        event.registerEntityRenderer(SMEntityTypes.MAULED.get(), MauledRenderer::new);
     }
 
     @SubscribeEvent
@@ -74,6 +75,9 @@ public class SMClientModEvents {
         event.registerLayerDefinition(BoulderingZombieModel.LAYER_LOCATION, BoulderingZombieModel::createBodyLayer);
         event.registerLayerDefinition(BoulderingZombieModel.INNER_ARMOR, () -> INNER_ARMOR_DEF);
         event.registerLayerDefinition(BoulderingZombieModel.OUTER_ARMOR, () -> OUTER_ARMOR_DEF);
+        event.registerLayerDefinition(MauledModel.MAIN_LAYER, MauledModel::createBodyLayer);
+        event.registerLayerDefinition(MauledModel.INNER_ARMOR, () -> MauledModel.INNER_ARMOR_DEF_M);
+        event.registerLayerDefinition(MauledModel.OUTER_ARMOR, () -> MauledModel.OUTER_ARMOR_DEF_M);
         event.registerLayerDefinition(PiranhaModel.LAYER_LOCATION, PiranhaModel::createBodyLayer);
         event.registerLayerDefinition(MinersHelmetModel.LAYER_LOCATION, MinersHelmetModel::createBodyLayer);
         event.registerLayerDefinition(CrackedAncientSkullModel.LAYER_LOCATION, CrackedAncientSkullModel::createBodyLayer);
@@ -86,6 +90,7 @@ public class SMClientModEvents {
         event.registerLayerDefinition(WideAncientSkullModel.LAYER_LOCATION, WideAncientSkullModel::createBodyLayer);
         event.registerLayerDefinition(RibbedAncientSkullModel.LAYER_LOCATION, RibbedAncientSkullModel::createBodyLayer);
         event.registerLayerDefinition(UnicornAncientSkullModel.LAYER_LOCATION, UnicornAncientSkullModel::createBodyLayer);
+        event.registerLayerDefinition(SnoutedAncientSkullModel.LAYER_LOCATION, SnoutedAncientSkullModel::createBodyLayer);
     }
 
     @SubscribeEvent
@@ -99,8 +104,10 @@ public class SMClientModEvents {
 
     @SubscribeEvent
     public static void onClientSetup(FMLClientSetupEvent event) {
-        ItemProperties.register(SMItems.JADE_SHIELD.get(), new ResourceLocation("blocking"), (itemStack, clientWorld, livingEntity, useTime) -> livingEntity != null && livingEntity.isUsingItem() && livingEntity.getUseItem() == itemStack ? 1.0F : 0.0F);
-        SkullBlockRenderer.SKIN_BY_TYPE.putAll(Util.make(Maps.newHashMap(), SMClientModEvents::addSkull));
+        event.enqueueWork(() -> {
+            ItemProperties.register(SMItems.JADE_SHIELD.get(), new ResourceLocation("blocking"), (itemStack, clientWorld, livingEntity, useTime) -> livingEntity != null && livingEntity.isUsingItem() && livingEntity.getUseItem() == itemStack ? 1.0F : 0.0F);
+            SkullBlockRenderer.SKIN_BY_TYPE.putAll(Util.make(Maps.newHashMap(), SMClientModEvents::addSkull));
+        });
     }
 
     public static void addSkull(Map<SkullBlock.Type, ResourceLocation> map) {
@@ -126,6 +133,7 @@ public class SMClientModEvents {
         event.registerSkullModel(AncientSkullBlock.Types.WIDE, new WideAncientSkullModel(event.getEntityModelSet().bakeLayer(WideAncientSkullModel.LAYER_LOCATION)));
         event.registerSkullModel(AncientSkullBlock.Types.RIBBED, new RibbedAncientSkullModel(event.getEntityModelSet().bakeLayer(RibbedAncientSkullModel.LAYER_LOCATION)));
         event.registerSkullModel(AncientSkullBlock.Types.UNICORN, new UnicornAncientSkullModel(event.getEntityModelSet().bakeLayer(UnicornAncientSkullModel.LAYER_LOCATION)));
+        event.registerSkullModel(AncientSkullBlock.Types.SNOUTED, new SnoutedAncientSkullModel(event.getEntityModelSet().bakeLayer(SnoutedAncientSkullModel.LAYER_LOCATION)));
     }
 
     @SuppressWarnings({"unchecked", "rawtypes"})

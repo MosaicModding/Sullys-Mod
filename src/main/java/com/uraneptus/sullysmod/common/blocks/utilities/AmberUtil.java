@@ -49,7 +49,6 @@ public class AmberUtil {
             if (entity != null) {
                 Level level = entity.level();
                 boolean shouldMeltFlag = false;
-                //level.setBlock(pPos, pState.setValue(IS_MELTED, false), Block.UPDATE_ALL);
 
                 for (BlockPos pos : BlockPos.betweenClosed(pPos.offset(-1, -1, -1), pPos.offset(1, 1, 1))) {
                     BlockState state = pLevel.getBlockState(pos);

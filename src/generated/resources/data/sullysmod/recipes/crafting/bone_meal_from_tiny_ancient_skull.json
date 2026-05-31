@@ -1,0 +1,28 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "sullysmod:mod_features",
+          "values": [
+            "artifacts"
+          ]
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:crafting_shapeless",
+        "category": "misc",
+        "ingredients": [
+          {
+            "item": "sullysmod:tiny_ancient_skull"
+          }
+        ],
+        "result": {
+          "count": 3,
+          "item": "minecraft:bone_meal"
+        }
+      }
+    }
+  ]
+}

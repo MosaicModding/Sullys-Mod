@@ -8,6 +8,7 @@ import com.teamabnormals.blueprint.common.block.sign.BlueprintWallSignBlock;
 import com.uraneptus.sullysmod.SullysMod;
 import com.uraneptus.sullysmod.common.blocks.AmberLayeredCauldronBlock;
 import com.uraneptus.sullysmod.common.blocks.FlingerTotem;
+import com.uraneptus.sullysmod.core.registry.SMArtifacts;
 import com.uraneptus.sullysmod.core.registry.SMBlocks;
 import net.minecraft.core.Direction;
 import net.minecraft.data.PackOutput;
@@ -20,9 +21,11 @@ import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.RegistryObject;
 
+import javax.annotation.Nullable;
 import java.util.function.Supplier;
 
 import static com.uraneptus.sullysmod.data.SMDatagenUtil.*;
+import static com.uraneptus.sullysmod.data.SMDatagenUtil.modBlockLocation;
 
 @SuppressWarnings("SameParameterValue")
 public class SMBlockStateProvider extends BlockStateProvider {
@@ -58,6 +61,7 @@ public class SMBlockStateProvider extends BlockStateProvider {
         modWallBlock(SMBlocks.ROUGH_JADE_BRICK_WALL, SMBlocks.ROUGH_JADE_BRICKS);
         modEggBlock(SMBlocks.TORTOISE_EGG);
         basicBlockWRenderType(SMBlocks.AMBER, "translucent");
+        basicBlockWRenderType(SMBlocks.AMBER_SOLID, "translucent");
         basicBlock(SMBlocks.AMBER_BRICKS);
         modSlabBlock(SMBlocks.AMBER_BRICK_SLAB, SMBlocks.AMBER_BRICKS);
         modWallBlock(SMBlocks.AMBER_BRICK_WALL, SMBlocks.AMBER_BRICKS);
@@ -83,16 +87,19 @@ public class SMBlockStateProvider extends BlockStateProvider {
         modDoorBlockWithRenderType(SMBlocks.PETRIFIED_DOOR, "cutout");
         plantWithPottedBlock(SMBlocks.PETRIFIED_SAPLING, SMBlocks.POTTED_PETRIFIED_SAPLING);
         itemStandBlock(SMBlocks.ITEM_STAND);
-        ancientSkull(SMBlocks.CRACKED_ANCIENT_SKULL);
-        ancientSkull(SMBlocks.CRESTED_ANCIENT_SKULL);
-        ancientSkull(SMBlocks.FLATBILLED_ANCIENT_SKULL);
-        ancientSkull(SMBlocks.GIGANTIC_ANCIENT_SKULL);
-        ancientSkull(SMBlocks.HORNED_ANCIENT_SKULL);
-        ancientSkull(SMBlocks.LONG_ANCIENT_SKULL);
-        ancientSkull(SMBlocks.TINY_ANCIENT_SKULL);
-        ancientSkull(SMBlocks.WIDE_ANCIENT_SKULL);
-        ancientSkull(SMBlocks.RIBBED_ANCIENT_SKULL);
-        ancientSkull(SMBlocks.UNICORN_ANCIENT_SKULL);
+        ancientSkull(SMArtifacts.CRACKED_ANCIENT_SKULL);
+        ancientSkull(SMArtifacts.CRESTED_ANCIENT_SKULL);
+        ancientSkull(SMArtifacts.FLATBILLED_ANCIENT_SKULL);
+        ancientSkull(SMArtifacts.GIGANTIC_ANCIENT_SKULL);
+        ancientSkull(SMArtifacts.HORNED_ANCIENT_SKULL);
+        ancientSkull(SMArtifacts.LONG_ANCIENT_SKULL);
+        ancientSkull(SMArtifacts.TINY_ANCIENT_SKULL);
+        ancientSkull(SMArtifacts.WIDE_ANCIENT_SKULL);
+        ancientSkull(SMArtifacts.RIBBED_ANCIENT_SKULL);
+        ancientSkull(SMArtifacts.UNICORN_ANCIENT_SKULL);
+        ancientSkull(SMArtifacts.SNOUTED_ANCIENT_SKULL);
+        plantWithPottedBlock(SMArtifacts.DRIED_RED_FLOWER, SMArtifacts.POTTED_DRIED_RED_FLOWER);
+        plantWithPottedBlock(SMArtifacts.DRIED_CYAN_FLOWER, SMArtifacts.POTTED_DRIED_CYAN_FLOWER);
         basicBlock(SMBlocks.JADE_LANTERN);
         basicBlock(SMBlocks.DIAMOND_LANTERN);
         basicBlock(SMBlocks.EMERALD_LANTERN);
@@ -100,6 +107,17 @@ public class SMBlockStateProvider extends BlockStateProvider {
         basicBlock(SMBlocks.AMETHYST_LANTERN);
         basicBlock(SMBlocks.QUARTZ_LANTERN);
         amberCauldron();
+        basedOnTemplate(SMBlocks.FIXED_BOWL, "bowl", false, vanillaBlockLocation(name(Blocks.TERRACOTTA)));
+        basedOnTemplate(SMArtifacts.BROKEN_BOWL, "bowl", false,  vanillaBlockLocation(name(Blocks.TERRACOTTA)));
+        basedOnTemplate(SMBlocks.FIXED_VASE, "vase", false,  vanillaBlockLocation(name(Blocks.TERRACOTTA)));
+        basedOnTemplate(SMArtifacts.BROKEN_VASE, "vase", false,  vanillaBlockLocation(name(Blocks.TERRACOTTA)));
+        basedOnTemplate(SMBlocks.FIXED_CUP, "cup", false,  vanillaBlockLocation(name(Blocks.TERRACOTTA)));
+        basedOnTemplate(SMArtifacts.BROKEN_CUP, "cup", false,  vanillaBlockLocation(name(Blocks.TERRACOTTA)));
+        basedOnTemplate(SMArtifacts.GOLDEN_IDOL, false,  vanillaBlockLocation(name(Blocks.GOLD_BLOCK)));
+        basedOnTemplate(SMArtifacts.GOLDEN_GOBLET, false,  vanillaBlockLocation(name(Blocks.GOLD_BLOCK)));
+        basedOnTemplate(SMArtifacts.FAMILIAR_CUBE, false);
+        basedOnTemplate(SMArtifacts.STONE_IDOL, true,  vanillaBlockLocation(name(Blocks.STONE)));
+        basedOnTemplate(SMArtifacts.FROG_IDOL, true,  vanillaBlockLocation(name(Blocks.PACKED_MUD)));
     }
 
     private void basicBlock(Supplier<? extends Block> block) {
@@ -175,12 +193,12 @@ public class SMBlockStateProvider extends BlockStateProvider {
 
     private void totemBlock(Supplier<? extends Block> block) {
         ModelFile totemModel = models().cube(name(block.get()),
-              modBlockLocation(name(block.get()) + "_top"),
-              modBlockLocation(name(block.get()) + "_top"),
-              modBlockLocation(name(block.get()) + "_front"),
-              modBlockLocation(name(block.get()) + "_back"),
-              modBlockLocation(name(block.get()) + "_right"),
-              modBlockLocation(name(block.get()) + "_left"))
+                        modBlockLocation(name(block.get()) + "_top"),
+                        modBlockLocation(name(block.get()) + "_top"),
+                        modBlockLocation(name(block.get()) + "_front"),
+                        modBlockLocation(name(block.get()) + "_back"),
+                        modBlockLocation(name(block.get()) + "_right"),
+                        modBlockLocation(name(block.get()) + "_left"))
                 .texture("particle", modBlockLocation(name(block.get()) + "_back"));
 
         getVariantBuilder(block.get()).forAllStates(blockState -> ConfiguredModel.builder()
@@ -318,5 +336,32 @@ public class SMBlockStateProvider extends BlockStateProvider {
 
             return ConfiguredModel.builder().modelFile(file).build();
         });
+    }
+
+    private void basedOnTemplate(Supplier<? extends Block> block, String diffTemplate, boolean directional, @Nullable ResourceLocation customParticle) {
+        getVariantBuilder(block.get()).forAllStates(blockState -> {
+            ResourceLocation templateLoc = modBlockLocation("template_" + diffTemplate);
+            ResourceLocation baseTexture = modBlockLocation(name(block.get()));
+            ModelFile file = models().withExistingParent(name(block.get()), templateLoc)
+                    .texture("0", baseTexture)
+                    .texture("1", customParticle != null ? customParticle : baseTexture)
+                    .renderType("cutout");
+
+            var builder = ConfiguredModel.builder();
+            builder.modelFile(file);
+            if (directional) {
+                builder.rotationY(((int) blockState.getValue(BlockStateProperties.HORIZONTAL_FACING).toYRot() + 180) % 360);
+            }
+
+            return builder.build();
+        });
+    }
+
+    private void basedOnTemplate(Supplier<? extends Block> block, boolean directional, ResourceLocation customParticle) {
+        basedOnTemplate(block, name(block.get()), directional, customParticle);
+    }
+
+    private void basedOnTemplate(Supplier<? extends Block> block, boolean directional) {
+        basedOnTemplate(block, name(block.get()), directional, null);
     }
 }

@@ -32,7 +32,6 @@ public class ItemStandBE extends BlockEntity {
         if (!this.getDisplayItem().isEmpty()) {
             pTag.put("DisplayItem", this.getDisplayItem().save(new CompoundTag()));
         }
-
     }
 
     @Override
@@ -41,8 +40,13 @@ public class ItemStandBE extends BlockEntity {
         if (!this.getDisplayItem().isEmpty()) {
             tag.put("DisplayItem", this.getDisplayItem().save(new CompoundTag()));
         }
-
         return tag;
+    }
+
+    @Override
+    public void handleUpdateTag(CompoundTag tag) {
+        super.handleUpdateTag(tag);
+        this.load(tag);
     }
 
     @Override

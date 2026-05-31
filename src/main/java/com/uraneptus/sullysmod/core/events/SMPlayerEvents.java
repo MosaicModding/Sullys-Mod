@@ -11,11 +11,10 @@ import com.uraneptus.sullysmod.core.other.SMItemUtil;
 import com.uraneptus.sullysmod.core.other.SMTextDefinitions;
 import com.uraneptus.sullysmod.core.other.tags.SMBiomeTags;
 import com.uraneptus.sullysmod.core.other.tags.SMItemTags;
-import com.uraneptus.sullysmod.core.registry.SMBlocks;
-import com.uraneptus.sullysmod.core.registry.SMItems;
-import com.uraneptus.sullysmod.core.registry.SMParticleTypes;
-import com.uraneptus.sullysmod.core.registry.SMSounds;
+import com.uraneptus.sullysmod.core.registry.*;
 import net.minecraft.ChatFormatting;
+import net.minecraft.Util;
+import net.minecraft.client.resources.language.I18n;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.cauldron.CauldronInteraction;
@@ -50,6 +49,7 @@ import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.loading.FMLEnvironment;
+import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -81,6 +81,15 @@ public class SMPlayerEvents {
                         event.setCanceled(true);
                         event.setCancellationResult(InteractionResult.FAIL);
                         ItemStack resultItem = result.copy();
+
+                        player.swing(hand);
+                        Direction face = event.getFace();
+                        if (face != null) {
+                            ParticleUtils.spawnParticlesOnBlockFace(level, pos, ParticleTypes.CRIT, UniformInt.of(1, 4), face, () -> new Vec3(player.getLookAngle().x() + Mth.nextDouble(random, -0.5, 0.5), 0.8D, player.getLookAngle().z() + Mth.nextDouble(random, -0.5, 0.5)), 0.55D);
+                            ParticleUtils.spawnParticlesOnBlockFace(level, pos, new ItemParticleOption(ParticleTypes.ITEM, itemInHand), UniformInt.of(1, 2), face, () -> new Vec3(Mth.nextDouble(random, -0.05D, 0.05D), 0, Mth.nextDouble(random, -0.05D, 0.05D)), 0.55D);
+                        }
+                        level.playSound(player, pos, SMSounds.POLISH_JADE.get(), SoundSource.BLOCKS, 0.5F, 0.0F);
+
                         if (player.isShiftKeyDown()) {
                             int ingredientCount = itemInHand.getCount();
                             shrinkIngredientAddResults(player, itemInHand, resultItem, resultCount, ingredientCount);
@@ -106,13 +115,6 @@ public class SMPlayerEvents {
                                 }
                             }
                         }
-                        player.swing(hand);
-                        Direction face = event.getFace();
-                        if (face != null) {
-                            ParticleUtils.spawnParticlesOnBlockFace(level, pos, ParticleTypes.CRIT, UniformInt.of(1, 4), face, () -> new Vec3(player.getLookAngle().x() + Mth.nextDouble(random, -0.5, 0.5), 0.8D, player.getLookAngle().z() + Mth.nextDouble(random, -0.5, 0.5)), 0.55D);
-                            ParticleUtils.spawnParticlesOnBlockFace(level, pos, new ItemParticleOption(ParticleTypes.ITEM, itemInHand), UniformInt.of(1, 2), face, () -> new Vec3(Mth.nextDouble(random, -0.05D, 0.05D), 0, Mth.nextDouble(random, -0.05D, 0.05D)), 0.55D);
-                        }
-                        level.playSound(player, pos, SMSounds.POLISH_JADE.get(), SoundSource.BLOCKS, 0.5F, 0.0F);
                     }
                 }
             }
@@ -146,7 +148,7 @@ public class SMPlayerEvents {
         ItemStack itemInHand = event.getItemStack();
         Player player = event.getEntity();
         Level level = event.getLevel();
-        if (itemInHand.is(SMItems.LOST_RECIPE_BOOK.get()) && level.getServer() != null && player instanceof ServerPlayer serverPlayer) {
+        if (itemInHand.is(SMArtifacts.LOST_RECIPE_BOOK.get()) && level.getServer() != null && player instanceof ServerPlayer serverPlayer) {
             List<Recipe<?>> unknownRecipes = new ArrayList<>();
 
             for (Recipe<?> recipe : level.getServer().getRecipeManager().getRecipes()) {
@@ -168,13 +170,14 @@ public class SMPlayerEvents {
     public static void onItemTooltip(ItemTooltipEvent event) {
         Player player = event.getEntity();
         ItemStack itemstack = event.getItemStack();
-        SMItems.ARTIFACT_DESC_MAP.forEach((item, desc) -> {
-            if (itemstack.is(item.get())) {
-                event.getToolTip().add(desc);
+        if (itemstack.is(SMItemTags.ARTIFACTS)) {
+            String descriptionKey = Util.makeDescriptionId("artifact", ForgeRegistries.ITEMS.getKey(itemstack.getItem())) + ".desc";
+            if (I18n.exists(descriptionKey)) {
+                event.getToolTip().add(Component.translatable(descriptionKey).withStyle(SMTextDefinitions.ARTIFACT_DESC_STYLE));
             }
-        });
+        }
 
-        if (itemstack.is(SMItems.JADE_SHIELD.get()) || (itemstack.is(SMItemTags.ARTIFACTS) && !itemstack.is(SMItems.BROKEN_BOTTLE.get()) && !itemstack.is(SMItems.PRIMITIVE_KNIFE.get()))) { //This also hides damage values of artifacts
+        if (itemstack.is(SMItems.JADE_SHIELD.get()) || (itemstack.is(SMItemTags.ARTIFACTS) && !itemstack.is(SMArtifacts.BROKEN_BOTTLE.get()) && !itemstack.is(SMArtifacts.PRIMITIVE_KNIFE.get()))) { //This also hides damage values of artifacts
             if (FMLEnvironment.production) {
                 itemstack.hideTooltipPart(ItemStack.TooltipPart.MODIFIERS);
             }
@@ -252,6 +255,7 @@ public class SMPlayerEvents {
         }
     }
 
+    /*
     @SubscribeEvent
     public static void onPlayerLoggedIn(PlayerEvent.PlayerLoggedInEvent event) {
         Player player = event.getEntity();
@@ -261,15 +265,5 @@ public class SMPlayerEvents {
             serverPlayer.sendSystemMessage(component);
         }
     }
-
-    @SubscribeEvent
-    public static void onPlayerBreakSpeed(PlayerEvent.BreakSpeed event) {
-        Level level = event.getEntity().level();
-        BlockState state = event.getState();
-        if (event.getPosition().isEmpty()) return;
-        if (state.hasProperty(AmberUtil.IS_MELTED)) {
-            float breakSpeed = state.getValue(AmberUtil.IS_MELTED) ? 2F : 6F;
-            event.setNewSpeed(breakSpeed);
-        }
-    }
+     */
 }

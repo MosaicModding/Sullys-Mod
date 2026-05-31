@@ -18,6 +18,7 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.ContainerLevelAccess;
 import net.minecraft.world.inventory.CraftingMenu;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.RecordItem;
 import net.minecraft.world.level.Level;
@@ -44,7 +45,6 @@ public interface WorkstationAttachable {
     void setRecordTickCount(long tickCount);
     long getRecordStartedTick();
     void setRecordStartedTick(long startedTick);
-    //TODO sync this
     boolean isRecordPlaying();
     void setRecordPlaying(boolean isPlaying);
     int getTicksSinceLastEvent();
@@ -187,17 +187,24 @@ public interface WorkstationAttachable {
         this.setRecordTickCount(1 + getRecordTickCount());
     }
 
-    default void handleServerRemoval(Entity entity) {
+    default void handleServerRemoval(Entity entity, Entity.RemovalReason reason) {
         if (this.hasAppliedWorkstation()) {
-            entity.spawnAtLocation(new ItemStack(getAppliedWorkstation().getItem()));
+            dropItemIfAllowed(entity, getAppliedWorkstation().getItem(), reason);
 
             if (!this.getRecordItem().isEmpty()) {
-                entity.spawnAtLocation(new ItemStack(getRecordItem().getItem()));
+                dropItemIfAllowed(entity, getRecordItem().getItem(), reason);
                 setRecordItem(ItemStack.EMPTY);
             }
             this.setRecordPlaying(false);
             this.setRecordTickCount(0);
             this.setTicksSinceLastEvent(0);
+        }
+    }
+
+    default void dropItemIfAllowed(Entity entity, Item item, Entity.RemovalReason reason) {
+        //Dupe-fix for CarryOn mod
+        if (reason != Entity.RemovalReason.UNLOADED_WITH_PLAYER) {
+            entity.spawnAtLocation(new ItemStack(item));
         }
     }
 }

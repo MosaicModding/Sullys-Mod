@@ -1,26 +1,27 @@
 package com.uraneptus.sullysmod.core.registry;
 
 import com.uraneptus.sullysmod.core.SMFeatures;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.item.alchemy.Potion;
 import net.minecraft.world.item.alchemy.PotionBrewing;
 import net.minecraft.world.item.alchemy.Potions;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.neoforge.event.brewing.RegisterBrewingRecipesEvent;
 
 public class SMBrewingRecipes {
 
-    public static void register() {
-        registerRecipe(Potions.AWKWARD, SMItems.JADE.get(), Potions.LUCK, SMFeatures.JADE);
-        registerRecipe(Potions.LUCK, Items.FERMENTED_SPIDER_EYE, SMPotions.UNLUCK.get(), SMFeatures.UNLUCK_POTION);
-        registerRecipe(Potions.AWKWARD, SMItems.TORTOISE_SCUTE.get(), SMPotions.RESISTANCE.get(), SMFeatures.RESISTANCE_POTION);
-        registerRecipe(SMPotions.RESISTANCE.get(), Items.REDSTONE, SMPotions.LONG_RESISTANCE.get(), SMFeatures.RESISTANCE_POTION);
-        registerRecipe(SMPotions.RESISTANCE.get(), Items.GLOWSTONE_DUST, SMPotions.STRONG_RESISTANCE.get(), SMFeatures.RESISTANCE_POTION);
-    }
-
-    //Note: It's not possible yet to prevent potion variant recipes (splash, lingering etc), but as long as the base potion can't be made, it's fine
-    public static void registerRecipe(Potion input, Item ingredient, Potion result, SMFeatures feature) {
-        if (SMFeatures.isEnabled(feature)) {
-            PotionBrewing.addMix(input, ingredient, result);
+    @SubscribeEvent // on the game event bus
+    public static void registerBrewingRecipes(RegisterBrewingRecipesEvent event) {
+        PotionBrewing.Builder builder = event.getBuilder();
+        if (SMFeatures.isEnabled(SMFeatures.JADE)) {
+            builder.addMix(Potions.AWKWARD, SMItems.JADE.get(), Potions.LUCK);
+        }
+        if (SMFeatures.isEnabled(SMFeatures.UNLUCK_POTION)) {
+            builder.addMix(Potions.LUCK, Items.FERMENTED_SPIDER_EYE, SMPotions.UNLUCK);
+        }
+        if (SMFeatures.isEnabled(SMFeatures.RESISTANCE_POTION)) {
+            builder.addMix(Potions.AWKWARD,  SMItems.TORTOISE_SCUTE.get(), SMPotions.RESISTANCE);
+            builder.addMix(SMPotions.RESISTANCE, Items.REDSTONE, SMPotions.LONG_RESISTANCE);
+            builder.addMix(SMPotions.RESISTANCE, Items.GLOWSTONE_DUST, SMPotions.STRONG_RESISTANCE);
         }
     }
 }

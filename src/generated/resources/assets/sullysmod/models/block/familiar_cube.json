@@ -1,0 +1,8 @@
+{
+  "parent": "sullysmod:block/template_familiar_cube",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "0": "sullysmod:block/familiar_cube",
+    "1": "sullysmod:block/familiar_cube"
+  }
+}

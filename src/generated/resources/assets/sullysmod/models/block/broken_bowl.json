@@ -1,0 +1,8 @@
+{
+  "parent": "sullysmod:block/template_bowl",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "0": "sullysmod:block/broken_bowl",
+    "1": "minecraft:block/terracotta"
+  }
+}

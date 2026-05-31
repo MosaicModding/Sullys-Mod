@@ -21,6 +21,10 @@ public class SMTextUtil {
         return addTranslatable(SullysMod.MOD_ID + "." + translatable, translation);
     }
 
+    public static void artifactDesc(String artifactName, String desc) {
+        TRANSLATABLES.put("artifact.sullysmod." + artifactName + ".desc", desc);
+    }
+
     public static Pair<Component, Component> addAdvancementTranslatables(String path, String titleTranslation, String descTranslation) {
         var title = addTranslatable(path + ".title", titleTranslation);
         var desc = addTranslatable(path + ".description", descTranslation);

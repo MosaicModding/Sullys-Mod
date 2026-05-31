@@ -85,24 +85,24 @@
       },
       "trigger": "minecraft:inventory_changed"
     },
-    "tiny_ancient_skull": {
+    "snouted_ancient_skull": {
       "conditions": {
         "items": [
           {
             "items": [
-              "sullysmod:tiny_ancient_skull"
+              "sullysmod:snouted_ancient_skull"
             ]
           }
         ]
       },
       "trigger": "minecraft:inventory_changed"
     },
-    "unicorn_ancient_skull": {
+    "tiny_ancient_skull": {
       "conditions": {
         "items": [
           {
             "items": [
-              "sullysmod:unicorn_ancient_skull"
+              "sullysmod:tiny_ancient_skull"
             ]
           }
         ]
@@ -166,7 +166,7 @@
       "ribbed_ancient_skull"
     ],
     [
-      "unicorn_ancient_skull"
+      "snouted_ancient_skull"
     ]
   ],
   "rewards": {

@@ -25,6 +25,7 @@ public class SMTextDefinitions {
     public static Component JADE_UPGRADE_BASE_SLOT_DESCRIPTION;
     public static Component JADE_UPGRADE_ADDITIONS_SLOT_DESCRIPTION;
     public static Component ARTIFACT_TAB_TITLE;
+    public static Component SULLYSMOD_TAB_TITLE;
     public static Component WHEN_THROWN_TOOLTIP;
     public static Component THROWING_KNIFE_DAMAGE;
     public static Component THROWING_KNIFE_AIR_DAMAGE;
@@ -77,6 +78,7 @@ public class SMTextDefinitions {
         SHELL_HIT_RAVAGER_ADV = SMTextUtil.addAdvancementTranslatables(ADVENTURE_PATH + SHELL_HIT_RAVAGER_ADV_NAME, "Bully the Bullies", "Hit a Ravager with a Tortoise Shell");
         FILL_VIAL_JUNGLE_SPIDER_ADV = SMTextUtil.addAdvancementTranslatables(ADVENTURE_PATH + FILL_VIAL_JUNGLE_SPIDER_ADV_NAME, "Jungle Fever", "Harvest a Jungle Spider's venom using a Glass Vial");
         ARTIFACT_TAB_TITLE = SMTextUtil.addSMTranslatable("itemGroup.artifacts", "Ancient Artifacts");
+        SULLYSMOD_TAB_TITLE = SMTextUtil.addSMTranslatable("itemGroup.sullysmod", "Sully's Mod");
         ITEM_STAND_ADV = SMTextUtil.addAdvancementTranslatables(ADVENTURE_PATH + ITEM_STAND_ADV_NAME, "The start of a collection", "Craft an Item Stand");
         FIRST_ARTIFACT_ADV = SMTextUtil.addAdvancementTranslatables(ADVENTURE_PATH + FIRST_ARTIFACT_ADV_NAME, "A blast from the past", "Find your first artifact in suspicious gravel");
         LOST_CROWN_ADV = SMTextUtil.addAdvancementTranslatables(ADVENTURE_PATH + LOST_CROWN_ADV_NAME, "Back when he ruled the land...", "Find the lost crown artifact");
@@ -84,7 +86,7 @@ public class SMTextDefinitions {
         FIRST_SKULL_ADV = SMTextUtil.addAdvancementTranslatables(ADVENTURE_PATH + FIRST_SKULL_ADV_NAME, "No brainer", "Find your first ancient skull");
         ALL_SKULLS_ADV = SMTextUtil.addAdvancementTranslatables(ADVENTURE_PATH + ALL_SKULLS_ADV_NAME, "Walking with... heavy skulls!", "Find all ancient skulls");
         DRIED_FLOWERS_ADV = SMTextUtil.addAdvancementTranslatables(ADVENTURE_PATH + DRIED_FLOWERS_ADV_NAME, "A sentimental bouquet!", "Find both dried flowers");
-        FIND_TABLETS_ADV = SMTextUtil.addAdvancementTranslatables(ADVENTURE_PATH + FIND_TABLETS_ADV_NAME, "The boogeyman", "Find both ancient tablets");
+        FIND_TABLETS_ADV = SMTextUtil.addAdvancementTranslatables(ADVENTURE_PATH + FIND_TABLETS_ADV_NAME, "The boogeyman", "Find all ancient tablets");
         ALL_FOSSILS_ADV = SMTextUtil.addAdvancementTranslatables(ADVENTURE_PATH + ALL_FOSSILS_ADV_NAME, "Medusa's been busy", "Find all fossils");
         ALL_ARTIFACTS_ADV = SMTextUtil.addAdvancementTranslatables(ADVENTURE_PATH + ALL_ARTIFACTS_ADV_NAME, "A grand collection", "Find all artifacts");
         WHEN_THROWN_TOOLTIP = SMTextUtil.addSMTranslatable("item.modifiers.thrown", "When Thrown:").withStyle(ChatFormatting.GRAY);

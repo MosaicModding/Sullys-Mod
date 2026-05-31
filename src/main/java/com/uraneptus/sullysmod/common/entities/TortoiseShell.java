@@ -381,7 +381,7 @@ public class TortoiseShell extends Entity implements OwnableEntity, WorkstationA
     @Override
     public void remove(Entity.RemovalReason pReason) {
         super.remove(pReason);
-        this.handleServerRemoval(this);
+        this.handleServerRemoval(this, pReason);
     }
 
     @Override

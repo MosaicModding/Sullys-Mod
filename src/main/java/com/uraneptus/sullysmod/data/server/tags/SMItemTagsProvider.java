@@ -2,6 +2,7 @@ package com.uraneptus.sullysmod.data.server.tags;
 
 import com.uraneptus.sullysmod.SullysMod;
 import com.uraneptus.sullysmod.core.other.tags.SMItemTags;
+import com.uraneptus.sullysmod.core.registry.SMArtifacts;
 import com.uraneptus.sullysmod.core.registry.SMBlocks;
 import com.uraneptus.sullysmod.core.registry.SMItems;
 import net.minecraft.core.HolderLookup;
@@ -46,7 +47,7 @@ public class SMItemTagsProvider extends ItemTagsProvider {
                 SMBlocks.PETRIFIED_WOOD.get().asItem(),
                 SMBlocks.STRIPPED_PETRIFIED_WOOD.get().asItem()
         );
-        SMItems.ARTIFACT_DESC_MAP.forEach((item, desc) -> tag(SMItemTags.ARTIFACTS).add(item.get()));
+        SMArtifacts.ARTIFACT_DESC_MAP.forEach(item -> tag(SMItemTags.ARTIFACTS).add(item.get()));
 
         //Minecraft Tags
         tag(ItemTags.BUTTONS).add(
@@ -83,6 +84,10 @@ public class SMItemTagsProvider extends ItemTagsProvider {
                 SMItems.MUSIC_DISC_SCOUR.get(),
                 SMItems.MUSIC_DISC_SUNKEN_PAST.get()
         );
+        tag(ItemTags.SMALL_FLOWERS).add(
+                SMArtifacts.DRIED_RED_FLOWER.get().asItem(),
+                SMArtifacts.DRIED_CYAN_FLOWER.get().asItem()
+        );
         tag(ItemTags.NON_FLAMMABLE_WOOD)
                 .addTag(SMItemTags.PETRIFIED_LOGS)
                 .add(
@@ -111,8 +116,10 @@ public class SMItemTagsProvider extends ItemTagsProvider {
         tag(ItemTags.LOGS).addTag(SMItemTags.PETRIFIED_LOGS);
         tag(ItemTags.SAPLINGS).add(SMBlocks.PETRIFIED_SAPLING.get().asItem());
         tag(ItemTags.STONE_TOOL_MATERIALS).addTag(SMItemTags.PETRIFIED_LOGS);
+        tag(ItemTags.PIGLIN_LOVED).add(SMArtifacts.GOLDEN_BELT_BUCKLE.get(), SMArtifacts.GOLDEN_GOBLET.get().asItem(), SMArtifacts.LOST_CROWN.get(), SMArtifacts.GOLDEN_IDOL.get().asItem());
 
         //Forge Tags
+        tag(SMItemTags.KNIFES).add(SMArtifacts.PRIMITIVE_KNIFE.get());
         tag(SMItemTags.CRAFTING_TABLES).add(Items.CRAFTING_TABLE);
         tag(SMItemTags.JUKEBOXES).add(Items.JUKEBOX);
         tag(SMItemTags.RAW_LANTERNFISH).add(
@@ -165,7 +172,7 @@ public class SMItemTagsProvider extends ItemTagsProvider {
         );
         tag(Tags.Items.FENCES_WOODEN).add(SMBlocks.PETRIFIED_FENCE.get().asItem());
         tag(Tags.Items.FENCE_GATES_WOODEN).add(SMBlocks.PETRIFIED_FENCE_GATE.get().asItem());
-        SMItems.ARTIFACT_DESC_MAP.forEach((item, desc) -> {
+        SMArtifacts.ARTIFACT_DESC_MAP.forEach(item -> {
             if (item.getId().getPath().contains("ancient_skull")) {
                 tag(Tags.Items.HEADS).add(item.get());
                 tag(SMItemTags.ANCIENT_SKULLS).add(item.get());

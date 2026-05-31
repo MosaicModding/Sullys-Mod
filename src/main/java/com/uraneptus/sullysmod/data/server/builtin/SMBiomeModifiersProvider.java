@@ -33,6 +33,7 @@ public class SMBiomeModifiersProvider {
         register(context, "jade_ore", () -> addFeatureModifier(context, SMFeatureDefinitions.PLACED_JADE_ORE, SMBiomeTags.JADE_GENERATES_IN, GenerationStep.Decoration.UNDERGROUND_ORES, SMFeatures.JADE));
         register(context, "petrified_tree", () -> addFeatureModifier(context, SMFeatureDefinitions.PLACED_PETRIFIED_TREE, SMBiomeTags.PETRIFIED_TREES_GENERATE_IN, GenerationStep.Decoration.UNDERGROUND_STRUCTURES, SMFeatures.PETRIFIED_WOOD, SMFeatures.AMBER));
         register(context, "artifact_gravel", () -> addFeatureModifier(context, SMFeatureDefinitions.PLACED_ARTIFACT_GRAVEL, SMBiomeTags.ARTIFACT_GRAVEL_GENERATE_IN, GenerationStep.Decoration.UNDERGROUND_DECORATION, SMFeatures.ARTIFACTS));
+        register(context, "mauled", () -> addSingleSpawnModifier(context, SMBiomeTags.MAULED_SPAWN_IN, SMEntityTypes.MAULED.get(), 100, 2, 4, SMFeatures.MAULED));
     }
 
     private static OptionalAddFeaturesBiomeModifier addFeatureModifier(BootstapContext<BiomeModifier> context, ResourceKey<PlacedFeature> placedSet, TagKey<Biome> biomeTag, GenerationStep.Decoration decoration, SMFeatures... features) {
