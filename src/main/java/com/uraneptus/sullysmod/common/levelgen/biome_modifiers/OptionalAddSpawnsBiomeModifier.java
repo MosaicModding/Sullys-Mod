@@ -1,6 +1,7 @@
 package com.uraneptus.sullysmod.common.levelgen.biome_modifiers;
 
 import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
 import com.uraneptus.sullysmod.core.SMFeatures;
 import com.uraneptus.sullysmod.core.registry.SMBiomeModifiers;
 import net.minecraft.core.Holder;
@@ -8,9 +9,9 @@ import net.minecraft.core.HolderSet;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.MobSpawnSettings;
-import net.minecraftforge.common.world.BiomeModifier;
-import net.minecraftforge.common.world.MobSpawnSettingsBuilder;
-import net.minecraftforge.common.world.ModifiableBiomeInfo;
+import net.neoforged.neoforge.common.world.BiomeModifier;
+import net.neoforged.neoforge.common.world.MobSpawnSettingsBuilder;
+import net.neoforged.neoforge.common.world.ModifiableBiomeInfo;
 
 import java.util.List;
 
@@ -21,7 +22,7 @@ public record OptionalAddSpawnsBiomeModifier(HolderSet<Biome> biomes, List<MobSp
     }
 
     @Override
-    public void modify(Holder<Biome> biome, Phase phase, ModifiableBiomeInfo.BiomeInfo.Builder builder) {
+    public void modify(Holder<Biome> biome, BiomeModifier.Phase phase, ModifiableBiomeInfo.BiomeInfo.Builder builder) {
         if (modFeatures.stream().allMatch(SMFeatures::isEnabled)) {
             if (phase == Phase.ADD && this.biomes.contains(biome)) {
                 MobSpawnSettingsBuilder spawns = builder.getMobSpawnSettings();
@@ -35,7 +36,7 @@ public record OptionalAddSpawnsBiomeModifier(HolderSet<Biome> biomes, List<MobSp
     }
 
     @Override
-    public Codec<? extends BiomeModifier> codec() {
+    public MapCodec<? extends BiomeModifier> codec() {
         return SMBiomeModifiers.ADD_OPTIONAL_SPAWNS_BIOME_MODIFIER_TYPE.get();
     }
 }
