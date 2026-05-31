@@ -2,6 +2,7 @@ package com.uraneptus.sullysmod.core.registry;
 
 import com.teamabnormals.blueprint.core.util.registry.SoundSubRegistryHelper;
 import com.uraneptus.sullysmod.SullysMod;
+import net.minecraft.core.Holder;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.level.block.SoundType;
@@ -107,10 +108,10 @@ public class SMSounds {
     public static final Supplier<SoundEvent> MAULED_SHED = HELPER.createSoundEvent("entity.mauled.shed");
 
     //Equip sounds
-    public static final Supplier<SoundEvent> EQUIP_MINERS_HELMET = HELPER.createSoundEvent("item.armor.equip_miners_helmet");
-    public static final Supplier<SoundEvent> EQUIP_SMALL_DENTED_HELMET = HELPER.createSoundEvent("item.armor.equip_small_dented_helmet");
-    public static final Supplier<SoundEvent> EQUIP_LOST_CROWN = HELPER.createSoundEvent("item.armor.equip_lost_crown");
-    public static final Supplier<SoundEvent> EQUIP_STONE_MASK = HELPER.createSoundEvent("item.armor.equip_stone_mask");
+    public static final Holder<SoundEvent> EQUIP_MINERS_HELMET = HELPER.createSoundEvent("item.armor.equip_miners_helmet");
+    public static final Holder<SoundEvent> EQUIP_SMALL_DENTED_HELMET = HELPER.createSoundEvent("item.armor.equip_small_dented_helmet");
+    public static final Holder<SoundEvent> EQUIP_LOST_CROWN = HELPER.createSoundEvent("item.armor.equip_lost_crown");
+    public static final Holder<SoundEvent> EQUIP_STONE_MASK = HELPER.createSoundEvent("item.armor.equip_stone_mask");
 
     //Ambient sounds
     public static final Supplier<SoundEvent> MOUNTAIN_CALLS = HELPER.createSoundEvent("ambient.mountain.calls");
