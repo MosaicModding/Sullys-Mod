@@ -8,9 +8,9 @@ import net.minecraftforge.fml.common.Mod;
 public class SMConfig {
 
     public static final ForgeConfigSpec.ConfigValue<Boolean> ENABLE_DYNAMIC_VELOCITY;
-    public static final ForgeConfigSpec.ConfigValue<Float> ZOMBIE_IN_DEEPSLATE_REPLACEMENT_RATE;
-    public static final ForgeConfigSpec.ConfigValue<Float> SPIDER_IN_JUNGLE_REPLACEMENT_RATE;
-    public static final ForgeConfigSpec.ConfigValue<Float> SKELETON_IN_DEEPSLATE_REPLACEMENT_RATE;
+    public static final ForgeConfigSpec.ConfigValue<Double> ZOMBIE_IN_DEEPSLATE_REPLACEMENT_RATE;
+    public static final ForgeConfigSpec.ConfigValue<Double> SPIDER_IN_JUNGLE_REPLACEMENT_RATE;
+    public static final ForgeConfigSpec.ConfigValue<Double> SKELETON_IN_DEEPSLATE_REPLACEMENT_RATE;
     public static final ForgeConfigSpec.ConfigValue<Boolean> ENABLE_POLISHABLE_TOOLTIP;
     public static final ForgeConfigSpec.ConfigValue<Boolean> USE_CUSTOM_TAB;
     public static final ForgeConfigSpec.ConfigValue<Boolean> ENABLE_MOUNTAIN_CALLS;
@@ -77,9 +77,9 @@ public class SMConfig {
         ENABLE_DYNAMIC_VELOCITY = COMMON_BUILDER.comment("If the velocity of projectiles bounced off of a Jade block should be based on its previous velocity instead of a static value. [Warning: Experimental] (default = false)").define("Dynamic ricochet velocity", false);
         COMMON_BUILDER.pop();
         COMMON_BUILDER.comment("Vanilla Spawn Modifications").push("vanilla_spawn_modifications");
-        ZOMBIE_IN_DEEPSLATE_REPLACEMENT_RATE = COMMON_BUILDER.comment("Sets a percentage for how many vanilla zombies should be replaced by bouldering zombies in deepslate levels.").define("zombie_deepslate_replacement_rate", 1.0F);
-        SPIDER_IN_JUNGLE_REPLACEMENT_RATE = COMMON_BUILDER.comment("Sets a percentage for how many vanilla spiders should be replaced by jungle spiders in jungle biomes.").define("spider_jungle_replacement_rate", 0.0F);
-        SKELETON_IN_DEEPSLATE_REPLACEMENT_RATE = COMMON_BUILDER.comment("Sets a percentage for how many vanilla skeletons should be replaced by the mauled in deepslate levels.").define("skeleton_deepslate_replacement_rate", 0.2F);
+        ZOMBIE_IN_DEEPSLATE_REPLACEMENT_RATE = COMMON_BUILDER.comment("Sets a percentage for how many vanilla zombies should be replaced by bouldering zombies in deepslate levels.").define("zombie_deepslate_replacement_rate", 1.0D);
+        SPIDER_IN_JUNGLE_REPLACEMENT_RATE = COMMON_BUILDER.comment("Sets a percentage for how many vanilla spiders should be replaced by jungle spiders in jungle biomes.").define("spider_jungle_replacement_rate", 0.0D);
+        SKELETON_IN_DEEPSLATE_REPLACEMENT_RATE = COMMON_BUILDER.comment("Sets a percentage for how many vanilla skeletons should be replaced by the mauled in deepslate levels.").define("skeleton_deepslate_replacement_rate", 0.2D);
         COMMON_BUILDER.pop();
 
         COMMON_BUILDER.comment("Experimental Entity Modifications").push("experimental_entity_modifications");

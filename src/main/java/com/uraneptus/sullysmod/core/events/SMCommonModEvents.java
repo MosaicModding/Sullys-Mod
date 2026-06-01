@@ -18,7 +18,6 @@ import net.minecraft.world.entity.SpawnPlacements;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.levelgen.Heightmap;
-import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.event.AddPackFindersEvent;
 import net.minecraftforge.event.entity.SpawnPlacementRegisterEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -26,8 +25,6 @@ import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.forgespi.locating.IModFile;
 import net.minecraftforge.resource.PathPackResources;
-
-import java.util.function.Predicate;
 
 @Mod.EventBusSubscriber(modid = SullysMod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 @SuppressWarnings("unused")
@@ -59,7 +56,7 @@ public class SMCommonModEvents {
         return rateDependentSpawn(SMFeatures.MAULED, SMConfig.SKELETON_IN_DEEPSLATE_REPLACEMENT_RATE.get(), pPos.getY() > 0, pSpawnType, pRandom);
     }
 
-    private static boolean rateDependentSpawn(SMFeatures requiredFeature, float replacementRate, boolean whenNotToApply, MobSpawnType pSpawnType, RandomSource pRandom) {
+    private static boolean rateDependentSpawn(SMFeatures requiredFeature, double replacementRate, boolean whenNotToApply, MobSpawnType pSpawnType, RandomSource pRandom) {
         if (pSpawnType.equals(MobSpawnType.SPAWNER) || whenNotToApply) {
             return true;
         }
