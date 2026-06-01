@@ -25,7 +25,6 @@ import javax.annotation.Nullable;
 import java.util.function.Supplier;
 
 import static com.uraneptus.sullysmod.data.SMDatagenUtil.*;
-import static com.uraneptus.sullysmod.data.SMDatagenUtil.modBlockLocation;
 
 @SuppressWarnings("SameParameterValue")
 public class SMBlockStateProvider extends BlockStateProvider {

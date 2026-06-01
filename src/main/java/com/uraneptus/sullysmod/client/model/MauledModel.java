@@ -4,7 +4,6 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.uraneptus.sullysmod.SullysMod;
 import com.uraneptus.sullysmod.client.renderer.entities.MauledArmorModel;
 import com.uraneptus.sullysmod.common.entities.Mauled;
-import net.minecraft.client.model.HumanoidArmorModel;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.model.SkeletonModel;
 import net.minecraft.client.model.geom.ModelLayerLocation;

@@ -3,7 +3,6 @@ package com.uraneptus.sullysmod.core.events;
 import com.uraneptus.sullysmod.SullysMod;
 import com.uraneptus.sullysmod.core.SMConfig;
 import com.uraneptus.sullysmod.core.SMFeatures;
-import com.uraneptus.sullysmod.core.registry.SMItems;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.CreativeModeTabs;
