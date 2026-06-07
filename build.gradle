@@ -2,7 +2,6 @@ plugins {
     id 'eclipse'
     id 'maven-publish'
     id 'net.neoforged.moddev' version '2.0.141'
-   // id 'org.spongepowered.mixin' version '0.7.+'
 }
 
 version = "${mod_version}"
@@ -10,7 +9,6 @@ group = "com.uraneptus.${mod_id}"
 archivesBaseName = "${mod_id}"
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(21)
-//jarJar.enable()
 
 println('Java: ' + System.getProperty('java.version') + ' JVM: ' + System.getProperty('java.vm.version') + '(' + System.getProperty('java.vendor') + ') Arch: ' + System.getProperty('os.arch'))
 
@@ -103,8 +101,8 @@ repositories {
         url = "https://maven.teamabnormals.com"
     }
     maven {
-        name = "Mosaic-Modding-Maven"
-        url = 'https://maven.mosaicmodding.com'
+        name "Mosaic-Modding-Maven"
+        url "https://maven.mosaicmodding.com"
         content {
             includeGroup "com.mosaicmodding"
         }
@@ -116,22 +114,22 @@ configurations {
 }
 
 dependencies {
-    //minecraft "net.minecraftforge:forge:${mc_version}-${forge_version}"
-    //implementation ("com.teamabnormals:${blueprint_id}:1.20.1-${blueprint_version}")
-    //temp
-    implementation "curse.maven:blueprint-382216:8048607"
-    //annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
-    //For capes
-    //implementation ("com.mosaicmodding:mosaic_cosmetics-forge:${cosmetics_version}")
-    //jarJar("com.mosaicmodding:mosaic_cosmetics-forge:$cosmetics_version_range")
+    implementation ("com.teamabnormals:blueprint:1.21.1-${blueprint_version}")
+
+    implementation ("com.mosaicmodding:mosaic_cosmetics-neoforge:${cosmetics_version}-${mc_version}")
+    jarJar(implementation("com.mosaicmodding:mosaic_cosmetics-neoforge")) { //todo verify this ones the mod builds
+        version {
+            strictly "${cosmetics_version_range}"
+            prefer "${cosmetics_version}" // The version actually used in your dev workspace
+        }
+    }
 
     //implementation fg.deobf("curse.maven:carry-on-274259:4882500")
     //implementation fg.deobf("curse.maven:zeta-968868:7335229")
     //implementation fg.deobf("curse.maven:quark-243121:6427817")
-    //compileOnly ("mezz.jei:jei-${mc_version}-forge-api:${jei_version}")
-    //implementation ("mezz.jei:jei-${mc_version}-forge:${jei_version}")
-    //temp
-    implementation "curse.maven:jei-238222:7391682"
+    compileOnly ("mezz.jei:jei-${mc_version}-neoforge-api:${jei_version}")
+    implementation ("mezz.jei:jei-${mc_version}-neoforge:${jei_version}")
+
     localRuntime ("curse.maven:catalogue-459701:6926815")
     localRuntime ("curse.maven:configured-457570:7276577")
     //localRuntime fg.deobf("curse.maven:config-menus-forge-544048:4672356")
@@ -140,13 +138,6 @@ dependencies {
 
     //localRuntime fg.deobf("curse.maven:no-falling-blocks-522715:5617563")
 }
-/*
-mixin {
-    add sourceSets.main, "${mod_id}.refmap.json"
-    config "${mod_id}.mixins.json"
-}
-
- */
 
 java {
     withSourcesJar()

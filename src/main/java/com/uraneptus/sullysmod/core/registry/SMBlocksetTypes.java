@@ -47,7 +47,7 @@ public class SMBlocksetTypes {
 
     public static final Supplier<WoodType> PETRIFIED_WOOD_TYPE = Suppliers.memoize(() -> createDefaultWoodType(PETRIFIED_BLOCKSET));
     /**
-     * BREAKING CHANGE use vanilla's method BlockSetType.register() instead
+     * TODO use vanilla's method BlockSetType.register() instead.
      *  needs to be initialized during CommonSetupEvent
      */ 
     public static BlockSetType createBlocksetType(String name, boolean canOpenByHand, boolean canOpenByWindCharge, boolean canButtonBeActivatedByArrows, BlockSetType.PressurePlateSensitivity pressurePlateSensitivity, SoundType soundType, SoundEvent doorClose, SoundEvent doorOpen, SoundEvent trapdoorClose, SoundEvent trapdoorOpen, SoundEvent pressurePlateClickOff, SoundEvent pressurePlateClickOn, SoundEvent buttonClickOff, SoundEvent buttonClickOn) {
@@ -58,7 +58,7 @@ public class SMBlocksetTypes {
         return createWoodType(blockSetType, SoundType.HANGING_SIGN, SoundEvents.FENCE_GATE_CLOSE, SoundEvents.FENCE_GATE_OPEN);
     }
 
-    /**BREAKING CHANGE implement own WoodType registry
+    /**TODO BREAKING CHANGE implement own WoodType registry
      *  simply use WoodType.register() (vanilla method)
      *  [needs to be initialized during CommonStartupEvent]
      *  and use Sheets.addWoodType() to add wood type to sign materials. This can only be on client side!!
