@@ -59,7 +59,7 @@ public class SMCommonModEvents {
         return rateDependentSpawn(SMFeatures.MAULED, SMConfig.SKELETON_IN_DEEPSLATE_REPLACEMENT_RATE.get(), pPos.getY() > 0, pSpawnType, pRandom);
     }
 
-    private static boolean rateDependentSpawn(SMFeatures requiredFeature, float replacementRate, boolean whenNotToApply, MobSpawnType pSpawnType, RandomSource pRandom) {
+    private static boolean rateDependentSpawn(SMFeatures requiredFeature, double replacementRate, boolean whenNotToApply, MobSpawnType pSpawnType, RandomSource pRandom) {
         if (pSpawnType.equals(MobSpawnType.SPAWNER) || whenNotToApply) {
             return true;
         }
@@ -68,7 +68,7 @@ public class SMCommonModEvents {
             return true;
         }
 
-        return pRandom.nextFloat() > replacementRate;
+        return pRandom.nextDouble() > replacementRate;
     }
 
     @SubscribeEvent
