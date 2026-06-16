@@ -20,7 +20,7 @@ import java.util.function.BiConsumer;
 import static com.uraneptus.sullysmod.core.other.loot.SMLootConditions.*;
 
 public class SMArchaeologyLoot implements LootTableSubProvider {
-    public static final int TRASH_WEIGHT_BONUS = 6;
+    public static final int TRASH_WEIGHT_BONUS = 10;
     public static final int ARTIFACT_COMMON_WEIGHT = 50;
     public static final int ARTIFACT_UNCOMMON_WEIGHT = 40;
     public static final int ARTIFACT_RARE_WEIGHT = 30;
@@ -59,7 +59,7 @@ public class SMArchaeologyLoot implements LootTableSubProvider {
                 .add(LootItem.lootTableItem(SMArtifacts.TORN_CLOTH.get()).setWeight(ARTIFACT_COMMON_WEIGHT))
                 .add(LootItem.lootTableItem(SMArtifacts.BROKEN_BOTTLE.get()).setWeight(ARTIFACT_COMMON_WEIGHT))
                 .add(LootItem.lootTableItem(SMArtifacts.BROKEN_CUP.get()).setWeight(ARTIFACT_COMMON_WEIGHT))
-                .add(LootItem.lootTableItem(SMArtifacts.CAVE_CARROT.get()).setWeight(ARTIFACT_COMMON_WEIGHT)).when(belowY(45))
+                .add(LootItem.lootTableItem(SMArtifacts.CAVE_CARROT.get()).setWeight(ARTIFACT_COMMON_WEIGHT).when(belowY(45)))
                 .add(LootItem.lootTableItem(SMArtifacts.COPPER_SPOON.get()).setWeight(ARTIFACT_COMMON_WEIGHT))
                 .add(LootItem.lootTableItem(SMArtifacts.PRIMITIVE_NECKLACE.get()).setWeight(ARTIFACT_COMMON_WEIGHT))
                 //Uncommon
@@ -75,7 +75,7 @@ public class SMArchaeologyLoot implements LootTableSubProvider {
                 .add(LootItem.lootTableItem(SMArtifacts.LOST_RECIPE_BOOK.get()).setWeight(ARTIFACT_UNCOMMON_WEIGHT))
                 .add(LootItem.lootTableItem(SMArtifacts.BROKEN_MUG.get()).setWeight(ARTIFACT_UNCOMMON_WEIGHT))
                 .add(LootItem.lootTableItem(SMArtifacts.LOST_SHOE.get()).setWeight(ARTIFACT_UNCOMMON_WEIGHT))
-                .add(LootItem.lootTableItem(SMArtifacts.PETRIFIED_PILLBUG.get()).setWeight(ARTIFACT_UNCOMMON_WEIGHT)).when(IS_DEEPSLATE_CAVE)
+                .add(LootItem.lootTableItem(SMArtifacts.PETRIFIED_PILLBUG.get()).setWeight(ARTIFACT_UNCOMMON_WEIGHT).when(IS_DEEPSLATE_CAVE))
                 .add(LootItem.lootTableItem(SMArtifacts.SOAKED_BOOK.get()).setWeight(ARTIFACT_UNCOMMON_WEIGHT))
                 //Rare
                 .add(LootItem.lootTableItem(Items.IRON_NUGGET).setWeight(ARTIFACT_RARE_WEIGHT + TRASH_WEIGHT_BONUS))
@@ -97,11 +97,11 @@ public class SMArchaeologyLoot implements LootTableSubProvider {
                 .add(LootItem.lootTableItem(SMArtifacts.MINERS_HELMET.get()).setWeight(ARTIFACT_RARE_WEIGHT))
                 .add(LootItem.lootTableItem(SMArtifacts.EMERALD_EARRING.get()).setWeight(ARTIFACT_RARE_WEIGHT))
                 .add(LootItem.lootTableItem(SMArtifacts.FROG_IDOL.get()).setWeight(ARTIFACT_RARE_WEIGHT).when(isSwamp()))
-                .add(LootItem.lootTableItem(SMArtifacts.JADE_RING.get()).setWeight(ARTIFACT_RARE_WEIGHT)).when(isJungle())
+                .add(LootItem.lootTableItem(SMArtifacts.JADE_RING.get()).setWeight(ARTIFACT_RARE_WEIGHT).when(isJungle()))
                 .add(LootItem.lootTableItem(SMArtifacts.LOST_BESTIARY.get()).setWeight(ARTIFACT_RARE_WEIGHT))
-                .add(LootItem.lootTableItem(SMArtifacts.LOST_PICTURE_BOOK.get()).setWeight(ARTIFACT_RARE_WEIGHT)).when(IS_DEEPSLATE_CAVE)
+                .add(LootItem.lootTableItem(SMArtifacts.LOST_PICTURE_BOOK.get()).setWeight(ARTIFACT_RARE_WEIGHT).when(IS_DEEPSLATE_CAVE))
                 .add(LootItem.lootTableItem(SMArtifacts.SNAPPED_PAINTBRUSH.get()).setWeight(ARTIFACT_RARE_WEIGHT))
-                .add(LootItem.lootTableItem(SMArtifacts.STRANGE_FUR.get()).setWeight(ARTIFACT_RARE_WEIGHT)).when(isMountain())
+                .add(LootItem.lootTableItem(SMArtifacts.STRANGE_FUR.get()).setWeight(ARTIFACT_RARE_WEIGHT).when(isMountain()))
                 //Very Rare
                 .add(LootItem.lootTableItem(Items.MUSIC_DISC_RELIC).setWeight(ARTIFACT_VERY_RARE_WEIGHT + TRASH_WEIGHT_BONUS))
                 .add(LootItem.lootTableItem(Items.EXPLORER_POTTERY_SHERD).setWeight(ARTIFACT_VERY_RARE_WEIGHT + TRASH_WEIGHT_BONUS))
@@ -134,9 +134,8 @@ public class SMArchaeologyLoot implements LootTableSubProvider {
                 .add(LootItem.lootTableItem(SMArtifacts.EYE_TABLET.get()).setWeight(ARTIFACT_VERY_RARE_WEIGHT))
                 .add(LootItem.lootTableItem(SMArtifacts.FOSSILISED_BEAK.get()).setWeight(ARTIFACT_VERY_RARE_WEIGHT))
                 .add(LootItem.lootTableItem(SMArtifacts.GLOOMY_TABLET.get()).setWeight(ARTIFACT_VERY_RARE_WEIGHT))
-                .add(LootItem.lootTableItem(SMArtifacts.SMALL_DIAMOND_GEODE.get()).setWeight(ARTIFACT_VERY_RARE_WEIGHT)).when(belowY(-20))
-                .add(LootItem.lootTableItem(SMArtifacts.SMALL_EMERALD_GEODE.get()).setWeight(ARTIFACT_VERY_RARE_WEIGHT)).when(isMountain().and(belowY(30)))
-                .add(LootItem.lootTableItem(SMArtifacts.STONE_MASK.get()).setWeight(ARTIFACT_VERY_RARE_WEIGHT))
+                .add(LootItem.lootTableItem(SMArtifacts.SMALL_DIAMOND_GEODE.get()).setWeight(ARTIFACT_VERY_RARE_WEIGHT).when(belowY(-20)))
+                .add(LootItem.lootTableItem(SMArtifacts.SMALL_EMERALD_GEODE.get()).setWeight(ARTIFACT_VERY_RARE_WEIGHT).when(isMountain().and(belowY(30))))                .add(LootItem.lootTableItem(SMArtifacts.STONE_MASK.get()).setWeight(ARTIFACT_VERY_RARE_WEIGHT))
                 //Extremely Rare
                 .add(LootItem.lootTableItem(SMArtifacts.STONE_IDOL.get()).setWeight(ARTIFACT_EXTREMELY_RARE_WEIGHT))
                 .add(LootItem.lootTableItem(SMArtifacts.RED_CAP.get()).setWeight(ARTIFACT_EXTREMELY_RARE_WEIGHT))
