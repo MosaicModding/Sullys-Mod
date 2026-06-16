@@ -1,3 +1,14 @@
+# Changelog version 3.3.1-beta for 1.20.1:
+
+> ## Changes/Updates:
+> - Updated ru_ru @AnchorMcLovin
+> - Updated de_de
+> - Slightly increased the chance of spawning trash in suspicious gravel
+>
+> ## Fixes:
+> - Fixed spawn modification configs not working by switching to double
+> - Fixed suspicious gravel loot not spawning
+
 # Changelog version 3.3.0-beta for 1.20.1:
 **This version changes several mod features and the mod's config!**
 **This will be the last version of Sully's Mod for 1.20.1!**
