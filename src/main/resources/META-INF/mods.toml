@@ -33,7 +33,7 @@ displayTest = "MATCH_VERSION"
 [[dependencies.sullysmod]]
     modId = "blueprint"
     mandatory = true
-    versionRange = "[7.0.0,)"
+    versionRange = "[7.1.0,)"
     ordering = "BEFORE"
     side = "BOTH"
 

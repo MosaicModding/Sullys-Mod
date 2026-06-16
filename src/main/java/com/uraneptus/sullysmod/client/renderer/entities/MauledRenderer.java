@@ -3,7 +3,6 @@ package com.uraneptus.sullysmod.client.renderer.entities;
 import com.uraneptus.sullysmod.SullysMod;
 import com.uraneptus.sullysmod.client.model.MauledModel;
 import com.uraneptus.sullysmod.common.entities.Mauled;
-import net.minecraft.client.model.HumanoidArmorModel;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.HumanoidMobRenderer;
 import net.minecraft.client.renderer.entity.layers.HumanoidArmorLayer;
