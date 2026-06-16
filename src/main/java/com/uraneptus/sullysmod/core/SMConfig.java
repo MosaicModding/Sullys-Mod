@@ -1,45 +1,42 @@
 package com.uraneptus.sullysmod.core;
 
-import com.uraneptus.sullysmod.SullysMod;
-import net.minecraftforge.common.ForgeConfigSpec;
-import net.minecraftforge.fml.common.Mod;
+import net.neoforged.neoforge.common.ModConfigSpec;
 
-@Mod.EventBusSubscriber(modid = SullysMod.MOD_ID)
 public class SMConfig {
 
-    public static final ForgeConfigSpec.ConfigValue<Boolean> ENABLE_DYNAMIC_VELOCITY;
-    public static final ForgeConfigSpec.ConfigValue<Double> ZOMBIE_IN_DEEPSLATE_REPLACEMENT_RATE;
-    public static final ForgeConfigSpec.ConfigValue<Double> SPIDER_IN_JUNGLE_REPLACEMENT_RATE;
-    public static final ForgeConfigSpec.ConfigValue<Double> SKELETON_IN_DEEPSLATE_REPLACEMENT_RATE;
-    public static final ForgeConfigSpec.ConfigValue<Boolean> ENABLE_POLISHABLE_TOOLTIP;
-    public static final ForgeConfigSpec.ConfigValue<Boolean> USE_CUSTOM_TAB;
-    public static final ForgeConfigSpec.ConfigValue<Boolean> ENABLE_MOUNTAIN_CALLS;
-    public static final ForgeConfigSpec.ConfigValue<Boolean> ENABLE_MYSTERIOUS_EYES;
-    public static final ForgeConfigSpec.ConfigValue<Boolean> ENABLE_WOLF_CARNIVORE;
-    public static final ForgeConfigSpec.ConfigValue<Boolean> ENABLE_JADE;
-    public static final ForgeConfigSpec.ConfigValue<Boolean> ENABLE_PETRIFIED_WOOD;
-    public static final ForgeConfigSpec.ConfigValue<Boolean> ENABLE_AMBER;
-    public static final ForgeConfigSpec.ConfigValue<Boolean> ENABLE_TORTOISE;
-    public static final ForgeConfigSpec.ConfigValue<Boolean> ENABLE_LANTERNFISH;
-    public static final ForgeConfigSpec.ConfigValue<Boolean> ENABLE_PIRANHA;
-    public static final ForgeConfigSpec.ConfigValue<Boolean> ENABLE_BOULDERING_ZOMBIE;
-    public static final ForgeConfigSpec.ConfigValue<Boolean> ENABLE_JUNGLE_SPIDER;
-    public static final ForgeConfigSpec.ConfigValue<Boolean> ENABLE_ITEM_STAND;
-    public static final ForgeConfigSpec.ConfigValue<Boolean> ENABLE_ARTIFACTS;
-    public static final ForgeConfigSpec.ConfigValue<Boolean> ENABLE_UNLUCK_POTION;
-    public static final ForgeConfigSpec.ConfigValue<Boolean> ENABLE_RESISTANCE_POTION;
-    public static final ForgeConfigSpec.ConfigValue<Boolean> ENABLE_COPPER_BUTTONS;
-    public static final ForgeConfigSpec.ConfigValue<Boolean> ENABLE_GEM_LANTERNS;
-    public static final ForgeConfigSpec.ConfigValue<Boolean> ENABLE_GRINDSTONE_POLISHING;
-    public static final ForgeConfigSpec.ConfigValue<Boolean> ENABLE_BUG_MEAT;
-    public static final ForgeConfigSpec.ConfigValue<Boolean> ENABLE_MAULED;
+    public static final ModConfigSpec.ConfigValue<Boolean> ENABLE_DYNAMIC_VELOCITY;
+    public static final ModConfigSpec.ConfigValue<Double> ZOMBIE_IN_DEEPSLATE_REPLACEMENT_RATE;
+    public static final ModConfigSpec.ConfigValue<Double> SPIDER_IN_JUNGLE_REPLACEMENT_RATE;
+    public static final ModConfigSpec.ConfigValue<Double> SKELETON_IN_DEEPSLATE_REPLACEMENT_RATE;
+    public static final ModConfigSpec.ConfigValue<Boolean> ENABLE_POLISHABLE_TOOLTIP;
+    public static final ModConfigSpec.ConfigValue<Boolean> USE_CUSTOM_TAB;
+    public static final ModConfigSpec.ConfigValue<Boolean> ENABLE_MOUNTAIN_CALLS;
+    public static final ModConfigSpec.ConfigValue<Boolean> ENABLE_MYSTERIOUS_EYES;
+    public static final ModConfigSpec.ConfigValue<Boolean> ENABLE_WOLF_CARNIVORE;
+    public static final ModConfigSpec.ConfigValue<Boolean> ENABLE_JADE;
+    public static final ModConfigSpec.ConfigValue<Boolean> ENABLE_PETRIFIED_WOOD;
+    public static final ModConfigSpec.ConfigValue<Boolean> ENABLE_AMBER;
+    public static final ModConfigSpec.ConfigValue<Boolean> ENABLE_TORTOISE;
+    public static final ModConfigSpec.ConfigValue<Boolean> ENABLE_LANTERNFISH;
+    public static final ModConfigSpec.ConfigValue<Boolean> ENABLE_PIRANHA;
+    public static final ModConfigSpec.ConfigValue<Boolean> ENABLE_BOULDERING_ZOMBIE;
+    public static final ModConfigSpec.ConfigValue<Boolean> ENABLE_JUNGLE_SPIDER;
+    public static final ModConfigSpec.ConfigValue<Boolean> ENABLE_ITEM_STAND;
+    public static final ModConfigSpec.ConfigValue<Boolean> ENABLE_ARTIFACTS;
+    public static final ModConfigSpec.ConfigValue<Boolean> ENABLE_UNLUCK_POTION;
+    public static final ModConfigSpec.ConfigValue<Boolean> ENABLE_RESISTANCE_POTION;
+    public static final ModConfigSpec.ConfigValue<Boolean> ENABLE_COPPER_BUTTONS;
+    public static final ModConfigSpec.ConfigValue<Boolean> ENABLE_GEM_LANTERNS;
+    public static final ModConfigSpec.ConfigValue<Boolean> ENABLE_GRINDSTONE_POLISHING;
+    public static final ModConfigSpec.ConfigValue<Boolean> ENABLE_BUG_MEAT;
+    public static final ModConfigSpec.ConfigValue<Boolean> ENABLE_MAULED;
 
-    public static final ForgeConfigSpec CLIENT;
-    public static final ForgeConfigSpec COMMON;
+    public static final ModConfigSpec CLIENT;
+    public static final ModConfigSpec COMMON;
 
     static {
-        ForgeConfigSpec.Builder CLIENT_BUILDER = new ForgeConfigSpec.Builder();
-        ForgeConfigSpec.Builder COMMON_BUILDER = new ForgeConfigSpec.Builder();
+        ModConfigSpec.Builder CLIENT_BUILDER = new ModConfigSpec.Builder();
+        ModConfigSpec.Builder COMMON_BUILDER = new ModConfigSpec.Builder();
 
         //Client
         ENABLE_POLISHABLE_TOOLTIP = CLIENT_BUILDER.comment("Enables the 'Polishable' tooltip on polishable items").define("Enable Polishable Tooltip", true);

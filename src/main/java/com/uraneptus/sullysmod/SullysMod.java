@@ -22,37 +22,30 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.common.capabilities.RegisterCapabilitiesEvent;
-import net.minecraftforge.common.crafting.CraftingHelper;
-import net.minecraftforge.common.data.ExistingFileHelper;
-import net.minecraftforge.data.event.GatherDataEvent;
-import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
-import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.ModLoadingContext;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.config.ModConfig;
-import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.neoforged.bus.api.IEventBus;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.ModContainer;
+import net.neoforged.fml.common.Mod;
+import net.neoforged.fml.config.ModConfig;
+import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.neoforged.neoforge.common.data.ExistingFileHelper;
+import net.neoforged.neoforge.data.event.GatherDataEvent;
 import org.slf4j.Logger;
 
 import java.util.concurrent.CompletableFuture;
 
 @Mod(SullysMod.MOD_ID)
-@Mod.EventBusSubscriber(modid = SullysMod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class SullysMod {
     public static final String MOD_ID = "sullysmod";
     public static final RegistryHelper REGISTRY_HELPER = new RegistryHelper(MOD_ID);
     public static final Logger LOGGER = LogUtils.getLogger();
 
-    public SullysMod() {
-        IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
+    public SullysMod(IEventBus bus, ModContainer modContainer) {
         bus.addListener(this::setup);
         bus.addListener(this::gatherData);
 
-        ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, SMConfig.CLIENT);
-        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, SMConfig.COMMON);
+        modContainer.registerConfig(ModConfig.Type.CLIENT, SMConfig.CLIENT);
+        modContainer.registerConfig(ModConfig.Type.COMMON, SMConfig.COMMON);
 
         SMTextDefinitions.init();
         SMPetrifiedTreeVariants.init();
@@ -75,8 +68,6 @@ public class SullysMod {
         SMCreativeModeTabs.TABS.register(bus);
 
         CraftingHelper.register(new SMFeatureRecipeCondition.Serializer());
-
-        MinecraftForge.EVENT_BUS.register(this);
     }
 
     public static ResourceLocation modPrefix(String path) {
