@@ -30,6 +30,7 @@ import net.neoforged.fml.config.ModConfig;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
+import net.neoforged.neoforge.event.entity.EntityAttributeCreationEvent;
 import org.slf4j.Logger;
 
 import java.util.concurrent.CompletableFuture;
@@ -71,11 +72,11 @@ public class SullysMod {
     }
 
     public static ResourceLocation modPrefix(String path) {
-        return new ResourceLocation(SullysMod.MOD_ID, path);
+        return ResourceLocation.fromNamespaceAndPath(SullysMod.MOD_ID, path);
     }
 
     public static ResourceLocation blueprintPrefix(String path) {
-        return new ResourceLocation(Blueprint.MOD_ID, path);
+        return ResourceLocation.fromNamespaceAndPath(Blueprint.MOD_ID, path);
     }
 
     @SubscribeEvent

@@ -22,7 +22,7 @@ import java.util.function.Function;
 import java.util.function.Supplier;
 
 public class SMBiomeModifiers {
-    private static final DeferredRegister<MapCodec<? extends BiomeModifier>> BIOME_MODIFIERS =
+    public static final DeferredRegister<MapCodec<? extends BiomeModifier>> BIOME_MODIFIERS =
             DeferredRegister.create(NeoForgeRegistries.Keys.BIOME_MODIFIER_SERIALIZERS, SullysMod.MOD_ID);
 
     public static final Supplier<MapCodec<OptionalAddFeaturesBiomeModifier>> ADD_OPTIONAL_FEATURES_BIOME_MODIFIER_TYPE =
