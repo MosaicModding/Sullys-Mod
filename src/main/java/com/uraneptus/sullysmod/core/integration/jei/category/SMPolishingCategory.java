@@ -4,7 +4,7 @@ import com.google.common.collect.ImmutableList;
 import com.uraneptus.sullysmod.SullysMod;
 import com.uraneptus.sullysmod.common.recipes.GrindstonePolishingRecipe;
 import com.uraneptus.sullysmod.core.integration.jei.JEIRecipeTypes;
-import com.uraneptus.sullysmod.core.other.SMTextDefinitions;
+import com.uraneptus.sullysmod.core.registry.SMTextDefinitions;
 import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
 import mezz.jei.api.gui.drawable.IDrawable;

@@ -2,8 +2,8 @@ package com.uraneptus.sullysmod.data.server;
 
 import com.uraneptus.sullysmod.SullysMod;
 import com.uraneptus.sullysmod.common.recipes.SMFeatureRecipeCondition;
-import com.uraneptus.sullysmod.core.SMFeatures;
-import com.uraneptus.sullysmod.core.other.tags.SMItemTags;
+import com.uraneptus.sullysmod.core.SMFeatureSelection;
+import com.uraneptus.sullysmod.core.registry.tags.SMItemTags;
 import com.uraneptus.sullysmod.core.registry.SMArtifacts;
 import com.uraneptus.sullysmod.core.registry.SMBlocks;
 import com.uraneptus.sullysmod.core.registry.SMItems;
@@ -39,132 +39,132 @@ public class SMRecipeProvider extends RecipeProvider {
     protected void buildRecipes(Consumer<FinishedRecipe> consumer) {
 
         //Cooking, Smelting etc.
-        cookingRecipes(SMItems.LANTERNFISH, SMItems.COOKED_LANTERNFISH, 0.35F, consumer, SMFeatures.LANTERNFISH);
-        cookingRecipes(SMItems.PIRANHA, SMItems.COOKED_PIRANHA, 0.35F, consumer, SMFeatures.PIRANHA);
-        cookingRecipes(SMItems.BUG_MEAT, SMItems.COOKED_BUG_MEAT, 0.35F, consumer, SMFeatures.BUG_MEAT);
+        cookingRecipes(SMItems.LANTERNFISH, SMItems.COOKED_LANTERNFISH, 0.35F, consumer, SMFeatureSelection.LANTERNFISH);
+        cookingRecipes(SMItems.PIRANHA, SMItems.COOKED_PIRANHA, 0.35F, consumer, SMFeatureSelection.PIRANHA);
+        cookingRecipes(SMItems.BUG_MEAT, SMItems.COOKED_BUG_MEAT, 0.35F, consumer, SMFeatureSelection.BUG_MEAT);
 
-        meltingRecipes(RecipeCategory.BUILDING_BLOCKS, SMBlocks.JADE_ORE, SMItems.ROUGH_JADE, 0.7F, true, consumer, SMFeatures.JADE);
-        meltingRecipes(RecipeCategory.BUILDING_BLOCKS, SMBlocks.DEEPSLATE_JADE_ORE, SMItems.ROUGH_JADE, 0.7F, true, consumer, SMFeatures.JADE);
+        meltingRecipes(RecipeCategory.BUILDING_BLOCKS, SMBlocks.JADE_ORE, SMItems.ROUGH_JADE, 0.7F, true, consumer, SMFeatureSelection.JADE);
+        meltingRecipes(RecipeCategory.BUILDING_BLOCKS, SMBlocks.DEEPSLATE_JADE_ORE, SMItems.ROUGH_JADE, 0.7F, true, consumer, SMFeatureSelection.JADE);
 
-        meltingRecipes(RecipeCategory.BUILDING_BLOCKS, SMArtifacts.GOLDEN_BELT_BUCKLE, () -> Items.GOLD_NUGGET, 0.1F, true, consumer, SMFeatures.ARTIFACTS);
-        meltingRecipes(RecipeCategory.BUILDING_BLOCKS, SMArtifacts.PRIMITIVE_NECKLACE, () -> Items.IRON_NUGGET, 0.1F, true, consumer, SMFeatures.ARTIFACTS);
-        meltingRecipes(RecipeCategory.BUILDING_BLOCKS, SMArtifacts.COPPER_SPOON, () -> Items.COPPER_INGOT, 0.1F, true, consumer, SMFeatures.ARTIFACTS);
-        meltingRecipes(RecipeCategory.BUILDING_BLOCKS, SMArtifacts.COPPER_COG, () -> Items.COPPER_INGOT, 0.1F, true, consumer, SMFeatures.ARTIFACTS);
-        meltingRecipes(RecipeCategory.BUILDING_BLOCKS, SMArtifacts.LOST_CROWN, () -> Items.GOLD_NUGGET, 0.1F, true, consumer, SMFeatures.ARTIFACTS);
-        meltingRecipes(RecipeCategory.BUILDING_BLOCKS, SMArtifacts.GOLDEN_GOBLET, () -> Items.GOLD_NUGGET, 0.1F, true, consumer, SMFeatures.ARTIFACTS);
-        meltingRecipes(RecipeCategory.BUILDING_BLOCKS, SMArtifacts.SMALL_DENTED_HELMET, () -> Items.IRON_NUGGET, 0.1F, true, consumer, SMFeatures.ARTIFACTS);
-        meltingRecipes(RecipeCategory.BUILDING_BLOCKS, SMArtifacts.PRIMITIVE_RING, () -> Items.IRON_NUGGET, 0.1F, true, consumer, SMFeatures.ARTIFACTS);
-        meltingRecipes(RecipeCategory.BUILDING_BLOCKS, SMArtifacts.RUSTY_TOOLS, () -> Items.IRON_NUGGET, 0.1F, true, consumer, SMFeatures.ARTIFACTS);
-        meltingRecipes(RecipeCategory.BUILDING_BLOCKS, SMArtifacts.MINERS_HELMET, () -> Items.IRON_NUGGET, 0.1F, true, consumer, SMFeatures.ARTIFACTS);
-        meltingRecipes(RecipeCategory.BUILDING_BLOCKS, SMArtifacts.METALLIC_SKULL, () -> Items.IRON_NUGGET, 0.1F, true, consumer, SMFeatures.ARTIFACTS);
+        meltingRecipes(RecipeCategory.BUILDING_BLOCKS, SMArtifacts.GOLDEN_BELT_BUCKLE, () -> Items.GOLD_NUGGET, 0.1F, true, consumer, SMFeatureSelection.ARTIFACTS);
+        meltingRecipes(RecipeCategory.BUILDING_BLOCKS, SMArtifacts.PRIMITIVE_NECKLACE, () -> Items.IRON_NUGGET, 0.1F, true, consumer, SMFeatureSelection.ARTIFACTS);
+        meltingRecipes(RecipeCategory.BUILDING_BLOCKS, SMArtifacts.COPPER_SPOON, () -> Items.COPPER_INGOT, 0.1F, true, consumer, SMFeatureSelection.ARTIFACTS);
+        meltingRecipes(RecipeCategory.BUILDING_BLOCKS, SMArtifacts.COPPER_COG, () -> Items.COPPER_INGOT, 0.1F, true, consumer, SMFeatureSelection.ARTIFACTS);
+        meltingRecipes(RecipeCategory.BUILDING_BLOCKS, SMArtifacts.LOST_CROWN, () -> Items.GOLD_NUGGET, 0.1F, true, consumer, SMFeatureSelection.ARTIFACTS);
+        meltingRecipes(RecipeCategory.BUILDING_BLOCKS, SMArtifacts.GOLDEN_GOBLET, () -> Items.GOLD_NUGGET, 0.1F, true, consumer, SMFeatureSelection.ARTIFACTS);
+        meltingRecipes(RecipeCategory.BUILDING_BLOCKS, SMArtifacts.SMALL_DENTED_HELMET, () -> Items.IRON_NUGGET, 0.1F, true, consumer, SMFeatureSelection.ARTIFACTS);
+        meltingRecipes(RecipeCategory.BUILDING_BLOCKS, SMArtifacts.PRIMITIVE_RING, () -> Items.IRON_NUGGET, 0.1F, true, consumer, SMFeatureSelection.ARTIFACTS);
+        meltingRecipes(RecipeCategory.BUILDING_BLOCKS, SMArtifacts.RUSTY_TOOLS, () -> Items.IRON_NUGGET, 0.1F, true, consumer, SMFeatureSelection.ARTIFACTS);
+        meltingRecipes(RecipeCategory.BUILDING_BLOCKS, SMArtifacts.MINERS_HELMET, () -> Items.IRON_NUGGET, 0.1F, true, consumer, SMFeatureSelection.ARTIFACTS);
+        meltingRecipes(RecipeCategory.BUILDING_BLOCKS, SMArtifacts.METALLIC_SKULL, () -> Items.IRON_NUGGET, 0.1F, true, consumer, SMFeatureSelection.ARTIFACTS);
 
-        meltingRecipes(RecipeCategory.BUILDING_BLOCKS, SMArtifacts.BROKEN_VASE, () -> Items.BRICK, 0.1F, false, consumer, SMFeatures.ARTIFACTS);
-        meltingRecipes(RecipeCategory.BUILDING_BLOCKS, SMArtifacts.BROKEN_BOWL, () -> Items.BRICK, 0.1F, false, consumer, SMFeatures.ARTIFACTS);
-        meltingRecipes(RecipeCategory.BUILDING_BLOCKS, SMArtifacts.BROKEN_CUP, () -> Items.BRICK, 0.1F, false, consumer, SMFeatures.ARTIFACTS);
+        meltingRecipes(RecipeCategory.BUILDING_BLOCKS, SMArtifacts.BROKEN_VASE, () -> Items.BRICK, 0.1F, false, consumer, SMFeatureSelection.ARTIFACTS);
+        meltingRecipes(RecipeCategory.BUILDING_BLOCKS, SMArtifacts.BROKEN_BOWL, () -> Items.BRICK, 0.1F, false, consumer, SMFeatureSelection.ARTIFACTS);
+        meltingRecipes(RecipeCategory.BUILDING_BLOCKS, SMArtifacts.BROKEN_CUP, () -> Items.BRICK, 0.1F, false, consumer, SMFeatureSelection.ARTIFACTS);
 
         //Crafting
-        packableBlockRecipes(SMItems.ROUGH_JADE, SMBlocks.ROUGH_JADE_BLOCK, consumer, SMFeatures.JADE);
-        packableBlockRecipes(SMItems.JADE, SMBlocks.JADE_BLOCK, consumer, SMFeatures.JADE);
+        packableBlockRecipes(SMItems.ROUGH_JADE, SMBlocks.ROUGH_JADE_BLOCK, consumer, SMFeatureSelection.JADE);
+        packableBlockRecipes(SMItems.JADE, SMBlocks.JADE_BLOCK, consumer, SMFeatureSelection.JADE);
 
-        tilingBlockRecipes(SMBlocks.ROUGH_JADE_BLOCK, SMBlocks.ROUGH_JADE_BRICKS, consumer, SMFeatures.JADE);
-        tilingBlockRecipes(SMBlocks.JADE_BLOCK, SMBlocks.JADE_BRICKS, consumer, SMFeatures.JADE);
-        tilingBlockRecipes(SMBlocks.ROUGH_AMBER, SMBlocks.AMBER_BRICKS, consumer, SMFeatures.AMBER);
+        tilingBlockRecipes(SMBlocks.ROUGH_JADE_BLOCK, SMBlocks.ROUGH_JADE_BRICKS, consumer, SMFeatureSelection.JADE);
+        tilingBlockRecipes(SMBlocks.JADE_BLOCK, SMBlocks.JADE_BRICKS, consumer, SMFeatureSelection.JADE);
+        tilingBlockRecipes(SMBlocks.ROUGH_AMBER, SMBlocks.AMBER_BRICKS, consumer, SMFeatureSelection.AMBER);
 
-        stairRecipes(SMBlocks.ROUGH_JADE_BRICKS, SMBlocks.ROUGH_JADE_BRICK_STAIRS, consumer, SMFeatures.JADE);
-        stairRecipes(SMBlocks.JADE_BRICKS, SMBlocks.JADE_BRICK_STAIRS, consumer, SMFeatures.JADE);
-        stairRecipes(SMBlocks.AMBER_BRICKS, SMBlocks.AMBER_BRICK_STAIRS, consumer, SMFeatures.AMBER);
+        stairRecipes(SMBlocks.ROUGH_JADE_BRICKS, SMBlocks.ROUGH_JADE_BRICK_STAIRS, consumer, SMFeatureSelection.JADE);
+        stairRecipes(SMBlocks.JADE_BRICKS, SMBlocks.JADE_BRICK_STAIRS, consumer, SMFeatureSelection.JADE);
+        stairRecipes(SMBlocks.AMBER_BRICKS, SMBlocks.AMBER_BRICK_STAIRS, consumer, SMFeatureSelection.AMBER);
 
-        slabRecipes(SMBlocks.ROUGH_JADE_BRICKS, SMBlocks.ROUGH_JADE_BRICK_SLAB, consumer, SMFeatures.JADE);
-        slabRecipes(SMBlocks.JADE_BRICKS, SMBlocks.JADE_BRICK_SLAB, consumer, SMFeatures.JADE);
-        slabRecipes(SMBlocks.AMBER_BRICKS, SMBlocks.AMBER_BRICK_SLAB, consumer, SMFeatures.AMBER);
+        slabRecipes(SMBlocks.ROUGH_JADE_BRICKS, SMBlocks.ROUGH_JADE_BRICK_SLAB, consumer, SMFeatureSelection.JADE);
+        slabRecipes(SMBlocks.JADE_BRICKS, SMBlocks.JADE_BRICK_SLAB, consumer, SMFeatureSelection.JADE);
+        slabRecipes(SMBlocks.AMBER_BRICKS, SMBlocks.AMBER_BRICK_SLAB, consumer, SMFeatureSelection.AMBER);
 
-        wallRecipes(SMBlocks.ROUGH_JADE_BRICKS, SMBlocks.ROUGH_JADE_BRICK_WALL, consumer, SMFeatures.JADE);
-        wallRecipes(SMBlocks.JADE_BRICKS, SMBlocks.JADE_BRICK_WALL, consumer, SMFeatures.JADE);
-        wallRecipes(SMBlocks.AMBER_BRICKS, SMBlocks.AMBER_BRICK_WALL, consumer, SMFeatures.AMBER);
+        wallRecipes(SMBlocks.ROUGH_JADE_BRICKS, SMBlocks.ROUGH_JADE_BRICK_WALL, consumer, SMFeatureSelection.JADE);
+        wallRecipes(SMBlocks.JADE_BRICKS, SMBlocks.JADE_BRICK_WALL, consumer, SMFeatureSelection.JADE);
+        wallRecipes(SMBlocks.AMBER_BRICKS, SMBlocks.AMBER_BRICK_WALL, consumer, SMFeatureSelection.AMBER);
 
-        pillarRecipes(SMBlocks.JADE_BLOCK, SMBlocks.JADE_PILLAR, consumer, SMFeatures.JADE);
-        pillarRecipes(SMBlocks.AMBER_BRICKS, SMBlocks.AMBER_PILLAR, consumer, SMFeatures.AMBER);
+        pillarRecipes(SMBlocks.JADE_BLOCK, SMBlocks.JADE_PILLAR, consumer, SMFeatureSelection.JADE);
+        pillarRecipes(SMBlocks.AMBER_BRICKS, SMBlocks.AMBER_PILLAR, consumer, SMFeatureSelection.AMBER);
 
-        chiseledRecipes(SMBlocks.JADE_BRICK_SLAB, SMBlocks.CHISELED_JADE, consumer, SMFeatures.JADE);
-        chiseledRecipes(SMBlocks.AMBER_BRICK_SLAB, SMBlocks.CHISELED_AMBER, consumer, SMFeatures.AMBER);
+        chiseledRecipes(SMBlocks.JADE_BRICK_SLAB, SMBlocks.CHISELED_JADE, consumer, SMFeatureSelection.JADE);
+        chiseledRecipes(SMBlocks.AMBER_BRICK_SLAB, SMBlocks.CHISELED_AMBER, consumer, SMFeatureSelection.AMBER);
 
-        buttonRecipes(RecipeCategory.REDSTONE, Blocks.CUT_COPPER, SMBlocks.COPPER_BUTTON, consumer, SMFeatures.COPPER_BUTTONS);
-        buttonRecipes(RecipeCategory.REDSTONE, Blocks.EXPOSED_CUT_COPPER, SMBlocks.EXPOSED_COPPER_BUTTON, consumer, SMFeatures.COPPER_BUTTONS);
-        buttonRecipes(RecipeCategory.REDSTONE, Blocks.WEATHERED_CUT_COPPER, SMBlocks.WEATHERED_COPPER_BUTTON, consumer, SMFeatures.COPPER_BUTTONS);
-        buttonRecipes(RecipeCategory.REDSTONE, Blocks.OXIDIZED_CUT_COPPER, SMBlocks.OXIDIZED_COPPER_BUTTON, consumer, SMFeatures.COPPER_BUTTONS);
-        buttonRecipes(RecipeCategory.REDSTONE, Blocks.WAXED_CUT_COPPER, SMBlocks.WAXED_COPPER_BUTTON, consumer, SMFeatures.COPPER_BUTTONS);
-        buttonRecipes(RecipeCategory.REDSTONE, Blocks.WAXED_EXPOSED_CUT_COPPER, SMBlocks.WAXED_EXPOSED_COPPER_BUTTON, consumer, SMFeatures.COPPER_BUTTONS);
-        buttonRecipes(RecipeCategory.REDSTONE, Blocks.WAXED_WEATHERED_CUT_COPPER, SMBlocks.WAXED_WEATHERED_COPPER_BUTTON, consumer, SMFeatures.COPPER_BUTTONS);
-        buttonRecipes(RecipeCategory.REDSTONE, Blocks.WAXED_OXIDIZED_CUT_COPPER, SMBlocks.WAXED_OXIDIZED_COPPER_BUTTON, consumer, SMFeatures.COPPER_BUTTONS);
+        buttonRecipes(RecipeCategory.REDSTONE, Blocks.CUT_COPPER, SMBlocks.COPPER_BUTTON, consumer, SMFeatureSelection.COPPER_BUTTONS);
+        buttonRecipes(RecipeCategory.REDSTONE, Blocks.EXPOSED_CUT_COPPER, SMBlocks.EXPOSED_COPPER_BUTTON, consumer, SMFeatureSelection.COPPER_BUTTONS);
+        buttonRecipes(RecipeCategory.REDSTONE, Blocks.WEATHERED_CUT_COPPER, SMBlocks.WEATHERED_COPPER_BUTTON, consumer, SMFeatureSelection.COPPER_BUTTONS);
+        buttonRecipes(RecipeCategory.REDSTONE, Blocks.OXIDIZED_CUT_COPPER, SMBlocks.OXIDIZED_COPPER_BUTTON, consumer, SMFeatureSelection.COPPER_BUTTONS);
+        buttonRecipes(RecipeCategory.REDSTONE, Blocks.WAXED_CUT_COPPER, SMBlocks.WAXED_COPPER_BUTTON, consumer, SMFeatureSelection.COPPER_BUTTONS);
+        buttonRecipes(RecipeCategory.REDSTONE, Blocks.WAXED_EXPOSED_CUT_COPPER, SMBlocks.WAXED_EXPOSED_COPPER_BUTTON, consumer, SMFeatureSelection.COPPER_BUTTONS);
+        buttonRecipes(RecipeCategory.REDSTONE, Blocks.WAXED_WEATHERED_CUT_COPPER, SMBlocks.WAXED_WEATHERED_COPPER_BUTTON, consumer, SMFeatureSelection.COPPER_BUTTONS);
+        buttonRecipes(RecipeCategory.REDSTONE, Blocks.WAXED_OXIDIZED_CUT_COPPER, SMBlocks.WAXED_OXIDIZED_COPPER_BUTTON, consumer, SMFeatureSelection.COPPER_BUTTONS);
 
-        waxButtonRecipes(SMBlocks.COPPER_BUTTON, SMBlocks.WAXED_COPPER_BUTTON, consumer, SMFeatures.COPPER_BUTTONS);
-        waxButtonRecipes(SMBlocks.EXPOSED_COPPER_BUTTON, SMBlocks.WAXED_EXPOSED_COPPER_BUTTON, consumer, SMFeatures.COPPER_BUTTONS);
-        waxButtonRecipes(SMBlocks.WEATHERED_COPPER_BUTTON, SMBlocks.WAXED_WEATHERED_COPPER_BUTTON, consumer, SMFeatures.COPPER_BUTTONS);
-        waxButtonRecipes(SMBlocks.OXIDIZED_COPPER_BUTTON, SMBlocks.WAXED_OXIDIZED_COPPER_BUTTON, consumer, SMFeatures.COPPER_BUTTONS);
+        waxButtonRecipes(SMBlocks.COPPER_BUTTON, SMBlocks.WAXED_COPPER_BUTTON, consumer, SMFeatureSelection.COPPER_BUTTONS);
+        waxButtonRecipes(SMBlocks.EXPOSED_COPPER_BUTTON, SMBlocks.WAXED_EXPOSED_COPPER_BUTTON, consumer, SMFeatureSelection.COPPER_BUTTONS);
+        waxButtonRecipes(SMBlocks.WEATHERED_COPPER_BUTTON, SMBlocks.WAXED_WEATHERED_COPPER_BUTTON, consumer, SMFeatureSelection.COPPER_BUTTONS);
+        waxButtonRecipes(SMBlocks.OXIDIZED_COPPER_BUTTON, SMBlocks.WAXED_OXIDIZED_COPPER_BUTTON, consumer, SMFeatureSelection.COPPER_BUTTONS);
 
-        planksFromLogsRecipe(SMItemTags.PETRIFIED_LOGS, SMBlocks.PETRIFIED_PLANKS, consumer, SMFeatures.PETRIFIED_WOOD, SMFeatures.AMBER);
-        woodFromLogsRecipe(SMBlocks.PETRIFIED_LOG, SMBlocks.PETRIFIED_WOOD, consumer, SMFeatures.PETRIFIED_WOOD, SMFeatures.AMBER);
-        woodFromLogsRecipe(SMBlocks.STRIPPED_PETRIFIED_LOG, SMBlocks.STRIPPED_PETRIFIED_WOOD, consumer, SMFeatures.PETRIFIED_WOOD, SMFeatures.AMBER);
-        slabRecipes(SMBlocks.PETRIFIED_PLANKS, SMBlocks.PETRIFIED_SLAB, consumer, SMFeatures.PETRIFIED_WOOD, SMFeatures.AMBER);
-        fenceRecipe(SMBlocks.PETRIFIED_PLANKS, SMBlocks.PETRIFIED_FENCE, consumer, SMFeatures.PETRIFIED_WOOD, SMFeatures.AMBER);
-        stairRecipes(SMBlocks.PETRIFIED_PLANKS, SMBlocks.PETRIFIED_STAIRS, consumer, SMFeatures.PETRIFIED_WOOD, SMFeatures.AMBER);
-        buttonRecipes(RecipeCategory.BUILDING_BLOCKS, SMBlocks.PETRIFIED_PLANKS.get(), SMBlocks.PETRIFIED_BUTTON, consumer, SMFeatures.PETRIFIED_WOOD, SMFeatures.AMBER);
-        pressurePlateRecipe(SMBlocks.PETRIFIED_PLANKS, SMBlocks.PETRIFIED_PRESSURE_PLATE, consumer, SMFeatures.PETRIFIED_WOOD, SMFeatures.AMBER);
-        doorRecipe(SMBlocks.PETRIFIED_PLANKS, SMBlocks.PETRIFIED_DOOR, consumer, SMFeatures.PETRIFIED_WOOD, SMFeatures.AMBER);
-        trapdoorRecipe(SMBlocks.PETRIFIED_PLANKS, SMBlocks.PETRIFIED_TRAPDOOR, consumer, SMFeatures.PETRIFIED_WOOD, SMFeatures.AMBER);
-        fenceGateRecipe(SMBlocks.PETRIFIED_PLANKS, SMBlocks.PETRIFIED_FENCE_GATE, consumer, SMFeatures.PETRIFIED_WOOD, SMFeatures.AMBER);
-        signRecipe(SMBlocks.PETRIFIED_PLANKS, SMBlocks.PETRIFIED_SIGN.getFirst(), consumer, SMFeatures.PETRIFIED_WOOD, SMFeatures.AMBER);
-        hangingSignRecipe(SMBlocks.STRIPPED_PETRIFIED_LOG, SMBlocks.PETRIFIED_HANGING_SIGN.getFirst(), consumer, SMFeatures.PETRIFIED_WOOD, SMFeatures.AMBER);
+        planksFromLogsRecipe(SMItemTags.PETRIFIED_LOGS, SMBlocks.PETRIFIED_PLANKS, consumer, SMFeatureSelection.PETRIFIED_WOOD, SMFeatureSelection.AMBER);
+        woodFromLogsRecipe(SMBlocks.PETRIFIED_LOG, SMBlocks.PETRIFIED_WOOD, consumer, SMFeatureSelection.PETRIFIED_WOOD, SMFeatureSelection.AMBER);
+        woodFromLogsRecipe(SMBlocks.STRIPPED_PETRIFIED_LOG, SMBlocks.STRIPPED_PETRIFIED_WOOD, consumer, SMFeatureSelection.PETRIFIED_WOOD, SMFeatureSelection.AMBER);
+        slabRecipes(SMBlocks.PETRIFIED_PLANKS, SMBlocks.PETRIFIED_SLAB, consumer, SMFeatureSelection.PETRIFIED_WOOD, SMFeatureSelection.AMBER);
+        fenceRecipe(SMBlocks.PETRIFIED_PLANKS, SMBlocks.PETRIFIED_FENCE, consumer, SMFeatureSelection.PETRIFIED_WOOD, SMFeatureSelection.AMBER);
+        stairRecipes(SMBlocks.PETRIFIED_PLANKS, SMBlocks.PETRIFIED_STAIRS, consumer, SMFeatureSelection.PETRIFIED_WOOD, SMFeatureSelection.AMBER);
+        buttonRecipes(RecipeCategory.BUILDING_BLOCKS, SMBlocks.PETRIFIED_PLANKS.get(), SMBlocks.PETRIFIED_BUTTON, consumer, SMFeatureSelection.PETRIFIED_WOOD, SMFeatureSelection.AMBER);
+        pressurePlateRecipe(SMBlocks.PETRIFIED_PLANKS, SMBlocks.PETRIFIED_PRESSURE_PLATE, consumer, SMFeatureSelection.PETRIFIED_WOOD, SMFeatureSelection.AMBER);
+        doorRecipe(SMBlocks.PETRIFIED_PLANKS, SMBlocks.PETRIFIED_DOOR, consumer, SMFeatureSelection.PETRIFIED_WOOD, SMFeatureSelection.AMBER);
+        trapdoorRecipe(SMBlocks.PETRIFIED_PLANKS, SMBlocks.PETRIFIED_TRAPDOOR, consumer, SMFeatureSelection.PETRIFIED_WOOD, SMFeatureSelection.AMBER);
+        fenceGateRecipe(SMBlocks.PETRIFIED_PLANKS, SMBlocks.PETRIFIED_FENCE_GATE, consumer, SMFeatureSelection.PETRIFIED_WOOD, SMFeatureSelection.AMBER);
+        signRecipe(SMBlocks.PETRIFIED_PLANKS, SMBlocks.PETRIFIED_SIGN.getFirst(), consumer, SMFeatureSelection.PETRIFIED_WOOD, SMFeatureSelection.AMBER);
+        hangingSignRecipe(SMBlocks.STRIPPED_PETRIFIED_LOG, SMBlocks.PETRIFIED_HANGING_SIGN.getFirst(), consumer, SMFeatureSelection.PETRIFIED_WOOD, SMFeatureSelection.AMBER);
 
         gemLanterns(() -> Items.DIAMOND_BLOCK, SMBlocks.DIAMOND_LANTERN, consumer);
         gemLanterns(() -> Items.EMERALD_BLOCK, SMBlocks.EMERALD_LANTERN, consumer);
         gemLanterns(() -> Items.QUARTZ_BLOCK, SMBlocks.QUARTZ_LANTERN, consumer);
         gemLanterns(() -> Items.LAPIS_BLOCK, SMBlocks.LAPIS_LANTERN, consumer);
         gemLanterns(() -> Items.AMETHYST_BLOCK, SMBlocks.AMETHYST_LANTERN, consumer);
-        gemLanterns(SMBlocks.JADE_BLOCK, SMBlocks.JADE_LANTERN, consumer, SMFeatures.JADE);
-        gemLanterns(SMBlocks.AMBER, SMBlocks.AMBER_LANTERN, consumer, SMFeatures.AMBER);
+        gemLanterns(SMBlocks.JADE_BLOCK, SMBlocks.JADE_LANTERN, consumer, SMFeatureSelection.JADE);
+        gemLanterns(SMBlocks.AMBER, SMBlocks.AMBER_LANTERN, consumer, SMFeatureSelection.AMBER);
 
         //Stonecutting
 
         //Rough jade ->
-        stonecutterRecipes(RecipeCategory.BUILDING_BLOCKS, SMBlocks.ROUGH_JADE_BLOCK, SMBlocks.ROUGH_JADE_BRICKS, 1, consumer, SMFeatures.JADE);
-        stonecutterRecipes(RecipeCategory.BUILDING_BLOCKS, SMBlocks.ROUGH_JADE_BLOCK, SMBlocks.ROUGH_JADE_BRICK_SLAB, 2, consumer, SMFeatures.JADE);
-        stonecutterRecipes(RecipeCategory.BUILDING_BLOCKS, SMBlocks.ROUGH_JADE_BLOCK, SMBlocks.ROUGH_JADE_BRICK_STAIRS, 1, consumer, SMFeatures.JADE);
-        stonecutterRecipes(RecipeCategory.BUILDING_BLOCKS, SMBlocks.ROUGH_JADE_BLOCK, SMBlocks.ROUGH_JADE_BRICK_WALL, 1, consumer, SMFeatures.JADE);
+        stonecutterRecipes(RecipeCategory.BUILDING_BLOCKS, SMBlocks.ROUGH_JADE_BLOCK, SMBlocks.ROUGH_JADE_BRICKS, 1, consumer, SMFeatureSelection.JADE);
+        stonecutterRecipes(RecipeCategory.BUILDING_BLOCKS, SMBlocks.ROUGH_JADE_BLOCK, SMBlocks.ROUGH_JADE_BRICK_SLAB, 2, consumer, SMFeatureSelection.JADE);
+        stonecutterRecipes(RecipeCategory.BUILDING_BLOCKS, SMBlocks.ROUGH_JADE_BLOCK, SMBlocks.ROUGH_JADE_BRICK_STAIRS, 1, consumer, SMFeatureSelection.JADE);
+        stonecutterRecipes(RecipeCategory.BUILDING_BLOCKS, SMBlocks.ROUGH_JADE_BLOCK, SMBlocks.ROUGH_JADE_BRICK_WALL, 1, consumer, SMFeatureSelection.JADE);
 
         //Rough jade bricks ->
-        stonecutterRecipes(RecipeCategory.BUILDING_BLOCKS, SMBlocks.ROUGH_JADE_BRICKS, SMBlocks.ROUGH_JADE_BRICK_SLAB, 2, consumer, SMFeatures.JADE);
-        stonecutterRecipes(RecipeCategory.BUILDING_BLOCKS, SMBlocks.ROUGH_JADE_BRICKS, SMBlocks.ROUGH_JADE_BRICK_STAIRS, 1, consumer, SMFeatures.JADE);
-        stonecutterRecipes(RecipeCategory.BUILDING_BLOCKS, SMBlocks.ROUGH_JADE_BRICKS, SMBlocks.ROUGH_JADE_BRICK_WALL, 1, consumer, SMFeatures.JADE);
+        stonecutterRecipes(RecipeCategory.BUILDING_BLOCKS, SMBlocks.ROUGH_JADE_BRICKS, SMBlocks.ROUGH_JADE_BRICK_SLAB, 2, consumer, SMFeatureSelection.JADE);
+        stonecutterRecipes(RecipeCategory.BUILDING_BLOCKS, SMBlocks.ROUGH_JADE_BRICKS, SMBlocks.ROUGH_JADE_BRICK_STAIRS, 1, consumer, SMFeatureSelection.JADE);
+        stonecutterRecipes(RecipeCategory.BUILDING_BLOCKS, SMBlocks.ROUGH_JADE_BRICKS, SMBlocks.ROUGH_JADE_BRICK_WALL, 1, consumer, SMFeatureSelection.JADE);
 
         //Jade block ->
-        stonecutterRecipes(RecipeCategory.BUILDING_BLOCKS, SMBlocks.JADE_BLOCK, SMBlocks.JADE_PILLAR, 1, consumer, SMFeatures.JADE);
-        stonecutterRecipes(RecipeCategory.BUILDING_BLOCKS, SMBlocks.JADE_BLOCK, SMBlocks.JADE_BRICKS, 1, consumer, SMFeatures.JADE);
-        stonecutterRecipes(RecipeCategory.BUILDING_BLOCKS, SMBlocks.JADE_BLOCK, SMBlocks.CHISELED_JADE, 1, consumer, SMFeatures.JADE);
-        stonecutterRecipes(RecipeCategory.BUILDING_BLOCKS, SMBlocks.JADE_BLOCK, SMBlocks.JADE_BRICK_SLAB, 2, consumer, SMFeatures.JADE);
-        stonecutterRecipes(RecipeCategory.BUILDING_BLOCKS, SMBlocks.JADE_BLOCK, SMBlocks.JADE_BRICK_STAIRS, 1, consumer, SMFeatures.JADE);
-        stonecutterRecipes(RecipeCategory.BUILDING_BLOCKS, SMBlocks.JADE_BLOCK, SMBlocks.JADE_BRICK_WALL, 1, consumer, SMFeatures.JADE);
+        stonecutterRecipes(RecipeCategory.BUILDING_BLOCKS, SMBlocks.JADE_BLOCK, SMBlocks.JADE_PILLAR, 1, consumer, SMFeatureSelection.JADE);
+        stonecutterRecipes(RecipeCategory.BUILDING_BLOCKS, SMBlocks.JADE_BLOCK, SMBlocks.JADE_BRICKS, 1, consumer, SMFeatureSelection.JADE);
+        stonecutterRecipes(RecipeCategory.BUILDING_BLOCKS, SMBlocks.JADE_BLOCK, SMBlocks.CHISELED_JADE, 1, consumer, SMFeatureSelection.JADE);
+        stonecutterRecipes(RecipeCategory.BUILDING_BLOCKS, SMBlocks.JADE_BLOCK, SMBlocks.JADE_BRICK_SLAB, 2, consumer, SMFeatureSelection.JADE);
+        stonecutterRecipes(RecipeCategory.BUILDING_BLOCKS, SMBlocks.JADE_BLOCK, SMBlocks.JADE_BRICK_STAIRS, 1, consumer, SMFeatureSelection.JADE);
+        stonecutterRecipes(RecipeCategory.BUILDING_BLOCKS, SMBlocks.JADE_BLOCK, SMBlocks.JADE_BRICK_WALL, 1, consumer, SMFeatureSelection.JADE);
 
         //Jade bricks ->
-        stonecutterRecipes(RecipeCategory.BUILDING_BLOCKS, SMBlocks.JADE_BRICKS, SMBlocks.CHISELED_JADE, 1, consumer, SMFeatures.JADE);
-        stonecutterRecipes(RecipeCategory.BUILDING_BLOCKS, SMBlocks.JADE_BRICKS, SMBlocks.JADE_BRICK_SLAB, 2, consumer, SMFeatures.JADE);
-        stonecutterRecipes(RecipeCategory.BUILDING_BLOCKS, SMBlocks.JADE_BRICKS, SMBlocks.JADE_BRICK_STAIRS, 1, consumer, SMFeatures.JADE);
-        stonecutterRecipes(RecipeCategory.BUILDING_BLOCKS, SMBlocks.JADE_BRICKS, SMBlocks.JADE_BRICK_WALL, 1, consumer, SMFeatures.JADE);
+        stonecutterRecipes(RecipeCategory.BUILDING_BLOCKS, SMBlocks.JADE_BRICKS, SMBlocks.CHISELED_JADE, 1, consumer, SMFeatureSelection.JADE);
+        stonecutterRecipes(RecipeCategory.BUILDING_BLOCKS, SMBlocks.JADE_BRICKS, SMBlocks.JADE_BRICK_SLAB, 2, consumer, SMFeatureSelection.JADE);
+        stonecutterRecipes(RecipeCategory.BUILDING_BLOCKS, SMBlocks.JADE_BRICKS, SMBlocks.JADE_BRICK_STAIRS, 1, consumer, SMFeatureSelection.JADE);
+        stonecutterRecipes(RecipeCategory.BUILDING_BLOCKS, SMBlocks.JADE_BRICKS, SMBlocks.JADE_BRICK_WALL, 1, consumer, SMFeatureSelection.JADE);
 
         //Rough amber ->
-        stonecutterRecipes(RecipeCategory.BUILDING_BLOCKS, SMBlocks.ROUGH_AMBER, SMBlocks.AMBER_BRICKS, 1, consumer, SMFeatures.AMBER);
-        stonecutterRecipes(RecipeCategory.BUILDING_BLOCKS, SMBlocks.ROUGH_AMBER, SMBlocks.AMBER_BRICK_SLAB, 2, consumer, SMFeatures.AMBER);
-        stonecutterRecipes(RecipeCategory.BUILDING_BLOCKS, SMBlocks.ROUGH_AMBER, SMBlocks.AMBER_BRICK_STAIRS, 1, consumer, SMFeatures.AMBER);
-        stonecutterRecipes(RecipeCategory.BUILDING_BLOCKS, SMBlocks.ROUGH_AMBER, SMBlocks.AMBER_BRICK_WALL, 1, consumer, SMFeatures.AMBER);
-        stonecutterRecipes(RecipeCategory.BUILDING_BLOCKS, SMBlocks.ROUGH_AMBER, SMBlocks.AMBER_PILLAR, 1, consumer, SMFeatures.AMBER);
-        stonecutterRecipes(RecipeCategory.BUILDING_BLOCKS, SMBlocks.ROUGH_AMBER, SMBlocks.CHISELED_AMBER, 1, consumer, SMFeatures.AMBER);
+        stonecutterRecipes(RecipeCategory.BUILDING_BLOCKS, SMBlocks.ROUGH_AMBER, SMBlocks.AMBER_BRICKS, 1, consumer, SMFeatureSelection.AMBER);
+        stonecutterRecipes(RecipeCategory.BUILDING_BLOCKS, SMBlocks.ROUGH_AMBER, SMBlocks.AMBER_BRICK_SLAB, 2, consumer, SMFeatureSelection.AMBER);
+        stonecutterRecipes(RecipeCategory.BUILDING_BLOCKS, SMBlocks.ROUGH_AMBER, SMBlocks.AMBER_BRICK_STAIRS, 1, consumer, SMFeatureSelection.AMBER);
+        stonecutterRecipes(RecipeCategory.BUILDING_BLOCKS, SMBlocks.ROUGH_AMBER, SMBlocks.AMBER_BRICK_WALL, 1, consumer, SMFeatureSelection.AMBER);
+        stonecutterRecipes(RecipeCategory.BUILDING_BLOCKS, SMBlocks.ROUGH_AMBER, SMBlocks.AMBER_PILLAR, 1, consumer, SMFeatureSelection.AMBER);
+        stonecutterRecipes(RecipeCategory.BUILDING_BLOCKS, SMBlocks.ROUGH_AMBER, SMBlocks.CHISELED_AMBER, 1, consumer, SMFeatureSelection.AMBER);
 
         //Amber bricks ->
-        stonecutterRecipes(RecipeCategory.BUILDING_BLOCKS, SMBlocks.AMBER_BRICKS, SMBlocks.AMBER_BRICK_SLAB, 2, consumer, SMFeatures.AMBER);
-        stonecutterRecipes(RecipeCategory.BUILDING_BLOCKS, SMBlocks.AMBER_BRICKS, SMBlocks.AMBER_BRICK_STAIRS, 1, consumer, SMFeatures.AMBER);
-        stonecutterRecipes(RecipeCategory.BUILDING_BLOCKS, SMBlocks.AMBER_BRICKS, SMBlocks.AMBER_BRICK_WALL, 1, consumer, SMFeatures.AMBER);
-        stonecutterRecipes(RecipeCategory.BUILDING_BLOCKS, SMBlocks.AMBER_BRICKS, SMBlocks.AMBER_PILLAR, 1, consumer, SMFeatures.AMBER);
-        stonecutterRecipes(RecipeCategory.BUILDING_BLOCKS, SMBlocks.AMBER_BRICKS, SMBlocks.CHISELED_AMBER, 1, consumer, SMFeatures.AMBER);
+        stonecutterRecipes(RecipeCategory.BUILDING_BLOCKS, SMBlocks.AMBER_BRICKS, SMBlocks.AMBER_BRICK_SLAB, 2, consumer, SMFeatureSelection.AMBER);
+        stonecutterRecipes(RecipeCategory.BUILDING_BLOCKS, SMBlocks.AMBER_BRICKS, SMBlocks.AMBER_BRICK_STAIRS, 1, consumer, SMFeatureSelection.AMBER);
+        stonecutterRecipes(RecipeCategory.BUILDING_BLOCKS, SMBlocks.AMBER_BRICKS, SMBlocks.AMBER_BRICK_WALL, 1, consumer, SMFeatureSelection.AMBER);
+        stonecutterRecipes(RecipeCategory.BUILDING_BLOCKS, SMBlocks.AMBER_BRICKS, SMBlocks.AMBER_PILLAR, 1, consumer, SMFeatureSelection.AMBER);
+        stonecutterRecipes(RecipeCategory.BUILDING_BLOCKS, SMBlocks.AMBER_BRICKS, SMBlocks.CHISELED_AMBER, 1, consumer, SMFeatureSelection.AMBER);
 
         //Grindstone Polishing
         grindstonePolishingRecipes(RecipeCategory.MISC, SMItems.ROUGH_JADE.get(), SMItems.JADE.get(), 1, consumer);
@@ -196,42 +196,42 @@ public class SMRecipeProvider extends RecipeProvider {
 
         grindstonePolishingRecipes(RecipeCategory.MISC, SMBlocks.DEEPSLATE_JADE_ORE.get(), SMItems.JADE.get(), 3, 1, consumer);
 
-        smithingTemplateRecipes(RecipeCategory.TOOLS, SMItems.JADE_UPGRADE_SMITHING_TEMPLATE.get(), Items.SHIELD, SMItems.JADE.get(), SMItems.JADE_SHIELD.get(), SMBlocks.JADE_BLOCK.get(), consumer, SMFeatures.JADE);
+        smithingTemplateRecipes(RecipeCategory.TOOLS, SMItems.JADE_UPGRADE_SMITHING_TEMPLATE.get(), Items.SHIELD, SMItems.JADE.get(), SMItems.JADE_SHIELD.get(), SMBlocks.JADE_BLOCK.get(), consumer, SMFeatureSelection.JADE);
         smithingRecipes(RecipeCategory.TOOLS, SMItems.JADE_UPGRADE_SMITHING_TEMPLATE.get(), Items.DIAMOND_HORSE_ARMOR, SMItems.JADE.get(), SMItems.JADE_HORSE_ARMOR.get(), consumer);
 
-        convertRecipe(RecipeCategory.MISC, SMArtifacts.LOST_SKETCHBOOK, () -> Items.PAPER, consumer, SMFeatures.ARTIFACTS);
-        convertRecipe(RecipeCategory.MISC, SMArtifacts.LOST_JOURNAL, () -> Items.PAPER, 2, consumer, SMFeatures.ARTIFACTS);
-        convertRecipe(RecipeCategory.MISC, SMArtifacts.LOST_RECIPE_BOOK, () -> Items.PAPER, 2, consumer, SMFeatures.ARTIFACTS);
-        convertRecipe(RecipeCategory.MISC, SMArtifacts.LOST_BAG, () -> Items.STRING, 4, consumer, SMFeatures.ARTIFACTS);
-        convertRecipe(RecipeCategory.MISC, SMArtifacts.TORN_CLOTH, () -> Items.STRING, 4, consumer, SMFeatures.ARTIFACTS);
-        convertRecipe(RecipeCategory.MISC, SMArtifacts.SMALL_DIAMOND_GEODE, () -> Items.DIAMOND, consumer, SMFeatures.ARTIFACTS);
-        convertRecipe(RecipeCategory.MISC, SMArtifacts.SMALL_EMERALD_GEODE, () -> Items.EMERALD, consumer, SMFeatures.ARTIFACTS);
-        convertRecipe(RecipeCategory.MISC, SMArtifacts.SMALL_GEODE, () -> Items.AMETHYST_SHARD, 3, consumer, SMFeatures.ARTIFACTS);
-        convertRecipe(RecipeCategory.MISC, SMArtifacts.TINY_ANCIENT_SKULL.getFirst(), () -> Items.BONE_MEAL, 3, consumer, SMFeatures.ARTIFACTS);
-        convertRecipe(RecipeCategory.MISC, SMArtifacts.CRACKED_ANCIENT_SKULL.getFirst(), () -> Items.BONE_MEAL, 5, consumer, SMFeatures.ARTIFACTS);
-        convertRecipe(RecipeCategory.MISC, SMArtifacts.CRESTED_ANCIENT_SKULL.getFirst(), () -> Items.BONE_MEAL, 5, consumer, SMFeatures.ARTIFACTS);
-        convertRecipe(RecipeCategory.MISC, SMArtifacts.FLATBILLED_ANCIENT_SKULL.getFirst(), () -> Items.BONE_MEAL, 5, consumer, SMFeatures.ARTIFACTS);
-        convertRecipe(RecipeCategory.MISC, SMArtifacts.GIGANTIC_ANCIENT_SKULL.getFirst(), () -> Items.BONE_MEAL, 5, consumer, SMFeatures.ARTIFACTS);
-        convertRecipe(RecipeCategory.MISC, SMArtifacts.HORNED_ANCIENT_SKULL.getFirst(), () -> Items.BONE_MEAL, 5, consumer, SMFeatures.ARTIFACTS);
-        convertRecipe(RecipeCategory.MISC, SMArtifacts.LONG_ANCIENT_SKULL.getFirst(), () -> Items.BONE_MEAL, 5, consumer, SMFeatures.ARTIFACTS);
-        convertRecipe(RecipeCategory.MISC, SMArtifacts.WIDE_ANCIENT_SKULL.getFirst(), () -> Items.BONE_MEAL, 5, consumer, SMFeatures.ARTIFACTS);
-        convertRecipe(RecipeCategory.MISC, SMArtifacts.RIBBED_ANCIENT_SKULL.getFirst(), () -> Items.BONE_MEAL, 5, consumer, SMFeatures.ARTIFACTS);
-        convertRecipe(RecipeCategory.MISC, SMArtifacts.UNICORN_ANCIENT_SKULL.getFirst(), () -> Items.BONE_MEAL, 5, consumer, SMFeatures.ARTIFACTS);
-        convertRecipe(RecipeCategory.MISC, SMArtifacts.SNOUTED_ANCIENT_SKULL.getFirst(), () -> Items.BONE_MEAL, 5, consumer, SMFeatures.ARTIFACTS);
+        convertRecipe(RecipeCategory.MISC, SMArtifacts.LOST_SKETCHBOOK, () -> Items.PAPER, consumer, SMFeatureSelection.ARTIFACTS);
+        convertRecipe(RecipeCategory.MISC, SMArtifacts.LOST_JOURNAL, () -> Items.PAPER, 2, consumer, SMFeatureSelection.ARTIFACTS);
+        convertRecipe(RecipeCategory.MISC, SMArtifacts.LOST_RECIPE_BOOK, () -> Items.PAPER, 2, consumer, SMFeatureSelection.ARTIFACTS);
+        convertRecipe(RecipeCategory.MISC, SMArtifacts.LOST_BAG, () -> Items.STRING, 4, consumer, SMFeatureSelection.ARTIFACTS);
+        convertRecipe(RecipeCategory.MISC, SMArtifacts.TORN_CLOTH, () -> Items.STRING, 4, consumer, SMFeatureSelection.ARTIFACTS);
+        convertRecipe(RecipeCategory.MISC, SMArtifacts.SMALL_DIAMOND_GEODE, () -> Items.DIAMOND, consumer, SMFeatureSelection.ARTIFACTS);
+        convertRecipe(RecipeCategory.MISC, SMArtifacts.SMALL_EMERALD_GEODE, () -> Items.EMERALD, consumer, SMFeatureSelection.ARTIFACTS);
+        convertRecipe(RecipeCategory.MISC, SMArtifacts.SMALL_GEODE, () -> Items.AMETHYST_SHARD, 3, consumer, SMFeatureSelection.ARTIFACTS);
+        convertRecipe(RecipeCategory.MISC, SMArtifacts.TINY_ANCIENT_SKULL.getFirst(), () -> Items.BONE_MEAL, 3, consumer, SMFeatureSelection.ARTIFACTS);
+        convertRecipe(RecipeCategory.MISC, SMArtifacts.CRACKED_ANCIENT_SKULL.getFirst(), () -> Items.BONE_MEAL, 5, consumer, SMFeatureSelection.ARTIFACTS);
+        convertRecipe(RecipeCategory.MISC, SMArtifacts.CRESTED_ANCIENT_SKULL.getFirst(), () -> Items.BONE_MEAL, 5, consumer, SMFeatureSelection.ARTIFACTS);
+        convertRecipe(RecipeCategory.MISC, SMArtifacts.FLATBILLED_ANCIENT_SKULL.getFirst(), () -> Items.BONE_MEAL, 5, consumer, SMFeatureSelection.ARTIFACTS);
+        convertRecipe(RecipeCategory.MISC, SMArtifacts.GIGANTIC_ANCIENT_SKULL.getFirst(), () -> Items.BONE_MEAL, 5, consumer, SMFeatureSelection.ARTIFACTS);
+        convertRecipe(RecipeCategory.MISC, SMArtifacts.HORNED_ANCIENT_SKULL.getFirst(), () -> Items.BONE_MEAL, 5, consumer, SMFeatureSelection.ARTIFACTS);
+        convertRecipe(RecipeCategory.MISC, SMArtifacts.LONG_ANCIENT_SKULL.getFirst(), () -> Items.BONE_MEAL, 5, consumer, SMFeatureSelection.ARTIFACTS);
+        convertRecipe(RecipeCategory.MISC, SMArtifacts.WIDE_ANCIENT_SKULL.getFirst(), () -> Items.BONE_MEAL, 5, consumer, SMFeatureSelection.ARTIFACTS);
+        convertRecipe(RecipeCategory.MISC, SMArtifacts.RIBBED_ANCIENT_SKULL.getFirst(), () -> Items.BONE_MEAL, 5, consumer, SMFeatureSelection.ARTIFACTS);
+        convertRecipe(RecipeCategory.MISC, SMArtifacts.UNICORN_ANCIENT_SKULL.getFirst(), () -> Items.BONE_MEAL, 5, consumer, SMFeatureSelection.ARTIFACTS);
+        convertRecipe(RecipeCategory.MISC, SMArtifacts.SNOUTED_ANCIENT_SKULL.getFirst(), () -> Items.BONE_MEAL, 5, consumer, SMFeatureSelection.ARTIFACTS);
 
-        fixArtifactRecipe(SMArtifacts.BROKEN_VASE, () -> Items.BRICK, SMBlocks.FIXED_VASE, consumer, SMFeatures.ARTIFACTS);
-        fixArtifactRecipe(SMArtifacts.BROKEN_CUP, () -> Items.BRICK, SMBlocks.FIXED_CUP, consumer, SMFeatures.ARTIFACTS);
-        fixArtifactRecipe(SMArtifacts.BROKEN_BOWL, () -> Items.BRICK, SMBlocks.FIXED_BOWL, consumer, SMFeatures.ARTIFACTS);
+        fixArtifactRecipe(SMArtifacts.BROKEN_VASE, () -> Items.BRICK, SMBlocks.FIXED_VASE, consumer, SMFeatureSelection.ARTIFACTS);
+        fixArtifactRecipe(SMArtifacts.BROKEN_CUP, () -> Items.BRICK, SMBlocks.FIXED_CUP, consumer, SMFeatureSelection.ARTIFACTS);
+        fixArtifactRecipe(SMArtifacts.BROKEN_BOWL, () -> Items.BRICK, SMBlocks.FIXED_BOWL, consumer, SMFeatureSelection.ARTIFACTS);
 
         //Custom
-        featureConditionRecipe(List.of(SMFeatures.JADE), RecipeCategory.BUILDING_BLOCKS,
+        featureConditionRecipe(List.of(SMFeatureSelection.JADE), RecipeCategory.BUILDING_BLOCKS,
                 ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, SMBlocks.JADE_TOTEM.get())
                         .define('#', SMBlocks.JADE_BRICKS.get())
                         .pattern("###").pattern("# #").pattern("###")
                         .unlockedBy(getHasName(SMBlocks.JADE_BRICKS.get()), has(SMBlocks.JADE_BRICKS.get())),
                 craftingPath(getItemName(SMBlocks.JADE_TOTEM.get())), consumer
         );
-        featureConditionRecipe(List.of(SMFeatures.JADE), RecipeCategory.BUILDING_BLOCKS,
+        featureConditionRecipe(List.of(SMFeatureSelection.JADE), RecipeCategory.BUILDING_BLOCKS,
                 ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE, SMBlocks.JADE_FLINGER_TOTEM.get())
                         .define('#', SMBlocks.JADE_BRICKS.get()).define('-', Items.TRIPWIRE_HOOK)
                         .pattern("###").pattern("#-#").pattern("###")
@@ -239,28 +239,28 @@ public class SMRecipeProvider extends RecipeProvider {
                         .unlockedBy(getHasName(SMBlocks.JADE_BRICKS.get()), has(SMBlocks.JADE_BRICKS.get())),
                 craftingPath(getItemName(SMBlocks.JADE_FLINGER_TOTEM.get())), consumer
         );
-        featureConditionRecipe(List.of(SMFeatures.TORTOISE), RecipeCategory.BUILDING_BLOCKS,
+        featureConditionRecipe(List.of(SMFeatureSelection.TORTOISE), RecipeCategory.BUILDING_BLOCKS,
                 ShapedRecipeBuilder.shaped(RecipeCategory.MISC, SMItems.TORTOISE_SHELL.get())
                         .define('#', SMItems.TORTOISE_SCUTE.get())
                         .pattern("## ").pattern("## ").pattern("   ")
                         .unlockedBy(getHasName(SMItems.TORTOISE_SCUTE.get()), has(SMItems.TORTOISE_SCUTE.get())),
                 craftingPath(getItemName(SMItems.TORTOISE_SHELL.get())), consumer
         );
-        featureConditionRecipe(List.of(SMFeatures.JADE), RecipeCategory.BUILDING_BLOCKS,
+        featureConditionRecipe(List.of(SMFeatureSelection.JADE), RecipeCategory.BUILDING_BLOCKS,
                 ShapelessRecipeBuilder.shapeless(RecipeCategory.REDSTONE, SMBlocks.JADE_FLINGER_TOTEM.get())
                         .requires(SMBlocks.JADE_TOTEM.get()).requires(Items.TRIPWIRE_HOOK)
                         .unlockedBy(getHasName(Items.TRIPWIRE_HOOK), has(Items.TRIPWIRE_HOOK))
                         .unlockedBy(getHasName(SMBlocks.JADE_TOTEM.get()), has(SMBlocks.JADE_TOTEM.get())),
                 craftingPath(getItemName(SMBlocks.JADE_FLINGER_TOTEM.get()) + "_from_jade_totem"), consumer
         );
-        featureConditionRecipe(List.of(SMFeatures.PIRANHA), RecipeCategory.BUILDING_BLOCKS,
+        featureConditionRecipe(List.of(SMFeatureSelection.PIRANHA), RecipeCategory.BUILDING_BLOCKS,
                 ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, SMItems.THROWING_KNIFE.get())
                         .define('#', Items.STICK).define('X', SMItems.PIRANHA_TOOTH.get())
                         .pattern(" X").pattern("# ")
                         .unlockedBy(getHasName(SMItems.PIRANHA_TOOTH.get()), has(SMItems.PIRANHA_TOOTH.get())),
                 craftingPath(getItemName(SMItems.THROWING_KNIFE.get())), consumer
         );
-        featureConditionRecipe(List.of(SMFeatures.PIRANHA), RecipeCategory.BUILDING_BLOCKS,
+        featureConditionRecipe(List.of(SMFeatureSelection.PIRANHA), RecipeCategory.BUILDING_BLOCKS,
                 ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, Items.ARROW, 4)
                         .define('#', Items.STICK).define('X', SMItems.PIRANHA_TOOTH.get()).define('Y', Items.FEATHER)
                         .pattern("X").pattern("#").pattern("Y")
@@ -268,7 +268,7 @@ public class SMRecipeProvider extends RecipeProvider {
                         .unlockedBy(getHasName(SMItems.PIRANHA_TOOTH.get()), has(SMItems.PIRANHA_TOOTH.get())),
                 craftingPath("arrow_from_piranha_tooth"), consumer
         );
-        featureConditionRecipe(List.of(SMFeatures.ARTIFACTS), RecipeCategory.BUILDING_BLOCKS,
+        featureConditionRecipe(List.of(SMFeatureSelection.ARTIFACTS), RecipeCategory.BUILDING_BLOCKS,
                 ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, Items.ARROW, 4)
                         .define('#', Items.STICK).define('X', SMArtifacts.ARROWHEAD.get()).define('Y', Items.FEATHER)
                         .pattern("X").pattern("#").pattern("Y")
@@ -276,14 +276,14 @@ public class SMRecipeProvider extends RecipeProvider {
                         .unlockedBy(getHasName(SMArtifacts.ARROWHEAD.get()), has(SMArtifacts.ARROWHEAD.get())),
                 craftingPath("arrow_from_arrowhead"), consumer
         );
-        featureConditionRecipe(List.of(SMFeatures.JUNGLE_SPIDER), RecipeCategory.BUILDING_BLOCKS,
+        featureConditionRecipe(List.of(SMFeatureSelection.JUNGLE_SPIDER), RecipeCategory.BUILDING_BLOCKS,
                 ShapedRecipeBuilder.shaped(RecipeCategory.MISC, SMItems.GLASS_VIAL.get(), 3)
                         .define('#', Items.GLASS_PANE)
                         .pattern("# #").pattern(" # ")
                         .unlockedBy(getHasName(Items.GLASS_PANE), has(Items.GLASS_PANE)),
                 craftingPath(getItemName(SMItems.GLASS_VIAL.get())), consumer
         );
-        featureConditionRecipe(List.of(SMFeatures.ITEM_STAND), RecipeCategory.BUILDING_BLOCKS,
+        featureConditionRecipe(List.of(SMFeatureSelection.ITEM_STAND), RecipeCategory.BUILDING_BLOCKS,
                 ShapelessRecipeBuilder.shapeless(RecipeCategory.DECORATIONS, SMBlocks.ITEM_STAND.get())
                         .requires(Items.SMOOTH_STONE_SLAB).requires(Items.STICK)
                         .unlockedBy(getHasName(Items.SMOOTH_STONE_SLAB), has(Items.SMOOTH_STONE_SLAB))
@@ -292,11 +292,11 @@ public class SMRecipeProvider extends RecipeProvider {
         );
     }
 
-    protected static void convertRecipe(RecipeCategory pCategory, Supplier<? extends ItemLike> input, Supplier<? extends ItemLike> pResult, Consumer<FinishedRecipe> consumer, SMFeatures... features) {
+    protected static void convertRecipe(RecipeCategory pCategory, Supplier<? extends ItemLike> input, Supplier<? extends ItemLike> pResult, Consumer<FinishedRecipe> consumer, SMFeatureSelection... features) {
         convertRecipe(pCategory, input, pResult, 1, consumer, features);
     }
 
-    protected static void convertRecipe(RecipeCategory pCategory, Supplier<? extends ItemLike> input, Supplier<? extends ItemLike> pResult, int resultCount, Consumer<FinishedRecipe> consumer, SMFeatures... features) {
+    protected static void convertRecipe(RecipeCategory pCategory, Supplier<? extends ItemLike> input, Supplier<? extends ItemLike> pResult, int resultCount, Consumer<FinishedRecipe> consumer, SMFeatureSelection... features) {
         featureConditionRecipe(List.of(features), pCategory,
                 ShapelessRecipeBuilder.shapeless(pCategory, pResult.get(), resultCount)
                         .requires(input.get())
@@ -305,7 +305,7 @@ public class SMRecipeProvider extends RecipeProvider {
         );
     }
 
-    protected static void packableBlockRecipes(Supplier<? extends ItemLike> unpacked, Supplier<? extends ItemLike> packed, Consumer<FinishedRecipe> consumer, SMFeatures... features) {
+    protected static void packableBlockRecipes(Supplier<? extends ItemLike> unpacked, Supplier<? extends ItemLike> packed, Consumer<FinishedRecipe> consumer, SMFeatureSelection... features) {
         featureConditionRecipe(List.of(features), RecipeCategory.BUILDING_BLOCKS,
                 ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, packed.get())
                         .define('#', unpacked.get()).pattern("###").pattern("###").pattern("###")
@@ -317,14 +317,14 @@ public class SMRecipeProvider extends RecipeProvider {
                         .unlockedBy(getHasName(packed.get()), has(packed.get())), craftingPath(getItemName(unpacked.get())), consumer);
     }
 
-    protected static void tilingBlockRecipes(Supplier<? extends ItemLike> ingredient, Supplier<? extends ItemLike> result, Consumer<FinishedRecipe> consumer, SMFeatures... features) {
+    protected static void tilingBlockRecipes(Supplier<? extends ItemLike> ingredient, Supplier<? extends ItemLike> result, Consumer<FinishedRecipe> consumer, SMFeatureSelection... features) {
         featureConditionRecipe(List.of(features), RecipeCategory.BUILDING_BLOCKS,
                 ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, result.get(), 4)
                         .define('#', ingredient.get()).pattern("##").pattern("##")
                         .unlockedBy(getHasName(ingredient.get()), has(ingredient.get())), craftingPath(getItemName(result.get())), consumer);
     }
 
-    protected static void meltingRecipes(RecipeCategory category, Supplier<? extends ItemLike> ingredient, Supplier<? extends ItemLike> result, float experience, boolean isMetal, Consumer<FinishedRecipe> consumer, SMFeatures... features) {
+    protected static void meltingRecipes(RecipeCategory category, Supplier<? extends ItemLike> ingredient, Supplier<? extends ItemLike> result, float experience, boolean isMetal, Consumer<FinishedRecipe> consumer, SMFeatureSelection... features) {
         String resultName = getItemName(result.get());
         String ingredientName = getItemName(ingredient.get());
 
@@ -339,7 +339,7 @@ public class SMRecipeProvider extends RecipeProvider {
         }
     }
 
-    protected static void cookingRecipes(Supplier<? extends ItemLike> ingredient, Supplier<? extends ItemLike> result, float experience, Consumer<FinishedRecipe> consumer, SMFeatures... features) {
+    protected static void cookingRecipes(Supplier<? extends ItemLike> ingredient, Supplier<? extends ItemLike> result, float experience, Consumer<FinishedRecipe> consumer, SMFeatureSelection... features) {
         String resultName = getItemName(result.get());
 
         featureConditionRecipe(List.of(features), RecipeCategory.FOOD,
@@ -355,7 +355,7 @@ public class SMRecipeProvider extends RecipeProvider {
                         .unlockedBy(getHasName(ingredient.get()), has(ingredient.get())), smokingPath(resultName + "_from_smoking"), consumer);
     }
 
-    protected static void stairRecipes(Supplier<? extends ItemLike> ingredient, Supplier<? extends ItemLike> result, Consumer<FinishedRecipe> consumer, SMFeatures... features) {
+    protected static void stairRecipes(Supplier<? extends ItemLike> ingredient, Supplier<? extends ItemLike> result, Consumer<FinishedRecipe> consumer, SMFeatureSelection... features) {
         featureConditionRecipe(List.of(features), RecipeCategory.BUILDING_BLOCKS,
                 ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, result.get(), 4)
                         .define('#', ingredient.get()).pattern("#  ").pattern("## ").pattern("###")
@@ -364,7 +364,7 @@ public class SMRecipeProvider extends RecipeProvider {
 
     }
 
-    protected static void slabRecipes(Supplier<? extends ItemLike> ingredient, Supplier<? extends ItemLike> result, Consumer<FinishedRecipe> consumer, SMFeatures... features) {
+    protected static void slabRecipes(Supplier<? extends ItemLike> ingredient, Supplier<? extends ItemLike> result, Consumer<FinishedRecipe> consumer, SMFeatureSelection... features) {
         featureConditionRecipe(List.of(features), RecipeCategory.BUILDING_BLOCKS,
                 ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, result.get(), 6)
                         .define('#', ingredient.get()).pattern("###")
@@ -373,35 +373,35 @@ public class SMRecipeProvider extends RecipeProvider {
 
     }
 
-    protected static void wallRecipes(Supplier<? extends ItemLike> ingredient, Supplier<? extends ItemLike> result, Consumer<FinishedRecipe> consumer, SMFeatures... features) {
+    protected static void wallRecipes(Supplier<? extends ItemLike> ingredient, Supplier<? extends ItemLike> result, Consumer<FinishedRecipe> consumer, SMFeatureSelection... features) {
         featureConditionRecipe(List.of(features), RecipeCategory.BUILDING_BLOCKS,
                 ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, result.get(), 6)
                         .define('#', ingredient.get()).pattern("###").pattern("###")
                         .unlockedBy(getHasName(ingredient.get()), has(ingredient.get())), craftingPath(getItemName(result.get())), consumer);
     }
 
-    protected static void pillarRecipes(Supplier<? extends ItemLike> ingredient, Supplier<? extends ItemLike> result, Consumer<FinishedRecipe> consumer, SMFeatures... features) {
+    protected static void pillarRecipes(Supplier<? extends ItemLike> ingredient, Supplier<? extends ItemLike> result, Consumer<FinishedRecipe> consumer, SMFeatureSelection... features) {
         featureConditionRecipe(List.of(features), RecipeCategory.BUILDING_BLOCKS,
                 ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, result.get(), 2)
                         .define('#', ingredient.get()).pattern("#").pattern("#")
                         .unlockedBy(getHasName(ingredient.get()), has(ingredient.get())), craftingPath(getItemName(result.get())), consumer);
     }
 
-    protected static void chiseledRecipes(Supplier<? extends ItemLike> ingredient, Supplier<? extends ItemLike> result, Consumer<FinishedRecipe> consumer, SMFeatures... features) {
+    protected static void chiseledRecipes(Supplier<? extends ItemLike> ingredient, Supplier<? extends ItemLike> result, Consumer<FinishedRecipe> consumer, SMFeatureSelection... features) {
         featureConditionRecipe(List.of(features), RecipeCategory.BUILDING_BLOCKS,
                 ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, result.get(), 1)
                         .define('#', ingredient.get()).pattern("#").pattern("#")
                         .unlockedBy(getHasName(ingredient.get()), has(ingredient.get())), craftingPath(getItemName(result.get())), consumer);
     }
 
-    protected static void buttonRecipes(RecipeCategory category, ItemLike ingredient, Supplier<? extends ItemLike> result, Consumer<FinishedRecipe> consumer, SMFeatures... features) {
+    protected static void buttonRecipes(RecipeCategory category, ItemLike ingredient, Supplier<? extends ItemLike> result, Consumer<FinishedRecipe> consumer, SMFeatureSelection... features) {
         featureConditionRecipe(List.of(features), RecipeCategory.BUILDING_BLOCKS,
                 ShapelessRecipeBuilder.shapeless(category, result.get())
                         .requires(ingredient)
                         .unlockedBy(getHasName(ingredient), has(ingredient)), craftingPath(getItemName(result.get())), consumer);
     }
 
-    protected static void waxButtonRecipes(Supplier<? extends ItemLike> ingredient, Supplier<? extends ItemLike> result, Consumer<FinishedRecipe> consumer, SMFeatures... features) {
+    protected static void waxButtonRecipes(Supplier<? extends ItemLike> ingredient, Supplier<? extends ItemLike> result, Consumer<FinishedRecipe> consumer, SMFeatureSelection... features) {
         String resultName = getItemName(result.get());
 
         featureConditionRecipe(List.of(features), RecipeCategory.BUILDING_BLOCKS,
@@ -411,7 +411,7 @@ public class SMRecipeProvider extends RecipeProvider {
 
     }
 
-    protected static void stonecutterRecipes(RecipeCategory category, Supplier<? extends ItemLike> ingredient, Supplier<? extends ItemLike> result, int resultCount, Consumer<FinishedRecipe> consumer, SMFeatures... features) {
+    protected static void stonecutterRecipes(RecipeCategory category, Supplier<? extends ItemLike> ingredient, Supplier<? extends ItemLike> result, int resultCount, Consumer<FinishedRecipe> consumer, SMFeatureSelection... features) {
         String prefix = getItemName(result.get()) + "_from_" + getItemName(ingredient.get());
 
         featureConditionRecipe(List.of(features), RecipeCategory.BUILDING_BLOCKS,
@@ -442,7 +442,7 @@ public class SMRecipeProvider extends RecipeProvider {
         SmithingTransformRecipeBuilder.smithing(Ingredient.of(templateItem), Ingredient.of(baseItem), Ingredient.of(addition), category, result.asItem()).unlocks(getHasName(addition), has(addition)).save(consumer, smithingPath(resultName));
     }
 
-    protected static void smithingTemplateRecipes(RecipeCategory category, ItemLike templateItem, ItemLike baseItem, ItemLike addition, ItemLike result, ItemLike duplicationBase, Consumer<FinishedRecipe> consumer, SMFeatures... features) {
+    protected static void smithingTemplateRecipes(RecipeCategory category, ItemLike templateItem, ItemLike baseItem, ItemLike addition, ItemLike result, ItemLike duplicationBase, Consumer<FinishedRecipe> consumer, SMFeatureSelection... features) {
         smithingRecipes(category, templateItem, baseItem, addition, result, consumer);
         featureConditionRecipe(List.of(features), RecipeCategory.BUILDING_BLOCKS,
                 ShapedRecipeBuilder.shaped(RecipeCategory.MISC, templateItem, 2)
@@ -452,21 +452,21 @@ public class SMRecipeProvider extends RecipeProvider {
 
     }
 
-    private static void planksFromLogsRecipe(TagKey<Item> pLogs, Supplier<? extends ItemLike> result, Consumer<FinishedRecipe> consumer, SMFeatures... features) {
+    private static void planksFromLogsRecipe(TagKey<Item> pLogs, Supplier<? extends ItemLike> result, Consumer<FinishedRecipe> consumer, SMFeatureSelection... features) {
         featureConditionRecipe(List.of(features), RecipeCategory.BUILDING_BLOCKS,
                 ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, result.get(), 4)
                         .requires(pLogs)
                         .unlockedBy("has_logs", has(pLogs)), craftingPath(getItemName(result.get())), consumer);
     }
 
-    private static void woodFromLogsRecipe(Supplier<? extends ItemLike> pLog, Supplier<? extends ItemLike> result, Consumer<FinishedRecipe> consumer, SMFeatures... features) {
+    private static void woodFromLogsRecipe(Supplier<? extends ItemLike> pLog, Supplier<? extends ItemLike> result, Consumer<FinishedRecipe> consumer, SMFeatureSelection... features) {
         featureConditionRecipe(List.of(features), RecipeCategory.BUILDING_BLOCKS,
                 ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, result.get(), 3)
                         .define('#', pLog.get()).pattern("##").pattern("##")
                         .unlockedBy("has_log", has(pLog.get())), craftingPath(getItemName(result.get())), consumer);
     }
 
-    private static void fenceRecipe(Supplier<? extends ItemLike> ingredient, Supplier<? extends ItemLike> result, Consumer<FinishedRecipe> consumer, SMFeatures... features) {
+    private static void fenceRecipe(Supplier<? extends ItemLike> ingredient, Supplier<? extends ItemLike> result, Consumer<FinishedRecipe> consumer, SMFeatureSelection... features) {
         featureConditionRecipe(List.of(features), RecipeCategory.BUILDING_BLOCKS,
                 ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, result.get(), 3)
                         .define('W', ingredient.get()).define('#', Items.STICK)
@@ -474,14 +474,14 @@ public class SMRecipeProvider extends RecipeProvider {
                         .unlockedBy(getHasName(ingredient.get()), has(ingredient.get())), craftingPath(getItemName(result.get())), consumer);
     }
     
-    private static void pressurePlateRecipe(Supplier<? extends ItemLike> ingredient, Supplier<? extends ItemLike> result, Consumer<FinishedRecipe> consumer, SMFeatures... features) {
+    private static void pressurePlateRecipe(Supplier<? extends ItemLike> ingredient, Supplier<? extends ItemLike> result, Consumer<FinishedRecipe> consumer, SMFeatureSelection... features) {
         featureConditionRecipe(List.of(features), RecipeCategory.BUILDING_BLOCKS,
                 ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, result.get())
                         .define('#', ingredient.get()).pattern("##")
                         .unlockedBy(getHasName(ingredient.get()), has(ingredient.get())), craftingPath(getItemName(result.get())), consumer);
     }
 
-    private static void doorRecipe(Supplier<? extends ItemLike> ingredient, Supplier<? extends ItemLike> result, Consumer<FinishedRecipe> consumer, SMFeatures... features) {
+    private static void doorRecipe(Supplier<? extends ItemLike> ingredient, Supplier<? extends ItemLike> result, Consumer<FinishedRecipe> consumer, SMFeatureSelection... features) {
         featureConditionRecipe(List.of(features), RecipeCategory.BUILDING_BLOCKS,
                 ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, result.get(), 3)
                         .define('#', ingredient.get())
@@ -489,7 +489,7 @@ public class SMRecipeProvider extends RecipeProvider {
                         .unlockedBy(getHasName(ingredient.get()), has(ingredient.get())), craftingPath(getItemName(result.get())), consumer);
     }
 
-    private static void trapdoorRecipe(Supplier<? extends ItemLike> ingredient, Supplier<? extends ItemLike> result, Consumer<FinishedRecipe> consumer, SMFeatures... features) {
+    private static void trapdoorRecipe(Supplier<? extends ItemLike> ingredient, Supplier<? extends ItemLike> result, Consumer<FinishedRecipe> consumer, SMFeatureSelection... features) {
         featureConditionRecipe(List.of(features), RecipeCategory.BUILDING_BLOCKS,
                 ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, result.get(), 2)
                         .define('#', ingredient.get())
@@ -497,7 +497,7 @@ public class SMRecipeProvider extends RecipeProvider {
                         .unlockedBy(getHasName(ingredient.get()), has(ingredient.get())), craftingPath(getItemName(result.get())), consumer);
     }
 
-    private static void fenceGateRecipe(Supplier<? extends ItemLike> ingredient, Supplier<? extends ItemLike> result, Consumer<FinishedRecipe> consumer, SMFeatures... features) {
+    private static void fenceGateRecipe(Supplier<? extends ItemLike> ingredient, Supplier<? extends ItemLike> result, Consumer<FinishedRecipe> consumer, SMFeatureSelection... features) {
         featureConditionRecipe(List.of(features), RecipeCategory.BUILDING_BLOCKS,
                 ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, result.get())
                         .define('#', Items.STICK).define('W', ingredient.get())
@@ -505,7 +505,7 @@ public class SMRecipeProvider extends RecipeProvider {
                         .unlockedBy(getHasName(ingredient.get()), has(ingredient.get())), craftingPath(getItemName(result.get())), consumer);
     }
 
-    private static void signRecipe(Supplier<? extends ItemLike> ingredient, Supplier<? extends ItemLike> result, Consumer<FinishedRecipe> consumer, SMFeatures... features) {
+    private static void signRecipe(Supplier<? extends ItemLike> ingredient, Supplier<? extends ItemLike> result, Consumer<FinishedRecipe> consumer, SMFeatureSelection... features) {
         featureConditionRecipe(List.of(features), RecipeCategory.BUILDING_BLOCKS,
                 ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, result.get(), 3)
                         .define('#', ingredient.get()).define('X', Items.STICK)
@@ -513,7 +513,7 @@ public class SMRecipeProvider extends RecipeProvider {
                         .unlockedBy(getHasName(ingredient.get()), has(ingredient.get())), craftingPath(getItemName(result.get())), consumer);
     }
 
-    private static void hangingSignRecipe(Supplier<? extends ItemLike> ingredient, Supplier<? extends ItemLike> result, Consumer<FinishedRecipe> consumer, SMFeatures... features) {
+    private static void hangingSignRecipe(Supplier<? extends ItemLike> ingredient, Supplier<? extends ItemLike> result, Consumer<FinishedRecipe> consumer, SMFeatureSelection... features) {
         featureConditionRecipe(List.of(features), RecipeCategory.BUILDING_BLOCKS,
                 ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, result.get(), 6)
                         .define('#', ingredient.get()).define('X', Items.CHAIN)
@@ -521,8 +521,8 @@ public class SMRecipeProvider extends RecipeProvider {
                         .unlockedBy(getHasName(ingredient.get()), has(ingredient.get())), craftingPath(getItemName(result.get())), consumer);
     }
 
-    private static void gemLanterns(Supplier<? extends ItemLike> ingredient, Supplier<? extends ItemLike> result, Consumer<FinishedRecipe> consumer, SMFeatures... additionalFeatures) {
-        List<SMFeatures> features = Stream.concat(Arrays.stream(additionalFeatures), Stream.of(SMFeatures.GEM_LANTERNS)).toList();
+    private static void gemLanterns(Supplier<? extends ItemLike> ingredient, Supplier<? extends ItemLike> result, Consumer<FinishedRecipe> consumer, SMFeatureSelection... additionalFeatures) {
+        List<SMFeatureSelection> features = Stream.concat(Arrays.stream(additionalFeatures), Stream.of(SMFeatureSelection.GEM_LANTERNS)).toList();
 
         featureConditionRecipe(features, RecipeCategory.BUILDING_BLOCKS,
                 ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, result.get(), 4)
@@ -533,7 +533,7 @@ public class SMRecipeProvider extends RecipeProvider {
                         .unlockedBy(getHasName(ingredient.get()), has(ingredient.get())), craftingPath(getItemName(result.get())), consumer);
     }
 
-    protected static void fixArtifactRecipe(Supplier<? extends ItemLike> broken, Supplier<? extends ItemLike> repairCost, Supplier<? extends ItemLike> result, Consumer<FinishedRecipe> consumer, SMFeatures... features) {
+    protected static void fixArtifactRecipe(Supplier<? extends ItemLike> broken, Supplier<? extends ItemLike> repairCost, Supplier<? extends ItemLike> result, Consumer<FinishedRecipe> consumer, SMFeatureSelection... features) {
         featureConditionRecipe(List.of(features), RecipeCategory.DECORATIONS,
                 ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, result.get())
                         .define('#', repairCost.get())
@@ -544,7 +544,7 @@ public class SMRecipeProvider extends RecipeProvider {
                         .unlockedBy(getHasName(broken.get()), has(broken.get())), craftingPath(getItemName(result.get())), consumer);
     }
 
-    private static void featureConditionRecipe(List<SMFeatures> features, RecipeCategory category, RecipeBuilder recipe, ResourceLocation customPath, Consumer<FinishedRecipe> consumer) {
+    private static void featureConditionRecipe(List<SMFeatureSelection> features, RecipeCategory category, RecipeBuilder recipe, ResourceLocation customPath, Consumer<FinishedRecipe> consumer) {
         conditionalRecipe(new SMFeatureRecipeCondition(features), category, recipe, customPath, consumer);
     }
 

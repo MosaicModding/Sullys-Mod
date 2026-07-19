@@ -3,9 +3,9 @@ package com.uraneptus.sullysmod.core.events;
 import com.uraneptus.sullysmod.SullysMod;
 import com.uraneptus.sullysmod.common.entities.*;
 import com.uraneptus.sullysmod.core.SMConfig;
-import com.uraneptus.sullysmod.core.SMFeatures;
-import com.uraneptus.sullysmod.core.other.SMTextDefinitions;
-import com.uraneptus.sullysmod.core.other.tags.SMBiomeTags;
+import com.uraneptus.sullysmod.core.SMFeatureSelection;
+import com.uraneptus.sullysmod.core.registry.SMTextDefinitions;
+import com.uraneptus.sullysmod.core.registry.tags.SMBiomeTags;
 import com.uraneptus.sullysmod.core.registry.SMEntityTypes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.packs.PackType;
@@ -27,8 +27,6 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.forgespi.locating.IModFile;
 import net.minecraftforge.resource.PathPackResources;
 
-import java.util.function.Predicate;
-
 @Mod.EventBusSubscriber(modid = SullysMod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 @SuppressWarnings("unused")
 public class SMCommonModEvents {
@@ -48,23 +46,23 @@ public class SMCommonModEvents {
     }
 
     public static boolean zombieExtraRules(EntityType<? extends Monster> pType, ServerLevelAccessor pLevel, MobSpawnType pSpawnType, BlockPos pPos, RandomSource pRandom) {
-        return rateDependentSpawn(SMFeatures.BOULDERING_ZOMBIE, SMConfig.ZOMBIE_IN_DEEPSLATE_REPLACEMENT_RATE.get(), pPos.getY() > 0, pSpawnType, pRandom);
+        return rateDependentSpawn(SMFeatureSelection.BOULDERING_ZOMBIE, SMConfig.ZOMBIE_IN_DEEPSLATE_REPLACEMENT_RATE.get(), pPos.getY() > 0, pSpawnType, pRandom);
     }
 
     public static boolean spiderExtraRules(EntityType<? extends Monster> pType, ServerLevelAccessor pLevel, MobSpawnType pSpawnType, BlockPos pPos, RandomSource pRandom) {
-        return rateDependentSpawn(SMFeatures.JUNGLE_SPIDER, SMConfig.SPIDER_IN_JUNGLE_REPLACEMENT_RATE.get(), !pLevel.getBiome(pPos).is(SMBiomeTags.JUNGLE_SPIDER_SPAWN_IN), pSpawnType, pRandom);
+        return rateDependentSpawn(SMFeatureSelection.JUNGLE_SPIDER, SMConfig.SPIDER_IN_JUNGLE_REPLACEMENT_RATE.get(), !pLevel.getBiome(pPos).is(SMBiomeTags.JUNGLE_SPIDER_SPAWN_IN), pSpawnType, pRandom);
     }
 
     public static boolean skeletonExtraRules(EntityType<? extends Monster> pType, ServerLevelAccessor pLevel, MobSpawnType pSpawnType, BlockPos pPos, RandomSource pRandom) {
-        return rateDependentSpawn(SMFeatures.MAULED, SMConfig.SKELETON_IN_DEEPSLATE_REPLACEMENT_RATE.get(), pPos.getY() > 0, pSpawnType, pRandom);
+        return rateDependentSpawn(SMFeatureSelection.MAULED, SMConfig.SKELETON_IN_DEEPSLATE_REPLACEMENT_RATE.get(), pPos.getY() > 0, pSpawnType, pRandom);
     }
 
-    private static boolean rateDependentSpawn(SMFeatures requiredFeature, double replacementRate, boolean whenNotToApply, MobSpawnType pSpawnType, RandomSource pRandom) {
+    private static boolean rateDependentSpawn(SMFeatureSelection requiredFeature, double replacementRate, boolean whenNotToApply, MobSpawnType pSpawnType, RandomSource pRandom) {
         if (pSpawnType.equals(MobSpawnType.SPAWNER) || whenNotToApply) {
             return true;
         }
 
-        if (!SMFeatures.isEnabled(requiredFeature)) {
+        if (!SMFeatureSelection.isEnabled(requiredFeature)) {
             return true;
         }
 

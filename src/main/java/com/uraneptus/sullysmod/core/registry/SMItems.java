@@ -2,7 +2,7 @@ package com.uraneptus.sullysmod.core.registry;
 
 import com.uraneptus.sullysmod.SullysMod;
 import com.uraneptus.sullysmod.common.items.*;
-import com.uraneptus.sullysmod.core.other.SMProperties;
+import com.uraneptus.sullysmod.core.util.SMProperties;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
@@ -12,7 +12,6 @@ import net.minecraft.world.level.material.Fluids;
 import net.neoforged.neoforge.common.DeferredSpawnEggItem;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
-import net.neoforged.neoforge.registries.NeoForgeRegistries;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,14 +25,15 @@ public class SMItems {
     //Basic Items
     public static final DeferredItem<Item> ROUGH_JADE = createItem("rough_jade");
     public static final DeferredItem<Item> JADE = createItem("jade");
-    public static final DeferredItem<Item> MUSIC_DISC_SCOUR = createItem("music_disc_scour", () -> new SMRecordItem(12, SMSounds.MUSIC_DISC_SCOUR, SMProperties.Items.MUSIC_DISCS, 4980), true);
-    public static final DeferredItem<Item> MUSIC_DISC_SUNKEN_PAST = createItem("music_disc_sunken_past", () -> new SMRecordItem(12, SMSounds.MUSIC_DISC_SUNKEN_PAST, SMProperties.Items.MUSIC_DISCS, 2700), true); //Doesn't have a feature category yet
+    //TODO for the music discs we need to register their "jukebox song" key
+    //public static final DeferredItem<Item> MUSIC_DISC_SCOUR = createItem("music_disc_scour", () -> new SMRecordItem(12, SMSounds.MUSIC_DISC_SCOUR, SMProperties.Items.MUSIC_DISCS, 4980), true);
+    //public static final DeferredItem<Item> MUSIC_DISC_SUNKEN_PAST = createItem("music_disc_sunken_past", () -> new SMRecordItem(12, SMSounds.MUSIC_DISC_SUNKEN_PAST, SMProperties.Items.MUSIC_DISCS, 2700), true); //Doesn't have a feature category yet
     public static final DeferredItem<Item> TORTOISE_SCUTE = createItem("tortoise_scute");
     public static final DeferredItem<Item> TORTOISE_SHELL = createItem("tortoise_shell", () -> new TortoiseShellItem(SMProperties.Items.singleStack()));
     public static final DeferredItem<Item> JADE_UPGRADE_SMITHING_TEMPLATE = createItem("jade_upgrade_smithing_template", JadeSmithingTemplateItem::new, true);
     public static final DeferredItem<Item> GLASS_VIAL = createItem("glass_vial", () -> new VialItem(new Item.Properties()));
     public static final DeferredItem<Item> VENOM_VIAL = createItem("venom_vial", () -> new VenomVialItem(new Item.Properties().stacksTo(16)), true);
-    public static final DeferredItem<Item> JADE_HORSE_ARMOR = createItem("jade_horse_armor", () -> new HorseArmorItem(9, "jade", SMProperties.Items.singleStack()));
+    public static final DeferredItem<Item> JADE_HORSE_ARMOR = createItem("jade_horse_armor", () -> new AnimalArmorItem(ArmorMaterials.IRON, AnimalArmorItem.BodyType.EQUESTRIAN, false, SMProperties.Items.singleStack()));
     public static final DeferredItem<Item> PIRANHA_TOOTH = createItem("piranha_tooth");
 
     //Tools

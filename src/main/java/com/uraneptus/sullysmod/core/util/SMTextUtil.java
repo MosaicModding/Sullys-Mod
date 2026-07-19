@@ -1,4 +1,4 @@
-package com.uraneptus.sullysmod.core.other;
+package com.uraneptus.sullysmod.core.util;
 
 import com.uraneptus.sullysmod.SullysMod;
 import com.uraneptus.sullysmod.common.blocks.AncientSkullBlock;

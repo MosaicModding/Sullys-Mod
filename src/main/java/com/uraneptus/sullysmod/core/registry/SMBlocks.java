@@ -8,7 +8,7 @@ import com.teamabnormals.blueprint.common.block.sign.BlueprintWallSignBlock;
 import com.uraneptus.sullysmod.SullysMod;
 import com.uraneptus.sullysmod.common.blocks.*;
 import com.uraneptus.sullysmod.common.blocks.utilities.SMDirectionalBlock;
-import com.uraneptus.sullysmod.core.other.SMProperties;
+import com.uraneptus.sullysmod.core.util.SMProperties;
 import net.minecraft.core.Direction;
 import net.minecraft.util.valueproviders.ConstantInt;
 import net.minecraft.world.item.BlockItem;

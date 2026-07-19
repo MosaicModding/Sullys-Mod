@@ -1,7 +1,7 @@
 package com.uraneptus.sullysmod.common.blocks.utilities;
 
 import com.uraneptus.sullysmod.common.blocks.AmberLayeredCauldronBlock;
-import com.uraneptus.sullysmod.core.other.tags.SMBlockTags;
+import com.uraneptus.sullysmod.core.registry.tags.SMBlockTags;
 import com.uraneptus.sullysmod.core.registry.SMBlocks;
 import com.uraneptus.sullysmod.core.registry.SMParticleTypes;
 import net.minecraft.core.BlockPos;

@@ -9,10 +9,10 @@ import com.uraneptus.sullysmod.common.entities.Tortoise;
 import com.uraneptus.sullysmod.common.entities.goals.GenericMobAttackTortoiseEggGoal;
 import com.uraneptus.sullysmod.common.particletypes.DirectionParticleOptions;
 import com.uraneptus.sullysmod.core.SMConfig;
-import com.uraneptus.sullysmod.core.SMFeatures;
-import com.uraneptus.sullysmod.core.other.tags.SMBlockTags;
-import com.uraneptus.sullysmod.core.other.tags.SMEntityTags;
-import com.uraneptus.sullysmod.core.other.tags.SMItemTags;
+import com.uraneptus.sullysmod.core.SMFeatureSelection;
+import com.uraneptus.sullysmod.core.registry.tags.SMBlockTags;
+import com.uraneptus.sullysmod.core.registry.tags.SMEntityTags;
+import com.uraneptus.sullysmod.core.registry.tags.SMItemTags;
 import com.uraneptus.sullysmod.core.registry.SMItems;
 import com.uraneptus.sullysmod.core.registry.SMParticleTypes;
 import com.uraneptus.sullysmod.core.registry.SMSounds;
@@ -59,7 +59,7 @@ public class SMEntityEvents {
     //TODO consider splitting event contents (all events) into feature classes and just call methods from each class in the event
     @SubscribeEvent
     public static void onProjectileHitsBlock(ProjectileImpactEvent event) {
-        if (!SMFeatures.isEnabled(SMFeatures.JADE)) return; //Only works cuz this event currently only handles jade
+        if (!SMFeatureSelection.isEnabled(SMFeatureSelection.JADE)) return; //Only works cuz this event currently only handles jade
 
         Projectile projectile = event.getProjectile();
         Level level = event.getEntity().level();
@@ -67,7 +67,7 @@ public class SMEntityEvents {
         Vec3 vec3 = projectile.getDeltaMovement();
         float velocity = (float) vec3.length();
 
-        if (!SMFeatures.isEnabled(SMFeatures.JADE)) return;
+        if (!SMFeatureSelection.isEnabled(SMFeatureSelection.JADE)) return;
         if (hitResult instanceof BlockHitResult blockHitResult && hitResult.getType() == HitResult.Type.BLOCK) {
             BlockPos pos = blockHitResult.getBlockPos();
             BlockState blockState = level.getBlockState(pos);
@@ -240,7 +240,7 @@ public class SMEntityEvents {
         LivingEntity livingEntity = event.getEntity();
         Entity killer = event.getSource().getEntity();
         Level level = event.getEntity().level();
-        if (!SMFeatures.isEnabled(SMFeatures.PIRANHA)) return;
+        if (!SMFeatureSelection.isEnabled(SMFeatureSelection.PIRANHA)) return;
         if (!(killer instanceof Piranha)) return;
         if (livingEntity instanceof Zombie zombie && !zombie.isBaby()) {
             replaceEntity(livingEntity, level, EntityType.SKELETON);

@@ -1,8 +1,7 @@
 package com.uraneptus.sullysmod.common.levelgen.biome_modifiers;
 
-import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
-import com.uraneptus.sullysmod.core.SMFeatures;
+import com.uraneptus.sullysmod.core.SMFeatureSelection;
 import com.uraneptus.sullysmod.core.registry.SMBiomeModifiers;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderSet;
@@ -15,11 +14,11 @@ import net.neoforged.neoforge.common.world.ModifiableBiomeInfo;
 
 import java.util.List;
 
-public record OptionalAddFeaturesBiomeModifier(HolderSet<Biome> biomes, HolderSet<PlacedFeature> features, GenerationStep.Decoration step, List<SMFeatures> modFeatures) implements BiomeModifier {
+public record OptionalAddFeaturesBiomeModifier(HolderSet<Biome> biomes, HolderSet<PlacedFeature> features, GenerationStep.Decoration step, List<SMFeatureSelection> modFeatures) implements BiomeModifier {
 
     @Override
     public void modify(Holder<Biome> biome, BiomeModifier.Phase phase, ModifiableBiomeInfo.BiomeInfo.Builder builder) {
-        if (modFeatures.stream().allMatch(SMFeatures::isEnabled)) {
+        if (modFeatures.stream().allMatch(SMFeatureSelection::isEnabled)) {
             if (phase == Phase.ADD && this.biomes.contains(biome)) {
                 BiomeGenerationSettingsBuilder generationSettings = builder.getGenerationSettings();
                 this.features.forEach(holder -> generationSettings.addFeature(this.step, holder));

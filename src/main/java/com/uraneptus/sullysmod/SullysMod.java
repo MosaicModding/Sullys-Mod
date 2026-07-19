@@ -8,8 +8,11 @@ import com.uraneptus.sullysmod.common.entities.*;
 import com.uraneptus.sullysmod.common.networking.SMPacketHandler;
 import com.uraneptus.sullysmod.common.recipes.SMFeatureRecipeCondition;
 import com.uraneptus.sullysmod.core.SMConfig;
-import com.uraneptus.sullysmod.core.other.SMTextDefinitions;
+import com.uraneptus.sullysmod.core.registry.SMTextDefinitions;
 import com.uraneptus.sullysmod.core.registry.*;
+import com.uraneptus.sullysmod.core.registry.worldgen.SMFeatureTypes;
+import com.uraneptus.sullysmod.core.registry.worldgen.SMPetrifiedTreeVariants;
+import com.uraneptus.sullysmod.core.registry.worldgen.SMTreeDecoratorTypes;
 import com.uraneptus.sullysmod.data.client.*;
 import com.uraneptus.sullysmod.data.server.SMRecipeProvider;
 import com.uraneptus.sullysmod.data.server.advancements.SMAdvancementProvider;
@@ -65,7 +68,7 @@ public class SullysMod {
         SMPaintingVariants.PAINTINGS.register(bus);
         SMBiomeModifiers.BIOME_MODIFIERS.register(bus);
         SMTreeDecoratorTypes.TREE_DECORATORS.register(bus);
-        com.uraneptus.sullysmod.core.registry.SMFeatures.FEATURES.register(bus);
+        SMFeatureTypes.FEATURES.register(bus);
         SMCreativeModeTabs.TABS.register(bus);
 
         CraftingHelper.register(new SMFeatureRecipeCondition.Serializer());

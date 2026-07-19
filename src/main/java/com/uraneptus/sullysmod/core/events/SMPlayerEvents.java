@@ -2,17 +2,15 @@ package com.uraneptus.sullysmod.core.events;
 
 import com.teamabnormals.blueprint.core.util.BlockUtil;
 import com.uraneptus.sullysmod.SullysMod;
-import com.uraneptus.sullysmod.common.blocks.utilities.AmberUtil;
 import com.uraneptus.sullysmod.common.blocks.utilities.PickaxeStrippable;
 import com.uraneptus.sullysmod.common.recipes.GrindstonePolishingRecipe;
 import com.uraneptus.sullysmod.core.SMConfig;
-import com.uraneptus.sullysmod.core.SMFeatures;
-import com.uraneptus.sullysmod.core.other.SMItemUtil;
-import com.uraneptus.sullysmod.core.other.SMTextDefinitions;
-import com.uraneptus.sullysmod.core.other.tags.SMBiomeTags;
-import com.uraneptus.sullysmod.core.other.tags.SMItemTags;
+import com.uraneptus.sullysmod.core.SMFeatureSelection;
+import com.uraneptus.sullysmod.core.util.SMItemUtil;
+import com.uraneptus.sullysmod.core.registry.SMTextDefinitions;
+import com.uraneptus.sullysmod.core.registry.tags.SMBiomeTags;
+import com.uraneptus.sullysmod.core.registry.tags.SMItemTags;
 import com.uraneptus.sullysmod.core.registry.*;
-import net.minecraft.ChatFormatting;
 import net.minecraft.Util;
 import net.minecraft.client.resources.language.I18n;
 import net.minecraft.core.BlockPos;
@@ -22,7 +20,6 @@ import net.minecraft.core.particles.ItemParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.CommonComponents;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.Style;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -69,7 +66,7 @@ public class SMPlayerEvents {
         RandomSource random = level.getRandom();
         ItemStack itemInHand = player.getItemInHand(hand);
 
-        if (SMFeatures.isEnabled(SMFeatures.GRINDSTONE_POLISHING) && block instanceof GrindstoneBlock) {
+        if (SMFeatureSelection.isEnabled(SMFeatureSelection.GRINDSTONE_POLISHING) && block instanceof GrindstoneBlock) {
             ArrayList<GrindstonePolishingRecipe> recipes = new ArrayList<>(GrindstonePolishingRecipe.getRecipes(level));
             for (GrindstonePolishingRecipe polishingRecipe : recipes) {
                 for (ItemStack ingredient : polishingRecipe.getIngredients().iterator().next().getItems()) {
@@ -127,7 +124,7 @@ public class SMPlayerEvents {
             level.playSound(player, pos, SoundEvents.AXE_STRIP, SoundSource.BLOCKS, 1.0F, 1.0F);
             player.swing(hand);
         }
-        if (block instanceof CauldronBlock cauldron && itemInHand.is(SMItems.MOLTEN_AMBER_BUCKET.get()) && SMFeatures.isEnabled(SMFeatures.AMBER)) {
+        if (block instanceof CauldronBlock cauldron && itemInHand.is(SMItems.MOLTEN_AMBER_BUCKET.get()) && SMFeatureSelection.isEnabled(SMFeatureSelection.AMBER)) {
             event.setCancellationResult(CauldronInteraction.emptyBucket(level, pos, player, hand, new ItemStack(SMItems.MOLTEN_AMBER_BUCKET.get()),
                     SMBlocks.AMBER_CAULDRON.get().defaultBlockState().setValue(LayeredCauldronBlock.LEVEL, 3), SoundEvents.BUCKET_EMPTY));
             event.setCanceled(true);
@@ -184,7 +181,7 @@ public class SMPlayerEvents {
         }
 
         if (player != null) {
-            if (SMConfig.ENABLE_POLISHABLE_TOOLTIP.get() && SMFeatures.isEnabled(SMFeatures.GRINDSTONE_POLISHING)) {
+            if (SMConfig.ENABLE_POLISHABLE_TOOLTIP.get() && SMFeatureSelection.isEnabled(SMFeatureSelection.GRINDSTONE_POLISHING)) {
                 ArrayList<GrindstonePolishingRecipe> recipes = new ArrayList<>(GrindstonePolishingRecipe.getRecipes(player.level()));
                 for (GrindstonePolishingRecipe polishingRecipe : recipes) {
                     for (ItemStack polishableItems : polishingRecipe.getIngredients().iterator().next().getItems()) {

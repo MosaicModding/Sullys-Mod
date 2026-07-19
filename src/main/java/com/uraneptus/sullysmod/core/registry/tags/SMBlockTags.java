@@ -1,4 +1,4 @@
-package com.uraneptus.sullysmod.core.other.tags;
+package com.uraneptus.sullysmod.core.registry.tags;
 
 import com.teamabnormals.blueprint.core.util.TagUtil;
 import com.uraneptus.sullysmod.SullysMod;

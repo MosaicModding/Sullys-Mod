@@ -1,8 +1,8 @@
 package com.uraneptus.sullysmod.common.entities;
 
 import com.uraneptus.sullysmod.client.sound.FollowJukeboxEntitySoundInstance;
-import com.uraneptus.sullysmod.core.other.SMItemUtil;
-import com.uraneptus.sullysmod.core.other.tags.SMItemTags;
+import com.uraneptus.sullysmod.core.util.SMItemUtil;
+import com.uraneptus.sullysmod.core.registry.tags.SMItemTags;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;

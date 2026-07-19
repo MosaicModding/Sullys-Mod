@@ -1,7 +1,7 @@
 package com.uraneptus.sullysmod.common.blocks;
 
 import com.uraneptus.sullysmod.common.blockentities.FlingerTotemBE;
-import com.uraneptus.sullysmod.core.other.SMItemUtil;
+import com.uraneptus.sullysmod.core.util.SMItemUtil;
 import com.uraneptus.sullysmod.core.registry.SMBlockEntityTypes;
 import com.uraneptus.sullysmod.core.registry.SMSounds;
 import net.minecraft.core.BlockPos;

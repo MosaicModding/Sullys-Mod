@@ -1,6 +1,6 @@
 package com.uraneptus.sullysmod.data.server.builtin;
 
-import com.uraneptus.sullysmod.core.other.SMFeatureDefinitions;
+import com.uraneptus.sullysmod.core.registry.worldgen.SMFeatureDefinitions;
 import com.uraneptus.sullysmod.core.registry.SMBlocks;
 import net.minecraft.core.Direction;
 import net.minecraft.core.registries.Registries;

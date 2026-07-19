@@ -2,7 +2,7 @@ package com.uraneptus.sullysmod.data.server.tags;
 
 import com.teamabnormals.blueprint.core.other.tags.BlueprintEntityTypeTags;
 import com.uraneptus.sullysmod.SullysMod;
-import com.uraneptus.sullysmod.core.other.tags.SMEntityTags;
+import com.uraneptus.sullysmod.core.registry.tags.SMEntityTags;
 import com.uraneptus.sullysmod.core.registry.SMEntityTypes;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;

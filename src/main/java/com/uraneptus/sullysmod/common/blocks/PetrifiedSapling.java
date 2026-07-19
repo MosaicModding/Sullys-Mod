@@ -1,6 +1,6 @@
 package com.uraneptus.sullysmod.common.blocks;
 
-import com.uraneptus.sullysmod.core.other.SMFeatureDefinitions;
+import com.uraneptus.sullysmod.core.registry.worldgen.SMFeatureDefinitions;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.util.RandomSource;

@@ -1,7 +1,7 @@
 package com.uraneptus.sullysmod.data.client;
 
 import com.uraneptus.sullysmod.SullysMod;
-import com.uraneptus.sullysmod.core.other.SMTextUtil;
+import com.uraneptus.sullysmod.core.util.SMTextUtil;
 import com.uraneptus.sullysmod.core.registry.*;
 import net.minecraft.data.PackOutput;
 import net.minecraft.world.entity.EntityType;

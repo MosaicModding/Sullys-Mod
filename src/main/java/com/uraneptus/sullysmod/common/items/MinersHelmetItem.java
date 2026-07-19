@@ -1,7 +1,7 @@
 package com.uraneptus.sullysmod.common.items;
 
 import com.uraneptus.sullysmod.client.model.MinersHelmetModel;
-import com.uraneptus.sullysmod.core.other.SMArmorMaterials;
+import com.uraneptus.sullysmod.core.registry.SMArmorMaterials;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;

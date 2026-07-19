@@ -7,8 +7,7 @@ import com.mojang.serialization.codecs.RecordCodecBuilder;
 import com.uraneptus.sullysmod.SullysMod;
 import com.uraneptus.sullysmod.common.levelgen.biome_modifiers.OptionalAddFeaturesBiomeModifier;
 import com.uraneptus.sullysmod.common.levelgen.biome_modifiers.OptionalAddSpawnsBiomeModifier;
-import com.uraneptus.sullysmod.core.SMFeatures;
-import net.minecraft.util.ExtraCodecs;
+import com.uraneptus.sullysmod.core.SMFeatureSelection;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.MobSpawnSettings;
 import net.minecraft.world.level.levelgen.GenerationStep;
@@ -31,7 +30,7 @@ public class SMBiomeModifiers {
                     Biome.LIST_CODEC.fieldOf("biomes").forGetter(OptionalAddFeaturesBiomeModifier::biomes),
                     PlacedFeature.LIST_CODEC.fieldOf("features").forGetter(OptionalAddFeaturesBiomeModifier::features),
                     GenerationStep.Decoration.CODEC.fieldOf("step").forGetter(OptionalAddFeaturesBiomeModifier::step),
-                    SMFeatures.CODEC.listOf().fieldOf("mod_feature").forGetter(OptionalAddFeaturesBiomeModifier::modFeatures)
+                    SMFeatureSelection.CODEC.listOf().fieldOf("mod_feature").forGetter(OptionalAddFeaturesBiomeModifier::modFeatures)
             ).apply(builder, OptionalAddFeaturesBiomeModifier::new))
     );
 
@@ -42,7 +41,7 @@ public class SMBiomeModifiers {
                             either -> either.map(Function.identity(), List::of),
                             list -> list.size() == 1 ? Either.right(list.get(0)) : Either.left(list)
                     ).fieldOf("spawners").forGetter(OptionalAddSpawnsBiomeModifier::spawners),
-                    SMFeatures.CODEC.listOf().fieldOf("mod_feature").forGetter(OptionalAddSpawnsBiomeModifier::modFeatures)
+                    SMFeatureSelection.CODEC.listOf().fieldOf("mod_feature").forGetter(OptionalAddSpawnsBiomeModifier::modFeatures)
             ).apply(builder, OptionalAddSpawnsBiomeModifier::new))
     );
 }

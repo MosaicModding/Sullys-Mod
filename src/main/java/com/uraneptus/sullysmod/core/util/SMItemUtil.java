@@ -1,4 +1,4 @@
-package com.uraneptus.sullysmod.core.other;
+package com.uraneptus.sullysmod.core.util;
 
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.core.BlockPos;

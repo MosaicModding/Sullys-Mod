@@ -1,7 +1,7 @@
 package com.uraneptus.sullysmod.common.levelgen;
 
 import com.mojang.serialization.Codec;
-import com.uraneptus.sullysmod.core.other.loot.SMBuiltInLootTables;
+import com.uraneptus.sullysmod.core.registry.loot.SMBuiltInLootTables;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.block.Blocks;

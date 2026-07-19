@@ -3,7 +3,7 @@ package com.uraneptus.sullysmod.common.items;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
 import com.uraneptus.sullysmod.common.entities.ThrownThrowingKnife;
-import com.uraneptus.sullysmod.core.other.SMItemUtil;
+import com.uraneptus.sullysmod.core.util.SMItemUtil;
 import com.uraneptus.sullysmod.core.registry.SMSounds;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.player.LocalPlayer;

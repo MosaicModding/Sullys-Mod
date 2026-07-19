@@ -2,8 +2,7 @@ package com.uraneptus.sullysmod.core.events;
 
 import com.uraneptus.sullysmod.SullysMod;
 import com.uraneptus.sullysmod.core.SMConfig;
-import com.uraneptus.sullysmod.core.SMFeatures;
-import com.uraneptus.sullysmod.core.registry.SMItems;
+import com.uraneptus.sullysmod.core.SMFeatureSelection;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.CreativeModeTabs;
@@ -32,95 +31,95 @@ public class CreativeTabAdditions {
         if (SMConfig.USE_CUSTOM_TAB.get()) return;
         ResourceKey<CreativeModeTab> tab = event.getTabKey();
         if (tab == CreativeModeTabs.INGREDIENTS) {
-            addAfter(event, List.of(SMFeatures.JADE), Items.COPPER_INGOT, JADE);
-            addAfter(event, List.of(SMFeatures.JADE), Items.RAW_COPPER, ROUGH_JADE);
-            addAfter(event, List.of(SMFeatures.JADE), Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE, JADE_UPGRADE_SMITHING_TEMPLATE);
-            addAfter(event, List.of(SMFeatures.TORTOISE), Items.SCUTE, TORTOISE_SCUTE);
-            addAfter(event, List.of(SMFeatures.PIRANHA), Items.BONE, PIRANHA_TOOTH);
+            addAfter(event, List.of(SMFeatureSelection.JADE), Items.COPPER_INGOT, JADE);
+            addAfter(event, List.of(SMFeatureSelection.JADE), Items.RAW_COPPER, ROUGH_JADE);
+            addAfter(event, List.of(SMFeatureSelection.JADE), Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE, JADE_UPGRADE_SMITHING_TEMPLATE);
+            addAfter(event, List.of(SMFeatureSelection.TORTOISE), Items.SCUTE, TORTOISE_SCUTE);
+            addAfter(event, List.of(SMFeatureSelection.PIRANHA), Items.BONE, PIRANHA_TOOTH);
             addAfter(event, Items.GLASS_BOTTLE, GLASS_VIAL);
-            addAfter(event, List.of(SMFeatures.ARTIFACTS), Items.BOWL, FIXED_BOWL, FIXED_CUP, FIXED_VASE);
+            addAfter(event, List.of(SMFeatureSelection.ARTIFACTS), Items.BOWL, FIXED_BOWL, FIXED_CUP, FIXED_VASE);
         }
 
         if (tab == CreativeModeTabs.TOOLS_AND_UTILITIES) {
-            addAfter(event, List.of(SMFeatures.AMBER), Items.MILK_BUCKET, MOLTEN_AMBER_BUCKET);
-            addAfter(event, List.of(SMFeatures.TORTOISE), Items.SADDLE, TORTOISE_SHELL);
-            addAfter(event, List.of(SMFeatures.LANTERNFISH), Items.COD_BUCKET, LANTERNFISH_BUCKET);
-            addAfter(event, List.of(SMFeatures.PIRANHA), Items.COD_BUCKET, PIRANHA_BUCKET);
-            add(event, List.of(SMFeatures.JADE), MUSIC_DISC_SCOUR);
+            addAfter(event, List.of(SMFeatureSelection.AMBER), Items.MILK_BUCKET, MOLTEN_AMBER_BUCKET);
+            addAfter(event, List.of(SMFeatureSelection.TORTOISE), Items.SADDLE, TORTOISE_SHELL);
+            addAfter(event, List.of(SMFeatureSelection.LANTERNFISH), Items.COD_BUCKET, LANTERNFISH_BUCKET);
+            addAfter(event, List.of(SMFeatureSelection.PIRANHA), Items.COD_BUCKET, PIRANHA_BUCKET);
+            add(event, List.of(SMFeatureSelection.JADE), MUSIC_DISC_SCOUR);
             add(event, MUSIC_DISC_SUNKEN_PAST);
         }
 
         if (tab == CreativeModeTabs.FOOD_AND_DRINKS) {
-            addAfter(event, List.of(SMFeatures.LANTERNFISH), Items.COOKED_COD, LANTERNFISH, COOKED_LANTERNFISH);
-            addAfter(event, List.of(SMFeatures.PIRANHA), Items.COOKED_COD, PIRANHA, COOKED_PIRANHA);
-            addAfter(event, List.of(SMFeatures.BUG_MEAT), Items.SPIDER_EYE, BUG_MEAT, COOKED_BUG_MEAT);
+            addAfter(event, List.of(SMFeatureSelection.LANTERNFISH), Items.COOKED_COD, LANTERNFISH, COOKED_LANTERNFISH);
+            addAfter(event, List.of(SMFeatureSelection.PIRANHA), Items.COOKED_COD, PIRANHA, COOKED_PIRANHA);
+            addAfter(event, List.of(SMFeatureSelection.BUG_MEAT), Items.SPIDER_EYE, BUG_MEAT, COOKED_BUG_MEAT);
         }
 
         if (tab == CreativeModeTabs.COMBAT) {
-            addAfter(event, List.of(SMFeatures.JADE), Items.SHIELD, JADE_SHIELD);
-            addAfter(event, List.of(SMFeatures.JADE), Items.DIAMOND_HORSE_ARMOR, JADE_HORSE_ARMOR);
-            addAfter(event, List.of(SMFeatures.PIRANHA), Items.TRIDENT, THROWING_KNIFE);
+            addAfter(event, List.of(SMFeatureSelection.JADE), Items.SHIELD, JADE_SHIELD);
+            addAfter(event, List.of(SMFeatureSelection.JADE), Items.DIAMOND_HORSE_ARMOR, JADE_HORSE_ARMOR);
+            addAfter(event, List.of(SMFeatureSelection.PIRANHA), Items.TRIDENT, THROWING_KNIFE);
         }
 
         if (tab == CreativeModeTabs.SPAWN_EGGS) { //Sorted alphabetically
-            addAfter(event, List.of(SMFeatures.TORTOISE), Items.TADPOLE_SPAWN_EGG, TORTOISE_SPAWN_EGG);
-            addAfter(event, List.of(SMFeatures.BOULDERING_ZOMBIE), Items.BLAZE_SPAWN_EGG, BOULDERING_ZOMBIE_SPAWN_EGG);
-            addAfter(event, List.of(SMFeatures.JUNGLE_SPIDER), Items.IRON_GOLEM_SPAWN_EGG, JUNGLE_SPIDER_SPAWN_EGG);
-            addAfter(event, List.of(SMFeatures.LANTERNFISH), Items.IRON_GOLEM_SPAWN_EGG, LANTERNFISH_SPAWN_EGG);
-            addAfter(event, List.of(SMFeatures.PIRANHA), Items.PILLAGER_SPAWN_EGG, PIRANHA_SPAWN_EGG);
-            addAfter(event, List.of(SMFeatures.MAULED), Items.MAGMA_CUBE_SPAWN_EGG, MAULED_SPAWN_EGG);
+            addAfter(event, List.of(SMFeatureSelection.TORTOISE), Items.TADPOLE_SPAWN_EGG, TORTOISE_SPAWN_EGG);
+            addAfter(event, List.of(SMFeatureSelection.BOULDERING_ZOMBIE), Items.BLAZE_SPAWN_EGG, BOULDERING_ZOMBIE_SPAWN_EGG);
+            addAfter(event, List.of(SMFeatureSelection.JUNGLE_SPIDER), Items.IRON_GOLEM_SPAWN_EGG, JUNGLE_SPIDER_SPAWN_EGG);
+            addAfter(event, List.of(SMFeatureSelection.LANTERNFISH), Items.IRON_GOLEM_SPAWN_EGG, LANTERNFISH_SPAWN_EGG);
+            addAfter(event, List.of(SMFeatureSelection.PIRANHA), Items.PILLAGER_SPAWN_EGG, PIRANHA_SPAWN_EGG);
+            addAfter(event, List.of(SMFeatureSelection.MAULED), Items.MAGMA_CUBE_SPAWN_EGG, MAULED_SPAWN_EGG);
         }
 
         if (tab == CreativeModeTabs.NATURAL_BLOCKS) {
-            addAfter(event, List.of(SMFeatures.JADE), Items.DEEPSLATE_COPPER_ORE, JADE_ORE, DEEPSLATE_JADE_ORE);
-            addAfter(event, List.of(SMFeatures.JADE), Items.RAW_COPPER_BLOCK, ROUGH_JADE_BLOCK);
-            addAfter(event, List.of(SMFeatures.TORTOISE), Items.TURTLE_EGG, TORTOISE_EGG);
-            addAfter(event, List.of(SMFeatures.PETRIFIED_WOOD, SMFeatures.AMBER), Items.CHERRY_LOG, PETRIFIED_LOG);
-            addAfter(event, List.of(SMFeatures.PETRIFIED_WOOD, SMFeatures.AMBER), Items.CHERRY_SAPLING, PETRIFIED_SAPLING);
-            addAfter(event, List.of(SMFeatures.AMBER), Items.COBWEB, AMBER, ROUGH_AMBER);
+            addAfter(event, List.of(SMFeatureSelection.JADE), Items.DEEPSLATE_COPPER_ORE, JADE_ORE, DEEPSLATE_JADE_ORE);
+            addAfter(event, List.of(SMFeatureSelection.JADE), Items.RAW_COPPER_BLOCK, ROUGH_JADE_BLOCK);
+            addAfter(event, List.of(SMFeatureSelection.TORTOISE), Items.TURTLE_EGG, TORTOISE_EGG);
+            addAfter(event, List.of(SMFeatureSelection.PETRIFIED_WOOD, SMFeatureSelection.AMBER), Items.CHERRY_LOG, PETRIFIED_LOG);
+            addAfter(event, List.of(SMFeatureSelection.PETRIFIED_WOOD, SMFeatureSelection.AMBER), Items.CHERRY_SAPLING, PETRIFIED_SAPLING);
+            addAfter(event, List.of(SMFeatureSelection.AMBER), Items.COBWEB, AMBER, ROUGH_AMBER);
         }
 
         if (tab == CreativeModeTabs.BUILDING_BLOCKS) {
-            add(event, List.of(SMFeatures.JADE),
+            add(event, List.of(SMFeatureSelection.JADE),
                     ROUGH_JADE_BLOCK, ROUGH_JADE_BRICKS, ROUGH_JADE_BRICK_STAIRS, ROUGH_JADE_BRICK_SLAB, ROUGH_JADE_BRICK_WALL,
                     JADE_BLOCK, JADE_BRICKS, JADE_BRICK_STAIRS, JADE_BRICK_SLAB, JADE_BRICK_WALL, JADE_PILLAR, CHISELED_JADE, JADE_TOTEM
             );
-            add(event, List.of(SMFeatures.JADE, SMFeatures.GEM_LANTERNS), JADE_LANTERN);
-            add(event, List.of(SMFeatures.AMBER),
+            add(event, List.of(SMFeatureSelection.JADE, SMFeatureSelection.GEM_LANTERNS), JADE_LANTERN);
+            add(event, List.of(SMFeatureSelection.AMBER),
                     ROUGH_AMBER, CHISELED_AMBER, AMBER_PILLAR, AMBER_BRICKS, AMBER_BRICK_STAIRS, AMBER_BRICK_SLAB, AMBER_BRICK_WALL
             );
-            add(event, List.of(SMFeatures.AMBER, SMFeatures.GEM_LANTERNS), AMBER_LANTERN);
-            addAfter(event, List.of(SMFeatures.PETRIFIED_WOOD, SMFeatures.AMBER), Items.CHERRY_BUTTON,
+            add(event, List.of(SMFeatureSelection.AMBER, SMFeatureSelection.GEM_LANTERNS), AMBER_LANTERN);
+            addAfter(event, List.of(SMFeatureSelection.PETRIFIED_WOOD, SMFeatureSelection.AMBER), Items.CHERRY_BUTTON,
                     PETRIFIED_LOG, PETRIFIED_WOOD, STRIPPED_PETRIFIED_LOG, STRIPPED_PETRIFIED_WOOD, PETRIFIED_PLANKS, PETRIFIED_STAIRS,
                     PETRIFIED_SLAB, PETRIFIED_FENCE, PETRIFIED_FENCE_GATE, PETRIFIED_DOOR, PETRIFIED_TRAPDOOR, PETRIFIED_PRESSURE_PLATE, PETRIFIED_BUTTON
             );
-            addAfter(event, List.of(SMFeatures.GEM_LANTERNS), Items.DIAMOND_BLOCK, DIAMOND_LANTERN);
-            addAfter(event, List.of(SMFeatures.GEM_LANTERNS), Items.EMERALD_BLOCK, EMERALD_LANTERN);
-            addAfter(event, List.of(SMFeatures.GEM_LANTERNS), Items.LAPIS_BLOCK, LAPIS_LANTERN);
-            addAfter(event, List.of(SMFeatures.GEM_LANTERNS), Items.AMETHYST_BLOCK, AMETHYST_LANTERN);
-            addAfter(event, List.of(SMFeatures.GEM_LANTERNS), Items.QUARTZ_BLOCK, QUARTZ_LANTERN);
+            addAfter(event, List.of(SMFeatureSelection.GEM_LANTERNS), Items.DIAMOND_BLOCK, DIAMOND_LANTERN);
+            addAfter(event, List.of(SMFeatureSelection.GEM_LANTERNS), Items.EMERALD_BLOCK, EMERALD_LANTERN);
+            addAfter(event, List.of(SMFeatureSelection.GEM_LANTERNS), Items.LAPIS_BLOCK, LAPIS_LANTERN);
+            addAfter(event, List.of(SMFeatureSelection.GEM_LANTERNS), Items.AMETHYST_BLOCK, AMETHYST_LANTERN);
+            addAfter(event, List.of(SMFeatureSelection.GEM_LANTERNS), Items.QUARTZ_BLOCK, QUARTZ_LANTERN);
         }
 
         if (tab == CreativeModeTabs.REDSTONE_BLOCKS) {
-            addAfter(event, List.of(SMFeatures.JADE), Items.DROPPER, JADE_FLINGER_TOTEM);
-            addAfter(event, List.of(SMFeatures.COPPER_BUTTONS), Items.STONE_BUTTON, COPPER_BUTTON, EXPOSED_COPPER_BUTTON, WEATHERED_COPPER_BUTTON,
+            addAfter(event, List.of(SMFeatureSelection.JADE), Items.DROPPER, JADE_FLINGER_TOTEM);
+            addAfter(event, List.of(SMFeatureSelection.COPPER_BUTTONS), Items.STONE_BUTTON, COPPER_BUTTON, EXPOSED_COPPER_BUTTON, WEATHERED_COPPER_BUTTON,
                     OXIDIZED_COPPER_BUTTON, WAXED_COPPER_BUTTON, WAXED_EXPOSED_COPPER_BUTTON, WAXED_WEATHERED_COPPER_BUTTON, WAXED_OXIDIZED_COPPER_BUTTON
             );
         }
 
         if (tab == CreativeModeTabs.FUNCTIONAL_BLOCKS) {
-            addAfter(event, List.of(SMFeatures.PETRIFIED_WOOD, SMFeatures.AMBER), Items.CHERRY_HANGING_SIGN, PETRIFIED_SIGN.getFirst(), PETRIFIED_HANGING_SIGN.getFirst());
-            add(event, List.of(SMFeatures.AMBER), AMBER);
-            addAfter(event, List.of(SMFeatures.ITEM_STAND), Items.ARMOR_STAND, ITEM_STAND);
-            addAfter(event, List.of(SMFeatures.GEM_LANTERNS, SMFeatures.AMBER), Items.PEARLESCENT_FROGLIGHT, AMBER_LANTERN);
-            addAfter(event, List.of(SMFeatures.GEM_LANTERNS, SMFeatures.JADE), Items.PEARLESCENT_FROGLIGHT, JADE_LANTERN);
-            addAfter(event, List.of(SMFeatures.GEM_LANTERNS), Items.PEARLESCENT_FROGLIGHT, DIAMOND_LANTERN, EMERALD_LANTERN, LAPIS_LANTERN, AMETHYST_LANTERN, QUARTZ_LANTERN);
+            addAfter(event, List.of(SMFeatureSelection.PETRIFIED_WOOD, SMFeatureSelection.AMBER), Items.CHERRY_HANGING_SIGN, PETRIFIED_SIGN.getFirst(), PETRIFIED_HANGING_SIGN.getFirst());
+            add(event, List.of(SMFeatureSelection.AMBER), AMBER);
+            addAfter(event, List.of(SMFeatureSelection.ITEM_STAND), Items.ARMOR_STAND, ITEM_STAND);
+            addAfter(event, List.of(SMFeatureSelection.GEM_LANTERNS, SMFeatureSelection.AMBER), Items.PEARLESCENT_FROGLIGHT, AMBER_LANTERN);
+            addAfter(event, List.of(SMFeatureSelection.GEM_LANTERNS, SMFeatureSelection.JADE), Items.PEARLESCENT_FROGLIGHT, JADE_LANTERN);
+            addAfter(event, List.of(SMFeatureSelection.GEM_LANTERNS), Items.PEARLESCENT_FROGLIGHT, DIAMOND_LANTERN, EMERALD_LANTERN, LAPIS_LANTERN, AMETHYST_LANTERN, QUARTZ_LANTERN);
         }
     }
 
     @SafeVarargs
-    private static void add(BuildCreativeModeTabContentsEvent event, List<SMFeatures> features, Supplier<? extends ItemLike>... itemsToAdd) {
-        if (features.stream().allMatch(SMFeatures::isEnabled)) {
+    private static void add(BuildCreativeModeTabContentsEvent event, List<SMFeatureSelection> features, Supplier<? extends ItemLike>... itemsToAdd) {
+        if (features.stream().allMatch(SMFeatureSelection::isEnabled)) {
             add(event, itemsToAdd);
         }
     }
@@ -133,8 +132,8 @@ public class CreativeTabAdditions {
     }
 
     @SafeVarargs
-    private static void addBefore(BuildCreativeModeTabContentsEvent event, List<SMFeatures> features, Item before, Supplier<? extends ItemLike>... itemsToAdd) {
-        if (features.stream().allMatch(SMFeatures::isEnabled)) {
+    private static void addBefore(BuildCreativeModeTabContentsEvent event, List<SMFeatureSelection> features, Item before, Supplier<? extends ItemLike>... itemsToAdd) {
+        if (features.stream().allMatch(SMFeatureSelection::isEnabled)) {
             addBefore(event, before, itemsToAdd);
         }
     }
@@ -147,8 +146,8 @@ public class CreativeTabAdditions {
     }
 
     @SafeVarargs
-    private static void addAfter(BuildCreativeModeTabContentsEvent event, List<SMFeatures> features, Item before, Supplier<? extends ItemLike>... itemsToAdd) {
-        if (features.stream().allMatch(SMFeatures::isEnabled)) {
+    private static void addAfter(BuildCreativeModeTabContentsEvent event, List<SMFeatureSelection> features, Item before, Supplier<? extends ItemLike>... itemsToAdd) {
+        if (features.stream().allMatch(SMFeatureSelection::isEnabled)) {
             addAfter(event, before, itemsToAdd);
         }
     }

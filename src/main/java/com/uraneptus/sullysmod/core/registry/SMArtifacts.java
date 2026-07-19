@@ -3,13 +3,11 @@ package com.uraneptus.sullysmod.core.registry;
 import com.mojang.datafixers.util.Pair;
 import com.uraneptus.sullysmod.common.blocks.*;
 import com.uraneptus.sullysmod.common.items.*;
-import com.uraneptus.sullysmod.core.other.SMArmorMaterials;
-import com.uraneptus.sullysmod.core.other.SMProperties;
-import com.uraneptus.sullysmod.core.other.SMTextUtil;
+import com.uraneptus.sullysmod.core.util.SMProperties;
+import com.uraneptus.sullysmod.core.util.SMTextUtil;
 import net.minecraft.core.Direction;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.StandingAndWallBlockItem;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.FlowerPotBlock;
@@ -23,9 +21,6 @@ import java.util.Map;
 import java.util.function.Supplier;
 
 public class SMArtifacts {
-    //We have this here so KubeJS can access it!
-   // public static final Rarity ANCIENT = Rarity.create("sullysmod:ancient", style -> style.withColor(15107584));
-
     public static void init() {}
 
     public static List<DeferredItem<Item>> ARTIFACT_DESC_MAP = new ArrayList<>();

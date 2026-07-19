@@ -9,7 +9,6 @@ import net.neoforged.fml.common.EventBusSubscriber;
 
 import java.util.function.Supplier;
 
-@EventBusSubscriber(modid = SullysMod.MOD_ID, bus = EventBusSubscriber.Bus.MOD)
 public class SMEntityTypes {
     public static final EntitySubRegistryHelper HELPER = SullysMod.REGISTRY_HELPER.getEntitySubHelper();
 

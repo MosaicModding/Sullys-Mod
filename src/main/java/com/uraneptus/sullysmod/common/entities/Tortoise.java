@@ -1,8 +1,8 @@
 package com.uraneptus.sullysmod.common.entities;
 
 import com.uraneptus.sullysmod.common.blocks.TortoiseEggBlock;
-import com.uraneptus.sullysmod.core.other.tags.SMEntityTags;
-import com.uraneptus.sullysmod.core.other.tags.SMItemTags;
+import com.uraneptus.sullysmod.core.registry.tags.SMEntityTags;
+import com.uraneptus.sullysmod.core.registry.tags.SMItemTags;
 import com.uraneptus.sullysmod.core.registry.SMBlocks;
 import com.uraneptus.sullysmod.core.registry.SMEntityTypes;
 import com.uraneptus.sullysmod.core.registry.SMItems;

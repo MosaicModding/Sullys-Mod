@@ -1,7 +1,7 @@
 package com.uraneptus.sullysmod.common.items;
 
 import com.google.common.collect.ImmutableList;
-import com.uraneptus.sullysmod.core.other.SMProperties;
+import com.uraneptus.sullysmod.core.util.SMProperties;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;

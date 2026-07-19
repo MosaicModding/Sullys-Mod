@@ -8,7 +8,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 //Rename to SMSelection
-public enum SMFeatures implements StringRepresentable {
+public enum SMFeatureSelection implements StringRepresentable {
     JADE,
     PETRIFIED_WOOD,
     AMBER,
@@ -27,10 +27,10 @@ public enum SMFeatures implements StringRepresentable {
     BUG_MEAT,
     MAULED;
 
-    public static final StringRepresentable.EnumCodec<SMFeatures> CODEC = StringRepresentable.fromEnum(SMFeatures::values);
-    private static final Map<String, SMFeatures> BY_NAME = Arrays.stream(values()).collect(Collectors.toMap(SMFeatures::getSerializedName, mobCategory -> mobCategory));
+    public static final StringRepresentable.EnumCodec<SMFeatureSelection> CODEC = StringRepresentable.fromEnum(SMFeatureSelection::values);
+    private static final Map<String, SMFeatureSelection> BY_NAME = Arrays.stream(values()).collect(Collectors.toMap(SMFeatureSelection::getSerializedName, mobCategory -> mobCategory));
 
-    public static boolean isEnabled(SMFeatures feature) {
+    public static boolean isEnabled(SMFeatureSelection feature) {
         return switch (feature) {
             case JADE -> SMConfig.ENABLE_JADE.get();
             case PETRIFIED_WOOD -> SMConfig.ENABLE_PETRIFIED_WOOD.get();
@@ -53,10 +53,10 @@ public enum SMFeatures implements StringRepresentable {
     }
 
     public static boolean isEnabled(String name) {
-        return isEnabled(SMFeatures.valueOf(name));
+        return isEnabled(SMFeatureSelection.valueOf(name));
     }
 
-    public static SMFeatures byName(String name) {
+    public static SMFeatureSelection byName(String name) {
         return BY_NAME.get(name);
     }
 

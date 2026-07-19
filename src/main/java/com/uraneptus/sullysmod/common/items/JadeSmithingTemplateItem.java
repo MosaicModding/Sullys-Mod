@@ -1,7 +1,7 @@
 package com.uraneptus.sullysmod.common.items;
 
 import com.uraneptus.sullysmod.SullysMod;
-import com.uraneptus.sullysmod.core.other.SMTextDefinitions;
+import com.uraneptus.sullysmod.core.registry.SMTextDefinitions;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.SmithingTemplateItem;
 

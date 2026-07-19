@@ -1,0 +1,13 @@
+{
+  "entries": [
+    {
+      "enum": "net/minecraft/world/item/Rarity",
+      "name": "SULLYSMOD_ANCIENT",
+      "constructor": "(ILjava/lang/String;Ljava/util/function/UnaryOperator;)V",
+      "parameters": {
+        "class": "com/uraneptus/sullysmod/core/registry/SMRarities",
+        "field": "ANCIENT_RARITY_PROXY"
+      }
+    }
+  ]
+}

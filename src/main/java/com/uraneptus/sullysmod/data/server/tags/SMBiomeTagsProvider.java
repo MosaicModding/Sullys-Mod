@@ -1,7 +1,7 @@
 package com.uraneptus.sullysmod.data.server.tags;
 
 import com.uraneptus.sullysmod.SullysMod;
-import com.uraneptus.sullysmod.core.other.tags.SMBiomeTags;
+import com.uraneptus.sullysmod.core.registry.tags.SMBiomeTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.BiomeTagsProvider;

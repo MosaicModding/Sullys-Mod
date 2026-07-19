@@ -1,4 +1,4 @@
-package com.uraneptus.sullysmod.core.other;
+package com.uraneptus.sullysmod.core.registry.worldgen;
 
 import com.uraneptus.sullysmod.SullysMod;
 import net.minecraft.core.registries.Registries;

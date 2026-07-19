@@ -2,7 +2,7 @@ package com.uraneptus.sullysmod.common.levelgen;
 
 import com.mojang.serialization.Codec;
 import com.uraneptus.sullysmod.common.blockentities.AmberBE;
-import com.uraneptus.sullysmod.core.other.tags.SMEntityTags;
+import com.uraneptus.sullysmod.core.registry.tags.SMEntityTags;
 import com.uraneptus.sullysmod.core.registry.SMBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.RandomSource;

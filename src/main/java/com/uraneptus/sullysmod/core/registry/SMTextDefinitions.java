@@ -1,6 +1,7 @@
-package com.uraneptus.sullysmod.core.other;
+package com.uraneptus.sullysmod.core.registry;
 
 import com.uraneptus.sullysmod.common.recipes.GrindstonePolishingRecipe;
+import com.uraneptus.sullysmod.core.util.SMTextUtil;
 import net.minecraft.ChatFormatting;
 import net.minecraft.Util;
 import net.minecraft.network.chat.Component;

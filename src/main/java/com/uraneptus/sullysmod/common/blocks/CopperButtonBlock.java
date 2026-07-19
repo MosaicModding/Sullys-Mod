@@ -1,6 +1,6 @@
 package com.uraneptus.sullysmod.common.blocks;
 
-import com.uraneptus.sullysmod.core.other.SMItemUtil;
+import com.uraneptus.sullysmod.core.util.SMItemUtil;
 import com.uraneptus.sullysmod.core.registry.SMBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvents;

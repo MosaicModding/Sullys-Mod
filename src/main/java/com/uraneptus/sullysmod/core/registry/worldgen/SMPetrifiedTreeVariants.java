@@ -1,4 +1,4 @@
-package com.uraneptus.sullysmod.core.registry;
+package com.uraneptus.sullysmod.core.registry.worldgen;
 
 import com.uraneptus.sullysmod.SullysMod;
 import com.uraneptus.sullysmod.common.levelgen.PetrifiedTreeVariant;

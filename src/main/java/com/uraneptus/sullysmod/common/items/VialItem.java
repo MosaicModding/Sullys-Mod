@@ -1,7 +1,7 @@
 package com.uraneptus.sullysmod.common.items;
 
 import com.uraneptus.sullysmod.common.entities.JungleSpider;
-import com.uraneptus.sullysmod.core.other.SMItemUtil;
+import com.uraneptus.sullysmod.core.util.SMItemUtil;
 import com.uraneptus.sullysmod.core.registry.SMItems;
 import com.uraneptus.sullysmod.core.registry.SMSounds;
 import net.minecraft.sounds.SoundSource;

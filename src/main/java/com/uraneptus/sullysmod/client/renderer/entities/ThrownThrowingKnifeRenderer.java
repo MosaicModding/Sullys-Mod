@@ -3,7 +3,7 @@ package com.uraneptus.sullysmod.client.renderer.entities;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
 import com.uraneptus.sullysmod.common.entities.ThrownThrowingKnife;
-import com.uraneptus.sullysmod.core.other.tags.SMBlockTags;
+import com.uraneptus.sullysmod.core.registry.tags.SMBlockTags;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;

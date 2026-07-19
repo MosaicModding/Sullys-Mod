@@ -1,9 +1,9 @@
-package com.uraneptus.sullysmod.core.other;
+package com.uraneptus.sullysmod.core.registry;
 
 import com.uraneptus.sullysmod.SullysMod;
-import com.uraneptus.sullysmod.core.registry.SMSounds;
 import net.minecraft.Util;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ArmorMaterial;
 import net.minecraft.world.item.ItemStack;
@@ -13,6 +13,26 @@ import java.util.EnumMap;
 import java.util.List;
 
 public class SMArmorMaterials {
+
+    public static final ArmorMaterial JADE = new ArmorMaterial(
+            Util.make(new EnumMap<>(ArmorItem.Type.class), map -> {
+                map.put(ArmorItem.Type.BOOTS, 0);
+                map.put(ArmorItem.Type.LEGGINGS, 0);
+                map.put(ArmorItem.Type.CHESTPLATE, 0);
+                map.put(ArmorItem.Type.HELMET, 0);
+                map.put(ArmorItem.Type.BODY, 6);
+            }),
+            9,
+            SoundEvents.ARMOR_EQUIP_IRON,
+            () -> Ingredient.of(SMItems.JADE),
+            List.of(
+                    new ArmorMaterial.Layer(
+                            ResourceLocation.fromNamespaceAndPath(SullysMod.MOD_ID, "jade")
+                    )
+            ),
+            0F,
+            0F
+    );
 
     public static final ArmorMaterial MINERS_HELMET = new ArmorMaterial(
             Util.make(new EnumMap<>(ArmorItem.Type.class), map -> {

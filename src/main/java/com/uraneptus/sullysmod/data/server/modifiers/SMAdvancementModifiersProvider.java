@@ -4,8 +4,8 @@ import com.teamabnormals.blueprint.common.advancement.modification.AdvancementMo
 import com.teamabnormals.blueprint.common.advancement.modification.modifiers.CriteriaModifier;
 import com.teamabnormals.blueprint.common.advancement.modification.modifiers.EffectsChangedModifier;
 import com.uraneptus.sullysmod.SullysMod;
-import com.uraneptus.sullysmod.core.other.tags.SMBlockTags;
-import com.uraneptus.sullysmod.core.other.tags.SMItemTags;
+import com.uraneptus.sullysmod.core.registry.tags.SMBlockTags;
+import com.uraneptus.sullysmod.core.registry.tags.SMItemTags;
 import com.uraneptus.sullysmod.core.registry.SMEntityTypes;
 import com.uraneptus.sullysmod.core.registry.SMItems;
 import net.minecraft.advancements.RequirementsStrategy;

@@ -1,4 +1,4 @@
-package com.uraneptus.sullysmod.core.other.loot;
+package com.uraneptus.sullysmod.core.registry.loot;
 
 import com.uraneptus.sullysmod.SullysMod;
 import net.minecraft.resources.ResourceLocation;

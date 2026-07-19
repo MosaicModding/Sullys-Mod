@@ -1,4 +1,4 @@
-package com.uraneptus.sullysmod.core.registry;
+package com.uraneptus.sullysmod.core.registry.worldgen;
 
 import com.uraneptus.sullysmod.SullysMod;
 import com.uraneptus.sullysmod.common.levelgen.AmberBlobFeature;
@@ -9,14 +9,11 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 import net.minecraft.world.level.levelgen.feature.configurations.SimpleBlockConfiguration;
-import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
 import java.util.function.Supplier;
 
-@EventBusSubscriber(modid = SullysMod.MOD_ID, bus = EventBusSubscriber.Bus.MOD)
-//todo Rename to SMWorldgenFeatures
-public class SMFeatures {
+public class SMFeatureTypes {
     public static final DeferredRegister<Feature<?>> FEATURES = DeferredRegister.create(Registries.FEATURE, SullysMod.MOD_ID);
 
     public static final Supplier<Feature<PetrifiedTreeConfig>> PETRIFIED_TREE = FEATURES.register("petrified_tree", () -> new PetrifiedTreeFeature(PetrifiedTreeConfig.CODEC));

@@ -1,8 +1,8 @@
 package com.uraneptus.sullysmod.data.server.loot;
 
 import com.uraneptus.sullysmod.SullysMod;
-import com.uraneptus.sullysmod.core.SMFeatures;
-import com.uraneptus.sullysmod.core.other.loot.SMFeatureLootItemCondition;
+import com.uraneptus.sullysmod.core.SMFeatureSelection;
+import com.uraneptus.sullysmod.common.loot.SMFeatureLootItemCondition;
 import com.uraneptus.sullysmod.core.registry.SMEntityTypes;
 import com.uraneptus.sullysmod.core.registry.SMItems;
 import net.minecraft.data.loot.EntityLootSubProvider;
@@ -50,6 +50,6 @@ public class SMEntityLoot extends EntityLootSubProvider {
     }
 
     public static LootPool.Builder createBugMeatPool(String name, float pChance) {
-        return LootPool.lootPool().name(name).setRolls(ConstantValue.exactly(1.0F)).add(LootItem.lootTableItem(SMItems.BUG_MEAT.get()).when(SMFeatureLootItemCondition.modFeatureCondition(List.of(SMFeatures.BUG_MEAT))).when(LootItemRandomChanceWithLootingCondition.randomChanceAndLootingBoost(pChance, 1.2F)));
+        return LootPool.lootPool().name(name).setRolls(ConstantValue.exactly(1.0F)).add(LootItem.lootTableItem(SMItems.BUG_MEAT.get()).when(SMFeatureLootItemCondition.modFeatureCondition(List.of(SMFeatureSelection.BUG_MEAT))).when(LootItemRandomChanceWithLootingCondition.randomChanceAndLootingBoost(pChance, 1.2F)));
     }
 }

@@ -1,8 +1,8 @@
 package com.uraneptus.sullysmod.data.server.loot;
 
-import com.uraneptus.sullysmod.core.SMFeatures;
-import com.uraneptus.sullysmod.core.other.loot.SMBuiltInLootTables;
-import com.uraneptus.sullysmod.core.other.loot.SMFeatureLootItemCondition;
+import com.uraneptus.sullysmod.core.SMFeatureSelection;
+import com.uraneptus.sullysmod.core.registry.loot.SMBuiltInLootTables;
+import com.uraneptus.sullysmod.common.loot.SMFeatureLootItemCondition;
 import com.uraneptus.sullysmod.core.registry.SMArtifacts;
 import com.uraneptus.sullysmod.core.registry.SMBlocks;
 import net.minecraft.data.loot.LootTableSubProvider;
@@ -16,8 +16,6 @@ import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 
 import java.util.List;
 import java.util.function.BiConsumer;
-
-import static com.uraneptus.sullysmod.core.other.loot.SMLootConditions.*;
 
 public class SMArchaeologyLoot implements LootTableSubProvider {
     public static final int TRASH_WEIGHT_BONUS = 10;
@@ -38,7 +36,7 @@ public class SMArchaeologyLoot implements LootTableSubProvider {
                 .add(LootItem.lootTableItem(Items.BONE).setWeight(ARTIFACT_COMMON_WEIGHT))
                 .add(LootItem.lootTableItem(Items.EMERALD).setWeight(ARTIFACT_COMMON_WEIGHT))
                 .add(LootItem.lootTableItem(Items.MUSIC_DISC_RELIC).setWeight(ARTIFACT_COMMON_WEIGHT))
-                .add(LootItem.lootTableItem(SMArtifacts.AMBER_ENCASED_BUG.get()).setWeight(ARTIFACT_COMMON_WEIGHT).when(SMFeatureLootItemCondition.modFeatureCondition(List.of(SMFeatures.AMBER))))
+                .add(LootItem.lootTableItem(SMArtifacts.AMBER_ENCASED_BUG.get()).setWeight(ARTIFACT_COMMON_WEIGHT).when(SMFeatureLootItemCondition.modFeatureCondition(List.of(SMFeatureSelection.AMBER))))
                 .add(LootItem.lootTableItem(SMArtifacts.RIBBED_ANCIENT_SKULL.getFirst().get()).setWeight(ARTIFACT_VERY_RARE_WEIGHT))
         )); //At some point ancient gliding pet egg
         pOutput.accept(SMBuiltInLootTables.OVERWORLD_ARTIFACTS, LootTable.lootTable().withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))

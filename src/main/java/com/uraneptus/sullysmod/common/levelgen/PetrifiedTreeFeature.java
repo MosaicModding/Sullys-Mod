@@ -2,7 +2,7 @@ package com.uraneptus.sullysmod.common.levelgen;
 
 import com.mojang.serialization.Codec;
 import com.uraneptus.sullysmod.common.levelgen.configs.PetrifiedTreeConfig;
-import com.uraneptus.sullysmod.core.other.loot.SMBuiltInLootTables;
+import com.uraneptus.sullysmod.core.registry.loot.SMBuiltInLootTables;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Vec3i;
 import net.minecraft.resources.ResourceLocation;

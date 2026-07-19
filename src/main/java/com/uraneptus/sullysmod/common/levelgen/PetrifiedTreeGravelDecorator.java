@@ -2,8 +2,8 @@ package com.uraneptus.sullysmod.common.levelgen;
 
 import com.google.common.collect.Lists;
 import com.mojang.serialization.Codec;
-import com.uraneptus.sullysmod.core.other.loot.SMBuiltInLootTables;
-import com.uraneptus.sullysmod.core.registry.SMTreeDecoratorTypes;
+import com.uraneptus.sullysmod.core.registry.loot.SMBuiltInLootTables;
+import com.uraneptus.sullysmod.core.registry.worldgen.SMTreeDecoratorTypes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.random.SimpleWeightedRandomList;
 import net.minecraft.world.level.block.Blocks;

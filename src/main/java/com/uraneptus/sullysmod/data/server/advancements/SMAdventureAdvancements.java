@@ -1,7 +1,7 @@
 package com.uraneptus.sullysmod.data.server.advancements;
 
 import com.uraneptus.sullysmod.SullysMod;
-import com.uraneptus.sullysmod.core.other.tags.SMItemTags;
+import com.uraneptus.sullysmod.core.registry.tags.SMItemTags;
 import com.uraneptus.sullysmod.core.registry.SMArtifacts;
 import com.uraneptus.sullysmod.core.registry.SMBlocks;
 import com.uraneptus.sullysmod.core.registry.SMEntityTypes;
@@ -27,7 +27,7 @@ import java.util.function.Consumer;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
-import static com.uraneptus.sullysmod.core.other.SMTextDefinitions.*;
+import static com.uraneptus.sullysmod.core.registry.SMTextDefinitions.*;
 import static com.uraneptus.sullysmod.data.SMDatagenUtil.craftingPath;
 import static com.uraneptus.sullysmod.data.SMDatagenUtil.name;
 

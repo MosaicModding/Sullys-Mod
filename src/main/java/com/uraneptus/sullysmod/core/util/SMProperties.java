@@ -1,6 +1,7 @@
-package com.uraneptus.sullysmod.core.other;
+package com.uraneptus.sullysmod.core.util;
 
 import com.uraneptus.sullysmod.core.registry.SMArtifacts;
+import com.uraneptus.sullysmod.core.registry.SMRarities;
 import com.uraneptus.sullysmod.core.registry.SMSounds;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -10,7 +11,6 @@ import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Rarity;
 import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
@@ -69,7 +69,7 @@ public class SMProperties {
         }
 
         public static Item.Properties artifacts() {
-            return new Item.Properties().rarity(SMArtifacts.ANCIENT);
+            return new Item.Properties().rarity(SMRarities.ANCIENT_RARITY_PROXY.getValue());
         }
 
         public static Item.Properties sixteenStack() {

@@ -3,10 +3,10 @@ package com.uraneptus.sullysmod.core.registry;
 import com.mojang.datafixers.util.Pair;
 import com.teamabnormals.blueprint.core.util.DataUtil;
 import com.uraneptus.sullysmod.common.blocks.AncientSkullBlock;
-import com.uraneptus.sullysmod.core.other.SMTextUtil;
+import com.uraneptus.sullysmod.core.util.SMTextUtil;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.level.block.Block;
-import net.minecraftforge.registries.RegistryObject;
+import net.neoforged.neoforge.registries.DeferredBlock;
 
 import java.util.function.Supplier;
 
@@ -26,9 +26,9 @@ public class SMNoteBlockInstruments {
         registerAncientSkullInstrument(SMArtifacts.SNOUTED_ANCIENT_SKULL, SMSounds.NOTE_BLOCK_SNOUTED_SKULL);
     }
 
-    public static void registerAncientSkullInstrument(Pair<RegistryObject<Block>, RegistryObject<Block>> skull, Supplier<SoundEvent> soundEvent) {
+    public static void registerAncientSkullInstrument(Pair<DeferredBlock<Block>, DeferredBlock<Block>> skull, Supplier<SoundEvent> soundEvent) {
         Block block = skull.getFirst().get();
         String name = SMTextUtil.convertSkullTypeToString(((AncientSkullBlock)block).getAncientType());
-        DataUtil.registerNoteBlockInstrument(new DataUtil.CustomNoteBlockInstrument(name + "_skull", blockSource -> blockSource.getBlockState().is(block), soundEvent.get(), true));
+        DataUtil.registerNoteBlockInstrument(new DataUtil.CustomNoteBlockInstrument(name + "_skull", blockSource -> blockSource.state().is(block), soundEvent.get(), true));
     }
 }

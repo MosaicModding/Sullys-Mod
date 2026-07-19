@@ -3,7 +3,7 @@ package com.uraneptus.sullysmod.core.events;
 import com.google.common.collect.ImmutableMap;
 import com.teamabnormals.blueprint.core.util.TradeUtil;
 import com.uraneptus.sullysmod.SullysMod;
-import com.uraneptus.sullysmod.core.SMFeatures;
+import com.uraneptus.sullysmod.core.SMFeatureSelection;
 import com.uraneptus.sullysmod.core.registry.SMArtifacts;
 import com.uraneptus.sullysmod.core.registry.SMBlocks;
 import com.uraneptus.sullysmod.core.registry.SMItems;
@@ -27,7 +27,7 @@ public class SMCommonForgeEvents {
 
     @SubscribeEvent
     public static void onVWandererTradeEvent(WandererTradesEvent event) {
-        if (SMFeatures.isEnabled(SMFeatures.ARTIFACTS)) {
+        if (SMFeatureSelection.isEnabled(SMFeatureSelection.ARTIFACTS)) {
             SMArtifacts.TRADES.forEach((item, price) -> TradeUtil.addWandererTrades(event, new TradeUtil.BlueprintTrade(item.get(), 1, Items.EMERALD, price, 3, 15)));
         }
     }
