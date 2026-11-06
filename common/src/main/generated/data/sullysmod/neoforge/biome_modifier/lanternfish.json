@@ -1,0 +1,13 @@
+{
+  "type": "sullysmod:optional_add_spawns",
+  "biomes": "#sullysmod:lanternfish_spawn_in",
+  "required_mod_features": [
+    "lanternfish"
+  ],
+  "spawners": {
+    "type": "sullysmod:lanternfish",
+    "maxCount": 6,
+    "minCount": 4,
+    "weight": 15
+  }
+}

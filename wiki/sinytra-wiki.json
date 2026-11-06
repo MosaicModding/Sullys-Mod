@@ -1,0 +1,10 @@
+{
+  "schema": "1",
+  "id": "sullysmod",
+  "platforms": {
+    "curseforge": "sullys-mod",
+    "modrinth": "sullysmod"
+  },
+  "modid": "sullysmod",
+  "owners": [ "Uraneptus" ]
+}

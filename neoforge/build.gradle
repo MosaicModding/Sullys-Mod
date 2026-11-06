@@ -1,0 +1,123 @@
+plugins {
+    id 'multiloader-loader'
+    id 'net.neoforged.moddev'
+}
+
+sourceSets {
+    main {
+        resources {
+            srcDir project(":common").file('src/main/generated/').getAbsolutePath()
+            exclude '.cache/'
+        }
+    }
+    datagen {
+        compileClasspath += main.compileClasspath + main.output
+        runtimeClasspath += main.runtimeClasspath
+
+        java {
+            srcDir 'src/datagen/java'
+        }
+
+        resources {
+            srcDir 'src/datagen/resources'
+        }
+    }
+}
+
+neoForge {
+    enable {
+        version = neoforge_version
+        enabledSourceSets = sourceSets //All source sets use minecraft code
+    }
+
+    // Automatically enable neoforge AccessTransformers if the file exists
+    def at = project(':common').file('src/main/resources/META-INF/accesstransformer.cfg')
+    if (at.exists()) {
+        accessTransformers.from(at.absolutePath)
+    }
+    parchment {
+        minecraftVersion = parchment_minecraft
+        mappingsVersion = parchment_version
+    }
+
+    //addModdingDependenciesTo sourceSets.datagen
+
+    mods {
+        "${mod_id}" {
+            sourceSet sourceSets.main
+        }
+        "${mod_id}_datagen" {
+            sourceSet sourceSets.main
+            sourceSet sourceSets.datagen
+        }
+    }
+
+    runs {
+        configureEach {
+            systemProperty 'neoforge.enabledGameTestNamespaces', mod_id
+            ideName = "NeoForge ${it.name.capitalize()} (${project.path})" // Unify the run config names with fabric
+            gameDirectory = file('../run')
+            systemProperty 'forge.logging.console.level', 'debug'
+            sourceSet = sourceSets.main
+            loadedMods = [mods."${mod_id}"]
+        }
+        client {
+            client()
+            //loadedMods = [mods."${mod_id}"]
+        }
+        server {
+            server()
+            programArgument 'nogui'
+            //loadedMods = [mods."${mod_id}"]
+        }
+        data {
+            data()
+            programArguments.addAll '--mod', project.mod_id, '--all', '--output', file('../common/src/main/generated/').getAbsolutePath(), '--existing', file('../common/src/main/resources/').getAbsolutePath(), '--existing-mod', 'tessera'
+            sourceSet = sourceSets.datagen
+            loadedMods = [mods."${mod_id}_datagen"]
+        }
+        wikiExportClient {
+            client()
+            gameDirectory = file('../run_wiki_export')
+            systemProperty 'wiki_exporter.enabled', 'true'
+            systemProperty 'wiki_exporter.config.path', file('../wiki_exporter_config.json').getAbsolutePath()
+        }
+        wikiExportServer {
+            server()
+            programArgument 'nogui'
+            gameDirectory = file('../run_wiki_export')
+            systemProperty 'wiki_exporter.enabled', 'true'
+            systemProperty 'wiki_exporter.config.path', file('../wiki_exporter_config.json').getAbsolutePath()
+        }
+    }
+
+
+
+}
+
+dependencies {
+    implementation("net.mehvahdjukaar:moonlight-neoforge:$moonlight_version")
+    runtimeOnly("net.mehvahdjukaar:codecui-neoforge:$codecui_version")
+
+    jarJar(implementation("com.mosaicmodding:tessera-neoforge:$tessera_version-$tessera_build")) {
+        //TODO add version definitions
+    }
+
+
+    datagenImplementation("com.mosaicmodding:tessera-datagen:$tessera_version-$tessera_build") //we only want the datagen dependency here
+    //datagenCompileOnly(sourceSets.main.output) //we want the compile output of main inside datagen (e.g for biome modifiers)
+    datagenImplementation("dev.uraneptus:fabricatedconditions:$fabricated_conditions_version")
+
+
+    jarJar(runtimeOnly("com.mosaicmodding:mosaic_cosmetics-neoforge")) {
+        version {
+            strictly "${cosmetics_version}-${minecraft_version}"
+            prefer "${cosmetics_version}-${minecraft_version}" // The version actually used in your dev workspace
+        }
+    }
+
+    runtimeOnly "curse.maven:cyclops-core-232758:8859263" //This is only for the dev world
+
+    runtimeOnly "org.sinytra:wiki-exporter-neoforge:2.2.1+1.21.1" //only for wiki assets export
+
+}

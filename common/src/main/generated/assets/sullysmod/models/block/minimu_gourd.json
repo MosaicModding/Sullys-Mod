@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/cube_bottom_top",
+  "textures": {
+    "bottom": "sullysmod:block/gourds/minimu_gourd_bottom",
+    "side": "sullysmod:block/gourds/minimu_gourd_side",
+    "top": "sullysmod:block/gourds/minimu_gourd_top"
+  }
+}

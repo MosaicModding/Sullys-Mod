@@ -1,0 +1,7 @@
+// 1.21.1	2026-11-05T01:30:19.4082499	Recipes
+72da44b66328fd1d82363f483715589a4843c956 data/sullysmod/advancement/recipes/food/cooked_lanternfish.json
+2ba0d60b39f9048a09a11f6e874be397b76990ae data/sullysmod/advancement/recipes/food/cooked_lanternfish_from_campfire_cooking.json
+947d5732122d0004a193a49258e9540a09c30d36 data/sullysmod/advancement/recipes/food/cooked_lanternfish_from_campfire_smoking.json
+f4a77e7a778c91b115f674947a334d2ae8ed4763 data/sullysmod/recipe/cooked_lanternfish.json
+470481a321aee6470aef5746f9105bfcc24a86df data/sullysmod/recipe/cooked_lanternfish_from_campfire_cooking.json
+65691e8ef0ac04720609943e19e6e626b938e3b4 data/sullysmod/recipe/cooked_lanternfish_from_campfire_smoking.json

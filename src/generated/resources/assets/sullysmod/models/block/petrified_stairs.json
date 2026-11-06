@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/stairs",
-  "textures": {
-    "bottom": "sullysmod:block/petrified_planks",
-    "side": "sullysmod:block/petrified_planks",
-    "top": "sullysmod:block/petrified_planks"
-  }
-}

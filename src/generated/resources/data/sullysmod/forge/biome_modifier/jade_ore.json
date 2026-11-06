@@ -1,9 +1,0 @@
-{
-  "type": "sullysmod:add_optional_features",
-  "biomes": "#sullysmod:jade_generates_in",
-  "features": "sullysmod:jade_ore",
-  "mod_feature": [
-    "jade"
-  ],
-  "step": "underground_ores"
-}

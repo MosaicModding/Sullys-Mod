@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "id": "${mod_id}",
+  "version": "${version}",
+  "name": "${mod_name}",
+  "description": "${description}",
+  "authors": [
+    "${mod_author}"
+  ],
+  "contact": {
+    "homepage": "",
+    "sources": "https://github.com/MosaicModding/Sullys-Mod",
+    "curseforge": "https://www.curseforge.com/minecraft/mc-mods/sullys-mod",
+    "modrinth": "https://modrinth.com/mod/sullysmod",
+    "discord": "https://discord.gg/EftSdmD"
+  },
+  "license": "${license}",
+  "icon": "icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "com.mosaicmodding.sullysmod.SullysModFabric"
+    ],
+    "client": [
+      "com.mosaicmodding.sullysmod.client.SullysModFabricClient"
+    ],
+    "modmenu": [
+      "com.mosaicmodding.sullysmod.ModMenuIntegration"
+    ]
+  },
+  "mixins": [
+    "${mod_id}.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=${fabric_loader_version}",
+    "fabric-api": "*",
+    "minecraft": ">=${minecraft_version}",
+    "java": ">=${java_version}",
+    "moonlight": ">=${moonlight_min_version}"
+  }
+}

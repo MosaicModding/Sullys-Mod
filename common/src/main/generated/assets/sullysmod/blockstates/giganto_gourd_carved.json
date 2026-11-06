@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "sullysmod:block/giganto_gourd_carved",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "sullysmod:block/giganto_gourd_carved"
+    },
+    "facing=south": {
+      "model": "sullysmod:block/giganto_gourd_carved",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "sullysmod:block/giganto_gourd_carved",
+      "y": 270
+    }
+  }
+}

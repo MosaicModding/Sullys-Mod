@@ -1,0 +1,141 @@
+plugins {
+    id 'java-library'
+    id 'maven-publish'
+}
+
+base {
+    archivesName = "${mod_id}-${project.name}-${minecraft_version}"
+}
+
+java {
+    toolchain.languageVersion = JavaLanguageVersion.of(java_version)
+    withSourcesJar()
+    withJavadocJar()
+}
+
+repositories {
+    mavenCentral()
+    exclusiveContent {
+        forRepository {
+            maven {
+                name = 'Sponge'
+                url = 'https://repo.spongepowered.org/repository/maven-public'
+            }
+        }
+        filter { includeGroupAndSubgroups('org.spongepowered') }
+    }
+    exclusiveContent {
+        forRepositories(
+                maven {
+                    name = 'ParchmentMC'
+                    url = 'https://maven.parchmentmc.org/'
+                },
+                maven {
+                    name = "NeoForge"
+                    url = 'https://maven.neoforged.net/releases'
+                }
+        )
+        filter { includeGroup('org.parchmentmc.data') }
+    }
+    maven {
+        url "https://cursemaven.com"
+    }
+    maven {
+        url "https://registry.somethingcatchy.net/repository/maven-releases/"
+    }
+    maven {
+        name "Mosaic-Modding-Maven"
+        url "https://maven.mosaicmodding.com/snapshot/"
+        content {
+            includeGroup "com.mosaicmodding"
+        }
+    } //TODO are two definitions required
+    maven {
+        name "Mosaic-Modding-Maven"
+        url "https://maven.mosaicmodding.com/release/"
+        content {
+            includeGroup "com.mosaicmodding"
+            includeGroup "dev.uraneptus"
+        }
+    }
+
+    maven {
+        url "https://maven.sinytra.org" //for wiki assets export
+    }
+
+    //TODO sable companion
+}
+
+// Declare capabilities on the outgoing configurations.
+// Read more about capabilities here: https://docs.gradle.org/current/userguide/component_capabilities.html#sec:declaring-additional-capabilities-for-a-local-component
+['apiElements', 'runtimeElements', 'sourcesElements', 'javadocElements'].each { variant ->
+    configurations."$variant".outgoing {
+        capability("$group:${base.archivesName.get()}:$version")
+        capability("$group:$mod_id-${project.name}-${minecraft_version}:$version")
+        capability("$group:$mod_id:$version")
+    }
+    publishing.publications.configureEach {
+        suppressPomMetadataWarningsFor(variant)
+    }
+}
+
+sourcesJar {
+    from(rootProject.file('LICENSE')) {
+        rename { "${it}_${mod_name}" }
+    }
+}
+
+jar {
+    from(rootProject.file('LICENSE')) {
+        rename { "${it}_${mod_name}" }
+    }
+
+    manifest {
+        attributes(['Specification-Title'   : mod_name,
+                    'Specification-Vendor'  : mod_author,
+                    'Specification-Version' : project.jar.archiveVersion,
+                    'Implementation-Title'  : project.name,
+                    'Implementation-Version': project.jar.archiveVersion,
+                    'Implementation-Vendor' : mod_author,
+                    'Built-On-Minecraft'    : minecraft_version])
+    }
+}
+
+processResources {
+    var expandProps = ['version'                      : version,
+                       'group'                        : project.group, //Else we target the task's group.
+                       'minecraft_version'            : minecraft_version,
+                       'minecraft_version_range'      : minecraft_version_range,
+                       'fabric_version'               : fabric_version,
+                       'fabric_loader_version'        : fabric_loader_version,
+                       'moonlight_min_version'        : moonlight_min_version,
+                       'mod_name'                     : mod_name,
+                       'mod_author'                   : mod_author,
+                       'mod_id'                       : mod_id,
+                       'license'                      : license,
+                       'description'                  : project.description,
+                       'neoforge_version'             : neoforge_version,
+                       'neoforge_loader_version_range': neoforge_loader_version_range,
+                       'credits'                      : credits,
+                       'java_version'                 : java_version
+    ]
+
+    filesMatching(['pack.mcmeta', 'fabric.mod.json', 'META-INF/neoforge.mods.toml', '*.mixins.json']) {
+        expand expandProps
+    }
+    inputs.properties(expandProps)
+}
+
+publishing {
+    publications {
+        register('mavenJava', MavenPublication) {
+            artifactId base.archivesName.get()
+            from components.java
+        }
+    }
+    repositories {
+        maven {
+            url System.getenv('local_maven_url')
+        }
+    }
+}

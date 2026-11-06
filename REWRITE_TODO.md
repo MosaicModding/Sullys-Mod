@@ -1,0 +1,14 @@
+- Re add all features
+- Improved jade bouncing based on enchmod
+- Jade sable compat
+- Re add FD compat
+- Add full every compat integration
+- Add correct twilight forest ancient skull
+- Gourd growing
+- Gourd effects, soup potion
+- Grindstone polishing with gui for selecting output?
+- Write wiki
+- Write javadocs
+- Test on both loaders
+- Implement feature changes
+- Add sounds

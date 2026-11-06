@@ -1,0 +1,56 @@
+plugins {
+    id 'multiloader-loader'
+    id 'fabric-loom'
+}
+
+dependencies {
+    minecraft "com.mojang:minecraft:${minecraft_version}"
+    mappings loom.layered {
+        officialMojangMappings()
+        parchment("org.parchmentmc.data:parchment-${parchment_minecraft}:${parchment_version}@zip")
+    }
+    modImplementation "net.fabricmc:fabric-loader:${fabric_loader_version}"
+    modImplementation "net.fabricmc.fabric-api:fabric-api:${fabric_version}"
+
+    modImplementation("net.mehvahdjukaar:moonlight-fabric:$moonlight_version")
+    modRuntimeOnly("net.mehvahdjukaar:codecui-fabric:$codecui_version")
+
+    modImplementation("com.mosaicmodding:tessera-fabric:$tessera_version-$tessera_build")
+    include "com.mosaicmodding:tessera-fabric:$tessera_version-$tessera_build"
+
+    modImplementation("com.mosaicmodding:mosaic_cosmetics-fabric:${cosmetics_version}-${minecraft_version}")
+    include "com.mosaicmodding:mosaic_cosmetics-fabric:${cosmetics_version}-${minecraft_version}"
+
+    modImplementation("curse.maven:modmenu-308702:7808443")
+
+    modRuntimeOnly("curse.maven:cyclops-core-232758:8859264")
+}
+
+loom {
+    def aw = project(':common').file("src/main/resources/${mod_id}.accesswidener")
+    if (aw.exists()) {
+        accessWidenerPath.set(aw)
+    }
+    mixin {
+        defaultRefmapName.set("${mod_id}.refmap.json")
+    }
+    runs {
+        client {
+            client()
+            setConfigName('Fabric Client')
+        }
+        server {
+            server()
+            setConfigName('Fabric Server')
+        }
+        configureEach {
+            runDir "../run"
+            ideConfigGenerated(true)
+        }
+    }
+}
+
+sourceSets.main.resources {
+    srcDir project(":common").file('src/main/generated/').getAbsolutePath()
+    exclude '.cache/'
+}

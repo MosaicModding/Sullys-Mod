@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:block/template_turtle_egg",
-  "textures": {
-    "all": "sullysmod:block/tortoise_egg"
-  }
-}

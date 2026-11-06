@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "sullysmod:block/minimu_gourd_lantern",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "sullysmod:block/minimu_gourd_lantern"
+    },
+    "facing=south": {
+      "model": "sullysmod:block/minimu_gourd_lantern",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "sullysmod:block/minimu_gourd_lantern",
+      "y": 270
+    }
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "parent": "minecraft:block/orientable_with_bottom",
+  "textures": {
+    "bottom": "sullysmod:block/gourds/minimu_gourd_bottom",
+    "front": "sullysmod:block/gourds/minimu_gourd_carved_front",
+    "side": "sullysmod:block/gourds/minimu_gourd_side",
+    "top": "sullysmod:block/gourds/minimu_gourd_top"
+  }
+}

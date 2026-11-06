@@ -1,0 +1,13 @@
+{
+  "type": "sullysmod:optional_add_spawns",
+  "biomes": "#sullysmod:bouldering_zombie_spawn_in",
+  "required_mod_features": [
+    "bouldering_zombie"
+  ],
+  "spawners": {
+    "type": "sullysmod:bouldering_zombie",
+    "maxCount": 6,
+    "minCount": 4,
+    "weight": 100
+  }
+}

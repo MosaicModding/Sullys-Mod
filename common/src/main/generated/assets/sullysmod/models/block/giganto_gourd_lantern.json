@@ -1,0 +1,9 @@
+{
+  "parent": "minecraft:block/orientable_with_bottom",
+  "textures": {
+    "bottom": "sullysmod:block/gourds/giganto_gourd_bottom",
+    "front": "sullysmod:block/gourds/giganto_gourd_lantern_front",
+    "side": "sullysmod:block/gourds/giganto_gourd_side",
+    "top": "sullysmod:block/gourds/giganto_gourd_top"
+  }
+}

@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:item/generated",
-  "textures": {
-    "layer0": "sullysmod:item/glass_vial",
-    "layer1": "sullysmod:item/venom_vial_1",
-    "layer2": "sullysmod:item/venom_vial_2"
-  }
-}

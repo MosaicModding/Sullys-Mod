@@ -1,0 +1,15 @@
+{
+  "enabled": [
+    "metadata",
+    "render"
+  ],
+  "modules": {
+    "render": {
+      "namespaces": [
+        "sullysmod"
+      ],
+      "resolution": 128,
+      "png": true
+    }
+  }
+}

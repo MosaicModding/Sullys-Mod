@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/stairs",
-  "textures": {
-    "bottom": "sullysmod:block/amber_bricks",
-    "side": "sullysmod:block/amber_bricks",
-    "top": "sullysmod:block/amber_bricks"
-  }
-}

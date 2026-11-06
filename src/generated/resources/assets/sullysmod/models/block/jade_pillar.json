@@ -1,7 +1,0 @@
-{
-  "parent": "minecraft:block/cube_column",
-  "textures": {
-    "end": "sullysmod:block/chiseled_jade",
-    "side": "sullysmod:block/jade_pillar"
-  }
-}

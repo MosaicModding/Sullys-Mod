@@ -1,0 +1,50 @@
+{
+  "entity.bouldering_zombie.ambient": {
+    "sounds": [
+      "mob/zombie/say1",
+      "mob/zombie/say2",
+      "mob/zombie/say3"
+    ],
+    "subtitle": "sullysmod.subtitle.entity.bouldering_zombie.ambient"
+  },
+  "entity.bouldering_zombie.death": {
+    "sounds": [
+      "mob/zombie/death"
+    ],
+    "subtitle": "sullysmod.subtitle.entity.bouldering_zombie.death"
+  },
+  "entity.bouldering_zombie.hurt": {
+    "sounds": [
+      "mob/zombie/hurt1",
+      "mob/zombie/hurt2"
+    ],
+    "subtitle": "sullysmod.subtitle.entity.bouldering_zombie.hurt"
+  },
+  "entity.lanternfish.death": {
+    "sounds": [
+      "entity/fish/hurt1",
+      "entity/fish/hurt2",
+      "entity/fish/hurt3",
+      "entity/fish/hurt4"
+    ],
+    "subtitle": "sullysmod.subtitle.entity.lanternfish.death"
+  },
+  "entity.lanternfish.flop": {
+    "sounds": [
+      "entity/fish/flop1",
+      "entity/fish/flop2",
+      "entity/fish/flop3",
+      "entity/fish/flop4"
+    ],
+    "subtitle": "sullysmod.subtitle.entity.lanternfish.flop"
+  },
+  "entity.lanternfish.hurt": {
+    "sounds": [
+      "entity/fish/hurt1",
+      "entity/fish/hurt2",
+      "entity/fish/hurt3",
+      "entity/fish/hurt4"
+    ],
+    "subtitle": "sullysmod.subtitle.entity.lanternfish.hurt"
+  }
+}

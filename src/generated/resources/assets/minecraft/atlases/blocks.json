@@ -1,8 +1,0 @@
-{
-  "sources": [
-    {
-      "type": "minecraft:single",
-      "resource": "sullysmod:entity/jade_shield/jade_shield"
-    }
-  ]
-}
