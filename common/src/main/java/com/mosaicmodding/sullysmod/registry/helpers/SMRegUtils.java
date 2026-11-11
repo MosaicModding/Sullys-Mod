@@ -1,7 +1,6 @@
-package com.mosaicmodding.sullysmod.registry;
+package com.mosaicmodding.sullysmod.registry.helpers;
 
 import com.mosaicmodding.sullysmod.SullysMod;
-import net.minecraft.core.DefaultedRegistry;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;

@@ -3,14 +3,11 @@ package com.mosaicmodding.sullysmod.registry;
 import com.mosaicmodding.sullysmod.content.gourd.SizeChangeEffect;
 import net.mehvahdjukaar.moonlight.api.misc.RegSupplier;
 import net.mehvahdjukaar.moonlight.api.platform.RegHelper;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.effect.MobEffect;
-import net.minecraft.world.effect.MobEffectCategory;
-import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 
-import static com.mosaicmodding.sullysmod.registry.SMRegUtils.path;
+import static com.mosaicmodding.sullysmod.registry.helpers.SMRegUtils.path;
 
 public class SMMobEffects {
 

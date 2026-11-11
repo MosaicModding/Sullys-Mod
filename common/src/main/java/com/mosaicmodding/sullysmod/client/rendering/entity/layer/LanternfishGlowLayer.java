@@ -11,7 +11,7 @@ import net.minecraft.client.renderer.entity.layers.RenderLayer;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.resources.ResourceLocation;
 
-import static com.mosaicmodding.sullysmod.registry.SMRegUtils.path;
+import static com.mosaicmodding.sullysmod.registry.helpers.SMRegUtils.path;
 
 public class LanternfishGlowLayer <E extends LanternfishEntity> extends RenderLayer<E, LanternfishModel<E>> {
     public static final ResourceLocation GLOW_LAYER = path("textures/entity/lanternfish/glow.png");

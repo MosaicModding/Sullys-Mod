@@ -9,7 +9,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Block;
 
-import static com.mosaicmodding.sullysmod.registry.SMRegUtils.path;
+import static com.mosaicmodding.sullysmod.registry.helpers.SMRegUtils.path;
 
 public class SMTags {
 

@@ -4,16 +4,11 @@ import com.mosaicmodding.sullysmod.SullysMod;
 import com.mosaicmodding.sullysmod.core.SMConstants;
 import com.mosaicmodding.sullysmod.core.config.SMClientConfig;
 import com.mosaicmodding.sullysmod.core.config.SMCommonConfig;
-import com.mosaicmodding.sullysmod.registry.SMRegUtils;
+import com.mosaicmodding.sullysmod.registry.helpers.SMRegUtils;
 import com.mosaicmodding.tessera.datagen.providers.TesseraDefaultLangProvider;
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
-import net.minecraft.world.effect.MobEffect;
-import net.minecraft.world.entity.EntityType;
 
-import java.util.List;
 import java.util.Map;
-import java.util.function.Supplier;
 
 public class SMLanguageGen extends TesseraDefaultLangProvider {
 

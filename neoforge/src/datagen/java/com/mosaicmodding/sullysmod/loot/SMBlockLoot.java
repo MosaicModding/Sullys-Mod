@@ -1,6 +1,6 @@
 package com.mosaicmodding.sullysmod.loot;
 
-import com.mosaicmodding.sullysmod.registry.SMRegUtils;
+import com.mosaicmodding.sullysmod.registry.helpers.SMRegUtils;
 import com.mosaicmodding.tessera.datagen.providers.loot.TesseraBlockLootSubProvider;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.world.flag.FeatureFlags;

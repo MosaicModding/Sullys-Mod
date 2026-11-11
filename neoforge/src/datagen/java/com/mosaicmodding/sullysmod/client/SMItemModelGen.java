@@ -2,7 +2,7 @@ package com.mosaicmodding.sullysmod.client;
 
 import com.mosaicmodding.sullysmod.SullysMod;
 import com.mosaicmodding.sullysmod.registry.SMItems;
-import com.mosaicmodding.sullysmod.registry.SMRegUtils;
+import com.mosaicmodding.sullysmod.registry.helpers.SMRegUtils;
 import com.mosaicmodding.tessera.datagen.ItemModelSmithTypes;
 import com.mosaicmodding.tessera.datagen.providers.item.TesseraItemModelSystem;
 import com.mosaicmodding.tessera.datagen.smith.itemmodel.data.ItemModelSystemData;

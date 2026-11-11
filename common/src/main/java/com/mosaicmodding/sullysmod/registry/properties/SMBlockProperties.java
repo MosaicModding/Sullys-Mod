@@ -4,6 +4,7 @@ import com.mosaicmodding.tessera.TesseraBlockProperties;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
@@ -46,6 +47,10 @@ public class SMBlockProperties {
                 .isValidSpawn(SMBlockProperties::always)
                 .needsAxe()
                 .lootDropSelf();
+    }
+
+    public static TesseraBlockProperties BRICKS_DEFAULT() {
+        return TesseraBlockProperties.copy(Blocks.STONE_BRICKS).needsPickaxe().lootDropSelf();
     }
 
     public static boolean never(BlockState state, BlockGetter getter, BlockPos pos) {

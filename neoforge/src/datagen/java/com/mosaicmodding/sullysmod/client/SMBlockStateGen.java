@@ -3,21 +3,25 @@ package com.mosaicmodding.sullysmod.client;
 import com.mosaicmodding.sullysmod.SullysMod;
 import com.mosaicmodding.sullysmod.content.amber.AmberLayeredCauldronBlock;
 import com.mosaicmodding.sullysmod.registry.SMBlocks;
-import com.mosaicmodding.sullysmod.registry.SMRegUtils;
+import com.mosaicmodding.sullysmod.registry.helpers.SMRegUtils;
+import com.mosaicmodding.sullysmod.registry.registry_sets.SimpleBlockRegistrySet;
 import com.mosaicmodding.tessera.datagen.BlockStateSmithTypes;
 import com.mosaicmodding.tessera.datagen.ItemModelSmithTypes;
 import com.mosaicmodding.tessera.datagen.providers.block.TesseraBlockStateSystem;
 import com.mosaicmodding.tessera.datagen.providers.item.TesseraItemModelSystem;
 import com.mosaicmodding.tessera.datagen.smith.blockstate.BlockStateSmith;
 import com.mosaicmodding.tessera.datagen.smith.blockstate.BlockStateSystemData;
+import net.mehvahdjukaar.moonlight.api.platform.RegHelper;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.neoforged.neoforge.client.model.generators.ConfiguredModel;
 import net.neoforged.neoforge.client.model.generators.ModelFile;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
+
+import java.util.EnumMap;
+import java.util.function.Supplier;
 
 public class SMBlockStateGen extends TesseraBlockStateSystem {
 
@@ -33,12 +37,8 @@ public class SMBlockStateGen extends TesseraBlockStateSystem {
         BlockStateSmithTypes.FULL_BLOCK_NO_ITEM.act(data, SMBlocks.AMBER);
         BlockStateSmithTypes.FULL_BLOCK.act(data, SMBlocks.AMBER_SOLID);
         BlockStateSmithTypes.FULL_BLOCK.act(data, SMBlocks.ROUGH_AMBER);
-        BlockStateSmithTypes.FULL_BLOCK.act(data, SMBlocks.CHISELED_AMBER);
-        BlockStateSmithTypes.FULL_BLOCK.act(data, SMBlocks.AMBER_BRICKS);
-        BlockStateSmithTypes.ROTATED_PILLAR_BLOCK.act(data, SMBlocks.AMBER_PILLAR);
-        BlockStateSmithTypes.STAIRS_BLOCK.act(data, SMBlocks.AMBER_BRICK_STAIRS);
-        BlockStateSmithTypes.SLAB_BLOCK.act(data, SMBlocks.AMBER_BRICK_SLAB);
-        BlockStateSmithTypes.WALL_BLOCK.act(data, SMBlocks.AMBER_BRICK_WALL);
+
+        createForBlockSet(data, SMBlocks.AMBER_BLOCK_SET);
         AMBER_CAULDRON.act(data, SMBlocks.AMBER_CAULDRON);
 
         setTexturePath("gourds");
@@ -48,6 +48,22 @@ public class SMBlockStateGen extends TesseraBlockStateSystem {
         BlockStateSmithTypes.ORIENTABLE_WITH_BOTTOM_BLOCK.act(data, SMBlocks.CARVED_MINIMU_GOURD);
         BlockStateSmithTypes.ORIENTABLE_WITH_BOTTOM_BLOCK.act(data, SMBlocks.GIGANTO_GOURD_LANTERN);
         BlockStateSmithTypes.ORIENTABLE_WITH_BOTTOM_BLOCK.act(data, SMBlocks.MINIMU_GOURD_LANTERN);
+
+    }
+
+    public static void createForBlockSet(BlockStateSystemData<SMBlockStateGen> data, SimpleBlockRegistrySet blockSet) {
+        BlockStateSmithTypes.FULL_BLOCK.act(data, blockSet.getBricksBlock());
+        BlockStateSmithTypes.STAIRS_BLOCK.act(data, blockSet.getStairsBlock());
+        BlockStateSmithTypes.SLAB_BLOCK.act(data, blockSet.getSlabBlock());
+        if (blockSet.getWallBlock().isPresent()) {
+            BlockStateSmithTypes.WALL_BLOCK.act(data, blockSet.getWallBlock().get());
+        }
+        if (blockSet.getPillarBlock().isPresent()) {
+            BlockStateSmithTypes.ROTATED_PILLAR_BLOCK.act(data, blockSet.getPillarBlock().get());
+        }
+        if (blockSet.getChiseledBlock().isPresent()) {
+            BlockStateSmithTypes.FULL_BLOCK.act(data, blockSet.getChiseledBlock().get());
+        }
 
     }
 

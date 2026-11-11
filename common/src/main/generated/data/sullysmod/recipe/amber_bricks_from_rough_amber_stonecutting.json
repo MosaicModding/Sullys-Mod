@@ -1,0 +1,22 @@
+{
+  "fabric:load_conditions": [
+    {
+      "condition": "sullysmod:config",
+      "feature": "amber"
+    }
+  ],
+  "neoforge:conditions": [
+    {
+      "type": "sullysmod:config",
+      "feature": "amber"
+    }
+  ],
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "sullysmod:rough_amber"
+  },
+  "result": {
+    "count": 1,
+    "id": "sullysmod:amber_bricks"
+  }
+}

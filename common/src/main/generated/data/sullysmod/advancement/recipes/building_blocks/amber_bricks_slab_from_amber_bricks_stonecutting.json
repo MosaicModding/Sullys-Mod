@@ -1,0 +1,44 @@
+{
+  "fabric:load_conditions": [
+    {
+      "condition": "sullysmod:config",
+      "feature": "amber"
+    }
+  ],
+  "neoforge:conditions": [
+    {
+      "type": "sullysmod:config",
+      "feature": "amber"
+    }
+  ],
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_amber_bricks": {
+      "conditions": {
+        "items": [
+          {
+            "items": "sullysmod:amber_bricks"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "sullysmod:amber_bricks_slab_from_amber_bricks_stonecutting"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_amber_bricks"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "sullysmod:amber_bricks_slab_from_amber_bricks_stonecutting"
+    ]
+  }
+}

@@ -6,7 +6,7 @@ import net.mehvahdjukaar.moonlight.api.platform.RegHelper;
 import net.minecraft.core.particles.ParticleType;
 import net.minecraft.core.particles.SimpleParticleType;
 
-import static com.mosaicmodding.sullysmod.registry.SMRegUtils.path;
+import static com.mosaicmodding.sullysmod.registry.helpers.SMRegUtils.path;
 
 public class SMParticleTypes {
 

@@ -11,9 +11,7 @@ import net.minecraft.world.item.MobBucketItem;
 import net.minecraft.world.item.SolidBucketItem;
 import net.minecraft.world.level.material.Fluids;
 
-import java.util.function.Supplier;
-
-import static com.mosaicmodding.sullysmod.registry.SMRegUtils.path;
+import static com.mosaicmodding.sullysmod.registry.helpers.SMRegUtils.path;
 import static com.mosaicmodding.sullysmod.registry.properties.SMItemProperties.*;
 
 public class SMItems {

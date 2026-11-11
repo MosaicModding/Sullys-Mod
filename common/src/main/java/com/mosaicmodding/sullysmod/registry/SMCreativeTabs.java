@@ -13,7 +13,7 @@ import net.minecraft.world.item.Items;
 
 import static com.mosaicmodding.sullysmod.registry.SMBlocks.*;
 import static com.mosaicmodding.sullysmod.registry.SMItems.*;
-import static com.mosaicmodding.sullysmod.registry.SMRegUtils.path;
+import static com.mosaicmodding.sullysmod.registry.helpers.SMRegUtils.path;
 
 public class SMCreativeTabs {
 
@@ -34,7 +34,8 @@ public class SMCreativeTabs {
         tabAdder.after(Items.COD, CreativeModeTabs.FOOD_AND_DRINKS, SMCommonConfig.LANTERNFISH.getSecond(), LANTERNFISH, COOKED_LANTERNFISH);
 
         tabAdder.add(CreativeModeTabs.NATURAL_BLOCKS, SMCommonConfig.GOURDS.getSecond(), GIGANTO_GOURD, CARVED_GIGANTO_GOURD, GIGANTO_GOURD_LANTERN, MINIMU_GOURD, CARVED_MINIMU_GOURD, MINIMU_GOURD_LANTERN);
-        tabAdder.add(CreativeModeTabs.BUILDING_BLOCKS, SMCommonConfig.AMBER_BLOCKS.getSecond(), ROUGH_AMBER, CHISELED_AMBER, AMBER_PILLAR, AMBER_BRICKS, AMBER_BRICK_STAIRS, AMBER_BRICK_SLAB, AMBER_BRICK_WALL);
+        tabAdder.add(CreativeModeTabs.BUILDING_BLOCKS, SMCommonConfig.AMBER_BLOCKS.getSecond(), ROUGH_AMBER);
+        AMBER_BLOCK_SET.addToTab(tabAdder);
     }
 
     public static void init() {

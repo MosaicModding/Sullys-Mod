@@ -1,0 +1,29 @@
+{
+  "fabric:load_conditions": [
+    {
+      "condition": "sullysmod:config",
+      "feature": "amber"
+    }
+  ],
+  "neoforge:conditions": [
+    {
+      "type": "sullysmod:config",
+      "feature": "amber"
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "#": {
+      "item": "sullysmod:rough_amber"
+    }
+  },
+  "pattern": [
+    "##",
+    "##"
+  ],
+  "result": {
+    "count": 4,
+    "id": "sullysmod:amber_bricks"
+  }
+}

@@ -6,7 +6,7 @@ import net.mehvahdjukaar.moonlight.api.platform.PlatHelper;
 import net.mehvahdjukaar.moonlight.api.platform.RegHelper;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 
-import static com.mosaicmodding.sullysmod.registry.SMRegUtils.path;
+import static com.mosaicmodding.sullysmod.registry.helpers.SMRegUtils.path;
 
 public class SMBlockEntityTypes {
     public static final RegSupplier<BlockEntityType<AmberBE>> AMBER = RegHelper.registerBlockEntityType(path("amber"), () -> PlatHelper.newBlockEntityType(AmberBE::new, SMBlocks.AMBER_SOLID.get()));

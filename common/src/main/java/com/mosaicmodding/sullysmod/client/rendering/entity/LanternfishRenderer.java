@@ -10,7 +10,7 @@ import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 
-import static com.mosaicmodding.sullysmod.registry.SMRegUtils.path;
+import static com.mosaicmodding.sullysmod.registry.helpers.SMRegUtils.path;
 
 public class LanternfishRenderer <E extends LanternfishEntity> extends MobRenderer<E, LanternfishModel<E>> {
     public static final ResourceLocation TEXTURE = path("textures/entity/lanternfish/lanternfish.png");

@@ -2,7 +2,7 @@ package com.mosaicmodding.sullysmod.loot;
 
 import com.mosaicmodding.sullysmod.registry.SMEntityTypes;
 import com.mosaicmodding.sullysmod.registry.SMItems;
-import com.mosaicmodding.sullysmod.registry.SMRegUtils;
+import com.mosaicmodding.sullysmod.registry.helpers.SMRegUtils;
 import net.minecraft.advancements.critereon.EntityFlagsPredicate;
 import net.minecraft.advancements.critereon.EntityPredicate;
 import net.minecraft.core.HolderLookup;

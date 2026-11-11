@@ -11,7 +11,7 @@ import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
 
-import static com.mosaicmodding.sullysmod.registry.SMRegUtils.path;
+import static com.mosaicmodding.sullysmod.registry.helpers.SMRegUtils.path;
 
 public class BoulderingZombieModel<E extends BoulderingZombieEntity> extends HumanoidModel<E> implements RootModel {
     public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(path("bouldering_zombie"), "main");

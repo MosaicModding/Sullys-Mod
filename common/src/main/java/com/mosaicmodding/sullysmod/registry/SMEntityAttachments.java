@@ -3,10 +3,9 @@ package com.mosaicmodding.sullysmod.registry;
 import com.mosaicmodding.sullysmod.content.amber.StuckInAmberData;
 import net.mehvahdjukaar.moonlight.api.misc.IAttachmentType;
 import net.mehvahdjukaar.moonlight.api.platform.RegHelper;
-import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 
-import static com.mosaicmodding.sullysmod.registry.SMRegUtils.path;
+import static com.mosaicmodding.sullysmod.registry.helpers.SMRegUtils.path;
 
 public class SMEntityAttachments {
 
