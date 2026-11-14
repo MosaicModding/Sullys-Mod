@@ -11,6 +11,7 @@ import com.mosaicmodding.sullysmod.recipes.SMRecipeGen;
 import com.mosaicmodding.sullysmod.tags.SMBiomeTagGen;
 import com.mosaicmodding.sullysmod.tags.SMBlockTagGen;
 import com.mosaicmodding.sullysmod.tags.SMEntityTypeTagGen;
+import com.mosaicmodding.sullysmod.tags.SMItemTagGen;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
@@ -51,6 +52,7 @@ public class SullysModDatagen {
         var modRegistryProvider = datapackEntriesProvider.getRegistryProvider(); //use this instead of lookupProvider, so we have access to our own registry set builder
 
         var blockTagDatagen = new SMBlockTagGen(output, modRegistryProvider, fileHelper);
+        var itemTagDatagen = new SMItemTagGen(output, modRegistryProvider, blockTagDatagen, fileHelper);
         var entityTypeTagDatagen = new SMEntityTypeTagGen(output, modRegistryProvider, fileHelper);
         var biomeTagDatagen = new SMBiomeTagGen(output, modRegistryProvider, fileHelper);
 
@@ -67,6 +69,7 @@ public class SullysModDatagen {
         generator.addProvider(includeServer, datapackEntriesProvider);
 
         generator.addProvider(includeServer, blockTagDatagen);
+        generator.addProvider(includeServer, itemTagDatagen);
         generator.addProvider(includeServer, entityTypeTagDatagen);
         generator.addProvider(includeServer, biomeTagDatagen);
 

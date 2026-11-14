@@ -53,6 +53,8 @@ public class SMBlockTagGen extends TesseraBlockTagsSystem {
                 Blocks.JACK_O_LANTERN
         ).addTags(BlockTags.CANDLES, BlockTags.CANDLE_CAKES);
 
+        tag(BlockTags.MINEABLE_WITH_AXE).remove(SMTags.Blocks.IS_PETRIFIED); //TODO look for a way to do this on fabric
+
         addTagsFromBlockProperties(blocks);
     }
 }

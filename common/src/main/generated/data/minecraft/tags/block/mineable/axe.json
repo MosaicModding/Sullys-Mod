@@ -1,4 +1,7 @@
 {
+  "remove": [
+    "#sullysmod:is_petrified"
+  ],
   "values": [
     "sullysmod:minimu_gourd",
     "sullysmod:minimu_gourd_carved",

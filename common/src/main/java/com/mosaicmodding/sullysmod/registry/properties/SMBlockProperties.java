@@ -1,15 +1,20 @@
 package com.mosaicmodding.sullysmod.registry.properties;
 
+import com.mosaicmodding.sullysmod.registry.SMTags;
 import com.mosaicmodding.tessera.TesseraBlockProperties;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
+
+import java.util.function.Function;
 
 public class SMBlockProperties {
     public static TesseraBlockProperties AMBER(boolean isSolid) {
@@ -47,6 +52,42 @@ public class SMBlockProperties {
                 .isValidSpawn(SMBlockProperties::always)
                 .needsAxe()
                 .lootDropSelf();
+    }
+
+    public static TesseraBlockProperties PETRIFIED() {
+        return TesseraBlockProperties.of()
+                .instrument(NoteBlockInstrument.BASEDRUM)
+                .strength(2.0F, 6.0F)
+                /*todo .sound(SMSounds.PETRIFIED_WOOD)*/
+                .mapColor(MapColor.TERRACOTTA_ORANGE)
+                .requiresCorrectToolForDrops()
+                .needsPickaxe()
+                .lootDropSelf()
+                .addTag(SMTags.Blocks.IS_PETRIFIED);
+    }
+
+    public static TesseraBlockProperties PETRIFIED_LOGS(MapColor topColor, MapColor sideColor) {
+        return TesseraBlockProperties.copy(PETRIFIED()).mapColor(state -> state.getValue(RotatedPillarBlock.AXIS) == Direction.Axis.Y ? topColor : sideColor);
+    }
+
+    public static TesseraBlockProperties FLOWER_POT() {
+        return TesseraBlockProperties.of()
+                .instabreak()
+                .noOcclusion()
+                .pushReaction(PushReaction.DESTROY)
+                .setCutout();
+    }
+
+    public static TesseraBlockProperties SAPLING() {
+        return TesseraBlockProperties.of()
+                .mapColor(MapColor.PLANT)
+                .noCollission()
+                .randomTicks()
+                .instabreak()
+                .sound(SoundType.GRASS)
+                .pushReaction(PushReaction.DESTROY)
+                .lootDropSelf()
+                .setCutout();
     }
 
     public static TesseraBlockProperties BRICKS_DEFAULT() {

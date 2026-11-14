@@ -36,6 +36,7 @@ public class SMCreativeTabs {
         tabAdder.add(CreativeModeTabs.NATURAL_BLOCKS, SMCommonConfig.GOURDS.getSecond(), GIGANTO_GOURD, CARVED_GIGANTO_GOURD, GIGANTO_GOURD_LANTERN, MINIMU_GOURD, CARVED_MINIMU_GOURD, MINIMU_GOURD_LANTERN);
         tabAdder.add(CreativeModeTabs.BUILDING_BLOCKS, SMCommonConfig.AMBER_BLOCKS.getSecond(), ROUGH_AMBER);
         AMBER_BLOCK_SET.addToTab(tabAdder);
+        PETRIFIED_WOOD_BLOCK_SET.addToTab(tabAdder);
     }
 
     public static void init() {

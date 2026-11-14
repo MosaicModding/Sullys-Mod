@@ -34,5 +34,7 @@ public class SMItemModelGen extends TesseraItemModelSystem {
         ItemModelSmithTypes.GENERATED_ITEM.act(data, SMItems.GIGANTO_SLICE.get());
         ItemModelSmithTypes.GENERATED_ITEM.act(data, SMItems.MINIMU_SEEDS.get());
         ItemModelSmithTypes.GENERATED_ITEM.act(data, SMItems.GIGANTO_SEEDS.get());
+
+        setTexturePath("petrified");//TODO the auto item gen in the block model should automatically use this path
     }
 }

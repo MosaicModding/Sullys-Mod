@@ -5,7 +5,9 @@
   "refmap": "${mod_id}.refmap.json",
   "compatibilityLevel": "JAVA_18",
   "mixins": [
-    "WallBlockAccessor"
+    "BlockSetTypeAccessor",
+    "WallBlockAccessor",
+    "WoodTypeAccessor"
   ],
   "client": [],
   "server": [],

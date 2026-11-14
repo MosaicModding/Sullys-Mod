@@ -27,6 +27,7 @@ public class SMTags {
 
     public static class Blocks {
         public static final TagKey<Block> MELTS_AMBER = modTag("melts_amber");
+        public static final TagKey<Block> IS_PETRIFIED = modTag("is_petrified");
 
         static TagKey<Block> modTag(String id) {
             return createModTag(Registries.BLOCK, id);

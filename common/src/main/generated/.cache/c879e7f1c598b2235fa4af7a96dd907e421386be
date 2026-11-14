@@ -1,7 +1,24 @@
-// 1.21.1	2026-11-11T22:42:20.0430115	Sully's Mod Block Tags
-fb4b493ec13305a549d165f940984ceebdd3bae7 data/minecraft/tags/block/mineable/axe.json
-9e8601be8892fb1cdd8b3bf0eebe4e231e5756e5 data/minecraft/tags/block/mineable/pickaxe.json
-fb7ef6bc3106e58e302df78324a0403c5bd72613 data/minecraft/tags/block/slabs.json
-0c1eb3ceb12d07c6fa4283745fbc78f96aa53c73 data/minecraft/tags/block/stairs.json
+// 1.21.1	2026-11-14T04:24:18.2837251	Sully's Mod Block Tags
+cb74ac3479b1cba3601f2f1f276d8db4bd380b5d data/c/tags/block/stripped_logs.json
+f3ecc2d55cb6d929f38019416c98f82f6a21cbdc data/c/tags/block/stripped_woods.json
+1277504e35a41014911336e0ef1133af472b118e data/minecraft/tags/block/buttons.json
+315fe92cea523cec5b5f27ba072212ab886c6326 data/minecraft/tags/block/doors.json
+4e6d79136810b524c017e66c4c10fae52775c1a0 data/minecraft/tags/block/fences.json
+1c6cca4b3ce09af1c698589678f65f804bbb0480 data/minecraft/tags/block/fence_gates.json
+cd2261470efb6c106724ce4befcf6b909e5bd327 data/minecraft/tags/block/logs.json
+ba64bc6caefcecb819c0a5791405a4f9e392d865 data/minecraft/tags/block/mineable/axe.json
+d2414774222c315ac27e81f69191ef171a6baa81 data/minecraft/tags/block/mineable/pickaxe.json
+dc7e2f47c811cd8a92fc4e0b4112d6ddeffa99c5 data/minecraft/tags/block/planks.json
+3052ba453c2b78c0ab4aad5f67997b2ce3c44270 data/minecraft/tags/block/pressure_plates.json
+78f64da8cf64cd972056d34681938a5ad91ffe2f data/minecraft/tags/block/saplings.json
+098c31fe13bb4cf9e960ce204d87662034c1e250 data/minecraft/tags/block/slabs.json
+cfe41a53f2d7ed2f333615d5f5ff77ea9674eae0 data/minecraft/tags/block/stairs.json
+8e6d5ebc10f7cc42f9e62471885d32092c472861 data/minecraft/tags/block/trapdoors.json
 7e5511ffd432827b018b937ebef923b9a4f7cfa4 data/minecraft/tags/block/walls.json
+1277504e35a41014911336e0ef1133af472b118e data/minecraft/tags/block/wooden_buttons.json
+4e6d79136810b524c017e66c4c10fae52775c1a0 data/minecraft/tags/block/wooden_fences.json
+3052ba453c2b78c0ab4aad5f67997b2ce3c44270 data/minecraft/tags/block/wooden_pressure_plates.json
+b2e1465c76b16fab3a48e30426d7cbc35444bbbb data/minecraft/tags/block/wooden_slabs.json
+e8e1243743b333abae607b4a4f86f83ffa9ad361 data/minecraft/tags/block/wooden_stairs.json
+e6403ebcf54325ca2be8c1dce81dbc4c9e79f911 data/sullysmod/tags/block/is_petrified.json
 60e164ee9aa176650635c524eac46477bffc6e7e data/sullysmod/tags/block/melts_amber.json

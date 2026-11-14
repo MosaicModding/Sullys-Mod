@@ -5,23 +5,19 @@ import com.mosaicmodding.sullysmod.content.amber.AmberLayeredCauldronBlock;
 import com.mosaicmodding.sullysmod.registry.SMBlocks;
 import com.mosaicmodding.sullysmod.registry.helpers.SMRegUtils;
 import com.mosaicmodding.sullysmod.registry.registry_sets.SimpleBlockRegistrySet;
+import com.mosaicmodding.sullysmod.registry.registry_sets.WoodBlockRegistrySet;
 import com.mosaicmodding.tessera.datagen.BlockStateSmithTypes;
 import com.mosaicmodding.tessera.datagen.ItemModelSmithTypes;
 import com.mosaicmodding.tessera.datagen.providers.block.TesseraBlockStateSystem;
 import com.mosaicmodding.tessera.datagen.providers.item.TesseraItemModelSystem;
 import com.mosaicmodding.tessera.datagen.smith.blockstate.BlockStateSmith;
 import com.mosaicmodding.tessera.datagen.smith.blockstate.BlockStateSystemData;
-import net.mehvahdjukaar.moonlight.api.platform.RegHelper;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.neoforged.neoforge.client.model.generators.ConfiguredModel;
 import net.neoforged.neoforge.client.model.generators.ModelFile;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
-
-import java.util.EnumMap;
-import java.util.function.Supplier;
 
 public class SMBlockStateGen extends TesseraBlockStateSystem {
 
@@ -40,6 +36,9 @@ public class SMBlockStateGen extends TesseraBlockStateSystem {
 
         createForBlockSet(data, SMBlocks.AMBER_BLOCK_SET);
         AMBER_CAULDRON.act(data, SMBlocks.AMBER_CAULDRON);
+
+        setTexturePath("petrified");
+        createForWoodSet(data, SMBlocks.PETRIFIED_WOOD_BLOCK_SET);
 
         setTexturePath("gourds");
         BlockStateSmithTypes.BOTTOM_TOP_BLOCK.act(data, SMBlocks.GIGANTO_GOURD);
@@ -64,7 +63,30 @@ public class SMBlockStateGen extends TesseraBlockStateSystem {
         if (blockSet.getChiseledBlock().isPresent()) {
             BlockStateSmithTypes.FULL_BLOCK.act(data, blockSet.getChiseledBlock().get());
         }
+    }
 
+    public static void createForWoodSet(BlockStateSystemData<SMBlockStateGen> data, WoodBlockRegistrySet blockSet) {
+        BlockStateSmithTypes.FULL_BLOCK.act(data, blockSet.getPlanks());
+        BlockStateSmithTypes.STAIRS_BLOCK.act(data, blockSet.getStairs());
+        BlockStateSmithTypes.SLAB_BLOCK.act(data, blockSet.getSlab());
+
+        BlockStateSmithTypes.ROTATED_PILLAR_BLOCK.act(data, blockSet.getLog());
+        BlockStateSmithTypes.ROTATED_PILLAR_BLOCK.act(data, blockSet.getStrippedLog());
+
+        BlockStateSmithTypes.WOOD_BLOCK.act(data, blockSet.getWood());
+        BlockStateSmithTypes.WOOD_BLOCK.act(data, blockSet.getStrippedWood());
+
+        BlockStateSmithTypes.PRESSURE_PLATE_BLOCK.act(data, blockSet.getPressurePlate());
+        BlockStateSmithTypes.BUTTON_BLOCK.act(data, blockSet.getButton());
+
+        BlockStateSmithTypes.TRAPDOOR_BLOCK.act(data, blockSet.getTrapdoor());
+        BlockStateSmithTypes.DOOR_BLOCK.act(data, blockSet.getDoor());
+
+        BlockStateSmithTypes.FENCE_BLOCK.act(data, blockSet.getFence());
+        BlockStateSmithTypes.FENCE_GATE_BLOCK.act(data, blockSet.getFenceGate());
+
+        BlockStateSmithTypes.CROSS_MODEL_BLOCK.act(data, blockSet.getSaplingBlock());
+        BlockStateSmithTypes.POTTED_PLANT.act(data, blockSet.getPottedSaplingBlock());
     }
 
     public static BlockStateSmith<AmberLayeredCauldronBlock> AMBER_CAULDRON = new BlockStateSmith<>(AmberLayeredCauldronBlock.class, ItemModelSmithTypes.NO_DATAGEN, (block, provider) -> {
