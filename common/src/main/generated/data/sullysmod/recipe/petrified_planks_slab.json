@@ -1,0 +1,28 @@
+{
+  "fabric:load_conditions": [
+    {
+      "condition": "sullysmod:config",
+      "feature": "petrified_trees"
+    }
+  ],
+  "neoforge:conditions": [
+    {
+      "type": "sullysmod:config",
+      "feature": "petrified_trees"
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "#": {
+      "item": "sullysmod:petrified_planks"
+    }
+  },
+  "pattern": [
+    "###"
+  ],
+  "result": {
+    "count": 6,
+    "id": "sullysmod:petrified_planks_slab"
+  }
+}

@@ -4,7 +4,6 @@ import com.mosaicmodding.sullysmod.core.blocks.SMStairBlock;
 import com.mosaicmodding.sullysmod.registry.properties.SMBlockProperties;
 import com.mosaicmodding.tessera.TesseraBlockProperties;
 import net.mehvahdjukaar.moonlight.api.misc.RegSupplier;
-import net.mehvahdjukaar.moonlight.api.misc.TriFunction;
 import net.mehvahdjukaar.moonlight.api.platform.PlatHelper;
 import net.mehvahdjukaar.moonlight.api.platform.RegHelper;
 import net.mehvahdjukaar.moonlight.api.platform.TabAdderHelper;
@@ -13,11 +12,10 @@ import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.*;
-import net.minecraft.world.level.block.state.properties.BlockSetType;
 import net.minecraft.world.level.block.state.properties.WoodType;
 import net.minecraft.world.level.material.PushReaction;
+import org.jetbrains.annotations.Nullable;
 
-import java.util.function.BiFunction;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
@@ -39,50 +37,82 @@ public class WoodBlockRegistrySet extends AbstractBlockRegistrySet {
     private final RegSupplier<Block> fenceGateBlock;
     private final RegSupplier<Block> saplingBlock;
     private final RegSupplier<Block> pottedSaplingBlock;
-    /*todo
-    private final RegSupplier<Block> signBlock;
-    private final RegSupplier<Block> wallSignBlock;
-    private final RegSupplier<Block> hangingSignBlock;
-    private final RegSupplier<Block> wallHangingSignBlock;
 
-     */
+    private final int buttonTicksPressed;
+
     private final BlockItemTagBundle logsTagBundle;
+
     private ResourceKey<CreativeModeTab> blocksTab = CreativeModeTabs.BUILDING_BLOCKS;
     private ResourceKey<CreativeModeTab> signsTab = CreativeModeTabs.FUNCTIONAL_BLOCKS;
     private ResourceKey<CreativeModeTab> naturalsTab = CreativeModeTabs.NATURAL_BLOCKS;
 
-    private WoodBlockRegistrySet(String id, String feature,
-                                 Supplier<Block> planks, Supplier<Block> strippedLog, Supplier<Block> log,
-                                 Supplier<Block> strippedWood, Supplier<Block> wood, Supplier<Block> pressurePlate,
-                                 Supplier<Block> button, Supplier<Block> trapdoor, Supplier<Block> door,
-                                 Supplier<Block> stairs, Supplier<Block> slab, Supplier<Block> fence,
-                                 Supplier<Block> fenceGate, RegSupplier<Block> sapling, Supplier<Block> pottedSapling,
-                                 BlockItemTagBundle logsTagBundle) {
+    private WoodBlockRegistrySet(String id, String feature, WoodType type, Supplier<Block> sapling, int buttonTicksPressed,
+                                 Supplier<TesseraBlockProperties> planksProps, Supplier<TesseraBlockProperties> logProps,
+                                 Supplier<TesseraBlockProperties> strippedLogProps, Supplier<TesseraBlockProperties> woodProps,
+                                 Supplier<TesseraBlockProperties> strippedWoodProps, Supplier<TesseraBlockProperties> pressurePlateProps,
+                                 Supplier<TesseraBlockProperties> buttonProps, Supplier<TesseraBlockProperties> trapdoorProps,
+                                 Supplier<TesseraBlockProperties> doorProps, Supplier<TesseraBlockProperties> stairsProps,
+                                 Supplier<TesseraBlockProperties> slabProps, Supplier<TesseraBlockProperties> fenceProps,
+                                 Supplier<TesseraBlockProperties> fenceGateProps, @Nullable Supplier<Function<TesseraBlockProperties, Block>> modifiedPlanks,
+                                 @Nullable Supplier<Function<TesseraBlockProperties, Block>> modifiedLog,
+                                 @Nullable Supplier<Function<TesseraBlockProperties, Block>> modifiedStrippedLog,
+                                 @Nullable Supplier<Function<TesseraBlockProperties, Block>> modifiedWood,
+                                 @Nullable Supplier<Function<TesseraBlockProperties, Block>> modifiedStrippedWood,
+                                 @Nullable Supplier<Function<TesseraBlockProperties, Block>> modifiedPressurePlate,
+                                 @Nullable Supplier<Function<TesseraBlockProperties, Block>> modifiedButton,
+                                 @Nullable Supplier<Function<TesseraBlockProperties, Block>> modifiedTrapdoor,
+                                 @Nullable Supplier<Function<TesseraBlockProperties, Block>> modifiedDoor,
+                                 @Nullable Supplier<Function<TesseraBlockProperties, Block>> modifiedStairs,
+                                 @Nullable Supplier<Function<TesseraBlockProperties, Block>> modifiedSlab,
+                                 @Nullable Supplier<Function<TesseraBlockProperties, Block>> modifiedFence,
+                                 @Nullable Supplier<Function<TesseraBlockProperties, Block>> modifiedFenceGate) {
         super(id, feature);
-        planksBlock = RegHelper.registerBlockWithItem(path(name("%s_planks")), planks);
-        strippedLogBlock = RegHelper.registerBlockWithItem(path(name("stripped_%s_log")), strippedLog);
-        logBlock = RegHelper.registerBlockWithItem(path(name("%s_log")), log);
 
-        strippedWoodBlock = RegHelper.registerBlockWithItem(path(name("stripped_%s_wood")), strippedWood);
-        woodBlock = RegHelper.registerBlockWithItem(path(name("%s_wood")), wood);
+        this.buttonTicksPressed = buttonTicksPressed;
 
-        pressurePlateBlock = RegHelper.registerBlockWithItem(path(name("%s_planks_pressure_plate")), pressurePlate);
-        buttonBlock = RegHelper.registerBlockWithItem(path(name("%s_planks_button")), button);
+        logsTagBundle = createTag("logs");
 
-        trapdoorBlock = RegHelper.registerBlockWithItem(path(name("%s_trapdoor")), trapdoor);
-        doorBlock = RegHelper.registerBlockWithItem(path(name("%s_door")), door);
+        planksBlock = registerBasic("%s_planks", planksProps, Block::new, modifiedPlanks);
 
-        stairsBlock = RegHelper.registerBlockWithItem(path(name("%s_planks_stairs")), stairs);
-        slabBlock = RegHelper.registerBlockWithItem(path(name("%s_planks_slab")), slab);
+        strippedLogBlock = registerBasic("stripped_%s_log", () -> strippedLogProps.get().addTag(logsTagBundle.blockTag()), RotatedPillarBlock::new, modifiedStrippedLog);
+        logBlock = registerBasic("%s_log", () -> logProps.get().addTag(logsTagBundle.blockTag()), RotatedPillarBlock::new, modifiedLog);
 
-        fenceBlock = RegHelper.registerBlockWithItem(path(name("%s_planks_fence")), fence);
-        fenceGateBlock = RegHelper.registerBlockWithItem(path(name("%s_planks_fence_gate")), fenceGate);
+        strippedWoodBlock = registerBasic("stripped_%s_wood", () -> strippedWoodProps.get().addTag(logsTagBundle.blockTag()), RotatedPillarBlock::new, modifiedStrippedWood);
+        woodBlock = registerBasic("%s_wood", () -> woodProps.get().addTag(logsTagBundle.blockTag()), RotatedPillarBlock::new, modifiedWood);
 
-        saplingBlock = sapling;
-        pottedSaplingBlock = RegHelper.registerBlock(path(name("potted_%s_sapling")), pottedSapling);
+        pressurePlateBlock = registerBasic("%s_planks_pressure_plate", pressurePlateProps, p -> new PressurePlateBlock(type.setType(), p), modifiedPressurePlate);
+        buttonBlock = registerBasic("%s_planks_button", buttonProps, p -> new ButtonBlock(type.setType(), this.buttonTicksPressed, p), modifiedButton);
 
+        trapdoorBlock = registerBasic("%s_trapdoor", trapdoorProps, p -> new TrapDoorBlock(type.setType(), p), modifiedTrapdoor);
+        doorBlock = registerBasic("%s_door", doorProps, p -> new DoorBlock(type.setType(), p), modifiedDoor);
 
-        this.logsTagBundle = logsTagBundle;
+        stairsBlock = registerBasic("%s_planks_stairs", stairsProps, SMStairBlock::new, modifiedStairs);
+        slabBlock = registerBasic("%s_planks_slab", slabProps, SlabBlock::new, modifiedSlab);
+
+        fenceBlock = registerBasic("%s_planks_fence", fenceProps, FenceBlock::new, modifiedFence);
+        fenceGateBlock = registerBasic("%s_planks_fence_gate", fenceGateProps, p -> new FenceGateBlock(type, p), modifiedFenceGate);
+
+        saplingBlock = RegHelper.registerBlockWithItem(path(name("%s_sapling")), sapling);
+        pottedSaplingBlock = RegHelper.registerBlock(path(name("potted_%s_sapling")), () -> PlatHelper.newFlowerPot(() -> (FlowerPotBlock) Blocks.FLOWER_POT, this.saplingBlock, SMBlockProperties.FLOWER_POT()));
+    }
+
+    private RegSupplier<Block> registerBasic(String name, Supplier<TesseraBlockProperties> properties, Function<TesseraBlockProperties, Block> defaultBlock, @Nullable Supplier<Function<TesseraBlockProperties, Block>> possiblyModified) {
+        var fullName = path(name(name));
+        if (possiblyModified == null) {
+            return RegHelper.registerBlockWithItem(fullName, () -> defaultBlock.apply(properties.get()));
+        } else {
+            return RegHelper.registerBlockWithItem(fullName, () -> possiblyModified.get().apply(properties.get()));
+        }
+    }
+
+    @Override
+    public void addToTab(TabAdderHelper helper) {
+        helper.after(Items.CHERRY_BUTTON, this.blocksTab, this.feature, logBlock, woodBlock, strippedLogBlock,
+                strippedWoodBlock, planksBlock, stairsBlock, slabBlock, fenceBlock, fenceGateBlock,
+                doorBlock, trapdoorBlock, pressurePlateBlock, buttonBlock
+        );
+        helper.after(Items.CHERRY_LOG, this.naturalsTab, this.feature, logBlock);
+        helper.after(Items.CHERRY_SAPLING, this.naturalsTab, this.feature, saplingBlock);
     }
 
     public RegSupplier<Block> getPlanks() {
@@ -161,242 +191,79 @@ public class WoodBlockRegistrySet extends AbstractBlockRegistrySet {
         this.naturalsTab = tab;
     }
 
-    public void addToTab(TabAdderHelper helper) {
-        helper.after(Items.CHERRY_BUTTON, this.blocksTab, this.feature, logBlock, woodBlock, strippedLogBlock,
-                strippedWoodBlock, planksBlock, stairsBlock, slabBlock, fenceBlock, fenceGateBlock,
-                doorBlock, trapdoorBlock, pressurePlateBlock, buttonBlock
-        );
-        helper.after(Items.CHERRY_LOG, this.naturalsTab, this.feature, logBlock);
-        helper.after(Items.CHERRY_SAPLING, this.naturalsTab, this.feature, saplingBlock);
-    }
-
-    //TODO some methods need to be called in a specific order. Force correct order everywhere! Might might to rework this builder entirely
     public static class Builder {
-        private final TesseraBlockProperties defaultProperties;
-        private final String id;
-        private final String feature;
-        private final WoodType type;
+        Supplier<TesseraBlockProperties> planksProps, logProps, strippedLogProps, woodProps, strippedWoodProps,
+                pressurePlateProps, buttonProps, trapdoorProps, doorProps, stairsProps, slabProps, fenceProps,
+                fenceGateProps;
 
-        private int buttonTicksPressed = 30;
+        @Nullable Supplier<Function<TesseraBlockProperties, Block>> modifiedPlanks = null, modifiedLog = null,
+                modifiedStrippedLog = null, modifiedWood = null, modifiedStrippedWood = null, modifiedPressurePlate = null,
+                modifiedButton = null, modifiedTrapdoor = null, modifiedDoor = null, modifiedStairs = null, modifiedSlab = null,
+                modifiedFence = null, modifiedFenceGate = null;
 
-        private final BlockItemTagBundle logsTagBundle;
+        int buttonTicksPressed = 30;
 
-        private Supplier<Block> planksBlock;
-        private Supplier<Block> strippedLogBlock;
-        private Supplier<Block> logBlock;
-        private Supplier<Block> strippedWoodBlock;
-        private Supplier<Block> woodBlock;
-        private Supplier<Block> pressurePlateBlock;
-        private Supplier<Block> buttonBlock;
-        private Supplier<Block> trapdoorBlock;
-        private Supplier<Block> doorBlock;
-        private Supplier<Block> stairsBlock;
-        private Supplier<Block> slabBlock;
-        private Supplier<Block> fenceBlock;
-        private Supplier<Block> fenceGateBlock;
-        private final RegSupplier<Block> saplingBlock;
-        private Supplier<Block> pottedSaplingBlock;
-        private Supplier<Block> signBlock;
-        private Supplier<Block> wallSignBlock;
-        private Supplier<Block> hangingSignBlock;
-        private Supplier<Block> wallHangingSignBlock;
-
-        public Builder(String id, TesseraBlockProperties properties, String feature, WoodType type, Function<TesseraBlockProperties, Block> sapling) {
-            this.id = id;
-            this.defaultProperties = properties;
-            this.feature = feature;
-            this.type = type;
-
-            //TODO clean up properties in here
-
-            logsTagBundle = createTag("logs");
-
-            this.planksBlock = () -> new Block(properties);
-
-            this.strippedLogBlock = () -> new RotatedPillarBlock(TesseraBlockProperties.copy(properties).addTag(logsTagBundle.blockTag()));
-            this.logBlock = () -> new RotatedPillarBlock(TesseraBlockProperties.copy(properties).addTag(logsTagBundle.blockTag()));
-
-            this.strippedWoodBlock = () -> new RotatedPillarBlock(TesseraBlockProperties.copy(properties).addTag(logsTagBundle.blockTag()));
-            this.woodBlock = () -> new RotatedPillarBlock(TesseraBlockProperties.copy(properties).addTag(logsTagBundle.blockTag()));
-
-            this.pressurePlateBlock = () -> new PressurePlateBlock(type.setType(), TesseraBlockProperties.copy(properties).forceSolidOn().noCollission().pushReaction(PushReaction.DESTROY).strength(0.5F));
-            this.buttonBlock = () -> new ButtonBlock(type.setType(), this.buttonTicksPressed, TesseraBlockProperties.copy(properties).noCollission().strength(0.5F).pushReaction(PushReaction.DESTROY));
-
-            this.trapdoorBlock = () -> new TrapDoorBlock(type.setType(), TesseraBlockProperties.copy(properties).setCutout().noOcclusion().isValidSpawn(SMBlockProperties::never).strength(3.0F));
-            this.doorBlock = () -> new DoorBlock(type.setType(), TesseraBlockProperties.copy(properties).setCutout());
-
-            this.stairsBlock = () -> new SMStairBlock(properties);
-            this.slabBlock = () -> new SlabBlock(properties);
-
-            this.fenceBlock = () -> new FenceBlock(properties);
-            this.fenceGateBlock = () -> new FenceGateBlock(type, properties);
-
-            this.saplingBlock = RegHelper.registerBlockWithItem(path(id + "_sapling"), () -> sapling.apply(SMBlockProperties.SAPLING()));
-            //TODO on Neo: Make sapling placable in pot using addPlant
-            this.pottedSaplingBlock = () -> PlatHelper.newFlowerPot(() -> (FlowerPotBlock) Blocks.FLOWER_POT, this.saplingBlock, SMBlockProperties.FLOWER_POT()); //TODO should this be final?
+        public Builder(Supplier<TesseraBlockProperties> baseProperties) {
+            this.planksProps = baseProperties;
+            this.logProps = baseProperties;
+            this.strippedLogProps = baseProperties;
+            this.woodProps = baseProperties;
+            this.strippedWoodProps = baseProperties;
+            this.pressurePlateProps = () -> baseProperties.get().forceSolidOn().noCollission().pushReaction(PushReaction.DESTROY).strength(0.5F);
+            this.buttonProps = () -> baseProperties.get().noCollission().strength(0.5F).pushReaction(PushReaction.DESTROY);
+            this.trapdoorProps = () -> baseProperties.get().setCutout().noOcclusion().isValidSpawn(SMBlockProperties::never).strength(3.0F);
+            this.doorProps = () -> baseProperties.get().setCutout();
+            this.stairsProps = baseProperties;
+            this.slabProps = baseProperties;
+            this.fenceProps = baseProperties;
+            this.fenceGateProps = baseProperties;
         }
 
-        @Deprecated(forRemoval = true)
-        public Builder customPlanks(Function<TesseraBlockProperties, Block> block) {
-            this.planksBlock = () -> block.apply(this.defaultProperties);
+        //TODO add the rest: I don't wanna do that rn
+
+        public Builder modifyPlanks(Supplier<Function<TesseraBlockProperties, Block>> block) {
+            this.modifiedPlanks = block;
             return this;
         }
 
-        public Builder customPlanks(Function<TesseraBlockProperties, Block> block, TesseraBlockProperties properties) {
-            this.planksBlock = () -> block.apply(properties);
+        public Builder modifyPlankProps(Supplier<TesseraBlockProperties> prop) {
+            this.planksProps = prop;
             return this;
         }
 
-        @Deprecated(forRemoval = true)
-        public Builder customLog(Function<TesseraBlockProperties, Block> block) {
-            this.logBlock = () -> block.apply(this.defaultProperties);
+        public Builder modifyLogProps(Supplier<TesseraBlockProperties> prop) {
+            this.logProps = prop;
             return this;
         }
 
-        public Builder customLog(Function<TesseraBlockProperties, Block> block, TesseraBlockProperties properties) {
-            this.logBlock = () -> block.apply(TesseraBlockProperties.copy(properties).addTag(logsTagBundle.blockTag()));
+        public Builder modifyStrippedLogProps(Supplier<TesseraBlockProperties> prop) {
+            this.strippedLogProps = prop;
             return this;
         }
 
-        @Deprecated(forRemoval = true)
-        public Builder customStrippedWood(Function<TesseraBlockProperties, Block> block) {
-            this.strippedWoodBlock = () -> block.apply(this.defaultProperties);
+        public Builder modifyWoodProps(Supplier<TesseraBlockProperties> prop) {
+            this.woodProps = prop;
             return this;
         }
 
-        public Builder customStrippedWood(Function<TesseraBlockProperties, Block> block, TesseraBlockProperties properties) {
-            this.strippedWoodBlock = () -> block.apply(TesseraBlockProperties.copy(properties).addTag(logsTagBundle.blockTag()));
+        public Builder modifyStrippedWoodProps(Supplier<TesseraBlockProperties> prop) {
+            this.strippedWoodProps = prop;
             return this;
         }
 
-        @Deprecated(forRemoval = true)
-        public Builder customWood(Function<TesseraBlockProperties, Block> block) {
-            this.woodBlock = () -> block.apply(this.defaultProperties);
+        public Builder modifyButtonPressedTicks(int buttonTicksPressed) {
+            this.buttonTicksPressed = buttonTicksPressed;
             return this;
         }
 
-        public Builder customWood(Function<TesseraBlockProperties, Block> block, TesseraBlockProperties properties) {
-            this.woodBlock = () -> block.apply(TesseraBlockProperties.copy(properties).addTag(logsTagBundle.blockTag()));
-            return this;
+        public WoodBlockRegistrySet build(String id, String feature, WoodType type, Supplier<Block> sapling) {
+            return new WoodBlockRegistrySet(id, feature, type, sapling, buttonTicksPressed, planksProps, logProps, strippedLogProps,
+                    woodProps, strippedWoodProps, pressurePlateProps, buttonProps, trapdoorProps, doorProps, stairsProps,
+                    slabProps, fenceProps, fenceGateProps, modifiedPlanks, modifiedLog, modifiedStrippedLog, modifiedWood,
+                    modifiedStrippedWood, modifiedPressurePlate, modifiedButton, modifiedTrapdoor, modifiedDoor,
+                    modifiedStairs, modifiedSlab, modifiedFence, modifiedFenceGate
+            );
         }
 
-
-        @Deprecated(forRemoval = true)
-        public Builder customWoodWithStripped(BiFunction<Supplier<Block>, TesseraBlockProperties, Block> block) {
-            this.woodBlock = () -> block.apply(this.strippedWoodBlock, this.defaultProperties);
-            return this;
-        }
-
-        /**
-         * modifies the wood block, but provides the previously created stripped wood block
-         */
-        public Builder customWoodWithStripped(BiFunction<Supplier<Block>, TesseraBlockProperties, Block> block, TesseraBlockProperties properties) {
-            this.woodBlock = () -> block.apply(this.strippedWoodBlock, TesseraBlockProperties.copy(properties).addTag(logsTagBundle.blockTag()));
-            return this;
-        }
-
-        @Deprecated(forRemoval = true)
-        public Builder customPressurePlate(Function<TesseraBlockProperties, Block> block) {
-            this.pressurePlateBlock = () -> block.apply(this.defaultProperties);
-            return this;
-        }
-
-        public Builder customPressurePlate(Function<TesseraBlockProperties, Block> block, TesseraBlockProperties properties) {
-            this.pressurePlateBlock = () -> block.apply(properties);
-            return this;
-        }
-
-        @Deprecated(forRemoval = true)
-        public Builder customButton(TriFunction<BlockSetType, Integer, TesseraBlockProperties, ButtonBlock> block) {
-            this.buttonBlock = () -> block.apply(this.type.setType(), this.buttonTicksPressed, this.defaultProperties);
-            return this;
-        }
-
-        public Builder customButton(TriFunction<BlockSetType, Integer, TesseraBlockProperties, ButtonBlock> block, TesseraBlockProperties properties) {
-            this.buttonBlock = () -> block.apply(this.type.setType(), this.buttonTicksPressed, properties);
-            return this;
-        }
-
-        public Builder setButtonTicksPressed(int ticksToStayPressed) {
-            this.buttonTicksPressed = ticksToStayPressed;
-            return customButton(ButtonBlock::new); //Update with new tick amount
-        }
-
-        @Deprecated(forRemoval = true)
-        public Builder customTrapdoor(Function<TesseraBlockProperties, Block> block) {
-            this.trapdoorBlock = () -> block.apply(this.defaultProperties);
-            return this;
-        }
-
-        public Builder customTrapdoor(Function<TesseraBlockProperties, Block> block, TesseraBlockProperties properties) {
-            this.trapdoorBlock = () -> block.apply(properties);
-            return this;
-        }
-
-        @Deprecated(forRemoval = true)
-        public Builder customDoor(Function<TesseraBlockProperties, Block> block) {
-            this.doorBlock = () -> block.apply(this.defaultProperties);
-            return this;
-        }
-
-        public Builder customDoor(Function<TesseraBlockProperties, Block> block, TesseraBlockProperties properties) {
-            this.doorBlock = () -> block.apply(properties);
-            return this;
-        }
-
-        @Deprecated(forRemoval = true)
-        public Builder customStairs(BiFunction<Supplier<Block>, TesseraBlockProperties, Block> block) {
-            this.stairsBlock = () -> block.apply(this.planksBlock, this.defaultProperties);
-            return this;
-        }
-
-        public Builder customStairs(BiFunction<Supplier<Block>, TesseraBlockProperties, Block> block, TesseraBlockProperties properties) {
-            this.stairsBlock = () -> block.apply(this.planksBlock, properties);
-            return this;
-        }
-
-        @Deprecated(forRemoval = true)
-        public Builder customSlabs(Function<TesseraBlockProperties, Block> block) {
-            this.slabBlock = () -> block.apply(this.defaultProperties);
-            return this;
-        }
-
-        public Builder customSlabs(Function<TesseraBlockProperties, Block> block, TesseraBlockProperties properties) {
-            this.slabBlock = () -> block.apply(properties);
-            return this;
-        }
-
-        @Deprecated(forRemoval = true)
-        public Builder customFence(Function<TesseraBlockProperties, Block> block) {
-            this.fenceBlock = () -> block.apply(this.defaultProperties);
-            return this;
-        }
-
-        public Builder customFence(Function<TesseraBlockProperties, Block> block, TesseraBlockProperties properties) {
-            this.fenceBlock = () -> block.apply(properties);
-            return this;
-        }
-
-        @Deprecated(forRemoval = true)
-        public Builder customFenceGate(Function<TesseraBlockProperties, Block> block) {
-            this.fenceGateBlock = () -> block.apply(this.defaultProperties);
-            return this;
-        }
-
-        public Builder customFenceGate(Function<TesseraBlockProperties, Block> block, TesseraBlockProperties properties) {
-            this.fenceGateBlock = () -> block.apply(properties);
-            return this;
-        }
-
-        public WoodBlockRegistrySet build() {
-            return new WoodBlockRegistrySet(this.id, this.feature,
-                    this.planksBlock, this.strippedLogBlock, this.logBlock, this.strippedWoodBlock, this.woodBlock,
-                    this.pressurePlateBlock, this.buttonBlock, this.trapdoorBlock, this.doorBlock, this.stairsBlock,
-                    this.slabBlock, this.fenceBlock, this.fenceGateBlock, this.saplingBlock, this.pottedSaplingBlock, this.logsTagBundle);
-        }
-
-        public BlockItemTagBundle createTag(String tag) {
-            return new BlockItemTagBundle(id + "_" + tag);
-        }
     }
 }

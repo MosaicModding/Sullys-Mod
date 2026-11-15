@@ -29,26 +29,28 @@ public class SimpleBlockRegistrySet extends AbstractBlockRegistrySet {
     private final RegSupplier<Block> bricksBlock;
     private final RegSupplier<Block> stairsBlock;
     private final RegSupplier<Block> slabBlock;
+    private final RegSupplier<Block> baseIngredient; //Used for crafting
     private @Nullable RegSupplier<Block> wallBlock;
     private @Nullable RegSupplier<Block> pillarBlock;
     private @Nullable RegSupplier<Block> chiseledBlock;
     private ResourceKey<CreativeModeTab> tab = CreativeModeTabs.BUILDING_BLOCKS;
 
-    public SimpleBlockRegistrySet(String id, Function<TesseraBlockProperties, Block> bricksBlock, BiFunction<Supplier<Block>, BlockBehaviour.Properties, Block> stairsBlock, Function<TesseraBlockProperties, Block> slabBlock, TesseraBlockProperties properties, String feature) {
+    public SimpleBlockRegistrySet(String id, Function<TesseraBlockProperties, Block> bricksBlock, BiFunction<Supplier<Block>, BlockBehaviour.Properties, Block> stairsBlock, Function<TesseraBlockProperties, Block> slabBlock, TesseraBlockProperties properties, String feature, RegSupplier<Block> baseIngredient) {
         super(id, feature);
 
         this.bricksBlock = RegHelper.registerBlockWithItem(path(name("%s_bricks")), () -> bricksBlock.apply(properties));
         this.stairsBlock = RegHelper.registerBlockWithItem(path(name("%s_bricks_stairs")), () -> stairsBlock.apply(this.bricksBlock, properties));
         this.slabBlock = RegHelper.registerBlockWithItem(path(name("%s_bricks_slab")), () -> slabBlock.apply(properties));
         this.defaultProperties = properties;
+        this.baseIngredient = baseIngredient;
     }
 
-    public SimpleBlockRegistrySet(String id, TesseraBlockProperties properties, String feature) {
-        this(id, Block::new, ModStairBlock::new, SlabBlock::new, properties, feature);
+    public SimpleBlockRegistrySet(String id, TesseraBlockProperties properties, String feature, RegSupplier<Block> baseIngredient) {
+        this(id, Block::new, ModStairBlock::new, SlabBlock::new, properties, feature, baseIngredient);
     }
 
-    public SimpleBlockRegistrySet(String id, String feature) {
-        this(id, Block::new, ModStairBlock::new, SlabBlock::new, SMBlockProperties.BRICKS_DEFAULT(), feature);
+    public SimpleBlockRegistrySet(String id, String feature, RegSupplier<Block> baseIngredient) {
+        this(id, Block::new, ModStairBlock::new, SlabBlock::new, SMBlockProperties.BRICKS_DEFAULT(), feature, baseIngredient);
     }
 
     public SimpleBlockRegistrySet withWall() {
@@ -124,6 +126,10 @@ public class SimpleBlockRegistrySet extends AbstractBlockRegistrySet {
         return chiseledBlock != null ? Optional.of(chiseledBlock) : Optional.empty();
     }
 
+    public RegSupplier<Block> getBaseIngredient() {
+        return baseIngredient;
+    }
+
     public ResourceKey<CreativeModeTab> getTab() {
         return tab;
     }
@@ -144,5 +150,4 @@ public class SimpleBlockRegistrySet extends AbstractBlockRegistrySet {
             helper.add(this.tab, this.feature, getChiseledBlock().get());
         }
     }
-
 }

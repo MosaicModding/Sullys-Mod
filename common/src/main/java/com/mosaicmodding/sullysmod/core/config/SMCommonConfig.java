@@ -145,7 +145,7 @@ public class SMCommonConfig {
         JUNGLE_SPIDER = handleNamedFeature("jungle_spider", builder::feature);
 
         PICKAXE_STRIPPING = handleNamedFeature("pickaxe_stripping", builder::feature);
-        
+
         builder.pop();
 
         builder.push("misc");

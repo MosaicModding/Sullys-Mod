@@ -7,15 +7,14 @@ import com.mosaicmodding.sullysmod.content.gourd.GourdBlock;
 import com.mosaicmodding.sullysmod.content.petrified.PetrifiedSapling;
 import com.mosaicmodding.sullysmod.core.config.SMCommonConfig;
 import com.mosaicmodding.sullysmod.core.event.StrippableBlockRegistryEvent;
+import com.mosaicmodding.sullysmod.registry.properties.SMBlockProperties;
 import com.mosaicmodding.sullysmod.registry.registry_sets.AbstractBlockRegistrySet;
-import com.mosaicmodding.sullysmod.registry.registry_sets.SimpleBlockRegistrySet;
 import com.mosaicmodding.sullysmod.registry.registry_sets.WoodBlockRegistrySet;
-import com.mosaicmodding.tessera.TesseraBlockProperties;
+import com.mosaicmodding.sullysmod.registry.registry_sets.SimpleBlockRegistrySet;
 import net.mehvahdjukaar.moonlight.api.misc.RegSupplier;
 import net.mehvahdjukaar.moonlight.api.platform.RegHelper;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.MapColor;
 
@@ -35,22 +34,16 @@ public class SMBlocks {
     public static final RegSupplier<Block> ROUGH_AMBER = RegHelper.registerBlockWithItem(path("rough_amber"), () -> new AmberDecorationBlock(AMBER_DECORATION()));
     public static final RegSupplier<Block> AMBER_CAULDRON = RegHelper.registerBlock(path("amber_cauldron"), () -> new AmberLayeredCauldronBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.CAULDRON)));
 
-    public static final SimpleBlockRegistrySet AMBER_BLOCK_SET = new SimpleBlockRegistrySet("amber", AmberDecorationBlock::new, AmberStairBlock::new, AmberSlabBlock::new, AMBER_DECORATION(), SMCommonConfig.AMBER_BLOCKS.getSecond())
+    public static final SimpleBlockRegistrySet AMBER_BLOCK_SET = new SimpleBlockRegistrySet("amber", AmberDecorationBlock::new, AmberStairBlock::new, AmberSlabBlock::new, AMBER_DECORATION(), SMCommonConfig.AMBER_BLOCKS.getSecond(), ROUGH_AMBER)
             .withWall(AmberWallBlock::new).withPillar(AmberRotatedPillarBlock::new).withChiseled(AmberDecorationBlock::new);
 
     //TODO add recipes
-    public static final WoodBlockRegistrySet PETRIFIED_WOOD_BLOCK_SET = new WoodBlockRegistrySet.Builder(
-            "petrified",
-            PETRIFIED(),
-            SMCommonConfig.PETRIFIED_TREES.getSecond(),
-            SMWoodTypes.PETRIFIED,
-            PetrifiedSapling::new)
-            //TODO rework the builder cuz of multiple issues
-            .customLog(RotatedPillarBlock::new, PETRIFIED_LOGS(MapColor.TERRACOTTA_ORANGE, MapColor.COLOR_BROWN))
-            .customStrippedWood(RotatedPillarBlock::new, TesseraBlockProperties.copy(PETRIFIED()).mapColor(MapColor.TERRACOTTA_ORANGE))
-            .customWood(RotatedPillarBlock::new, TesseraBlockProperties.copy(PETRIFIED()).mapColor(MapColor.COLOR_BROWN))
-            .setButtonTicksPressed(20)
-            .build();
+    public static final WoodBlockRegistrySet PETRIFIED_WOOD_BLOCK_SET = new WoodBlockRegistrySet.Builder(SMBlockProperties::PETRIFIED)
+            .modifyLogProps(() -> PETRIFIED_LOGS(MapColor.TERRACOTTA_ORANGE, MapColor.COLOR_BROWN))
+            .modifyStrippedWoodProps(() -> PETRIFIED().mapColor(MapColor.TERRACOTTA_ORANGE))
+            .modifyWoodProps(() -> PETRIFIED().mapColor(MapColor.COLOR_BROWN))
+            .modifyButtonPressedTicks(20)
+            .build("petrified", SMCommonConfig.PETRIFIED_TREES.getSecond(), SMWoodTypes.PETRIFIED, () -> new PetrifiedSapling(SAPLING()));
 
     public static final RegSupplier<Block> MINIMU_GOURD = RegHelper.registerBlockWithItem(path("minimu_gourd"), () -> new GourdBlock(GOURD(MapColor.COLOR_PINK, false)));
     public static final RegSupplier<Block> CARVED_MINIMU_GOURD = RegHelper.registerBlockWithItem(path("minimu_gourd_carved"), () -> new EquipableGourdBlock(GOURD(MapColor.COLOR_PINK, false)));
