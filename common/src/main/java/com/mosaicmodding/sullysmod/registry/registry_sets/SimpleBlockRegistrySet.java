@@ -24,7 +24,7 @@ import java.util.function.Supplier;
 import static com.mosaicmodding.sullysmod.registry.helpers.SMRegUtils.path;
 
 //TODO modify to make work like WoodBlockRegistrySet (with Builder etc)
-public class SimpleBlockRegistrySet extends SMRegistrySet {
+public class SimpleBlockRegistrySet extends AbstractBlockRegistrySet {
     private final TesseraBlockProperties defaultProperties;
     private final RegSupplier<Block> bricksBlock;
     private final RegSupplier<Block> stairsBlock;

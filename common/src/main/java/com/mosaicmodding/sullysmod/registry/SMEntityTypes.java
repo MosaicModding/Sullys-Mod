@@ -35,6 +35,7 @@ public class SMEntityTypes {
 
     public static <T extends Entity> RegSupplier<EntityType<T>> register(String name, EntityType.EntityFactory<T> factory, MobCategory category, float width, float height, Function<EntityType.Builder<T>, EntityType.Builder<T>> additional) {
         var builder = EntityType.Builder.of(factory, category);
+        builder.sized(width, height);
         return RegHelper.registerEntityType(path(name), additional.apply(builder));
     }
 

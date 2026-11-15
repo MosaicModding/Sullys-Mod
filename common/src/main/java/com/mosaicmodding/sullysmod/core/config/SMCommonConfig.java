@@ -35,6 +35,8 @@ public class SMCommonConfig {
 
     public static final Pair<Supplier<Boolean>, String> GOURDS;
 
+    public static final Pair<Supplier<Boolean>, String> PICKAXE_STRIPPING;
+
     public static final Pair<Supplier<Boolean>, String> ANCIENT_COLLECTABLES;
     public static final Pair<Supplier<Boolean>, String> ARTIFACT_GRAVEL_SPAWNING;
     public static final Pair<Supplier<Boolean>, String> ARTIFACTS;
@@ -116,6 +118,7 @@ public class SMCommonConfig {
 
         JUNGLE_SPIDER = handleNamedFeature("jungle_spider", builder::feature);
 
+        PICKAXE_STRIPPING = handleNamedFeature("pickaxe_stripping", builder::feature);
 
         ANCIENT_COLLECTABLES = handleNamedFeature("ancient_collectables", builder::pushFeature);
         ARTIFACT_GRAVEL_SPAWNING = handleNamedFeature("artifact_gravel_spawning", builder::feature);

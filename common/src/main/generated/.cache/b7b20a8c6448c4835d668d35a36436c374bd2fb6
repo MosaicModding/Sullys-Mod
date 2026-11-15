@@ -1,4 +1,4 @@
-// 1.21.1	2026-11-14T04:16:38.7123101	Tags for minecraft:item mod id sullysmod
+// 1.21.1	2026-11-15T02:39:11.9302257	Tags for minecraft:item mod id sullysmod
 1277504e35a41014911336e0ef1133af472b118e data/minecraft/tags/item/buttons.json
 315fe92cea523cec5b5f27ba072212ab886c6326 data/minecraft/tags/item/doors.json
 4e6d79136810b524c017e66c4c10fae52775c1a0 data/minecraft/tags/item/fences.json
@@ -18,3 +18,4 @@ cfe41a53f2d7ed2f333615d5f5ff77ea9674eae0 data/minecraft/tags/item/stairs.json
 b2e1465c76b16fab3a48e30426d7cbc35444bbbb data/minecraft/tags/item/wooden_slabs.json
 e8e1243743b333abae607b4a4f86f83ffa9ad361 data/minecraft/tags/item/wooden_stairs.json
 e6403ebcf54325ca2be8c1dce81dbc4c9e79f911 data/sullysmod/tags/item/is_petrified.json
+6924d5044addf55faa61ab7ccbe33dc19d443bd6 data/sullysmod/tags/item/petrified_logs.json

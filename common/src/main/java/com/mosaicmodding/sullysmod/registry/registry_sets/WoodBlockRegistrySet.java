@@ -13,7 +13,6 @@ import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.*;
-import net.minecraft.world.level.block.grower.TreeGrower;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
 import net.minecraft.world.level.block.state.properties.WoodType;
 import net.minecraft.world.level.material.PushReaction;
@@ -24,7 +23,7 @@ import java.util.function.Supplier;
 
 import static com.mosaicmodding.sullysmod.registry.helpers.SMRegUtils.path;
 
-public class WoodBlockRegistrySet extends SMRegistrySet {
+public class WoodBlockRegistrySet extends AbstractBlockRegistrySet {
     private final RegSupplier<Block> planksBlock;
     private final RegSupplier<Block> strippedLogBlock;
     private final RegSupplier<Block> logBlock;
@@ -47,6 +46,7 @@ public class WoodBlockRegistrySet extends SMRegistrySet {
     private final RegSupplier<Block> wallHangingSignBlock;
 
      */
+    private final BlockItemTagBundle logsTagBundle;
     private ResourceKey<CreativeModeTab> blocksTab = CreativeModeTabs.BUILDING_BLOCKS;
     private ResourceKey<CreativeModeTab> signsTab = CreativeModeTabs.FUNCTIONAL_BLOCKS;
     private ResourceKey<CreativeModeTab> naturalsTab = CreativeModeTabs.NATURAL_BLOCKS;
@@ -56,7 +56,8 @@ public class WoodBlockRegistrySet extends SMRegistrySet {
                                  Supplier<Block> strippedWood, Supplier<Block> wood, Supplier<Block> pressurePlate,
                                  Supplier<Block> button, Supplier<Block> trapdoor, Supplier<Block> door,
                                  Supplier<Block> stairs, Supplier<Block> slab, Supplier<Block> fence,
-                                 Supplier<Block> fenceGate, RegSupplier<Block> sapling, Supplier<Block> pottedSapling) {
+                                 Supplier<Block> fenceGate, RegSupplier<Block> sapling, Supplier<Block> pottedSapling,
+                                 BlockItemTagBundle logsTagBundle) {
         super(id, feature);
         planksBlock = RegHelper.registerBlockWithItem(path(name("%s_planks")), planks);
         strippedLogBlock = RegHelper.registerBlockWithItem(path(name("stripped_%s_log")), strippedLog);
@@ -79,6 +80,9 @@ public class WoodBlockRegistrySet extends SMRegistrySet {
 
         saplingBlock = sapling;
         pottedSaplingBlock = RegHelper.registerBlock(path(name("potted_%s_sapling")), pottedSapling);
+
+
+        this.logsTagBundle = logsTagBundle;
     }
 
     public RegSupplier<Block> getPlanks() {
@@ -141,6 +145,10 @@ public class WoodBlockRegistrySet extends SMRegistrySet {
         return pottedSaplingBlock;
     }
 
+    public BlockItemTagBundle getLogsTagBundle() {
+        return logsTagBundle;
+    }
+
     public void setBlocksTab(ResourceKey<CreativeModeTab> tab) {
         this.blocksTab = tab;
     }
@@ -162,6 +170,7 @@ public class WoodBlockRegistrySet extends SMRegistrySet {
         helper.after(Items.CHERRY_SAPLING, this.naturalsTab, this.feature, saplingBlock);
     }
 
+    //TODO some methods need to be called in a specific order. Force correct order everywhere! Might might to rework this builder entirely
     public static class Builder {
         private final TesseraBlockProperties defaultProperties;
         private final String id;
@@ -169,6 +178,8 @@ public class WoodBlockRegistrySet extends SMRegistrySet {
         private final WoodType type;
 
         private int buttonTicksPressed = 30;
+
+        private final BlockItemTagBundle logsTagBundle;
 
         private Supplier<Block> planksBlock;
         private Supplier<Block> strippedLogBlock;
@@ -195,13 +206,18 @@ public class WoodBlockRegistrySet extends SMRegistrySet {
             this.defaultProperties = properties;
             this.feature = feature;
             this.type = type;
+
+            //TODO clean up properties in here
+
+            logsTagBundle = createTag("logs");
+
             this.planksBlock = () -> new Block(properties);
 
-            this.strippedLogBlock = () -> new RotatedPillarBlock(properties);
-            this.logBlock = () -> new RotatedPillarBlock(properties);
+            this.strippedLogBlock = () -> new RotatedPillarBlock(TesseraBlockProperties.copy(properties).addTag(logsTagBundle.blockTag()));
+            this.logBlock = () -> new RotatedPillarBlock(TesseraBlockProperties.copy(properties).addTag(logsTagBundle.blockTag()));
 
-            this.strippedWoodBlock = () -> new RotatedPillarBlock(properties);
-            this.woodBlock = () -> new RotatedPillarBlock(properties);
+            this.strippedWoodBlock = () -> new RotatedPillarBlock(TesseraBlockProperties.copy(properties).addTag(logsTagBundle.blockTag()));
+            this.woodBlock = () -> new RotatedPillarBlock(TesseraBlockProperties.copy(properties).addTag(logsTagBundle.blockTag()));
 
             this.pressurePlateBlock = () -> new PressurePlateBlock(type.setType(), TesseraBlockProperties.copy(properties).forceSolidOn().noCollission().pushReaction(PushReaction.DESTROY).strength(0.5F));
             this.buttonBlock = () -> new ButtonBlock(type.setType(), this.buttonTicksPressed, TesseraBlockProperties.copy(properties).noCollission().strength(0.5F).pushReaction(PushReaction.DESTROY));
@@ -220,6 +236,7 @@ public class WoodBlockRegistrySet extends SMRegistrySet {
             this.pottedSaplingBlock = () -> PlatHelper.newFlowerPot(() -> (FlowerPotBlock) Blocks.FLOWER_POT, this.saplingBlock, SMBlockProperties.FLOWER_POT()); //TODO should this be final?
         }
 
+        @Deprecated(forRemoval = true)
         public Builder customPlanks(Function<TesseraBlockProperties, Block> block) {
             this.planksBlock = () -> block.apply(this.defaultProperties);
             return this;
@@ -230,16 +247,7 @@ public class WoodBlockRegistrySet extends SMRegistrySet {
             return this;
         }
 
-        public Builder customStrippedLog(Function<TesseraBlockProperties, Block> block) {
-            this.strippedLogBlock = () -> block.apply(this.defaultProperties);
-            return this;
-        }
-
-        public Builder customStrippedLog(Function<TesseraBlockProperties, Block> block, TesseraBlockProperties properties) {
-            this.strippedLogBlock = () -> block.apply(properties);
-            return this;
-        }
-
+        @Deprecated(forRemoval = true)
         public Builder customLog(Function<TesseraBlockProperties, Block> block) {
             this.logBlock = () -> block.apply(this.defaultProperties);
             return this;
@@ -250,32 +258,18 @@ public class WoodBlockRegistrySet extends SMRegistrySet {
             return this;
         }
 
-        /**
-         * modifies the log block, but provides the previously created stripped log block
-         */
-        public Builder customLogWithStripped(BiFunction<Supplier<Block>, TesseraBlockProperties, Block> block) {
-            this.logBlock = () -> block.apply(this.strippedLogBlock, this.defaultProperties);
-            return this;
-        }
-
-        /**
-         * modifies the log block, but provides the previously created stripped log block
-         */
-        public Builder customLogWithStripped(BiFunction<Supplier<Block>, TesseraBlockProperties, Block> block, TesseraBlockProperties properties) {
-            this.logBlock = () -> block.apply(this.strippedLogBlock, properties);
-            return this;
-        }
-
+        @Deprecated(forRemoval = true)
         public Builder customStrippedWood(Function<TesseraBlockProperties, Block> block) {
             this.strippedWoodBlock = () -> block.apply(this.defaultProperties);
             return this;
         }
 
         public Builder customStrippedWood(Function<TesseraBlockProperties, Block> block, TesseraBlockProperties properties) {
-            this.strippedWoodBlock = () -> block.apply(properties);
+            this.strippedWoodBlock = () -> block.apply(TesseraBlockProperties.copy(properties).addTag(logsTagBundle.blockTag()));
             return this;
         }
 
+        @Deprecated(forRemoval = true)
         public Builder customWood(Function<TesseraBlockProperties, Block> block) {
             this.woodBlock = () -> block.apply(this.defaultProperties);
             return this;
@@ -286,9 +280,8 @@ public class WoodBlockRegistrySet extends SMRegistrySet {
             return this;
         }
 
-        /**
-         * modifies the wood block, but provides the previously created stripped wood block
-         */
+
+        @Deprecated(forRemoval = true)
         public Builder customWoodWithStripped(BiFunction<Supplier<Block>, TesseraBlockProperties, Block> block) {
             this.woodBlock = () -> block.apply(this.strippedWoodBlock, this.defaultProperties);
             return this;
@@ -298,10 +291,11 @@ public class WoodBlockRegistrySet extends SMRegistrySet {
          * modifies the wood block, but provides the previously created stripped wood block
          */
         public Builder customWoodWithStripped(BiFunction<Supplier<Block>, TesseraBlockProperties, Block> block, TesseraBlockProperties properties) {
-            this.woodBlock = () -> block.apply(this.strippedWoodBlock, properties);
+            this.woodBlock = () -> block.apply(this.strippedWoodBlock, TesseraBlockProperties.copy(properties).addTag(logsTagBundle.blockTag()));
             return this;
         }
 
+        @Deprecated(forRemoval = true)
         public Builder customPressurePlate(Function<TesseraBlockProperties, Block> block) {
             this.pressurePlateBlock = () -> block.apply(this.defaultProperties);
             return this;
@@ -312,6 +306,7 @@ public class WoodBlockRegistrySet extends SMRegistrySet {
             return this;
         }
 
+        @Deprecated(forRemoval = true)
         public Builder customButton(TriFunction<BlockSetType, Integer, TesseraBlockProperties, ButtonBlock> block) {
             this.buttonBlock = () -> block.apply(this.type.setType(), this.buttonTicksPressed, this.defaultProperties);
             return this;
@@ -327,6 +322,7 @@ public class WoodBlockRegistrySet extends SMRegistrySet {
             return customButton(ButtonBlock::new); //Update with new tick amount
         }
 
+        @Deprecated(forRemoval = true)
         public Builder customTrapdoor(Function<TesseraBlockProperties, Block> block) {
             this.trapdoorBlock = () -> block.apply(this.defaultProperties);
             return this;
@@ -337,6 +333,7 @@ public class WoodBlockRegistrySet extends SMRegistrySet {
             return this;
         }
 
+        @Deprecated(forRemoval = true)
         public Builder customDoor(Function<TesseraBlockProperties, Block> block) {
             this.doorBlock = () -> block.apply(this.defaultProperties);
             return this;
@@ -347,6 +344,7 @@ public class WoodBlockRegistrySet extends SMRegistrySet {
             return this;
         }
 
+        @Deprecated(forRemoval = true)
         public Builder customStairs(BiFunction<Supplier<Block>, TesseraBlockProperties, Block> block) {
             this.stairsBlock = () -> block.apply(this.planksBlock, this.defaultProperties);
             return this;
@@ -357,6 +355,7 @@ public class WoodBlockRegistrySet extends SMRegistrySet {
             return this;
         }
 
+        @Deprecated(forRemoval = true)
         public Builder customSlabs(Function<TesseraBlockProperties, Block> block) {
             this.slabBlock = () -> block.apply(this.defaultProperties);
             return this;
@@ -367,6 +366,7 @@ public class WoodBlockRegistrySet extends SMRegistrySet {
             return this;
         }
 
+        @Deprecated(forRemoval = true)
         public Builder customFence(Function<TesseraBlockProperties, Block> block) {
             this.fenceBlock = () -> block.apply(this.defaultProperties);
             return this;
@@ -377,6 +377,7 @@ public class WoodBlockRegistrySet extends SMRegistrySet {
             return this;
         }
 
+        @Deprecated(forRemoval = true)
         public Builder customFenceGate(Function<TesseraBlockProperties, Block> block) {
             this.fenceGateBlock = () -> block.apply(this.defaultProperties);
             return this;
@@ -391,7 +392,11 @@ public class WoodBlockRegistrySet extends SMRegistrySet {
             return new WoodBlockRegistrySet(this.id, this.feature,
                     this.planksBlock, this.strippedLogBlock, this.logBlock, this.strippedWoodBlock, this.woodBlock,
                     this.pressurePlateBlock, this.buttonBlock, this.trapdoorBlock, this.doorBlock, this.stairsBlock,
-                    this.slabBlock, this.fenceBlock, this.fenceGateBlock, this.saplingBlock, this.pottedSaplingBlock);
+                    this.slabBlock, this.fenceBlock, this.fenceGateBlock, this.saplingBlock, this.pottedSaplingBlock, this.logsTagBundle);
+        }
+
+        public BlockItemTagBundle createTag(String tag) {
+            return new BlockItemTagBundle(id + "_" + tag);
         }
     }
 }

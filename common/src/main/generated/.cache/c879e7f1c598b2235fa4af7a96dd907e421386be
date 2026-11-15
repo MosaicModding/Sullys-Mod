@@ -1,4 +1,4 @@
-// 1.21.1	2026-11-14T04:24:18.2837251	Sully's Mod Block Tags
+// 1.21.1	2026-11-15T02:21:56.9615636	Sully's Mod Block Tags
 cb74ac3479b1cba3601f2f1f276d8db4bd380b5d data/c/tags/block/stripped_logs.json
 f3ecc2d55cb6d929f38019416c98f82f6a21cbdc data/c/tags/block/stripped_woods.json
 1277504e35a41014911336e0ef1133af472b118e data/minecraft/tags/block/buttons.json
@@ -22,3 +22,4 @@ b2e1465c76b16fab3a48e30426d7cbc35444bbbb data/minecraft/tags/block/wooden_slabs.
 e8e1243743b333abae607b4a4f86f83ffa9ad361 data/minecraft/tags/block/wooden_stairs.json
 e6403ebcf54325ca2be8c1dce81dbc4c9e79f911 data/sullysmod/tags/block/is_petrified.json
 60e164ee9aa176650635c524eac46477bffc6e7e data/sullysmod/tags/block/melts_amber.json
+6924d5044addf55faa61ab7ccbe33dc19d443bd6 data/sullysmod/tags/block/petrified_logs.json

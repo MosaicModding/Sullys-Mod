@@ -1,17 +1,18 @@
 package com.mosaicmodding.sullysmod;
 
-import com.mosaicmodding.sullysmod.builtin.SMBuiltinEntriesProvider;
+import com.mosaicmodding.sullysmod.server.SMDataMapGen;
+import com.mosaicmodding.sullysmod.server.builtin.SMBuiltinEntriesProvider;
 import com.mosaicmodding.sullysmod.client.SMBlockStateGen;
 import com.mosaicmodding.sullysmod.client.SMItemModelGen;
 import com.mosaicmodding.sullysmod.client.SMLanguageGen;
 import com.mosaicmodding.sullysmod.client.SMSoundDefinitionsGen;
-import com.mosaicmodding.sullysmod.fabricated_conditions.FabricatedConditionRegistry;
-import com.mosaicmodding.sullysmod.loot.SMLootTableGen;
-import com.mosaicmodding.sullysmod.recipes.SMRecipeGen;
-import com.mosaicmodding.sullysmod.tags.SMBiomeTagGen;
-import com.mosaicmodding.sullysmod.tags.SMBlockTagGen;
-import com.mosaicmodding.sullysmod.tags.SMEntityTypeTagGen;
-import com.mosaicmodding.sullysmod.tags.SMItemTagGen;
+import com.mosaicmodding.sullysmod.server.fabricated_conditions.FabricatedConditionRegistry;
+import com.mosaicmodding.sullysmod.server.loot.SMLootTableGen;
+import com.mosaicmodding.sullysmod.server.recipes.SMRecipeGen;
+import com.mosaicmodding.sullysmod.server.tags.SMBiomeTagGen;
+import com.mosaicmodding.sullysmod.server.tags.SMBlockTagGen;
+import com.mosaicmodding.sullysmod.server.tags.SMEntityTypeTagGen;
+import com.mosaicmodding.sullysmod.server.tags.SMItemTagGen;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
@@ -60,6 +61,8 @@ public class SullysModDatagen {
 
         var recipeDatagen = new SMRecipeGen(output, modRegistryProvider);
 
+        var dataMapGen = new SMDataMapGen(output, modRegistryProvider);
+
         //Generator additions
         generator.addProvider(includeClient, languageGen);
         generator.addProvider(includeClient, itemModelGen);
@@ -76,6 +79,8 @@ public class SullysModDatagen {
         generator.addProvider(includeServer, lootTableDatagen);
 
         generator.addProvider(includeServer, recipeDatagen);
+
+        generator.addProvider(includeServer, dataMapGen);
 
     }
 }

@@ -4,9 +4,10 @@ import com.mosaicmodding.sullysmod.content.amber.*;
 import com.mosaicmodding.sullysmod.content.gourd.CarvedGourdBlock;
 import com.mosaicmodding.sullysmod.content.gourd.EquipableGourdBlock;
 import com.mosaicmodding.sullysmod.content.gourd.GourdBlock;
-import com.mosaicmodding.sullysmod.content.petrified.PetrifiedLog;
 import com.mosaicmodding.sullysmod.content.petrified.PetrifiedSapling;
 import com.mosaicmodding.sullysmod.core.config.SMCommonConfig;
+import com.mosaicmodding.sullysmod.core.event.StrippableBlockRegistryEvent;
+import com.mosaicmodding.sullysmod.registry.registry_sets.AbstractBlockRegistrySet;
 import com.mosaicmodding.sullysmod.registry.registry_sets.SimpleBlockRegistrySet;
 import com.mosaicmodding.sullysmod.registry.registry_sets.WoodBlockRegistrySet;
 import com.mosaicmodding.tessera.TesseraBlockProperties;
@@ -14,15 +15,19 @@ import net.mehvahdjukaar.moonlight.api.misc.RegSupplier;
 import net.mehvahdjukaar.moonlight.api.platform.RegHelper;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.RootedDirtBlock;
+import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.MapColor;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static com.mosaicmodding.sullysmod.registry.helpers.SMRegUtils.path;
 import static com.mosaicmodding.sullysmod.registry.properties.SMBlockProperties.*;
 import static com.mosaicmodding.sullysmod.registry.properties.SMBlockProperties.AMBER_DECORATION;
 
 public class SMBlocks {
+    public static final List<AbstractBlockRegistrySet> REG_SETS = new ArrayList<>();
 
     //TODO maybe add block type registration (in case it gets important at some point, then we already have it)
 
@@ -41,7 +46,10 @@ public class SMBlocks {
             SMCommonConfig.PETRIFIED_TREES.getSecond(),
             SMWoodTypes.PETRIFIED,
             PetrifiedSapling::new)
-            .customLogWithStripped((stripped, properties) -> new PetrifiedLog(stripped, PETRIFIED_LOGS(MapColor.TERRACOTTA_ORANGE, MapColor.COLOR_BROWN)))
+            //TODO rework the builder cuz of multiple issues
+            .customLog(RotatedPillarBlock::new, PETRIFIED_LOGS(MapColor.TERRACOTTA_ORANGE, MapColor.COLOR_BROWN))
+            .customStrippedWood(RotatedPillarBlock::new, TesseraBlockProperties.copy(PETRIFIED()).mapColor(MapColor.TERRACOTTA_ORANGE))
+            .customWood(RotatedPillarBlock::new, TesseraBlockProperties.copy(PETRIFIED()).mapColor(MapColor.COLOR_BROWN))
             .setButtonTicksPressed(20)
             .build();
 
@@ -53,5 +61,13 @@ public class SMBlocks {
     public static final RegSupplier<Block> CARVED_GIGANTO_GOURD = RegHelper.registerBlockWithItem(path("giganto_gourd_carved"), () -> new EquipableGourdBlock(GOURD(MapColor.COLOR_LIGHT_GREEN, false)));
     public static final RegSupplier<Block> GIGANTO_GOURD_LANTERN = RegHelper.registerBlockWithItem(path("giganto_gourd_lantern"), () -> new CarvedGourdBlock(GOURD(MapColor.COLOR_LIGHT_GREEN, true)));
 
-    public static void init() {}
+    public static void addStrippableBlocks(StrippableBlockRegistryEvent event) {
+        event.register(PETRIFIED_WOOD_BLOCK_SET.getLog(), PETRIFIED_WOOD_BLOCK_SET.getStrippedLog(), true);
+        event.register(PETRIFIED_WOOD_BLOCK_SET.getWood(), PETRIFIED_WOOD_BLOCK_SET.getStrippedWood(), true);
+    }
+
+    public static void init() {
+        REG_SETS.add(AMBER_BLOCK_SET);
+        REG_SETS.add(PETRIFIED_WOOD_BLOCK_SET);
+    }
 }

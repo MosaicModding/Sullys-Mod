@@ -3,6 +3,7 @@ package com.mosaicmodding.sullysmod;
 import com.mosaicmodding.sullysmod.client.SullysModClient;
 import com.mosaicmodding.sullysmod.core.SMConstants;
 import com.mosaicmodding.sullysmod.core.config.SMCommonConfig;
+import com.mosaicmodding.sullysmod.platform.SMPlatHelper;
 import com.mosaicmodding.sullysmod.registry.*;
 import net.mehvahdjukaar.moonlight.api.platform.PlatHelper;
 import org.slf4j.Logger;
@@ -14,6 +15,7 @@ public class SullysMod {
     public static final String ID = "sullysmod";
     public static final String NAME = "Sully's Mod";
     public static final Logger LOG = LoggerFactory.getLogger(SullysMod.NAME);
+    public static final SMPlatHelper PLAT_HELPER = load(SMPlatHelper.class);
 
     public static void init() {
         SMCommonConfig.init();

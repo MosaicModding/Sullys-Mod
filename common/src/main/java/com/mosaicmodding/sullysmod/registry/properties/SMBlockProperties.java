@@ -63,7 +63,7 @@ public class SMBlockProperties {
                 .requiresCorrectToolForDrops()
                 .needsPickaxe()
                 .lootDropSelf()
-                .addTag(SMTags.Blocks.IS_PETRIFIED);
+                .addTag(SMTags.Blocks.IS_PETRIFIED); //TODO duplication should probably be disabled for this one -> Tessera feature
     }
 
     public static TesseraBlockProperties PETRIFIED_LOGS(MapColor topColor, MapColor sideColor) {
