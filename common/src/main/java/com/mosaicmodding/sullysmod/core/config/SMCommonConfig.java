@@ -94,9 +94,35 @@ public class SMCommonConfig {
         ENTITY_IN_BLOB = handleNamedFeature("spawn_entity_in_blobs", name -> builder.comment("Spawns the random entities inside the generated amber blobs").feature(name, true));
         builder.pop();
 
-        //TODO check if configs that don't have children, still need to be feature values
-        GOURDS = handleNamedFeature("gourds", builder::pushFeature);
+        ANCIENT_COLLECTABLES = handleNamedFeature("ancient_collectables", builder::pushFeature);
+        ARTIFACT_GRAVEL_SPAWNING = handleNamedFeature("artifact_gravel_spawning", builder::feature);
+        ARTIFACTS = handleNamedFeature("artifacts", builder::feature);
+        ANCIENT_SKULLS = handleNamedFeature("ancient_skulls", builder::feature);
         builder.pop();
+
+        TORTOISE_FEATURES = handleNamedFeature("tortoise_features", builder::pushFeature);
+        TORTOISE = handleNamedFeature("tortoise", builder::feature);
+        TORTOISE_SHELL = handleNamedFeature("tortoise_shell", builder::feature);
+        ATTACH_WORKSTATIONS = handleNamedFeature("attach_workstations", builder::feature);
+        builder.pop();
+
+        PIRANHA_FEATURES = handleNamedFeature("piranha_features", builder::pushFeature);
+        PIRANHA = handleNamedFeature("piranha", builder::feature);
+        THROWING_KNIFE = handleNamedFeature("throwing_knife", builder::feature);
+        builder.pop();
+
+        JADE_FEATURES = handleNamedFeature("jade_features", builder::pushFeature);
+        BLOCKS = handleNamedFeature("blocks", builder::pushFeature);
+        DECORATIONS = handleNamedFeature("decorations", builder::feature);
+        FLINGER_TOTEM = handleNamedFeature("flinger_totem", builder::feature);
+        builder.pop();
+        ORE_GENERATION = handleNamedFeature("ore_generation", builder::feature);
+        RICOCHET_MECHANIC = handleNamedFeature("ricochet_mechanic", builder::feature);
+        JADE_SHIELD = handleNamedFeature("jade_shield", builder::feature);
+        JADE_HORSE_ARMOR = handleNamedFeature("jade_horse_armor", builder::feature);
+        builder.pop();
+
+        GOURDS = handleNamedFeature("gourds", builder::feature);
 
         COPPER_BUTTONS = handleNamedFeature("copper_buttons", builder::feature);
 
@@ -119,34 +145,7 @@ public class SMCommonConfig {
         JUNGLE_SPIDER = handleNamedFeature("jungle_spider", builder::feature);
 
         PICKAXE_STRIPPING = handleNamedFeature("pickaxe_stripping", builder::feature);
-
-        ANCIENT_COLLECTABLES = handleNamedFeature("ancient_collectables", builder::pushFeature);
-        ARTIFACT_GRAVEL_SPAWNING = handleNamedFeature("artifact_gravel_spawning", builder::feature);
-        ARTIFACTS = handleNamedFeature("artifacts", builder::feature);
-        ANCIENT_SKULLS = handleNamedFeature("ancient_skulls", builder::feature);
-        builder.pop();
-
-        TORTOISE_FEATURES = handleNamedFeature("tortoise_features", builder::pushFeature);
-        TORTOISE = handleNamedFeature("tortoise", builder::feature);
-        TORTOISE_SHELL = handleNamedFeature("tortoise_shell", builder::feature);
-        ATTACH_WORKSTATIONS = handleNamedFeature("attach_workstations", builder::feature);
-        builder.pop();
-
-        PIRANHA_FEATURES = handleNamedFeature("piranha_features", builder::pushFeature);
-        PIRANHA = handleNamedFeature("piranha", builder::feature);
-        THROWING_KNIFE = handleNamedFeature("throwing_knife", builder::feature);
-        builder.pop();
-
-        JADE_FEATURES = handleNamedFeature("jade_features", builder::pushFeature);
-        ORE_GENERATION = handleNamedFeature("ore_generation", builder::feature);
-        BLOCKS = handleNamedFeature("blocks", builder::pushFeature);
-        DECORATIONS = handleNamedFeature("decorations", builder::feature);
-        FLINGER_TOTEM = handleNamedFeature("flinger_totem", builder::feature);
-        builder.pop();
-        RICOCHET_MECHANIC = handleNamedFeature("ricochet_mechanic", builder::feature);
-        JADE_SHIELD = handleNamedFeature("jade_shield", builder::feature);
-        JADE_HORSE_ARMOR = handleNamedFeature("jade_horse_armor", builder::feature);
-        builder.pop();
+        
         builder.pop();
 
         builder.push("misc");
