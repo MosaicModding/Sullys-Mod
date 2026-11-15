@@ -86,6 +86,7 @@
   "sullysmod.configuration.mod_features.item_stand": "Item Stand",
   "sullysmod.configuration.mod_features.jungle_spider": "Jungle Spider",
   "sullysmod.configuration.mod_features.lanternfish": "Lanternfish",
+  "sullysmod.configuration.mod_features.pickaxe_stripping": "Pickaxe Stripping",
   "sullysmod.configuration.petrified_trees": "Petrified Trees",
   "sullysmod.configuration.petrified_trees.amber": "Amber",
   "sullysmod.configuration.petrified_trees.amber.description": "Activates all amber blocks and items",

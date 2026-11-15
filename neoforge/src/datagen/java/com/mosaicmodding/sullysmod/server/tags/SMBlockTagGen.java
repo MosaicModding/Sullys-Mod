@@ -1,8 +1,8 @@
 package com.mosaicmodding.sullysmod.server.tags;
 
 import com.mosaicmodding.sullysmod.SullysMod;
-import com.mosaicmodding.sullysmod.registry.helpers.SMRegUtils;
 import com.mosaicmodding.sullysmod.registry.SMTags;
+import com.mosaicmodding.sullysmod.registry.helpers.SMRegUtils;
 import com.mosaicmodding.tessera.datagen.providers.tag.TesseraBlockTagsSystem;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;

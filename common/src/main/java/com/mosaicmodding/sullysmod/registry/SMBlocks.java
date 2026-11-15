@@ -24,7 +24,6 @@ import java.util.List;
 
 import static com.mosaicmodding.sullysmod.registry.helpers.SMRegUtils.path;
 import static com.mosaicmodding.sullysmod.registry.properties.SMBlockProperties.*;
-import static com.mosaicmodding.sullysmod.registry.properties.SMBlockProperties.AMBER_DECORATION;
 
 public class SMBlocks {
     public static final List<AbstractBlockRegistrySet> REG_SETS = new ArrayList<>();

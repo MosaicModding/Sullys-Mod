@@ -2,14 +2,15 @@ package com.mosaicmodding.sullysmod.server.recipes;
 
 import com.mosaicmodding.sullysmod.SullysMod;
 import com.mosaicmodding.sullysmod.core.config.SMCommonConfig;
-import com.mosaicmodding.sullysmod.server.fabricated_conditions.DatagenConfigFlagCondition;
 import com.mosaicmodding.sullysmod.registry.SMBlocks;
 import com.mosaicmodding.sullysmod.registry.SMItems;
 import com.mosaicmodding.sullysmod.registry.registry_sets.SimpleBlockRegistrySet;
+import com.mosaicmodding.sullysmod.server.fabricated_conditions.DatagenConfigFlagCondition;
 import com.mosaicmodding.tessera.datagen.providers.TesseraRecipeProvider;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
-import net.minecraft.data.recipes.*;
+import net.minecraft.data.recipes.RecipeCategory;
+import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.world.level.ItemLike;
 import net.neoforged.neoforge.common.conditions.AndCondition;
 import net.neoforged.neoforge.common.conditions.ICondition;

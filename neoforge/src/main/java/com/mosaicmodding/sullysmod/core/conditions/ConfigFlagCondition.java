@@ -6,8 +6,6 @@ import com.mojang.serialization.codecs.RecordCodecBuilder;
 import com.mosaicmodding.sullysmod.core.config.SMCommonConfig;
 import net.neoforged.neoforge.common.conditions.ICondition;
 
-import java.util.function.Function;
-
 /**
  * This Condition Object is used when parsing the json in game. It's not meant to be used when running datagen. Use the Fabricated equivalent for that.
  * This should also not be registered when running datagen.

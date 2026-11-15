@@ -18,13 +18,12 @@ public class SMDataMapGen extends DataMapProvider {
     }
 
     protected void gather(HolderLookup.Provider provider) {
-        final var strippables = builder(NeoForgeDataMaps.STRIPPABLES);
-        final var pickaxe_strippables = builder(SMDataMaps.PICKAXE_STRIPPABLES);
-
         SMBlocks.addStrippableBlocks(((input, stripped, usingPickaxe) -> {
             if (usingPickaxe) {
+                final var pickaxe_strippables = builder(SMDataMaps.PICKAXE_STRIPPABLES);
                 pickaxe_strippables.add(input.getId(), new PickaxeStrippable(stripped.get()), false);
             } else {
+                final var strippables = builder(NeoForgeDataMaps.STRIPPABLES);
                 strippables.add(input.getId(), new Strippable(stripped.get()), false);
             }
         }));

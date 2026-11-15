@@ -1,16 +1,10 @@
 package com.mosaicmodding.sullysmod;
 
 import com.mosaicmodding.sullysmod.registry.SMBiomeModifiers;
-import com.mosaicmodding.sullysmod.registry.SMDataMaps;
 import com.mosaicmodding.sullysmod.registry.SMNeoConditions;
-import com.mosaicmodding.sullysmod.core.NeoSpecificHandler;
 import net.neoforged.bus.api.IEventBus;
-import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.common.Mod;
-import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.neoforge.data.loading.DatagenModLoader;
-import net.neoforged.neoforge.registries.datamaps.RegisterDataMapTypesEvent;
 
 @Mod(SullysMod.ID)
 public class SullysModNeo {

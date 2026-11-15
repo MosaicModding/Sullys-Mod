@@ -14,8 +14,6 @@ import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
 
-import java.util.function.Function;
-
 public class SMBlockProperties {
     public static TesseraBlockProperties AMBER(boolean isSolid) {
         return TesseraBlockProperties.of()

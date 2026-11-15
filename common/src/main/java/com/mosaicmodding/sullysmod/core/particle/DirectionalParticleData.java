@@ -2,7 +2,6 @@ package com.mosaicmodding.sullysmod.core.particle;
 
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.Direction;
-
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleType;
 import net.minecraft.network.RegistryFriendlyByteBuf;

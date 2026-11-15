@@ -254,7 +254,7 @@ public class WoodBlockRegistrySet extends AbstractBlockRegistrySet {
         }
 
         public Builder customLog(Function<TesseraBlockProperties, Block> block, TesseraBlockProperties properties) {
-            this.logBlock = () -> block.apply(properties);
+            this.logBlock = () -> block.apply(TesseraBlockProperties.copy(properties).addTag(logsTagBundle.blockTag()));
             return this;
         }
 
@@ -276,7 +276,7 @@ public class WoodBlockRegistrySet extends AbstractBlockRegistrySet {
         }
 
         public Builder customWood(Function<TesseraBlockProperties, Block> block, TesseraBlockProperties properties) {
-            this.woodBlock = () -> block.apply(properties);
+            this.woodBlock = () -> block.apply(TesseraBlockProperties.copy(properties).addTag(logsTagBundle.blockTag()));
             return this;
         }
 
