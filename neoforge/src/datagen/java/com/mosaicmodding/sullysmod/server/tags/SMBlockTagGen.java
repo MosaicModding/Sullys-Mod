@@ -2,7 +2,7 @@ package com.mosaicmodding.sullysmod.server.tags;
 
 import com.mosaicmodding.sullysmod.SullysMod;
 import com.mosaicmodding.sullysmod.registry.SMTags;
-import com.mosaicmodding.sullysmod.registry.helpers.SMRegUtils;
+import com.mosaicmodding.sullysmod.core.SMUtils;
 import com.mosaicmodding.tessera.datagen.providers.tag.TesseraBlockTagsSystem;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
@@ -27,7 +27,7 @@ public class SMBlockTagGen extends TesseraBlockTagsSystem {
 
     @Override
     protected void addTags(HolderLookup.Provider pProvider) {
-        var blocks = new HashSet<>(SMRegUtils.getAllModBlocks());
+        var blocks = new HashSet<>(SMUtils.getAllModBlocks());
 
         tag(SMTags.Blocks.MELTS_AMBER).add(
                 Blocks.TORCH,

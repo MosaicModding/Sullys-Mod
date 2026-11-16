@@ -13,7 +13,7 @@ import net.minecraft.world.item.Items;
 
 import static com.mosaicmodding.sullysmod.registry.SMBlocks.*;
 import static com.mosaicmodding.sullysmod.registry.SMItems.*;
-import static com.mosaicmodding.sullysmod.registry.helpers.SMRegUtils.path;
+import static com.mosaicmodding.sullysmod.core.SMUtils.path;
 
 public class SMCreativeTabs {
 

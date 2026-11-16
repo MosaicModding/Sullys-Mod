@@ -11,6 +11,7 @@ import com.mosaicmodding.sullysmod.registry.properties.SMBlockProperties;
 import com.mosaicmodding.sullysmod.registry.registry_sets.AbstractBlockRegistrySet;
 import com.mosaicmodding.sullysmod.registry.registry_sets.WoodBlockRegistrySet;
 import com.mosaicmodding.sullysmod.registry.registry_sets.SimpleBlockRegistrySet;
+import net.mehvahdjukaar.moonlight.api.misc.EventCalled;
 import net.mehvahdjukaar.moonlight.api.misc.RegSupplier;
 import net.mehvahdjukaar.moonlight.api.platform.RegHelper;
 import net.minecraft.world.level.block.Block;
@@ -21,7 +22,7 @@ import net.minecraft.world.level.material.MapColor;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.mosaicmodding.sullysmod.registry.helpers.SMRegUtils.path;
+import static com.mosaicmodding.sullysmod.core.SMUtils.path;
 import static com.mosaicmodding.sullysmod.registry.properties.SMBlockProperties.*;
 
 public class SMBlocks {
@@ -37,7 +38,7 @@ public class SMBlocks {
     public static final SimpleBlockRegistrySet AMBER_BLOCK_SET = new SimpleBlockRegistrySet("amber", AmberDecorationBlock::new, AmberStairBlock::new, AmberSlabBlock::new, AMBER_DECORATION(), SMCommonConfig.AMBER_BLOCKS.getSecond(), ROUGH_AMBER)
             .withWall(AmberWallBlock::new).withPillar(AmberRotatedPillarBlock::new).withChiseled(AmberDecorationBlock::new);
 
-    //TODO add recipes
+    //TODO check which block should not require the correct tool for drop
     public static final WoodBlockRegistrySet PETRIFIED_WOOD_BLOCK_SET = new WoodBlockRegistrySet.Builder(SMBlockProperties::PETRIFIED)
             .modifyLogProps(() -> PETRIFIED_LOGS(MapColor.TERRACOTTA_ORANGE, MapColor.COLOR_BROWN))
             .modifyStrippedWoodProps(() -> PETRIFIED().mapColor(MapColor.TERRACOTTA_ORANGE))
@@ -58,8 +59,22 @@ public class SMBlocks {
         event.register(PETRIFIED_WOOD_BLOCK_SET.getWood(), PETRIFIED_WOOD_BLOCK_SET.getStrippedWood(), true);
     }
 
-    public static void init() {
+    @EventCalled
+    public static void registerExtraBEStates(RegHelper.ExtraBEStatesEvent event) {
+        REG_SETS.forEach(set -> {
+            if (set instanceof WoodBlockRegistrySet woodSet) {
+                woodSet.bindSignsToBE(event);
+            }
+        });
+    }
+
+    private static void initBlockSets() {
         REG_SETS.add(AMBER_BLOCK_SET);
         REG_SETS.add(PETRIFIED_WOOD_BLOCK_SET);
+    }
+
+    public static void init() {
+        initBlockSets();
+        RegHelper.addExtraBEBlockStatesRegistration(SMBlocks::registerExtraBEStates);
     }
 }

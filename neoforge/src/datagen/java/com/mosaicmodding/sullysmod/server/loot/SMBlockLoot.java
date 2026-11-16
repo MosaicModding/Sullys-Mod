@@ -1,6 +1,6 @@
 package com.mosaicmodding.sullysmod.server.loot;
 
-import com.mosaicmodding.sullysmod.registry.helpers.SMRegUtils;
+import com.mosaicmodding.sullysmod.core.SMUtils;
 import com.mosaicmodding.tessera.datagen.providers.loot.TesseraBlockLootSubProvider;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.world.flag.FeatureFlags;
@@ -21,7 +21,7 @@ public class SMBlockLoot extends TesseraBlockLootSubProvider {
 
     @Override
     protected List<Supplier<Block>> modBlockEntries() {
-        return SMRegUtils.getAllModBlocks();
+        return SMUtils.getAllModBlocks();
     }
 
     @Override

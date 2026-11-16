@@ -13,7 +13,7 @@ import net.minecraft.world.level.levelgen.Heightmap;
 
 import java.util.function.Function;
 
-import static com.mosaicmodding.sullysmod.registry.helpers.SMRegUtils.path;
+import static com.mosaicmodding.sullysmod.core.SMUtils.path;
 
 public class SMEntityTypes {
 

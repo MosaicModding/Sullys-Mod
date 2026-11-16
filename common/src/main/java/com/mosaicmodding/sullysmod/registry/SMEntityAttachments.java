@@ -5,7 +5,7 @@ import net.mehvahdjukaar.moonlight.api.misc.IAttachmentType;
 import net.mehvahdjukaar.moonlight.api.platform.RegHelper;
 import net.minecraft.world.entity.LivingEntity;
 
-import static com.mosaicmodding.sullysmod.registry.helpers.SMRegUtils.path;
+import static com.mosaicmodding.sullysmod.core.SMUtils.path;
 
 public class SMEntityAttachments {
 

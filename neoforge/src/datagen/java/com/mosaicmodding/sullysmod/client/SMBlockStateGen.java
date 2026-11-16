@@ -3,7 +3,7 @@ package com.mosaicmodding.sullysmod.client;
 import com.mosaicmodding.sullysmod.SullysMod;
 import com.mosaicmodding.sullysmod.content.amber.AmberLayeredCauldronBlock;
 import com.mosaicmodding.sullysmod.registry.SMBlocks;
-import com.mosaicmodding.sullysmod.registry.helpers.SMRegUtils;
+import com.mosaicmodding.sullysmod.core.SMUtils;
 import com.mosaicmodding.sullysmod.registry.registry_sets.WoodBlockRegistrySet;
 import com.mosaicmodding.sullysmod.registry.registry_sets.SimpleBlockRegistrySet;
 import com.mosaicmodding.tessera.datagen.BlockStateSmithTypes;
@@ -27,7 +27,7 @@ public class SMBlockStateGen extends TesseraBlockStateSystem {
 
     @Override
     protected void registerStatesAndModels() {
-        var data = new BlockStateSystemData<>(this, SMRegUtils.getAllModBlocks()::remove);
+        var data = new BlockStateSystemData<>(this, SMUtils.getAllModBlocks()::remove);
 
         setTexturePath("amber");
         BlockStateSmithTypes.FULL_BLOCK_NO_ITEM.act(data, SMBlocks.AMBER);
@@ -87,6 +87,10 @@ public class SMBlockStateGen extends TesseraBlockStateSystem {
 
         BlockStateSmithTypes.CROSS_MODEL_BLOCK.act(data, blockSet.getSaplingBlock());
         BlockStateSmithTypes.POTTED_PLANT.act(data, blockSet.getPottedSaplingBlock());
+
+        BlockStateSmithTypes.WOODEN_SIGN_BLOCK.act(data, blockSet.getSign().getLeft());
+        BlockStateSmithTypes.WOODEN_SIGN_BLOCK.act(data, blockSet.getSign().getRight());
+        //TODO implement hanging sign gen in Tessera
     }
 
     public static BlockStateSmith<AmberLayeredCauldronBlock> AMBER_CAULDRON = new BlockStateSmith<>(AmberLayeredCauldronBlock.class, ItemModelSmithTypes.NO_DATAGEN, (block, provider) -> {

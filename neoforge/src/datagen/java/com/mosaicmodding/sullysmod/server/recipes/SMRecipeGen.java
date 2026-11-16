@@ -87,6 +87,8 @@ public class SMRecipeGen extends TesseraRecipeProvider {
         doorRecipe(planks, blockSet.getDoor().get(), featureOutput);
         trapdoorRecipe(planks, blockSet.getTrapdoor().get(), featureOutput);
         fenceGateRecipe(planks, blockSet.getFenceGate().get(), featureOutput);
+        signRecipe(planks, blockSet.getSign().getLeft().get(), featureOutput);
+        hangingSignRecipe(planks, blockSet.getHangingSign().getLeft().get(), featureOutput);
     }
     
     private RecipeOutput withFeature(String feature, RecipeOutput output) {

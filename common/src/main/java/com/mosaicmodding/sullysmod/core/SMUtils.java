@@ -1,4 +1,4 @@
-package com.mosaicmodding.sullysmod.registry.helpers;
+package com.mosaicmodding.sullysmod.core;
 
 import com.mosaicmodding.sullysmod.SullysMod;
 import net.minecraft.core.Registry;
@@ -6,23 +6,17 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.SolidBucketItem;
+import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.Block;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
+import java.util.function.Predicate;
 import java.util.function.Supplier;
 
-public class SMRegUtils {
+public class SMUtils {
 
     public static ResourceLocation path(String path) {
         return ResourceLocation.fromNamespaceAndPath(SullysMod.ID, path);
-    }
-
-    public static List<Supplier<Item>> getAllModItemsNoBlocks() {
-        return getAllModItems().stream().filter(i -> !(i.get() instanceof BlockItem && !(i.get() instanceof SolidBucketItem))).toList();
     }
 
     public static List<Supplier<Item>> getAllModItems() {
@@ -49,5 +43,26 @@ public class SMRegUtils {
             list.add(item);
         }
         return list;
+    }
+
+    /**
+     * removes all entries from a collection based off of a predicate and returns all items removed in a new collection
+     */
+    public static <T> Collection<T> takeAll(Collection<T> src, Predicate<T> pred) {
+        List<T> ret = new ArrayList<>();
+
+        Iterator<T> iter = src.iterator();
+        while (iter.hasNext()) {
+            T item = iter.next();
+            if (pred.test(item)) {
+                iter.remove();
+                ret.add(item);
+            }
+        }
+
+        if (ret.isEmpty()) {
+            return Collections.emptyList();
+        }
+        return ret;
     }
 }

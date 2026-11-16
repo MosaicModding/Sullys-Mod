@@ -2,7 +2,7 @@ package com.mosaicmodding.sullysmod.server.loot;
 
 import com.mosaicmodding.sullysmod.registry.SMEntityTypes;
 import com.mosaicmodding.sullysmod.registry.SMItems;
-import com.mosaicmodding.sullysmod.registry.helpers.SMRegUtils;
+import com.mosaicmodding.sullysmod.core.SMUtils;
 import net.minecraft.advancements.critereon.EntityFlagsPredicate;
 import net.minecraft.advancements.critereon.EntityPredicate;
 import net.minecraft.core.HolderLookup;
@@ -34,7 +34,7 @@ public class SMEntityLoot extends EntityLootSubProvider {
 
     @Override
     protected Stream<EntityType<?>> getKnownEntityTypes() {
-        return SMRegUtils.getAllModEntityTypes().stream().map(Supplier::get);
+        return SMUtils.getAllModEntityTypes().stream().map(Supplier::get);
     }
 
     @Override

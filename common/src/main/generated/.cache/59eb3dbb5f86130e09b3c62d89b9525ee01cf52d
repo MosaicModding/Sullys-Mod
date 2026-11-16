@@ -1,4 +1,4 @@
-// 1.21.1	2026-11-14T04:16:38.7103085	Loot Tables
+// 1.21.1	2026-11-16T01:42:16.8173194	Loot Tables
 cbf37cce95466ef846bf964c7da0621c9045ee4d data/sullysmod/loot_table/blocks/amber.json
 4cb6ffce9e7b0276b5106b54638467adb4b2adbe data/sullysmod/loot_table/blocks/amber_bricks.json
 d312e14470856ba3dbcd4516b0f48a7f1d87581e data/sullysmod/loot_table/blocks/amber_bricks_slab.json
@@ -15,6 +15,7 @@ d3616f6d74c01c2ce9bdec69f7a48be0e1a1e4c9 data/sullysmod/loot_table/blocks/minimu
 97bdb48f4de1377940f2170d65d50da7502813a9 data/sullysmod/loot_table/blocks/minimu_gourd_carved.json
 db70666b37bd610ea8d0d7dd1555410df2b07d4a data/sullysmod/loot_table/blocks/minimu_gourd_lantern.json
 a84e8f25c8aa144f84e90ec6f3eef1f5c2ad6f06 data/sullysmod/loot_table/blocks/petrified_door.json
+4f1ce123abb143fb99f82814074261cb2e2fabee data/sullysmod/loot_table/blocks/petrified_hanging_sign.json
 0be96e28f8d3d4e891d8c50cb17a421542bfdce3 data/sullysmod/loot_table/blocks/petrified_log.json
 be81b023a19d15e3c7cdf9d30b13f5f5a66d3122 data/sullysmod/loot_table/blocks/petrified_planks.json
 39e68104c5a09ac9db9a3bcf62cfdc31515b4183 data/sullysmod/loot_table/blocks/petrified_planks_button.json
@@ -24,6 +25,7 @@ be81b023a19d15e3c7cdf9d30b13f5f5a66d3122 data/sullysmod/loot_table/blocks/petrif
 026559e798b66ad078ce1703483c1d0bd1cf4fb5 data/sullysmod/loot_table/blocks/petrified_planks_slab.json
 fe99eaad58260dafafeba6f727843b1bdac8013f data/sullysmod/loot_table/blocks/petrified_planks_stairs.json
 b045b9653fdbf6a0b805e537a9875d7c634b3d13 data/sullysmod/loot_table/blocks/petrified_sapling.json
+05ed2b6735733b4f98c26b73470758406f4cea9e data/sullysmod/loot_table/blocks/petrified_sign.json
 3f129c6240d8e62e61151743bce2253db54e6174 data/sullysmod/loot_table/blocks/petrified_trapdoor.json
 0e42d1e2d950041aa91a83342fe0893d69a9b69f data/sullysmod/loot_table/blocks/petrified_wood.json
 1ff6d858f8df96aa6db2d1edebc0cd41359ee06f data/sullysmod/loot_table/blocks/potted_petrified_sapling.json

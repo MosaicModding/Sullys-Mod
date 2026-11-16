@@ -21,7 +21,7 @@ import java.util.function.BiFunction;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
-import static com.mosaicmodding.sullysmod.registry.helpers.SMRegUtils.path;
+import static com.mosaicmodding.sullysmod.core.SMUtils.path;
 
 //TODO modify to make work like WoodBlockRegistrySet (with Builder etc)
 public class SimpleBlockRegistrySet extends AbstractBlockRegistrySet {

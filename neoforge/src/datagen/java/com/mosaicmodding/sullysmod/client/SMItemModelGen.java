@@ -2,7 +2,7 @@ package com.mosaicmodding.sullysmod.client;
 
 import com.mosaicmodding.sullysmod.SullysMod;
 import com.mosaicmodding.sullysmod.registry.SMItems;
-import com.mosaicmodding.sullysmod.registry.helpers.SMRegUtils;
+import com.mosaicmodding.sullysmod.core.SMUtils;
 import com.mosaicmodding.tessera.datagen.ItemModelSmithTypes;
 import com.mosaicmodding.tessera.datagen.providers.item.TesseraItemModelSystem;
 import com.mosaicmodding.tessera.datagen.smith.itemmodel.data.ItemModelSystemData;
@@ -17,7 +17,7 @@ public class SMItemModelGen extends TesseraItemModelSystem {
 
     @Override
     protected void registerModels() {
-        var data = new ItemModelSystemData(this, SMRegUtils.getAllModItems());
+        var data = new ItemModelSystemData(this, SMUtils.getAllModItems());
 
         ItemModelSmithTypes.SPAWN_EGG_ITEM.act(data, SMItems.BOULDERING_ZOMBIE_SPAWN_EGG.get());
 

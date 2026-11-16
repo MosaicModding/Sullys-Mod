@@ -8,18 +8,18 @@ import net.mehvahdjukaar.moonlight.api.platform.PlatHelper;
 import net.mehvahdjukaar.moonlight.api.platform.RegHelper;
 import net.mehvahdjukaar.moonlight.api.platform.TabAdderHelper;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.world.item.CreativeModeTab;
-import net.minecraft.world.item.CreativeModeTabs;
-import net.minecraft.world.item.Items;
+import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.properties.WoodType;
 import net.minecraft.world.level.material.PushReaction;
+import org.apache.commons.lang3.tuple.Pair;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.function.Function;
 import java.util.function.Supplier;
 
-import static com.mosaicmodding.sullysmod.registry.helpers.SMRegUtils.path;
+import static com.mosaicmodding.sullysmod.core.SMUtils.path;
 
 public class WoodBlockRegistrySet extends AbstractBlockRegistrySet {
     private final RegSupplier<Block> planksBlock;
@@ -38,6 +38,9 @@ public class WoodBlockRegistrySet extends AbstractBlockRegistrySet {
     private final RegSupplier<Block> saplingBlock;
     private final RegSupplier<Block> pottedSaplingBlock;
 
+    private final Pair<RegSupplier<Block>, RegSupplier<Block>> signBlock;
+    private final Pair<RegSupplier<Block>, RegSupplier<Block>> hangingSignBlock;
+
     private final int buttonTicksPressed;
 
     private final BlockItemTagBundle logsTagBundle;
@@ -53,7 +56,9 @@ public class WoodBlockRegistrySet extends AbstractBlockRegistrySet {
                                  Supplier<TesseraBlockProperties> buttonProps, Supplier<TesseraBlockProperties> trapdoorProps,
                                  Supplier<TesseraBlockProperties> doorProps, Supplier<TesseraBlockProperties> stairsProps,
                                  Supplier<TesseraBlockProperties> slabProps, Supplier<TesseraBlockProperties> fenceProps,
-                                 Supplier<TesseraBlockProperties> fenceGateProps, @Nullable Supplier<Function<TesseraBlockProperties, Block>> modifiedPlanks,
+                                 Supplier<TesseraBlockProperties> fenceGateProps, Supplier<TesseraBlockProperties> signProps,
+                                 Supplier<TesseraBlockProperties> hangingSignProps,
+                                 @Nullable Supplier<Function<TesseraBlockProperties, Block>> modifiedPlanks,
                                  @Nullable Supplier<Function<TesseraBlockProperties, Block>> modifiedLog,
                                  @Nullable Supplier<Function<TesseraBlockProperties, Block>> modifiedStrippedLog,
                                  @Nullable Supplier<Function<TesseraBlockProperties, Block>> modifiedWood,
@@ -65,7 +70,11 @@ public class WoodBlockRegistrySet extends AbstractBlockRegistrySet {
                                  @Nullable Supplier<Function<TesseraBlockProperties, Block>> modifiedStairs,
                                  @Nullable Supplier<Function<TesseraBlockProperties, Block>> modifiedSlab,
                                  @Nullable Supplier<Function<TesseraBlockProperties, Block>> modifiedFence,
-                                 @Nullable Supplier<Function<TesseraBlockProperties, Block>> modifiedFenceGate) {
+                                 @Nullable Supplier<Function<TesseraBlockProperties, Block>> modifiedFenceGate,
+                                 @Nullable Supplier<Function<TesseraBlockProperties, Block>> modifiedStandingSign,
+                                 @Nullable Supplier<Function<TesseraBlockProperties, Block>> modifiedWallSign,
+                                 @Nullable Supplier<Function<TesseraBlockProperties, Block>> modifiedHangingSign,
+                                 @Nullable Supplier<Function<TesseraBlockProperties, Block>> modifiedWallHangingSign) {
         super(id, feature);
 
         this.buttonTicksPressed = buttonTicksPressed;
@@ -94,6 +103,17 @@ public class WoodBlockRegistrySet extends AbstractBlockRegistrySet {
 
         saplingBlock = RegHelper.registerBlockWithItem(path(name("%s_sapling")), sapling);
         pottedSaplingBlock = RegHelper.registerBlock(path(name("potted_%s_sapling")), () -> PlatHelper.newFlowerPot(() -> (FlowerPotBlock) Blocks.FLOWER_POT, this.saplingBlock, SMBlockProperties.FLOWER_POT()));
+
+        var standingSign = registerBasicNoItem("%s_sign", signProps, p -> new StandingSignBlock(type, p), modifiedStandingSign);
+        var wallSign = registerBasicNoItem("%s_wall_sign", () -> signProps.get().dropsLike(standingSign.get()), p -> new WallSignBlock(type, p), modifiedWallSign);
+        RegHelper.registerItem(path(name("%s_sign")), () -> new SignItem(new Item.Properties(), standingSign.get(), wallSign.get()));
+        this.signBlock = Pair.of(standingSign, wallSign);
+
+        var hangingSign = registerBasicNoItem("%s_hanging_sign", hangingSignProps, p -> new CeilingHangingSignBlock(type, p), modifiedHangingSign);
+        var wallHangingSign = registerBasicNoItem("%s_wall_hanging_sign", () -> hangingSignProps.get().dropsLike(hangingSign.get()), p -> new WallHangingSignBlock(type, p), modifiedWallHangingSign);
+        RegHelper.registerItem(path(name("%s_hanging_sign")), () -> new HangingSignItem(hangingSign.get(), wallHangingSign.get(), new Item.Properties()));
+        this.hangingSignBlock = Pair.of(hangingSign, wallHangingSign);
+
     }
 
     private RegSupplier<Block> registerBasic(String name, Supplier<TesseraBlockProperties> properties, Function<TesseraBlockProperties, Block> defaultBlock, @Nullable Supplier<Function<TesseraBlockProperties, Block>> possiblyModified) {
@@ -105,6 +125,15 @@ public class WoodBlockRegistrySet extends AbstractBlockRegistrySet {
         }
     }
 
+    private RegSupplier<Block> registerBasicNoItem(String name, Supplier<TesseraBlockProperties> properties, Function<TesseraBlockProperties, Block> defaultBlock, @Nullable Supplier<Function<TesseraBlockProperties, Block>> possiblyModified) {
+        var fullName = path(name(name));
+        if (possiblyModified == null) {
+            return RegHelper.registerBlock(fullName, () -> defaultBlock.apply(properties.get()));
+        } else {
+            return RegHelper.registerBlock(fullName, () -> possiblyModified.get().apply(properties.get()));
+        }
+    }
+
     @Override
     public void addToTab(TabAdderHelper helper) {
         helper.after(Items.CHERRY_BUTTON, this.blocksTab, this.feature, logBlock, woodBlock, strippedLogBlock,
@@ -113,6 +142,24 @@ public class WoodBlockRegistrySet extends AbstractBlockRegistrySet {
         );
         helper.after(Items.CHERRY_LOG, this.naturalsTab, this.feature, logBlock);
         helper.after(Items.CHERRY_SAPLING, this.naturalsTab, this.feature, saplingBlock);
+        helper.after(Items.CHERRY_HANGING_SIGN, this.signsTab, this.feature, signBlock.getLeft(), hangingSignBlock.getLeft());
+    }
+
+    public void bindSignsToBE(RegHelper.ExtraBEStatesEvent event) {
+        event.addBlocks(BlockEntityType.SIGN, signBlock.getLeft().get(), signBlock.getRight().get());
+        event.addBlocks(BlockEntityType.HANGING_SIGN, hangingSignBlock.getLeft().get(), hangingSignBlock.getRight().get());
+    }
+
+    public void setBlocksTab(ResourceKey<CreativeModeTab> tab) {
+        this.blocksTab = tab;
+    }
+
+    public void setSignsTab(ResourceKey<CreativeModeTab> tab) {
+        this.signsTab = tab;
+    }
+
+    public void setNaturalsTab(ResourceKey<CreativeModeTab> tab) {
+        this.naturalsTab = tab;
     }
 
     public RegSupplier<Block> getPlanks() {
@@ -179,27 +226,24 @@ public class WoodBlockRegistrySet extends AbstractBlockRegistrySet {
         return logsTagBundle;
     }
 
-    public void setBlocksTab(ResourceKey<CreativeModeTab> tab) {
-        this.blocksTab = tab;
+    public Pair<RegSupplier<Block>, RegSupplier<Block>> getSign() {
+        return signBlock;
     }
 
-    public void setSignsTab(ResourceKey<CreativeModeTab> tab) {
-        this.signsTab = tab;
-    }
-
-    public void setNaturalsTab(ResourceKey<CreativeModeTab> tab) {
-        this.naturalsTab = tab;
+    public Pair<RegSupplier<Block>, RegSupplier<Block>> getHangingSign() {
+        return hangingSignBlock;
     }
 
     public static class Builder {
         Supplier<TesseraBlockProperties> planksProps, logProps, strippedLogProps, woodProps, strippedWoodProps,
                 pressurePlateProps, buttonProps, trapdoorProps, doorProps, stairsProps, slabProps, fenceProps,
-                fenceGateProps;
+                fenceGateProps, signProps, hangingSignProps;
 
         @Nullable Supplier<Function<TesseraBlockProperties, Block>> modifiedPlanks = null, modifiedLog = null,
                 modifiedStrippedLog = null, modifiedWood = null, modifiedStrippedWood = null, modifiedPressurePlate = null,
                 modifiedButton = null, modifiedTrapdoor = null, modifiedDoor = null, modifiedStairs = null, modifiedSlab = null,
-                modifiedFence = null, modifiedFenceGate = null;
+                modifiedFence = null, modifiedFenceGate = null, modifiedStandingSign = null, modifiedWallSign = null,
+                modifiedHangingSign = null, modifiedWallHangingSign = null;
 
         int buttonTicksPressed = 30;
 
@@ -217,6 +261,10 @@ public class WoodBlockRegistrySet extends AbstractBlockRegistrySet {
             this.slabProps = baseProperties;
             this.fenceProps = baseProperties;
             this.fenceGateProps = baseProperties;
+
+            Supplier<TesseraBlockProperties> signProps = () -> baseProperties.get().forceSolidOn().noCollission().strength(1.0F);
+            this.signProps = signProps;
+            this.hangingSignProps = signProps;
         }
 
         //TODO add the rest: I don't wanna do that rn
@@ -259,9 +307,10 @@ public class WoodBlockRegistrySet extends AbstractBlockRegistrySet {
         public WoodBlockRegistrySet build(String id, String feature, WoodType type, Supplier<Block> sapling) {
             return new WoodBlockRegistrySet(id, feature, type, sapling, buttonTicksPressed, planksProps, logProps, strippedLogProps,
                     woodProps, strippedWoodProps, pressurePlateProps, buttonProps, trapdoorProps, doorProps, stairsProps,
-                    slabProps, fenceProps, fenceGateProps, modifiedPlanks, modifiedLog, modifiedStrippedLog, modifiedWood,
+                    slabProps, fenceProps, fenceGateProps, signProps, hangingSignProps, modifiedPlanks, modifiedLog, modifiedStrippedLog, modifiedWood,
                     modifiedStrippedWood, modifiedPressurePlate, modifiedButton, modifiedTrapdoor, modifiedDoor,
-                    modifiedStairs, modifiedSlab, modifiedFence, modifiedFenceGate
+                    modifiedStairs, modifiedSlab, modifiedFence, modifiedFenceGate, modifiedStandingSign, modifiedWallSign,
+                    modifiedHangingSign, modifiedWallHangingSign
             );
         }
 

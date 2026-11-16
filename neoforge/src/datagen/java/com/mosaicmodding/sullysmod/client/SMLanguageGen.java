@@ -4,9 +4,13 @@ import com.mosaicmodding.sullysmod.SullysMod;
 import com.mosaicmodding.sullysmod.core.SMConstants;
 import com.mosaicmodding.sullysmod.core.config.SMClientConfig;
 import com.mosaicmodding.sullysmod.core.config.SMCommonConfig;
-import com.mosaicmodding.sullysmod.registry.helpers.SMRegUtils;
+import com.mosaicmodding.sullysmod.core.SMUtils;
 import com.mosaicmodding.tessera.datagen.providers.TesseraDefaultLangProvider;
 import net.minecraft.data.PackOutput;
+import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.SolidBucketItem;
+import net.minecraft.world.level.block.WallHangingSignBlock;
+import net.minecraft.world.level.block.WallSignBlock;
 
 import java.util.Map;
 
@@ -18,10 +22,17 @@ public class SMLanguageGen extends TesseraDefaultLangProvider {
 
     @Override
     protected void addTranslations() {
-        forItems(SMRegUtils.getAllModItemsNoBlocks());
-        forBlocks(SMRegUtils.getAllModBlocks(), this::modifyBlockNames);
-        forEntities(SMRegUtils.getAllModEntityTypes());
-        forMobEffects(SMRegUtils.getAllModMobEffects()); //TODO custom names for effects
+        var modItems = SMUtils.getAllModItems();
+        SMUtils.takeAll(modItems, i -> i.get() instanceof BlockItem blockItem && !(blockItem instanceof SolidBucketItem));
+        forItems(modItems);
+
+        var modBlocks = SMUtils.getAllModBlocks();
+        SMUtils.takeAll(modBlocks, i -> i.get() instanceof WallSignBlock);
+        SMUtils.takeAll(modBlocks, i -> i.get() instanceof WallHangingSignBlock);
+        forBlocks(modBlocks, this::modifyBlockNames);
+
+        forEntities(SMUtils.getAllModEntityTypes());
+        forMobEffects(SMUtils.getAllModMobEffects()); //TODO custom names for effects
 
         forStringMap(SMCommonConfig.HOLDER.getMissingTranslations());
         forStringMap(SMClientConfig.HOLDER.getMissingTranslations());
@@ -49,6 +60,7 @@ public class SMLanguageGen extends TesseraDefaultLangProvider {
         if (name.endsWith("_carved")) {
             name = "carved_" + name.replaceFirst("_carved", "");
         }
+        //TODO also do for plank blocks
 
         return name;
     }
