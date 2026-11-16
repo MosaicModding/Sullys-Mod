@@ -60,7 +60,9 @@ public class SMLanguageGen extends TesseraDefaultLangProvider {
         if (name.endsWith("_carved")) {
             name = "carved_" + name.replaceFirst("_carved", "");
         }
-        //TODO also do for plank blocks
+        if (name.contains("_planks_")) {
+            name = name.replace("_planks", "");
+        }
 
         return name;
     }

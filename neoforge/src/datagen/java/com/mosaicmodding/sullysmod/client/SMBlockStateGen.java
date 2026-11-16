@@ -15,6 +15,7 @@ import com.mosaicmodding.tessera.datagen.smith.blockstate.BlockStateSystemData;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.SignBlock;
 import net.neoforged.neoforge.client.model.generators.ConfiguredModel;
 import net.neoforged.neoforge.client.model.generators.ModelFile;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
@@ -88,10 +89,18 @@ public class SMBlockStateGen extends TesseraBlockStateSystem {
         BlockStateSmithTypes.CROSS_MODEL_BLOCK.act(data, blockSet.getSaplingBlock());
         BlockStateSmithTypes.POTTED_PLANT.act(data, blockSet.getPottedSaplingBlock());
 
-        BlockStateSmithTypes.WOODEN_SIGN_BLOCK.act(data, blockSet.getSign().getLeft());
-        BlockStateSmithTypes.WOODEN_SIGN_BLOCK.act(data, blockSet.getSign().getRight());
-        //TODO implement hanging sign gen in Tessera
+        WOODEN_SIGN_BLOCK.act(data, blockSet.getSign().getLeft());
+        WOODEN_SIGN_BLOCK.act(data, blockSet.getSign().getRight());
+        WOODEN_SIGN_BLOCK.act(data, blockSet.getHangingSign().getLeft());
+        WOODEN_SIGN_BLOCK.act(data, blockSet.getHangingSign().getRight());
     }
+
+    @Deprecated //use updated tessera variant on next build
+    public static BlockStateSmith<SignBlock> WOODEN_SIGN_BLOCK = new BlockStateSmith<>(SignBlock.class, ItemModelSmithTypes.GENERATED_ITEM, (block, provider) -> {
+        var name = provider.getBlockName(block);
+        var particleTextureName = name.replace("_wall", "").replace("_sign", "").replace("_hanging", "") + "_planks";
+        provider.getVariantBuilder(block).partialState().addModels(ConfiguredModel.builder().modelFile(provider.models().sign(name, provider.getBlockTexture(particleTextureName))).build());
+    });
 
     public static BlockStateSmith<AmberLayeredCauldronBlock> AMBER_CAULDRON = new BlockStateSmith<>(AmberLayeredCauldronBlock.class, ItemModelSmithTypes.NO_DATAGEN, (block, provider) -> {
         provider.getVariantBuilder(block).forAllStates(blockState -> {
