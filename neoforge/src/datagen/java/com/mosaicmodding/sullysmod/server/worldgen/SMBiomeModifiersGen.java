@@ -1,4 +1,4 @@
-package com.mosaicmodding.sullysmod.server.builtin;
+package com.mosaicmodding.sullysmod.server.worldgen;
 
 import com.mosaicmodding.sullysmod.core.biome_modifiers.OptionalAddSpawnModifier;
 import com.mosaicmodding.sullysmod.core.event.SMBiomeModification;
@@ -19,9 +19,9 @@ import java.util.function.Supplier;
 
 import static com.mosaicmodding.sullysmod.core.SMUtils.path;
 
-public class SMBiomeModifiersProvider {
+public class SMBiomeModifiersGen {
 
-    public static void create(BootstrapContext<BiomeModifier> context) {
+    public static void add(BootstrapContext<BiomeModifier> context) {
         SMBiomeModification.forBiomeSpawnAdditions((biomeTag, type, weight, min, max, requiredModFeatures) -> {
             var name = Utils.getID(type).getPath();
 

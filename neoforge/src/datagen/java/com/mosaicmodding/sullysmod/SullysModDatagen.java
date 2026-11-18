@@ -5,7 +5,7 @@ import com.mosaicmodding.sullysmod.client.SMItemModelGen;
 import com.mosaicmodding.sullysmod.client.SMLanguageGen;
 import com.mosaicmodding.sullysmod.client.SMSoundDefinitionsGen;
 import com.mosaicmodding.sullysmod.server.SMDataMapGen;
-import com.mosaicmodding.sullysmod.server.builtin.SMBuiltinEntriesProvider;
+import com.mosaicmodding.sullysmod.server.SMBuiltinEntriesProvider;
 import com.mosaicmodding.sullysmod.server.fabricated_conditions.FabricatedConditionRegistry;
 import com.mosaicmodding.sullysmod.server.loot.SMLootTableGen;
 import com.mosaicmodding.sullysmod.server.recipes.SMRecipeGen;

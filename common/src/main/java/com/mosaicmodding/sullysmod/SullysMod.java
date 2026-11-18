@@ -30,6 +30,7 @@ public class SullysMod {
         SMCreativeTabs.init();
         SMMobEffects.init();
         SMParticleTypes.init();
+        SMTreeDecoratorTypes.init();
 
         PlatHelper.getPhysicalSide().ifClient(SullysModClient::init);
     }

@@ -86,7 +86,7 @@ public class SMBlockStateGen extends TesseraBlockStateSystem {
         BlockStateSmithTypes.FENCE_BLOCK.act(data, blockSet.getFence());
         BlockStateSmithTypes.FENCE_GATE_BLOCK.act(data, blockSet.getFenceGate());
 
-        BlockStateSmithTypes.CROSS_MODEL_BLOCK.act(data, blockSet.getSaplingBlock());
+        BlockStateSmithTypes.CROSS_MODEL_BLOCK.act(data, blockSet.getSapling());
         BlockStateSmithTypes.POTTED_PLANT.act(data, blockSet.getPottedSaplingBlock());
 
         WOODEN_SIGN_BLOCK.act(data, blockSet.getSign().getLeft());

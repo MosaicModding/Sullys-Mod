@@ -1,3 +1,5 @@
-// 1.21.1	2026-10-15T01:22:06.6441551	Registries
+// 1.21.1	2026-11-18T23:22:55.9128825	Registries
 2cd629ee3514fcd58598500a7d87153e91c26633 data/sullysmod/neoforge/biome_modifier/bouldering_zombie.json
 29feee506752b4c481dff426489989e978912ad8 data/sullysmod/neoforge/biome_modifier/lanternfish.json
+8835e323f3018af861ac1df4721941bf5a3e0052 data/sullysmod/worldgen/configured_feature/petrified_tree_small.json
+a2d0ba986b7eb1225e38081eebe8f7d1bbb3bc64 data/sullysmod/worldgen/placed_feature/petrified_tree_small.json

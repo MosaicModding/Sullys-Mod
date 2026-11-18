@@ -6,6 +6,7 @@
   "compatibilityLevel": "JAVA_18",
   "mixins": [
     "BlockSetTypeAccessor",
+    "TreeDecoratorTypeAccessor",
     "WallBlockAccessor",
     "WoodTypeAccessor"
   ],

@@ -12,7 +12,7 @@ public class NeoSpecificHandler {
         FlowerPotBlock flowerPot = (FlowerPotBlock) Blocks.FLOWER_POT;
         SMBlocks.REG_SETS.forEach(set -> {
             if (set instanceof WoodBlockRegistrySet woodSet) {
-                flowerPot.addPlant(woodSet.getSaplingBlock().getId(), woodSet.getPottedSaplingBlock());
+                flowerPot.addPlant(woodSet.getSapling().getId(), woodSet.getPottedSaplingBlock());
             }
         });
     }

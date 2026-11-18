@@ -214,7 +214,7 @@ public class WoodBlockRegistrySet extends AbstractBlockRegistrySet {
         return fenceGateBlock;
     }
 
-    public RegSupplier<Block> getSaplingBlock() {
+    public RegSupplier<Block> getSapling() {
         return saplingBlock;
     }
 

@@ -14,7 +14,8 @@ public class SMLootTableGen extends LootTableProvider {
     public SMLootTableGen(PackOutput output, CompletableFuture<HolderLookup.Provider> registries) {
         super(output, Set.of(), List.of(
                 new SubProviderEntry(SMBlockLoot::new, LootContextParamSets.BLOCK),
-                new SubProviderEntry(SMEntityLoot::new, LootContextParamSets.ENTITY)
+                new SubProviderEntry(SMEntityLoot::new, LootContextParamSets.ENTITY),
+                new SubProviderEntry(SMArchaeologyLoot::new, LootContextParamSets.ARCHAEOLOGY)
         ), registries);
     }
 }

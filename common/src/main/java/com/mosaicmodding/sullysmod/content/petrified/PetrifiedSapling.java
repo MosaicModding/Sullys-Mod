@@ -1,5 +1,6 @@
 package com.mosaicmodding.sullysmod.content.petrified;
 
+import com.mosaicmodding.sullysmod.registry.SMWorldgenFeatures;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.LevelReader;
@@ -13,7 +14,7 @@ import java.util.Optional;
 public class PetrifiedSapling extends SaplingBlock {
 
     public PetrifiedSapling(Properties properties) {
-        super(new TreeGrower("petrified", Optional.empty(), Optional.empty(), Optional.empty()), properties); //TODO
+        super(new TreeGrower("petrified", Optional.empty(), Optional.of(SMWorldgenFeatures.CONFIGURED_PETRIFIED_TREE_SMALL.getLeft()), Optional.empty()), properties);
     }
 
     @Override
