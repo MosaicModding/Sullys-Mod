@@ -14,14 +14,14 @@ import net.neoforged.neoforge.common.world.ModifiableBiomeInfo;
 
 import java.util.List;
 
-public record OptionalAddFeatureModifier(HolderSet<Biome> biomes, HolderSet<PlacedFeature> features, GenerationStep.Decoration step, List<String> required_mod_features) implements BiomeModifier {
+public record OptionalAddSingleFeatureModifier(HolderSet<Biome> biomes, Holder<PlacedFeature> feature, GenerationStep.Decoration step, List<String> required_mod_features) implements BiomeModifier {
 
     @Override
     public void modify(Holder<Biome> biome, Phase phase, ModifiableBiomeInfo.BiomeInfo.Builder builder) {
         if (this.required_mod_features.stream().allMatch(SMCommonConfig.HOLDER::isFeatureEnabled)) {
             if (phase == Phase.ADD && this.biomes.contains(biome)) {
                 BiomeGenerationSettingsBuilder generationSettings = builder.getGenerationSettings();
-                this.features.forEach((holder) -> generationSettings.addFeature(this.step, holder));
+                generationSettings.addFeature(this.step, feature);
             }
         }
 

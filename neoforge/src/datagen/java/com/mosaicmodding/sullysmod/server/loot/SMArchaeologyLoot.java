@@ -1,7 +1,7 @@
 package com.mosaicmodding.sullysmod.server.loot;
 
 import com.mosaicmodding.sullysmod.registry.SMBlocks;
-import com.mosaicmodding.sullysmod.registry.SMBuiltInLootTables;
+import com.mosaicmodding.sullysmod.registry.datapack.SMBuiltInLootTables;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.loot.LootTableSubProvider;
 import net.minecraft.resources.ResourceKey;
@@ -30,8 +30,8 @@ public class SMArchaeologyLoot implements LootTableSubProvider {
                 .add(LootItem.lootTableItem(SMBlocks.PETRIFIED_WOOD_BLOCK_SET.getSapling().get()))
                 .add(LootItem.lootTableItem(Items.STICK))
                 .add(LootItem.lootTableItem(Items.COAL))));
-        /*
-        pOutput.accept(SMBuiltInLootTables.GRAVEL_BIG_PETRIFIED_TREE, LootTable.lootTable().withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
+
+        pOutput.accept(SMBuiltInLootTables.GRAVEL_PETRIFIED_TREE, LootTable.lootTable().withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
                 .add(LootItem.lootTableItem(Items.DIAMOND).setWeight(ARTIFACT_COMMON_WEIGHT))
                 .add(LootItem.lootTableItem(SMBlocks.PETRIFIED_WOOD_BLOCK_SET.getSapling().get()).setWeight(ARTIFACT_COMMON_WEIGHT))
                 .add(LootItem.lootTableItem(Items.STICK).setWeight(ARTIFACT_COMMON_WEIGHT))
@@ -39,9 +39,10 @@ public class SMArchaeologyLoot implements LootTableSubProvider {
                 .add(LootItem.lootTableItem(Items.BONE).setWeight(ARTIFACT_COMMON_WEIGHT))
                 .add(LootItem.lootTableItem(Items.EMERALD).setWeight(ARTIFACT_COMMON_WEIGHT))
                 .add(LootItem.lootTableItem(Items.MUSIC_DISC_RELIC).setWeight(ARTIFACT_COMMON_WEIGHT))
-                .add(LootItem.lootTableItem(SMArtifacts.AMBER_ENCASED_BUG.get()).setWeight(ARTIFACT_COMMON_WEIGHT).when(SMFeatureLootItemCondition.modFeatureCondition(List.of(SMFeatures.AMBER))))
-                .add(LootItem.lootTableItem(SMArtifacts.RIBBED_ANCIENT_SKULL.getFirst().get()).setWeight(ARTIFACT_VERY_RARE_WEIGHT))
+                //.add(LootItem.lootTableItem(SMArtifacts.AMBER_ENCASED_BUG.get()).setWeight(ARTIFACT_COMMON_WEIGHT).when(SMFeatureLootItemCondition.modFeatureCondition(List.of(SMFeatures.AMBER))))
+                //.add(LootItem.lootTableItem(SMArtifacts.RIBBED_ANCIENT_SKULL.getFirst().get()).setWeight(ARTIFACT_VERY_RARE_WEIGHT))
         )); //At some point ancient gliding pet egg
+        /*
         pOutput.accept(SMBuiltInLootTables.OVERWORLD_ARTIFACTS, LootTable.lootTable().withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
                 //Common
                 .add(LootItem.lootTableItem(Items.COAL).setWeight(ARTIFACT_COMMON_WEIGHT + TRASH_WEIGHT_BONUS))

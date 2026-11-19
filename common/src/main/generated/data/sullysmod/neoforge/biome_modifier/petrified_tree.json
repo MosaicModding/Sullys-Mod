@@ -1,0 +1,9 @@
+{
+  "type": "sullysmod:optional_add_feature",
+  "biomes": "#sullysmod:petrified_tree_generates_in",
+  "feature": "sullysmod:petrified_tree",
+  "required_mod_features": [
+    "petrified_trees"
+  ],
+  "step": "underground_structures"
+}

@@ -1,8 +1,7 @@
 package com.mosaicmodding.sullysmod.content.petrified;
 
-import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
-import com.mosaicmodding.sullysmod.registry.SMBuiltInLootTables;
+import com.mosaicmodding.sullysmod.registry.datapack.SMBuiltInLootTables;
 import com.mosaicmodding.sullysmod.registry.SMTreeDecoratorTypes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.random.SimpleWeightedRandomList;

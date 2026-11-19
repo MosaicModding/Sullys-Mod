@@ -6,7 +6,7 @@ import com.mosaicmodding.sullysmod.content.gourd.EquipableGourdBlock;
 import com.mosaicmodding.sullysmod.content.gourd.GourdBlock;
 import com.mosaicmodding.sullysmod.content.petrified.PetrifiedSapling;
 import com.mosaicmodding.sullysmod.core.config.SMCommonConfig;
-import com.mosaicmodding.sullysmod.core.event.StrippableBlockRegistryEvent;
+import com.mosaicmodding.sullysmod.core.events.StrippableBlockRegistryEvent;
 import com.mosaicmodding.sullysmod.registry.properties.SMBlockProperties;
 import com.mosaicmodding.sullysmod.registry.registry_sets.AbstractBlockRegistrySet;
 import com.mosaicmodding.sullysmod.registry.registry_sets.WoodBlockRegistrySet;

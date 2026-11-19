@@ -1,0 +1,5 @@
+{
+  "allow_amber_blobs": true,
+  "nbt_location": "sullysmod:petrified/side2",
+  "suspicious_gravel_limit": 15
+}

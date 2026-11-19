@@ -5,7 +5,7 @@ import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import com.mosaicmodding.sullysmod.SullysMod;
-import com.mosaicmodding.sullysmod.core.biome_modifiers.OptionalAddFeatureModifier;
+import com.mosaicmodding.sullysmod.core.biome_modifiers.OptionalAddSingleFeatureModifier;
 import com.mosaicmodding.sullysmod.core.biome_modifiers.OptionalAddSpawnModifier;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.MobSpawnSettings;
@@ -22,14 +22,14 @@ import java.util.function.Function;
 public class SMBiomeModifiers {
     public static final DeferredRegister<MapCodec<? extends BiomeModifier>> BIOME_MODIFIERS = DeferredRegister.create(NeoForgeRegistries.Keys.BIOME_MODIFIER_SERIALIZERS, SullysMod.ID);
 
-    public static final DeferredHolder<MapCodec<? extends BiomeModifier>, MapCodec<OptionalAddFeatureModifier>> OPTIONAL_ADD_FEATURE = BIOME_MODIFIERS.register("optional_add_features",
+    public static final DeferredHolder<MapCodec<? extends BiomeModifier>, MapCodec<OptionalAddSingleFeatureModifier>> OPTIONAL_ADD_FEATURE = BIOME_MODIFIERS.register("optional_add_feature",
             () -> RecordCodecBuilder.mapCodec(builder -> builder
                     .group(
-                            Biome.LIST_CODEC.fieldOf("biomes").forGetter(OptionalAddFeatureModifier::biomes),
-                            PlacedFeature.LIST_CODEC.fieldOf("features").forGetter(OptionalAddFeatureModifier::features),
-                            GenerationStep.Decoration.CODEC.fieldOf("step").forGetter(OptionalAddFeatureModifier::step),
-                            Codec.STRING.listOf().fieldOf("required_mod_features").forGetter(OptionalAddFeatureModifier::required_mod_features))
-                    .apply(builder, OptionalAddFeatureModifier::new)));
+                            Biome.LIST_CODEC.fieldOf("biomes").forGetter(OptionalAddSingleFeatureModifier::biomes),
+                            PlacedFeature.CODEC.fieldOf("feature").forGetter(OptionalAddSingleFeatureModifier::feature),
+                            GenerationStep.Decoration.CODEC.fieldOf("step").forGetter(OptionalAddSingleFeatureModifier::step),
+                            Codec.STRING.listOf().fieldOf("required_mod_features").forGetter(OptionalAddSingleFeatureModifier::required_mod_features))
+                    .apply(builder, OptionalAddSingleFeatureModifier::new)));
 
     public static final DeferredHolder<MapCodec<? extends BiomeModifier>, MapCodec<OptionalAddSpawnModifier>> OPTIONAL_ADD_SPAWN = BIOME_MODIFIERS.register("optional_add_spawns",
             () -> RecordCodecBuilder.mapCodec(builder -> builder

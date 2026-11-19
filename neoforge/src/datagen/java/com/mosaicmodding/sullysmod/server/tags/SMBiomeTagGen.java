@@ -1,7 +1,7 @@
 package com.mosaicmodding.sullysmod.server.tags;
 
 import com.mosaicmodding.sullysmod.SullysMod;
-import com.mosaicmodding.sullysmod.registry.SMTags;
+import com.mosaicmodding.sullysmod.registry.datapack.SMTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.BiomeTagsProvider;
@@ -37,5 +37,6 @@ public class SMBiomeTagGen extends BiomeTagsProvider {
                 .addTag(Tags.Biomes.IS_SWAMP)
                 .add(Biomes.LUSH_CAVES)
                 .add(Biomes.DRIPSTONE_CAVES);
+        tag(SMTags.Biomes.PETRIFIED_TREE_GENERATES_IN).addTag(BiomeTags.IS_OVERWORLD);
     }
 }

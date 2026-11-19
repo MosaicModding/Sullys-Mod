@@ -1,6 +1,6 @@
 package com.mosaicmodding.sullysmod.registry.properties;
 
-import com.mosaicmodding.sullysmod.registry.SMTags;
+import com.mosaicmodding.sullysmod.registry.datapack.SMTags;
 import com.mosaicmodding.tessera.TesseraBlockProperties;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;

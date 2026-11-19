@@ -1,6 +1,6 @@
 package com.mosaicmodding.sullysmod.registry.registry_sets;
 
-import com.mosaicmodding.sullysmod.registry.SMTags;
+import com.mosaicmodding.sullysmod.registry.datapack.SMTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;

@@ -1,30 +1,37 @@
 package com.mosaicmodding.sullysmod.server.worldgen;
 
 import com.google.common.collect.ImmutableList;
+import com.mosaicmodding.sullysmod.content.petrified.PetrifiedTreeConfig;
 import com.mosaicmodding.sullysmod.content.petrified.PetrifiedTreeGravelDecorator;
 import com.mosaicmodding.sullysmod.registry.SMBlocks;
 import com.mosaicmodding.sullysmod.registry.SMWorldgenFeatures;
+import net.minecraft.core.Holder;
 import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.util.valueproviders.ConstantInt;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.feature.Feature;
+import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 import net.minecraft.world.level.levelgen.feature.configurations.OreConfiguration;
 import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration;
 import net.minecraft.world.level.levelgen.feature.featuresize.TwoLayersFeatureSize;
 import net.minecraft.world.level.levelgen.feature.foliageplacers.FancyFoliagePlacer;
 import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
 import net.minecraft.world.level.levelgen.feature.trunkplacers.FancyTrunkPlacer;
+import net.minecraft.world.level.levelgen.placement.BlockPredicateFilter;
+import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 
 import java.util.List;
 import java.util.OptionalInt;
 
-import static com.mosaicmodding.sullysmod.registry.SMWorldgenFeatures.*;
+import static com.mosaicmodding.sullysmod.registry.datapack.SMWorldgenFeatureDefinitions.CONFIGURED_PETRIFIED_TREE;
+import static com.mosaicmodding.sullysmod.registry.datapack.SMWorldgenFeatureDefinitions.CONFIGURED_PETRIFIED_TREE_SAPLING;
 
 public class SMConfiguredFeatureGen {
 
     public static void add(BootstrapContext<ConfiguredFeature<?, ?>> context) {
-        context.register(CONFIGURED_PETRIFIED_TREE_SMALL.getLeft(),
+        context.register(CONFIGURED_PETRIFIED_TREE_SAPLING.getLeft(),
                 addTreeConfig(new TreeConfiguration.TreeConfigurationBuilder(
                         BlockStateProvider.simple(SMBlocks.PETRIFIED_WOOD_BLOCK_SET.getLog().get()),
                         new FancyTrunkPlacer(3, 11, 0),
@@ -34,6 +41,13 @@ public class SMConfiguredFeatureGen {
                         .decorators(ImmutableList.of(new PetrifiedTreeGravelDecorator()))
                         )
         );
+
+        Holder<ConfiguredFeature<?, ?>> amberConfig = Holder.direct(new ConfiguredFeature<>(SMWorldgenFeatures.AMBER_BLOB.get(), NoneFeatureConfiguration.INSTANCE));
+        var amberPlacement = Holder.direct(new PlacedFeature(amberConfig, List.of(BlockPredicateFilter.forPredicate(
+                BlockPredicate.allOf(BlockPredicate.matchesBlocks(Blocks.AIR))))));
+
+        context.register(CONFIGURED_PETRIFIED_TREE.getLeft(), new ConfiguredFeature<>(SMWorldgenFeatures.PETRIFIED_TREE.get(), new PetrifiedTreeConfig(amberPlacement)));
+
     }
 
     private static ConfiguredFeature<?, ?> addOreConfig(Feature<OreConfiguration> feature, List<OreConfiguration.TargetBlockState> targetList, int veinSize, float airDiscardChance) {

@@ -1,0 +1,47 @@
+{
+  "type": "minecraft:archaeology",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:diamond",
+          "weight": 50
+        },
+        {
+          "type": "minecraft:item",
+          "name": "sullysmod:petrified_sapling",
+          "weight": 50
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:stick",
+          "weight": 50
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:coal",
+          "weight": 50
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:bone",
+          "weight": 50
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:emerald",
+          "weight": 50
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:music_disc_relic",
+          "weight": 50
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "sullysmod:archaeology/gravel_petrified_tree"
+}

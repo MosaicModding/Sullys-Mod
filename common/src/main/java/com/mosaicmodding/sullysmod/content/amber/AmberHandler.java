@@ -2,7 +2,7 @@ package com.mosaicmodding.sullysmod.content.amber;
 
 import com.mosaicmodding.sullysmod.registry.SMBlocks;
 import com.mosaicmodding.sullysmod.registry.SMParticleTypes;
-import com.mosaicmodding.sullysmod.registry.SMTags;
+import com.mosaicmodding.sullysmod.registry.datapack.SMTags;
 import net.mehvahdjukaar.moonlight.api.client.util.ParticleUtil;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -173,7 +173,7 @@ public class AmberHandler {
         ParticleUtil.spawnParticleOnBoundingBox(level.getBlockState(pos).getShape(level, pos).bounds().move(pos), level, particleOptions, uniformInt, maxSpeed); //TODO make this work lol
     }
 
-    //TODO make not stick to edge of the block below
+    //TODO make not stick to edge of the block below & only spawn on sides that touch air
     private static void spawnParticlesOnBlockFaces(Level pLevel, BlockPos pPos, ParticleOptions pParticle, IntProvider pCount) {
         for(Direction direction : Direction.values()) {
             if (direction != Direction.UP) {

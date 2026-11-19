@@ -1,4 +1,4 @@
-package com.mosaicmodding.sullysmod.registry;
+package com.mosaicmodding.sullysmod.registry.datapack;
 
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
@@ -8,7 +8,7 @@ import static com.mosaicmodding.sullysmod.core.SMUtils.path;
 
 public class SMBuiltInLootTables {
     public static final ResourceKey<LootTable> GRAVEL_PETRIFIED_SAPLING_TREE = register("archaeology/gravel_petrified_sapling_tree");
-    public static final ResourceKey<LootTable> GRAVEL_BIG_PETRIFIED_TREE = register("archaeology/gravel_big_petrified_tree");
+    public static final ResourceKey<LootTable> GRAVEL_PETRIFIED_TREE = register("archaeology/gravel_petrified_tree");
     public static final ResourceKey<LootTable> OVERWORLD_ARTIFACTS = register("archaeology/overworld_artifacts");
 
     private static ResourceKey<LootTable> register(String name) {

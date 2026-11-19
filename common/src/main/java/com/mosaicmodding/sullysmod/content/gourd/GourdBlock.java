@@ -1,7 +1,7 @@
 package com.mosaicmodding.sullysmod.content.gourd;
 
 import com.mojang.serialization.MapCodec;
-import com.mosaicmodding.sullysmod.registry.SMTags;
+import com.mosaicmodding.sullysmod.registry.datapack.SMTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.sounds.SoundEvents;

@@ -72,26 +72,26 @@ public class SMLanguageGen extends TesseraDefaultLangProvider {
         soundSupplier.forEach(s -> {
             var modId = s.get().getLocation().getNamespace();
             var soundPath = s.get().getLocation().getPath();
-            String name = correctSoundName(soundPath).replaceAll("_", " ");
-            name = name.substring(0, 1).toUpperCase() + name.substring(1);
-            add(modId + ".subtitle." + soundPath, name);
+            String nbtLocation = correctSoundName(soundPath).replaceAll("_", " ");
+            nbtLocation = nbtLocation.substring(0, 1).toUpperCase() + nbtLocation.substring(1);
+            add(modId + ".subtitle." + soundPath, nbtLocation);
         });
     }
 
-    public String correctSoundName(String name) {
-        if ((name.endsWith("_step"))) {
+    public String correctSoundName(String nbtLocation) {
+        if ((nbtLocation.endsWith("_step"))) {
             return "footsteps";
         }
-        if ((name.endsWith("_place"))) {
+        if ((nbtLocation.endsWith("_place"))) {
             return "block_placed";
         }
-        if ((name.endsWith("_break"))) {
+        if ((nbtLocation.endsWith("_break"))) {
             return "block_broken";
         }
-        if ((name.endsWith("_hit"))) {
+        if ((nbtLocation.endsWith("_hit"))) {
             return "block_breaking";
         }
-        return name;
+        return nbtLocation;
     }
 
      */

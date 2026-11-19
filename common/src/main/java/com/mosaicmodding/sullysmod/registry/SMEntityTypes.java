@@ -2,6 +2,9 @@ package com.mosaicmodding.sullysmod.registry;
 
 import com.mosaicmodding.sullysmod.content.lanternfish.LanternfishEntity;
 import com.mosaicmodding.sullysmod.content.undead_variants.BoulderingZombieEntity;
+import com.mosaicmodding.sullysmod.core.config.SMCommonConfig;
+import com.mosaicmodding.sullysmod.core.events.BiomeSpawnAdditionEvent;
+import com.mosaicmodding.sullysmod.registry.datapack.SMTags;
 import net.mehvahdjukaar.moonlight.api.misc.EventCalled;
 import net.mehvahdjukaar.moonlight.api.misc.RegSupplier;
 import net.mehvahdjukaar.moonlight.api.platform.RegHelper;
@@ -30,6 +33,11 @@ public class SMEntityTypes {
     public static void registerSpawnPlacements(RegHelper.SpawnPlacementEvent event) {
         event.register(BOULDERING_ZOMBIE.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, BoulderingZombieEntity::checkBoulderingZombieSpawnRules);
         event.register(LANTERNFISH.get(), SpawnPlacementTypes.IN_WATER, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, LanternfishEntity::checkLanternfishSpawnRules);
+    }
+
+    public static void registerBiomeSpawnAdditions(BiomeSpawnAdditionEvent event) {
+        event.register(SMTags.Biomes.BOULDERING_ZOMBIE_SPAWN_IN, SMEntityTypes.BOULDERING_ZOMBIE.get(), 100, 4, 6, SMCommonConfig.BOULDERING_ZOMBIE.getSecond());
+        event.register(SMTags.Biomes.LANTERNFISH_SPAWN_IN, SMEntityTypes.LANTERNFISH.get(), 15, 4, 6, SMCommonConfig.LANTERNFISH.getSecond());
     }
 
     public static <T extends Entity> RegSupplier<EntityType<T>> register(String name, EntityType.EntityFactory<T> factory, MobCategory category, float width, float height) {

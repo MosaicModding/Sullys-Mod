@@ -1,0 +1,25 @@
+{
+  "type": "sullysmod:petrified_tree",
+  "config": {
+    "amber_blob_placements": {
+      "feature": {
+        "type": "sullysmod:amber_blob",
+        "config": {}
+      },
+      "placement": [
+        {
+          "type": "minecraft:block_predicate_filter",
+          "predicate": {
+            "type": "minecraft:all_of",
+            "predicates": [
+              {
+                "type": "minecraft:matching_blocks",
+                "blocks": "minecraft:air"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

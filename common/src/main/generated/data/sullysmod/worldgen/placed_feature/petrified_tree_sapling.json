@@ -1,5 +1,5 @@
 {
-  "feature": "sullysmod:petrified_tree_small",
+  "feature": "sullysmod:petrified_tree_sapling",
   "placement": [
     {
       "type": "minecraft:block_predicate_filter",
