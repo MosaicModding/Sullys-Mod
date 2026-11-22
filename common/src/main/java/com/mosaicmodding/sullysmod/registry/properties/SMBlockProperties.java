@@ -88,6 +88,39 @@ public class SMBlockProperties {
                 .setCutout();
     }
 
+    public static TesseraBlockProperties ARTIFACT_FLOWER() {
+        return TesseraBlockProperties.copy(Blocks.POPPY);
+    }
+
+
+    public static TesseraBlockProperties GOLDEN_GOBLET() {
+        return TesseraBlockProperties.of()
+                .instabreak()
+                .pushReaction(PushReaction.DESTROY)
+                .sound(SoundType.METAL)
+                .mapColor(MapColor.GOLD);
+    }
+    public static TesseraBlockProperties FAMILIAR_CUBE() {
+        return TesseraBlockProperties.of()
+                .mapColor(MapColor.METAL)
+                .strength(5.0F, 6.0F)
+                .sound(SoundType.METAL);
+    }
+    public static TesseraBlockProperties IDOL(MapColor color) {
+        return TesseraBlockProperties.of()
+                .mapColor(color)
+                .strength(1.5F, 6.0F);
+    }
+
+    public static TesseraBlockProperties GOLDEN_IDOL(){
+        return TesseraBlockProperties.of()
+                .strength(3.0F, 6.0F)
+                .sound(SoundType.METAL)
+                .mapColor(MapColor.GOLD)
+                .emissiveRendering(SMBlockProperties::always)
+                .lightLevel(state -> 6);
+    }
+
     public static TesseraBlockProperties BRICKS_DEFAULT() {
         return TesseraBlockProperties.copy(Blocks.STONE_BRICKS).needsPickaxe().lootDropSelf();
     }

@@ -15,4 +15,13 @@ public class SMItemProperties {
     public static Item.Properties FOOD(FoodProperties props) {
         return new Item.Properties().food(props);
     }
+
+    public static Item.Properties ARTIFACT() {
+        return new Item.Properties()/*.rarity(SMArtifacts.ANCIENT)*/;
+    }
+
+    public static Item.Properties ARTIFACT_DURABILITY(int maxDamage) {
+        return new Item.Properties()/*.rarity(SMArtifacts.ANCIENT)*/.durability(maxDamage);
+    }
+
 }

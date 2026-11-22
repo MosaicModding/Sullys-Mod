@@ -23,6 +23,7 @@ public class SullysMod {
 
         SMItems.init();
         SMBlocks.init();
+        SMArtifacts.init();
         SMBlockEntityTypes.init();
         SMEntityAttachments.init();
         SMEntityTypes.init();
