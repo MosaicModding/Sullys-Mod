@@ -16,5 +16,7 @@ public class SMSoundEvents {
     public static final RegSupplier<SoundEvent> LANTERNFISH_HURT = RegHelper.registerSound(path("entity.lanternfish.hurt"));
     public static final RegSupplier<SoundEvent> LANTERNFISH_DEATH = RegHelper.registerSound(path("entity.lanternfish.death"));
 
+    public static final RegSupplier<SoundEvent> BROKEN_BOTTLE_SHATTERS = RegHelper.registerSound(path("item.broken_bottle.shatter"));
+
     public static void init() {}
 }

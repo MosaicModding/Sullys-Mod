@@ -68,26 +68,6 @@ public class SMBlockProperties {
         return TesseraBlockProperties.copy(PETRIFIED()).mapColor(state -> state.getValue(RotatedPillarBlock.AXIS) == Direction.Axis.Y ? topColor : sideColor);
     }
 
-    public static TesseraBlockProperties FLOWER_POT() {
-        return TesseraBlockProperties.of()
-                .instabreak()
-                .noOcclusion()
-                .pushReaction(PushReaction.DESTROY)
-                .setCutout();
-    }
-
-    public static TesseraBlockProperties SAPLING() {
-        return TesseraBlockProperties.of()
-                .mapColor(MapColor.PLANT)
-                .noCollission()
-                .randomTicks()
-                .instabreak()
-                .sound(SoundType.GRASS)
-                .pushReaction(PushReaction.DESTROY)
-                .lootDropSelf()
-                .setCutout();
-    }
-
     public static TesseraBlockProperties ARTIFACT_FLOWER() {
         return TesseraBlockProperties.copy(Blocks.POPPY);
     }
@@ -123,6 +103,26 @@ public class SMBlockProperties {
 
     public static TesseraBlockProperties BRICKS_DEFAULT() {
         return TesseraBlockProperties.copy(Blocks.STONE_BRICKS).needsPickaxe().lootDropSelf();
+    }
+
+    public static TesseraBlockProperties FLOWER_POT() {
+        return TesseraBlockProperties.of()
+                .instabreak()
+                .noOcclusion()
+                .pushReaction(PushReaction.DESTROY)
+                .setCutout();
+    }
+
+    public static TesseraBlockProperties SAPLING() {
+        return TesseraBlockProperties.of()
+                .mapColor(MapColor.PLANT)
+                .noCollission()
+                .randomTicks()
+                .instabreak()
+                .sound(SoundType.GRASS)
+                .pushReaction(PushReaction.DESTROY)
+                .lootDropSelf()
+                .setCutout();
     }
 
     public static boolean never(BlockState state, BlockGetter getter, BlockPos pos) {
