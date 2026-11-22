@@ -9,7 +9,10 @@ import net.mehvahdjukaar.moonlight.api.platform.RegHelper;
 import net.mehvahdjukaar.moonlight.api.platform.TabAdderHelper;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.CreativeModeTabs;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
+
+import java.util.Objects;
 
 import static com.mosaicmodding.sullysmod.registry.SMBlocks.*;
 import static com.mosaicmodding.sullysmod.registry.SMItems.*;
@@ -19,6 +22,10 @@ public class SMCreativeTabs {
 
     public static final RegSupplier<CreativeModeTab> CONTENT_TAB = RegHelper.registerCreativeModeTab(path(SullysMod.ID), builder ->
         builder.title(SMConstants.Text.MOD_TAB).icon(() -> CARVED_MINIMU_GOURD.get().asItem().getDefaultInstance()).build()
+    );
+
+    public static final RegSupplier<CreativeModeTab> ARTIFACTS_TAB = RegHelper.registerCreativeModeTab(path(SullysMod.ID).withSuffix("_artifacts"), builder ->
+            builder.title(SMConstants.Text.ARTIFACTS_TAB).icon(() -> SMArtifacts.BROKEN_FANCY_DAGGER.get().asItem().getDefaultInstance()).build()
     );
 
     public static void registerItemsToTabs(RegHelper.ItemToTabEvent event) {
@@ -36,6 +43,10 @@ public class SMCreativeTabs {
         tabAdder.add(CreativeModeTabs.NATURAL_BLOCKS, SMCommonConfig.GOURDS.getSecond(), GIGANTO_GOURD, CARVED_GIGANTO_GOURD, GIGANTO_GOURD_LANTERN, MINIMU_GOURD, CARVED_MINIMU_GOURD, MINIMU_GOURD_LANTERN);
         tabAdder.add(CreativeModeTabs.BUILDING_BLOCKS, SMCommonConfig.AMBER_BLOCKS.getSecond(), ROUGH_AMBER);
         REG_SETS.forEach(set -> set.addToTab(tabAdder));
+
+        if (SMCommonConfig.isEnabled(SMCommonConfig.ARTIFACTS.getSecond())) {
+            event.addItems(ARTIFACTS_TAB.getKey(), null, false, SMArtifacts.MOD_ARTIFACTS.stream().map(RegSupplier::get).map(Item::getDefaultInstance).toList());
+        }
     }
 
     public static void init() {

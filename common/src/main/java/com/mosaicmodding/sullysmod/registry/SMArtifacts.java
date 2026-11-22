@@ -26,7 +26,7 @@ public class SMArtifacts {
     //We have this here so KubeJS can access it!
     //todo public static final Rarity ANCIENT = Rarity.create("sullysmod:ancient", style -> style.withColor(15107584));
 
-    public static final List<RegSupplier<Item>> ARTIFACT_DESC_MAP = new ArrayList<>();
+    public static final List<RegSupplier<Item>> MOD_ARTIFACTS = new ArrayList<>();
     public static final Map<Supplier<Item>, Integer> TRADES = new HashMap<>();
 
     public static final RegSupplier<Item> PRIMITIVE_KNIFE = registerArtifact("primitive_knife", "A small knife made from obsidian", () -> new ArtifactWeaponItem(5, -2.5F, null, SMItemProperties.ARTIFACT_DURABILITY(20)), 15);
@@ -97,9 +97,9 @@ public class SMArtifacts {
     public static final RegSupplier<Block> POTTED_DRIED_RED_FLOWER = RegHelper.registerBlock(path("potted_dried_red_flower"), () -> PlatHelper.newFlowerPot(() -> (FlowerPotBlock) Blocks.FLOWER_POT, DRIED_RED_FLOWER, SMBlockProperties.FLOWER_POT()));
 
 
-    public static final RegSupplier<Block> BROKEN_BOWL = registerPlaceable("broken_bowl", "A large crack runs down the edge", () -> new ArtifactBlockWithShape(ArtifactBlockShapes.BOWL(), SMBlockProperties.FLOWER_POT()), 9);
-    public static final RegSupplier<Block> BROKEN_VASE = registerPlaceable("broken_vase", "A large piece of the side is missing", () -> new ArtifactBlockWithShape(ArtifactBlockShapes.VASE(), SMBlockProperties.FLOWER_POT()), 10);
-    public static final RegSupplier<Block> BROKEN_CUP = registerPlaceable("broken_cup", "A small crack keeps it from retaining any liquid", () -> new ArtifactBlockWithShape(ArtifactBlockShapes.CUP(), SMBlockProperties.FLOWER_POT()), 10);
+    public static final RegSupplier<Block> BROKEN_BOWL = registerPlaceable("broken_bowl", "A large crack runs down the edge", () -> new ArtifactBlockWithShape(ArtifactBlockShapes.BOWL(), SMBlockProperties.FLOWER_POT().lootDropSelf()), 9);
+    public static final RegSupplier<Block> BROKEN_VASE = registerPlaceable("broken_vase", "A large piece of the side is missing", () -> new ArtifactBlockWithShape(ArtifactBlockShapes.VASE(), SMBlockProperties.FLOWER_POT().lootDropSelf()), 10);
+    public static final RegSupplier<Block> BROKEN_CUP = registerPlaceable("broken_cup", "A small crack keeps it from retaining any liquid", () -> new ArtifactBlockWithShape(ArtifactBlockShapes.CUP(), SMBlockProperties.FLOWER_POT().lootDropSelf()), 10);
     public static final RegSupplier<Block> GOLDEN_IDOL = registerPlaceable("golden_idol", "The red rock on top is warm to the touch", () -> new ArtifactBlockWithShape(ArtifactBlockShapes.GOLDEN_IDOL(), SMBlockProperties.GOLDEN_IDOL()), 35);
     public static final RegSupplier<Block> GOLDEN_GOBLET = registerPlaceable("golden_goblet", "An old but beautiful chalice made by a skilled goldsmith", () -> new ArtifactBlockWithShape(ArtifactBlockShapes.GOLDEN_GOBLET(), SMBlockProperties.GOLDEN_GOBLET()), 29);
     public static final RegSupplier<Block> FAMILIAR_CUBE = registerPlaceable("familiar_cube", "Hot to the touch and has strange growths on it", () -> new ArtifactBlockWithShape(ArtifactBlockShapes.FAMILIAR_CUBE(), SMBlockProperties.FAMILIAR_CUBE()), 30);
@@ -156,7 +156,7 @@ public class SMArtifacts {
     private static RegSupplier<Item> registerArtifact(String name, String description, Supplier<Item> item, int price) {
         RegSupplier<Item> object = RegHelper.registerItem(path(name), item);
         //todo SMTextUtil.artifactDesc(name, description);
-        ARTIFACT_DESC_MAP.add(object);
+        MOD_ARTIFACTS.add(object);
         TRADES.put(object, price);
         return object;
     }

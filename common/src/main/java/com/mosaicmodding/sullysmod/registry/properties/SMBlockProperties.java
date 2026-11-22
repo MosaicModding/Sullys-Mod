@@ -69,7 +69,7 @@ public class SMBlockProperties {
     }
 
     public static TesseraBlockProperties ARTIFACT_FLOWER() {
-        return TesseraBlockProperties.copy(Blocks.POPPY);
+        return TesseraBlockProperties.copy(Blocks.POPPY).lootDropSelf();
     }
 
 
@@ -78,27 +78,31 @@ public class SMBlockProperties {
                 .instabreak()
                 .pushReaction(PushReaction.DESTROY)
                 .sound(SoundType.METAL)
-                .mapColor(MapColor.GOLD);
+                .mapColor(MapColor.GOLD)
+                .lootDropSelf();
     }
     public static TesseraBlockProperties FAMILIAR_CUBE() {
         return TesseraBlockProperties.of()
                 .mapColor(MapColor.METAL)
                 .strength(5.0F, 6.0F)
-                .sound(SoundType.METAL);
+                .sound(SoundType.METAL)
+                .lootDropSelf();
     }
     public static TesseraBlockProperties IDOL(MapColor color) {
         return TesseraBlockProperties.of()
                 .mapColor(color)
-                .strength(1.5F, 6.0F);
+                .strength(1.5F, 6.0F)
+                .lootDropSelf();
     }
 
-    public static TesseraBlockProperties GOLDEN_IDOL(){
+    public static TesseraBlockProperties GOLDEN_IDOL() {
         return TesseraBlockProperties.of()
                 .strength(3.0F, 6.0F)
                 .sound(SoundType.METAL)
                 .mapColor(MapColor.GOLD)
                 .emissiveRendering(SMBlockProperties::always)
-                .lightLevel(state -> 6);
+                .lightLevel(state -> 6)
+                .lootDropSelf();
     }
 
     public static TesseraBlockProperties BRICKS_DEFAULT() {

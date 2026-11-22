@@ -16,6 +16,7 @@ public class SMTags {
 
     public static class Items {
         public static final TagKey<Item> TOOLS_SHEAR = commonTag("tools/shear");
+        public static final TagKey<Item> ARTIFACTS = modTag("artifacts");
 
         public static TagKey<Item> modTag(String id) {
             return createModTag(Registries.ITEM, id);

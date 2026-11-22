@@ -55,7 +55,5 @@ public class SMArmorMaterials {
             0
     );
 
-    public static void init() {
-
-    }
+    public static void init() {}
 }
