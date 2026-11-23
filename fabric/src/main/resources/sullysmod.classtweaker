@@ -1,0 +1,4 @@
+classTweaker v2 named
+
+#Enum Extensions
+extend-enum net/minecraft/world/item/Rarity SULLYSMOD_ANCIENT

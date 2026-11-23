@@ -1,0 +1,15 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.mosaicmodding.sullysmod.platform.mixin",
+  "refmap": "${mod_id}.fabric.refmap.json",
+  "compatibilityLevel": "JAVA_17",
+  "mixins": [
+    "RarityMixin"
+  ],
+  "client": [],
+  "server": [],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

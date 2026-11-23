@@ -2,6 +2,7 @@ package com.mosaicmodding.sullysmod.client;
 
 import com.mosaicmodding.sullysmod.SullysMod;
 import com.mosaicmodding.sullysmod.content.amber.AmberLayeredCauldronBlock;
+import com.mosaicmodding.sullysmod.registry.SMArtifacts;
 import com.mosaicmodding.sullysmod.registry.SMBlocks;
 import com.mosaicmodding.sullysmod.core.SMUtils;
 import com.mosaicmodding.sullysmod.registry.registry_sets.WoodBlockRegistrySet;
@@ -12,13 +13,18 @@ import com.mosaicmodding.tessera.datagen.providers.block.TesseraBlockStateSystem
 import com.mosaicmodding.tessera.datagen.providers.item.TesseraItemModelSystem;
 import com.mosaicmodding.tessera.datagen.smith.blockstate.BlockStateSmith;
 import com.mosaicmodding.tessera.datagen.smith.blockstate.BlockStateSystemData;
+import net.mehvahdjukaar.moonlight.api.misc.RegSupplier;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SignBlock;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.neoforged.neoforge.client.model.generators.ConfiguredModel;
 import net.neoforged.neoforge.client.model.generators.ModelFile;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
+
+import javax.annotation.Nullable;
 
 public class SMBlockStateGen extends TesseraBlockStateSystem {
 
@@ -49,6 +55,19 @@ public class SMBlockStateGen extends TesseraBlockStateSystem {
         BlockStateSmithTypes.ORIENTABLE_WITH_BOTTOM_BLOCK.act(data, SMBlocks.GIGANTO_GOURD_LANTERN);
         BlockStateSmithTypes.ORIENTABLE_WITH_BOTTOM_BLOCK.act(data, SMBlocks.MINIMU_GOURD_LANTERN);
 
+        setTexturePath("artifacts");
+        basedOnTemplate(data, SMArtifacts.BROKEN_BOWL, "bowl", false, data.provider().getVanillaBlockTexture(Blocks.TERRACOTTA));
+        basedOnTemplate(data, SMArtifacts.BROKEN_VASE, "vase", false, data.provider().getVanillaBlockTexture(Blocks.TERRACOTTA));
+        basedOnTemplate(data, SMArtifacts.BROKEN_CUP, "cup", false, data.provider().getVanillaBlockTexture(Blocks.TERRACOTTA));
+        basedOnTemplate(data, SMArtifacts.GOLDEN_IDOL, false, data.provider().getVanillaBlockTexture(Blocks.GOLD_BLOCK));
+        basedOnTemplate(data, SMArtifacts.GOLDEN_GOBLET, false, data.provider().getVanillaBlockTexture(Blocks.GOLD_BLOCK));
+        basedOnTemplate(data, SMArtifacts.FAMILIAR_CUBE, false);
+        basedOnTemplate(data, SMArtifacts.STONE_IDOL, true, data.provider().getVanillaBlockTexture(Blocks.STONE));
+        basedOnTemplate(data, SMArtifacts.FROG_IDOL, true, data.provider().getVanillaBlockTexture(Blocks.PACKED_MUD));
+        BlockStateSmithTypes.CROSS_MODEL_BLOCK.act(data, SMArtifacts.DRIED_RED_FLOWER);
+        BlockStateSmithTypes.CROSS_MODEL_BLOCK.act(data, SMArtifacts.DRIED_CYAN_FLOWER);
+        BlockStateSmithTypes.POTTED_PLANT.act(data, SMArtifacts.POTTED_DRIED_RED_FLOWER);
+        BlockStateSmithTypes.POTTED_PLANT.act(data, SMArtifacts.POTTED_DRIED_CYAN_FLOWER);
     }
 
     public static void createForBlockSet(BlockStateSystemData<SMBlockStateGen> data, SimpleBlockRegistrySet blockSet) {
@@ -129,4 +148,33 @@ public class SMBlockStateGen extends TesseraBlockStateSystem {
             return ConfiguredModel.builder().modelFile(file).build();
         });
     });
+
+    private void basedOnTemplate(BlockStateSystemData<SMBlockStateGen> data, RegSupplier<Block> blockSupplier, String templateName, boolean directional, @Nullable ResourceLocation customParticle) {
+        BlockStateSmith<Block> smith = new BlockStateSmith<>(Block.class, ItemModelSmithTypes.NO_DATAGEN, (block, provider) -> {
+            provider.getVariantBuilder(block).forAllStates(state -> {
+                ResourceLocation templateLoc = provider.getBlockTexture("template_" + templateName);
+                ResourceLocation baseTexture = provider.getBlockTexture(block);
+                ModelFile file = models().withExistingParent(provider.getBlockName(block), templateLoc)
+                        .texture("0", baseTexture)
+                        .texture("1", customParticle != null ? customParticle : baseTexture)
+                        .renderType("cutout");
+
+                var builder = ConfiguredModel.builder();
+                builder.modelFile(file);
+                if (directional) {
+                    builder.rotationY(((int) state.getValue(BlockStateProperties.HORIZONTAL_FACING).toYRot() + 180) % 360);
+                }
+                return builder.build();
+            });
+        });
+
+        smith.act(data, blockSupplier);
+    }
+    private void basedOnTemplate(BlockStateSystemData<SMBlockStateGen> data, RegSupplier<Block> blockSupplier, boolean directional, ResourceLocation customParticle) {
+        basedOnTemplate(data, blockSupplier, data.provider().getBlockName(blockSupplier.get()), directional, customParticle);
+    }
+
+    private void basedOnTemplate(BlockStateSystemData<SMBlockStateGen> data, RegSupplier<Block> blockSupplier, boolean directional) {
+        basedOnTemplate(data, blockSupplier, directional, null);
+    }
 }

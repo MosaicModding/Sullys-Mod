@@ -1,5 +1,6 @@
 package com.mosaicmodding.sullysmod.core;
 
+import com.mosaicmodding.sullysmod.registry.SMArtifacts;
 import com.mosaicmodding.sullysmod.registry.SMBlocks;
 import com.mosaicmodding.sullysmod.registry.registry_sets.WoodBlockRegistrySet;
 import net.minecraft.world.level.block.Blocks;
@@ -15,5 +16,7 @@ public class NeoSpecificHandler {
                 flowerPot.addPlant(woodSet.getSapling().getId(), woodSet.getPottedSaplingBlock());
             }
         });
+        flowerPot.addPlant(SMArtifacts.DRIED_RED_FLOWER.getId(), SMArtifacts.POTTED_DRIED_RED_FLOWER);
+        flowerPot.addPlant(SMArtifacts.DRIED_CYAN_FLOWER.getId(), SMArtifacts.POTTED_DRIED_CYAN_FLOWER);
     }
 }

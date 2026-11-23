@@ -3,7 +3,6 @@ package com.mosaicmodding.sullysmod;
 import com.mosaicmodding.sullysmod.content.petrified.PetrifiedTreeVariant;
 import com.mosaicmodding.sullysmod.core.SMFabricEventCallbacks;
 import com.mosaicmodding.sullysmod.core.config.SMCommonConfig;
-import com.mosaicmodding.sullysmod.core.event.SMBiomeModification;
 import com.mosaicmodding.sullysmod.registry.SMBlocks;
 import com.mosaicmodding.sullysmod.registry.SMEntityTypes;
 import com.mosaicmodding.sullysmod.registry.SMFabricConditions;

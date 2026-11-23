@@ -1,6 +1,7 @@
 package com.mosaicmodding.sullysmod.platform;
 
 import com.mosaicmodding.sullysmod.registry.SMBlocks;
+import net.minecraft.world.item.Rarity;
 import net.minecraft.world.level.block.Block;
 
 import java.util.HashMap;
@@ -20,5 +21,10 @@ public class SMPlatHelperFabricImpl implements SMPlatHelper {
         }));
 
         return pickaxeStrippables.getOrDefault(original, original);
+    }
+
+    @Override
+    public Rarity getAncientRarity() {
+        return Rarity.SULLYSMOD_ANCIENT;
     }
 }

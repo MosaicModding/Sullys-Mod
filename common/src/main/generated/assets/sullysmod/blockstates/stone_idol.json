@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "sullysmod:block/stone_idol",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "sullysmod:block/stone_idol"
+    },
+    "facing=south": {
+      "model": "sullysmod:block/stone_idol",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "sullysmod:block/stone_idol",
+      "y": 270
+    }
+  }
+}

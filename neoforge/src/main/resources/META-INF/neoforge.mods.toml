@@ -16,6 +16,8 @@ curseforge = "https://www.curseforge.com/minecraft/mc-mods/sullys-mod"
 discord = "https://discord.gg/EftSdmD"
 sources = "https://github.com/MosaicModding/Sullys-Mod"
 
+enumExtensions="META-INF/enumextensions.json"
+
 description = '''${description}''' #mandatory Supports multiline text
 [[dependencies."${mod_id}"]] #optional
 modId = "neoforge" #mandatory

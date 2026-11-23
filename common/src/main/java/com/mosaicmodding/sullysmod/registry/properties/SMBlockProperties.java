@@ -69,9 +69,8 @@ public class SMBlockProperties {
     }
 
     public static TesseraBlockProperties ARTIFACT_FLOWER() {
-        return TesseraBlockProperties.copy(Blocks.POPPY).lootDropSelf();
+        return TesseraBlockProperties.copy(Blocks.POPPY).lootDropSelf().setCutout();
     }
-
 
     public static TesseraBlockProperties GOLDEN_GOBLET() {
         return TesseraBlockProperties.of()

@@ -1,9 +1,13 @@
 package com.mosaicmodding.sullysmod.platform;
 
 import com.mosaicmodding.sullysmod.registry.SMDataMaps;
+import com.mosaicmodding.sullysmod.registry.SMRaritiesNeo;
+import net.minecraft.world.item.Rarity;
 import net.minecraft.world.level.block.Block;
 
-public class SMPlatHelperNeoImpl implements SMPlatHelper{
+import java.util.function.Supplier;
+
+public class SMPlatHelperNeoImpl implements SMPlatHelper {
 
     @Override
     @SuppressWarnings("deprecation")
@@ -13,5 +17,10 @@ public class SMPlatHelperNeoImpl implements SMPlatHelper{
             return strippable.strippedBlock();
         }
         return original;
+    }
+
+    @Override
+    public Rarity getAncientRarity() {
+        return SMRaritiesNeo.ANCIENT_RARITY_PROXY.getValue();
     }
 }

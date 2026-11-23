@@ -1,5 +1,6 @@
 package com.mosaicmodding.sullysmod.registry.properties;
 
+import com.mosaicmodding.sullysmod.SullysMod;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.Item;
 
@@ -17,11 +18,11 @@ public class SMItemProperties {
     }
 
     public static Item.Properties ARTIFACT() {
-        return new Item.Properties()/*.rarity(SMArtifacts.ANCIENT)*/;
+        return new Item.Properties().rarity(SullysMod.PLAT_HELPER.getAncientRarity());
     }
 
     public static Item.Properties ARTIFACT_DURABILITY(int maxDamage) {
-        return new Item.Properties()/*.rarity(SMArtifacts.ANCIENT)*/.durability(maxDamage);
+        return new Item.Properties().rarity(SullysMod.PLAT_HELPER.getAncientRarity()).durability(maxDamage);
     }
 
 }

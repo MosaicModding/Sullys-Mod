@@ -54,8 +54,8 @@ public class ArtifactBlockShapes {
         return setShapeForDirection(
                 Shapes.box(0.25, 0, 0.25, 0.75, 0.5625, 0.69),
                 Shapes.box(0.3125, 0, 0.25, 0.75, 0.5625, 0.75),
-                Shapes.box(0.25, 0, 0.25, 0.69, 0.5625, 0.75),
-                Shapes.box(0.25, 0, 0.3125, 0.75, 0.5625, 0.75)
+                Shapes.box(0.25, 0, 0.3125, 0.75, 0.5625, 0.75),
+                Shapes.box(0.25, 0, 0.25, 0.69, 0.5625, 0.75)
         );
     }
 
